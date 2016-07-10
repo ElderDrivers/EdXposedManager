@@ -212,6 +212,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             if (preference.getKey().equals(colors.getKey()))
                 new ColorChooserDialog.Builder(act, preference.getTitleRes())
                         .backButton(R.string.back)
+                        .allowUserColorInputAlpha(false)
                         .doneButton(android.R.string.ok)
                         .preselect(XposedApp.getColor(act)).show();
 
