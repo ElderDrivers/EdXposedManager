@@ -325,11 +325,13 @@
     <string name="hour4">4 小時</string>
     <string name="hour5">5 小時</string>
     <string name="hour6">6 小時</string>
+    <string name="off">關閉</string>
     <string name="hour24">每天</string>
     <string name="confirm_reboots">重新啟動確認</string>
     <string name="skip_xposedminversion_check">略過 \'Xposed 最低版本\' 檢查</string>
     <string name="skip_xposedminversion_check_summ">略過模組 \'Xposed 最低版本\' 檢查</string>
     <string name="detected_as">檢測 SDK： %1$d, CPU架構： %2$s</string>
-    
+    <string name="details">細節</string>
+    <string name="look_and_feel">界面外觀</string>
     
 </resources>
