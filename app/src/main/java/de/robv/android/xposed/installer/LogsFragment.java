@@ -62,6 +62,12 @@ public class LogsFragment extends Fragment {
         reloadErrorLog();
         return v;
     }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        reloadErrorLog();
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
