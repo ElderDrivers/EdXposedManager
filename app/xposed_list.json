@@ -23,100 +23,100 @@
       "architecture":"all"
     },
     {
-      "name":"xposed-v85.1-sdk22-arm-custom-build-by-wanam-20160528",
-      "version":"85.1",
-      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4ZlZuVmlOd3p3dW8&export=download",
+      "name":"xposed-v86.0-sdk22-arm-custom-build-by-wanam-20160709",
+      "version":"86",
+      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4TTFZYWczRnRKNlE&export=download",
       "sdk":22,
       "architecture":"arm"
     },
     {
-      "name":"xposed-v85.1-sdk22-arm64-custom-build-by-wanam-20160528",
-      "version":"85.1",
-      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4UDR1dGpvb2Z3SU0&export=download",
+      "name":"xposed-v86.0-sdk22-arm64-custom-build-by-wanam-20160709",
+      "version":"86",
+      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4dFExM1hPT2h1SDA&export=download",
       "sdk":22,
       "architecture":"arm64"
     },
     {
-      "name":"xposed-v85.1-sdk23-arm-custom-build-by-wanam-20160528",
-      "version":"85.1",
-      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4YmRZM3o1TDlmOGc&export=download",
+      "name":"xposed-v86.0-sdk23-arm-custom-build-by-wanam-20160709",
+      "version":"86",
+      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4TnM1Si1acE1NVEE&export=download",
       "sdk":23,
       "architecture":"arm"
     },
     {
-      "name":"xposed-v85.1-sdk23-arm64-custom-build-by-wanam-20160528",
-      "version":"85.1",
-      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4ZW1NVGpuV2NLVm8&export=download",
+      "name":"xposed-v86.0-sdk23-arm64-custom-build-by-wanam-20160709",
+      "version":"86",
+      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4MnZFdXNEczB0U3c&export=download",
       "sdk":23,
       "architecture":"arm64"
     },
     {
-      "name":"xposed-v85.1-alt-sdk23-arm-custom-build-by-wanam-20160528",
+      "name":"xposed-v86.0-alt-sdk23-arm-custom-build-by-wanam-20160709",
       "version":"85.1",
-      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4MTVKa2gtQUdEaDA&export=download",
+      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4WExlOFpKTzZrS2M&export=download",
       "sdk":23,
       "architecture":"arm"
-    },
+    },	
     {
-      "name":"xposed-v85-sdk21-arm-MIUI-edition-by-SolarWarez-20160609",
-      "version":"85",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776500&d=1465396079",
+      "name":"xposed-v86-sdk21-arm-MIUI-edition-by-SolarWarez-20160710",
+      "version":"86",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3808610&d=1468147974",
       "sdk":21,
       "architecture":"arm"
     },
     {
-      "name":"xposed-v85-sdk21-arm64-MIUI-edition-by-SolarWarez-20160609",
-      "version":"85",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776501&d=1465396079",
+      "name":"xposed-v86-sdk21-arm64-MIUI-edition-by-SolarWarez-20160710",
+      "version":"86",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3808609&d=1468147974",
       "sdk":21,
       "architecture":"arm64"
     },
     {
-      "name":"xposed-v85-sdk21-x86-MIUI-edition-by-SolarWarez-20160609",
-      "version":"85",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776502&d=1465396079",
+      "name":"xposed-v86-sdk21-x86-MIUI-edition-by-SolarWarez-20160710",
+      "version":"86",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3808611&d=1468147974",
       "sdk":21,
       "architecture":"x86"
     },
     {
-      "name":"xposed-v85-sdk22-arm-MIUI-edition-by-SolarWarez-20160609",
-      "version":"85",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776503&d=1465396125",
+      "name":"xposed-v86-sdk22-arm-MIUI-edition-by-SolarWarez-20160710",
+      "version":"86",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3808613&d=1468148010",
       "sdk":22,
       "architecture":"arm"
     },
     {
-      "name":"xposed-v85-sdk22-arm64-MIUI-edition-by-SolarWarez-20160609",
-      "version":"85",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776504&d=1465396125",
+      "name":"xposed-v86-sdk22-arm64-MIUI-edition-by-SolarWarez-20160710",
+      "version":"86",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3808614&d=1468148273",
       "sdk":22,
       "architecture":"arm64"
     },
     {
-      "name":"xposed-v85-sdk22-x86-MIUI-edition-by-SolarWarez-20160609",
-      "version":"85",
+      "name":"xposed-v86-sdk22-x86-MIUI-edition-by-SolarWarez-20160710",
+      "version":"86",
       "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776505&d=1465396125",
       "sdk":22,
       "architecture":"x86"
     },
     {
-      "name":"xposed-v85-sdk23-arm-MIUI-edition-by-SolarWarez-20160609",
-      "version":"85",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776506&d=1465396175",
+      "name":"xposed-v86-sdk23-arm-MIUI-edition-by-SolarWarez-20160710",
+      "version":"86",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3808616&d=1468148309",
       "sdk":23,
       "architecture":"arm"
     },
     {
-      "name":"xposed-v85-sdk23-arm64-MIUI-edition-by-SolarWarez-20160609",
-      "version":"85",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776507&d=1465396175",
+      "name":"xposed-v86-sdk23-arm64-MIUI-edition-by-SolarWarez-20160710",
+      "version":"86",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3808615&d=1468148273",
       "sdk":23,
       "architecture":"arm64"
     },
     {
-      "name":"xposed-v85-sdk23-x86-MIUI-edition-by-SolarWarez-20160609",
-      "version":"85",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776508&d=1465396175",
+      "name":"xposed-v86-sdk23-x86-MIUI-edition-by-SolarWarez-20160710",
+      "version":"86",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3808617&d=1468148337",
       "sdk":23,
       "architecture":"x86"
     },
