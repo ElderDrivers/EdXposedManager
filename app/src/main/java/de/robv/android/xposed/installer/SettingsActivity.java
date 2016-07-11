@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -71,13 +72,33 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
     }
 
     public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+        public final static int[] PRIMARY_COLORS = new int[]{
+                Color.parseColor("#F44336"),
+                Color.parseColor("#E91E63"),
+                Color.parseColor("#9C27B0"),
+                Color.parseColor("#673AB7"),
+                Color.parseColor("#3F51B5"),
+                Color.parseColor("#2196F3"),
+                Color.parseColor("#03A9F4"),
+                Color.parseColor("#00BCD4"),
+                Color.parseColor("#009688"),
+                Color.parseColor("#4CAF50"),
+                Color.parseColor("#8BC34A"),
+                Color.parseColor("#CDDC39"),
+                Color.parseColor("#FFEB3B"),
+                Color.parseColor("#FFC107"),
+                Color.parseColor("#FF9800"),
+                Color.parseColor("#FF5722"),
+                Color.parseColor("#795548"),
+                Color.parseColor("#9E9E9E"),
+                Color.parseColor("#607D8B")
+        };
         private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
         private Preference nav_bar;
         private Preference colors;
         private PackageManager pm;
         private String packName;
         private Context mContext;
-
         private Preference.OnPreferenceChangeListener iconChange = new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference,
@@ -212,7 +233,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             if (preference.getKey().equals(colors.getKey()))
                 new ColorChooserDialog.Builder(act, preference.getTitleRes())
                         .backButton(R.string.back)
-                        .allowUserColorInputAlpha(false)
+                        .allowUserColorInput(false)
+                        .customColors(PRIMARY_COLORS, null)
                         .doneButton(android.R.string.ok)
                         .preselect(XposedApp.getColor(act)).show();
 
