@@ -52,6 +52,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
     private static final File XPOSED_PROP_FILE_SYSTEMLESS = new File("/xposed/xposed.prop");
     private static final File XPOSED_PROP_FILE_SYSTEMLESS_2 = new File("/vendor/xposed.prop");
+    private static final File XPOSED_PROP_FILE_SYSTEMLESS_3 = new File("/su/xposed/system/xposed.prop");
     private static final File XPOSED_PROP_FILE = new File("/system/xposed.prop");
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static String THIS_APK_VERSION = "1466672400000";
@@ -252,7 +253,8 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
     private void reloadXposedProp() {
         Map<String, String> map = Collections.emptyMap();
-        if (XPOSED_PROP_FILE.canRead() || XPOSED_PROP_FILE_SYSTEMLESS.canRead() || XPOSED_PROP_FILE_SYSTEMLESS_2.canRead()) {
+        if (XPOSED_PROP_FILE.canRead() || XPOSED_PROP_FILE_SYSTEMLESS.canRead() || XPOSED_PROP_FILE_SYSTEMLESS_2.canRead()
+                || XPOSED_PROP_FILE_SYSTEMLESS_3.canRead()) {
             File file = null;
             if (XPOSED_PROP_FILE.canRead()) {
                 file = XPOSED_PROP_FILE;
@@ -260,6 +262,8 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
                 file = XPOSED_PROP_FILE_SYSTEMLESS;
             } else if (XPOSED_PROP_FILE_SYSTEMLESS_2.canRead()) {
                 file = XPOSED_PROP_FILE_SYSTEMLESS_2;
+            } else if (XPOSED_PROP_FILE_SYSTEMLESS_3.canRead()) {
+                file = XPOSED_PROP_FILE_SYSTEMLESS_3;
             }
 
             if (file != null) {
