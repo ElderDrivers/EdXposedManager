@@ -337,13 +337,13 @@
     <string name="miui">MIUI</string>
 
     <!-- Start compatibility -->
-    <string name="official_compatibility">All AOSP and Samsung ROM, Nexus, LG, HTC, Asus devices</string>
+    <string name="official_compatibility">All AOSP and Samsung ROM; Nexus, LG, HTC, Asus devices</string>
     <string name="official_incompatibility">No incompatibility</string>
     <string name="official_compatibility_v21">All AOSP ROM, Nexus, LG, HTC, Huawei, Asus devices</string>
     <string name="official_incompatibility_v21">Samsung ROMs</string>
-    <string name="systemless_compatibility">All AOSP-based ROMs, Samsung ROMs, LG, HTC, Asus, Pixel C devices</string>
+    <string name="systemless_compatibility">All AOSP-based ROMs, Samsung ROMs; Nexus, LG, HTC, Asus, Pixel C devices</string>
     <string name="systemless_incompatibility">No incompatibility</string>
-    <string name="samsung_compatibility">All AOSP and Samsung ROM, Nexus, LG, HTC, Asus devices. <b>Note: alt</b> version is for Samsung Note phones</string>
+    <string name="samsung_compatibility">All AOSP and Samsung ROM; Nexus, LG, HTC, Asus devices. <b>Note: alt</b> version is for Samsung Note phones</string>
     <string name="samsung_incompatibility">No incompatibility</string>
     <string name="miui_compatibility">Only MIUI ROMs</string>
     <string name="miui_incompatibility">All other ROMs</string>
