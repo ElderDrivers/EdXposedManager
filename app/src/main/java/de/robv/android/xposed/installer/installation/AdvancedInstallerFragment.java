@@ -493,7 +493,7 @@ public class AdvancedInstallerFragment extends Fragment {
                     if (Build.VERSION.SDK_INT == i.sdk) {
                         thisSdkCount++;
                         String name = i.name;
-                        if (name.contains("systemless")) {
+                        if (name.contains("topjohnwu")) {
                             listSystemlessInstallers.add(i);
                         } else if (name.contains("wanam")) {
                             listSamsungInstallers.add(i);
@@ -515,6 +515,8 @@ public class AdvancedInstallerFragment extends Fragment {
                     } else {
                         if (name.contains("wanam")) {
                             listSamsungUninstallers.add(u);
+                        } else if (name.contains("topjohnwu")) {
+                            listSystemlessUninstallers.add(u);
                         } else if (!name.contains("Disabler")) {
                             listOfficialUninstaller.add(u);
                             listMiuiUninstallers.add(u);
