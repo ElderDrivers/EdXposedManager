@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/help"
-        android:icon="@drawable/ic_nav_support"
-        android:title="@string/help"
-        app:showAsAction="always|withText"/>
-
-    <group>
+    <group android:id="@+id/menu_reboot">
 
         <item
             android:id="@+id/reboot"

@@ -34,8 +34,7 @@ import de.robv.android.xposed.installer.util.ThemeUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
-public class DownloadDetailsActivity extends XposedBaseActivity
-        implements RepoListener, ModuleListener {
+public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener {
 
     public static final int DOWNLOAD_DESCRIPTION = 0;
     public static final int DOWNLOAD_VERSIONS = 1;
@@ -92,6 +91,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 
             if (Build.VERSION.SDK_INT >= 21)
                 findViewById(R.id.fake_elevation).setVisibility(View.GONE);
+
         } else {
             setContentView(R.layout.activity_download_details_not_found);
 
