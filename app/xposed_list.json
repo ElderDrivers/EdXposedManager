@@ -201,8 +201,8 @@
     }
   ],
   "apk":{
-    "version":"1466672400000",
-    "changelog":"<b>What's new:</b><br>&#149; <b>Installation on pre-lollipop devices is now available!</b><br>&#149; Added support for new systemles method &#40;/vendor&#41;<br>&#149; Auto selection of zip file when installing<br>&#149; Background update checker &#40;only installer&#41;<br>&#149; Option to skip xposedminversion check &#40;thanks to pylerSm&#41;<br>&#149; Some small transitions<br><br><br>&#149; Bug fixes<br>&#149; Synced translations!",
-    "link":"https://github.com/DVDAndroid/dvdandroid.github.io/blob/master/apks/XposedInstaller_by_dvdandroid.apk?raw=true"
+    "version":"1468569000000",
+    "changelog":"<b>What's new:</b><br>&#149; <b>Big improvements for tablets!</b><br>&#149; Added support for new systemles method<br>&#149; Added a button to download a module without installing<br>&#149; Added option to disable updates check<br>&#149; When importing a list of modules, also enable them<br>&#149; Fixed FCs<br>&#149; Other UI improvements<br><br><br>&#149; Bug fixes<br>&#149; Synced translations!",
+    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=19328&task=get"
   }
 }
