@@ -337,7 +337,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
             Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
         }
 
-        for (Module m : list) {
+        for (final Module m : list) {
             ModuleVersion mv = null;
             for (int i = 0; i < m.versions.size(); i++) {
                 ModuleVersion mvTemp = m.versions.get(i);
@@ -355,18 +355,19 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
                         new InstallApkUtil(getContext(), info).execute();
                     }
                 }, DownloadsUtil.MIME_TYPES.APK);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ModuleUtil.getInstance().setModuleEnabled(m.packageName, true);
+                    }
+                }, 2500);
             }
         }
 
+        ModuleUtil.getInstance().reloadInstalledModules();
+
         return true;
-    }
-
-    private boolean startShell() {
-        if (mRootUtil.startShell())
-            return true;
-
-        showAlert(getString(R.string.root_failed));
-        return false;
     }
 
     private void showAlert(final String result) {
