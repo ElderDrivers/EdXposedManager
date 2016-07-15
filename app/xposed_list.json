@@ -201,8 +201,8 @@
     }
   ],
   "apk":{
-    "version":"1468569000000",
+    "version":"1468571400000",
     "changelog":"<b>What's new:</b><br>&#149; <b>Big improvements for tablets!</b><br>&#149; Added support for new systemles method<br>&#149; Added a button to download a module without installing<br>&#149; Added option to disable updates check<br>&#149; When importing a list of modules, also enable them<br>&#149; Fixed FCs<br>&#149; Other UI improvements<br><br><br>&#149; Bug fixes<br>&#149; Synced translations!",
-    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=19328&task=get"
+    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=19329&task=get"
   }
 }
