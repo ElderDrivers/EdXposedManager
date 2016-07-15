@@ -585,11 +585,14 @@ public class AdvancedInstallerFragment extends Fragment {
 
         public TabsAdapter(FragmentManager mgr, boolean lock) {
             super(mgr);
-            if (Build.VERSION.SDK_INT < 21) {
-                tabsTitles = new String[]{tabsTitles[0], tabsTitles[1]};
-            }
             if (lock) {
                 tabsTitles = new String[]{tabsTitles[0]};
+                return;
+            }
+            if (Build.VERSION.SDK_INT < 21) {
+                tabsTitles = new String[]{tabsTitles[0], tabsTitles[1]};
+            } else if (Build.VERSION.SDK_INT == 21) {
+                tabsTitles = new String[]{tabsTitles[0], tabsTitles[1], tabsTitles[4]};
             }
         }
 
@@ -599,6 +602,21 @@ public class AdvancedInstallerFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             Fragment fragment = null;
+            if (Build.VERSION.SDK_INT == 21) {
+                switch (position) {
+                    case 0:
+                        fragment = new StatusInstallerFragment();
+                        break;
+                    case 1:
+                        fragment = new OfficialInstaller();
+                        break;
+                    case 2:
+                        fragment = new MiuiInstaller();
+                        break;
+                }
+                return fragment;
+            }
+
             switch (position) {
                 case 0:
                     fragment = new StatusInstallerFragment();
