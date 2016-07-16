@@ -3,7 +3,6 @@ package de.robv.android.xposed.installer;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBar;
@@ -27,7 +25,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.inquiry.Inquiry;
+import com.afollestad.inquiry.callbacks.GetCallback;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -80,38 +82,19 @@ public class ModulesBookmark extends XposedBaseActivity {
         }
     }
 
-    public static class ModulesBookmarkFragment extends ListFragment implements AdapterView.OnItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class ModulesBookmarkFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
         private List<Module> mBookmarkedModules = new ArrayList<>();
         private BookmarkModuleAdapter mAdapter;
-        private SharedPreferences mBookmarksPref;
-        private boolean changed;
         private MenuItem mClickedMenuItem = null;
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-
-            mBookmarksPref = getContext().getSharedPreferences("bookmarks", MODE_PRIVATE);
-            mBookmarksPref.registerOnSharedPreferenceChangeListener(this);
-        }
 
         @Override
         public void onResume() {
             super.onResume();
 
-            if (changed)
-                getModules();
-
             if (Build.VERSION.SDK_INT >= 21) {
                 getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
             }
-        }
-
-        @Override
-        public void onDestroy() {
-            super.onDestroy();
-            mBookmarksPref.unregisterOnSharedPreferenceChangeListener(this);
         }
 
         @Override
@@ -128,7 +111,6 @@ public class ModulesBookmark extends XposedBaseActivity {
 
             mAdapter = new BookmarkModuleAdapter(getContext());
             getModules();
-            setListAdapter(mAdapter);
 
             setHasOptionsMenu(true);
         }
@@ -136,22 +118,24 @@ public class ModulesBookmark extends XposedBaseActivity {
         private void getModules() {
             mAdapter.clear();
             mBookmarkedModules.clear();
-            for (String s : mBookmarksPref.getAll().keySet()) {
-                boolean isBookmarked = mBookmarksPref.getBoolean(s, false);
 
-                if (isBookmarked) {
-                    Module m = mRepoLoader.getModule(s);
-                    if (m != null) mBookmarkedModules.add(m);
-                }
-            }
-            Collections.sort(mBookmarkedModules, new Comparator<Module>() {
+            Inquiry.get().selectFrom("bookmarks", Module.class).all(new GetCallback<Module>() {
                 @Override
-                public int compare(Module mod1, Module mod2) {
-                    return mod1.name.compareTo(mod2.name);
+                public void result(Module[] result) {
+                    if (result == null || result.length == 0) return;
+
+                    mBookmarkedModules.addAll(Arrays.asList(result));
+
+                    Collections.sort(mBookmarkedModules, new Comparator<Module>() {
+                        @Override
+                        public int compare(Module mod1, Module mod2) {
+                            return mod1.name.compareTo(mod2.name);
+                        }
+                    });
+                    mAdapter.addAll(mBookmarkedModules);
+                    setListAdapter(mAdapter);
                 }
             });
-            mAdapter.addAll(mBookmarkedModules);
-            mAdapter.notifyDataSetChanged();
         }
 
         private int getDp(float value) {
@@ -168,11 +152,6 @@ public class ModulesBookmark extends XposedBaseActivity {
         }
 
         @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            changed = true;
-        }
-
-        @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             Module module = getItemFromContextMenuInfo(menuInfo);
             if (module == null)
@@ -184,10 +163,10 @@ public class ModulesBookmark extends XposedBaseActivity {
 
         @Override
         public boolean onContextItemSelected(MenuItem item) {
-            final Module module = getItemFromContextMenuInfo(
-                    item.getMenuInfo());
-            if (module == null)
-                return false;
+            Module module = getItemFromContextMenuInfo(item.getMenuInfo());
+            if (module == null) return false;
+            module = mRepoLoader.getModule(module.packageName);
+            if (module == null) return false;
 
             final String pkg = module.packageName;
             ModuleVersion mv = DownloadsUtil.getStableVersion(module);
@@ -275,17 +254,7 @@ public class ModulesBookmark extends XposedBaseActivity {
         }
 
         private void remove(final String pkg) {
-            mBookmarksPref.edit().putBoolean(pkg, false).apply();
-
-            Snackbar.make(container, R.string.bookmark_removed, Snackbar.LENGTH_SHORT).setAction(R.string.undo, new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mBookmarksPref.edit().putBoolean(pkg, true).apply();
-
-                    getModules();
-                }
-            }).show();
-
+            Inquiry.get().deleteFrom("bookmarks", Module.class).where("packageName = ?", pkg).run();
             getModules();
         }
 

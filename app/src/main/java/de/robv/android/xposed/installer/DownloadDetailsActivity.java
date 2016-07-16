@@ -22,6 +22,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.inquiry.Inquiry;
+
 import java.util.List;
 
 import de.robv.android.xposed.installer.repo.Module;
@@ -208,21 +210,30 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
     }
 
     private void setupBookmark(boolean clicked) {
-        SharedPreferences myPref = getSharedPreferences("bookmarks", MODE_PRIVATE);
+        Module bookmark = null;
+        try {
+            bookmark = Inquiry.get().selectFrom("bookmarks", Module.class).where("packageName = ?", mModule.packageName).one();
+        } catch (Exception ignored) {
+        }
 
-        boolean saved = myPref.getBoolean(mModule.packageName, false);
+        boolean saved = bookmark != null;
         boolean newValue;
 
         if (clicked) {
             newValue = !saved;
-            myPref.edit().putBoolean(mModule.packageName, newValue).apply();
+
+            if (newValue)
+                Inquiry.get().insertInto("bookmarks", Module.class).values(mModule).run();
+            else
+                Inquiry.get().deleteFrom("bookmarks", Module.class).where("packageName = ?", mModule.packageName).run();
 
             int msg = newValue ? R.string.bookmark_added : R.string.bookmark_removed;
 
             Snackbar.make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_SHORT).show();
         }
 
-        saved = myPref.getBoolean(mModule.packageName, false);
+        bookmark = Inquiry.get().selectFrom("bookmarks", Module.class).where("packageName = ?", mModule.packageName).one();
+        saved = bookmark != null;
 
         if (saved) {
             mItemBookmark.setTitle(R.string.remove_bookmark);

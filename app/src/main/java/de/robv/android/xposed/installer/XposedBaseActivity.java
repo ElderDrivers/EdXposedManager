@@ -5,6 +5,8 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
+import com.afollestad.inquiry.Inquiry;
+
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public abstract class XposedBaseActivity extends AppCompatActivity {
@@ -14,6 +16,7 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
         ThemeUtil.setTheme(this);
+        Inquiry.init(this, "bookmarks", 1);
     }
 
     @Override
@@ -21,6 +24,13 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
         super.onResume();
         XposedApp.setColors(getSupportActionBar(), XposedApp.getColor(this), this);
         ThemeUtil.reloadTheme(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (isFinishing()) Inquiry.deinit();
     }
 
     public void setFloating(android.support.v7.widget.Toolbar toolbar, @StringRes int details) {
