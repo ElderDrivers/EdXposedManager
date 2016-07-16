@@ -198,13 +198,13 @@
 
     <!-- DownloadView -->
     <string name="download_view_download">Скачать</string>
-	<string name="download_view_install">Установить</string>
-	<string name="download_view_cancel">Отмена</string>
+    <string name="download_view_install">Установить</string>
+    <string name="download_view_cancel">Отмена</string>
     <string name="download_view_no_url">Нет доступных URL для загрузки</string>
-	<string name="download_view_running">Скачивание и установка (%1$,d из %2$,d кб)</string>
+    <string name="download_view_running">Скачивание и установка (%1$,d из %2$,d кб)</string>
     <string name="download_view_waiting">Ожидает скачивания</string>
-	<string name="download_view_successful">Скачивание завершено</string>
-	<string name="download_view_failed">Ошибка загрузки (ошибка %d)</string>
+    <string name="download_view_successful">Скачивание завершено</string>
+    <string name="download_view_failed">Ошибка загрузки (ошибка %d)</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">Сумма MD5 не совпадает (загружено: %1$s, ожидалось: %2$s)</string>
@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
     <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПАРВИЛЬНУЮ АРХИТЕКТУРУ ZIP XPOSED?\nНе правильный zip установщик может навредить вашему устройству!</string>
     <string name="help">Справка</string>
-    <string name="helpChoose">
-        Как правильно выбрать zip файл?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Где:\n
-        %%SDK%% Это версия Android SDK\n\n
-        %%ARCH%% Это версия архитектуры CPU устройства
-    </string>
     <string name="newVersion">Доступна новая версия Xposed Installer!</string>
     <string name="update">Установить обновление</string>
     <string name="choose_icon">Изменить иконку приложения</string>
@@ -279,11 +270,11 @@
     <string name="notify_module_update">Включить уведомления об обновлении модулей</string>
 
     <string name="md_back_label">Назад</string>
-	<string name="md_done_label">Готово</string>
+    <string name="md_done_label">Готово</string>
     <string name="md_cancel_label">Отмена</string>
     <string name="md_choose_label">Выбрать</string>
-	<string name="md_error_label">Ошибка</string>
-	<string name="md_storage_perm_error">Для вашего приложения не предоставлены права на чтение READ_EXTERNAL_STORAGE.</string>
+    <string name="md_error_label">Ошибка</string>
+    <string name="md_storage_perm_error">Для вашего приложения не предоставлены права на чтение READ_EXTERNAL_STORAGE.</string>
     <string name="md_custom_label">Пользовательские</string>
     <string name="md_presets_label">Пресеты</string>
     <string name="changelog">Список изменений</string>
@@ -317,7 +308,7 @@
     <string name="status">Состояние Xposed</string>
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
-	<string name="rovo_89_old_icon">rovo89 (старая)</string>
+    <string name="rovo_89_old_icon">rovo89 (старая)</string>
     <string name="update_interval">Интервал фоновой проверки обновлений</string>
     <string name="hour1">1 час</string>
     <string name="hour2">2 часа</string>
@@ -326,10 +317,38 @@
     <string name="hour5">5 часа</string>
     <string name="hour6">6 часа</string>
     <string name="hour24">Каждый день</string>
+    <string name="off">Выключить</string>
     <string name="confirm_reboots">Подтверждать перезагрузку</string>
     <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
     <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
     <string name="detected_as">Обнаружен SDK: %1$d, ARCH: %2$s</string>
+    <string name="official">Официальный</string>
+    <string name="systemless">Systemless</string>
+    <string name="samsung">Samsung</string>
+    <string name="miui">MIUI</string>
 
-	
+    <!-- Start compatibility -->
+    <string name="official_compatibility">Все AOSP и Samsung ROM; Nexus, LG, HTC, Asus устройства</string>
+    <string name="official_incompatibility">Нет несовместимости</string>
+    <string name="official_compatibility_v21">Все AOSP ROM, Nexus, LG, HTC, Huawei, Asus устройства</string>
+    <string name="official_incompatibility_v21">Samsung ROMs</string>
+    <string name="systemless_compatibility">Все на AOSP ROMs, Samsung ROMs; Nexus, LG, HTC, Asus, Pixel C устройства</string>
+    <string name="systemless_incompatibility">Нет несовместимости</string>
+    <string name="samsung_compatibility">Все AOSP и Samsung ROM; Nexus, LG, HTC, Asus устройства. <b>Note: alt</b> версия для Samsung Note телефонов</string>
+    <string name="samsung_incompatibility">Нет несовместимости</string>
+    <string name="miui_compatibility">Только MIUI ROMs</string>
+    <string name="miui_incompatibility">Все другие ROMs</string>
+    <!-- End compatibility -->
+
+    <string name="compatibility">Совместимость</string>
+    <string name="details">Детали</string>
+    <string name="look_and_feel">Попробовать</string>
+    <string name="support_xda">Поддержка на XDA форуме</string>
+    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
+    <string name="later">Позже</string>
+    <string name="device_own">У вас %1$s устройство с %2$s ROM.</string>
+    <string name="original_framework">Ваше устройство совместимо с официальным Xposed Framework.</string>
+    <string name="goto_framework">Нажмите сдесь, чтобы перейти на правильный установщик</string>
+    <string name="save">Сохранить</string>
+
 </resources>

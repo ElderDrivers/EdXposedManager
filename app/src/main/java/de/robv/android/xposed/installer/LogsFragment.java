@@ -59,7 +59,6 @@ public class LogsFragment extends Fragment {
         mTxtLog.setTextIsSelectable(true);
         mSVLog = (ScrollView) v.findViewById(R.id.svLog);
         mHSVLog = (HorizontalScrollView) v.findViewById(R.id.hsvLog);
-        reloadErrorLog();
 /*
         View scrollTop = v.findViewById(R.id.scroll_top);
         View scrollDown = v.findViewById(R.id.scroll_down);
@@ -282,6 +281,7 @@ public class LogsFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
+            mTxtLog.setText("");
             mProgressDialog = new MaterialDialog.Builder(getContext()).content(R.string.loading).progress(true, 0).show();
         }
 
