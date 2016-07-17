@@ -593,6 +593,8 @@ public class AdvancedInstallerFragment extends Fragment {
                 tabsTitles = new String[]{tabsTitles[0], tabsTitles[1]};
             } else if (Build.VERSION.SDK_INT == 21) {
                 tabsTitles = new String[]{tabsTitles[0], tabsTitles[1], tabsTitles[4]};
+            } else if (Build.VERSION.SDK_INT == 22) {
+                tabsTitles = new String[]{tabsTitles[0], tabsTitles[1], tabsTitles[3], tabsTitles[4]};
             }
         }
 
@@ -611,6 +613,22 @@ public class AdvancedInstallerFragment extends Fragment {
                         fragment = new OfficialInstaller();
                         break;
                     case 2:
+                        fragment = new MiuiInstaller();
+                        break;
+                }
+                return fragment;
+            } else if (Build.VERSION.SDK_INT == 22) {
+                switch (position) {
+                    case 0:
+                        fragment = new StatusInstallerFragment();
+                        break;
+                    case 1:
+                        fragment = new OfficialInstaller();
+                        break;
+                    case 2:
+                        fragment = new SamsungInstaller();
+                        break;
+                    case 3:
                         fragment = new MiuiInstaller();
                         break;
                 }
