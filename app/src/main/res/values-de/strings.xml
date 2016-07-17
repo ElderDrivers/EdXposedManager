@@ -190,7 +190,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> und <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Bitte kontaktiere uns <b>nicht</b> direkt für Support. Verwende stattdessen die folgenden Links.</string>
     <string name="about_translator_label">Übersetzer:</string>
-    <string name="translator">Nils Wasser (BobQuentok), rovo89, Philipp Ihling (ximmox)</string>
+    <string name="translator">Nils Wasser (BobQuentok), rovo89, Philipp Ihling (ximmox), MrWasdennnoch</string>
     <string name="about_version_label">Version dieser App:</string>
     <string name="about_source_label">Quellcode</string>
     <string name="about_support_label">Support:</string>
@@ -216,8 +216,8 @@
     <string name="repo_download_failed_http">Herunterladen von %1$s fehlgeschlagen: %2$d (%3$s)</string>
     <string name="repo_download_failed">Herunterladen von %1$s fehlgeschlagen: %2$s</string>
     <string name="repo_load_failed">Verzeichnis konnte nicht geladen werden von %1$s:\n%2$s</string>
-
     <string name="choose_color">App-Farbe auswählen</string>
+
     <string name="warning_installed_on_external_storage">Dieses Modul kann nicht geladen werden, da es auf der SD-Karte installiert ist. Bitte verschiebe es auf den Internen Speicher.</string>
     <string name="warning_forward_locked">Dieses Modul kann nicht geladen werden, weil es "forward-locked" ist. Bitte kontaktiere den Entwickler des Moduls.</string>
     <string name="export_modules">Exportiere Liste aktiver Module</string>
@@ -239,7 +239,7 @@
     <string name="download_view_size">Größe: %s KB</string>
     <string name="share">Teilen</string>
     <string name="back">Zurück</string>
-    <string name="loadingError">Fehler beim Laden der Xposed-Framework ZIP</string>
+    <string name="loadingError">Fehler beim Herunterladen der Xposed-Framework ZIP</string>
     <string name="info">Info</string>
     <string name="infoInstaller">
         Name: %1$s
@@ -273,7 +273,7 @@
     <string name="update">Aktualisieren</string>
     <string name="choose_icon">Wähle ein Launcher-Icon</string>
     <string name="custom_icon">Icon anpassen</string>
-    <string name="installationForbidden">Installation ist auf diesem Gerät nicht möglich. Um Xposed mit dieser App installieren zu können muss Android Lollipop oder höher installiert sein.</string>
+    <string name="installationForbidden">Installation ist auf diesem Gerät nicht möglich. Um Xposed mit dieser App installieren zu können, muss Android Lollipop oder höher installiert sein.</string>
     <string name="installed_no_lollipop">Xposed-Framework ist installiert.</string>
     <string name="not_installed_no_lollipop">Xposed-Framework ist nicht installiert.</string>
     <string name="notify_module_update">Bei Modul-Aktualisierungen benachrichtigen</string>
@@ -298,9 +298,9 @@
     <string name="notification_coloration">Benachrichtigungs-Icon einfärben</string>
     <string name="file_is_empty">Datei ist leer</string>
     <string name="install_with_su">Modul mittels Root installieren</string>
-    <string name="install_with_su_summ">Wenn aktiviert werden Module ohne weitere Eingabeaufforderung installiert</string>
+    <string name="install_with_su_summ">Wenn aktiviert, werden Module ohne weitere Eingabeaufforderung installiert</string>
     <string name="install_remove">Installieren und entfernen</string>
-    <string name="download_remove">Laden und entfernen</string>
+    <string name="download_remove">Herunterladen und entfernen</string>
     <string name="module_saved">Modul gespeichert unter %1$s</string>
     <string name="ignore_updates">Aktualisierungen ignorieren</string>
     <string name="ignore_updates_summ">Ignoriere Aktualisierungen für bestimmte Module</string>
@@ -315,7 +315,49 @@
     <string name="share_app_text">Schau dir das an: Xposed Installer im Material Design! %s</string>
     <string name="disable_xposed">Deaktiviere Xposed-Framework</string>
     <string name="status">Xposed Status</string>
-    <string name="xposed_on_next_reboot">Xposed-Framework wird aktiviert beim nächsten Neustart</string>
-    <string name="xposed_off_next_reboot">Xposed-Framework wird deaktiviert beim nächsten Neustart</string>
+    <string name="xposed_on_next_reboot">Xposed-Framework wird beim nächsten Neustart aktiviert</string>
+    <string name="xposed_off_next_reboot">Xposed-Framework wird beim nächsten Neustart deaktiviert</string>
+    <string name="rovo_89_old_icon">rovo89 (Alt)</string>
+    <string name="update_interval">Häufigkeit der Updateüberprüfung</string>
+    <string name="hour1">1 Stunde</string>
+    <string name="hour2">2 Stunden</string>
+    <string name="hour3">3 Stunden</string>
+    <string name="hour4">4 Stunden</string>
+    <string name="hour5">5 Stunden</string>
+    <string name="hour6">6 Stunden</string>
+    <string name="hour24">Jeden Tag</string>
+    <string name="off">Nie</string>
+    <string name="confirm_reboots">Neustart bestätigen</string>
+    <string name="skip_xposedminversion_check">\'xposedminversion\'-Überprüfung überspringen</string>
+    <string name="skip_xposedminversion_check_summ">\'xposedminversion\'-Überprüfung für Module überspringen</string>
+    <string name="detected_as">Erkannte SDK: %1$d, ARCH: %2$s</string>
+    <string name="official">Offiziell</string>
+    <string name="systemless">Systemlos</string>
+    <string name="samsung">Samsung</string>
+    <string name="miui">MIUI</string>
+
+    <!-- Start compatibility -->
+    <string name="official_compatibility">Alle AOSP und Samsung ROMs; Nexus, LG, HTC, Asus Geräte</string>
+    <string name="official_incompatibility">Keine Inkompatibilität</string>
+    <string name="official_compatibility_v21">Alle AOSP ROMs, Nexus, LG, HTC, Huawei, Asus Geräte</string>
+    <string name="official_incompatibility_v21">Samsung ROMs</string>
+    <string name="systemless_compatibility">Alle AOSP-basierten ROMs, Samsung ROMs; Nexus, LG, HTC, Asus, Pixel C Geräat</string>
+    <string name="systemless_incompatibility">Keine Inkompatibilität</string>
+    <string name="samsung_compatibility">Alle AOSP und Samsung ROM; Nexus, LG, HTC, Asus Geräte. <b>Hinweis:</b> Die <b>alt</b>-Version ist für Samsung Note Geräte</string>
+    <string name="samsung_incompatibility">Keine Inkompatibilität</string>
+    <string name="miui_compatibility">Nur MIUI ROMs</string>
+    <string name="miui_incompatibility">Alle anderen ROMs</string>
+    <!-- End compatibility -->
+
+    <string name="compatibility">Kompatibilität</string>
+    <string name="details">Details</string>
+    <string name="look_and_feel">Aussehen und Verhalten</string>
+    <string name="support_xda">Bekomme Unterstützung im XDA-Thread</string>
+    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
+    <string name="later">Später</string>
+    <string name="device_own">Du besitzt ein %1$s Gerät mit einem %2$s ROM.</string>
+    <string name="original_framework">Dein Gerät ist kompatibel mit dem offiziellen Xposed Framework.</string>
+    <string name="goto_framework">Hier klicken, um zum richtigen Abschnitt für dein Gerät zu gelangen</string>
+    <string name="save">Speichern</string>
 
 </resources>
