@@ -4,6 +4,8 @@ XposedInstaller
 
 This is a materialised version of Xposed Installer
 
+[Show this project on XDA](http://forum.xda-developers.com/xposed/material-design-xposed-installer-t3137758)
+
 Credits
 -------
 
