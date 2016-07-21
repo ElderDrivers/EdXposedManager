@@ -2,25 +2,18 @@
   "installer":[
     %XPOSED_ZIP%
     {
-      "name": "xposed-v86.1-sdk23-topjohnwu",
-      "version": "86.1",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3811834&d=1468434492",
+      "name": "xposed-v86.2-sdk23-topjohnwu",
+      "version": "86.2",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3816030&d=1468815647",
       "sdk":23,
       "architecture":"all"
     },
     {
-    "name": "xposed-v86.1-sdk23-arm-alt-topjohnwu",
-    "version": "86.1",
-    "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3811836&d=1468434514",
+    "name": "xposed-v86.2-sdk23-arm-alt-topjohnwu",
+    "version": "86.2",
+    "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3816056&d=1468819201",
       "sdk":23,
     "architecture": "arm-alt"
-    },
-    {
-    "name": "xposed-v86.1-sdk22-topjohnwu",
-      "version":"85.7",
-    "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3811837&d=1468434536",
-      "sdk":22,
-      "architecture":"all"
     },
     {
       "name":"xposed-v86.0-sdk22-arm-custom-build-by-wanam-20160709",
@@ -158,9 +151,9 @@
   ],
   "uninstaller":[
     {
-      "name": "xposed-uninstaller-topjohnwu-20160714",
-      "date": "20160714",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3811833&d=1468434492",
+      "name": "xposed-uninstaller-topjohnwu-20160718v2",
+      "date": "20160718",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3816093&d=1468824846",
       "architecture": "all"
     },
     {
