@@ -245,7 +245,7 @@
     <string name="info">Info</string>
     <string name="infoInstaller">Nome: %1$s         \nSDK: %2$d         \nArchittettura: %3$s         \nVersione: %4$s</string>
     <string name="infoUninstaller">Nome: %1$s         \nArchittettura: %2$s         \nData: %3$s</string>
-    <string name="loadingError">Si è verificato un errore nel caricamento della lista degli installer/uninstaller dispnibili.\nNon è possibile accedere a Internet o è un bug lato server</string>
+    <string name="loadingError">Si è verificato un errore nel caricamento della lista degli installer/uninstaller disponibili.\nNon è possibile accedere a Internet o è un bug lato server</string>
     <string name="permissionGranted">Permesso concesso</string>
     <string name="permissionNotGranted">Questa funzionalità non funzionerà senza il permesso di scrittura della memoria esterna.</string>
     <string name="selectFile">Seleziona il file scaricato</string>
@@ -328,7 +328,7 @@
     <string name="official_compatibility_v21">Tutte le AOSP ROM; dispositivi Nexus, LG, HTC, Asus</string>
     <string name="official_incompatibility">Nessuna incompatibilità</string>
     <string name="official_incompatibility_v21">ROM Samsung</string>
-    <string name="original_framework">Il tuo dispositio è compatibile con la versione ufficiale del Xposed Framework</string>
+    <string name="original_framework">Il tuo dispositivo è compatibile con la versione ufficiale del Xposed Framework</string>
     <string name="samsung">Samsung</string>
     <string name="samsung_compatibility">Tutte le AOSP e Samsung ROM; dispositivi Nexus, LG, HTC, Asus. <b>Nota: versione alt</b> è per i telefoni Samsung Note</string>
     <string name="samsung_incompatibility">Nessuna incompatibilità</string>

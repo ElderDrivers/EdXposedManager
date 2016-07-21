@@ -54,10 +54,12 @@ public class StatusInstallerFragment extends Fragment {
     private static View mHintContainer;
     private static TextView mHint;
     private static TextView mErrorTv;
+    private static boolean isXposedInstalled = false;
     private TextView txtKnownIssue;
 
     public static void setError(boolean connectionFailed, boolean noSdks) {
         if (!connectionFailed && !noSdks) {
+            if (isXposedInstalled) return;
             mHintContainer.setVisibility(View.VISIBLE);
             mHint.setText(mHint.getText() + "\n" + sActivity.getString(R.string.goto_framework));
             return;
@@ -196,6 +198,7 @@ public class StatusInstallerFragment extends Fragment {
                     txtInstallError.setTextColor(getResources().getColor(R.color.darker_green));
                     txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.darker_green));
                     txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle));
+                    isXposedInstalled = true;
                 } else {
                     txtInstallError.setText(getString(R.string.installed_lollipop_inactive, installedXposedVersion));
                     txtInstallError.setTextColor(getResources().getColor(R.color.amber_500));
@@ -217,6 +220,7 @@ public class StatusInstallerFragment extends Fragment {
                 txtInstallError.setTextColor(getResources().getColor(R.color.darker_green));
                 txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.darker_green));
                 txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle));
+                isXposedInstalled = true;
                 if (DISABLE_FILE.exists()) {
                     txtInstallError.setText(getString(R.string.installed_lollipop_inactive, installedXposedVersionInt));
                     txtInstallError.setTextColor(getResources().getColor(R.color.amber_500));

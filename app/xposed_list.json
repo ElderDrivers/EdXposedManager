@@ -201,8 +201,8 @@
     }
   ],
   "apk":{
-    "version":"1469115000000",
-    "changelog":"<b>What's new:</b><br>&#149; Fixed FCs on Lollipop 5.0<br>&#149; Other UI improvements<br><br><br>&#149; Bug fixes<br>&#149; Synced translations!",
-    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=19434&task=get"
+    "version": "1469115000001",
+    "changelog":"<b>What's new:</b><br>&#149;Save module in internal memory<br>&#149;Don't show hint if Xposed is installed<br>&#149; Fixed FCs on Lollipop 5.0<br>&#149; Other UI improvements<br><br><br>&#149; Bug fixes<br>&#149; Synced translations!",
+    "link": "http://forum.xda-developers.com/devdb/project/dl/?id=19435&task=get"
   }
 }

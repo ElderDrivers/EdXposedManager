@@ -133,7 +133,7 @@
     <string name="download_sorting_status">Ordenar por status</string>
     <string name="download_sorting_updated">Ordenar por última atualização</string>
     <string name="download_sorting_created">Ordenar por data de criação</string>
-    <string name="download_section_Framework">Framework</string>
+    <string name="download_section_framework">Framework</string>
     <string name="download_section_update_available">Atualização disponível</string>
     <string name="download_section_installed">Instalado</string>
     <string name="download_section_not_installed">Não instalado</string>
@@ -170,7 +170,7 @@
     <!-- Support tab -->
     <string name="support_modules_label">Ajuda para módulos</string>
     <string name="support_modules_description">Pressione qualquer módulo na lista de módulos e selecione \"%1$s\".</string>
-    <string name="support_Framework_label">Ajuda para o Framework/Installer</string>
+    <string name="support_framework_label">Ajuda para o Framework/Installer</string>
     <string name="support_faq_label">FAQ/erros conhecidos</string>
     <string name="support_donate_label">Doar</string>
     <string name="support_donate_description">Se você gostaria de dizer obrigado pelo Xposed, você pode doar para rovo89 aqui</string>

@@ -331,8 +331,6 @@
     <string name="update_interval">Intervalo para pesquisa de atualizações em segundo plano</string>
     <string name="xposed_off_next_reboot">A \"Xposed Framework\" será desativada no próximo reinício</string>
     <string name="xposed_on_next_reboot">A \"Xposed Framework\" será ativada no próximo reinício</string>
-    <string name="download_section_Framework">\"Framework\"</string>
-    <string name="support_Framework_label">Apoiar a \"Xposed\"</string>
 
 </resources>
 
