@@ -157,7 +157,7 @@
     <string name="settings_release_type">要显示的版本</string>
     <string name="settings_group_experimental">实验性</string>
     <string name="settings_disable_resources">禁用资源钩子</string>
-    <string name="settings_disable_resources_summary">解决与主题引擎的冲突\n<b>警告：</b> 启用该选项将导致修改资源的模块无法工作。</string>
+    <string name="settings_disable_resources_summary">解决与主题引擎的冲突\n<b>警告：</b> 启用该选项将导致修改资源的模块无法工作</string>
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">性能试验</string>
     <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">启用该选项后，您的系统性能可能将变得更好、更差或没有变化，请随意试用并回报您所观察到的效果（或根本没有任何变化）。在修改该选项后您将需要重新安装框架并重启手机。</string>
     <string name="settings_group_app">应用</string>
@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">下载 %1$s 失败：%2$d（%3$s）</string>
     <string name="repo_download_failed">下载 %1$s 失败：%2$s</string>
     <string name="repo_load_failed">无法从 %1$s:\n%2$s 中加载仓库</string>
-    <string name="choose_color">选择颜色...</string>
+    <string name="choose_color">选择颜色</string>
 
     <string name="warning_installed_on_external_storage">此模块因被安装在 SD 卡中而导致无法加载，请将其移动到内部存储。</string>
     <string name="warning_forward_locked">此模块因被锁定而导致无法加载，请联系模块的开发者。</string>
@@ -231,13 +231,13 @@
     <string name="import_installed_modules">导入已安装模块列表</string>
     <string name="no_installed_modules">没有任何已安装的模块！</string>
     <string name="enable_heads_up">启用浮动通知</string>
-    <string name="enable_heads_up_summary">针对新添加或有更新的模块启用浮动通知</string>
+    <string name="enable_heads_up_summary">针对新安装或已更新的模块启用浮动通知</string>
     <string name="nav_bar_coloration">导航栏着色</string>
     <string name="no_backup_found">找不到备份</string>
     <string name="no_enabled_modules">没有任何已启用的模块</string>
 
     <string name="download_view_size">大小：%s KB</string>
-    <string name="share">分享到...</string>
+    <string name="share">分享</string>
     <string name="back">返回</string>
     <string name="loadingError">获取安装器/卸载器列表时出现错误。/n无法接入网络或服务器出现错误</string>
     <string name="info">信息</string>
@@ -299,16 +299,16 @@
     <string name="file_is_empty">文件为空</string>
     <string name="install_with_su">使用 root 权限安装模块</string>
     <string name="install_with_su_summ">勾选后在 Xposed Installer 内安装模块时将不再显示安装提示</string>
-    <string name="install_remove">安装和移除</string>
-    <string name="download_remove">下载和移除</string>
+    <string name="install_remove">安装并移除</string>
+    <string name="download_remove">下载并移除</string>
     <string name="module_saved">模块已保存至 %1$s</string>
     <string name="ignore_updates">忽略更新</string>
-    <string name="ignore_updates_summ">忽略特定模块的更新</string>
+    <string name="ignore_updates_summ">忽略指定模块的更新</string>
     <string name="reboot_recovery">重启至恢复模式</string>
     <string name="loading">正在加载...</string>
     <string name="chrome_custom_tabs">Chrome 自定义标签页</string>
     <string name="chrome_custom_tabs_summ">在内置浏览器中打开链接</string>
-    <string name="scroll_bottom">滚动至底部</string>
+    <string name="scroll_bottom">滚动到底部</string>
     <string name="open_drawer_summ">在启动应用时自动打开导航抽屉栏</string>
     <string name="open_drawer">自动打开导航抽屉栏</string>
     <string name="share_app">分享应用</string>
@@ -327,9 +327,9 @@
     <string name="hour6">6 小时</string>
     <string name="hour24">每天</string>
     <string name="off">从不</string>
-    <string name="confirm_reboots">确认重启</string>
-    <string name="skip_xposedminversion_check">跳过 \'Xposed 最低版本\'检查</string>
-    <string name="skip_xposedminversion_check_summ">跳过针对模块的 \'Xposed 最低版本\'检查</string>
+    <string name="confirm_reboots">重启确认</string>
+    <string name="skip_xposedminversion_check">跳过 \'Xposed 最低版本\' 检查</string>
+    <string name="skip_xposedminversion_check_summ">跳过针对模块的 \'Xposed 最低版本\' 检查</string>
     <string name="detected_as">检测到 SDK: %1$d, 架构: %2$s</string>
     <string name="official">官方</string>
     <string name="systemless">Systemless</string>
