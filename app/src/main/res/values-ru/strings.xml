@@ -258,7 +258,7 @@
     <string name="downloadUninstaller">Скачать деинсталятор</string>
     <string name="selectFile">Выберите загруженный файл</string>
     <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
-    <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПАРВИЛЬНУЮ АРХИТЕКТУРУ ZIP XPOSED?\nНе правильный zip установщик может навредить вашему устройству!</string>
+    <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПРАВИЛЬНУЮ АРХИТЕКТУРУ XPOSED?\nНеправильный установщик может навредить вашему устройству!</string>
     <string name="help">Справка</string>
     <string name="newVersion">Доступна новая версия Xposed Installer!</string>
     <string name="update">Установить обновление</string>
@@ -323,7 +323,7 @@
     <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
     <string name="detected_as">Обнаружен SDK: %1$d, ARCH: %2$s</string>
     <string name="official">Официальный</string>
-    <string name="systemless">Systemless</string>
+    <string name="systemless">Портативный</string>
     <string name="samsung">Samsung</string>
     <string name="miui">MIUI</string>
 
@@ -336,7 +336,7 @@
     <string name="systemless_incompatibility">Нет несовместимости</string>
     <string name="samsung_compatibility">Все AOSP и Samsung ROM; Nexus, LG, HTC, Asus устройства. <b>Note: alt</b> версия для Samsung Note телефонов</string>
     <string name="samsung_incompatibility">Нет несовместимости</string>
-    <string name="miui_compatibility">Только MIUI ROMs</string>
+    <string name="miui_compatibility">Только MIUI</string>
     <string name="miui_incompatibility">Все другие ROMs</string>
     <!-- End compatibility -->
 
@@ -348,7 +348,7 @@
     <string name="later">Позже</string>
     <string name="device_own">У вас %1$s устройство с %2$s ROM.</string>
     <string name="original_framework">Ваше устройство совместимо с официальным Xposed Framework.</string>
-    <string name="goto_framework">Нажмите сдесь, чтобы перейти на правильный установщик</string>
+    <string name="goto_framework">Нажмите сюда, чтобы перейти на правильный установщик</string>
     <string name="save">Сохранить</string>
 
 </resources>
