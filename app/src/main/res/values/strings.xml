@@ -209,7 +209,7 @@
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5 sum is incorrect (downloaded: %1$s, expected: %2$s)</string>
     <string name="download_could_not_read_file">Could not read downloaded file: %s</string>
-    <string name="download_no_valid_apk">Downloaded file is not a valid APK (or incompatible)</string>
+    <string name="download_no_valid_apk">Downloaded file is not a valid APK (or is incompatible)</string>
     <string name="download_incorrect_package_name">Package name is incorrect (downloaded: %1$s, expected: %2$s)</string>
 
     <!-- RepoLoader -->
@@ -229,17 +229,17 @@
     <string name="import_enabled_modules">Import enabled modules list</string>
     <string name="export_installed_modules">Export installed modules list</string>
     <string name="import_installed_modules">Import installed modules list</string>
-    <string name="no_installed_modules">There isn\'t any installed module!</string>
+    <string name="no_installed_modules">There are no installed modules!</string>
     <string name="enable_heads_up">Enable Heads-Up notification</string>
     <string name="enable_heads_up_summary">This option enables heads up notification on new/updated module</string>
     <string name="nav_bar_coloration">Colorate navigation bar</string>
     <string name="no_backup_found">No backup found</string>
-    <string name="no_enabled_modules">There is any modules enabled</string>
+    <string name="no_enabled_modules">There are no modules enabled</string>
 
     <string name="download_view_size">Size: %s KB</string>
     <string name="share">Share with…</string>
     <string name="back">Back</string>
-    <string name="loadingError">Error getting list of installers/uninstallers.\nCannot access Internet, or server bug</string>
+    <string name="loadingError">Error getting the list of installers/uninstallers.\nCannot access Internet, or server has a bug</string>
     <string name="info">Info</string>
     <string name="infoInstaller">
         Name: %1$s
@@ -258,7 +258,7 @@
     <string name="downloadUninstaller">Download uninstaller</string>
     <string name="selectFile">Select downloaded file</string>
     <string name="xposedZipNotFound">Zip not found, probably a new version released.</string>
-    <string name="warningArchitecture">HAVE YOU CHOSEN RIGHT XPOSED ZIP ARCHITECTURE?\nWrong zip can damage your phone!</string>
+    <string name="warningArchitecture">HAVE YOU CHOSEN THE RIGHT XPOSED ZIP ARCHITECTURE?\nWrong zip can damage your phone!</string>
     <string name="help">Help</string>
     <string name="helpChoose">
         How to choose correct zip file?\n
@@ -309,8 +309,8 @@
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
     <string name="scroll_bottom">Scroll to bottom</string>
-    <string name="open_drawer_summ">Open automatically the navigation drawer at startup</string>
-    <string name="open_drawer">Open automatically navigation drawer</string>
+    <string name="open_drawer_summ">Open the navigation drawer automatically at startup</string>
+    <string name="open_drawer">Open navigation drawer automatically</string>
     <string name="share_app">Share app</string>
     <string name="share_app_text">Check this out: Xposed Installer in Material Design! %s</string>
     <string name="disable_xposed">Disable Xposed</string>
