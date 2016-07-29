@@ -359,5 +359,7 @@
     <string name="original_framework">Your device is compatible with the official Xposed Framework.</string>
     <string name="goto_framework">Click here to go to the right section for your device</string>
     <string name="save">Save</string>
+    <string name="download_location">Download location</string>
+    <string name="download_location_summ">Download location for APK files (modules only)</string>
 
 </resources>

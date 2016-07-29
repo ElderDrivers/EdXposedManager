@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -14,12 +15,15 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
+import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,9 +32,10 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UpdateService;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
-public class SettingsActivity extends XposedBaseActivity implements ColorChooserDialog.ColorCallback {
+public class SettingsActivity extends XposedBaseActivity implements ColorChooserDialog.ColorCallback, FolderChooserDialog.FolderCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +69,18 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
     }
 
     @Override
-    public void onColorSelection(ColorChooserDialog dialog,
-                                 @ColorInt int color) {
+    public void onColorSelection(ColorChooserDialog dialog, @ColorInt int color) {
         if (!dialog.isAccentMode()) {
             XposedApp.getPreferences().edit().putInt("colors", color).apply();
+        }
+    }
+
+    @Override
+    public void onFolderSelection(@NonNull FolderChooserDialog dialog, @NonNull File folder) {
+        if (folder.canWrite()) {
+            XposedApp.getPreferences().edit().putString("download_location", folder.getPath()).apply();
+        } else {
+            Toast.makeText(this, R.string.sdcard_not_writable, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -96,9 +109,12 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
         private Preference nav_bar;
         private Preference colors;
+        private Preference downloadLocation;
         private PackageManager pm;
         private String packName;
         private Context mContext;
+        private Preference mClickedPreference;
+
         private Preference.OnPreferenceChangeListener iconChange = new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference,
@@ -140,6 +156,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             nav_bar = findPreference("nav_bar");
             colors = findPreference("colors");
+            downloadLocation = findPreference("download_location");
             if (Build.VERSION.SDK_INT < 21) {
                 Preference heads_up = findPreference("heads_up");
 
@@ -179,6 +196,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             });
 
             colors.setOnPreferenceClickListener(this);
+            downloadLocation.setOnPreferenceClickListener(this);
 
             ListPreference customIcon = (ListPreference) findPreference("custom_icon");
 
@@ -230,15 +248,55 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             if (act == null)
                 return false;
 
-            if (preference.getKey().equals(colors.getKey()))
+            if (preference.getKey().equals(colors.getKey())) {
                 new ColorChooserDialog.Builder(act, preference.getTitleRes())
                         .backButton(R.string.back)
                         .allowUserColorInput(false)
                         .customColors(PRIMARY_COLORS, null)
                         .doneButton(android.R.string.ok)
                         .preselect(XposedApp.getColor(act)).show();
+            } else if (preference.getKey().equals(downloadLocation.getKey())) {
+                if (checkPermissions()) {
+                    mClickedPreference = downloadLocation;
+                    return false;
+                }
+
+                new FolderChooserDialog.Builder(act)
+                        .cancelButton(android.R.string.cancel)
+                        .initialPath(XposedApp.getDownloadPath())
+                        .show();
+            }
 
             return true;
+        }
+
+        private boolean checkPermissions() {
+            if (Build.VERSION.SDK_INT < 23) return false;
+
+            if (ActivityCompat.checkSelfPermission(getContext(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (mClickedPreference != null) {
+                    new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            onPreferenceClick(mClickedPreference);
+                        }
+                    }, 500);
+                }
+            } else {
+                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

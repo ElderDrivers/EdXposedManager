@@ -191,6 +191,10 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         return Color.HSVToColor(hsv);
     }
 
+    public static String getDownloadPath() {
+        return getPreferences().getString("download_location", Environment.getExternalStorageDirectory() + "/XposedInstaller");
+    }
+
     public void onCreate() {
         super.onCreate();
         mInstance = this;

@@ -99,12 +99,16 @@
             android:key="snack_bar"
             android:title="@string/notify_module_update"/>
 
-
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="chrome_tabs"
             android:summary="@string/chrome_custom_tabs_summ"
             android:title="@string/chrome_custom_tabs"/>
+
+        <Preference
+            android:key="download_location"
+            android:summary="@string/download_location_summ"
+            android:title="@string/download_location"/>
 
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
