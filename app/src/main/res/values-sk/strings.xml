@@ -94,6 +94,7 @@
     <string name="module_is_not_activated_yet">Xposed modul zatiaľ nie je aktivovaný</string>
     <string name="module_is_not_activated_yet_detailed">Modul %s bol nainštalovaný, ale zatiaľ nie je aktivovaný.</string>
     <string name="activate_and_reboot">Aktivovať a reštartovať</string>
+    <string name="activate_only">Aktivovať</string>
     <string name="module_activated">Xposed modul bol aktivovaný</string>
     <string name="module_empty_description">(popis nie je k dispozícii)</string>
     <string name="module_no_ui">Tento modul neposkytuje používateľské rozhranie</string>
