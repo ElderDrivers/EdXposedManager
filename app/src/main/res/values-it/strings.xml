@@ -337,5 +337,8 @@
     <string name="systemless">Systemless</string>
     <string name="systemless_compatibility">Tutte le AOSP-based ROM, Samsung ROM; dispositivi Nexus, LG, HTC, Asus, Pixel C</string>
     <string name="systemless_incompatibility">Nessuna incompatibilità</string>
+    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
+    <string name="download_location">Locazione downloads</string>
+    <string name="download_location_summ">Locazione download per i file APK (solo moduli)</string>
 
 </resources>
