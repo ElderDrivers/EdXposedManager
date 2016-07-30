@@ -355,13 +355,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
                         new InstallApkUtil(getContext(), info).execute();
                     }
                 }, DownloadsUtil.MIME_TYPES.APK);
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        ModuleUtil.getInstance().setModuleEnabled(m.packageName, true);
-                    }
-                }, 2500);
             }
         }
 
