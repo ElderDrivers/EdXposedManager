@@ -359,5 +359,7 @@
     <string name="original_framework">Vaše zariadenie je kompatibilné s oficiálnym Xposed Framework.</string>
     <string name="goto_framework">Kliknite sem pre zobrazenie správnej sekcie pre vaše zariadenie</string>
     <string name="save">Uložiť</string>
+    <string name="download_location">Umiestnenie stiahnutých súborov</string>
+    <string name="download_location_summ">Umiestnenie stiahnutých APK súborov (iba moduly)</string>
 
 </resources>
