@@ -362,5 +362,8 @@
     <string name="save">Uložiť</string>
     <string name="download_location">Umiestnenie stiahnutých súborov</string>
     <string name="download_location_summ">Umiestnenie stiahnutých APK súborov (iba moduly)</string>
+    <string name="restart_needed">Reštart je potrebný</string>
+    <string name="cache_cleaned">Vyrovnávacia pamäť aplikácie bola vymazaná. Reštart je potrebný</string>
+    <string name="update_download_list">Potiahnutím obnovte zoznam modulov</string>
 
 </resources>
