@@ -194,8 +194,8 @@
     }
   ],
   "apk":{
-    "version": "1469115000001",
-    "changelog":"<b>What's new:</b><br>&#149;Save module in internal memory<br>&#149;Don't show hint if Xposed is installed<br>&#149; Fixed FCs on Lollipop 5.0<br>&#149; Other UI improvements<br><br><br>&#149; Bug fixes<br>&#149; Synced translations!",
-    "link": "http://forum.xda-developers.com/devdb/project/dl/?id=19435&task=get"
+    "version": "1469970000000",
+    "changelog":"<b>What's new:</b><br>&#149; Automatic selection of architecture of zip file<br>&#149; Allow to enable module only, without rebooting<br>&#149; Don't enable module automatically when importing (revert)<br>&#149; Use a prefs file to store bookmarks (revert)<br>&#149; Ability to change download path<br><br><br>&#149; Bug fixes<br>&#149; New language: Estonian translation!<br>&#149; Synced translations!",
+    "link": "http://forum.xda-developers.com/devdb/project/dl/?id=19573&task=get"
   }
 }
