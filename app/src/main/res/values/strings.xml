@@ -362,5 +362,8 @@
     <string name="save">Save</string>
     <string name="download_location">Download location</string>
     <string name="download_location_summ">Download location for APK files (modules only)</string>
+    <string name="restart_needed">Restart needed</string>
+    <string name="cache_cleaned">App\'s cache has been cleaned. Restart is needed</string>
+    <string name="update_download_list">Pulldown to refresh download\'s module list</string>
 
 </resources>
