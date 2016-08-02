@@ -261,15 +261,6 @@
     <string name="xposedZipNotFound">无法找到 ZIP 文件，或许已有新版本发布。</string>
     <string name="warningArchitecture">您是否已选择了正确的 XPOSED ZIP 文件？\n错误的 ZIP 文件将可能损坏您的手机！</string>
     <string name="help">帮助</string>
-    <string name="helpChoose">
-        如何选择正确的 ZIP 文件？\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        其中：\n
-        %%SDK%% 为您的 Android SDK 版本\n\n
-        %%ARCH%% 为您设备的 CPU 架构
-    </string>
     <string name="newVersion">有新版本的 Xposed Installer 可用！现在更新！</string>
     <string name="update">更新</string>
     <string name="choose_icon">选择一个图标</string>

@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">Zip-i ei leitud, tõenäoliselt on väljastatud uuem versioon.</string>
     <string name="warningArchitecture">KAS SA VALISID ÕIGE XPOSED ZIP-I ARHITEKTUURI?\nVale zip võib su telefoni kahtjustada!</string>
     <string name="help">Abi</string>
-    <string name="helpChoose">
-        Kuidas valida õiget zip-faili?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Kus:\n
-        %%SDK%% on su Androidi SDK versioon\n\n
-        %%ARCH%% on su seadme protsessori arhitektuur
-    </string>
     <string name="newVersion">Uus versioon Xposed installijast on saadaval! Uuenda seda!</string>
     <string name="update">Uuenda</string>
     <string name="choose_icon">Vali ikoon</string>

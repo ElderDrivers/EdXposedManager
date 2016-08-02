@@ -261,15 +261,6 @@
     <string name="xposedZipNotFound">Zip nebol nájdený, pravdepodobne je dostupná nová verzia.</string>
     <string name="warningArchitecture">ZVOLILI STE SPRÁVNU ARCHITEKTÚRU XPOSED ZIP?\nNesprávny zip súbor môže poškodiť vaše zariadenie!</string>
     <string name="help">Pomoc</string>
-    <string name="helpChoose">
-        Ako zvoliť správny zip súbor?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Kde:\n
-        %%SDK%% je vaša verzia Android SDK\n\n
-        %%ARCH%% je architektúra CPU vášho zariadenia
-    </string>
     <string name="newVersion">Je dostupná nová verzia Xposed Installera! Aktualizujte ju!</string>
     <string name="update">Aktualizovať</string>
     <string name="choose_icon">Zvoľte ikonu</string>

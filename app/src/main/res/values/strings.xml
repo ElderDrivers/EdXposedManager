@@ -261,15 +261,6 @@
     <string name="xposedZipNotFound">Zip not found, probably a new version released.</string>
     <string name="warningArchitecture">HAVE YOU CHOSEN THE RIGHT XPOSED ZIP ARCHITECTURE?\nWrong zip can damage your phone!</string>
     <string name="help">Help</string>
-    <string name="helpChoose">
-        How to choose correct zip file?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Where:\n
-        %%SDK%% is your Android SDK version\n\n
-        %%ARCH%% is your device CPU architecture
-    </string>
     <string name="newVersion">New version of Xposed Installer is available! Update it!</string>
     <string name="update">Update</string>
     <string name="choose_icon">Choose an icon</string>
