@@ -111,7 +111,7 @@
     <string name="module_uninstall">Desinstalar</string>
 
     <!-- Download tab -->
-    <string name="menuSearch">Pesquisar</string>
+	<string name="menuSearch">Pesquisar</string>
     <string name="menuReload">Recarregar</string>
     <string name="changes">Alterações</string>
     <string name="download_details_page_description">Descrição:</string>
@@ -133,7 +133,7 @@
     <string name="download_sorting_status">Ordenar por status</string>
     <string name="download_sorting_updated">Ordenar por última atualização</string>
     <string name="download_sorting_created">Ordenar por data de criação</string>
-    <string name="download_section_framework">Framework</string>
+    <string name="download_section_Framework">Framework</string>
     <string name="download_section_update_available">Atualização disponível</string>
     <string name="download_section_installed">Instalado</string>
     <string name="download_section_not_installed">Não instalado</string>
@@ -170,7 +170,7 @@
     <!-- Support tab -->
     <string name="support_modules_label">Ajuda para módulos</string>
     <string name="support_modules_description">Pressione qualquer módulo na lista de módulos e selecione \"%1$s\".</string>
-    <string name="support_framework_label">Ajuda para o Framework/Installer</string>
+    <string name="support_Framework_label">Ajuda para o Framework/Installer</string>
     <string name="support_faq_label">FAQ/erros conhecidos</string>
     <string name="support_donate_label">Doar</string>
     <string name="support_donate_description">Se você gostaria de dizer obrigado pelo Xposed, você pode doar para rovo89 aqui</string>
@@ -306,7 +306,7 @@
     <string name="ignore_updates_summ">Ignorar atualizações para um módulo especifico.</string>
     <string name="reboot_recovery">Reiniciar para recuperação</string>
     <string name="loading">Carregando…</string>
-    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+	<string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Abrir links no navegador interno</string>
     <string name="scroll_bottom">Rolar ao topo</string>
     <string name="open_drawer_summ">Abre a barra de navegação automaticamente ao iniciar</string>
@@ -317,7 +317,7 @@
     <string name="status">Estado do Xposed</string>
     <string name="xposed_on_next_reboot">O Xposed framework vai ser ativado no próximo reinício</string>
     <string name="xposed_off_next_reboot">O Xposed framework vai ser desativado no próximo reinício</string>
-    <string name="rovo_89_old_icon">rovo89 (\ntigo)</string>
+	<string name="rovo_89_old_icon">rovo89 (\ntigo)</string>
     <string name="update_interval">Intervalo da verificação de atualizaçoes em segundo plano</string>
     <string name="hour1">1 hora</string>
     <string name="hour2">2 horas</string>
@@ -343,7 +343,7 @@
     <string name="official_incompatibility_v21">ROMs Samsung</string>
     <string name="systemless_compatibility">Todas ROMs baseadas em AOSP, Samsung ROMs; Nexus, LG, HTC, Asus, dispositivos Pixel C</string>
     <string name="systemless_incompatibility">Sem incompatibilidade</string>
-    <string name="samsung_compatibility">Todas ROMs AOSP e Samsung; Nexus, LG, HTC, Asus devices. <b>Nota: versão alternativa</b>é para telefones Samsung Note</string>
+    <string name="samsung_compatibility">Todas ROMs AOSP e Samsung; Nexus, LG, HTC, Asus devices. <b>Nota: versão alt</b> é para telefones Samsung Note</string>
     <string name="samsung_incompatibility">Sem incompatibilidade</string>
     <string name="miui_compatibility">Somente ROMs MIUI</string>
     <string name="miui_incompatibility">Todas as outras ROMs</string>
@@ -359,5 +359,7 @@
     <string name="original_framework">Seu dispositivo é compatível com o Xposed Framework oficial.</string>
     <string name="goto_framework">Clique aqui para ir para a seção certa para seu dipositivo</string>
     <string name="save">Salvar</string>
+	<string name="download_location">Local de download</string>
+    <string name="download_location_summ">Local de downloads para arquivos APK (Somente módulos)</string>
 
 </resources>

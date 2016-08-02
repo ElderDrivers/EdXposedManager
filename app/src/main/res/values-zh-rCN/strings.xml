@@ -59,7 +59,7 @@
     <string name="install_known_issue">Xposed 与您的设备间似乎存在已知的问题（\"%s\"）。这可能将导致 Xposed 无法被安装或是更为严重的问题。点击这里来了解详情。</string>
     <string name="install_reverted">先前安装过 \"%1$s\" 版本的 app_process，但目前查看到的版本却为 \"%2$s\"。如果不希望旧版的文件被还原，您可以选择通过 recovery 安装（自动或手动）。</string>
     <string name="uninstall_reverted">先前已卸载过 app_process ，但目前查看到了 \"%s\" 的版本。如果不希望旧版的文件被还原，您可以选择通过 recovery 安装（自动或手动）。</string>
-    <string name="tap_to_dismiss">点击以清除</string>
+    <string name="tap_to_dismiss">点击清除</string>
     <string name="sdcard_location">SD 卡：%s</string>
     <string name="installation_lollipop">Xposed 框架尚未安装。请从 XDA 下载最新版本的 ZIP 文件并通过 recovery 手动刷入。</string>
     <string name="installed_lollipop">Xposed 框架 %s 版已激活。</string>
@@ -94,6 +94,7 @@
     <string name="module_is_not_activated_yet">Xposed 模块尚未激活</string>
     <string name="module_is_not_activated_yet_detailed">%s 已安装，但尚未激活。</string>
     <string name="activate_and_reboot">激活并重启</string>
+    <string name="activate_only">仅激活</string>
     <string name="module_activated">Xposed 模块已激活</string>
     <string name="module_empty_description">（未提供介绍）</string>
     <string name="module_no_ui">该模块未提供用户界面</string>
@@ -209,7 +210,7 @@
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5 校验码错误（下载：%1$s，预期：%2$s）</string>
     <string name="download_could_not_read_file">无法读取下载的文件：%s</string>
-    <string name="download_no_valid_apk">下载的文件不是有效的 APK （或存在兼容性问题）</string>
+    <string name="download_no_valid_apk">下载的文件并非有效的 APK （或存在兼容性问题）</string>
     <string name="download_incorrect_package_name">文件包名不正确（下载：%1$s，预期：%2$s）</string>
 
     <!-- RepoLoader -->
@@ -229,9 +230,9 @@
     <string name="import_enabled_modules">导入已启用模块列表</string>
     <string name="export_installed_modules">导出已安装模块列表</string>
     <string name="import_installed_modules">导入已安装模块列表</string>
-    <string name="no_installed_modules">没有任何已安装的模块！</string>
+    <string name="no_installed_modules">没有任何已安装的模块</string>
     <string name="enable_heads_up">启用浮动通知</string>
-    <string name="enable_heads_up_summary">针对新安装或已更新的模块启用浮动通知</string>
+    <string name="enable_heads_up_summary">对新安装或已更新的模块启用浮动通知</string>
     <string name="nav_bar_coloration">导航栏着色</string>
     <string name="no_backup_found">找不到备份</string>
     <string name="no_enabled_modules">没有任何已启用的模块</string>
@@ -258,7 +259,7 @@
     <string name="downloadUninstaller">下载卸载器</string>
     <string name="selectFile">选择已下载的文件</string>
     <string name="xposedZipNotFound">无法找到 ZIP 文件，或许已有新版本发布。</string>
-    <string name="warningArchitecture">您是否已正确选择了 XPOSED ZIP 文件？\n安装错误的 ZIP 文件将可能会损坏您的手机！</string>
+    <string name="warningArchitecture">您是否已选择了正确的 XPOSED ZIP 文件？\n错误的 ZIP 文件将可能损坏您的手机！</string>
     <string name="help">帮助</string>
     <string name="helpChoose">
         如何选择正确的 ZIP 文件？\n
@@ -359,5 +360,10 @@
     <string name="original_framework">您的设备兼容官方版 Xposed 框架</string>
     <string name="goto_framework">点击此处前往适合您设备的区域</string>
     <string name="save">保存</string>
+    <string name="download_location">下载位置</string>
+    <string name="download_location_summ">选择 APK 文件的下载位置（仅限模块）</string>
+    <string name="restart_needed">需要重启</string>
+    <string name="cache_cleaned">应用缓存已清除。需要重新开启</string>
+    <string name="update_download_list">下拉刷新模块列表</string>
 
 </resources>
