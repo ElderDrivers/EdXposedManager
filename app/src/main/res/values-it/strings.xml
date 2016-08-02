@@ -341,5 +341,7 @@
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="download_location">Locazione downloads</string>
     <string name="download_location_summ">Locazione download per i file APK (solo moduli)</string>
+    <string name="update_download_list">La lista dei download verrà caricata in pochi secondi</string>
+    <string name="no_connection_available">Nessuna connessione disponibile</string>
 
 </resources>

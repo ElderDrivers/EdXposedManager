@@ -27,6 +27,7 @@
                 android:scrollbarStyle="outsideOverlay"/>
 
             <LinearLayout
+                android:id="@+id/background_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -40,6 +41,7 @@
                     android:tint="#757575"/>
 
                 <TextView
+                    android:id="@+id/list_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -47,6 +49,13 @@
                     android:text="@string/update_download_list"
                     android:textSize="16sp"
                     android:textStyle="italic"/>
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    style="?android:progressBarStyleHorizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"/>
 
             </LinearLayout>
 

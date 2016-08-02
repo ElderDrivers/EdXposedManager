@@ -1,10 +1,14 @@
 package de.robv.android.xposed.installer;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -55,6 +59,26 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
     private StickyListHeadersListView mListView;
     private SharedPreferences mIgnoredUpdatesPref;
     private boolean changed = false;
+    private View backgroundList;
+    private BroadcastReceiver connectionListener = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+
+            if (backgroundList != null && mRepoLoader != null) {
+                if (networkInfo == null) {
+                    ((TextView) backgroundList.findViewById(R.id.list_status)).setText(R.string.no_connection_available);
+                    backgroundList.findViewById(R.id.progress).setVisibility(View.GONE);
+                } else {
+                    ((TextView) backgroundList.findViewById(R.id.list_status)).setText(R.string.update_download_list);
+                    backgroundList.findViewById(R.id.progress).setVisibility(View.VISIBLE);
+                }
+
+                mRepoLoader.triggerReload(true);
+            }
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,6 +121,15 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
             reloadItems();
             changed = !changed;
         }
+
+        getActivity().registerReceiver(connectionListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        getActivity().unregisterReceiver(connectionListener);
     }
 
     @Override
@@ -109,7 +142,11 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_downloader, container, false);
+        backgroundList = v.findViewById(R.id.background_list);
+
         mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
+        mListView.setEmptyView(backgroundList);
+
         final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(XposedApp.getColor(getContext()));
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

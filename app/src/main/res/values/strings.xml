@@ -355,6 +355,7 @@
     <string name="download_location_summ">Download location for APK files (modules only)</string>
     <string name="restart_needed">Restart needed</string>
     <string name="cache_cleaned">App\'s cache has been cleaned. Restart is needed</string>
-    <string name="update_download_list">Pulldown to refresh download\'s module list</string>
+    <string name="update_download_list">The download\'s module list will be loaded in few seconds</string>
+    <string name="no_connection_available">No connection available</string>
 
 </resources>
