@@ -355,5 +355,7 @@
     <string name="download_location_summ">Umiestnenie stiahnutých APK súborov (iba moduly)</string>
     <string name="restart_needed">Reštart je potrebný</string>
     <string name="cache_cleaned">Vyrovnávacia pamäť aplikácie bola vymazaná. Reštart je potrebný</string>
+    <string name="update_download_list">Zoznam modulov sa načíta o pár sekúnd</string>
+    <string name="no_connection_available">Nie je dostupné žiadne pripojenie</string>
 
 </resources>
