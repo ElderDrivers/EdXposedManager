@@ -13,17 +13,20 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,13 +83,15 @@ public class ModulesBookmark extends XposedBaseActivity {
         }
     }
 
-    public static class ModulesBookmarkFragment extends ListFragment implements AdapterView.OnItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class ModulesBookmarkFragment extends Fragment implements AdapterView.OnItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
         private List<Module> mBookmarkedModules = new ArrayList<>();
         private BookmarkModuleAdapter mAdapter;
         private SharedPreferences mBookmarksPref;
         private boolean changed;
         private MenuItem mClickedMenuItem = null;
+        private ListView mListView;
+        private View mBackgroundList;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -123,14 +128,27 @@ public class ModulesBookmark extends XposedBaseActivity {
             getListView().setPadding(getDp(8), getDp(8), getDp(8), getDp(8));
             getListView().setOnItemClickListener(this);
             getListView().setClipToPadding(false);
+            getListView().setEmptyView(mBackgroundList);
             registerForContextMenu(getListView());
-            setEmptyText(getString(R.string.no_bookmark_added));
 
             mAdapter = new BookmarkModuleAdapter(getContext());
             getModules();
-            setListAdapter(mAdapter);
+            getListView().setAdapter(mAdapter);
 
             setHasOptionsMenu(true);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.list_fragment, container, false);
+
+            mListView = (ListView) view.findViewById(android.R.id.list);
+
+            mBackgroundList = view.findViewById(R.id.background_list);
+            ((ImageView) view.findViewById(R.id.background_list_iv)).setImageResource(R.drawable.ic_bookmark);
+            ((TextView) view.findViewById(R.id.list_status)).setText(R.string.no_bookmark_added);
+
+            return view;
         }
 
         private void getModules() {
@@ -292,7 +310,11 @@ public class ModulesBookmark extends XposedBaseActivity {
         private Module getItemFromContextMenuInfo(ContextMenu.ContextMenuInfo menuInfo) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
             int position = info.position - getListView().getHeaderViewsCount();
-            return (position >= 0) ? (Module) getListAdapter().getItem(position) : null;
+            return (position >= 0) ? (Module) getListView().getAdapter().getItem(position) : null;
+        }
+
+        public ListView getListView() {
+            return mListView;
         }
     }
 
