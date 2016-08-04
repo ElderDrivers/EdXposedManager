@@ -93,7 +93,8 @@
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed модуль еще не активирован</string>
     <string name="module_is_not_activated_yet_detailed">%s был установлен но не активирован.</string>
-    <string name="activate_and_reboot">Активировать и перезагрузить</string>
+    <string name="activate_and_reboot">Перезагрузить</string>
+    <string name="activate_only">Включить</string>
     <string name="module_activated">Модуль Xposed был активирован</string>
     <string name="module_empty_description">(описание отсутствует)</string>
     <string name="module_no_ui">Этот модуль не содержит пользовательского интерфейса</string>
@@ -190,7 +191,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> и <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> Для исправления багов и Material Дизайна</string>
     <string name="about_developers_warning">Пожалуйста, <b>не</b> пишите нам для решения вопросов напрямую, используйте ссылку ниже.</string>
     <string name="about_translator_label">Переводчик:</string>
-    <string name="translator">Alexey711</string>
+    <string name="translator">Alexey711(Alexey71)</string>
     <string name="about_version_label">Версия приложения:</string>
     <string name="about_source_label">Исходный код</string>
     <string name="about_support_label">Получить поддержку на:</string>
@@ -220,15 +221,15 @@
 
     <string name="warning_installed_on_external_storage">Этот модуль не может быть загружен, потому что он установлен на SD-карту, переместите его во внутреннюю память.</string>
     <string name="warning_forward_locked">Этот модуль не может быть загружен, потому что он заблокирован, пожалуйста свяжитесь с разработчиком.</string>
-    <string name="export_modules">Экспорт списка включенных модулей</string>
-    <string name="import_modules">Импорт списка включенных модулей</string>
+    <string name="export_modules">Включенных модулей</string>
+    <string name="import_modules">Включенных модулей</string>
     <string name="view">Смотреть</string>
     <string name="export_">Экспорт модулей</string>
     <string name="import_">Импорт модулей</string>
-    <string name="export_enabled_modules">Экспорт списка включенных модулей</string>
-    <string name="import_enabled_modules">Импорт списка включенных модулей</string>
-    <string name="export_installed_modules">Экспорт списка установленных модулей</string>
-    <string name="import_installed_modules">Импорт списка установленных модулей</string>
+    <string name="export_enabled_modules">Включенных модулей</string>
+    <string name="import_enabled_modules">Включенных модулей</string>
+    <string name="export_installed_modules">Установленных модулей</string>
+    <string name="import_installed_modules">Установленных модулей</string>
     <string name="no_installed_modules">Установленных модулей нет!</string>
     <string name="enable_heads_up">Включить Heads-Up уведомления</string>
     <string name="enable_heads_up_summary">Эта опция включает Heads-Up уведомления для новых/обновленных модулей</string>
@@ -323,7 +324,7 @@
     <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
     <string name="detected_as">Обнаружен SDK: %1$d, ARCH: %2$s</string>
     <string name="official">Официальный</string>
-    <string name="systemless">Systemless</string>
+    <string name="systemless">Несистемный</string>
     <string name="samsung">Samsung</string>
     <string name="miui">MIUI</string>
 
@@ -350,5 +351,10 @@
     <string name="original_framework">Ваше устройство совместимо с официальным Xposed Framework.</string>
     <string name="goto_framework">Нажмите сдесь, чтобы перейти на правильный установщик</string>
     <string name="save">Сохранить</string>
-
+    <string name="download_location">Папка для загрузок</string>
+    <string name="download_location_summ">Расположение для скачанных APK файлов (только модули)</string>
+    <string name="restart_needed">Требуется перезагрузка</string>
+    <string name="cache_cleaned">Кеш приложения(й) очищен. Требуется перезагрузка</string>
+    <string name="update_download_list">Потяните вниз, чтобы обновить список модулей</string>
+	
 </resources>
