@@ -155,6 +155,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         getListView().setDividerHeight(sixDp);
         getListView().setPadding(eightDp, toolBarDp + eightDp, eightDp, eightDp);
         getListView().setClipToPadding(false);
+        getListView().setOnItemClickListener(this);
         getListView().setEmptyView(mBackgroundList);
 
         setHasOptionsMenu(true);
