@@ -2,18 +2,32 @@
   "installer":[
     %XPOSED_ZIP%
     {
-      "name": "xposed-v86.2-sdk23-topjohnwu",
-      "version": "86.2",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3816030&d=1468815647",
+      "name":"xposed-v86.3-sdk21-topjohnwu",
+      "version":"86.3",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832612&d=1470276866",
+      "sdk":21,
+      "architecture":"all"
+    },
+    {
+      "name":"xposed-v86.3-sdk22-topjohnwu",
+      "version":"86.3",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832614&d=1470276911",
+      "sdk":22,
+      "architecture":"all"
+    },
+    {
+      "name":"xposed-v86.3-sdk23-topjohnwu",
+      "version":"86.3",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832615&d=1470276932",
       "sdk":23,
       "architecture":"all"
     },
     {
-    "name": "xposed-v86.2-sdk23-arm-alt-topjohnwu",
-    "version": "86.2",
-    "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3816056&d=1468819201",
+      "name":"xposed-v86.3-sdk23-arm-alt-topjohnwu",
+      "version":"86.3",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832611&d=1470276853",
       "sdk":23,
-    "architecture": "arm-alt"
+      "architecture":"arm-alt"
     },
     {
       "name":"xposed-v86.0-sdk22-arm-custom-build-by-wanam-20160709",
@@ -49,7 +63,7 @@
       "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4WExlOFpKTzZrS2M&export=download",
       "sdk":23,
       "architecture":"arm"
-    },	
+    },
     {
       "name":"xposed-v86-sdk21-arm-MIUI-edition-by-SolarWarez-20160710",
       "version":"86",
@@ -116,45 +130,45 @@
     {
       "name":"Xposed-Installer-Recovery",
       "version":"58",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
+      "link":"https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":15,
       "architecture":"all"
     },
     {
       "name":"Xposed-Installer-Recovery",
       "version":"58",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
+      "link":"https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":16,
       "architecture":"all"
     },
     {
       "name":"Xposed-Installer-Recovery",
       "version":"58",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
+      "link":"https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":17,
       "architecture":"all"
     },
     {
       "name":"Xposed-Installer-Recovery",
       "version":"58",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
+      "link":"https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":18,
       "architecture":"all"
     },
     {
       "name":"Xposed-Installer-Recovery",
       "version":"58",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
+      "link":"https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":19,
       "architecture":"all"
     }
   ],
   "uninstaller":[
     {
-      "name": "xposed-uninstaller-topjohnwu-20160718v2",
-      "date": "20160718",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3816093&d=1468824846",
-      "architecture": "all"
+      "name":"xposed-uninstaller-topjohnwu-20160804",
+      "date":"20160804",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832611&d=1470276853",
+      "architecture":"all"
     },
     {
       "name":"xposed-uninstaller-20150831-arm",
@@ -189,13 +203,13 @@
     {
       "name":"Xposed-Disabler-Recovery",
       "date":"20140101",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Disabler-Recovery.zip?raw=true",
+      "link":"https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Disabler-Recovery.zip?raw=true",
       "architecture":"n/a"
     }
   ],
   "apk":{
-    "version": "1469970000040",
+    "version":"1469970000040",
     "changelog":"<b>What's new:</b><br>&#149; Automatic selection of architecture of zip file<br>&#149; Allow to enable module only, without rebooting<br>&#149; Don't enable module automatically when importing (revert)<br>&#149; Use a prefs file to store bookmarks (revert)<br>&#149; Ability to change download path<br><br><br>&#149; Bug fixes<br>&#149; New language: Estonian translation!<br>&#149; Synced translations!",
-    "link": "http://forum.xda-developers.com/devdb/project/dl/?id=19577&task=get"
+    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=19577&task=get"
   }
 }
