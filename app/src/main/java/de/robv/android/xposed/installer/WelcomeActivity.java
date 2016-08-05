@@ -3,7 +3,6 @@ package de.robv.android.xposed.installer;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
@@ -20,8 +19,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
-
-import java.io.File;
 
 import de.robv.android.xposed.installer.installation.AdvancedInstallerFragment;
 import de.robv.android.xposed.installer.util.ModuleUtil;
@@ -112,8 +109,6 @@ public class WelcomeActivity extends XposedBaseActivity
 
         notifyDataSetChanged();
 
-        File extDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/XposedInstaller");
-        if (!extDir.exists()) extDir.mkdir();
     }
 
     @Override

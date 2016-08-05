@@ -79,6 +79,14 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
     }
 
+    public static File createFolder() {
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/XposedInstaller/");
+
+        if (!dir.exists()) dir.mkdir();
+
+        return dir;
+    }
+
     public static Integer getXposedVersion() {
         if (Build.VERSION.SDK_INT >= 21) {
             return getActiveXposedVersion();

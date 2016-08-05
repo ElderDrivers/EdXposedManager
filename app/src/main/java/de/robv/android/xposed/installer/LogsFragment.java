@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
 public class LogsFragment extends Fragment {
 
@@ -226,11 +227,7 @@ public class LogsFragment extends Fragment {
                 now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
 
-        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/XposedInstaller/");
-
-        if (!dir.exists()) dir.mkdir();
-
-        File targetFile = new File(dir, filename);
+        File targetFile = new File(createFolder(), filename);
 
         try {
             FileInputStream in = new FileInputStream(mFileErrorLog);

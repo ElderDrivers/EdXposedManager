@@ -77,6 +77,7 @@ import de.robv.android.xposed.installer.util.ThemeUtil;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
 public class ModulesFragment extends Fragment implements ModuleListener, AdapterView.OnItemClickListener {
     public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
@@ -212,12 +213,8 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
             return true;
         }
 
-        String backupPath = Environment.getExternalStorageDirectory()
-                + "/XposedInstaller";
-
-        File enabledModulesPath = new File(backupPath, "enabled_modules.list");
-        File installedModulesPath = new File(backupPath, "installed_modules.list");
-        File targetDir = new File(backupPath);
+        File enabledModulesPath = new File(createFolder(), "enabled_modules.list");
+        File installedModulesPath = new File(createFolder(), "installed_modules.list");
         File listModules = new File(XposedApp.ENABLED_MODULES_LIST_FILE);
 
         mClickedMenuItem = item;
@@ -237,8 +234,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 }
 
                 try {
-                    if (!targetDir.exists())
-                        targetDir.mkdir();
+                    createFolder();
 
                     FileInputStream in = new FileInputStream(listModules);
                     FileOutputStream out = new FileOutputStream(enabledModulesPath);
@@ -270,8 +266,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 }
 
                 try {
-                    if (!targetDir.exists())
-                        targetDir.mkdir();
+                    createFolder();
 
                     FileWriter fw = new FileWriter(installedModulesPath);
                     BufferedWriter bw = new BufferedWriter(fw);
