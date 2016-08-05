@@ -208,8 +208,8 @@
     }
   ],
   "apk":{
-    "version":"1469970000040",
-    "changelog":"<b>What's new:</b><br>&#149; Automatic selection of architecture of zip file<br>&#149; Allow to enable module only, without rebooting<br>&#149; Don't enable module automatically when importing (revert)<br>&#149; Use a prefs file to store bookmarks (revert)<br>&#149; Ability to change download path<br><br><br>&#149; Bug fixes<br>&#149; New language: Estonian translation!<br>&#149; Synced translations!",
-    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=19577&task=get"
+    "version":"1470390300000",
+    "changelog":"<b>What's new:</b><br>&#149; UI enhancements<br><br><br>&#149; Bug fixes<br>&#149; Synced translations!",
+    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=19655&task=get"
   }
 }
