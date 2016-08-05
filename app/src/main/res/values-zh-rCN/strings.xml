@@ -355,5 +355,7 @@
     <string name="download_location_summ">选择 APK 文件的下载位置（仅限模块）</string>
     <string name="restart_needed">需要重启</string>
     <string name="cache_cleaned">应用缓存已清除。需要重新开启</string>
+    <string name="update_download_list">模块列表将在几秒内加载</string>
+    <string name="no_connection_available">没有可用的连接</string>
 
 </resources>
