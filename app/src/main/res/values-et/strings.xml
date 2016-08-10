@@ -7,7 +7,7 @@
     <string name="xposed_not_active">Viimane Xposed versioon ei ole hetkel aktiivne. Kas sa installisid raamistiku ja taaskäivitasid?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Tere tulemast <b>Xposed\'i installerisse</b>!\nPalun vali, mida soovid teha:</string>
+    <string name="welcome">Tere tulemast <b>Xposed Installerisse</b>!\nPalun vali, mida soovid teha:</string>
     <string name="tabInstall">Raamistik</string>
     <string name="tabInstallDescription">Siin saad hallata Xposed-raamistikku, mis on vajalik mistahes moodulite töötamiseks.</string>
     <string name="tabModules">Moodulid</string>
@@ -17,7 +17,7 @@
     <string name="welcome_framework_update_available">Xposed-raamistikule on uuendus saadaval (%s).</string>
     <string name="welcome_update_available">Üks või rohkem uuendust on moodulitele saadaval.</string>
     <string name="tabSettings">Seaded</string>
-    <string name="tabSettingsDescription">Tule siia jaotisesse, et konfigureerida Xposed installerit ja raamistikku.</string>
+    <string name="tabSettingsDescription">Tule siia jaotisesse, et konfigureerida Xposed Installerit ja raamistikku.</string>
     <string name="tabSupport">Tugi</string>
     <string name="tabSupportDescription">Leia abi Xposed\'iga seonduvate probleemidega. Saad ka Xposed\'ile annetada ja anda oma tänud.</string>
     <string name="tabLogs">Logid</string>
@@ -38,7 +38,7 @@
 
     <!-- Installer tab -->
     <string name="install">Installi/Uuenda</string>
-    <string name="uninstall">Eemalda</string>
+    <string name="uninstall">Desinstalli</string>
     <string name="installedVersion">aktiivne</string>
     <string name="latestVersion">kaasas</string>
     <string name="versions">Versioonid:</string>
@@ -58,7 +58,7 @@
     <string name="dont_show_again">Ära kuva seda uuesti</string>
     <string name="install_known_issue">Sinu ROMiga tundub olevat tuntud probleem (\"%s\"). Xposed\'i installimine  ei pruugi töötada või võib viia tõsiste probleemideni. Klõpsa siia probleemi detailide uurimiseks.</string>
     <string name="install_reverted">app_process versiooniga \"%1$s\" on eelnevalt installitud, kuid nüüd leiti versioon \"%2$s\". Kui sa ei oodanud vana faili taastamist, võid proovida installida taastuse kaudu (automaatselt või käsitsi).</string>
-    <string name="uninstall_reverted">app_process on eelnevalt eemaldatud, kuid nüüd leiti versioon \"%s\". Kui sa ei oodanud vana faili taastamist, võid proovida eemaldada taastuse kaudu (automaatselt või käsitsi).</string>
+    <string name="uninstall_reverted">app_process on eelnevalt desinstallitud, kuid nüüd leiti versioon \"%s\". Kui sa ei oodanud vana faili taastamist, võid proovida desinstallida taastuse kaudu (automaatselt või käsitsi).</string>
     <string name="tap_to_dismiss">Koputa sulgemiseks</string>
     <string name="sdcard_location">SD-kaart: %s</string>
     <string name="installation_lollipop">Xposed-raamistik pole installitud. Palun tõmba viimane ZIP-fail XDA\'st ja välguta käsitsi taastuse kaudu.</string>
@@ -94,6 +94,7 @@
     <string name="module_is_not_activated_yet">Xposed-moodul pole veel aktiveeritud</string>
     <string name="module_is_not_activated_yet_detailed">%s on installitud, aga pole veel aktiveeritud.</string>
     <string name="activate_and_reboot">Aktiveeri ja taaskäivita</string>
+	<string name="activate_only">Ainult aktiveeri</string>
     <string name="module_activated">Xposed-moodul on aktiveeritud</string>
     <string name="module_empty_description">(kirjeldust ei lisatud)</string>
     <string name="module_no_ui">See moodul ei paku kasutajaliidest</string>
@@ -105,10 +106,10 @@
     <string name="no_min_version_specified">See moodul ei määra, mis XposedBridge versiooni see vajab.</string>
     <string name="warning_min_version_too_low">See moodul loodi XposedBridge versioonile %1$d, kuid kuna versioonis %2$d esineb ühildumatuid muutusi, on see keelatud.</string>
     <string name="module_launch">Käivita liides</string>
-    <string name="module_download_updates">Allalaadimine/Uuendused</string>
+    <string name="module_download_updates">Allalaadimine/uuendused</string>
     <string name="module_support">Tugi</string>
     <string name="module_app_info">Rakenduse teave</string>
-    <string name="module_uninstall">Eemalda</string>
+    <string name="module_uninstall">Desinstalli</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Otsing</string>
@@ -153,10 +154,10 @@
     <string name="install_mode_recovery_manual">Taastus (kirjuta zip SD-kaardile, välguta käsitsi)</string>
     <string name="settings_group_download">Allalaadimine</string>
     <string name="settings_enable_downloads">Luba allalaadimised</string>
-    <string name="settings_enable_downloads_summary">Luba Xposed installeril kontrollida uuendusi ja uusi mooduleid</string>
+    <string name="settings_enable_downloads_summary">Luba Xposed Installeril kontrollida uuendusi ja uusi mooduleid</string>
     <string name="settings_release_type">Kuvatavad versioonid</string>
     <string name="settings_group_experimental">Eksperimentaalne</string>
-    <string name="settings_disable_resources">Keelatud ressursikonksud</string>
+    <string name="settings_disable_resources">Keela ressursikonksud</string>
     <string name="settings_disable_resources_summary">Proovib vältida konflikte teemamootoritega\n<b>HOIATUS:</b> Moodulid, mis üritavad muuta ressursse ei toimi, kuni see on lubatud.</string>
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">Jõudluseksperiment</string>
     <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Kui sa selle lubad, võib su süsteemi jõudlus paraneda, halveneda või jääda samaks. Võid vabalt järgi proovida ja teatada tagasi, mis muutusi sa näed (või kui midagi ei muutu). Sa pead taasinstallima raamistiku ja taaskäivitama pärast selle muutmist.</string>
@@ -170,7 +171,7 @@
     <!-- Support tab -->
     <string name="support_modules_label">Moodulite tugi</string>
     <string name="support_modules_description">Koputa pikalt mõnel moodulil moodulite nimekirjas ja vali \"%1$s\".</string>
-    <string name="support_framework_label">Raamistiku/installija tugi</string>
+    <string name="support_framework_label">Raamistiku/Installeri tugi</string>
     <string name="support_faq_label">KKK/teadaolevad probleemid</string>
     <string name="support_donate_label">Anneta</string>
     <string name="support_donate_description">Kui soovid tänada Xposed\'it, võid annetada rovo89-le siin</string>
@@ -255,12 +256,12 @@
     <string name="downloadZipOk">%1$s laaditi korralikult alla</string>
     <string name="permissionGranted">Luba antud</string>
     <string name="permissionNotGranted">See funktsioon ei tööta ilma välismälu kirjutamise loata.</string>
-    <string name="downloadUninstaller">Laadi alla eemaldaja</string>
+    <string name="downloadUninstaller">Laadi alla desinstallija</string>
     <string name="selectFile">Vali allalaaditud fail</string>
     <string name="xposedZipNotFound">Zip-i ei leitud, tõenäoliselt on väljastatud uuem versioon.</string>
     <string name="warningArchitecture">KAS SA VALISID ÕIGE XPOSED ZIP-I ARHITEKTUURI?\nVale zip võib su telefoni kahtjustada!</string>
     <string name="help">Abi</string>
-    <string name="newVersion">Uus versioon Xposed installijast on saadaval! Uuenda seda!</string>
+    <string name="newVersion">Uus versioon Xposed Installerist on saadaval! Uuenda seda!</string>
     <string name="update">Uuenda</string>
     <string name="choose_icon">Vali ikoon</string>
     <string name="custom_icon">Kohandatud ikoon</string>
@@ -278,7 +279,7 @@
     <string name="md_custom_label">Kohandatud</string>
     <string name="md_presets_label">Eelseadistused</string>
     <string name="changelog">Muutuste logi</string>
-    <string name="scroll_top">Keri üles</string>
+    <string name="scroll_top">Keri algusse</string>
     <string name="add_bookmark">Lisa järjehoidja</string>
     <string name="remove_bookmark">Eemalda järjehoidja</string>
     <string name="bookmarks">Järjehoidjad</string>
@@ -289,7 +290,7 @@
     <string name="notification_coloration">Värvi teate ikoon</string>
     <string name="file_is_empty">Fail on tühi</string>
     <string name="install_with_su">Installi moodul juurõigustega</string>
-    <string name="install_with_su_summ">Kui märgistatud, installib Xposed\'i installija mooduleid üle küsimata</string>
+    <string name="install_with_su_summ">Kui märgistatud, installib Xposed Installer mooduleid üle küsimata</string>
     <string name="install_remove">Installi ja eemalda</string>
     <string name="download_remove">Laadi alla ja eemalda</string>
     <string name="module_saved">Moodul salvestatud kohta %1$s</string>
@@ -299,11 +300,11 @@
     <string name="loading">Laadimine…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Ava lingid sisebrauseris</string>
-    <string name="scroll_bottom">Keri alla</string>
+    <string name="scroll_bottom">Keri lõppu</string>
     <string name="open_drawer_summ">Ava navigatsioonisahtel käivitusel automaatselt</string>
     <string name="open_drawer">Ava navigatsioonisahtel automaatselt</string>
     <string name="share_app">Jaga rakendust</string>
-    <string name="share_app_text">Vaata seda: Xposed\'i installija Materjaalse disainiga! %s</string>
+    <string name="share_app_text">Vaata seda: Xposed Installer Materjaalse disainiga! %s</string>
     <string name="disable_xposed">Keela Xposed</string>
     <string name="status">Xposed\'i olek</string>
     <string name="xposed_on_next_reboot">Xposed-raamistik lubatakse järgmisel taaskäivitusel</string>
@@ -319,8 +320,8 @@
     <string name="hour24">Iga päev</string>
     <string name="off">Mitte kunagi</string>
     <string name="confirm_reboots">Kinnita taaskäivitused</string>
-    <string name="skip_xposedminversion_check">Jäta \'xposedminversion\' kontroll vahele</string>
-    <string name="skip_xposedminversion_check_summ">Jäta \'xposedminversion\' kontroll moodulitel vahele</string>
+    <string name="skip_xposedminversion_check">Jäta \"xposedminversion\" kontroll vahele</string>
+    <string name="skip_xposedminversion_check_summ">Jäta \"xposedminversion\" kontroll moodulitel vahele</string>
     <string name="detected_as">Tuvastatud SDK: %1$d, ARH.: %2$s</string>
     <string name="official">Ametlik</string>
     <string name="systemless">Süsteemivaba</string>
@@ -350,5 +351,11 @@
     <string name="original_framework">Su seade ühildub ametliku Xposed-raamistikuga.</string>
     <string name="goto_framework">Klõpsa siia, et minna oma seadmele vastavasse jaotisesse</string>
     <string name="save">Salvesta</string>
+	<string name="download_location">Allalaadimisasukoht</string>
+    <string name="download_location_summ">APK-failide allalaadimiste asukoht (ainult moodulid)</string>
+    <string name="restart_needed">Taaskäivitamine vajalik</string>
+    <string name="cache_cleaned">Rakenduse vahemälu on tühjendatud. Taaskäivitamine vajalik</string>
+    <string name="update_download_list">Allalaadimise moodulite nimekiri laaditakse mõne sekundi pärast</string>
+    <string name="no_connection_available">Ühendus puudub</string>
 
 </resources>
