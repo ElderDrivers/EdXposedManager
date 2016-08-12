@@ -2,30 +2,30 @@
   "installer":[
     %XPOSED_ZIP%
     {
-      "name":"xposed-v86.3-sdk21-topjohnwu",
-      "version":"86.3",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832612&d=1470276866",
+      "name":"xposed-v86.4-sdk21-topjohnwu",
+      "version":"86.4",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3837688&d=1470756773",
       "sdk":21,
       "architecture":"all"
     },
     {
-      "name":"xposed-v86.3-sdk22-topjohnwu",
-      "version":"86.3",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832614&d=1470276911",
+      "name":"xposed-v86.4-sdk22-topjohnwu",
+      "version":"86.4",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3837689&d=1470756785",
       "sdk":22,
       "architecture":"all"
     },
     {
-      "name":"xposed-v86.3-sdk23-topjohnwu",
-      "version":"86.3",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832615&d=1470276932",
+      "name":"xposed-v86.4-sdk23-topjohnwu",
+      "version":"86.4",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3837690&d=1470756799",
       "sdk":23,
       "architecture":"all"
     },
     {
-      "name":"xposed-v86.3-sdk23-arm-alt-topjohnwu",
-      "version":"86.3",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832611&d=1470276853",
+      "name":"xposed-v86.4-sdk23-arm-alt-topjohnwu",
+      "version":"86.4",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3837687&d=1470756761",
       "sdk":23,
       "architecture":"arm-alt"
     },
