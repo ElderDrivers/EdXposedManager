@@ -355,5 +355,7 @@
     <string name="download_location_summ">Speicherort für APK Dateien (nur Module)</string>
     <string name="restart_needed">Neustart benötigt</string>
     <string name="cache_cleaned">Der Cache der App wurde geleert. Neustart wird benötigt</string>
+    <string name="update_download_list">Die Liste der Module wird gleich aktualisiert</string>
+    <string name="no_connection_available">Keine Verbindung verfügbar</string>
 
 </resources>
