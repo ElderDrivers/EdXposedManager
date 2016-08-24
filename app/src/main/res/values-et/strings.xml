@@ -223,7 +223,7 @@
     <string name="warning_forward_locked">Seda moodulit ei saa laadida, kuna see on edasi-lukustatud, palun kontakteeru mooduli arendajaga.</string>
     <string name="export_modules">Ekspordi lubatud moodulite nimekiri</string>
     <string name="import_modules">Impordi lubatud moodulite nimekiri</string>
-    <string name="view">VAADE</string>
+    <string name="view">VAATA</string>
     <string name="export_">Ekspordi…</string>
     <string name="import_">Impordi…</string>
     <string name="export_enabled_modules">Ekspordi lubatud moodulite nimekiri</string>
