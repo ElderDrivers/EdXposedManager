@@ -2,30 +2,30 @@
   "installer":[
     %XPOSED_ZIP%
     {
-      "name":"xposed-v86.4-sdk21-topjohnwu",
-      "version":"86.4",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3837688&d=1470756773",
+      "name":"xposed-v86.5-sdk21-topjohnwu",
+      "version":"86.5",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3847907&d=1471640681",
       "sdk":21,
       "architecture":"all"
     },
     {
-      "name":"xposed-v86.4-sdk22-topjohnwu",
-      "version":"86.4",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3837689&d=1470756785",
+      "name":"xposed-v86.5-sdk22-topjohnwu",
+      "version":"86.5",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3847908&d=1471640742",
       "sdk":22,
       "architecture":"all"
     },
     {
-      "name":"xposed-v86.4-sdk23-topjohnwu",
-      "version":"86.4",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3837690&d=1470756799",
+      "name":"xposed-v86.5-sdk23-topjohnwu",
+      "version":"86.5",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3847909&d=1471640756",
       "sdk":23,
       "architecture":"all"
     },
     {
-      "name":"xposed-v86.4-sdk23-arm-alt-topjohnwu",
-      "version":"86.4",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3837687&d=1470756761",
+      "name":"xposed-v86.5-sdk23-arm-alt-topjohnwu",
+      "version":"86.5",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3847906&d=1471640681",
       "sdk":23,
       "architecture":"arm-alt"
     },
@@ -165,9 +165,9 @@
   ],
   "uninstaller":[
     {
-      "name":"xposed-uninstaller-topjohnwu-20160804",
-      "date":"20160804",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3832611&d=1470276853",
+      "name":"xposed-uninstaller-topjohnwu-20160820",
+      "date":"20160820",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3847905&d=1471640681",
       "architecture":"all"
     },
     {
