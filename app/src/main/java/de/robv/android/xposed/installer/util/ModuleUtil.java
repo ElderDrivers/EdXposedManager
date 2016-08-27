@@ -297,8 +297,9 @@ public final class ModuleUtil {
                 this.minVersion = 0;
                 this.description = "";
             } else {
-                if (XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false)) {
-                    this.minVersion = XposedApp.getXposedVersion();
+                int version = XposedApp.getXposedVersion();
+                if (version > 0 && XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false)) {
+                    this.minVersion = version;
                 } else {
                     Object minVersionRaw = app.metaData.get("xposedminversion");
                     if (minVersionRaw instanceof Integer) {
