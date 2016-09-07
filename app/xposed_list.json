@@ -31,38 +31,31 @@
     },
     {
       "name":"xposed-v86.0-sdk22-arm-custom-build-by-wanam-20160709",
-      "version":"86",
+      "version":"86.0",
       "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4TTFZYWczRnRKNlE&export=download",
       "sdk":22,
       "architecture":"arm"
     },
     {
       "name":"xposed-v86.0-sdk22-arm64-custom-build-by-wanam-20160709",
-      "version":"86",
+      "version":"86.0",
       "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4dFExM1hPT2h1SDA&export=download",
       "sdk":22,
       "architecture":"arm64"
     },
     {
-      "name":"xposed-v86.0-sdk23-arm-custom-build-by-wanam-20160709",
-      "version":"86",
-      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4TnM1Si1acE1NVEE&export=download",
+      "name":"xposed-v86.1-sdk23-arm-custom-build-by-wanam-20160904",
+      "version":"86.1",
+      "link":"https://qc3.androidfilehost.com/dl/JGrOO4WdDvlQFzFXsFDyhg/1473490995/24591000424962808/xposed-v86.1-sdk23-arm-custom-build-by-wanam-20160904.zip",
       "sdk":23,
       "architecture":"arm"
     },
     {
-      "name":"xposed-v86.0-sdk23-arm64-custom-build-by-wanam-20160709",
-      "version":"86",
-      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4MnZFdXNEczB0U3c&export=download",
+      "name":"xposed-v86.1-sdk23-arm64-custom-build-by-wanam-20160904",
+      "version":"86.1",
+      "link":"https://qc3.androidfilehost.com/dl/ba_p0GdLsAZdzRhuUOPaBw/1473491034/24591000424962807/xposed-v86.1-sdk23-arm64-custom-build-by-wanam-20160904.zip",
       "sdk":23,
       "architecture":"arm64"
-    },
-    {
-      "name":"xposed-v86.0-alt-sdk23-arm-custom-build-by-wanam-20160709",
-      "version":"85.1",
-      "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4WExlOFpKTzZrS2M&export=download",
-      "sdk":23,
-      "architecture":"arm"
     },
     {
       "name":"xposed-v86-sdk21-arm-MIUI-edition-by-SolarWarez-20160710",
