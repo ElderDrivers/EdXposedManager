@@ -201,8 +201,8 @@
     }
   ],
   "apk":{
-    "version":"1470390300001",
-    "changelog":"<b>What's new:</b><br>&#149; UI enhancements<br><br><br>&#149; Bug fixes<br>&#149; Synced translations!",
-    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=19668&task=get"
+    "version":"1473860400000",
+    "changelog":"<b>What's new:</b><br>&#149; UI fixes<br><br><br>&#149; Make folder only when needed<br>&#149; Synced translations",
+    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=20416&task=get"
   }
 }
