@@ -393,12 +393,22 @@ public class AdvancedInstallerFragment extends Fragment {
 
         @Override
         protected CharSequence author() {
-            return "wanam";
+            switch (Build.VERSION.SDK_INT) {
+                case 21:
+                    return "dkcldark";
+                default:
+                    return "wanam";
+            }
         }
 
         @Override
         protected String xdaUrl() {
-            return "http://forum.xda-developers.com/xposed/unofficial-xposed-samsung-lollipop-t3180960";
+            switch (Build.VERSION.SDK_INT) {
+                case 21:
+                    return "http://forum.xda-developers.com/showpost.php?p=65373013&postcount=3960";
+                default:
+                    return "http://forum.xda-developers.com/xposed/unofficial-xposed-samsung-lollipop-t3180960";
+            }
         }
 
     }
@@ -495,7 +505,7 @@ public class AdvancedInstallerFragment extends Fragment {
                         String name = i.name;
                         if (name.contains("topjohnwu")) {
                             listSystemlessInstallers.add(i);
-                        } else if (name.contains("wanam")) {
+                        } else if (name.contains("wanam") || name.contains("dkcldark")) {
                             listSamsungInstallers.add(i);
                         } else if (name.contains("MIUI")) {
                             listMiuiInstallers.add(i);
@@ -514,7 +524,9 @@ public class AdvancedInstallerFragment extends Fragment {
                         }
                     } else {
                         if (name.contains("wanam")) {
-                            listSamsungUninstallers.add(u);
+                            if (Build.VERSION.SDK_INT >= 22) listSamsungUninstallers.add(u);
+                        } else if (name.contains("dkcldark")) {
+                            if (Build.VERSION.SDK_INT == 21) listSamsungUninstallers.add(u);
                         } else if (name.contains("topjohnwu")) {
                             listSystemlessUninstallers.add(u);
                         } else if (!name.contains("Disabler")) {
@@ -530,7 +542,7 @@ public class AdvancedInstallerFragment extends Fragment {
 
                 return true;
             } catch (Exception e) {
-                Log.e(XposedApp.TAG, "AdvcancedInstallerFragment -> " + e.getMessage());
+                Log.e(XposedApp.TAG, "AdvancedInstallerFragment -> " + e.getMessage());
                 return false;
             }
         }
@@ -580,84 +592,51 @@ public class AdvancedInstallerFragment extends Fragment {
 
     class TabsAdapter extends FragmentPagerAdapter {
 
-        String[] tabsTitles = new String[]{getString(R.string.status), getString(R.string.official),
-                getString(R.string.systemless), getString(R.string.samsung), getString(R.string.miui)};
+        private List<MyFragment> listFragment = new ArrayList<>();
 
         public TabsAdapter(FragmentManager mgr, boolean lock) {
             super(mgr);
-            if (lock) {
-                tabsTitles = new String[]{tabsTitles[0]};
-                return;
+
+            listFragment.add(new MyFragment(getString(R.string.status), new StatusInstallerFragment()));
+
+            if (lock) return;
+
+            if (listOfficialInstaller.size() > 0 && listOfficialUninstaller.size() > 0) {
+                listFragment.add(new MyFragment(getString(R.string.official), new OfficialInstaller()));
             }
-            if (Build.VERSION.SDK_INT < 21) {
-                tabsTitles = new String[]{tabsTitles[0], tabsTitles[1]};
-            } else if (Build.VERSION.SDK_INT == 21) {
-                tabsTitles = new String[]{tabsTitles[0], tabsTitles[1], tabsTitles[4]};
-            } else if (Build.VERSION.SDK_INT == 22) {
-                tabsTitles = new String[]{tabsTitles[0], tabsTitles[1], tabsTitles[3], tabsTitles[4]};
+            if (listSystemlessInstallers.size() > 0 && listSystemlessUninstallers.size() > 0) {
+                listFragment.add(new MyFragment(getString(R.string.systemless), new SystemlessInstaller()));
+            }
+            if (listSamsungInstallers.size() > 0 && listSamsungUninstallers.size() > 0) {
+                listFragment.add(new MyFragment(getString(R.string.samsung), new SamsungInstaller()));
+            }
+            if (listMiuiInstallers.size() > 0 && listMiuiUninstallers.size() > 0) {
+                listFragment.add(new MyFragment(getString(R.string.miui), new MiuiInstaller()));
             }
         }
 
         @Override
-        public int getCount() { return tabsTitles.length; }
+        public int getCount() { return listFragment.size(); }
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment = null;
-            if (Build.VERSION.SDK_INT == 21) {
-                switch (position) {
-                    case 0:
-                        fragment = new StatusInstallerFragment();
-                        break;
-                    case 1:
-                        fragment = new OfficialInstaller();
-                        break;
-                    case 2:
-                        fragment = new MiuiInstaller();
-                        break;
-                }
-                return fragment;
-            } else if (Build.VERSION.SDK_INT == 22) {
-                switch (position) {
-                    case 0:
-                        fragment = new StatusInstallerFragment();
-                        break;
-                    case 1:
-                        fragment = new OfficialInstaller();
-                        break;
-                    case 2:
-                        fragment = new SamsungInstaller();
-                        break;
-                    case 3:
-                        fragment = new MiuiInstaller();
-                        break;
-                }
-                return fragment;
-            }
-
-            switch (position) {
-                case 0:
-                    fragment = new StatusInstallerFragment();
-                    break;
-                case 1:
-                    fragment = new OfficialInstaller();
-                    break;
-                case 2:
-                    fragment = new SystemlessInstaller();
-                    break;
-                case 3:
-                    fragment = new SamsungInstaller();
-                    break;
-                case 4:
-                    fragment = new MiuiInstaller();
-                    break;
-            }
-            return fragment;
+            return listFragment.get(position).fragment;
         }
 
         @Override
         public String getPageTitle(int position) {
-            return tabsTitles[position];
+            return listFragment.get(position).name;
+        }
+    }
+
+    class MyFragment {
+
+        public String name;
+        public Fragment fragment;
+
+        public MyFragment(String name, Fragment fragment) {
+            this.name = name;
+            this.fragment = fragment;
         }
     }
 }
