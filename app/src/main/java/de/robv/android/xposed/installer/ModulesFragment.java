@@ -280,7 +280,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
                     fileOut.close();
                 } catch (IOException e) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "n" + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
                     return false;
                 }
 
@@ -480,8 +480,10 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
     private InstalledModule getItemFromContextMenuInfo(ContextMenuInfo menuInfo) {
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-        int position = info.position - getListView().getHeaderViewsCount();
-        return (position >= 0) ? (InstalledModule) getListView().getAdapter().getItem(position) : null;
+        if (getListView().getHeaderViewsCount() > 0) {
+            return (InstalledModule) getListView().getAdapter().getItem(info.position);
+        }
+        return null;
     }
 
     private Intent getSettingsIntent(String packageName) {
