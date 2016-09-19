@@ -8,6 +8,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -559,6 +560,8 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
             TextView version = (TextView) view.findViewById(R.id.version_name);
             version.setText(item.versionName);
+            version.setSelected(true);
+            version.setTextColor(Color.parseColor("#808080"));
 
             // Store the package name in some views' tag for later access
             view.findViewById(R.id.checkbox).setTag(item.packageName);
