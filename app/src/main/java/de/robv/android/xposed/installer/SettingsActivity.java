@@ -1,6 +1,8 @@
 package de.robv.android.xposed.installer;
 
 import android.Manifest;
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -14,6 +16,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -37,13 +40,16 @@ import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class SettingsActivity extends XposedBaseActivity implements ColorChooserDialog.ColorCallback, FolderChooserDialog.FolderCallback {
 
+    private static SwitchPreference nav_bar;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -69,18 +75,42 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
     }
 
     @Override
-    public void onColorSelection(ColorChooserDialog dialog, @ColorInt int color) {
-        if (!dialog.isAccentMode()) {
-            XposedApp.getPreferences().edit().putInt("colors", color).apply();
-        }
-    }
-
-    @Override
     public void onFolderSelection(@NonNull FolderChooserDialog dialog, @NonNull File folder) {
         if (folder.canWrite()) {
             XposedApp.getPreferences().edit().putString("download_location", folder.getPath()).apply();
         } else {
             Toast.makeText(this, R.string.sdcard_not_writable, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onColorSelection(ColorChooserDialog dialog, @ColorInt int color) {
+        int colorFrom = XposedApp.getColor(this);
+
+        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, color);
+        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animator) {
+                int color = (int) animator.getAnimatedValue();
+
+                toolbar.setBackgroundColor(color);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    int darkenColor = XposedApp.darkenColor(color, 0.85f);
+
+                    getWindow().setStatusBarColor(darkenColor);
+
+                    if (nav_bar != null && nav_bar.isChecked()) {
+                        getWindow().setNavigationBarColor(darkenColor);
+                    }
+                }
+            }
+        });
+        colorAnimation.setDuration(750);
+        colorAnimation.start();
+
+        if (!dialog.isAccentMode()) {
+            XposedApp.getPreferences().edit().putInt("colors", color).apply();
         }
     }
 
@@ -107,7 +137,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 Color.parseColor("#607D8B")
         };
         private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
-        private Preference nav_bar;
         private Preference colors;
         private Preference downloadLocation;
         private PackageManager pm;
@@ -154,7 +183,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.prefs);
 
-            nav_bar = findPreference("nav_bar");
+            nav_bar = (SwitchPreference) findPreference("nav_bar");
             colors = findPreference("colors");
             downloadLocation = findPreference("download_location");
             if (Build.VERSION.SDK_INT < 21) {
@@ -224,7 +253,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals(colors.getKey()) || key.equals("theme") || key.equals(nav_bar.getKey()))
+            if (key.equals("theme") || key.equals(nav_bar.getKey()))
                 getActivity().recreate();
 
             if (key.equals("update_service_interval")) {
