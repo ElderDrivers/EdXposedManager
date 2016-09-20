@@ -139,13 +139,13 @@ public class AboutActivity extends XposedBaseActivity {
             developersView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MaterialDialog dialog = new MaterialDialog.Builder(getContext())
+                    MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
                             .title(R.string.about_developers_label)
                             .content(R.string.about_developers)
                             .positiveText(android.R.string.ok)
                             .show();
 
-                    ((TextView) dialog.findViewById(R.id.content)).setMovementMethod(LinkMovementMethod.getInstance());
+                    ((TextView) dialog.findViewById(R.id.md_content)).setMovementMethod(LinkMovementMethod.getInstance());
                 }
             });
 
@@ -172,7 +172,7 @@ public class AboutActivity extends XposedBaseActivity {
             notices.addNotice(new Notice("libsuperuser", "https://github.com/Chainfire/libsuperuser", "Copyright (C) 2012-2015 Jorrit \"Chainfire\" Jongma", new ApacheSoftwareLicense20()));
             notices.addNotice(new Notice("picasso", "https://github.com/square/picasso", "Copyright 2013 Square, Inc.", new ApacheSoftwareLicense20()));
 
-            new LicensesDialog.Builder(getContext())
+            new LicensesDialog.Builder(getActivity())
                     .setNotices(notices)
                     .setIncludeOwnLicense(true)
                     .build()

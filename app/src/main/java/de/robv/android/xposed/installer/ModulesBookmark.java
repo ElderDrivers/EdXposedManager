@@ -97,7 +97,7 @@ public class ModulesBookmark extends XposedBaseActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            mBookmarksPref = getContext().getSharedPreferences("bookmarks", MODE_PRIVATE);
+            mBookmarksPref = getActivity().getSharedPreferences("bookmarks", MODE_PRIVATE);
             mBookmarksPref.registerOnSharedPreferenceChangeListener(this);
         }
 
@@ -131,7 +131,7 @@ public class ModulesBookmark extends XposedBaseActivity {
             getListView().setEmptyView(mBackgroundList);
             registerForContextMenu(getListView());
 
-            mAdapter = new BookmarkModuleAdapter(getContext());
+            mAdapter = new BookmarkModuleAdapter(getActivity());
             getModules();
             getListView().setAdapter(mAdapter);
 
@@ -217,7 +217,7 @@ public class ModulesBookmark extends XposedBaseActivity {
 
             switch (item.getItemId()) {
                 case R.id.install_bookmark:
-                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             new InstallApkUtil(getContext(), info).execute();
@@ -225,7 +225,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     }, DownloadsUtil.MIME_TYPES.APK);
                     break;
                 case R.id.install_remove_bookmark:
-                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             new InstallApkUtil(getContext(), info).execute();
@@ -237,7 +237,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     if (checkPermissions())
                         return false;
 
-                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             Toast.makeText(context, getString(R.string.module_saved,
@@ -249,7 +249,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     if (checkPermissions())
                         return false;
 
-                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             remove(pkg);

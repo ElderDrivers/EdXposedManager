@@ -1,8 +1,14 @@
 apply plugin: 'com.android.application'
 
+ext {
+    VERSION_DATE = '14/09/16'
+    SUPPORT_LIBRARY_VERSION = '24.2.1'
+    BUILD_TOOLS = "24.0.2"
+}
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion BUILD_TOOLS
 
     lintOptions {
         abortOnError false
@@ -11,9 +17,10 @@ android {
     defaultConfig {
         applicationId "de.robv.android.xposed.installer"
         minSdkVersion 16
+        //noinspection OldTargetApi
         targetSdkVersion 23
         versionCode 37
-        versionName "3.0 alpha4 by dvdandroid - 14/09/16"
+        versionName "3.0 alpha4 by dvdandroid - " + VERSION_DATE
         project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid");
     }
 
@@ -24,18 +31,14 @@ android {
     }
 }
 
-repositories {
-    maven { url "https://jitpack.io" }
-}
-
 dependencies {
-    compile 'com.android.support:cardview-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:customtabs:23.4.0'
-    compile 'com.afollestad.material-dialogs:commons:0.8.6.1'
+    compile "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:customtabs:$SUPPORT_LIBRARY_VERSION"
+    compile 'com.afollestad.material-dialogs:commons:0.9.0.2'
     compile 'com.github.machinarius:preferencefragment:0.1.1'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
-    compile 'eu.chainfire:libsuperuser:1.0.0.201607041850'
+    compile 'eu.chainfire:libsuperuser:1.0.0.201608240809'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.psdev.licensesdialog:licensesdialog:1.8.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])

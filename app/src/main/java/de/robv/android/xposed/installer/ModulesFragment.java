@@ -210,7 +210,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.bookmarks) {
-            startActivity(new Intent(getContext(), ModulesBookmark.class));
+            startActivity(new Intent(getActivity(), ModulesBookmark.class));
             return true;
         }
 

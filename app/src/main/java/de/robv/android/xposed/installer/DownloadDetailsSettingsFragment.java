@@ -40,7 +40,7 @@ public class DownloadDetailsSettingsFragment extends PreferenceFragment {
         PrefixedSharedPreferences.injectToPreferenceManager(prefManager, module.packageName);
         addPreferencesFromResource(R.xml.module_prefs);
 
-        SharedPreferences prefs = getContext().getSharedPreferences("module_settings", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getActivity().getSharedPreferences("module_settings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
         if (prefs.getBoolean("no_global", true)) {
