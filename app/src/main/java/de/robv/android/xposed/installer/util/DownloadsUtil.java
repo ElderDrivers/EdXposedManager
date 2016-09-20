@@ -93,10 +93,11 @@ public class DownloadsUtil {
     public static DownloadInfo getById(Context context, long id) {
         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         Cursor c = dm.query(new Query().setFilterById(id));
-        if (!c.moveToFirst())
+        if (!c.moveToFirst()) {
+            c.close();
             return null;
+        }
 
-        int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
         int columnUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_URI);
         int columnTitle = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TITLE);
         int columnLastMod = c.getColumnIndexOrThrow(
@@ -107,17 +108,22 @@ public class DownloadsUtil {
         int columnBytesDownloaded = c.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
         int columnReason = c.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON);
 
+        int status = c.getInt(columnStatus);
         String localFilename = c.getString(columnFilename);
-        if (localFilename != null && !localFilename.isEmpty() && !new File(localFilename).isFile()) {
-            dm.remove(c.getLong(columnId));
+        if (status == DownloadManager.STATUS_SUCCESSFUL && !new File(localFilename).isFile()) {
+            dm.remove(id);
+            c.close();
             return null;
         }
 
-        return new DownloadInfo(c.getLong(columnId), c.getString(columnUri),
+        DownloadInfo info = new DownloadInfo(id, c.getString(columnUri),
                 c.getString(columnTitle), c.getLong(columnLastMod),
-                localFilename, c.getInt(columnStatus),
+                localFilename, status,
                 c.getInt(columnTotalSize), c.getInt(columnBytesDownloaded),
                 c.getInt(columnReason));
+        c.close();
+
+        return info;
     }
 
     public static DownloadInfo getLatestForUrl(Context context, String url) {
@@ -145,8 +151,9 @@ public class DownloadsUtil {
             if (!url.equals(c.getString(columnUri)))
                 continue;
 
+            int status = c.getInt(columnStatus);
             String localFilename = c.getString(columnFilename);
-            if (localFilename != null && !localFilename.isEmpty() && !new File(localFilename).isFile()) {
+            if (status == DownloadManager.STATUS_SUCCESSFUL && !new File(localFilename).isFile()) {
                 dm.remove(c.getLong(columnId));
                 continue;
             }
@@ -154,9 +161,10 @@ public class DownloadsUtil {
             downloads.add(new DownloadInfo(c.getLong(columnId),
                     c.getString(columnUri), c.getString(columnTitle),
                     c.getLong(columnLastMod), localFilename,
-                    c.getInt(columnStatus), c.getInt(columnTotalSize),
+                    status, c.getInt(columnTotalSize),
                     c.getInt(columnBytesDownloaded), c.getInt(columnReason)));
         }
+        c.close();
 
         Collections.sort(downloads);
         return downloads;
@@ -178,6 +186,7 @@ public class DownloadsUtil {
             if (url.equals(c.getString(columnUri)))
                 idsList.add(c.getLong(columnId));
         }
+        c.close();
 
         if (idsList.isEmpty())
             return;
@@ -201,6 +210,7 @@ public class DownloadsUtil {
             if (c.getLong(columnLastMod) < cutoff)
                 idsList.add(c.getLong(columnId));
         }
+        c.close();
 
         if (idsList.isEmpty())
             return;

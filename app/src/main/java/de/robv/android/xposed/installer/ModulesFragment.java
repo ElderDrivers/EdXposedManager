@@ -481,10 +481,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
     private InstalledModule getItemFromContextMenuInfo(ContextMenuInfo menuInfo) {
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-        if (getListView().getHeaderViewsCount() > 0) {
-            return (InstalledModule) getListView().getAdapter().getItem(info.position);
-        }
-        return null;
+        return (InstalledModule) getListView().getAdapter().getItem(info.position);
     }
 
     private Intent getSettingsIntent(String packageName) {
