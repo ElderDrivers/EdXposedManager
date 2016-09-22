@@ -8,7 +8,7 @@ groups:
     required: 1
     reset_on_push: true
     users:
-    - DVDAndroid
+      - DVDAndroid
   admins:
     required: 1
     users:
