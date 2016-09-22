@@ -6,7 +6,6 @@ groups:
       reject_regex: '^(Rejected|:-1:)'
       enabled: true
     required: 1
-    reset_on_push: true
     users:
       - DVDAndroid
   admins:
