@@ -8,7 +8,7 @@ groups:
     required: 1
     reset_on_push: true
     users:
-    - DVDAndroid
+      - DVDAndroid
   admins:
     required: 1
     users:
@@ -17,7 +17,7 @@ groups:
       title_regex: '(string|translation)'
 	  labels:
         - translation
-always_pending:
-  title_regex: '(WIP|wip)'
-  labels:
-        - wip
+	always_pending:
+	  title_regex: '(WIP|wip)'
+	  labels:
+			- wip
