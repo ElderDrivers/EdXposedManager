@@ -15,7 +15,7 @@ groups:
       - DVDAndroid
     always_approved:
       title_regex: '(string|translation)'
-  labels:
+	  labels:
         - translation
 always_pending:
   title_regex: '(WIP|wip)'
