@@ -6,17 +6,11 @@ groups:
       reject_regex: '^(Rejected|:-1:)'
       enabled: true
     required: 1
-    users:
-      - DVDAndroid
-  admins:
-    required: 1
+    reset_on_push:
+      enabled: true
     users:
       - DVDAndroid
     always_approved:
       title_regex: '(string|translation)'
-      labels:
-        - translation
     always_pending:
       title_regex: '(WIP|wip)'
-      labels:
-      - wip
