@@ -30,7 +30,7 @@
       "architecture":"arm-alt"
     },	
     {
-      "name":"xposed-v86.2-samsung-5.0.x-sdk21-by-dkcldark-arm.zip",
+      "name":"xposed-v86.2-samsung-5.0.x-sdk21-by-dkcldark-arm",
       "version":"86.2",
       "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3868339&d=1473312864",
       "sdk":21,
@@ -189,19 +189,13 @@
       "architecture":"x86"
     },
     {
-      "name":"xposed-uninstaller-20150831-armv5",
-      "date":"20150831",
-      "link":"http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-armv5",
-      "architecture":"armv5"
-    },
-    {
       "name":"wanam-xposed-uninstaller-20160211",
       "date":"20160211",
       "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3642692&d=1455225308",
       "architecture":"n/a"
     },
     {
-      "name":"xposed-uninstaller-samsung-5.0.x-sdk21-by-dkcldark.zip",
+      "name":"xposed-uninstaller-samsung-5.0.x-sdk21-by-dkcldark",
       "date":"20160211",
       "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3868338&d=1473312864",
       "architecture":"n/a"
