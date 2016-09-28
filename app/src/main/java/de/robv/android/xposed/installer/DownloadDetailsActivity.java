@@ -16,11 +16,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -32,6 +34,7 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
+import static de.robv.android.xposed.installer.XposedApp.TAG;
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener {
@@ -52,7 +55,14 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
         ThemeUtil.setTheme(this);
 
         mPackageName = getModulePackageName();
-        mModule = sRepoLoader.getModule(mPackageName);
+        try {
+            mModule = sRepoLoader.getModule(mPackageName);
+        } catch (Exception e) {
+            Toast.makeText(this, "An error has occurred\nAt the moment, there's no a official fix", Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "DownloadDetailsActivity -> " + e.getMessage());
+
+            mModule = null;
+        }
 
         mInstalledModule = ModuleUtil.getInstance().getModule(mPackageName);
 
