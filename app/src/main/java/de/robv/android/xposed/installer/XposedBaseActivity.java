@@ -23,7 +23,7 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
         ThemeUtil.reloadTheme(this);
     }
 
-    public void setFloating(android.support.v7.widget.Toolbar toolbar, @StringRes int details) {
+    public void setFloating(android.support.v7.widget.Toolbar toolbar, @StringRes int details, boolean... force) {
         boolean isTablet = getResources().getBoolean(R.bool.isTablet);
         if (isTablet) {
             WindowManager.LayoutParams params = getWindow().getAttributes();
