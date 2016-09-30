@@ -218,7 +218,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         createDirectories();
         cleanup();
         NotificationUtil.init();
-        AssetUtil.checkStaticBusyboxAvailability();
         AssetUtil.removeBusybox();
 
         registerActivityLifecycleCallbacks(this);
