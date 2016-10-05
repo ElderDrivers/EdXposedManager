@@ -354,5 +354,8 @@
     <string name="download_location_summ">Lokalizacja pobierania dla plików APK (tylko moduły)</string>
     <string name="restart_needed">Wymagane ponowne uruchomienie</string>
     <string name="cache_cleaned">Pamięć podręczna aplikacji została wyczyszczona. Wymagane ponowne uruchomienie</string>
+    <string name="update_download_list">Lista pobierania modułów zostanie wczytana w ciągu kilku sekund</string>
+    <string name="no_connection_available">Brak dostępnego połączenia</string>
+    <string name="activate_only">Tylko aktywuj</string>
 
 </resources>
