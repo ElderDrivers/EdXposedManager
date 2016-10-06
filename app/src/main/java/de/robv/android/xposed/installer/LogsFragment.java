@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -77,6 +78,27 @@ public class LogsFragment extends Fragment {
             }
         });
 */
+
+        if (!XposedApp.getPreferences().getBoolean("hide_logcat_warning", false)) {
+            final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
+
+            TextView message = (TextView) dontShowAgainView.findViewById(android.R.id.message);
+            message.setText(R.string.not_logcat);
+
+            new MaterialDialog.Builder(getActivity())
+                    .title(R.string.install_warning_title)
+                    .customView(dontShowAgainView, false)
+                    .positiveText(android.R.string.ok)
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            CheckBox checkBox = (CheckBox) dontShowAgainView.findViewById(android.R.id.checkbox);
+                            if (checkBox.isChecked())
+                                XposedApp.getPreferences().edit().putBoolean("hide_logcat_warning", true).apply();
+                        }
+                    }).cancelable(false).show();
+        }
         return v;
     }
     

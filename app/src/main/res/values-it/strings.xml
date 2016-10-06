@@ -345,5 +345,6 @@
     <string name="no_connection_available">Nessuna connessione disponibile</string>
     <string name="cache_cleaned">La cache dell\'app è stata pulita. Un riavvio è richiesto.</string>
     <string name="restart_needed">Riavvio richiesto</string>
+    <string name="not_logcat">Se qualcuno ti ha chiesto un Android Logcat, sei nella sezione sbagliata. Questo è il log di Xposed; se avete bisogno di un logcat, su XDA è possibile trovare quello che ti serve</string>
 
 </resources>
