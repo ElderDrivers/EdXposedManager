@@ -68,8 +68,6 @@ public class RepoLoader {
         mModulePref = mApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
         mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
         mGlobalReleaseType = ReleaseType.fromString(XposedApp.getPreferences().getString("release_type_global", "stable"));
-
-        RepoDb.init(mApp, this);
         refreshRepositories();
     }
 
