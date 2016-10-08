@@ -310,15 +310,6 @@
     <string name="xposed_on_next_reboot">Az Xposed Keretrendszer a következõ újraindítás során kerül engedélyezésre</string>
     <string name="xposed_off_next_reboot">Az Xposed Keretrendszer a következõ újraindítás során kerül letiltásra</string>
     <string name="rovo_89_old_icon">rovo89 (old)</string>
-    <string name="update_interval">Háttérbeli frissítés ellenõrzési idõszak</string>
-    <string name="hour1">1 óránként</string>
-    <string name="hour2">2 óránként</string>
-    <string name="hour3">3 óránként</string>
-    <string name="hour4">4 óránként</string>
-    <string name="hour5">5 óránként</string>
-    <string name="hour6">6 óránként</string>
-    <string name="hour24">Minden nap</string>
-    <string name="off">Soha</string>
     <string name="confirm_reboots">Újraindítások megerõsítése</string>
     <string name="skip_xposedminversion_check">\'xposedminversion\' ellenõrzés kihagyása</string>
     <string name="skip_xposedminversion_check_summ">\'xposedminversion\' ellenõrzés kihagyása a moduloknál</string>

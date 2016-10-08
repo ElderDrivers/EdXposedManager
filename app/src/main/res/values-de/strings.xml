@@ -310,15 +310,6 @@
     <string name="xposed_on_next_reboot">Xposed-Framework wird beim nächsten Neustart aktiviert</string>
     <string name="xposed_off_next_reboot">Xposed-Framework wird beim nächsten Neustart deaktiviert</string>
     <string name="rovo_89_old_icon">rovo89 (Alt)</string>
-    <string name="update_interval">Häufigkeit der Updateüberprüfung</string>
-    <string name="hour1">1 Stunde</string>
-    <string name="hour2">2 Stunden</string>
-    <string name="hour3">3 Stunden</string>
-    <string name="hour4">4 Stunden</string>
-    <string name="hour5">5 Stunden</string>
-    <string name="hour6">6 Stunden</string>
-    <string name="hour24">Jeden Tag</string>
-    <string name="off">Nie</string>
     <string name="confirm_reboots">Neustart bestätigen</string>
     <string name="skip_xposedminversion_check">\'xposedminversion\'-Überprüfung überspringen</string>
     <string name="skip_xposedminversion_check_summ">\'xposedminversion\'-Überprüfung für Module überspringen</string>

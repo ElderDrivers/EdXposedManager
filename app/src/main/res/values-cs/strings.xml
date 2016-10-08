@@ -310,15 +310,6 @@
     <string name="xposed_on_next_reboot">Xposed Framework bude povolen při příštím restartu</string>
     <string name="xposed_off_next_reboot">Xposed Framework bude zakázán při příštím restartu</string>
     <string name="rovo_89_old_icon">rovo89 (původní)</string>
-    <string name="update_interval">Interval kontroly aktualizací na pozadí</string>
-    <string name="hour1">1 hodina</string>
-    <string name="hour2">2 hodiny</string>
-    <string name="hour3">3 hodiny</string>
-    <string name="hour4">4 hodiny</string>
-    <string name="hour5">5 hodin</string>
-    <string name="hour6">6 hodin</string>
-    <string name="hour24">Každý den</string>
-    <string name="off">Nikdy</string>
     <string name="confirm_reboots">Potvrzovat restarty</string>
     <string name="skip_xposedminversion_check">Přeskočit kontrolu \'xposedminversion\'</string>
     <string name="skip_xposedminversion_check_summ">Vypne kontrolu minimální verze xposed pro moduly</string>

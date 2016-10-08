@@ -30,14 +30,6 @@
             android:title="@string/settings_release_type"
             app:useStockLayout="true"/>
 
-        <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
-            android:defaultValue="3"
-            android:entries="@array/update_text"
-            android:entryValues="@array/update_values"
-            android:key="update_service_interval"
-            android:summary="%s"
-            android:title="@string/update_interval"/>
-
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/look_and_feel">

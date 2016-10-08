@@ -310,15 +310,6 @@
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
 	<string name="rovo_89_old_icon">rovo89 (старая)</string>
-    <string name="update_interval">Интервал фоновой проверки обновлений</string>
-    <string name="hour1">1 час</string>
-    <string name="hour2">2 часа</string>
-    <string name="hour3">3 часа</string>
-    <string name="hour4">4 часа</string>
-    <string name="hour5">5 часов</string>
-    <string name="hour6">6 часов</string>
-    <string name="hour24">Каждый день</string>
-	<string name="off">Выключить</string>
     <string name="confirm_reboots">Подтверждать перезагрузку</string>
     <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
     <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>

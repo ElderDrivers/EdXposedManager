@@ -309,15 +309,6 @@
     <string name="xposed_on_next_reboot">Xposed Framework zostanie włączony po ponownym uruchoimieniu</string>
     <string name="xposed_off_next_reboot">Xposed Framework zostanie wyłączony po ponownym uruchoimieniu</string>
     <string name="rovo_89_old_icon">rovo89 (stara)</string>
-    <string name="update_interval">Sprawdzanie aktualizacji w tle</string>
-    <string name="hour1">1 godzina</string>
-    <string name="hour2">2 godziny</string>
-    <string name="hour3">3 godziny</string>
-    <string name="hour4">4 godziny</string>
-    <string name="hour5">5 godzin</string>
-    <string name="hour6">6 godzin</string>
-    <string name="hour24">Codziennie</string>
-    <string name="off">Nigdy</string>
     <string name="confirm_reboots">Potwierdź ponowne uruchomienia</string>
     <string name="skip_xposedminversion_check">Pomiń sprawdzanie \'xposedminversion\'</string>
     <string name="skip_xposedminversion_check_summ">Pomiń sprawdzanie modułów \'xposedminversion\'</string>

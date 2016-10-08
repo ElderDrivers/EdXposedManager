@@ -309,15 +309,6 @@
     <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
     <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
     <string name="rovo_89_old_icon">rovo89 (舊)</string>
-    <string name="update_interval">背景檢查更新間隔</string>
-    <string name="hour1">1 小時</string>
-    <string name="hour2">2 小時</string>
-    <string name="hour3">3 小時</string>
-    <string name="hour4">4 小時</string>
-    <string name="hour5">5 小時</string>
-    <string name="hour6">6 小時</string>
-    <string name="off">關閉</string>
-    <string name="hour24">每天</string>
     <string name="confirm_reboots">重新啟動確認</string>
     <string name="skip_xposedminversion_check">略過 \'Xposed 最低版本\' 檢查</string>
     <string name="skip_xposedminversion_check_summ">略過模組 \'Xposed 最低版本\' 檢查</string>

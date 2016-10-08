@@ -291,19 +291,11 @@
     <string name="device_own">O seu dispositivo é um %1$s e tem a ROM %2$s.</string>
     <string name="disable_xposed">Desativar a Xposed</string>
     <string name="goto_framework">Toque aqui para aceder à secção correta para o seu dispositivo</string>
-    <string name="hour1">hora</string>
-    <string name="hour2">2 horas</string>
-    <string name="hour24">Todos os dias</string>
-    <string name="hour3">3 horas</string>
-    <string name="hour4">4 horas</string>
-    <string name="hour5">5 horas</string>
-    <string name="hour6">6 horas</string>
     <string name="later">Mais tarde</string>
     <string name="look_and_feel">Aspecto e sensação</string>
     <string name="miui">MIUI</string>
     <string name="miui_compatibility">Apenas para ROMs MIUI</string>
     <string name="miui_incompatibility">Quaisquer ROMs</string>
-    <string name="off">Nunca</string>
     <string name="official">Oficial</string>
     <string name="official_compatibility">Todas as ROM AOSP e Samsung; Dispositivos Nexus, LG, HTC, Asus</string>
     <string name="official_compatibility_v21">Todas as ROM AOSP; Dispositivos Nexus, LG, HTC, Huawei, Asus</string>
@@ -327,7 +319,6 @@
     <string name="systemless">Sem sistema</string>
     <string name="systemless_compatibility">Todas as ROMs baseadas no AOSP, ROMs Samsung; Dispositivos Nexus, LG, HTC, Asus, Pixel C</string>
     <string name="systemless_incompatibility">Sem incompatibilidade</string>
-    <string name="update_interval">Intervalo para pesquisa de atualizações em segundo plano</string>
     <string name="xposed_off_next_reboot">A \"Xposed Framework\" será desativada no próximo reinício</string>
     <string name="xposed_on_next_reboot">A \"Xposed Framework\" será ativada no próximo reinício</string>
 

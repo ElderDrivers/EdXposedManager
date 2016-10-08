@@ -310,15 +310,6 @@
     <string name="xposed_on_next_reboot">Xposed-raamistik lubatakse järgmisel taaskäivitusel</string>
     <string name="xposed_off_next_reboot">Xposed-raamistik keelatakse järgmisel taaskäivitusel</string>
     <string name="rovo_89_old_icon">rovo89 (vana)</string>
-    <string name="update_interval">Taustal uuenduse kontrollimise intervall</string>
-    <string name="hour1">1 tund</string>
-    <string name="hour2">2 tundi</string>
-    <string name="hour3">3 tundi</string>
-    <string name="hour4">4 tundi</string>
-    <string name="hour5">5 tundi</string>
-    <string name="hour6">6 tundi</string>
-    <string name="hour24">Iga päev</string>
-    <string name="off">Mitte kunagi</string>
     <string name="confirm_reboots">Kinnita taaskäivitused</string>
     <string name="skip_xposedminversion_check">Jäta \"xposedminversion\" kontroll vahele</string>
     <string name="skip_xposedminversion_check_summ">Jäta \"xposedminversion\" kontroll moodulitel vahele</string>

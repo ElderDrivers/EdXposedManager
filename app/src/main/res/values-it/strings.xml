@@ -302,14 +302,6 @@
     <string name="xposed_off_next_reboot">Xposed Framework sarà disabilitato al prossimo riavvio</string>
     <string name="xposed_on_next_reboot">Xposed Framework sarà abilitato al prossimo riavvio</string>
     <string name="rovo_89_old_icon">rovo89 (vecchia)</string>
-    <string name="hour1">1 ora</string>
-    <string name="hour2">2 ore</string>
-    <string name="hour24">Ogni giorno</string>
-    <string name="hour3">3 ore</string>
-    <string name="hour4">4 ore</string>
-    <string name="hour5">5 ore</string>
-    <string name="hour6">6 ore</string>
-    <string name="update_interval">Intervallo controllo aggiornamenti background</string>
     <string name="confirm_reboots">Conferma riavii</string>
     <string name="detected_as">SDK rilevato: %1$d, ARCHITETTURA: %2$s</string>
     <string name="skip_xposedminversion_check">Salta controllo \'xposedminversion\' </string>
@@ -323,7 +315,6 @@
     <string name="miui_compatibility">Solo ROMs MIUI</string>
     <string name="miui_incompatibility">Tutte le altre ROM</string>
     <string name="miui">MIUI</string>
-    <string name="off">Mai</string>
     <string name="official">Ufficiale</string>
     <string name="official_compatibility">Tutte le AOSP e Samsung ROM; dispositivi Nexus, LG, HTC, Asus</string>
     <string name="official_compatibility_v21">Tutte le AOSP ROM; dispositivi Nexus, LG, HTC, Asus</string>
