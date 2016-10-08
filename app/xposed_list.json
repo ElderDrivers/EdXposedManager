@@ -2,30 +2,30 @@
   "installer":[
     %XPOSED_ZIP%
     {
-      "name":"xposed-v86.5-sdk21-topjohnwu",
-      "version":"86.5",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3847907&d=1471640681",
+      "name":"xposed-v86.6-sdk21-topjohnwu",
+      "version":"86.6",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3893968&d=1475554214",
       "sdk":21,
       "architecture":"all"
     },
     {
-      "name":"xposed-v86.5-sdk22-topjohnwu",
-      "version":"86.5",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3847908&d=1471640742",
+      "name":"xposed-v86.6-sdk22-topjohnwu",
+      "version":"86.6",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3893969&d=1475554230",
       "sdk":22,
       "architecture":"all"
     },
     {
-      "name":"xposed-v86.5-sdk23-topjohnwu",
-      "version":"86.5",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3847909&d=1471640756",
+      "name":"xposed-v86.6-sdk23-topjohnwu",
+      "version":"86.6",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3893970&d=1475554254",
       "sdk":23,
       "architecture":"all"
     },
     {
-      "name":"xposed-v86.5-sdk23-arm-alt-topjohnwu",
-      "version":"86.5",
-      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3847906&d=1471640681",
+      "name":"xposed-v86.6-sdk23-arm-alt-topjohnwu",
+      "version":"86.6",
+      "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3896033&d=1475762538",
       "sdk":23,
       "architecture":"arm-alt"
     },	
@@ -208,8 +208,8 @@
     }
   ],
   "apk":{
-    "version":"1473860400000",
-    "changelog":"<b>What's new:</b><br>&#149; UI fixes<br><br><br>&#149; Make folder only when needed<br>&#149; Synced translations",
-    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=20416&task=get"
+    "version":"1475931600000",
+    "changelog":"<b>What's new:</b><br>&#149; <b>Fix: </b> Long module version names misshape card layout<br>&#149; <b>Fix: </b> When Xposed is disabled, the app uninstalled through installer is wrong<br>&#149; <b>New: </b> Animating toolbar on color change<br>&#149; <b>New: </b> Module page details now can be opened from url<br>&#149; <b>New: </b> Info dialog in log fragment<br>&#149; <b>Removed: </b> background update checker<br><br>&#149; Synced translations",
+    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=20812&task=get"
   }
 }
