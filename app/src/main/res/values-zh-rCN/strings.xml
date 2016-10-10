@@ -346,7 +346,8 @@
     <string name="download_location_summ">选择 APK 文件的下载位置（仅限模块）</string>
     <string name="restart_needed">需要重启</string>
     <string name="cache_cleaned">应用缓存已清除。需要重新开启</string>
-    <string name="update_download_list">模块列表将在几秒内加载</string>
+    <string name="update_download_list">模块列表将在几秒钟内加载</string>
     <string name="no_connection_available">没有可用的连接</string>
+    <string name="not_logcat">如果有人要求您提供一份 Android 系统日志，那么您来错了地方。在此处显示的是 Xposed 的日志信息；如果您想抓取系统日志，可前往 XDA 寻求所需的答案。</string>
 
 </resources>
