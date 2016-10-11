@@ -253,13 +253,13 @@ public class StatusInstallerFragment extends Fragment {
         } else {
             int installedXposedVersionInt = XposedApp.getXposedVersion();
             if (installedXposedVersionInt != 0) {
-                txtInstallError.setText(getString(R.string.installed_lollipop, installedXposedVersionInt));
+                txtInstallError.setText(getString(R.string.installed_lollipop, "" + installedXposedVersionInt));
                 txtInstallError.setTextColor(getResources().getColor(R.color.darker_green));
                 txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.darker_green));
                 txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle));
                 isXposedInstalled = true;
                 if (DISABLE_FILE.exists()) {
-                    txtInstallError.setText(getString(R.string.installed_lollipop_inactive, installedXposedVersionInt));
+                    txtInstallError.setText(getString(R.string.installed_lollipop_inactive, "" + installedXposedVersionInt));
                     txtInstallError.setTextColor(getResources().getColor(R.color.amber_500));
                     txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.amber_500));
                     txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning));
@@ -387,6 +387,7 @@ public class StatusInstallerFragment extends Fragment {
             case 23:
                 return "Marshmallow";
             case 24:
+            case 25:
                 return "Nougat";
         }
         return "";
