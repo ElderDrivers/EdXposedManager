@@ -1,13 +1,7 @@
 package de.robv.android.xposed.installer.installation;
 
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.ParseException;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -65,34 +59,14 @@ public class AdvancedInstallerFragment extends Fragment {
     private static final List<XposedZip.Uninstaller> listMiuiUninstallers = new ArrayList<>();
     private static ViewPager mPager;
     private TabLayout mTabLayout;
-    private int counter = 0;
-    private BroadcastReceiver connectionListener = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            counter++;
-
-            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-
-            if (counter == 1) return;
-            onNetworkChange(networkInfo != null && networkInfo.isConnected());
-        }
-    };
     private RootUtil mRootUtil = new RootUtil();
     private int thisSdkCount = 0;
 
     public static void gotoPage(int page) {mPager.setCurrentItem(page);}
 
-    private void onNetworkChange(boolean state) {
-        if (state) new JSONParser().execute();
-        else StatusInstallerFragment.setError(true, false);
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        counter = 0;
 
         listOfficialInstaller.clear();
         listSystemlessInstallers.clear();
@@ -117,7 +91,6 @@ public class AdvancedInstallerFragment extends Fragment {
 
         setHasOptionsMenu(true);
         new JSONParser().execute();
-        getActivity().registerReceiver(connectionListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
             final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
@@ -146,13 +119,6 @@ public class AdvancedInstallerFragment extends Fragment {
 
         mTabLayout.setBackgroundColor(XposedApp.getColor(getContext()));
 
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        getActivity().unregisterReceiver(connectionListener);
     }
 
     @Override
