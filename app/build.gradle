@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 
 ext {
-    VERSION_DATE = '08/10/16'
+    VERSION_DATE = '16/10/16'
     SUPPORT_LIBRARY_VERSION = '24.2.1'
-    BUILD_TOOLS = "24.0.2"
+    BUILD_TOOLS = "24.0.3"
 }
 
 android {

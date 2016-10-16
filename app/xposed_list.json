@@ -208,8 +208,8 @@
     }
   ],
   "apk":{
-    "version":"1475931600000",
-    "changelog":"<b>What's new:</b><br>&#149; <b>Fix: </b> Long module version names misshape card layout<br>&#149; <b>Fix: </b> When Xposed is disabled, the app uninstalled through installer is wrong<br>&#149; <b>New: </b> Animating toolbar on color change<br>&#149; <b>New: </b> Module page details now can be opened from url<br>&#149; <b>New: </b> Info dialog in log fragment<br>&#149; <b>Removed: </b> background update checker<br><br>&#149; Synced translations",
-    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=20812&task=get"
+    "version":"1476627000000",
+    "changelog":"<b>What's new:</b><br>&#149; Fixed some crash<br>&#149; Updated strings<br>&#149; Readded update check. (check only at device boot)<br>&#149; Removed apk installation with root",
+    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=20938&task=get"
   }
 }
