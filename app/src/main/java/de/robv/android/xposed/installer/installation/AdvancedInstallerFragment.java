@@ -550,7 +550,7 @@ public class AdvancedInstallerFragment extends Fragment {
                     StatusInstallerFragment.setUpdate(newApkLink, newApkChangelog);
                 }
 
-            } catch (IllegalStateException ignored) {
+            } catch (Exception ignored) {
             }
 
         }
