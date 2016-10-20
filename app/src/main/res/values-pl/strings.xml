@@ -94,6 +94,7 @@
     <string name="module_is_not_activated_yet">Moduł Xposed nie jest jeszcze aktywny</string>
     <string name="module_is_not_activated_yet_detailed">%s został zainstalowany, ale nie został jeszcze aktywowany.</string>
     <string name="activate_and_reboot">Aktywuj i zrestartuj</string>
+    <string name="activate_only">Tylko aktywuj</string>
     <string name="module_activated">Moduł został aktywowany</string>
     <string name="module_empty_description">(brak dołączonego opisu)</string>
     <string name="module_no_ui">Ten moduł nie zawiera interfejsu użytkownika</string>
@@ -230,8 +231,8 @@
     <string name="export_installed_modules">Eksport listy zainstalowanych modułów</string>
     <string name="import_installed_modules">Import listy zainstalowanych modułów</string>
     <string name="no_installed_modules">Brak zainstalowanych modułów!</string>
-    <string name="enable_heads_up">Włącz pływające powiadomienie</string>
-    <string name="enable_heads_up_summary">Ta opcja włącza pływające powiadomienie o nowych/zaktualizowanych modułach</string>
+    <string name="enable_heads_up">Włącz wyskakujące powiadomienie</string>
+    <string name="enable_heads_up_summary">Ta opcja włącza wyskakujące powiadomienie o nowych/zaktualizowanych modułach</string>
     <string name="nav_bar_coloration">Koloruj pasek nawigacji</string>
     <string name="no_backup_found">Nie znaleziono kopii zapasowej</string>
     <string name="no_enabled_modules">Brak aktywnych modułów</string>
@@ -243,7 +244,7 @@
     <string name="info">Info</string>
     <string name="infoInstaller">
 		Nazwa: %1$s
-		\nSDK: %2$d        
+		\nSDK: %2$d
 		\nArchitektura: %3$s
         \nWersja: %4$s
 	</string>
@@ -287,7 +288,7 @@
     <string name="bookmark_removed">Usunięto zakładkę</string>
     <string name="undo">Cofnij</string>
     <string name="notification_coloration">Koloruj ikonę powiadomienia</string>
-	<string name="file_is_empty">Plik jest pusty</string>
+    <string name="file_is_empty">Plik jest pusty</string>
     <string name="install_remove">Zainstaluj i usuń</string>
     <string name="download_remove">Pobierz i usuń</string>
     <string name="module_saved">Moduł zapisany %1$s</string>
@@ -345,6 +346,6 @@
     <string name="cache_cleaned">Pamięć podręczna aplikacji została wyczyszczona. Wymagane ponowne uruchomienie</string>
     <string name="update_download_list">Lista pobierania modułów zostanie wczytana w ciągu kilku sekund</string>
     <string name="no_connection_available">Brak dostępnego połączenia</string>
-    <string name="activate_only">Tylko aktywuj</string>
+    <string name="not_logcat">Gdyby ktoś zapytał o Android Logcat, jesteś w złym miejscu. To jest log Xposed; jeśli potrzebujesz logcat, na XDA możesz znaleźć to, czego potrzebujesz</string>
 
 </resources>
