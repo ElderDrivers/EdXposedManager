@@ -39,6 +39,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>
         </activity-alias>
         <activity-alias
             android:name=".WelcomeActivity-hjmodi"
@@ -52,6 +55,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>
         </activity-alias>
         <activity-alias
             android:name=".WelcomeActivity-rovo"
@@ -65,6 +71,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>
         </activity-alias>
         <activity-alias
             android:name=".WelcomeActivity-rovo-old"
@@ -77,6 +86,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>
         </activity-alias>
         <activity-alias
             android:name=".WelcomeActivity-staol"
@@ -89,6 +101,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>
         </activity-alias>
 
         <activity
