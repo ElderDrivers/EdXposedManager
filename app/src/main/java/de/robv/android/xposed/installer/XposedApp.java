@@ -8,6 +8,7 @@ import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -22,6 +23,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -35,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -231,6 +234,14 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+
+        if (mPref.getBoolean("force_english", false)) {
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            android.content.res.Configuration conf = res.getConfiguration();
+            conf.locale = Locale.ENGLISH;
+            res.updateConfiguration(conf, dm);
         }
     }
 

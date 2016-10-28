@@ -119,6 +119,10 @@
             android:summary="@string/open_drawer_summ"
             android:title="@string/open_drawer"/>
 
+        <CheckBoxPreference
+            android:key="force_english"
+            android:title="@string/force_english"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -347,5 +347,7 @@
     <string name="update_download_list">The download\'s module list will be loaded in few seconds</string>
     <string name="no_connection_available">No connection available</string>
     <string name="not_logcat">If someone asked you an Android Logcat, you\'re in the wrong section. This is the Xposed log; if you need a logcat, on XDA you can find what you need</string>
+    <string name="force_english">Force English language</string>
+    <string name="warning_language">Language change will be applied after application restart.</string>
 
 </resources>

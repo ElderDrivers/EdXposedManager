@@ -253,6 +253,9 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             if (key.equals("theme") || key.equals(nav_bar.getKey()))
                 getActivity().recreate();
+
+            if (key.equals("force_english"))
+                Toast.makeText(mContext, getString(R.string.warning_language), Toast.LENGTH_SHORT).show();
         }
 
         @Override
