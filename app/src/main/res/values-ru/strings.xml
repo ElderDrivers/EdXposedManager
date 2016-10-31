@@ -294,9 +294,9 @@
     <string name="module_saved">Модуль сохранен в %1$s</string>
     <string name="ignore_updates">Игнорировать обновление</string>
     <string name="ignore_updates_summ">Игнорировать обновления для конкретного модуля.</string>
-    <string name="reboot_recovery">Перезагрузить в Recovery</string>
+    <string name="reboot_recovery">Перезагрузить в рекавери</string>
     <string name="loading">Загрузка…</string>
-    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs">Пользовательские вкладки Chrome</string>
     <string name="chrome_custom_tabs_summ">Открытие ссылок внутри приложения</string>
     <string name="scroll_bottom">Прокрутка вниз</string>
     <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
