@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">Отправить</string>
     <string name="menuSaveToSd">Сохранить на SD-карту</string>
-    <string name="xposed_not_active">Последняя версия Xposed в настоящее время не активна. Уверены, что Вы установили Framework и перезагрузили устройство?</string>
+    <string name="xposed_not_active">Последняя версия Framework в настоящее время не активна. Вы уверены, что установили Framework и перезагрузили устройство?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Добро пожаловать в <b>Xposed Installer</b>!\nПожалуйста, выберите, что Вам нужно:</string>
@@ -19,11 +19,11 @@
     <string name="tabSettings">Настройки</string>
     <string name="tabSettingsDescription">Выберите этот раздел для настройки Xposed Installer и Framework.</string>
     <string name="tabSupport">Поддержка</string>
-    <string name="tabSupportDescription">Найти помощь связанные с Xposed. Вы также отблагодарить и пожертвовать на Xposed.</string>
+    <string name="tabSupportDescription">Найти помощь связанную с Xposed. Вы также можете отблагодарить и пожертвовать на Xposed.</string>
     <string name="tabLogs">Логи</string>
     <string name="tabLogsDescription">Отображение, сохранение и отправка логов Xposed Framework.</string>
     <string name="tabAbout">О программе!</string>
-    <string name="tabAboutDescription">Узнайте о людях, которые создали Xposed, о том, где можно получить поддержку и т.д.</string>
+    <string name="tabAboutDescription">Узнайте о людях которые создали Xposed. О том где можно получить поддержку и т.д.</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">Xposed Framework</string>
@@ -134,7 +134,7 @@
     <string name="download_sorting_status">Сортировать по статусу</string>
     <string name="download_sorting_updated">Сортировать по последнему обновлению</string>
     <string name="download_sorting_created">Сортировать по дате создания</string>
-    <string name="download_section_framework">Xposed Frameworkk</string>
+    <string name="download_section_framework">Xposed Framework</string>
     <string name="download_section_update_available">Доступно обновление</string>
     <string name="download_section_installed">Установлен</string>
     <string name="download_section_not_installed">Не установлен</string>
@@ -148,7 +148,7 @@
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Установка</string>
-    <string name="settings_install_mode">Способ установки</string>
+    <string name="settings_install_mode">Способ установки Xposed Framework</string>
     <string name="install_mode_normal">Классический (запись в /system директорию)</string>
     <string name="install_mode_recovery_auto">Рекавери (прошивка архива автоматически)</string>
     <string name="install_mode_recovery_manual">Рекавери (запись архива на SD-карту, ручная прошивка)</string>
@@ -166,7 +166,7 @@
     <string name="settings_theme_light">Material светлая</string>
     <string name="settings_theme_dark">Material темная</string>
     <string name="settings_theme_black">Material черная (полезно для AMOLED экранов)</string>
-    <string name="settings_default_view">Вид по умолчанию при запуске</string>
+    <string name="settings_default_view">Какое меню открывать при запуске</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Поддержка модулей</string>
@@ -231,7 +231,7 @@
     <string name="export_installed_modules">Установленных модулей</string>
     <string name="import_installed_modules">Установленных модулей</string>
     <string name="no_installed_modules">Установленных модулей нет!</string>
-    <string name="enable_heads_up">Включить Heads-Up уведомления</string>
+    <string name="enable_heads_up">Heads-Up уведомления</string>
     <string name="enable_heads_up_summary">Эта опция включает Heads-Up уведомления для новых/обновленных модулей</string>
     <string name="nav_bar_coloration">Раскрасить \"Панель навигации\"</string>
     <string name="no_backup_found">Резервные копии не найдены</string>
@@ -259,7 +259,7 @@
     <string name="downloadUninstaller">Скачать деинсталятор</string>
     <string name="selectFile">Выберите загруженный файл</string>
     <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
-    <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПАРВИЛЬНУЮ АРХИТЕКТУРУ ZIP XPOSED?\nНе правильный zip установщик может навредить вашему устройству!</string>
+    <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПАРВИЛЬНУЮ АРХИТЕКТУРУ ZIP XPOSED FRAMEWORK?\nНе правильный zip установщик может навредить вашему устройству!</string>
     <string name="help">Справка</string>
     <string name="newVersion">Доступна новая версия Xposed Installer!</string>
     <string name="update">Установить обновление</string>
@@ -268,7 +268,7 @@
     <string name="installationForbidden">Установка не возможна! Чтобы установить Xposed Framework через это приложение, необходим Android 5 и выше.</string>
     <string name="installed_no_lollipop">Xposed Framework установлен.</string>
     <string name="not_installed_no_lollipop">Xposed Framework не установлен.</string>
-    <string name="notify_module_update">Включить уведомления об обновлении модулей</string>
+    <string name="notify_module_update">Уведомление об обновлении модуля</string>
 
     <string name="md_back_label">Назад</string>
     <string name="md_done_label">Готово</string>
@@ -294,9 +294,9 @@
     <string name="module_saved">Модуль сохранен в %1$s</string>
     <string name="ignore_updates">Игнорировать обновление</string>
     <string name="ignore_updates_summ">Игнорировать обновления для конкретного модуля.</string>
-    <string name="reboot_recovery">Перезагрузить в Recovery</string>
+    <string name="reboot_recovery">Перезагрузить в рекавери</string>
     <string name="loading">Загрузка…</string>
-    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs">Пользовательские вкладки Chrome</string>
     <string name="chrome_custom_tabs_summ">Открытие ссылок внутри приложения</string>
     <string name="scroll_bottom">Прокрутка вниз</string>
     <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
@@ -304,13 +304,13 @@
     <string name="share_app">Поделиться</string>
     <string name="share_app_text">Попробуйте: Xposed Installer в Material Дизайн! %s</string>
     <string name="disable_xposed">Отключить Xposed</string>
-    <string name="status">Состояние Xposed</string>
+    <string name="status">Состояние Xposed </string>
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
     <string name="rovo_89_old_icon">rovo89 (старая)</string>
     <string name="confirm_reboots">Подтверждать перезагрузку</string>
-    <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
-    <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
+    <string name="skip_xposedminversion_check">Проверка версии Xposed Framework</string>
+    <string name="skip_xposedminversion_check_summ">Пропускать проверку минимальной версии Xposed Framework для модулей</string>
     <string name="detected_as">Обнаружен SDK: %1$d, ARCH: %2$s</string>
     <string name="official">Официальный</string>
     <string name="systemless">Несистемный</string>
@@ -347,5 +347,7 @@
     <string name="update_download_list">Потяните вниз, чтобы обновить список модулей</string>
     <string name="no_connection_available">Нет подключения</string>
     <string name="not_logcat">Если вас попросили Logcat с Android, тут не верный раздел. Это логи от Xposed; Если вам нужен Logcat, то на XDA или 4pda вы можете найти то, что вам нужно</string>
+    <string name="force_english">Английский язык</string>
+    <string name="warning_language">Игнорировать язык системы и использовать английский. Нужен перезапуск приложения!</string>
 	
 </resources>

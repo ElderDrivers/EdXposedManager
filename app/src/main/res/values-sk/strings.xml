@@ -346,5 +346,8 @@
     <string name="cache_cleaned">Vyrovnávacia pamäť aplikácie bola vymazaná. Reštart je potrebný</string>
     <string name="update_download_list">Zoznam modulov sa načíta o pár sekúnd</string>
     <string name="no_connection_available">Nie je dostupné žiadne pripojenie</string>
+    <string name="not_logcat">Ak vás niekto požiada o Android Logcat, ste v nesprávnej sekcii. Toto je Xposed záznam (log); ak potrebujete logcat, na XDA nájdete, čo potrebujete</string>
+    <string name="force_english">Vynútiť anglický jazyk</string>
+    <string name="warning_language">Zmena jazyka bude aplikovaná po reštarte aplikácie.</string>
 
 </resources>
