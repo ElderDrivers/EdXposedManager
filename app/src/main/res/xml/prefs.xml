@@ -32,7 +32,9 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/look_and_feel">
+    <PreferenceCategory
+        android:key="look_and_feel"
+        android:title="@string/look_and_feel">
 
         <de.robv.android.xposed.installer.widget.IconListPreference
             android:defaultValue="0"

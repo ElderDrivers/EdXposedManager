@@ -15,6 +15,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceGroup;
 import android.preference.SwitchPreference;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
@@ -38,7 +39,7 @@ import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class SettingsActivity extends XposedBaseActivity implements ColorChooserDialog.ColorCallback, FolderChooserDialog.FolderCallback {
 
-    private static SwitchPreference nav_bar;
+    private static SwitchPreference navBar;
     private Toolbar toolbar;
 
     @Override
@@ -98,7 +99,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
                     getWindow().setStatusBarColor(darkenColor);
 
-                    if (nav_bar != null && nav_bar.isChecked()) {
+                    if (navBar != null && navBar.isChecked()) {
                         getWindow().setNavigationBarColor(darkenColor);
                     }
                 }
@@ -113,6 +114,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
     }
 
     public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+
         public final static int[] PRIMARY_COLORS = new int[]{
                 Color.parseColor("#F44336"),
                 Color.parseColor("#E91E63"),
@@ -134,44 +136,43 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 Color.parseColor("#9E9E9E"),
                 Color.parseColor("#607D8B")
         };
+
         private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
-        private Preference colors;
-        private Preference downloadLocation;
-        private PackageManager pm;
-        private String packName;
-        private Context mContext;
+
         private Preference mClickedPreference;
 
         private Preference.OnPreferenceChangeListener iconChange = new Preference.OnPreferenceChangeListener() {
             @Override
-            public boolean onPreferenceChange(Preference preference,
-                                              Object newValue) {
-
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String act = ".WelcomeActivity-";
                 String[] iconsValues = new String[]{"dvdandroid", "hjmodi", "rovo", "rovo-old", "staol"};
 
+                Context context = getActivity();
+                PackageManager pm = getActivity().getPackageManager();
+                String packName = getActivity().getPackageName();
+
                 for (String s : iconsValues) {
-                    pm.setComponentEnabledSetting(new ComponentName(mContext, packName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                    pm.setComponentEnabledSetting(new ComponentName(context, packName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
                 }
 
                 act += iconsValues[Integer.parseInt((String) newValue)];
 
-                int drawable = XposedApp.iconsValues[Integer
-                        .parseInt((String) newValue)];
+                int drawable = XposedApp.iconsValues[Integer.parseInt((String) newValue)];
 
                 if (Build.VERSION.SDK_INT >= 21) {
 
                     ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
-                            XposedApp.drawableToBitmap(mContext.getDrawable(drawable)),
-                            XposedApp.getColor(mContext));
+                            XposedApp.drawableToBitmap(context.getDrawable(drawable)),
+                            XposedApp.getColor(context));
                     getActivity().setTaskDescription(tDesc);
                 }
 
-                pm.setComponentEnabledSetting(new ComponentName(mContext, packName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-
+                pm.setComponentEnabledSetting(new ComponentName(context, packName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 return true;
             }
         };
+
+        private Preference downloadLocation;
 
         public SettingsFragment() {
         }
@@ -181,17 +182,21 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.prefs);
 
-            nav_bar = (SwitchPreference) findPreference("nav_bar");
-            colors = findPreference("colors");
+            PreferenceGroup groupApp = (PreferenceGroup) findPreference("group_app");
+            PreferenceGroup lookFeel = (PreferenceGroup) findPreference("look_and_feel");
+
+            Preference headsUp = findPreference("heads_up");
+            Preference colors = findPreference("colors");
+            Preference forceEnglish = findPreference("force_english");
             downloadLocation = findPreference("download_location");
+
+            ListPreference customIcon = (ListPreference) findPreference("custom_icon");
+            navBar = (SwitchPreference) findPreference("nav_bar");
+
             if (Build.VERSION.SDK_INT < 21) {
-                Preference heads_up = findPreference("heads_up");
-
-                getPreferenceScreen().removePreference(heads_up);
-                getPreferenceScreen().removePreference(nav_bar);
+                groupApp.removePreference(headsUp);
+                lookFeel.removePreference(navBar);
             }
-
-            mContext = getActivity();
 
             findPreference("release_type_global").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -221,15 +226,12 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             });
 
             colors.setOnPreferenceClickListener(this);
+            customIcon.setOnPreferenceChangeListener(iconChange);
             downloadLocation.setOnPreferenceClickListener(this);
 
-            ListPreference customIcon = (ListPreference) findPreference("custom_icon");
-
-            pm = mContext.getPackageManager();
-            packName = mContext.getPackageName();
-
-            customIcon.setOnPreferenceChangeListener(iconChange);
-
+            if (getResources().getConfiguration().locale.getLanguage().equals("en")) {
+                groupApp.removePreference(forceEnglish);
+            }
         }
 
         @Override
@@ -251,11 +253,11 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals("theme") || key.equals(nav_bar.getKey()))
+            if (key.equals("theme") || key.equals("nav_bar"))
                 getActivity().recreate();
 
             if (key.equals("force_english"))
-                Toast.makeText(mContext, getString(R.string.warning_language), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.warning_language), Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -264,7 +266,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             if (act == null)
                 return false;
 
-            if (preference.getKey().equals(colors.getKey())) {
+            if (preference.getKey().equals("colors")) {
                 new ColorChooserDialog.Builder(act, preference.getTitleRes())
                         .backButton(R.string.back)
                         .allowUserColorInput(false)
