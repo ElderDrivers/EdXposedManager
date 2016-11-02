@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer.util;
 
+import android.os.Build;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,7 +33,7 @@ public class JSONUtils {
     }
 
     private static String getLatestVersion() throws IOException {
-        String site = getFileContent("http://dl-xda.xposed.info/framework/sdk23/arm/");
+        String site = getFileContent("http://dl-xda.xposed.info/framework/sdk" + Build.VERSION.SDK_INT + "/arm/");
 
         Pattern pattern = Pattern.compile("(href=\")([^\\?\"]*)\\.zip");
         Matcher matcher = pattern.matcher(site);
@@ -45,8 +47,15 @@ public class JSONUtils {
         return file[1].replace("v", "");
     }
 
-    public static String listZip() throws IOException {
-        String latest = getLatestVersion();
+    public static String listZip() {
+        String latest;
+        try {
+            latest = getLatestVersion();
+        } catch (IOException e) {
+            // Got 404 response; no official Xposed zips available
+            return "";
+        }
+
         String newJson = "";
         String[] arch = new String[]{
                 "arm",
@@ -54,10 +63,8 @@ public class JSONUtils {
                 "x86"
         };
 
-        for (int sdk = 21; sdk <= 23; sdk++) {
-            for (String a : arch) {
-                newJson += installerToString("xposed-v" + latest + "-sdk" + sdk + "-" + a) + ",";
-            }
+        for (String a : arch) {
+            newJson += installerToString("xposed-v" + latest + "-sdk" + Build.VERSION.SDK_INT + "-" + a) + ",";
         }
 
         return newJson;
