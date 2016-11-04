@@ -337,7 +337,7 @@ public class StatusInstallerFragment extends Fragment {
     }
 
     private void setHint() {
-        String manufacturer = Build.MANUFACTURER;
+        String manufacturer = Build.MANUFACTURER.toLowerCase();
 
         File twFramework = new File("/system/framework/twframework.jar");
         File miuiFramework = new File("/system/framework/framework-miui-res.jar");
@@ -352,12 +352,12 @@ public class StatusInstallerFragment extends Fragment {
                 hint = getString(R.string.device_own, "Samsung", "AOSP-based");
                 tab = 1;
             }
-        } else if (manufacturer.contains("xioami")) {
+        } else if (manufacturer.contains("xiaomi")) {
             if (miuiFramework.exists()) {
-                hint = getString(R.string.device_own, "Xioami", "MIUI");
+                hint = getString(R.string.device_own, "Xiaomi", "MIUI");
                 tab = 4;
             } else {
-                hint = getString(R.string.device_own, "Xioami", "AOSP-based");
+                hint = getString(R.string.device_own, "Xiaomi", "AOSP-based");
                 tab = 1;
             }
         }
@@ -401,7 +401,7 @@ public class StatusInstallerFragment extends Fragment {
         manufacturer += " " + Build.MODEL + " ";
         if (manufacturer.contains("Samsung")) {
             manufacturer += new File("/system/framework/twframework.jar").exists() ? "(TouchWiz)" : "(AOSP-based ROM)";
-        } else if (manufacturer.contains("Xioami")) {
+        } else if (manufacturer.contains("Xiaomi")) {
             manufacturer += new File("/system/framework/framework-miui-res.apk").exists() ? "(MIUI)" : "(AOSP-based ROM)";
         }
         return manufacturer;
