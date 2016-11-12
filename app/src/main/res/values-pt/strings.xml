@@ -62,7 +62,7 @@
     <string name="tap_to_dismiss">Toque para ignorar</string>
     <string name="sdcard_location">Cartão SD: %s</string>
     <string name="installation_lollipop">A Xposed Framework não está instalada. Por favor, transfira o último ficheiro ZIP do XDA e "flashe-o" manualmente através do modo de recuperação.</string>
-    <string name="installed_lollipop">A versão %1$s da Xposed Framework %2$s está ativada.</string>
+    <string name="installed_lollipop">Xposed Framework versão %s está ativa.</string>
     <string name="installed_lollipop_inactive">A versão %s da Xposed Framework está instalada, mas não está ativada. Por favor verifique os registos para mais detalhes.</string>
     <string name="modules_updates_available">Estão disponíveis atualizaçãos para Módulos</string>
 
