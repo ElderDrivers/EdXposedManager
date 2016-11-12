@@ -208,8 +208,8 @@
     }
   ],
   "apk":{
-    "version":"1476627000000",
-    "changelog":"<b>What's new:</b><br>&#149; Fixed some crash<br>&#149; Updated strings<br>&#149; Readded update check. (check only at device boot)<br>&#149; Removed apk installation with root",
-    "link":"http://forum.xda-developers.com/devdb/project/dl/?id=20938&task=get"
+    "version": "1478959200000",
+    "changelog":"<b>What's new:</b><br>&#149; <b>NEW:</b> Android 7.1 Quick Shortcuts!<br>&#149; <b>NEW:</b> Android 7.1 round icon!<br>&#149; <b>NEW:</b> Preparation for Xposed for Nougat<br>&#149; <b>NEW:</b> Option to force English language<br>&#149; <b>IMPROVEMENT:</b> Speed up zip loading<br>&#149; <b>IMPROVEMENT:</b> Cherry-picked changes from official Xposed Installer<br>&#149; <b>FIX:</b> Fix some preferences for Kitkat and lower devices<br>&#149; <b>FIX:</b> Fix FCs<br><br>Translation updates",
+    "link": "http://forum.xda-developers.com/devdb/project/dl/?id=21463&task=get"
   }
 }

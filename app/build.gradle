@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 ext {
-    VERSION_DATE = '16/10/16'
+    VERSION_DATE = '12/11/16'
     SUPPORT_LIBRARY_VERSION = '25.0.0'
     BUILD_TOOLS = "25.0.0"
 }
@@ -20,8 +20,8 @@ android {
         //noinspection OldTargetApi
         targetSdkVersion 23
         versionCode 37
-        versionName "3.0 alpha4 by dvdandroid - " + VERSION_DATE
-        project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid");
+        versionName "3.0.1 by dvdandroid - " + VERSION_DATE
+        project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid_" + VERSION_DATE.replaceAll("/", "_"));
     }
 
     buildTypes {
