@@ -53,14 +53,14 @@
     {
       "name":"xposed-v86.1-sdk23-arm-custom-build-by-wanam-20160904",
       "version":"86.1",
-      "link":"https://qc3.androidfilehost.com/dl/JGrOO4WdDvlQFzFXsFDyhg/1473490995/24591000424962808/xposed-v86.1-sdk23-arm-custom-build-by-wanam-20160904.zip",
+      "link":"https://www.dropbox.com/sh/gz64h7cqg6hhh55/AACaqZ6WHpI57HBgaraVlzRRa/xposed-v86.1-sdk23-arm-custom-build-by-wanam-20160904.zip?dl=1",
       "sdk":23,
       "architecture":"arm"
     },
     {
       "name":"xposed-v86.1-sdk23-arm64-custom-build-by-wanam-20160904",
       "version":"86.1",
-      "link":"https://qc3.androidfilehost.com/dl/ba_p0GdLsAZdzRhuUOPaBw/1473491034/24591000424962807/xposed-v86.1-sdk23-arm64-custom-build-by-wanam-20160904.zip",
+      "link":"https://www.dropbox.com/sh/gz64h7cqg6hhh55/AAA3B8_60GhCktnIldA_Uhqra/xposed-v86.1-sdk23-arm64-custom-build-by-wanam-20160904.zip?dl=1",
       "sdk":23,
       "architecture":"arm64"
     },
