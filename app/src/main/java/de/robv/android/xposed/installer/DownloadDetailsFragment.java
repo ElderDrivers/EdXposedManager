@@ -35,6 +35,7 @@ public class DownloadDetailsFragment extends Fragment {
 
         TextView title = (TextView) view.findViewById(R.id.download_title);
         title.setText(module.name);
+        title.setTextIsSelectable(true);
 
         TextView author = (TextView) view.findViewById(R.id.download_author);
         if (module.author != null && !module.author.isEmpty())
@@ -42,8 +43,7 @@ public class DownloadDetailsFragment extends Fragment {
         else
             author.setText(R.string.download_unknown_author);
 
-        TextView description = (TextView) view
-                .findViewById(R.id.download_description);
+        TextView description = (TextView) view                .findViewById(R.id.download_description);
         if (module.description != null) {
             if (module.descriptionIsHtml) {
                 description.setText(RepoParser.parseSimpleHtml(getActivity(), module.description, description));
@@ -52,6 +52,7 @@ public class DownloadDetailsFragment extends Fragment {
             } else {
                 description.setText(module.description);
             }
+            description.setTextIsSelectable(true);
         } else {
             description.setVisibility(View.GONE);
         }
