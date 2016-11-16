@@ -164,10 +164,10 @@ public class StatusInstallerFragment extends Fragment {
             if (arch != null) info += arch;
         }
         info += " (";
-        if (info.contains("x86")) {
-            info += "x86";
-        } else if (info.contains("x86_64")) {
+        if (info.contains("x86_64")) {
             info += "x86_64";
+        } else if (info.contains("x86")) {
+            info += "x86";
         } else if (info.contains("arm64")) {
             info += "arm64";
         } else {
