@@ -43,7 +43,7 @@ public class DownloadDetailsFragment extends Fragment {
         else
             author.setText(R.string.download_unknown_author);
 
-        TextView description = (TextView) view                .findViewById(R.id.download_description);
+        TextView description = (TextView) view.findViewById(R.id.download_description);
         if (module.description != null) {
             if (module.descriptionIsHtml) {
                 description.setText(RepoParser.parseSimpleHtml(getActivity(), module.description, description));

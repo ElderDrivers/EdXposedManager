@@ -272,7 +272,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
                         playStore = false;
                     }
 
-					if (playStore) {
+                    if (playStore) {
                         text += String.format(ModulesFragment.PLAY_STORE_LINK, mPackageName);
                     } else {
                         text += String.format(ModulesFragment.XPOSED_REPO_LINK, mPackageName);

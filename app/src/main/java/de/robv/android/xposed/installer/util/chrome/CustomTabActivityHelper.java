@@ -86,8 +86,7 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
     /**
      * Binds the Activity to the Custom Tabs Service.
      *
-     * @param activity
-     *            the activity to be binded to the service.
+     * @param activity the activity to be binded to the service.
      */
     public void bindCustomTabsService(Activity activity) {
         if (mClient != null)

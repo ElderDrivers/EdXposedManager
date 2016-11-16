@@ -278,7 +278,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private void reloadXposedProp() {
         Map<String, String> map = Collections.emptyMap();
         if (XPOSED_PROP_FILE.canRead() || XPOSED_PROP_FILE_SYSTEMLESS.canRead() || XPOSED_PROP_FILE_SYSTEMLESS_2.canRead()
-                || XPOSED_PROP_FILE_SYSTEMLESS_3.canRead() || XPOSED_PROP_FILE_SYSTEMLESS_4.canRead() ) {
+                || XPOSED_PROP_FILE_SYSTEMLESS_3.canRead() || XPOSED_PROP_FILE_SYSTEMLESS_4.canRead()) {
             File file = null;
             if (XPOSED_PROP_FILE.canRead()) {
                 file = XPOSED_PROP_FILE;

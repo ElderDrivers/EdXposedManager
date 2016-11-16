@@ -101,7 +101,7 @@ public class LogsFragment extends Fragment {
         }
         return v;
     }
-    
+
     @Override
     public void onResume() {
         super.onResume();

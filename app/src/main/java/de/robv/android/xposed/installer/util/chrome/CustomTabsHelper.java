@@ -120,7 +120,7 @@ public class CustomTabsHelper {
 
     /**
      * @return All possible chrome package names that provide custom tabs
-     *         feature.
+     * feature.
      */
     public static String[] getPackages() {
         return new String[]{"", STABLE_PACKAGE, BETA_PACKAGE, DEV_PACKAGE, LOCAL_PACKAGE};

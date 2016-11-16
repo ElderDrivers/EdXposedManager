@@ -80,9 +80,9 @@ public class RepoLoader {
     public boolean refreshRepositories() {
         mRepositories = RepoDb.getRepositories();
 
-		// Unlikely case (usually only during initial load): DB state doesn't
-		// fit to configuration
-		boolean needReload = false;
+        // Unlikely case (usually only during initial load): DB state doesn't
+        // fit to configuration
+        boolean needReload = false;
         String[] config = mPref.getString("repositories", DEFAULT_REPOSITORIES).split("\\|");
         if (mRepositories.size() != config.length) {
             needReload = true;

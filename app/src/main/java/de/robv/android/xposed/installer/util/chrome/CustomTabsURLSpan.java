@@ -11,16 +11,16 @@ import de.robv.android.xposed.installer.util.NavUtil;
  */
 public class CustomTabsURLSpan extends URLSpan {
 
-	private Activity activity;
+    private Activity activity;
 
-	public CustomTabsURLSpan(Activity activity, String url) {
-		super(url);
-		this.activity = activity;
-	}
+    public CustomTabsURLSpan(Activity activity, String url) {
+        super(url);
+        this.activity = activity;
+    }
 
-	@Override
-	public void onClick(View widget) {
-		String url = getURL();
-		NavUtil.startURL(activity, url);
-	}
+    @Override
+    public void onClick(View widget) {
+        String url = getURL();
+        NavUtil.startURL(activity, url);
+    }
 }

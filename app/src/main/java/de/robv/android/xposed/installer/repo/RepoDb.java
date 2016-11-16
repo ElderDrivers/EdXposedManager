@@ -33,6 +33,13 @@ public final class RepoDb extends SQLiteOpenHelper {
 
     private static SQLiteDatabase sDb;
 
+    static {
+        RepoDb instance = new RepoDb(XposedApp.getInstance());
+        sDb = instance.getWritableDatabase();
+        sDb.execSQL("PRAGMA foreign_keys=ON");
+        instance.createTempTables(sDb);
+    }
+
     private RepoDb(Context context) {
         super(context, getDbPath(context), null, RepoDbDefinitions.DATABASE_VERSION);
     }
@@ -43,48 +50,6 @@ public final class RepoDb extends SQLiteOpenHelper {
         } else {
             return RepoDbDefinitions.DATABASE_NAME;
         }
-    }
-
-    static {
-        RepoDb instance = new RepoDb(XposedApp.getInstance());
-        sDb = instance.getWritableDatabase();
-        sDb.execSQL("PRAGMA foreign_keys=ON");
-        instance.createTempTables(sDb);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_REPOSITORIES);
-        db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MODULES);
-        db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MODULE_VERSIONS);
-        db.execSQL(RepoDbDefinitions.SQL_CREATE_INDEX_MODULE_VERSIONS_MODULE_ID);
-        db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MORE_INFO);
-
-        RepoLoader.getInstance().clear(false);
-    }
-
-    private void createTempTables(SQLiteDatabase db) {
-        db.execSQL(RepoDbDefinitions.SQL_CREATE_TEMP_TABLE_INSTALLED_MODULES);
-        db.execSQL(RepoDbDefinitions.SQL_CREATE_TEMP_VIEW_INSTALLED_MODULES_UPDATES);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // This is only a cache, so simply drop & recreate the tables
-        db.execSQL("DROP TABLE IF EXISTS " + RepositoriesColumns.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + ModulesColumns.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + ModuleVersionsColumns.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + MoreInfoColumns.TABLE_NAME);
-
-        db.execSQL("DROP TABLE IF EXISTS " + InstalledModulesColumns.TABLE_NAME);
-        db.execSQL("DROP VIEW IF EXISTS " + InstalledModulesUpdatesColumns.VIEW_NAME);
-
-        onCreate(db);
-    }
-
-    @Override
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        onUpgrade(db, oldVersion, newVersion);
     }
 
     public static void beginTransation() {
@@ -339,10 +304,10 @@ public final class RepoDb extends SQLiteOpenHelper {
         int maxShownReleaseType = RepoLoader.getInstance().getMaxShownReleaseType(packageName).ordinal();
         sDb.execSQL("UPDATE " + ModulesColumns.TABLE_NAME
                         + " SET " + ModulesColumns.LATEST_VERSION
-                            + " = (SELECT " + ModuleVersionsColumns._ID + " FROM " + ModuleVersionsColumns.TABLE_NAME + " AS v"
-                            + " WHERE v." + ModuleVersionsColumns.MODULE_ID
-                            + " = " + ModulesColumns.TABLE_NAME + "." + ModulesColumns._ID
-                            + " AND reltype <= ? LIMIT 1)"
+                        + " = (SELECT " + ModuleVersionsColumns._ID + " FROM " + ModuleVersionsColumns.TABLE_NAME + " AS v"
+                        + " WHERE v." + ModuleVersionsColumns.MODULE_ID
+                        + " = " + ModulesColumns.TABLE_NAME + "." + ModulesColumns._ID
+                        + " AND reltype <= ? LIMIT 1)"
                         + " WHERE " + ModulesColumns.PKGNAME + " = ?",
                 new Object[]{maxShownReleaseType, packageName});
     }
@@ -438,9 +403,9 @@ public final class RepoDb extends SQLiteOpenHelper {
         // Query
         Cursor c = sDb.query(
                 ModulesColumns.TABLE_NAME + " AS m"
-                    + " LEFT JOIN " + ModuleVersionsColumns.TABLE_NAME + " AS v"
+                        + " LEFT JOIN " + ModuleVersionsColumns.TABLE_NAME + " AS v"
                         + " ON v." + ModuleVersionsColumns._ID + " = m." + ModulesColumns.LATEST_VERSION
-                    + " LEFT JOIN " + InstalledModulesColumns.TABLE_NAME + " AS i"
+                        + " LEFT JOIN " + InstalledModulesColumns.TABLE_NAME + " AS i"
                         + " ON i." + InstalledModulesColumns.PKGNAME + " = m." + ModulesColumns.PKGNAME,
                 projection, where, whereArgs, null, null, sbOrder.toString());
 
@@ -468,6 +433,41 @@ public final class RepoDb extends SQLiteOpenHelper {
             latestVersion = c.getString(c.getColumnIndexOrThrow(InstalledModulesUpdatesColumns.LATEST_NAME));
         c.close();
         return latestVersion;
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_REPOSITORIES);
+        db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MODULES);
+        db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MODULE_VERSIONS);
+        db.execSQL(RepoDbDefinitions.SQL_CREATE_INDEX_MODULE_VERSIONS_MODULE_ID);
+        db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MORE_INFO);
+
+        RepoLoader.getInstance().clear(false);
+    }
+
+    private void createTempTables(SQLiteDatabase db) {
+        db.execSQL(RepoDbDefinitions.SQL_CREATE_TEMP_TABLE_INSTALLED_MODULES);
+        db.execSQL(RepoDbDefinitions.SQL_CREATE_TEMP_VIEW_INSTALLED_MODULES_UPDATES);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // This is only a cache, so simply drop & recreate the tables
+        db.execSQL("DROP TABLE IF EXISTS " + RepositoriesColumns.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ModulesColumns.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ModuleVersionsColumns.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MoreInfoColumns.TABLE_NAME);
+
+        db.execSQL("DROP TABLE IF EXISTS " + InstalledModulesColumns.TABLE_NAME);
+        db.execSQL("DROP VIEW IF EXISTS " + InstalledModulesUpdatesColumns.VIEW_NAME);
+
+        onCreate(db);
+    }
+
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        onUpgrade(db, oldVersion, newVersion);
     }
 
     public static class RowNotFoundException extends RuntimeException {
