@@ -39,6 +39,7 @@ public class JSONUtils {
         Matcher matcher = pattern.matcher(site);
         String last = "";
         while (matcher.find()) {
+            if (matcher.group().contains("test")) continue;
             last = matcher.group();
         }
         last = last.replace("href=\"", "");
