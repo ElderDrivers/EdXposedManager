@@ -48,7 +48,7 @@ public class BootReceiver extends BroadcastReceiver {
                 BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
                 BigInteger b = new BigInteger(newApkVersion);
 
-                if (a.compareTo(b) == 1) {
+                if (a.compareTo(b) == -1) {
                     NotificationUtil.showInstallerUpdateNotification();
                 }
             } catch (Exception e) {
