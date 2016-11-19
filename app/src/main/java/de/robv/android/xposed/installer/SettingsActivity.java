@@ -30,6 +30,7 @@ import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
@@ -229,7 +230,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             customIcon.setOnPreferenceChangeListener(iconChange);
             downloadLocation.setOnPreferenceClickListener(this);
 
-            if (getResources().getConfiguration().locale.getLanguage().equals("en")) {
+            if (Locale.getDefault().getLanguage().contains("en")
+                    && !XposedApp.getPreferences().getBoolean("force_english", false)) {
                 groupApp.removePreference(forceEnglish);
             }
         }
