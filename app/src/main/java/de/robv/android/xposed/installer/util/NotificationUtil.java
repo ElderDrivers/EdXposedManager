@@ -33,9 +33,7 @@ public final class NotificationUtil {
     private static SharedPreferences prefs;
 
     public static void init() {
-        if (sContext != null)
-            throw new IllegalStateException(
-                    "NotificationUtil has already been initialized");
+        if (sContext != null) return;
 
         sContext = XposedApp.getInstance();
         prefs = XposedApp.getPreferences();
