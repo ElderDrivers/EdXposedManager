@@ -7,23 +7,9 @@
     <string name="xposed_not_active">Viimane Xposed versioon ei ole hetkel aktiivne. Kas sa installisid raamistiku ja taaskäivitasid?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Tere tulemast <b>Xposed Installerisse</b>!\nPalun vali, mida soovid teha:</string>
     <string name="tabInstall">Raamistik</string>
-    <string name="tabInstallDescription">Siin saad hallata Xposed-raamistikku, mis on vajalik mistahes moodulite töötamiseks.</string>
-    <string name="tabModules">Moodulid</string>
-    <string name="tabModulesDescription">Raamistik iseenesest ei lisa funktsionaalsust. Selleks vajad sa mooduleid. Siin jaotises saad sa aktiveerida mooduleid pärast nende installimist.</string>
     <string name="tabDownload">Allalaadimine</string>
-    <string name="tabDownloadDescription">See jaotis annab sulle ligipääsu moodulite varamule, et sulle meeldivaid otsida, alla laadida ning hoida kaasaegsena.</string>
     <string name="welcome_framework_update_available">Xposed-raamistikule on uuendus saadaval (%s).</string>
-    <string name="welcome_update_available">Üks või rohkem uuendust on moodulitele saadaval.</string>
-    <string name="tabSettings">Seaded</string>
-    <string name="tabSettingsDescription">Tule siia jaotisesse, et konfigureerida Xposed Installerit ja raamistikku.</string>
-    <string name="tabSupport">Tugi</string>
-    <string name="tabSupportDescription">Leia abi Xposed\'iga seonduvate probleemidega. Saad ka Xposed\'ile annetada ja anda oma tänud.</string>
-    <string name="tabLogs">Logid</string>
-    <string name="tabLogsDescription">Kuva ja salvesta/saada Xposed-raamistiku logisid.</string>
-    <string name="tabAbout">Teave</string>
-    <string name="tabAboutDescription">Saa teavet Xposed\'i loojate kohta, kust sellele rakendusele tuge saada jne.</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">Raamistik</string>
@@ -39,15 +25,10 @@
     <!-- Installer tab -->
     <string name="install">Installi/Uuenda</string>
     <string name="uninstall">Desinstalli</string>
-    <string name="installedVersion">aktiivne</string>
-    <string name="latestVersion">kaasas</string>
-    <string name="versions">Versioonid:</string>
-    <string name="install_header_reboot">Taaskäivitus</string>
     <string name="soft_reboot">Pehme taaskäivitus</string>
     <string name="reboot">Taaskäivita</string>
     <string name="areyousure">Kas oled kindel?</string>
     <string name="phone_not_compatible">Xposed ei ühildu (veel) Android\'i SDK versiooniga %1$d või sinu protsessori arhitektuuriga (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed\'i pole testitud Android\'i SDK versiooniga %d, kuid see tundub olevat ühilduv. Sa võid proovida seda installida, kui soovid seiklusi.</string>
     <string name="reboot_failed">Taaskäivitamine ebaõnnestus. Palun kasuta seadme tavalist taaskäivitusfunktsiooni.</string>
     <string name="auto_flash_note">%s peaks välgutama automaatselt kohe, kui vajutad "OK".</string>
     <string name="manual_flash_note">Palun välguta %s SD-kaardilt, et lõpetada operatsioon.</string>
@@ -57,11 +38,6 @@
     <string name="install_warning">Mõnel juhul ei pruugi su seade enam käivituda pärast Xposed\'i installimist.\n\nKui sa pole varem kuulnud väiteid \"soft brick\" ja \"bootloop\" või kui sa ei tea, kuidas taastuda sellest olukorrast, <b>ÄRA</b> installi Xposed\'i!\n\nIgal juhul, hiljutise varunduse omamine on tungivalt soovitatud.</string>
     <string name="dont_show_again">Ära kuva seda uuesti</string>
     <string name="install_known_issue">Sinu ROMiga tundub olevat tuntud probleem (\"%s\"). Xposed\'i installimine  ei pruugi töötada või võib viia tõsiste probleemideni. Klõpsa siia probleemi detailide uurimiseks.</string>
-    <string name="install_reverted">app_process versiooniga \"%1$s\" on eelnevalt installitud, kuid nüüd leiti versioon \"%2$s\". Kui sa ei oodanud vana faili taastamist, võid proovida installida taastuse kaudu (automaatselt või käsitsi).</string>
-    <string name="uninstall_reverted">app_process on eelnevalt desinstallitud, kuid nüüd leiti versioon \"%s\". Kui sa ei oodanud vana faili taastamist, võid proovida desinstallida taastuse kaudu (automaatselt või käsitsi).</string>
-    <string name="tap_to_dismiss">Koputa sulgemiseks</string>
-    <string name="sdcard_location">SD-kaart: %s</string>
-    <string name="installation_lollipop">Xposed-raamistik pole installitud. Palun tõmba viimane ZIP-fail XDA\'st ja välguta käsitsi taastuse kaudu.</string>
     <string name="installed_lollipop">Xposed-raamistiku versioon %s on aktiivne.</string>
     <string name="installed_lollipop_inactive">Xposed-raamistik versiooniga %s on installitud, aga pole aktiivne. Palun kontrolli logisid detailide nägemiseks.</string>
     <string name="modules_updates_available">Mooduli uuendus(ed) on saadaval</string>
@@ -82,8 +58,6 @@
     <string name="file_move_failed">Ei saanud liigutada %1$s kohta %2$s</string>
     <string name="file_set_perms_failed">Ei saanud määrata õigusi %s-le</string>
     <string name="file_set_owner_failed">Ei saanud määrata omanikku %s-le</string>
-    <string name="file_removing">Eemaldan %s&#8230;</string>
-    <string name="file_remove_failed">Ei saanud eemaldada %s</string>
     <string name="file_creating_directory">Loon kausta %s&#8230;</string>
     <string name="file_create_directory_failed">Ei saanud luua kausta %s</string>
     <string name="file_writing_recovery_command">Kirjutan taastuskäsku&#8230;</string>
@@ -153,14 +127,10 @@
     <string name="install_mode_recovery_auto">Taastus (välguta zip automaatselt)</string>
     <string name="install_mode_recovery_manual">Taastus (kirjuta zip SD-kaardile, välguta käsitsi)</string>
     <string name="settings_group_download">Allalaadimine</string>
-    <string name="settings_enable_downloads">Luba allalaadimised</string>
-    <string name="settings_enable_downloads_summary">Luba Xposed Installeril kontrollida uuendusi ja uusi mooduleid</string>
     <string name="settings_release_type">Kuvatavad versioonid</string>
     <string name="settings_group_experimental">Eksperimentaalne</string>
     <string name="settings_disable_resources">Keela ressursikonksud</string>
     <string name="settings_disable_resources_summary">Proovib vältida konflikte teemamootoritega\n<b>HOIATUS:</b> Moodulid, mis üritavad muuta ressursse ei toimi, kuni see on lubatud.</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Jõudluseksperiment</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Kui sa selle lubad, võib su süsteemi jõudlus paraneda, halveneda või jääda samaks. Võid vabalt järgi proovida ja teatada tagasi, mis muutusi sa näed (või kui midagi ei muutu). Sa pead taasinstallima raamistiku ja taaskäivitama pärast selle muutmist.</string>
     <string name="settings_group_app">Rakendus</string>
     <string name="settings_theme">Teema</string>
     <string name="settings_theme_light">Hele</string>
@@ -177,10 +147,8 @@
     <string name="support_donate_description">Kui soovid tänada Xposed\'it, võid annetada rovo89-le siin</string>
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Ei saanud logi lugeda:</string>
     <string name="logs_save_failed">Ei saanud logi SD-kaardile kirjutada:</string>
     <string name="sdcard_not_writable">SD-kaarti ei leitud või pole kirjutatav</string>
-    <string name="log_too_large">Logifail on suurem kui %1$,d kB, esimesed %2$,d kB on vahele jäetud</string>
     <string name="menuClearLog">Tühjenda logi nüüd</string>
     <string name="logs_cleared">Logi edukalt tühjendatud</string>
     <string name="logs_clear_failed">Ei saanud logi tühjendada:</string>
@@ -189,12 +157,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Peamised arendajad</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ja <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> ja <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> veaparanduste ja Materjaalse disaini eest</string>
-    <string name="about_developers_warning">Palun <b>ära</b> kontakteeru meiega otse toe saamiseks, kasuta allpool olevat linki.</string>
     <string name="about_translator_label">Tõlkija</string>
     <string name="translator">Madis Otenurm</string>
     <string name="about_version_label">Versioon</string>
     <string name="about_source_label">Lähtekood</string>
-    <string name="about_support_label">Hangi tuge:</string>
     <string name="about_libraries_label">Kasutatud teegid</string>
 
     <!-- DownloadView -->
@@ -220,9 +186,6 @@
     <string name="choose_color">Vali värv…</string>
 
     <string name="warning_installed_on_external_storage">Seda moodulit ei saa laadida, kuna see on installitud SD-kaardile, palun liiguta see sisemällu.</string>
-    <string name="warning_forward_locked">Seda moodulit ei saa laadida, kuna see on edasi-lukustatud, palun kontakteeru mooduli arendajaga.</string>
-    <string name="export_modules">Ekspordi lubatud moodulite nimekiri</string>
-    <string name="import_modules">Impordi lubatud moodulite nimekiri</string>
     <string name="view">VAATA</string>
     <string name="export_">Ekspordi…</string>
     <string name="import_">Impordi…</string>
@@ -237,7 +200,6 @@
     <string name="no_backup_found">Varundust ei leitud</string>
     <string name="no_enabled_modules">Ükski moodul pole lubatud</string>
 
-    <string name="download_view_size">Suurus: %s KB</string>
     <string name="share">Jaga…</string>
     <string name="back">Tagasi</string>
     <string name="loadingError">Installerite/desinstallerite nimekirja saamisel tekkis viga.\nInternetile pole ligipääsu või serveriga on probleem</string>
@@ -254,19 +216,12 @@
         \nKuupäev: %3$s
     </string>
     <string name="downloadZipOk">%1$s laaditi korralikult alla</string>
-    <string name="permissionGranted">Luba antud</string>
     <string name="permissionNotGranted">See funktsioon ei tööta ilma välismälu kirjutamise loata.</string>
-    <string name="downloadUninstaller">Laadi alla desinstallija</string>
-    <string name="selectFile">Vali allalaaditud fail</string>
-    <string name="xposedZipNotFound">Zip-i ei leitud, tõenäoliselt on väljastatud uuem versioon.</string>
     <string name="warningArchitecture">KAS SA VALISID ÕIGE XPOSED ZIP-I ARHITEKTUURI?\nVale zip võib su telefoni kahtjustada!</string>
-    <string name="help">Abi</string>
     <string name="newVersion">Uus versioon Xposed Installerist on saadaval! Uuenda seda!</string>
     <string name="update">Uuenda</string>
     <string name="choose_icon">Vali ikoon</string>
     <string name="custom_icon">Kohandatud ikoon</string>
-    <string name="installationForbidden">Installimine pole võimalik sellel seadmel. Et installida Xposed\'i selle rakenduse kaudu, peab su seade omama versiooni Android Lollipop või kõrgem.</string>
-    <string name="installed_no_lollipop">Xposed-raamistik on installitud.</string>
     <string name="not_installed_no_lollipop">Xposed-raamistik pole installitud.</string>
     <string name="notify_module_update">Luba mooduli uuenduse teade</string>
 
@@ -303,7 +258,6 @@
     <string name="open_drawer">Ava navigatsioonisahtel automaatselt</string>
     <string name="share_app">Jaga rakendust</string>
     <string name="share_app_text">Vaata seda: Xposed Installer Materjaalse disainiga! %s</string>
-    <string name="disable_xposed">Keela Xposed</string>
     <string name="status">Xposed\'i olek</string>
     <string name="xposed_on_next_reboot">Xposed-raamistik lubatakse järgmisel taaskäivitusel</string>
     <string name="xposed_off_next_reboot">Xposed-raamistik keelatakse järgmisel taaskäivitusel</string>
@@ -311,7 +265,6 @@
     <string name="confirm_reboots">Kinnita taaskäivitused</string>
     <string name="skip_xposedminversion_check">Jäta \"xposedminversion\" kontroll vahele</string>
     <string name="skip_xposedminversion_check_summ">Jäta \"xposedminversion\" kontroll moodulitel vahele</string>
-    <string name="detected_as">Tuvastatud SDK: %1$d, ARH.: %2$s</string>
     <string name="official">Ametlik</string>
     <string name="systemless">Süsteemivaba</string>
     <string name="samsung">Samsung</string>

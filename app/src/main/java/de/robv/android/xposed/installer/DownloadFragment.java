@@ -175,8 +175,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor cursor = (Cursor) mAdapter.getItem(position);
                 String packageName = cursor.getString(OverviewColumnsIndexes.PKGNAME);
 
@@ -328,8 +327,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         }
 
         @Override
-        public View getHeaderView(int position, View convertView,
-                                  ViewGroup parent) {
+        public View getHeaderView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = mInflater.inflate(R.layout.list_sticky_header_download, parent, false);
             }

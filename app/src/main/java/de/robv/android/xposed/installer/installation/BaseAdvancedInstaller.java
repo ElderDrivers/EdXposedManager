@@ -3,6 +3,7 @@ package de.robv.android.xposed.installer.installation;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,11 +36,13 @@ import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+import static de.robv.android.xposed.installer.XposedApp.runOnUiThread;
 
 public abstract class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.DownloadFinishedCallback {
 
@@ -51,7 +54,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     public static String APP_PROCESS_NAME = null;
     private static Activity sActivity;
     private static Fragment sFragment;
-    private RootUtil mRootUtil = new RootUtil();
+    private static RootUtil mRootUtil = new RootUtil();
     private List<String> messages = new ArrayList<>();
     private View mClickedButton;
 
@@ -99,12 +102,12 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         chooserUninstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers()));
 
         if (Build.VERSION.SDK_INT >= 21 && installers().size() >= 3 && uninstallers().size() >= 4) {
-            if (StatusInstallerFragment.getArch().contains("64")) {
-                chooserInstallers.setSelection(1);
-                chooserUninstallers.setSelection(1);
-            } else if (StatusInstallerFragment.getArch().contains("86")) {
+            if (StatusInstallerFragment.ARCH.contains("86")) {
                 chooserInstallers.setSelection(2);
                 chooserUninstallers.setSelection(3);
+            } else if (StatusInstallerFragment.ARCH.contains("64")) {
+                chooserInstallers.setSelection(1);
+                chooserUninstallers.setSelection(1);
             }
         }
 
@@ -151,8 +154,14 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
 
                                 checkAndDelete(selectedInstaller.name);
 
-                                DownloadsUtil.add(getContext(), selectedInstaller.name, selectedInstaller.link, BaseAdvancedInstaller.this,
-                                        DownloadsUtil.MIME_TYPES.ZIP, true);
+                                new DownloadsUtil.Builder(getContext())
+                                        .setTitle(selectedInstaller.name)
+                                        .setUrl(selectedInstaller.link)
+                                        .setSave(true)
+                                        .setCallback(BaseAdvancedInstaller.this)
+                                        .setMimeType(DownloadsUtil.MIME_TYPES.ZIP)
+                                        .setDialog(true)
+                                        .download();
                             }
                         });
             }
@@ -175,8 +184,14 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
 
                                 checkAndDelete(selectedUninstaller.name);
 
-                                DownloadsUtil.add(getContext(), selectedUninstaller.name, selectedUninstaller.link, BaseAdvancedInstaller.this,
-                                        DownloadsUtil.MIME_TYPES.ZIP, true);
+                                new DownloadsUtil.Builder(getContext())
+                                        .setTitle(selectedUninstaller.name)
+                                        .setUrl(selectedUninstaller.link)
+                                        .setSave(true)
+                                        .setCallback(BaseAdvancedInstaller.this)
+                                        .setMimeType(DownloadsUtil.MIME_TYPES.ZIP)
+                                        .setDialog(true)
+                                        .download();
                             }
                         });
             }
@@ -237,20 +252,82 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     @Override
     public void onDownloadFinished(final Context context, final DownloadsUtil.DownloadInfo info) {
         messages.clear();
-        Toast.makeText(context, getString(R.string.downloadZipOk, info.localFilename), Toast.LENGTH_LONG).show();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(sActivity, getString(R.string.downloadZipOk, info.localFilename), Toast.LENGTH_LONG).show();
+            }
+        });
 
         if (getInstallMode() == INSTALL_MODE_RECOVERY_MANUAL)
             return;
 
-        areYouSure(R.string.install_warning, new MaterialDialog.ButtonCallback() {
+        if (getInstallMode() == INSTALL_MODE_NORMAL) {
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        areYouSure(R.string.install_warning, new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
+                                super.onPositive(dialog);
+
+                                if (!startShell()) return;
+
+                                if (info.localFilename.contains("Disabler")) {
+                                    prepareUninstall(messages);
+                                } else {
+                                    prepareInstall(messages);
+                                }
+                                offerReboot(messages);
+                            }
+                        });
+                    }
+                });
+                return;
+            } else if (InstallZipUtil.checkZip(info.localFilename).isFlashableInApp()) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        areYouSure(R.string.install_warning, new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
+                                super.onPositive(dialog);
+
+                                if (!startShell()) return;
+
+                                Intent install = new Intent(getContext(), InstallationActivity.class);
+                                install.putExtra(Flashable.KEY, new FlashDirectly(info.localFilename, false));
+                                startActivity(install);
+                            }
+                        });
+                    }
+                });
+                return;
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(context, R.string.not_flashable_inapp, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }
+
+        runOnUiThread(new Runnable() {
             @Override
-            public void onPositive(MaterialDialog dialog) {
-                super.onPositive(dialog);
+            public void run() {
+                areYouSure(R.string.install_warning, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
 
-                if (!startShell()) return;
+                        if (!startShell()) return;
 
-                prepareAutoFlash(messages, new File(info.localFilename));
-                offerRebootToRecovery(messages, info.title, INSTALL_MODE_RECOVERY_AUTO);
+                        prepareAutoFlash(messages, new File(info.localFilename));
+                        offerRebootToRecovery(messages, info.title, INSTALL_MODE_RECOVERY_AUTO);
+                    }
+                });
             }
         });
     }
@@ -294,10 +371,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     }
 
     private int getInstallMode() {
-        int mode = XposedApp.getPreferences().getInt("install_mode", INSTALL_MODE_NORMAL);
-        if (mode < INSTALL_MODE_NORMAL || mode > INSTALL_MODE_RECOVERY_MANUAL)
-            mode = INSTALL_MODE_NORMAL;
-        return mode;
+        return XposedApp.getPreferences().getInt("install_mode", INSTALL_MODE_NORMAL);
     }
 
     private void showConfirmDialog(final String message, final MaterialDialog.ButtonCallback callback) {
@@ -314,6 +388,105 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         new MaterialDialog.Builder(getActivity())
                 .content(message).positiveText(android.R.string.yes)
                 .negativeText(android.R.string.no).callback(callback).show();
+    }
+
+    private boolean prepareInstall(List<String> messages) {
+        File appProcessFile = AssetUtil.writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00700);
+        if (appProcessFile == null) {
+            showAlert(getString(R.string.file_extract_failed, "app_process"));
+            return false;
+        }
+
+        messages.add(getString(R.string.file_copying, "XposedBridge.jar"));
+        File jarFile = AssetUtil.writeAssetToFile("XposedBridge.jar", new File(JAR_PATH), 00644);
+        if (jarFile == null) {
+            messages.add("");
+            messages.add(getString(R.string.file_extract_failed, "XposedBridge.jar"));
+            return false;
+        }
+
+        mRootUtil.executeWithBusybox("sync", messages);
+
+        messages.add(getString(R.string.file_mounting_writable, "/system"));
+        if (mRootUtil.executeWithBusybox("mount -o remount,rw /system", messages) != 0) {
+            messages.add(getString(R.string.file_mount_writable_failed, "/system"));
+            messages.add(getString(R.string.file_trying_to_continue));
+        }
+
+        if (new File("/system/bin/app_process.orig").exists()) {
+            messages.add(getString(R.string.file_backup_already_exists, "/system/bin/app_process.orig"));
+        } else {
+            if (mRootUtil.executeWithBusybox("cp -a /system/bin/app_process /system/bin/app_process.orig", messages) != 0) {
+                messages.add("");
+                messages.add(getString(R.string.file_backup_failed, "/system/bin/app_process"));
+                return false;
+            } else {
+                messages.add(getString(R.string.file_backup_successful, "/system/bin/app_process.orig"));
+            }
+
+            mRootUtil.executeWithBusybox("sync", messages);
+        }
+
+        messages.add(getString(R.string.file_copying, "app_process"));
+        if (mRootUtil.executeWithBusybox("cp -a " + appProcessFile.getAbsolutePath() + " /system/bin/app_process", messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.file_copy_failed, "app_process", "/system/bin"));
+            return false;
+        }
+        if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
+            return false;
+        }
+        if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean prepareUninstall(List<String> messages) {
+        new File(JAR_PATH).delete();
+        new File(XposedApp.BASE_DIR + "bin/app_process").delete();
+
+        if (!startShell())
+            return false;
+
+
+        messages.add(getString(R.string.file_mounting_writable, "/system"));
+        if (mRootUtil.executeWithBusybox("mount -o remount,rw /system", messages) != 0) {
+            messages.add(getString(R.string.file_mount_writable_failed, "/system"));
+            messages.add(getString(R.string.file_trying_to_continue));
+        }
+
+        messages.add(getString(R.string.file_backup_restoring, "/system/bin/app_process.orig"));
+        if (!new File("/system/bin/app_process.orig").exists()) {
+            messages.add("");
+            messages.add(getString(R.string.file_backup_not_found, "/system/bin/app_process.orig"));
+            return false;
+        }
+
+        if (mRootUtil.executeWithBusybox("mv /system/bin/app_process.orig /system/bin/app_process", messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.file_move_failed, "/system/bin/app_process.orig", "/system/bin/app_process"));
+            return false;
+        }
+        if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
+            return false;
+        }
+        if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
+            return false;
+        }
+        // Might help on some SELinux-enforced ROMs, shouldn't hurt on others
+        mRootUtil.execute("/system/bin/restorecon /system/bin/app_process", (RootUtil.LineCallback) null);
+
+        return true;
     }
 
     private boolean prepareAutoFlash(List<String> messages, File file) {
@@ -335,7 +508,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
             mRootUtil.executeWithBusybox("sync", messages);
         }
 
-        if (mRootUtil.execute("ls /cache/recovery", null) != 0) {
+        if (mRootUtil.execute("ls /cache/recovery") != 0) {
             messages.add(getString(R.string.file_creating_directory, "/cache/recovery"));
             if (mRootUtil.executeWithBusybox("mkdir /cache/recovery",
                     messages) != 0) {
@@ -363,6 +536,20 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         return true;
     }
 
+    private void offerReboot(List<String> messages) {
+        messages.add(getString(R.string.file_done));
+        messages.add("");
+        messages.add(getString(R.string.reboot_confirmation));
+        showConfirmDialog(TextUtils.join("\n", messages).trim(),
+                new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
+                        reboot(null);
+                    }
+                });
+    }
+
     private void offerRebootToRecovery(List<String> messages, final String file, final int installMode) {
         if (installMode == INSTALL_MODE_RECOVERY_AUTO)
             messages.add(getString(R.string.auto_flash_note, file));
@@ -384,8 +571,8 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
                         super.onNegative(dialog);
                         if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
                             // clean up to avoid unwanted flashing
-                            mRootUtil.executeWithBusybox("rm /cache/recovery/command", null);
-                            mRootUtil.executeWithBusybox("rm /cache/recovery/" + file, null);
+                            mRootUtil.executeWithBusybox("rm /cache/recovery/command");
+                            mRootUtil.executeWithBusybox("rm /cache/recovery/" + file);
                             AssetUtil.removeBusybox();
                         }
                     }

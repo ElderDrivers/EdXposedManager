@@ -216,7 +216,6 @@
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
 
                         <TextView
-                            android:id="@+id/translator"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/translator"

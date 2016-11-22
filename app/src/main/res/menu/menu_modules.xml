@@ -9,7 +9,6 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/export"
         android:title="@string/export_"
         app:showAsAction="never">
         <menu>
@@ -25,7 +24,6 @@
     </item>
 
     <item
-        android:id="@+id/import_"
         android:title="@string/import_"
         app:showAsAction="never">
         <menu>
