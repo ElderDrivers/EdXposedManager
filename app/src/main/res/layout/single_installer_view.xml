@@ -22,7 +22,6 @@
             app:cardUseCompatPadding="true">
 
             <RelativeLayout
-                android:id="@+id/installers_uninstallers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

@@ -7,24 +7,10 @@
     <string name="xposed_not_active">最新版本的 Xposed 尚未激活。您是否已安装过框架并重启手机？</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">欢迎使用 <b>Xposed Installer</b>！\n请选择想要执行的操作：</string>
     <string name="tabInstall">框架</string>
-    <string name="tabInstallDescription">您可以在这里管理 Xposed 框架，任何模块都需依赖其正常工作。</string>
-    <string name="tabModules">模块</string>
-    <string name="tabModulesDescription">框架本身不具备任何功能，您需要额外安装模块并在此激活它们。</string>
     <string name="tabDownload">下载</string>
-    <string name="tabDownloadDescription">您可以在这里访问模块仓库，搜索及下载您所喜爱的模块，并保持它们及时更新。</string>
     <string name="welcome_framework_update_available">Xposed 框架有更新可用（%s）。</string>
-    <string name="welcome_update_available">一个或多个模块有更新可用。</string>
-    <string name="tabSettings">设置</string>
-    <string name="tabSettingsDescription">您可以在这里设置 Xposed Installer 和框架。</string>
-    <string name="tabSupport">支持</string>
-    <string name="tabSupportDescription">寻找 Xposed 相关问题的解答，您还可以选择捐赠 Xposed 的作者以表达感谢。</string>
-    <string name="tabLogs">日志</string>
-    <string name="tabLogsDescription">显示、保存和发送 Xposed 框架的相关日志。</string>
-    <string name="tabAbout">关于</string>
-    <string name="tabAboutDescription">了解 Xposed 的作者，如何获取帮助等。</string>
-	
+
     <!-- navigation view items -->
     <string name="nav_item_install">框架</string>
     <string name="nav_item_modules">模块</string>
@@ -39,15 +25,10 @@
     <!-- Installer tab -->
     <string name="install">安装/更新</string>
     <string name="uninstall">卸载</string>
-    <string name="installedVersion">激活</string>
-    <string name="latestVersion">程序自带</string>
-    <string name="versions">版本：</string>
-    <string name="install_header_reboot">重启</string>
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启</string>
     <string name="areyousure">您确定？</string>
     <string name="phone_not_compatible">Xposed 尚不兼容您手机的 Android SDK %1$d 版本或处理器架构（%2$s）。</string>
-    <string name="not_tested_but_compatible">Xposed 未在 Android SDK %d 版本中进行过测试，但其似乎能够兼容。如果您敢于尝试可以选择自行安装测试。</string>
     <string name="reboot_failed">重启失败，请使用设备自带的重启功能。</string>
     <string name="auto_flash_note">当按下 “OK” 后，%s 将会被自动刷入到设备中。</string>
     <string name="manual_flash_note">请从 SD 卡中刷入 %s 以完成操作。</string>
@@ -57,11 +38,6 @@
     <string name="install_warning">某些情况下，您的设备可能会在安装 Xposed 过后变得无法正常启动。\n\n如果您先前从未听说过「软变砖」或「无限重启」，又或者您不知道如何从这些情况中恢复手机，那么请"<b>不要</b>"安装 Xposed！\n\n无论如何，都强烈建议您做好近期的数据备份。</string>
     <string name="dont_show_again">不再提示</string>
     <string name="install_known_issue">Xposed 与您的设备间似乎存在已知的问题（\"%s\"）。这可能将导致 Xposed 无法被安装或是更为严重的问题。点击这里来了解详情。</string>
-    <string name="install_reverted">先前安装过 \"%1$s\" 版本的 app_process，但目前查看到的版本却为 \"%2$s\"。如果不希望旧版的文件被还原，您可以选择通过 recovery 安装（自动或手动）。</string>
-    <string name="uninstall_reverted">先前已卸载过 app_process ，但目前查看到了 \"%s\" 的版本。如果不希望旧版的文件被还原，您可以选择通过 recovery 安装（自动或手动）。</string>
-    <string name="tap_to_dismiss">点击清除</string>
-    <string name="sdcard_location">SD 卡：%s</string>
-    <string name="installation_lollipop">Xposed 框架尚未安装。请从 XDA 下载最新版本的 ZIP 文件并通过 recovery 手动刷入。</string>
     <string name="installed_lollipop">Xposed 框架 %s 版已激活。</string>
     <string name="installed_lollipop_inactive">Xposed 框架 %s 版已安装，但尚未激活。 请查看日志以了解详情。</string>
     <string name="modules_updates_available">有模块更新可用</string>
@@ -82,8 +58,6 @@
     <string name="file_move_failed">无法将 %1$s 移动到 %2$s</string>
     <string name="file_set_perms_failed">无法为 %s 设定权限</string>
     <string name="file_set_owner_failed">无法为 %s 设定所有者</string>
-    <string name="file_removing">正在移除 %s&#8230;</string>
-    <string name="file_remove_failed">无法移除 %s</string>
     <string name="file_creating_directory">正在创建目录 %s&#8230;</string>
     <string name="file_create_directory_failed">无法创建目录 %s</string>
     <string name="file_writing_recovery_command">正在写入 recovery 命令&#8230;</string>
@@ -153,14 +127,10 @@
     <string name="install_mode_recovery_auto">恢复模式（自动刷入 zip 包）</string>
     <string name="install_mode_recovery_manual">恢复模式（将 zip 包写入 SD 卡，手动刷入）</string>
     <string name="settings_group_download">下载</string>
-    <string name="settings_enable_downloads">启用下载</string>
-    <string name="settings_enable_downloads_summary">允许 Xposed Installer 检查更新和新模块</string>
     <string name="settings_release_type">要显示的版本</string>
     <string name="settings_group_experimental">实验性</string>
     <string name="settings_disable_resources">禁用资源钩子</string>
     <string name="settings_disable_resources_summary">解决与主题引擎的冲突\n<b>警告：</b> 启用该选项将导致修改资源的模块无法工作</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">性能试验</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">启用该选项后，您的系统性能可能将变得更好、更差或没有变化，请随意试用并回报您所观察到的效果（或根本没有任何变化）。在修改该选项后您将需要重新安装框架并重启手机。</string>
     <string name="settings_group_app">应用</string>
     <string name="settings_theme">主题</string>
     <string name="settings_theme_light">亮色</string>
@@ -177,10 +147,8 @@
     <string name="support_donate_description">如果您想对 Xposed 表达感谢，可以在此向 rovo89 捐赠</string>
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">无法读取日志：</string>
     <string name="logs_save_failed">无法将日志写入 SD 卡：</string>
     <string name="sdcard_not_writable">无法找到 SD 卡或不可写入</string>
-    <string name="log_too_large">日志文件大于 %1$,d kB，已跳过开头的 %2$,d kB</string>
     <string name="menuClearLog">立即清理日志</string>
     <string name="logs_cleared">日志清理成功</string>
     <string name="logs_clear_failed">无法清理日志：</string>
@@ -189,12 +157,10 @@
     <!-- About tab -->
     <string name="about_developers_label">主要开发者</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 和 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> 和 <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> 修复问题并适配质感设计</string>
-    <string name="about_developers_warning">>请<b>不要</b>直接联系我们获取帮助，您可以使用下面的链接。</string>
     <string name="about_translator_label">翻译</string>
     <string name="translator">haseoxth</string>
     <string name="about_version_label">版本</string>
     <string name="about_source_label">源代码</string>
-    <string name="about_support_label">获取支持：</string>
     <string name="about_libraries_label">使用的库</string>
 
     <!-- DownloadView -->
@@ -220,9 +186,6 @@
     <string name="choose_color">选择颜色</string>
 
     <string name="warning_installed_on_external_storage">此模块因被安装在 SD 卡中而导致无法加载，请将其移动到内部存储。</string>
-    <string name="warning_forward_locked">此模块因被锁定而导致无法加载，请联系模块的开发者。</string>
-    <string name="export_modules">导出已启用模块列表</string>
-    <string name="import_modules">导入已启用模块列表</string>
     <string name="view">查看</string>
     <string name="export_">导出...</string>
     <string name="import_">导入...</string>
@@ -237,7 +200,6 @@
     <string name="no_backup_found">找不到备份</string>
     <string name="no_enabled_modules">没有任何已启用的模块</string>
 
-    <string name="download_view_size">大小：%s KB</string>
     <string name="share">分享</string>
     <string name="back">返回</string>
     <string name="loadingError">获取安装器/卸载器列表时出现错误。/n无法接入网络或服务器出现错误</string>
@@ -254,19 +216,12 @@
         \n日期：%3$s
     </string>
     <string name="downloadZipOk">%1$s 已正确下载</string>
-    <string name="permissionGranted">已允许权限</string>
     <string name="permissionNotGranted">当未允许写入外部存储空间权限时，该功能无法正常工作。</string>
-    <string name="downloadUninstaller">下载卸载器</string>
-    <string name="selectFile">选择已下载的文件</string>
-    <string name="xposedZipNotFound">无法找到 ZIP 文件，或许已有新版本发布。</string>
     <string name="warningArchitecture">您是否已选择了正确的 XPOSED ZIP 文件？\n错误的 ZIP 文件将可能损坏您的手机！</string>
-    <string name="help">帮助</string>
     <string name="newVersion">有新版本的 Xposed Installer 可用！现在更新！</string>
     <string name="update">更新</string>
     <string name="choose_icon">选择一个图标</string>
     <string name="custom_icon">自定义图标</string>
-    <string name="installationForbidden">安装操作无法在此设备上进行，想要通过本程序安装 Xposed，您的设备需运行 Android Lollipop 或更高版本。</string>
-    <string name="installed_no_lollipop">Xposed 框架已安装。</string>
     <string name="not_installed_no_lollipop">Xposed 框架未安装。</string>
     <string name="notify_module_update">启用模块更新通知</string>
 
@@ -303,7 +258,6 @@
     <string name="open_drawer">自动打开导航抽屉栏</string>
     <string name="share_app">分享应用</string>
     <string name="share_app_text">来瞧瞧这个：适配了质感设计的 Xposed Installer！%s</string>
-    <string name="disable_xposed">禁用 Xposed</string>
     <string name="status">Xposed 状态</string>
     <string name="xposed_on_next_reboot">Xposed 框架将在下次重新启动后启用</string>
     <string name="xposed_off_next_reboot">Xposed 框架将在下次重新启动后禁用</string>
@@ -311,7 +265,6 @@
     <string name="confirm_reboots">重启确认</string>
     <string name="skip_xposedminversion_check">跳过 \'Xposed 最低版本\' 检查</string>
     <string name="skip_xposedminversion_check_summ">跳过针对模块的 \'Xposed 最低版本\' 检查</string>
-    <string name="detected_as">检测到 SDK: %1$d, 架构: %2$s</string>
     <string name="official">官方</string>
     <string name="systemless">Systemless</string>
     <string name="samsung">Samsung</string>

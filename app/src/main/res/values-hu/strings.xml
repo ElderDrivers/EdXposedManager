@@ -7,23 +7,9 @@
     <string name="xposed_not_active">Az Xposed legfrissebb verziója jelenleg nem aktív. Telepítetted a keretrendszert és újraindítottad az eszközt?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Üdvözöl az <b>Xposed Telepítõ</b>!\nKérlek válaszd ki mit szeretnél tenni:</string>
     <string name="tabInstall">Keretrendszer</string>
-    <string name="tabInstallDescription">Itt kezelheted az Xposed keretrendszert, ami szükséges minden modul mûködéséhez.</string>
-    <string name="tabModules">Modulok</string>
-    <string name="tabModulesDescription">A keretrendszer önmagában semmilyen funkciót nem biztosít. Ahhoz modulok kellenek. Ebben a szekcióban aktiválhatod a modulokat miután telepítetted õket.</string>
     <string name="tabDownload">Letöltések</string>
-    <string name="tabDownloadDescription">Ez a szekció hozzáférést biztosít egy modulgyûjteményhez, ahol keresheted és letöltheted amelyeket szeretnéd és frissen is tarthatod õket.</string>
     <string name="welcome_framework_update_available">Frissítés elérhetõ az Xposed keretrendszerhez (%s).</string>
-    <string name="welcome_update_available">Egy vagy több frissítés elérhetõ.</string>
-    <string name="tabSettings">Beállítások</string>
-    <string name="tabSettingsDescription">Látogasd meg ezt a szekciót, hogy beállítsd az Xposed Telepítõt és a keretrendszert.</string>
-    <string name="tabSupport">Támogatás</string>
-    <string name="tabSupportDescription">Keress megoldást az Xposed-al kapcsolatos hibákra. Adományozhatsz is köszönetképpen az Xposed fejlesztéséért.</string>
-    <string name="tabLogs">Napló</string>
-    <string name="tabLogsDescription">Tekintsd meg és mentsd/küldd el az Xposed keretrendszer naplóját.</string>
-    <string name="tabAbout">Rólunk</string>
-    <string name="tabAboutDescription">Tudj meg többet az Xposed készítõirõl, ahol támogatást kaphatsz az alkalmazáshoz, stb.</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">Keretrendszer</string>
@@ -39,15 +25,10 @@
     <!-- Installer tab -->
     <string name="install">Telepítés/Frissítés</string>
     <string name="uninstall">Eltávolítás</string>
-    <string name="installedVersion">aktív</string>
-    <string name="latestVersion">a csomagban</string>
-    <string name="versions">Verziók:</string>
-    <string name="install_header_reboot">Újraindítás</string>
     <string name="soft_reboot">Gyors újraindítás</string>
     <string name="reboot">Újraindítás</string>
     <string name="areyousure">Biztos vagy benne?</string>
     <string name="phone_not_compatible">Az Xposed (még) nem kompatibilis a %1$d verziójú Android SDK-val vagy a processzor architektúráddal (%2$s).</string>
-    <string name="not_tested_but_compatible">Az Xposed nem volt tesztelve a %d verziójú Android SDK-val, de úgy tûnik, kompatibilis. Megpróbálhatod telepíteni ha elég kalandvágyó vagy.</string>
     <string name="reboot_failed">Újraindítás sikertelen. Kérlek használd az eszköz rendes újraindítási funkcióját.</string>
     <string name="auto_flash_note">%s automatikusan flashelve lesz amint megnyomod az "OK"-ot.</string>
     <string name="manual_flash_note">Kérlek flasheld %s-t az SD kártyáról a mûvelet befejezéséhez.</string>
@@ -57,11 +38,6 @@
     <string name="install_warning">Néhány esetben az eszközöd talán nem fog bootolni az Xposed telepítése után. Ha sosem hallottál a \"soft brick\"-rõl vagy a \"bootloop\"-ról vagy ha nem tudod, hogyan térj vissza egy ilyen helyzetbõl, <b>NE</b> telepítsd az Xposed-ot. Egy friss mentés megléte erõsen ajánlott minden esetben.</string>
     <string name="dont_show_again">Ne mutasd még egyszer</string>
     <string name="install_known_issue">Úgy tûnik ismert probléma (\"%s\") van a telepített ROM-mal. Az Xposed telepítése nem mûködhet vagy súlyos problémákhoz vezethet. Kattints ide a probléma részleteiért.</string>
-    <string name="install_reverted">A \"%1$s\" verziójú app_process lett telepítve korábban, de a \"%2$s\" verziójú található meg most. Ha nem akartad, hogy a régi fájl legyen visszaállítva, megpróbálhatod a telepítést recovery-n keresztül (automatikus vagy kézi).</string>
-    <string name="uninstall_reverted">Az app_process el lett korábban távolítva, de a \"%s\" verziójú található meg most. Ha nem akartad, hogy a régi fájl legyen visszaállítva, megpróbálhatod a telepítést recovery-n keresztül (automatikus vagy kézi).</string>
-    <string name="tap_to_dismiss">Érints meg az eltüntetéshez</string>
-    <string name="sdcard_location">SD kártya: %s</string>
-    <string name="installation_lollipop">Az Xposed Keretrendszer nincs telepítve. Kérlek töltsd le a legújabb ZIP fájlt az XDA-ról és flasheld manuálisan recovery-bõl.</string>
     <string name="installed_lollipop">Az Xposed Keretrendszer %s verziója aktív.</string>
     <string name="installed_lollipop_inactive">Az Xposed Keretrendszer %s verziója telepítve van, de nem aktív. Kérlek nézd meg a naplót a részletekért.</string>
     <string name="modules_updates_available">Modul frissítés(ek) érhetõ(ek) el</string>
@@ -82,8 +58,6 @@
     <string name="file_move_failed">Nem sikerült a mozgatás: %1$s -> %2$s</string>
     <string name="file_set_perms_failed">Engedélyek beállítása sikertelen: %s</string>
     <string name="file_set_owner_failed">Tulajdonos beállítása sikertelen: %s</string>
-    <string name="file_removing">Eltávolítás %s&#8230;</string>
-    <string name="file_remove_failed">Nem sikerült eltávolítani a %s-t</string>
     <string name="file_creating_directory">Könyvtár készítése %s&#8230;</string>
     <string name="file_create_directory_failed">Nem sikerült elkészíteni a %s könyvtárat</string>
     <string name="file_writing_recovery_command">Recovery parancs írása&#8230;</string>
@@ -153,14 +127,10 @@
     <string name="install_mode_recovery_auto">Recovery (automatikus zip flashelés)</string>
     <string name="install_mode_recovery_manual">Recovery (zip kiírása az SD kártyára, manuális flashelés)</string>
     <string name="settings_group_download">Letöltések</string>
-    <string name="settings_enable_downloads">Letöltések engedélyezése</string>
-    <string name="settings_enable_downloads_summary">Engedélyezd az Xposed Telepítõnek, hogy frissítéseket és új modulokat keressen</string>
     <string name="settings_release_type">Megjelenítendõ verziók</string>
     <string name="settings_group_experimental">Kísérlet</string>
     <string name="settings_disable_resources">"Resource hook"-ok letiltva</string>
     <string name="settings_disable_resources_summary">Megoldás a témamotorokkal való konfliktusokra.\n<b>FIGYELEM:</b> A resource-okat módosítani próbáló modulok nem fognak mûködni, ha ez engedélyezve van.</string>
-    <string name="settings_performance_experiment">Teljesítménykísérlet</string>
-    <string name="settings_performance_experiment_summary">Ha ezt engedélyezed, a rendszer teljesítménye lehet, hogy növekszik, csökken vagy nem változik. Nyugodtan próbáld ki és jelezz vissza, hogy melyik hatást látod (vagy hogy nincs semmilyen). Újra kell telepítened a keretrendszert és újraindítanod az eszközt, miután ezt megváltoztatod.</string>
     <string name="settings_group_app">Alkalmazás</string>
     <string name="settings_theme">Téma</string>
     <string name="settings_theme_light">Világos</string>
@@ -177,10 +147,8 @@
     <string name="support_donate_description">Ha szeretnél köszönetet mondani az Xposed megalkotásáért, támogasd rovo89-at itt</string>
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Nem lehetett olvasni a naplót:</string>
     <string name="logs_save_failed">Nem lehetett a naplót az SD kártyára írni:</string>
     <string name="sdcard_not_writable">SD kártya nem található vagy nem írható</string>
-    <string name="log_too_large">A napló nagyobb, mint %1$,d kB, elsõ %2$,d kB kihagyva</string>
     <string name="menuClearLog">Napló ürítése most</string>
     <string name="logs_cleared">Napló sikeresen ürítve</string>
     <string name="logs_clear_failed">Nem lehetett üríteni a naplót:</string>
@@ -189,12 +157,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Fõ fejlesztõk:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> és <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> és <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> hibajavítás és Material Design</string>
-    <string name="about_developers_warning">Kérlek <b>ne</b> lépj közvetlen kapcsolatba velünk támogatásért, használd az alábbi linket.</string>
     <string name="about_translator_label">Fordító:</string>
     <string name="translator"><a href="http://forum.xda-developers.com/member.php?u=4719724">Adam77Root</a> és <a href="http://forum.xda-developers.com/member.php?u=5408543">benjoe1</a></string>
     <string name="about_version_label">Alkalmazás verziója:</string>
     <string name="about_source_label">Forráskód:</string>
-    <string name="about_support_label">Támogatás:</string>
     <string name="about_libraries_label">Használt könyvtárak:</string>
 
     <!-- DownloadView -->
@@ -220,9 +186,6 @@
     <string name="choose_color">Válassz egy színt…</string>
 
     <string name="warning_installed_on_external_storage">Ez a modul nem tölthetõ be, mert az SD kártyára került telepítésre, ezért kérlek mozgasd át belsõ tárhelyre.</string>
-    <string name="warning_forward_locked">Ez a modul nem tölthetõ be, mert a felhasználása zárolva van, kérlek lépj kapcsolatba a modul fejlesztõjével.</string>
-    <string name="export_modules">Exportálás listába: engedélyezett modulok</string>
-    <string name="import_modules">Importálás listából: engedélyezett modulok</string>
     <string name="view">MEGNÉZ</string>
     <string name="export_">Exportálás…</string>
     <string name="import_">Importálás…</string>
@@ -237,7 +200,6 @@
     <string name="no_backup_found">Nem található mentés</string>
     <string name="no_enabled_modules">Nincsenek engedélyezett modulok</string>
 
-    <string name="download_view_size">Méret: %s KB</string>
     <string name="share">Megosztás…</string>
     <string name="back">Vissza</string>
     <string name="loadingError">Hiba történt a telepítõk/eltávolítok beszerzésekor.\Nincs internet hozzáférés vagy a hiba van a szerver eléréssel</string>
@@ -254,19 +216,12 @@
         \nVerzió: %3$s
     </string>
     <string name="downloadZipOk">%1$s hibamentes letöltés</string>
-    <string name="permissionGranted">Engedély megadva</string>
     <string name="permissionNotGranted">Ez a funkció nem fog mûködni a külsõ tárolóra történõ írási engedély nélkül.</string>
-    <string name="downloadUninstaller">Eltávolító letöltése</string>
-    <string name="selectFile">Letöltött fájl kiválasztása</string>
-    <string name="xposedZipNotFound">A zip fájl nem található, valószínûleg új verzió érhetõ el.</string>
     <string name="warningArchitecture">BIZTOS HOGY A MEGFELELÕ XPOSED ZIP ARCHITEKTÚRÁT VÁLASZTOTTAD KI?\nA hibás zip károsíthatja a telefont!</string>
-    <string name="help">Segítség</string>
     <string name="newVersion">Új verzió érhetõ el az Xposed Telepítõbõl! Frissíts!</string>
     <string name="update">Frissítés</string>
     <string name="choose_icon">Ikon választása</string>
     <string name="custom_icon">Egyéni ikon</string>
-    <string name="installationForbidden">Nem lehetséges a telepítés ezen a készüléken. Ezzel az alkalmazással történõ sikeres Xposed telepítéséhez a készüléken Android Lollipop vagy újabb verziónak kell futnia.</string>
-    <string name="installed_no_lollipop">Az Xposed Keretrendszer telepítésre került.</string>
     <string name="not_installed_no_lollipop">Az Xposed Keretrendszer nincs telepítve.</string>
     <string name="notify_module_update">Modul frissítés értesítések engedélyezése</string>
 
@@ -303,7 +258,6 @@
     <string name="open_drawer">Navigációs ablak automatikus megnyitása</string>
     <string name="share_app">Alkalmazás megosztása</string>
     <string name="share_app_text">Ezt nézd meg: Xposed TelepítõMaterial Design stílusban! %s</string>
-    <string name="disable_xposed">Xposed letiltása</string>
     <string name="status">Xposed Status</string>
     <string name="xposed_on_next_reboot">Az Xposed Keretrendszer a következõ újraindítás során kerül engedélyezésre</string>
     <string name="xposed_off_next_reboot">Az Xposed Keretrendszer a következõ újraindítás során kerül letiltásra</string>
@@ -311,7 +265,6 @@
     <string name="confirm_reboots">Újraindítások megerõsítése</string>
     <string name="skip_xposedminversion_check">\'xposedminversion\' ellenõrzés kihagyása</string>
     <string name="skip_xposedminversion_check_summ">\'xposedminversion\' ellenõrzés kihagyása a moduloknál</string>
-    <string name="detected_as">Érzékelt SDK: %1$d, ARCH: %2$s</string>
     <string name="official">Hivatalos</string>
     <string name="systemless">Systemless</string>
     <string name="samsung">Samsung</string>
