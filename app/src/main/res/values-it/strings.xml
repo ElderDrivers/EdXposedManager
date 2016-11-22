@@ -290,5 +290,13 @@
     <string name="not_logcat">Se qualcuno ti ha chiesto un Android Logcat, sei nella sezione sbagliata. Questo è il log di Xposed; se avete bisogno di un logcat, su XDA è possibile trovare quello che ti serve</string>
     <string name="force_english">Forza lingua inglese</string>
     <string name="warning_language">Il cambio della lingua verrà applicato dopo il riavvio dell\'applicazione</string>
+    <string name="download_running">Download in corso</string>
+    <string name="flash_error_default">Errore %d</string>
+    <string name="flash_error_invalid_zip">ZIP non flashabile</string>
+    <string name="flash_error_not_flashable_in_app">Questo file può essere flashato solo in recovery</string>
+    <string name="flash_error_shell_died">Esecuzione interrotta inaspettatamente</string>
+    <string name="flash_error_timeout">Timeout finito</string>
+    <string name="not_flashable_inapp">Questo file zip non può essere flashato nell\' app. Installazione automaticamente in recovery</string>
+    <string name="not_now">Non ora</string>
 
 </resources>
