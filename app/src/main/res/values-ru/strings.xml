@@ -158,7 +158,7 @@
     <string name="about_developers_label">Главные разработчики</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> и <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> Для исправления багов и Material Дизайна</string>
     <string name="about_translator_label">Переводчик:</string>
-    <string name="translator">4pda: Alexey711</string>
+    <string name="translator"><a href="http://4pda.ru/forum/index.php?showuser=2220650">4pda: Alexey711</a></string>
     <string name="about_version_label">Версия приложения:</string>
     <string name="about_source_label">Исходный код</string>
     <string name="about_libraries_label">Используемые библиотеки</string>
@@ -178,6 +178,8 @@
     <string name="download_could_not_read_file">Не удалось прочитать загруженный файл: %s</string>
     <string name="download_no_valid_apk">Загруженный файл не является APK (или несовместим)</string>
     <string name="download_incorrect_package_name">Некорректное название пакета (загружено: %1$s, ожидалось: %2$s)</string>
+	<string name="download_running">Выполняется загрузка</string>
+    <string name="download_progress">%1$,d / %2$,d кб</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Загрузка %1$s прервана: %2$d (%3$s)</string>
@@ -302,5 +304,13 @@
     <string name="not_logcat">Если вас попросили Logcat с Android, тут не верный раздел. Это логи от Xposed; Если вам нужен Logcat, то на XDA или 4pda вы можете найти то, что вам нужно</string>
     <string name="force_english">Английский язык</string>
     <string name="warning_language">Игнорировать язык системы и использовать английский. Нужен перезапуск приложения!</string>
+    <string name="not_flashable_inapp">Этот zip-файл не может быть прошит в приложении. Автоматическая установка через рекавери</string>
+    <string name="not_now">Не сейчас</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">Время ожидания истекло</string>
+    <string name="flash_error_shell_died">Выполнение неожиданно прервалось</string>
+    <string name="flash_error_invalid_zip">Zip-файл не для прошивки</string>
+    <string name="flash_error_not_flashable_in_app">Этот файл можно прошить только через рекавери</string>
+    <string name="flash_error_default">Произошла %d ошибка</string>
 	
 </resources>
