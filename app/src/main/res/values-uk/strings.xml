@@ -11,6 +11,15 @@
     <string name="tabDownload">Звантаження</string>
     <string name="welcome_framework_update_available">Є оновлення для Xposed Framework (%s).</string>
 
+    <!-- navigation view items -->
+    <string name="nav_item_install">Фреймворк</string>
+    <string name="nav_item_modules">Модулі</string>
+    <string name="nav_item_download">Завантаження</string>
+    <string name="nav_item_settings">Налаштуванні</string>
+    <string name="nav_item_support">Підтримка</string>
+    <string name="nav_item_logs">Звіти</string>
+    <string name="nav_item_about">Про</string>
+
     <!-- Installer tab -->
     <string name="install">Встановити/Оновити</string>
     <string name="uninstall">Видалити</string>
@@ -26,7 +35,10 @@
     <string name="install_warning_title">Обережно!</string>
     <string name="install_warning">В деяких випадках, після встановлення Xposed, Ваш пристрій може більше не запуститися.\n\nЯкщо Ви нічого не чули про \"soft brick\" та \"bootloop\" або якщо Ви не знаєте як відновитися з такого стану, будь-ласка, <b>НЕ</b> встановлюйте Xposed!\n\nВ будь-якому разі, наявність свіжої резервної копії є необхідністю.</string>
     <string name="dont_show_again">Більше не показувати</string>
-    <string name="install_known_issue">Схоже, що у Вашій прощивці є відома проблема (\"%s\"). Встановлений Xposed може не працювати або навіть призвести до проблем. Для більш детальної інформації натисніть тут.</string>
+    <string name="install_known_issue">Схоже, що у Вашій прошивці є відома проблема (\"%s\"). Встановлений Xposed може не працювати або навіть призвести до проблем. Для більш детальної інформації натисніть тут.</string>
+    <string name="installed_lollipop">Xposed фреймворк версії %s активний.</string>
+    <string name="installed_lollipop_inactive">Xposed фреймворк версії %s встановлено, але не активовано. Будь ласка, перевірте звіт.</string>
+    <string name="modules_updates_available">Доступні оновлення модулів</string>
 
     <!-- File operations -->
     <string name="root_failed">Помилка отримання прав суперкористувача.\n\nПереконайтеся, що Ваш пристрій рутований (має бути доступний суперкористувач) і що Ви не заблокували виконання shell-команд.</string>
@@ -54,9 +66,10 @@
     <string name="module_is_not_activated_yet">Модуль Xposed ще не активовано</string>
     <string name="module_is_not_activated_yet_detailed">%s було встановлено, але ще не активовано.</string>
     <string name="activate_and_reboot">Активувати та перезавантажити</string>
+    <string name="activate_only">Лише активувати</string>
     <string name="module_activated">Модуль Xposed було активовано</string>
     <string name="module_empty_description">(опис не надано)</string>
-    <string name="module_no_ui">Цей мдуль не має користувацького інтерфейсу</string>
+    <string name="module_no_ui">Цей модуль не має користувацького інтерфейсу</string>
     <string name="no_xposed_modules_found">Жодного модулю Xposed не знайдено!</string>
     <string name="xposed_module_list_updated">Перелік модулів Xposed було оновлено\nЗміни активуються після перезавантаження</string>
     <string name="xposed_module_updated_notification_title">Модуль Xposed оновлено</string>
@@ -114,15 +127,22 @@
     <string name="settings_group_download">Звантаження</string>
     <string name="settings_release_type">Відображення версій</string>
     <string name="settings_group_experimental">Експериментальні</string>
-    <string name="settings_disable_resources">Відключено зміну ресурсів</string>
+    <string name="settings_disable_resources">Вимкнено зміну ресурсів</string>
     <string name="settings_disable_resources_summary">Виправлення конфліктів з темами оформлення\n<b>УВАГА:</b> Модулі, що намагаються змінювати ресурси працювати не будуть доки цей пункт активний.</string>
     <string name="settings_group_app">Додаток</string>
     <string name="settings_theme">Тема</string>
     <string name="settings_theme_light">Світла</string>
     <string name="settings_theme_dark">Темна</string>
     <string name="settings_theme_black">Чорна (зручно для екранів AMOLED)</string>
+    <string name="settings_default_view">Типовий вигляд</string>
 
     <!-- Support tab -->
+    <string name="support_modules_label">Підтримка модулів</string>
+    <string name="support_modules_description">Утримайте вказівник на будь-якому переліку модулів та оберіть \"%1$s\".</string>
+    <string name="support_framework_label">Підтримка фреймворка/встановлювача</string>
+    <string name="support_faq_label">Питання-відповіді/відомі проблеми</string>
+    <string name="support_donate_label">Підтримати</string>
+    <string name="support_donate_description">Якщо ви маєте бажання подякувати за Xposed, ви можете підтримати rovo89 тут</string>
 
     <!-- Logs tab  -->
     <string name="logs_save_failed">Помилка запису журналу на картку SD:</string>
@@ -153,13 +173,142 @@
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">Сума MD5 - хибна (звантажено: %1$s, очікувалося: %2$s)</string>
-    <string name="download_could_not_read_file">Помилка читання звантаженного файлу: %s</string>
+    <string name="download_could_not_read_file">Помилка читання звантаженого файлу: %s</string>
     <string name="download_no_valid_apk">Звантажений файл не є коректним файлом APK (або він не сумісний)</string>
     <string name="download_incorrect_package_name">Назва пакету - хибна (звантажено: %1$s, очікувалося: %2$s)</string>
+    <string name="download_running">Триває завантаження</string>
+    <string name="download_progress">%1$,d / %2$,d кБ</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Звантаження %1$s скасовано: %2$d (%3$s)</string>
-    <string name="repo_download_failed">Звантаження %1$s скаовано: %2$s</string>
+    <string name="repo_download_failed">Звантаження %1$s скасовано: %2$s</string>
     <string name="repo_load_failed">Помилка завантаження репозиторію з %1$s:\n%2$s</string>
+    <string name="choose_color">Оберіть колір…</string>
+
+    <string name="warning_installed_on_external_storage">Цей модуль не може бути завантаженим, оскільки він встановлений на карту пам\'яті, будь ласка, встановіть його у внутрішню пам\'ять.</string>
+    <string name="view">ВИГЛЯД</string>
+    <string name="export_">Експорт…</string>
+    <string name="import_">Імпорт…</string>
+    <string name="export_enabled_modules">Експорт переліку увімкнутих модулів</string>
+    <string name="import_enabled_modules">Імпорт переліку увімкнутих модулів</string>
+    <string name="export_installed_modules">Експорт переліку встановлених модулів</string>
+    <string name="import_installed_modules">Імпорт переліку встановлених модулів</string>
+    <string name="no_installed_modules">Немає встановлених модулів!</string>
+    <string name="enable_heads_up">Увімкнути зринаючі сповіщення</string>
+    <string name="enable_heads_up_summary">Цей параметр вмикає зринаючі сповіщення при наявності нового/оновленого модуля</string>
+    <string name="nav_bar_coloration">Розфарбувати навігаційну панель</string>
+    <string name="no_backup_found">Не знайдено резервних копій</string>
+    <string name="no_enabled_modules">Відсутні активовані модулі</string>
+
+    <string name="share">Поділитися через…</string>
+    <string name="back">Назад</string>
+    <string name="loadingError">Помилка отримання програм встановлення/вилучення.\nНемає доступу до інтернету, або ж сервер має ваду</string>
+    <string name="info">Інформація</string>
+    <string name="infoInstaller">
+        Назва: %1$s
+        \nSDK: %2$d
+        \nАрхітектура: %3$s
+        \nВерсія: %4$s
+    </string>
+    <string name="infoUninstaller">
+        Назва: %1$s
+        \nАрхітектура: %2$s
+        \nДата: %3$s
+    </string>
+    <string name="downloadZipOk">%1$s вдало завантажено</string>
+    <string name="permissionNotGranted">Ця можливість не працює при відсутності доступу на запис до зовнішнього сховища.</string>
+    <string name="warningArchitecture">ВИ ОБРАЛИ ВІРНУ АРХІТЕКТУРУ XPOSED?\nНевірно обраний zip пакунок може пошкодити Ваш пристрій!</string>
+    <string name="newVersion">Нова версія встановлювача Xposed вже доступна! Оновіть його!</string>
+    <string name="update">Оновити</string>
+    <string name="choose_icon">Обрати піктограму</string>
+    <string name="custom_icon">Особиста піктограма</string>
+    <string name="not_installed_no_lollipop">Xposed фреймворк не встановлено.</string>
+    <string name="notify_module_update">Увімкнути сповіщення про оновлення модуля</string>
+
+    <string name="md_back_label">Назад</string>
+    <string name="md_done_label">Готово</string>
+    <string name="md_cancel_label">Скасувати</string>
+    <string name="md_choose_label">Обрати</string>
+    <string name="md_error_label">Помилка</string>
+    <string name="md_storage_perm_error">Вашому додатку не надано дозволу READ_EXTERNAL_STORAGE.</string>
+    <string name="md_custom_label">Користувацькі</string>
+    <string name="md_presets_label">Типові шаблони</string>
+    <string name="changelog">Перелік змін</string>
+    <string name="scroll_top">Прокрутити догори</string>
+    <string name="add_bookmark">Додати закладку</string>
+    <string name="remove_bookmark">Вилучити закладку</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="no_bookmark_added">Закладку не додано</string>
+    <string name="bookmark_added">Закладку додано</string>
+    <string name="bookmark_removed">Закладку вилучено</string>
+    <string name="undo">Повернути</string>
+    <string name="notification_coloration">Розфарбувати піктограму сповіщення</string>
+    <string name="file_is_empty">Файл порожній</string>
+    <string name="install_remove">Встановити та вилучити</string>
+    <string name="download_remove">Завантажити та вилучити</string>
+    <string name="module_saved">Модуль збережено як %1$s</string>
+    <string name="ignore_updates">Ігнорувати оновлення</string>
+    <string name="ignore_updates_summ">Ігнорувати оновлення для вказаного модуля.</string>
+    <string name="reboot_recovery">Перезавантажити в рекавері</string>
+    <string name="loading">Завантаження…</string>
+    <string name="chrome_custom_tabs">Користувацькі вкладки Chrome</string>
+    <string name="chrome_custom_tabs_summ">Відкрити посилання у внутрішньому оглядачі</string>
+    <string name="scroll_bottom">Прокрутити донизу</string>
+    <string name="open_drawer_summ">Відкрити навігацію автоматично під час запуску</string>
+    <string name="open_drawer">Відкрити навігацію автоматично</string>
+    <string name="share_app">Поділитися додатком</string>
+    <string name="share_app_text">Спробуй це: Xposed Installer в стилі Material! %s</string>
+    <string name="status">Статус Xposed</string>
+    <string name="xposed_on_next_reboot">Xposed фреймворк буде активовано після наступного перезавантаження</string>
+    <string name="xposed_off_next_reboot">Xposed фреймворк буде вимкнуто після наступного перезавантаження</string>
+    <string name="rovo_89_old_icon">rovo89 (стара)</string>
+    <string name="confirm_reboots">Підтвердити перезавантаження</string>
+    <string name="skip_xposedminversion_check">Пропустити перевірку \'мінімальної версії Xposed\'</string>
+    <string name="skip_xposedminversion_check_summ">Пропустити перевірку \'мінімальної версії Xposed\' для модулів</string>
+    <string name="official">Офіційний</string>
+    <string name="systemless">Несистемний</string>
+    <string name="samsung">Samsung</string>
+    <string name="miui">MIUI</string>
+
+    <!-- Start compatibility -->
+    <string name="official_compatibility">Всі AOSP та Samsung ROM; Nexus, LG, HTC, Asus пристрої</string>
+    <string name="official_incompatibility">Немає несумісних</string>
+    <string name="official_compatibility_v21">Всі AOSP ROM, Nexus, LG, HTC, Huawei, Asus пристрої</string>
+    <string name="official_incompatibility_v21">Samsung ROMи</string>
+    <string name="systemless_compatibility">Всі засновані на AOSP ROMи, Samsung ROMs; Nexus, LG, HTC, Asus, Pixel C пристрої</string>
+    <string name="systemless_incompatibility">Немає несумісних</string>
+
+    <string name="samsung_incompatibility">Немає несумісних </string>
+    <string name="miui_compatibility">Лише MIUI ROMи</string>
+    <string name="miui_incompatibility">Всі інші ROMи</string>
+    <!-- End compatibility -->
+
+    <string name="compatibility">Сумісність</string>
+    <string name="details">Деталі</string>
+    <string name="look_and_feel">Спробувати</string>
+    <string name="support_xda">Отримати підтримку на форумі XDA</string>
+    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
+    <string name="later">Пізніше</string>
+    <string name="device_own">Ви маєте %1$s пристрій з %2$s ROM.</string>
+    <string name="original_framework">Ваш пристрій сумісний із офіційним Xposed фреймворком.</string>
+    <string name="goto_framework">Натисніть тут, аби перейти потрібної секцій для вашого пристрою</string>
+    <string name="save">Зберегти</string>
+    <string name="download_location">Розташування завантажень</string>
+    <string name="download_location_summ">Розташування завантажених APK файлів (лише модулів)</string>
+    <string name="restart_needed">Потрібне перезавантаження</string>
+    <string name="cache_cleaned">Кеш додатків очищено. Потрібне перезавантаження</string>
+    <string name="update_download_list">Перелік модулів буде завантажено на протязі кількох секунд</string>
+    <string name="no_connection_available">Відсутнє з\'єднання</string>
+    <string name="not_logcat">Якщо хтось запитав у Вас Android Logcat звіти, ви не у тому розділу. Це звіт Xposed; якщо потрібен logcat, на XDA форумі ви можете його знайти</string>
+    <string name="force_english">Force English language</string>
+    <string name="warning_language">Зміна мови набуде чинності після перезавантаження додатку.</string>
+    <string name="not_flashable_inapp">Цей zip файл не може бути прошитий через додаток. Автоматичне встановлення через рекавері</string>
+    <string name="not_now">Не зараз</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">Час очікування вичерпано</string>
+    <string name="flash_error_shell_died">Виконання несподівано перервалося</string>
+    <string name="flash_error_invalid_zip">ZIP файл не для прошивки</string>
+    <string name="flash_error_not_flashable_in_app">Цей файл можна записати лише через рекавері</string>
+    <string name="flash_error_default">Трапилася помилка %d</string>
 
 </resources>
