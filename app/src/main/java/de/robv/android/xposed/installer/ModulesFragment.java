@@ -113,7 +113,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
         installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         installIntent.setDataAndType(Uri.fromFile(new File(info.localFilename)), DownloadsUtil.MIME_TYPE_APK);
-        installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
+        installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, "de.robv.android.xposed.installer");
         context.startActivity(installIntent);
     }
 
