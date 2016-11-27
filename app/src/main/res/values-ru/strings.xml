@@ -158,7 +158,7 @@
     <string name="about_developers_label">Главные разработчики</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> и <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> Для исправления багов и Material Дизайна</string>
     <string name="about_translator_label">Переводчик:</string>
-    <string name="translator"><a href="http://4pda.ru/forum/index.php?showuser=2220650">4pda: Alexey711</a></string>
+    <string name="translator">4pda: Alexey711</string>
     <string name="about_version_label">Версия приложения:</string>
     <string name="about_source_label">Исходный код</string>
     <string name="about_libraries_label">Используемые библиотеки</string>
