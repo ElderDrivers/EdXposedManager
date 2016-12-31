@@ -166,7 +166,6 @@ public class AboutActivity extends XposedBaseActivity {
         private void createLicenseDialog() {
             Notices notices = new Notices();
             notices.addNotice(new Notice("material-dialogs", "https://github.com/afollestad/material-dialogs", "Copyright (c) 2014-2016 Aidan Michael Follestad", new MITLicense()));
-            notices.addNotice(new Notice("inquiry", "https://github.com/afollestad/inquiry", "Copyright (c) 2015-2016 Aidan Michael Follestad", new ApacheSoftwareLicense20()));
             notices.addNotice(new Notice("StickyListHeaders", "https://github.com/emilsjolander/StickyListHeaders", "Emil Sjölander", new ApacheSoftwareLicense20()));
             notices.addNotice(new Notice("PreferenceFragment-Compat", "https://github.com/Machinarius/PreferenceFragment-Compat", "machinarius", new ApacheSoftwareLicense20()));
             notices.addNotice(new Notice("libsuperuser", "https://github.com/Chainfire/libsuperuser", "Copyright (C) 2012-2015 Jorrit \"Chainfire\" Jongma", new ApacheSoftwareLicense20()));
