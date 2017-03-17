@@ -38,10 +38,10 @@ import java.util.List;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
-import static de.robv.android.xposed.installer.ModulesFragment.installApk;
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
@@ -220,7 +220,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                            installApk(getContext(), info);
+                            new InstallApkUtil(getContext(), info).execute();
                         }
                     }, DownloadsUtil.MIME_TYPES.APK);
                     break;
@@ -228,7 +228,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                            installApk(getContext(), info);
+                            new InstallApkUtil(getContext(), info).execute();
                             remove(pkg);
                         }
                     }, DownloadsUtil.MIME_TYPES.APK);
@@ -317,7 +317,6 @@ public class ModulesBookmark extends XposedBaseActivity {
             return mListView;
         }
     }
-
 
     private static class BookmarkModuleAdapter extends ArrayAdapter<Module> {
         public BookmarkModuleAdapter(Context context) {

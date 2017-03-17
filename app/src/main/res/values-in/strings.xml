@@ -244,6 +244,8 @@
     <string name="undo">Batalkan perintah</string>
     <string name="notification_coloration">Warnai ikon pemberitahuan</string>
     <string name="file_is_empty">File yang kosong</string>
+    <string name="install_with_su">Pasang modul dengan root</string>
+    <string name="install_with_su_summ">Jika dicentang Xposed Installer akan memasang modul tanpa pemberitahuan</string>
     <string name="install_remove">Pasang dan hapus</string>
     <string name="download_remove">Unduh dan hapus</string>
     <string name="module_saved">Modul disimpan di %1$s</string>

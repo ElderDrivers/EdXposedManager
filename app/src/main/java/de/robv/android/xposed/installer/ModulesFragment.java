@@ -68,6 +68,7 @@ import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
@@ -108,14 +109,6 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     private MenuItem mClickedMenuItem = null;
     private ListView mListView;
     private View mBackgroundList;
-
-    public static void installApk(Context context, DownloadsUtil.DownloadInfo info) {
-        Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-        installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        installIntent.setDataAndType(Uri.fromFile(new File(info.localFilename)), DownloadsUtil.MIME_TYPE_APK);
-        installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, "de.robv.android.xposed.installer");
-        context.startActivity(installIntent);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -370,7 +363,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 DownloadsUtil.add(getActivity(), m.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                     @Override
                     public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                        installApk(getContext(), info);
+                        new InstallApkUtil(getContext(), info).execute();
                     }
                 }, DownloadsUtil.MIME_TYPES.APK);
             }

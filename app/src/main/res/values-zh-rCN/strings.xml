@@ -245,6 +245,8 @@
     <string name="undo">撤销</string>
     <string name="notification_coloration">通知图标着色</string>
     <string name="file_is_empty">文件为空</string>
+    <string name="install_with_su">使用 root 权限安装模块</string>
+    <string name="install_with_su_summ">勾选后在 Xposed Installer 内安装模块时将不再显示安装提示</string>
     <string name="install_remove">安装并移除</string>
     <string name="download_remove">下载并移除</string>
     <string name="module_saved">模块已保存至 %1$s</string>

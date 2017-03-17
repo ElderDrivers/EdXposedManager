@@ -244,6 +244,8 @@
     <string name="undo">Vrátit zpět</string>
     <string name="notification_coloration">Obarvit notifikační ikonu</string>
     <string name="file_is_empty">Soubor je prázdný</string>
+    <string name="install_with_su">Instalovat moduly s oprávněním root</string>
+    <string name="install_with_su_summ">Po zaškrtnutí nebude při instalaci modulů vyžadováno potvrzení</string>
     <string name="install_remove">Instalovat a odebrat</string>
     <string name="download_remove">Stáhnout a odebrat</string>
     <string name="module_saved">Modul uložen v %1$s</string>

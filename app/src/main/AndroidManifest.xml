@@ -190,6 +190,9 @@
             android:name=".util.NotificationUtil$RebootReceiver"
             android:exported="false"/>
         <receiver
+            android:name=".util.NotificationUtil$ApkReceiver"
+            android:exported="false"/>
+        <receiver
             android:name=".receivers.BootReceiver"
             android:enabled="true"
             android:exported="true"/>

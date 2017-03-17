@@ -244,6 +244,8 @@
     <string name="undo">Visszavon</string>
     <string name="notification_coloration">Színezett értesítési ikon</string>
     <string name="file_is_empty">A fájl üres</string>
+    <string name="install_with_su">Modul telepítése root engedéllyel</string>
+    <string name="install_with_su_summ">Ha engedélyezve van, akkor az Xposed Telepítõ rákérdezés nélkül fogja telepíteni a modulokat</string>
     <string name="install_remove">Telepít és eltávolít</string>
     <string name="download_remove">Letölt és eltávolít</string>
     <string name="module_saved">Modul elmentve: %1$s</string>

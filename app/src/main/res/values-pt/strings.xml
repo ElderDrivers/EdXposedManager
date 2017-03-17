@@ -245,6 +245,8 @@
     <string name="notification_coloration">Colorir ícone de notificação</string>
     <string name="file_is_empty">O ficheiro está vazio</string>
     <string name="install_remove">Instalar e apagar</string>
+    <string name="install_with_su">Instalar módulo(s) com permissão \"root\"</string>
+    <string name="install_with_su_summ">Se ativado, a \"Xposed Installer\" irá instalar os módulos sem avisos</string>
     <string name="download_remove">Transferir e apagar</string>
     <string name="module_saved">Módulo guardado em %1$s</string>
     <string name="ignore_updates">Ignorar atualização</string>

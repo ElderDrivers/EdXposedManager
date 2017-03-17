@@ -244,6 +244,8 @@
     <string name="undo">Võta tagasi</string>
     <string name="notification_coloration">Värvi teate ikoon</string>
     <string name="file_is_empty">Fail on tühi</string>
+    <string name="install_with_su">Installi moodul juurõigustega</string>
+    <string name="install_with_su_summ">Kui märgistatud, installib Xposed Installer mooduleid üle küsimata</string>
     <string name="install_remove">Installi ja eemalda</string>
     <string name="download_remove">Laadi alla ja eemalda</string>
     <string name="module_saved">Moodul salvestatud kohta %1$s</string>
