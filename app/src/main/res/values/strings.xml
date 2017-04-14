@@ -322,4 +322,9 @@
     <string name="install_load">Installing…</string>
     <string name="install_load_apk">Installing %s</string>
 
+    <string name="rovo89_summary">Main creator of Xposed</string>
+    <string name="tungstwenty_summary">Helped with his many contributions, both in code and thoughts</string>
+    <string name="dvdandroid_summary">Creator of this Xposed Installer</string>
+    <string name="biohazard_summary">Helped with Material Design implementation</string>
+
 </resources>

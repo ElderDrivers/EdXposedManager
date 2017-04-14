@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -78,6 +77,10 @@ public class AboutActivity extends XposedBaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void openLink(View view) {
+        NavUtil.startURL(this, view.getTag().toString());
+    }
+
     public static class AboutFragment extends Fragment {
 
         @Override
@@ -97,7 +100,6 @@ public class AboutActivity extends XposedBaseActivity {
             View v = inflater.inflate(R.layout.tab_about, container, false);
 
             View changelogView = v.findViewById(R.id.changelogView);
-            View developersView = v.findViewById(R.id.developersView);
             View licensesView = v.findViewById(R.id.licensesView);
             View translatorsView = v.findViewById(R.id.translatorsView);
             View sourceCodeView = v.findViewById(R.id.sourceCodeView);
@@ -133,19 +135,6 @@ public class AboutActivity extends XposedBaseActivity {
                 @Override
                 public void onClick(View v) {
                     createLicenseDialog();
-                }
-            });
-
-            developersView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
-                            .title(R.string.about_developers_label)
-                            .content(R.string.about_developers)
-                            .positiveText(android.R.string.ok)
-                            .show();
-
-                    ((TextView) dialog.findViewById(R.id.md_content)).setMovementMethod(LinkMovementMethod.getInstance());
                 }
             });
 
