@@ -307,5 +307,9 @@
     <string name="installation_error_message">Installazione di %1$s fallita (%2$s)</string>
     <string name="installation_successful">Installazione riuscita</string>
     <string name="installation_successful_message">%s installato con successo</string>
+    <string name="biohazard_summary">Ha aiutato con l\'implementazione del Material Design</string>
+    <string name="dvdandroid_summary">Creatore di questo Xposed Installer</string>
+    <string name="rovo89_summary">Principale creatore di Xposed</string>
+    <string name="tungstwenty_summary">Ha aiutato con i suoi numerosi contributi, sia nel codice che nei pensieri</string>
 
 </resources>
