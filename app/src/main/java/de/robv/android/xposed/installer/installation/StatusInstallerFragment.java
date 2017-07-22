@@ -52,8 +52,6 @@ public class StatusInstallerFragment extends Fragment {
     private static ImageView mErrorIcon;
     private static View mUpdateView;
     private static View mUpdateButton;
-    private static View mHintContainer;
-    private static TextView mHint;
     private static TextView mErrorTv;
     private static boolean isXposedInstalled = false;
     private TextView txtKnownIssue;
@@ -61,8 +59,6 @@ public class StatusInstallerFragment extends Fragment {
     public static void setError(boolean connectionFailed, boolean noSdks) {
         if (!connectionFailed && !noSdks) {
             if (isXposedInstalled) return;
-            mHintContainer.setVisibility(View.VISIBLE);
-            mHint.setText(mHint.getText() + "\n" + sActivity.getString(R.string.goto_framework));
             return;
         }
 
@@ -240,9 +236,6 @@ public class StatusInstallerFragment extends Fragment {
         TextView manufacturer = (TextView) v.findViewById(R.id.ic_manufacturer);
         TextView cpu = (TextView) v.findViewById(R.id.cpu);
 
-        mHintContainer = v.findViewById(R.id.hint_container);
-        mHint = (TextView) v.findViewById(R.id.hint);
-
         if (Build.VERSION.SDK_INT >= 21) {
             if (installedXposedVersion != null) {
                 int installedXposedVersionInt = extractIntPart(installedXposedVersion);
@@ -314,7 +307,6 @@ public class StatusInstallerFragment extends Fragment {
         cpu.setText(getCompleteArch());
 
         refreshKnownIssue();
-        setHint();
         return v;
     }
 
@@ -350,43 +342,6 @@ public class StatusInstallerFragment extends Fragment {
         } else {
             txtKnownIssue.setVisibility(View.GONE);
         }
-    }
-
-    private void setHint() {
-        String manufacturer = Build.MANUFACTURER.toLowerCase();
-
-        File twFramework = new File("/system/framework/twframework.jar");
-        File miuiFramework = new File("/system/framework/framework-miui-res.jar");
-
-        String hint = getString(R.string.original_framework);
-        int tab = 1;
-        if (manufacturer.contains("samsung")) {
-            if (twFramework.exists()) {
-                hint = getString(R.string.device_own, "Samsung", "TouchWiz");
-                tab = 3;
-            } else {
-                hint = getString(R.string.device_own, "Samsung", "AOSP-based");
-                tab = 1;
-            }
-        } else if (manufacturer.contains("xiaomi")) {
-            if (miuiFramework.exists()) {
-                hint = getString(R.string.device_own, "Xiaomi", "MIUI");
-                tab = 4;
-            } else {
-                hint = getString(R.string.device_own, "Xiaomi", "AOSP-based");
-                tab = 1;
-            }
-        }
-
-        final int finalTab = tab;
-
-        mHint.setText(hint);
-        mHintContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AdvancedInstallerFragment.gotoPage(finalTab);
-            }
-        });
     }
 
     private String getAndroidVersion() {

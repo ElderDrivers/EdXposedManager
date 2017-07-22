@@ -269,23 +269,7 @@
     <string name="confirm_reboots">Подтверждать перезагрузку</string>
     <string name="skip_xposedminversion_check">Проверка версии Xposed Framework</string>
     <string name="skip_xposedminversion_check_summ">Пропускать проверку минимальной версии Xposed Framework для модулей</string>
-    <string name="official">Официальный</string>
-    <string name="systemless">Несистемный</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">Все AOSP и Samsung прошивки; Nexus, LG, HTC, Asus устройства</string>
-    <string name="official_incompatibility">Нет несовместимостей</string>
-    <string name="official_compatibility_v21">Все AOSP прошивки, Nexus, LG, HTC, Huawei, Asus устройства</string>
-    <string name="official_incompatibility_v21">Samsung прошивки</string>
-    <string name="systemless_compatibility">Все на основе прошивок AOSP, Samsung прошивки; Nexus, LG, HTC, Asus, Pixel C устройства</string>
-    <string name="systemless_incompatibility">Нет несовместимостей</string>
-    <string name="samsung_compatibility">Все AOSP и Samsung прошивки; Nexus, LG, HTC, Asus устройства. <b>Note: альтернативная</b> версия для Samsung Note телефонов</string>
-    <string name="samsung_incompatibility">Нет несовместимостей</string>
-    <string name="miui_compatibility">Только MIUI прошивки</string>
-    <string name="miui_incompatibility">Все другие прошивки</string>
-    <!-- End compatibility -->
 
     <string name="compatibility">Совместимость</string>
     <string name="details">Детали</string>
@@ -293,9 +277,7 @@
     <string name="support_xda">Поддержка на XDA форуме</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Позже</string>
-    <string name="device_own">У вас %1$s устройство с %2$s ROM.</string>
     <string name="original_framework">Ваше устройство совместимо с официальным Xposed Framework.</string>
-    <string name="goto_framework">Нажмите сдесь, чтобы перейти на правильный установщик</string>
     <string name="save">Сохранить</string>
     <string name="download_location">Папка для загрузок</string>
     <string name="download_location_summ">Расположение для скачанных APK файлов (только модули)</string>

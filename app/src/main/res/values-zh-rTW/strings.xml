@@ -269,23 +269,7 @@
     <string name="confirm_reboots">重新啟動確認</string>
     <string name="skip_xposedminversion_check">略過 \'Xposed 最低版本\' 檢查</string>
     <string name="skip_xposedminversion_check_summ">略過模組 \'Xposed 最低版本\' 檢查</string>
-    <string name="official">官方</string>
-    <string name="systemless">不修改系統</string>
-    <string name="samsung">三星</string>
-    <string name="miui">小米</string>
- 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">所有AOSP和Samsung ROM；Nexus, LG, HTC, Asus 裝置</string>
-    <string name="official_incompatibility">無不相容</string>
-    <string name="official_compatibility_v21">所有AOSP ROM, Nexus, LG, HTC, Huawei, Asus 裝置</string>
-    <string name="official_incompatibility_v21">Samsung ROM</string>
-    <string name="systemless_compatibility">所有以AOSP為基底的ROM、Samsung ROMs; Nexus, LG, HTC, Asus, Pixel C 裝置</string>
-    <string name="systemless_incompatibility">無不相容</string>
-    <string name="samsung_compatibility">所有AOSP和Samsung ROM; Nexus, LG, HTC, Asus 裝置. <b>Note: alt</b> 版本提供給 Samsung Note 手機使用</string>
-    <string name="samsung_incompatibility">無不相容</string>
-    <string name="miui_compatibility">僅小米 ROM</string>
-    <string name="miui_incompatibility">全部其他的 ROM</string>
-    <!-- End compatibility --> 
+
 
     <string name="compatibility">相容性</string>
     <string name="details">細節</string>
@@ -293,9 +277,7 @@
     <string name="support_xda">從 XDA 討論串取得支援</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">稍後</string>
-    <string name="device_own">您擁有一個安裝著%2$s ROM的%1$s 裝置。</string>
     <string name="original_framework">您的裝置與官方Xposed 框架相容。</string>
-    <string name="goto_framework">Click here to go to the right section for your device</string>
     <string name="save">儲存</string>
     <string name="download_location">下載路徑</string>
     <string name="download_location_summ">APK檔案的下載路徑 (僅模組)</string>

@@ -268,33 +268,30 @@
     <string name="confirm_reboots">重启确认</string>
     <string name="skip_xposedminversion_check">跳过 \'Xposed 最低版本\' 检查</string>
     <string name="skip_xposedminversion_check_summ">跳过针对模块的 \'Xposed 最低版本\' 检查</string>
-    <string name="official">官方</string>
-    <string name="systemless">Systemless</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
+    <string name="official" tools:ignore="ExtraTranslation">官方</string>
+    <string name="systemless" tools:ignore="ExtraTranslation">Systemless</string>
+    <string name="samsung" tools:ignore="ExtraTranslation">Samsung</string>
+    <string name="miui" tools:ignore="ExtraTranslation">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">所有 AOSP 和 Samsung ROM; Nexus, LG, HTC, Asus 设备</string>
-    <string name="official_incompatibility">无兼容性问题</string>
-    <string name="official_compatibility_v21">所有 AOSP ROM, Nexus, LG, HTC, Huawei, Asus 设备</string>
-    <string name="official_incompatibility_v21">Samsung ROM</string>
-    <string name="systemless_compatibility">所有 AOSP ROM, Samsung ROM; Nexus, LG, HTC, Asus, Pixel C 设备</string>
-    <string name="systemless_incompatibility">无兼容性问题</string>
-    <string name="samsung_compatibility">所有 AOSP 和 Samsung ROM; Nexus, LG, HTC, Asus 设备。<b>注意：带有 alt</b> 的版本适用于 Samsung Note 手机</string>
-    <string name="samsung_incompatibility">无兼容性问题</string>
-    <string name="miui_compatibility">仅 MIUI ROM</string>
-    <string name="miui_incompatibility">所有其他 ROM</string>
-    <!-- End compatibility -->
 
+    <string name="official_compatibility" tools:ignore="ExtraTranslation">所有 AOSP 和 Samsung ROM; Nexus, LG, HTC, Asus 设备</string>
+    <string name="official_incompatibility" tools:ignore="ExtraTranslation">无兼容性问题</string>
+    <string name="official_compatibility_v21" tools:ignore="ExtraTranslation">所有 AOSP ROM, Nexus, LG, HTC, Huawei, Asus 设备</string>
+    <string name="official_incompatibility_v21" tools:ignore="ExtraTranslation">Samsung ROM</string>
+    <string name="systemless_compatibility" tools:ignore="ExtraTranslation">所有 AOSP ROM, Samsung ROM; Nexus, LG, HTC, Asus, Pixel C 设备</string>
+    <string name="systemless_incompatibility" tools:ignore="ExtraTranslation">无兼容性问题</string>
+    <string name="samsung_compatibility" tools:ignore="ExtraTranslation">所有 AOSP 和 Samsung ROM; Nexus, LG, HTC, Asus 设备。<b>注意：带有 alt</b> 的版本适用于 Samsung Note 手机</string>
+    <string name="samsung_incompatibility" tools:ignore="ExtraTranslation">无兼容性问题</string>
+    <string name="miui_compatibility" tools:ignore="ExtraTranslation">仅 MIUI ROM</string>
+    <string name="miui_incompatibility" tools:ignore="ExtraTranslation">所有其他 ROM</string>
     <string name="compatibility">兼容性</string>
     <string name="details">详情</string>
     <string name="look_and_feel">界面外观</string>
     <string name="support_xda">在 XDA 论坛上获取帮助</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">稍后</string>
-    <string name="device_own">您的 %1$s 设备上正在运行 %2$s ROM</string>
-    <string name="original_framework">您的设备兼容官方版 Xposed 框架</string>
-    <string name="goto_framework">点击此处前往适合您设备的区域</string>
+    <string name="device_own" tools:ignore="ExtraTranslation">您的 %1$s 设备上正在运行 %2$s ROM</string>
+    <string name="original_framework" tools:ignore="ExtraTranslation">您的设备兼容官方版 Xposed 框架</string>
     <string name="save">保存</string>
     <string name="download_location">下载位置</string>
     <string name="download_location_summ">选择 APK 文件的下载位置（仅限模块）</string>

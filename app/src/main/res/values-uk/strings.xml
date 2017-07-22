@@ -265,23 +265,7 @@
     <string name="confirm_reboots">Підтвердити перезавантаження</string>
     <string name="skip_xposedminversion_check">Пропустити перевірку \'мінімальної версії Xposed\'</string>
     <string name="skip_xposedminversion_check_summ">Пропустити перевірку \'мінімальної версії Xposed\' для модулів</string>
-    <string name="official">Офіційний</string>
-    <string name="systemless">Несистемний</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">Всі AOSP та Samsung ROM; Nexus, LG, HTC, Asus пристрої</string>
-    <string name="official_incompatibility">Немає несумісних</string>
-    <string name="official_compatibility_v21">Всі AOSP ROM, Nexus, LG, HTC, Huawei, Asus пристрої</string>
-    <string name="official_incompatibility_v21">Samsung ROMи</string>
-    <string name="systemless_compatibility">Всі засновані на AOSP ROMи, Samsung ROMs; Nexus, LG, HTC, Asus, Pixel C пристрої</string>
-    <string name="systemless_incompatibility">Немає несумісних</string>
-
-    <string name="samsung_incompatibility">Немає несумісних </string>
-    <string name="miui_compatibility">Лише MIUI ROMи</string>
-    <string name="miui_incompatibility">Всі інші ROMи</string>
-    <!-- End compatibility -->
 
     <string name="compatibility">Сумісність</string>
     <string name="details">Деталі</string>
@@ -289,9 +273,7 @@
     <string name="support_xda">Отримати підтримку на форумі XDA</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Пізніше</string>
-    <string name="device_own">Ви маєте %1$s пристрій з %2$s ROM.</string>
     <string name="original_framework">Ваш пристрій сумісний із офіційним Xposed фреймворком.</string>
-    <string name="goto_framework">Натисніть тут, аби перейти потрібної секцій для вашого пристрою</string>
     <string name="save">Зберегти</string>
     <string name="download_location">Розташування завантажень</string>
     <string name="download_location_summ">Розташування завантажених APK файлів (лише модулів)</string>

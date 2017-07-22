@@ -1,7 +1,6 @@
 package de.robv.android.xposed.installer.installation;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,7 +11,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -39,12 +37,13 @@ import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
-import de.robv.android.xposed.installer.util.XposedZip;
+import de.robv.android.xposed.installer.util.json.XposedTab;
+import de.robv.android.xposed.installer.util.json.XposedZip;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.runOnUiThread;
 
-public abstract class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.DownloadFinishedCallback {
+public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.DownloadFinishedCallback {
 
     public static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
     private static final int INSTALL_MODE_NORMAL = 0;
@@ -52,28 +51,77 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
     private static final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
     public static String APP_PROCESS_NAME = null;
-    private static Activity sActivity;
-    private static Fragment sFragment;
     private static RootUtil mRootUtil = new RootUtil();
     private List<String> messages = new ArrayList<>();
     private View mClickedButton;
 
-    private static boolean checkPermissions() {
+    public static BaseAdvancedInstaller newInstance(XposedTab tab) {
+        BaseAdvancedInstaller myFragment = new BaseAdvancedInstaller();
+
+        Bundle args = new Bundle();
+        args.putParcelable("tab", tab);
+        myFragment.setArguments(args);
+
+        return myFragment;
+    }
+
+    protected List<XposedZip> installers() {
+        XposedTab tab = getArguments().getParcelable("tab");
+
+        assert tab != null;
+        return tab.getInstallers();
+    }
+
+    protected List<XposedZip> uninstallers() {
+        XposedTab tab = getArguments().getParcelable("tab");
+
+        assert tab != null;
+        return tab.uninstallers;
+    }
+
+    protected String compatibility() {
+        XposedTab tab = getArguments().getParcelable("tab");
+
+        assert tab != null;
+        return tab.getCompatibility();
+    }
+
+    protected String incompatibility() {
+        XposedTab tab = getArguments().getParcelable("tab");
+
+        assert tab != null;
+        return tab.getIncompatibility();
+    }
+
+    protected String author() {
+        XposedTab tab = getArguments().getParcelable("tab");
+
+        assert tab != null;
+        return tab.author;
+    }
+
+    protected String xdaUrl() {
+        XposedTab tab = getArguments().getParcelable("tab");
+
+        assert tab != null;
+        return tab.getSupport();
+    }
+
+    protected boolean isStable() {
+        XposedTab tab = getArguments().getParcelable("tab");
+
+        assert tab != null;
+        return tab.stable;
+    }
+
+    private boolean checkPermissions() {
         if (Build.VERSION.SDK_INT < 23) return false;
 
-        if (ActivityCompat.checkSelfPermission(sActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            sFragment.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return true;
         }
         return false;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        sActivity = getActivity();
-        sFragment = this;
     }
 
     @Override
@@ -98,8 +146,8 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         TextView author = (TextView) view.findViewById(R.id.author);
         View showOnXda = view.findViewById(R.id.show_on_xda);
 
-        chooserInstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), installers()));
-        chooserUninstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers()));
+        chooserInstallers.setAdapter(new XposedZip.MyAdapter(getContext(), installers()));
+        chooserUninstallers.setAdapter(new XposedZip.MyAdapter(getContext(), uninstallers()));
 
         if (Build.VERSION.SDK_INT >= 21 && installers().size() >= 3 && uninstallers().size() >= 4) {
             if (StatusInstallerFragment.ARCH.contains("86")) {
@@ -114,9 +162,9 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         infoInstaller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                XposedZip.Installer selectedInstaller = (XposedZip.Installer) chooserInstallers.getSelectedItem();
+                XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
                 String s = getString(R.string.infoInstaller,
-                        selectedInstaller.name, selectedInstaller.sdk,
+                        selectedInstaller.name, Build.VERSION.SDK_INT,
                         selectedInstaller.architecture,
                         selectedInstaller.version);
 
@@ -127,21 +175,21 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         infoUninstaller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                XposedZip.Uninstaller selectedUninstaller = (XposedZip.Uninstaller) chooserUninstallers.getSelectedItem();
+                XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
                 String s = getString(R.string.infoUninstaller,
                         selectedUninstaller.name,
                         selectedUninstaller.architecture,
-                        selectedUninstaller.date);
+                        selectedUninstaller.version);
 
                 new MaterialDialog.Builder(getContext()).title(R.string.info)
                         .content(s).positiveText(android.R.string.ok).show();
             }
         });
 
-        btnInstall.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener btnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mClickedButton = btnInstall;
+                mClickedButton = v;
                 if (checkPermissions()) return;
 
                 areYouSure(R.string.warningArchitecture,
@@ -150,7 +198,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
                             public void onPositive(MaterialDialog dialog) {
                                 super.onPositive(dialog);
 
-                                XposedZip.Installer selectedInstaller = (XposedZip.Installer) chooserInstallers.getSelectedItem();
+                                XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
 
                                 checkAndDelete(selectedInstaller.name);
 
@@ -165,38 +213,10 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
                             }
                         });
             }
-        });
+        };
 
-        btnUninstall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mClickedButton = btnUninstall;
-                if (checkPermissions())
-                    return;
-
-                areYouSure(R.string.warningArchitecture,
-                        new MaterialDialog.ButtonCallback() {
-                            @Override
-                            public void onPositive(MaterialDialog dialog) {
-                                super.onPositive(dialog);
-
-                                XposedZip.Uninstaller selectedUninstaller = (XposedZip.Uninstaller) chooserUninstallers.getSelectedItem();
-
-                                checkAndDelete(selectedUninstaller.name);
-
-                                new DownloadsUtil.Builder(getContext())
-                                        .setTitle(selectedUninstaller.name)
-                                        .setUrl(selectedUninstaller.link)
-                                        .setSave(true)
-                                        .setCallback(BaseAdvancedInstaller.this)
-                                        .setMimeType(DownloadsUtil.MIME_TYPES.ZIP)
-                                        .setDialog(true)
-                                        .download();
-                            }
-                        });
-            }
-        });
-
+        btnInstall.setOnClickListener(btnClick);
+        btnUninstall.setOnClickListener(btnClick);
 
         compatibleTv.setText(compatibility());
         incompatibleTv.setText(incompatibility());
@@ -206,6 +226,10 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
             infoUninstaller.setVisibility(View.GONE);
             chooserUninstallers.setVisibility(View.GONE);
             btnUninstall.setVisibility(View.GONE);
+        }
+
+        if (!isStable()) {
+            view.findViewById(R.id.warning_unstable).setVisibility(View.VISIBLE);
         }
 
         showOnXda.setOnClickListener(new View.OnClickListener() {
@@ -255,7 +279,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(sActivity, getString(R.string.downloadZipOk, info.localFilename), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, getString(R.string.downloadZipOk, info.localFilename), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -603,17 +627,4 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         AssetUtil.removeBusybox();
     }
 
-    protected abstract List<XposedZip.Installer> installers();
-
-    protected abstract List<XposedZip.Uninstaller> uninstallers();
-
-    @StringRes
-    protected abstract int compatibility();
-
-    @StringRes
-    protected abstract int incompatibility();
-
-    protected abstract CharSequence author();
-
-    protected abstract String xdaUrl();
 }

@@ -1,8 +1,6 @@
 package de.robv.android.xposed.installer.installation;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.net.ParseException;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,58 +23,32 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.annimon.stream.Stream;
+import com.annimon.stream.function.Predicate;
+import com.google.gson.Gson;
 
 import java.math.BigInteger;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
-import de.robv.android.xposed.installer.util.JSONUtils;
 import de.robv.android.xposed.installer.util.RootUtil;
-import de.robv.android.xposed.installer.util.XposedZip;
+import de.robv.android.xposed.installer.util.json.JSONUtils;
+import de.robv.android.xposed.installer.util.json.XposedTab;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class AdvancedInstallerFragment extends Fragment {
 
-    private static final List<XposedZip.Installer> listOfficialInstaller = new ArrayList<>();
-    private static final List<XposedZip.Installer> listSystemlessInstallers = new ArrayList<>();
-    private static final List<XposedZip.Installer> listSamsungInstallers = new ArrayList<>();
-    private static final List<XposedZip.Installer> listMiuiInstallers = new ArrayList<>();
-
-    private static final List<XposedZip.Uninstaller> listOfficialUninstaller = new ArrayList<>();
-    private static final List<XposedZip.Uninstaller> listSystemlessUninstallers = new ArrayList<>();
-    private static final List<XposedZip.Uninstaller> listSamsungUninstallers = new ArrayList<>();
-    private static final List<XposedZip.Uninstaller> listMiuiUninstallers = new ArrayList<>();
     private static ViewPager mPager;
     private TabLayout mTabLayout;
     private RootUtil mRootUtil = new RootUtil();
-    private int thisSdkCount = 0;
+    private TabsAdapter tabsAdapter;
 
     public static void gotoPage(int page) {mPager.setCurrentItem(page);}
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        listOfficialInstaller.clear();
-        listSystemlessInstallers.clear();
-        listSamsungInstallers.clear();
-        listMiuiInstallers.clear();
-
-        listOfficialUninstaller.clear();
-        listSystemlessUninstallers.clear();
-        listSamsungUninstallers.clear();
-        listMiuiUninstallers.clear();
-    }
 
     @Nullable
     @Override
@@ -86,7 +57,9 @@ public class AdvancedInstallerFragment extends Fragment {
         mPager = (ViewPager) view.findViewById(R.id.pager);
         mTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
 
-        mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), true));
+        tabsAdapter = new TabsAdapter(getChildFragmentManager());
+        tabsAdapter.notifyDataSetChanged();
+        mPager.setAdapter(tabsAdapter);
         mTabLayout.setupWithViewPager(mPager);
 
         setHasOptionsMenu(true);
@@ -245,179 +218,12 @@ public class AdvancedInstallerFragment extends Fragment {
         AssetUtil.removeBusybox();
     }
 
-    public static class OfficialInstaller extends BaseAdvancedInstaller {
-
-        @Override
-        protected List<XposedZip.Installer> installers() {
-            return listOfficialInstaller;
-        }
-
-        @Override
-        protected List<XposedZip.Uninstaller> uninstallers() {
-            return listOfficialUninstaller;
-        }
-
-        @Override
-        protected int compatibility() {
-            switch (Build.VERSION.SDK_INT) {
-                case 21:
-                case 22:
-                case 23:
-                    return R.string.official_compatibility_v21;
-                default:
-                    return R.string.official_compatibility;
-            }
-        }
-
-        @Override
-        protected int incompatibility() {
-            switch (Build.VERSION.SDK_INT) {
-                case 21:
-                case 22:
-                case 23:
-                    return R.string.official_incompatibility_v21;
-                default:
-                    return R.string.official_incompatibility;
-            }
-        }
-
-        @Override
-        protected CharSequence author() {
-            return "rovo89";
-        }
-
-        @Override
-        protected String xdaUrl() {
-            switch (Build.VERSION.SDK_INT) {
-                case 21:
-                case 22:
-                    return "http://forum.xda-developers.com/xposed/official-xposed-lollipop-t3030118";
-                case 23:
-                    return "http://forum.xda-developers.com/xposed/discussion-xposed-marshmallow-t3249095";
-                default:
-                    return "http://forum.xda-developers.com/xposed";
-            }
-        }
-
-    }
-
-    public static class SystemlessInstaller extends BaseAdvancedInstaller {
-
-        @Override
-        protected List<XposedZip.Installer> installers() {
-            return listSystemlessInstallers;
-        }
-
-        @Override
-        protected List<XposedZip.Uninstaller> uninstallers() {
-            return listSystemlessUninstallers;
-        }
-
-        @Override
-        protected int compatibility() {
-            return R.string.systemless_compatibility;
-        }
-
-        @Override
-        protected int incompatibility() {
-            return R.string.systemless_incompatibility;
-        }
-
-        @Override
-        protected CharSequence author() {
-            return "topjohnwu";
-        }
-
-        @Override
-        protected String xdaUrl() {
-            return "http://forum.xda-developers.com/xposed/unofficial-systemless-xposed-t3388268";
-        }
-
-    }
-
-    public static class SamsungInstaller extends BaseAdvancedInstaller {
-
-        @Override
-        protected List<XposedZip.Installer> installers() {
-            return listSamsungInstallers;
-        }
-
-        @Override
-        protected List<XposedZip.Uninstaller> uninstallers() {
-            return listSamsungUninstallers;
-        }
-
-        @Override
-        protected int compatibility() {
-            return R.string.samsung_compatibility;
-        }
-
-        @Override
-        protected int incompatibility() {
-            return R.string.samsung_incompatibility;
-        }
-
-        @Override
-        protected CharSequence author() {
-            switch (Build.VERSION.SDK_INT) {
-                case 21:
-                    return "dkcldark";
-                default:
-                    return "wanam";
-            }
-        }
-
-        @Override
-        protected String xdaUrl() {
-            switch (Build.VERSION.SDK_INT) {
-                case 21:
-                    return "http://forum.xda-developers.com/showpost.php?p=65373013&postcount=3960";
-                default:
-                    return "http://forum.xda-developers.com/xposed/unofficial-xposed-samsung-lollipop-t3180960";
-            }
-        }
-
-    }
-
-    public static class MiuiInstaller extends BaseAdvancedInstaller {
-
-        @Override
-        protected List<XposedZip.Installer> installers() {
-            return listMiuiInstallers;
-        }
-
-        @Override
-        protected List<XposedZip.Uninstaller> uninstallers() {
-            return listMiuiUninstallers;
-        }
-
-        @Override
-        protected int compatibility() {
-            return R.string.miui_compatibility;
-        }
-
-        @Override
-        protected int incompatibility() {
-            return R.string.miui_incompatibility;
-        }
-
-        @Override
-        protected CharSequence author() {
-            return "SolarWarez";
-        }
-
-        @Override
-        protected String xdaUrl() {
-            return "http://forum.xda-developers.com/xposed/unofficial-xposed-miui-t3367634";
-        }
-
-    }
-
     private class JSONParser extends AsyncTask<Void, Void, Boolean> {
 
         private String newApkVersion = null;
         private String newApkLink = null;
         private String newApkChangelog = null;
+        private boolean noZips = false;
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -427,87 +233,29 @@ public class AdvancedInstallerFragment extends Fragment {
 
                 String jsonString = originalJson.replace("%XPOSED_ZIP%", newJson);
 
-                JSONObject json = new JSONObject(jsonString);
-                JSONArray installerArray = json.getJSONArray("installer");
-                JSONArray uninstallerArray = json.getJSONArray("uninstaller");
+                final JSONUtils.XposedJson xposedJson = new Gson().fromJson(jsonString, JSONUtils.XposedJson.class);
 
-                ArrayList<XposedZip.Installer> installers = new ArrayList<>();
-                ArrayList<XposedZip.Uninstaller> uninstallers = new ArrayList<>();
+                List<XposedTab> tabs = Stream.of(xposedJson.tabs)
+                        .filter(new Predicate<XposedTab>() {
+                            @Override
+                            public boolean test(XposedTab value) {
+                                return value.sdks.contains(Build.VERSION.SDK_INT);
+                            }
+                        }).toList();
 
-                for (int i = 0; i < installerArray.length(); i++) {
-                    JSONObject jsonObject = installerArray.getJSONObject(i);
+                noZips = tabs.isEmpty();
 
-                    String link = jsonObject.getString("link");
-                    String name = jsonObject.getString("name");
-                    String architecture = jsonObject.getString("architecture");
-                    String version = jsonObject.getString("version");
-                    int sdk = jsonObject.getInt("sdk");
-
-                    installers.add(new XposedZip.Installer(link, name, architecture, sdk, version));
+                for (XposedTab tab : tabs) {
+                    tabsAdapter.addFragment(tab.name, BaseAdvancedInstaller.newInstance(tab));
                 }
 
-                for (int i = 0; i < uninstallerArray.length(); i++) {
-                    JSONObject jsonObject = uninstallerArray.getJSONObject(i);
-
-                    String link = jsonObject.getString("link");
-                    String name = jsonObject.getString("name");
-                    String architecture = jsonObject.getString("architecture");
-
-                    @SuppressLint("SimpleDateFormat")
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                    Date date = null;
-                    try {
-                        date = sdf.parse(jsonObject.getString("date"));
-                    } catch (ParseException ignored) {
-                    }
-                    java.text.DateFormat dateFormat = DateFormat.getDateFormat(getContext());
-
-                    uninstallers.add(new XposedZip.Uninstaller(link, name, architecture, dateFormat.format(date)));
-                }
-
-                for (XposedZip.Installer i : installers) {
-                    if (Build.VERSION.SDK_INT == i.sdk) {
-                        thisSdkCount++;
-                        String name = i.name;
-                        if (name.contains("topjohnwu")) {
-                            listSystemlessInstallers.add(i);
-                        } else if (name.contains("wanam") || name.contains("dkcldark")) {
-                            listSamsungInstallers.add(i);
-                        } else if (name.contains("MIUI")) {
-                            listMiuiInstallers.add(i);
-                        } else {
-                            listOfficialInstaller.add(i);
-                        }
-                    }
-                }
-
-                for (XposedZip.Uninstaller u : uninstallers) {
-                    String name = u.name;
-                    if (Build.VERSION.SDK_INT < 21) {
-                        if (name.contains("Disabler")) {
-                            listOfficialUninstaller.add(u);
-                            break;
-                        }
-                    } else {
-                        if (name.contains("wanam")) {
-                            if (Build.VERSION.SDK_INT >= 22) listSamsungUninstallers.add(u);
-                        } else if (name.contains("dkcldark")) {
-                            if (Build.VERSION.SDK_INT == 21) listSamsungUninstallers.add(u);
-                        } else if (name.contains("topjohnwu")) {
-                            listSystemlessUninstallers.add(u);
-                        } else if (!name.contains("Disabler")) {
-                            listOfficialUninstaller.add(u);
-                            listMiuiUninstallers.add(u);
-                        }
-                    }
-                }
-
-                newApkVersion = json.getJSONObject("apk").getString("version");
-                newApkLink = json.getJSONObject("apk").getString("link");
-                newApkChangelog = json.getJSONObject("apk").getString("changelog");
+                newApkVersion = xposedJson.apk.version;
+                newApkLink = xposedJson.apk.link;
+                newApkChangelog = xposedJson.apk.changelog;
 
                 return true;
             } catch (Exception e) {
+                e.printStackTrace();
                 Log.e(XposedApp.TAG, "AdvancedInstallerFragment -> " + e.getMessage());
                 return false;
             }
@@ -518,22 +266,15 @@ public class AdvancedInstallerFragment extends Fragment {
             super.onPostExecute(result);
 
             try {
-                if (thisSdkCount == 0) {
-                    mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), true));
-                } else {
-                    mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), !result));
-                }
-
-                mTabLayout.setupWithViewPager(mPager);
+                tabsAdapter.notifyDataSetChanged();
 
                 if (!result) {
                     StatusInstallerFragment.setError(true/* connection failed */, true /* so no sdks available*/);
                 } else {
-                    StatusInstallerFragment.setError(false /*connection ok*/, thisSdkCount == 0 /*if counter is 0 there aren't sdks*/);
+                    StatusInstallerFragment.setError(false /*connection ok*/, noZips /*if counter is 0 there aren't sdks*/);
                 }
 
-                if (newApkVersion == null)
-                    return;
+                if (newApkVersion == null) return;
 
                 SharedPreferences prefs;
                 try {
@@ -556,29 +297,19 @@ public class AdvancedInstallerFragment extends Fragment {
         }
     }
 
-    class TabsAdapter extends FragmentPagerAdapter {
+    private class TabsAdapter extends FragmentPagerAdapter {
 
-        private List<MyFragment> listFragment = new ArrayList<>();
+        private final ArrayList<String> titles = new ArrayList<>();
+        private final ArrayList<Fragment> listFragment = new ArrayList<>();
 
-        public TabsAdapter(FragmentManager mgr, boolean lock) {
+        TabsAdapter(FragmentManager mgr) {
             super(mgr);
+            addFragment(getString(R.string.status), new StatusInstallerFragment());
+        }
 
-            listFragment.add(new MyFragment(getString(R.string.status), new StatusInstallerFragment()));
-
-            if (lock) return;
-
-            if (listOfficialInstaller.size() > 0 && listOfficialUninstaller.size() > 0) {
-                listFragment.add(new MyFragment(getString(R.string.official), new OfficialInstaller()));
-            }
-            if (listSystemlessInstallers.size() > 0 && listSystemlessUninstallers.size() > 0) {
-                listFragment.add(new MyFragment(getString(R.string.systemless), new SystemlessInstaller()));
-            }
-            if (listSamsungInstallers.size() > 0 && listSamsungUninstallers.size() > 0) {
-                listFragment.add(new MyFragment(getString(R.string.samsung), new SamsungInstaller()));
-            }
-            if (listMiuiInstallers.size() > 0 && listMiuiUninstallers.size() > 0) {
-                listFragment.add(new MyFragment(getString(R.string.miui), new MiuiInstaller()));
-            }
+        void addFragment(String title, Fragment fragment) {
+            titles.add(title);
+            listFragment.add(fragment);
         }
 
         @Override
@@ -586,23 +317,13 @@ public class AdvancedInstallerFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            return listFragment.get(position).fragment;
+            return listFragment.get(position);
         }
 
         @Override
         public String getPageTitle(int position) {
-            return listFragment.get(position).name;
+            return titles.get(position);
         }
     }
 
-    class MyFragment {
-
-        public String name;
-        public Fragment fragment;
-
-        public MyFragment(String name, Fragment fragment) {
-            this.name = name;
-            this.fragment = fragment;
-        }
-    }
 }

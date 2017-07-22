@@ -266,23 +266,7 @@
     <string name="confirm_reboots">Confirmar reinício</string>
     <string name="skip_xposedminversion_check">Pular verificação de \'xposedminversion\' </string>
     <string name="skip_xposedminversion_check_summ">Pular verificação de \'xposedminversion\' para módulos </string>
-    <string name="official">Oficial</string>
-    <string name="systemless">Systemless</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">Todas ROMs baseadas em AOSP e Samsung; Nexus, LG, HTC, Asus devices</string>
-    <string name="official_incompatibility">Sem incompatibilidade</string>
-    <string name="official_compatibility_v21">Todas ROMs AOSP, Nexus, LG, HTC, Huawei, Asus devices</string>
-    <string name="official_incompatibility_v21">ROMs Samsung</string>
-    <string name="systemless_compatibility">Todas ROMs baseadas em AOSP, Samsung ROMs; Nexus, LG, HTC, Asus, dispositivos Pixel C</string>
-    <string name="systemless_incompatibility">Sem incompatibilidade</string>
-    <string name="samsung_compatibility">Todas ROMs AOSP e Samsung; Nexus, LG, HTC, Asus devices. <b>Nota: versão alt</b> é para telefones Samsung Note</string>
-    <string name="samsung_incompatibility">Sem incompatibilidade</string>
-    <string name="miui_compatibility">Somente ROMs MIUI</string>
-    <string name="miui_incompatibility">Todas as outras ROMs</string>
-    <!-- End compatibility -->
 
     <string name="compatibility">Compatibilidade</string>
     <string name="details">Detalhes</string>
@@ -290,9 +274,7 @@
     <string name="support_xda">Obter suporte no tópico do XDA</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Depois</string>
-    <string name="device_own">Você possui um dispositivo %1$s com uma ROM %2$s.</string>
     <string name="original_framework">Seu dispositivo é compatível com o Xposed Framework oficial.</string>
-    <string name="goto_framework">Clique aqui para ir para a seção certa para seu dipositivo</string>
     <string name="save">Salvar</string>
     <string name="download_location">Local de download</string>
     <string name="download_location_summ">Local de downloads para arquivos APK (Somente módulos)</string>

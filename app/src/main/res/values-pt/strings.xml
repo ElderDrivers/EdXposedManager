@@ -267,23 +267,7 @@
     <string name="confirm_reboots">Confirmar reinicializações</string>
     <string name="skip_xposedminversion_check">Ignorar a verificação \"xposedminversion\"</string>
     <string name="skip_xposedminversion_check_summ">Ignorar a verificação \'xposedminversion\' dos módulos</string>
-    <string name="official">Oficial</string>
-    <string name="systemless">Sem sistema</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">Todas as ROMs AOSP e Samsung; Dispositivos Nexus, LG, HTC e Asus</string>
-    <string name="official_incompatibility">Sem incompatibilidade</string>
-    <string name="official_compatibility_v21">Todas as ROMs AOSP; Dispositivos Nexus, LG, HTC, Huawei e Asus</string>
-    <string name="official_incompatibility_v21">ROMs Samsung</string>
-    <string name="systemless_compatibility">Todas as ROMs baseadas em AOSP e Samsung ROMs; Dispositivos Nexus, LG, HTC, Asus e Pixel C</string>
-    <string name="systemless_incompatibility">Sem incompatibilidade</string>
-    <string name="samsung_compatibility">Todas as ROMs AOSP e Samsung; Dispositivos Nexus, LG, HTC e Asus. <b>Nota:</b> a versão <b>alt</b> é para smartphones Samsung Note</string>
-    <string name="samsung_incompatibility">Sem incompatibilidade</string>
-    <string name="miui_compatibility">Apenas ROMs MIUI</string>
-    <string name="miui_incompatibility">Todas as outras ROMs</string>
-    <!-- End compatibility -->
 
     <string name="compatibility">Compatibilidade</string>
     <string name="details">Detalhes</string>
@@ -291,9 +275,7 @@
     <string name="support_xda">Obter suporte no tópico do XDA</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Mais tarde</string>
-    <string name="device_own">Você tem um dispositivo %1$s com uma ROM %2$s.</string>
     <string name="original_framework">O seu dispositivo é compatível com a Xposed Framework oficial.</string>
-    <string name="goto_framework">Toque aqui para ir para a secção correta para o seu dispositivo</string>
     <string name="save">Guardar</string>
     <string name="download_location">Localização para transferências</string>
     <string name="download_location_summ">Localização para transferência de ficheiros APK (apenas módulos)</string>

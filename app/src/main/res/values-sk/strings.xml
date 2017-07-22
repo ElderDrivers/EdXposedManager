@@ -267,23 +267,7 @@
     <string name="confirm_reboots">Potvrdiť reštart</string>
     <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
     <string name="skip_xposedminversion_check_summ">Preskočiť \'xposedminversion\' kontrolu pre moduly</string>
-    <string name="official">Oficiálny</string>
-    <string name="systemless">Bezsystémový</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">Všetky AOSP a Samsung ROM, Nexus, LG, HTC, Asus zariadenia</string>
-    <string name="official_incompatibility">Žiadna nekompatibilita</string>
-    <string name="official_compatibility_v21">Všetky AOSP ROM, Nexus, LG, HTC, Huawei, Asus zariadenia</string>
-    <string name="official_incompatibility_v21">Samsung ROMky</string>
-    <string name="systemless_compatibility">Všetky ROMky založené na AOSP, Samsung ROMky, LG, HTC, Asus, Pixel C zariadenia</string>
-    <string name="systemless_incompatibility">Žiadna nekompatibilita</string>
-    <string name="samsung_compatibility">Všetky AOSP a Samsung ROM, Nexus, LG, HTC, Asus zariadenia. <b>Poznámka: alt</b> verzia je pre Samsung Note telefóny</string>
-    <string name="samsung_incompatibility">Žiadna nekompatibilita</string>
-    <string name="miui_compatibility">Iba MIUI ROMky</string>
-    <string name="miui_incompatibility">Všetky ďalšie ROMky</string>
-    <!-- End compatibility -->
 
     <string name="compatibility">Kompatibilita</string>
     <string name="details">Detaily</string>
@@ -291,9 +275,7 @@
     <string name="support_xda">Podpora na XDA fóre</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Neskôr</string>
-    <string name="device_own">Máte %1$s zariadenie s %2$s ROM.</string>
     <string name="original_framework">Vaše zariadenie je kompatibilné s oficiálnym Xposed Framework.</string>
-    <string name="goto_framework">Kliknite sem pre zobrazenie správnej sekcie pre vaše zariadenie</string>
     <string name="save">Uložiť</string>
     <string name="download_location">Umiestnenie stiahnutých súborov</string>
     <string name="download_location_summ">Umiestnenie stiahnutých APK súborov (iba moduly)</string>

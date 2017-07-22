@@ -267,23 +267,7 @@
     <string name="confirm_reboots">Újraindítások megerõsítése</string>
     <string name="skip_xposedminversion_check">\'xposedminversion\' ellenõrzés kihagyása</string>
     <string name="skip_xposedminversion_check_summ">\'xposedminversion\' ellenõrzés kihagyása a moduloknál</string>
-    <string name="official">Hivatalos</string>
-    <string name="systemless">Systemless</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">Minden AOSP és Samsung ROM; Nexus, LG, HTC, Asus készülék</string>
-    <string name="official_incompatibility">Nincs inkompatibilitás</string>
-    <string name="official_compatibility_v21">Minden AOSP ROM, Nexus, LG, HTC, Huawei, Asus készülék</string>
-    <string name="official_incompatibility_v21">Samsung ROMs</string>
-    <string name="systemless_compatibility">Minden AOSP-alapú ROM, Samsung ROM; Nexus, LG, HTC, Asus, Pixel C készülék</string>
-    <string name="systemless_incompatibility">Nincs inkompatibilitás</string>
-    <string name="samsung_compatibility">Minden AOSP és Samsung ROM; Nexus, LG, HTC, Asus készülék. <b>Megjegyzés: alternatív</b> verzió Samsung Note telefonokhoz</string>
-    <string name="samsung_incompatibility">Nincs inkompatibilitás</string>
-    <string name="miui_compatibility">Csak MIUI ROM</string>
-    <string name="miui_incompatibility">Minden egyéb ROM</string>
-    <!-- End compatibility -->
 
     <string name="compatibility">Kompatibilitás</string>
     <string name="details">Részletek</string>
@@ -291,9 +275,7 @@
     <string name="support_xda">Támogatás az XDA fórumon</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Késõbb</string>
-    <string name="device_own">Egy %1$s eszközöd van, amire %2$s ROM van telepítve.</string>
     <string name="original_framework">A készüléked kompatibilis a hivatalos Xposed Keretrendszerrel.</string>
-    <string name="goto_framework">Kattints ide a készülékednek megfelelõ részhez jutáshoz</string>
     <string name="save">Mentés</string>
     <string name="download_location">Letöltés helye</string>
     <string name="download_location_summ">Letöltés helye az APK fájloknak (csak modulok)</string>

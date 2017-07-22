@@ -267,23 +267,7 @@
     <string name="confirm_reboots">Konfirmasi boot ulang</string>
     <string name="skip_xposedminversion_check">Lewati pemeriksaan \'xposedminversion\'</string>
     <string name="skip_xposedminversion_check_summ">Lewati pemeriksaan module \'xposedminversion\'</string>
-    <string name="official">Resmi</string>
-    <string name="systemless">Systemless</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">Semua ROM AOSP dan Samsung; Perangkat Nexus, LG, HTC, Asus</string>
-    <string name="official_incompatibility">Tidak ada ketidakcocokan</string>
-    <string name="official_compatibility_v21">Semua ROM AOSP, Perangkat Nexus, LG, HTC, Huawei, Asus</string>
-    <string name="official_incompatibility_v21">ROM Samsung</string>
-    <string name="systemless_compatibility">Semua ROM basis AOSP, ROM Samsung; Perangkat Nexus, LG, HTC, Asus, Pixel C </string>
-    <string name="systemless_incompatibility">Tidak ada ketidakcocokan</string>
-    <string name="samsung_compatibility">Semua ROM AOSP dan Samsung; Perangkat Nexus, LG, HTC, Asus . <b>Catatan: versi alt</b> adalah untuk perangkat Samsung Note</string>
-    <string name="samsung_incompatibility">Tidak ada ketidakcocokan</string>
-    <string name="miui_compatibility">Hanya ROM MIUI</string>
-    <string name="miui_incompatibility">Semua ROM lain</string>
-    <!-- End compatibility -->
 
     <string name="compatibility">Kompabilitas</string>
     <string name="details">Rincian</string>
@@ -291,9 +275,7 @@
     <string name="support_xda">Dapatkan dukungan di tautan XDA</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Nanti</string>
-    <string name="device_own">Kamu memiliki perangkat %1$s dengan ROM %2$s.</string>
     <string name="original_framework">Perangkatmu cocok dengan Xposed Framework resmi.</string>
-    <string name="goto_framework">Klik di sini untuk pergi ke bagian yang tepat untuk perangkatmu</string>
     <string name="save">Simpan</string>
     <string name="download_location">Lokasi unduhan</string>
     <string name="download_location_summ">Lokasi unduhan untuk file APK (hanya modul)</string>

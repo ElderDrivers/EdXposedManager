@@ -267,23 +267,7 @@
     <string name="confirm_reboots">Kinnita taaskäivitused</string>
     <string name="skip_xposedminversion_check">Jäta \"xposedminversion\" kontroll vahele</string>
     <string name="skip_xposedminversion_check_summ">Jäta \"xposedminversion\" kontroll moodulitel vahele</string>
-    <string name="official">Ametlik</string>
-    <string name="systemless">Süsteemivaba</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">Kõik AOSP ja Samsungi ROMid; Nexuse, LG, HTC, Asuse seadmed</string>
-    <string name="official_incompatibility">Ühildumatus puudub</string>
-    <string name="official_compatibility_v21">Kõik AOSP ROMid, Nexuse, LG, HTC, Huawei, Asuse seadmed</string>
-    <string name="official_incompatibility_v21">Samsungi ROMid</string>
-    <string name="systemless_compatibility">Kõik AOSP-l põhinevad ROMid, Samsungi ROMid; Nexuse, LG, HTC, Asuse, Pixel C seadmed</string>
-    <string name="systemless_incompatibility">Ühildumatus puudub</string>
-    <string name="samsung_compatibility">Kõik AOSP and Samsungi ROMid; Nexuse, LG, HTC, Asuse seadmed. <b>Märkus: alternatiivne</b> versioon on Samsung Note telefonidele</string>
-    <string name="samsung_incompatibility">Ühildumatus puudub</string>
-    <string name="miui_compatibility">Ainult MIUI ROMid</string>
-    <string name="miui_incompatibility">Kõik muud ROMid</string>
-    <!-- End compatibility -->
 
     <string name="compatibility">Ühilduvus</string>
     <string name="details">Detailid</string>
@@ -291,9 +275,7 @@
     <string name="support_xda">Saa tuge XDA teemas</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Hiljem</string>
-    <string name="device_own">Sa omad %1$s seadet %2$s ROMiga.</string>
     <string name="original_framework">Su seade ühildub ametliku Xposed-raamistikuga.</string>
-    <string name="goto_framework">Klõpsa siia, et minna oma seadmele vastavasse jaotisesse</string>
     <string name="save">Salvesta</string>
 	<string name="download_location">Allalaadimisasukoht</string>
     <string name="download_location_summ">APK-failide allalaadimiste asukoht (ainult moodulid)</string>

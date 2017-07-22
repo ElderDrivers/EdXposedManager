@@ -13,8 +13,8 @@ import org.json.JSONObject;
 import java.math.BigInteger;
 
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.util.JSONUtils;
 import de.robv.android.xposed.installer.util.NotificationUtil;
+import de.robv.android.xposed.installer.util.json.JSONUtils;
 
 public class BootReceiver extends BroadcastReceiver {
 
@@ -27,7 +27,7 @@ public class BootReceiver extends BroadcastReceiver {
 
                 new CheckUpdates().execute();
             }
-        }, 5 * 60 * 1000 /*5 min*/);
+        }, 60 * 60 * 1000 /*60 min*/);
     }
 
     private boolean isOnline(Context context) {

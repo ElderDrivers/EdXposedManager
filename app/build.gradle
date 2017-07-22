@@ -42,5 +42,7 @@ dependencies {
     compile 'eu.chainfire:libsuperuser:1.0.0.201608240809'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.psdev.licensesdialog:licensesdialog:1.8.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.annimon:stream:1.1.8'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
 }

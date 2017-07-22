@@ -267,23 +267,7 @@
     <string name="confirm_reboots">Yeniden başlatmayı onayla</string>
     <string name="skip_xposedminversion_check">\'xposedminversion\' kontrolünü atla</string>
     <string name="skip_xposedminversion_check_summ">Modüller için \'xposedminversion\' kontrolünü atla</string>
-    <string name="official">Resmi</string>
-    <string name="systemless">Sistemsiz</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
-    <!-- Start compatibility -->
-    <string name="official_compatibility">"Tüm AOSP ve Samsung ROMları; Nexus, LG, HTC, Asus cihazlar"</string>
-    <string name="official_incompatibility">Uyumsuzluk yok</string>
-    <string name="official_compatibility_v21">Tüm AOSP ROMları, Nexus, LG, HTC, Huawei, Asus cihazlar</string>
-    <string name="official_incompatibility_v21">Samsung ROMları</string>
-    <string name="systemless_compatibility">Tüm AOSP-tabanlı ROMlar, Samsung ROMları; Nexus, LG, HTC, Asus, Pixel C cihazlar</string>
-    <string name="systemless_incompatibility">Uyumsuzluk yok</string>
-    <string name="samsung_compatibility">Tüm AOSP ve Samsung ROMları; Nexus, LG, HTC, Asus cihazlar. <b>Not: alt</b> sürümü Samsung Note serisi telefonlar içindir</string>
-    <string name="samsung_incompatibility">Uyumsuzluk yok</string>
-    <string name="miui_compatibility">Sadece MIUI ROMları</string>
-    <string name="miui_incompatibility">Tüm diğer ROMlar</string>
-    <!-- End compatibility -->
 
     <string name="compatibility">Uyumluluk</string>
     <string name="details">Ayrıntılar</string>
@@ -291,9 +275,7 @@
     <string name="support_xda">XDA konusundan destek al</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Sonra</string>
-    <string name="device_own">%2$s ROMlu bir %1$s cihaza sahipsiniz.</string>
     <string name="original_framework">Cihazınız resmi Xposed Framework ile uyumludur.</string>
-    <string name="goto_framework">Cihazınızla alâkalı bölüme gitmek için burayı tıklayın.</string>
     <string name="save">Kaydet</string>
     <string name="download_location">İndirme konumu</string>
     <string name="download_location_summ">APK dosyaları için indirme konumu (sadece modüller)</string>
