@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.robv.android.xposed.installer.BuildConfig;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
@@ -284,7 +285,7 @@ public class AdvancedInstallerFragment extends Fragment {
                 } catch (NullPointerException ignored) {
                 }
 
-                BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
+                BigInteger a = new BigInteger(BuildConfig.APP_VERSION);
                 BigInteger b = new BigInteger(newApkVersion);
 
                 if (a.compareTo(b) == -1) {

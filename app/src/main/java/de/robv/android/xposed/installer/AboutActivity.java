@@ -109,7 +109,7 @@ public class AboutActivity extends XposedBaseActivity {
 
             SharedPreferences prefs = getContext().getSharedPreferences(packageName + "_preferences", MODE_PRIVATE);
 
-            final String changes = prefs.getString("changelog_" + XposedApp.THIS_APK_VERSION, null);
+            final String changes = prefs.getString("changelog_" + BuildConfig.APP_VERSION, null);
 
             if (changes == null) {
                 changelogView.setVisibility(View.GONE);

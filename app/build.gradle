@@ -4,6 +4,7 @@ ext {
     VERSION_DATE = '29/04/17'
     SUPPORT_LIBRARY_VERSION = '25.3.1'
     BUILD_TOOLS = "25.0.2"
+    APP_VERSION = '"1493472600000"'
 }
 
 android {
@@ -22,6 +23,8 @@ android {
         versionCode 37
         versionName "3.0.1 by dvdandroid - " + VERSION_DATE
         project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid_" + VERSION_DATE.replaceAll("/", "_"));
+
+        buildConfigField "String", "APP_VERSION", APP_VERSION
     }
 
     buildTypes {

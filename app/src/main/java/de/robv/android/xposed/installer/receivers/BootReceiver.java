@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import java.math.BigInteger;
 
+import de.robv.android.xposed.installer.BuildConfig;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.json.JSONUtils;
@@ -45,7 +46,7 @@ public class BootReceiver extends BroadcastReceiver {
 
                 String newApkVersion = new JSONObject(jsonString).getJSONObject("apk").getString("version");
 
-                BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
+                BigInteger a = new BigInteger(BuildConfig.APP_VERSION);
                 BigInteger b = new BigInteger(newApkVersion);
 
                 if (a.compareTo(b) == -1) {
