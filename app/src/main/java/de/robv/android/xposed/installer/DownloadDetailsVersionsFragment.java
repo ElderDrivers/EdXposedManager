@@ -204,13 +204,13 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater.inflate(R.layout.list_item_version, null, true);
                 ViewHolder viewHolder = new ViewHolder();
-                viewHolder.txtStatus = (TextView) view.findViewById(R.id.txtStatus);
-                viewHolder.txtVersion = (TextView) view.findViewById(R.id.txtVersion);
-                viewHolder.txtRelType = (TextView) view.findViewById(R.id.txtRelType);
-                viewHolder.txtUploadDate = (TextView) view.findViewById(R.id.txtUploadDate);
-                viewHolder.downloadView = (DownloadView) view.findViewById(R.id.downloadView);
-                viewHolder.txtChangesTitle = (TextView) view.findViewById(R.id.txtChangesTitle);
-                viewHolder.txtChanges = (TextView) view.findViewById(R.id.txtChanges);
+                viewHolder.txtStatus = view.findViewById(R.id.txtStatus);
+                viewHolder.txtVersion = view.findViewById(R.id.txtVersion);
+                viewHolder.txtRelType = view.findViewById(R.id.txtRelType);
+                viewHolder.txtUploadDate = view.findViewById(R.id.txtUploadDate);
+                viewHolder.downloadView = view.findViewById(R.id.downloadView);
+                viewHolder.txtChangesTitle = view.findViewById(R.id.txtChangesTitle);
+                viewHolder.txtChanges = view.findViewById(R.id.txtChanges);
                 viewHolder.downloadView.fragment = DownloadDetailsVersionsFragment.this;
                 view.setTag(viewHolder);
             }

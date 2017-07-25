@@ -49,7 +49,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

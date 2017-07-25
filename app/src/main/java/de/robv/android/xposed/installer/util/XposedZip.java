@@ -74,7 +74,7 @@ public class XposedZip {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(android.R.layout.simple_dropdown_item_1line, parent, false);
 
-            holder.name = (TextView) row.findViewById(android.R.id.text1);
+            holder.name = row.findViewById(android.R.id.text1);
 
             row.setTag(holder);
 

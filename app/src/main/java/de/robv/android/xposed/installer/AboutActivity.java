@@ -38,7 +38,7 @@ public class AboutActivity extends XposedBaseActivity {
         ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

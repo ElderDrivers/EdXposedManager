@@ -111,10 +111,10 @@ public class DownloadView extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.download_view, this, true);
 
-        btnDownload = (Button) findViewById(R.id.btnDownload);
-        btnDownloadCancel = (Button) findViewById(R.id.btnDownloadCancel);
-        btnInstall = (Button) findViewById(R.id.btnInstall);
-        btnSave = (Button) findViewById(R.id.save);
+        btnDownload = findViewById(R.id.btnDownload);
+        btnDownloadCancel = findViewById(R.id.btnDownloadCancel);
+        btnInstall = findViewById(R.id.btnInstall);
+        btnSave = findViewById(R.id.save);
 
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,8 +166,8 @@ public class DownloadView extends LinearLayout {
             }
         });
 
-        progressBar = (ProgressBar) findViewById(R.id.progress);
-        txtInfo = (TextView) findViewById(R.id.txtInfo);
+        progressBar = findViewById(R.id.progress);
+        txtInfo = findViewById(R.id.txtInfo);
 
         refreshViewFromUiThread();
     }

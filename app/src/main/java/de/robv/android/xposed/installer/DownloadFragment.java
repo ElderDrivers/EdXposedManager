@@ -145,9 +145,9 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         View v = inflater.inflate(R.layout.tab_downloader, container, false);
         backgroundList = v.findViewById(R.id.background_list);
 
-        mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
+        mListView = v.findViewById(R.id.listModules);
 
-        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
+        final SwipeRefreshLayout refreshLayout = v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(XposedApp.getColor(getContext()));
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -334,7 +334,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 
             long section = getHeaderId(position);
 
-            TextView tv = (TextView) convertView.findViewById(android.R.id.title);
+            TextView tv = convertView.findViewById(android.R.id.title);
             tv.setText(mSortingOrder == RepoDb.SORT_STATUS
                     ? sectionHeadersStatus[(int) section]
                     : sectionHeadersDate[(int) section]);
@@ -402,13 +402,13 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
                 hasUpdate = false;
             }
 
-            TextView txtTitle = (TextView) view.findViewById(android.R.id.text1);
+            TextView txtTitle = view.findViewById(android.R.id.text1);
             txtTitle.setText(title);
 
-            TextView txtSummary = (TextView) view.findViewById(android.R.id.text2);
+            TextView txtSummary = view.findViewById(android.R.id.text2);
             txtSummary.setText(summary);
 
-            TextView txtStatus = (TextView) view.findViewById(R.id.downloadStatus);
+            TextView txtStatus = view.findViewById(R.id.downloadStatus);
             if (hasUpdate) {
                 txtStatus.setText(mContext.getString(
                         R.string.download_status_update_available,

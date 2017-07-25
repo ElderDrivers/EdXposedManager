@@ -106,11 +106,11 @@ public class IconListPreference extends ListPreference {
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
             View view = inflater.inflate(R.layout.icon_preference_item, parent, false);
-            CheckedTextView textView = (CheckedTextView) view.findViewById(R.id.label);
+            CheckedTextView textView = view.findViewById(R.id.label);
             textView.setText(getItem(position));
             textView.setChecked(position == mSelectedIndex);
 
-            ImageView imageView = (ImageView) view.findViewById(R.id.icon);
+            ImageView imageView = view.findViewById(R.id.icon);
             imageView.setImageDrawable(mImageDrawables.get(position));
             return view;
         }

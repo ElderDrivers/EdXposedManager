@@ -49,11 +49,11 @@ public class WelcomeActivity extends XposedBaseActivity
         ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_welcome);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        mNavigationView = findViewById(R.id.navigation_view);
         assert mNavigationView != null;
         mNavigationView.setNavigationItemSelectedListener(this);
 
