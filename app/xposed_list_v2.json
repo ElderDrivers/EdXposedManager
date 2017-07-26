@@ -400,8 +400,8 @@
     }
   ],
   "apk": {
-    "version": "1493472600000",
-    "changelog": "<b>What's new:</b><br>&#149; <b>NEW:</b> Added multiwindow for Samsung devices<br>&#149; <b>NEW:</b> added back installation with root (thanks Phoenix09)<br>&#149; <b>IMPROVEMENT:</b> restyle of about activity<br>&#149; <b>FIX:</b> minor fixes<br><br><br>Updated translations",
-    "link": "http://forum.xda-developers.com/devdb/project/dl/?id=24495&task=get"
+    "version": "1501084800000",
+    "changelog":"<b>What's new:</b><br>&#149; <b>IMPROVEMENT:</b> faster zip loading<br>&#149; <b>FIX:</b> fixed download button for Android 7.0+<br><br><br>PLEASE UPDATE TO GET LATEST ZIPS",
+    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=25827&task=get"
   }
 }
