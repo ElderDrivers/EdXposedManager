@@ -150,5 +150,11 @@
             android:summary="@string/ignore_updates_summ"
             android:title="@string/ignore_updates"/>
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="alt_download"
+            android:summary="@string/alt_download_method_summ"
+            android:title="@string/alt_download_method"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

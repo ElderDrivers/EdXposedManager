@@ -41,6 +41,8 @@ import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.ReleaseType;
 
+import static de.robv.android.xposed.installer.XposedApp.getPreferences;
+
 public class DownloadsUtil {
     public static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
     public static final String MIME_TYPE_ZIP = "application/zip";
@@ -86,7 +88,7 @@ public class DownloadsUtil {
             savePath += "/modules";
         }
 
-        if (!b.mSave && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (!b.mSave && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N || getPreferences().getBoolean("alt_download", false))) {
             b.mSave = true;
         }
 

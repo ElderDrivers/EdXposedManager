@@ -295,5 +295,8 @@
     <string name="dvdandroid_summary">Creatore di questo Xposed Installer</string>
     <string name="rovo89_summary">Principale creatore di Xposed</string>
     <string name="tungstwenty_summary">Ha aiutato con i suoi numerosi contributi, sia nel codice che nei pensieri</string>
+    <string name="unstable_build">Questa è una versione non stabile. Installala a tuo rischio e pericolo</string>
+    <string name="alt_download_method">Metodo download alternativo</string>
+    <string name="alt_download_method_summ">Seleziona questa opzione se hai problemi durante il download di un modulo</string>
 
 </resources>

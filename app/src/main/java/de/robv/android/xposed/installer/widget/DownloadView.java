@@ -22,6 +22,7 @@ import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallb
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+import static de.robv.android.xposed.installer.XposedApp.getPreferences;
 
 public class DownloadView extends LinearLayout {
     public static Button mClickedButton;

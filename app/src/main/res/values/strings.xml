@@ -307,5 +307,7 @@
     <string name="dvdandroid_summary">Creator of this Xposed Installer</string>
     <string name="biohazard_summary">Helped with Material Design implementation</string>
     <string name="unstable_build">This is a unstable build. Install it at your own risk.</string>
+    <string name="alt_download_method">Alternative download method</string>
+    <string name="alt_download_method_summ">Check this option if you get issues when downloading a module</string>
 
 </resources>
