@@ -52,7 +52,7 @@ public class AssetUtil {
             if (assets == null)
                 assets = XposedApp.getInstance().getAssets();
             InputStream in = assets.open(assetName);
-            writeStreamToFile(in, targetFile, mode);;
+            writeStreamToFile(in, targetFile, mode);
             return targetFile;
         } catch (IOException e) {
             Log.e(XposedApp.TAG, "AssetUtil -> could not extract asset", e);

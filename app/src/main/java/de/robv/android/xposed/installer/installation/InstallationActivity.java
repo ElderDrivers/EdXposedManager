@@ -56,7 +56,7 @@ public class InstallationActivity extends XposedBaseActivity {
 
         setContentView(R.layout.activity_container);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -167,11 +167,11 @@ public class InstallationActivity extends XposedBaseActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.activity_installation, container, false);
 
-            mLogText = (TextView) view.findViewById(R.id.console);
-            mProgress = (ProgressBar) view.findViewById(R.id.progressBar);
-            mConsoleResult = (ImageView) view.findViewById(R.id.console_result);
-            mBtnReboot = (Button) view.findViewById(R.id.reboot);
-            mBtnCancel = (Button) view.findViewById(R.id.cancel);
+            mLogText = view.findViewById(R.id.console);
+            mProgress = view.findViewById(R.id.progressBar);
+            mConsoleResult = view.findViewById(R.id.console_result);
+            mBtnReboot = view.findViewById(R.id.reboot);
+            mBtnCancel = view.findViewById(R.id.cancel);
 
             return view;
         }

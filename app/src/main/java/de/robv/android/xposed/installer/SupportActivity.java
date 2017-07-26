@@ -22,7 +22,7 @@ public class SupportActivity extends XposedBaseActivity {
         ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class SupportActivity extends XposedBaseActivity {
             View installerSupportView = v.findViewById(R.id.installerSupportView);
             View faqView = v.findViewById(R.id.faqView);
             View donateView = v.findViewById(R.id.donateView);
-            TextView txtModuleSupport = (TextView) v.findViewById(R.id.tab_support_module_description);
+            TextView txtModuleSupport = v.findViewById(R.id.tab_support_module_description);
 
             txtModuleSupport.setText(getString(R.string.support_modules_description,
                     getString(R.string.module_support)));

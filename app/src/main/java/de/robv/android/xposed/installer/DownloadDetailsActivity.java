@@ -72,7 +72,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
         if (mModule != null) {
             setContentView(R.layout.activity_download_details);
 
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -108,7 +108,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
         } else {
             setContentView(R.layout.activity_download_details_not_found);
 
-            TextView txtMessage = (TextView) findViewById(android.R.id.message);
+            TextView txtMessage = findViewById(android.R.id.message);
             txtMessage.setText(getResources().getString(R.string.download_details_not_found, mPackageName));
 
             findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
@@ -131,9 +131,9 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
     }
 
     private void setupTabs() {
-        mPager = (ViewPager) findViewById(R.id.download_pager);
+        mPager = findViewById(R.id.download_pager);
         mPager.setAdapter(new SwipeFragmentPagerAdapter(getSupportFragmentManager()));
-        TabLayout mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        TabLayout mTabLayout = findViewById(R.id.sliding_tabs);
         mTabLayout.setupWithViewPager(mPager);
         mTabLayout.setBackgroundColor(XposedApp.getColor(this));
     }

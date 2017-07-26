@@ -167,7 +167,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list_fragment, container, false);
 
-        mListView = (ListView) view.findViewById(android.R.id.list);
+        mListView = view.findViewById(android.R.id.list);
 
         mBackgroundList = view.findViewById(R.id.background_list);
         ((ImageView) view.findViewById(R.id.background_list_iv)).setImageResource(R.drawable.ic_nav_modules);
@@ -559,7 +559,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
             InstalledModule item = getItem(position);
 
-            TextView version = (TextView) view.findViewById(R.id.version_name);
+            TextView version = view.findViewById(R.id.version_name);
             version.setText(item.versionName);
             version.setSelected(true);
             version.setTextColor(Color.parseColor("#808080"));
@@ -570,7 +570,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
             ((ImageView) view.findViewById(R.id.icon)).setImageDrawable(item.getIcon());
 
-            TextView descriptionText = (TextView) view.findViewById(R.id.description);
+            TextView descriptionText = view.findViewById(R.id.description);
             if (!item.getDescription().isEmpty()) {
                 descriptionText.setText(item.getDescription());
                 descriptionText.setTextColor(ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorSecondary));
@@ -579,9 +579,9 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 descriptionText.setTextColor(getResources().getColor(R.color.warning));
             }
 
-            CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
+            CheckBox checkbox = view.findViewById(R.id.checkbox);
             checkbox.setChecked(mModuleUtil.isModuleEnabled(item.packageName));
-            TextView warningText = (TextView) view.findViewById(R.id.warning);
+            TextView warningText = view.findViewById(R.id.warning);
 
             if (item.minVersion == 0) {
                 checkbox.setEnabled(false);

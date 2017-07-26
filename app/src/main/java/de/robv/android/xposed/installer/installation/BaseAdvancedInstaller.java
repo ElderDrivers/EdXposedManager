@@ -135,15 +135,15 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.single_installer_view, container, false);
 
-        final Spinner chooserInstallers = (Spinner) view.findViewById(R.id.chooserInstallers);
-        final Spinner chooserUninstallers = (Spinner) view.findViewById(R.id.chooserUninstallers);
-        final Button btnInstall = (Button) view.findViewById(R.id.btnInstall);
-        final Button btnUninstall = (Button) view.findViewById(R.id.btnUninstall);
-        ImageView infoInstaller = (ImageView) view.findViewById(R.id.infoInstaller);
-        ImageView infoUninstaller = (ImageView) view.findViewById(R.id.infoUninstaller);
-        TextView compatibleTv = (TextView) view.findViewById(R.id.compatibilityTv);
-        TextView incompatibleTv = (TextView) view.findViewById(R.id.incompatibilityTv);
-        TextView author = (TextView) view.findViewById(R.id.author);
+        final Spinner chooserInstallers = view.findViewById(R.id.chooserInstallers);
+        final Spinner chooserUninstallers = view.findViewById(R.id.chooserUninstallers);
+        final Button btnInstall = view.findViewById(R.id.btnInstall);
+        final Button btnUninstall = view.findViewById(R.id.btnUninstall);
+        ImageView infoInstaller = view.findViewById(R.id.infoInstaller);
+        ImageView infoUninstaller = view.findViewById(R.id.infoUninstaller);
+        TextView compatibleTv = view.findViewById(R.id.compatibilityTv);
+        TextView incompatibleTv = view.findViewById(R.id.incompatibilityTv);
+        TextView author = view.findViewById(R.id.author);
         View showOnXda = view.findViewById(R.id.show_on_xda);
 
         chooserInstallers.setAdapter(new XposedZip.MyAdapter(getContext(), installers()));

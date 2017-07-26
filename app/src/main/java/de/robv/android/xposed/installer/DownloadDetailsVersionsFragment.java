@@ -100,16 +100,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == WRITE_EXTERNAL_PERMISSION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                DownloadsUtil.add(getActivity(), module.name,
-                        DownloadView.mClickedUrl,
-                        new DownloadsUtil.DownloadFinishedCallback() {
-                            @Override
-                            public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                                Toast.makeText(context, context.getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show();
-                            }
-                        }, DownloadsUtil.MIME_TYPES.APK, true, true);
-
+                DownloadView.mClickedButton.performClick();
             } else {
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
             }
@@ -134,9 +125,9 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
         }
 
         @Override
-        public void onDownloadFinished(Context context,
-                                       DownloadsUtil.DownloadInfo info) {
+        public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
             File localFile = new File(info.localFilename);
+
             if (!localFile.isFile())
                 return;
 
@@ -164,8 +155,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
                 return;
             }
 
-            if (!packageInfo.packageName
-                    .equals(moduleVersion.module.packageName)) {
+            if (!packageInfo.packageName.equals(moduleVersion.module.packageName)) {
                 Toast.makeText(context, context.getString(R.string.download_incorrect_package_name, packageInfo.packageName, moduleVersion.module.packageName), Toast.LENGTH_LONG).show();
                 DownloadsUtil.removeById(context, info.id);
                 return;
@@ -204,13 +194,13 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater.inflate(R.layout.list_item_version, null, true);
                 ViewHolder viewHolder = new ViewHolder();
-                viewHolder.txtStatus = (TextView) view.findViewById(R.id.txtStatus);
-                viewHolder.txtVersion = (TextView) view.findViewById(R.id.txtVersion);
-                viewHolder.txtRelType = (TextView) view.findViewById(R.id.txtRelType);
-                viewHolder.txtUploadDate = (TextView) view.findViewById(R.id.txtUploadDate);
-                viewHolder.downloadView = (DownloadView) view.findViewById(R.id.downloadView);
-                viewHolder.txtChangesTitle = (TextView) view.findViewById(R.id.txtChangesTitle);
-                viewHolder.txtChanges = (TextView) view.findViewById(R.id.txtChanges);
+                viewHolder.txtStatus = view.findViewById(R.id.txtStatus);
+                viewHolder.txtVersion = view.findViewById(R.id.txtVersion);
+                viewHolder.txtRelType = view.findViewById(R.id.txtRelType);
+                viewHolder.txtUploadDate = view.findViewById(R.id.txtUploadDate);
+                viewHolder.downloadView = view.findViewById(R.id.downloadView);
+                viewHolder.txtChangesTitle = view.findViewById(R.id.txtChangesTitle);
+                viewHolder.txtChanges = view.findViewById(R.id.txtChanges);
                 viewHolder.downloadView.fragment = DownloadDetailsVersionsFragment.this;
                 view.setTag(viewHolder);
             }

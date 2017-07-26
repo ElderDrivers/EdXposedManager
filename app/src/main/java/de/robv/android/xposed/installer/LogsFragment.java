@@ -57,10 +57,10 @@ public class LogsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_logs, container, false);
-        mTxtLog = (TextView) v.findViewById(R.id.txtLog);
+        mTxtLog = v.findViewById(R.id.txtLog);
         mTxtLog.setTextIsSelectable(true);
-        mSVLog = (ScrollView) v.findViewById(R.id.svLog);
-        mHSVLog = (HorizontalScrollView) v.findViewById(R.id.hsvLog);
+        mSVLog = v.findViewById(R.id.svLog);
+        mHSVLog = v.findViewById(R.id.hsvLog);
 /*
         View scrollTop = v.findViewById(R.id.scroll_top);
         View scrollDown = v.findViewById(R.id.scroll_down);
@@ -82,7 +82,7 @@ public class LogsFragment extends Fragment {
         if (!XposedApp.getPreferences().getBoolean("hide_logcat_warning", false)) {
             final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
 
-            TextView message = (TextView) dontShowAgainView.findViewById(android.R.id.message);
+            TextView message = dontShowAgainView.findViewById(android.R.id.message);
             message.setText(R.string.not_logcat);
 
             new MaterialDialog.Builder(getActivity())
@@ -93,7 +93,7 @@ public class LogsFragment extends Fragment {
                         @Override
                         public void onPositive(MaterialDialog dialog) {
                             super.onPositive(dialog);
-                            CheckBox checkBox = (CheckBox) dontShowAgainView.findViewById(android.R.id.checkbox);
+                            CheckBox checkBox = dontShowAgainView.findViewById(android.R.id.checkbox);
                             if (checkBox.isChecked())
                                 XposedApp.getPreferences().edit().putBoolean("hide_logcat_warning", true).apply();
                         }

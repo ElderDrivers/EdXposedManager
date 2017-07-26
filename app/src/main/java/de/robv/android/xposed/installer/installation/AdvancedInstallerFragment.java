@@ -55,8 +55,8 @@ public class AdvancedInstallerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_advanced_installer, container, false);
-        mPager = (ViewPager) view.findViewById(R.id.pager);
-        mTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        mPager = view.findViewById(R.id.pager);
+        mTabLayout = view.findViewById(R.id.tab_layout);
 
         tabsAdapter = new TabsAdapter(getChildFragmentManager());
         tabsAdapter.notifyDataSetChanged();
@@ -77,7 +77,7 @@ public class AdvancedInstallerFragment extends Fragment {
                         @Override
                         public void onPositive(MaterialDialog dialog) {
                             super.onPositive(dialog);
-                            CheckBox checkBox = (CheckBox) dontShowAgainView.findViewById(android.R.id.checkbox);
+                            CheckBox checkBox = dontShowAgainView.findViewById(android.R.id.checkbox);
                             if (checkBox.isChecked())
                                 XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
                         }

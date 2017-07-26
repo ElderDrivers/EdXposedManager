@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
@@ -23,7 +24,7 @@ import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class DownloadView extends LinearLayout {
-    public static String mClickedUrl;
+    public static Button mClickedButton;
     private final Button btnDownload;
     private final Button btnDownloadCancel;
     private final Button btnInstall;
@@ -111,14 +112,18 @@ public class DownloadView extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.download_view, this, true);
 
-        btnDownload = (Button) findViewById(R.id.btnDownload);
-        btnDownloadCancel = (Button) findViewById(R.id.btnDownloadCancel);
-        btnInstall = (Button) findViewById(R.id.btnInstall);
-        btnSave = (Button) findViewById(R.id.save);
+        btnDownload = findViewById(R.id.btnDownload);
+        btnDownloadCancel = findViewById(R.id.btnDownloadCancel);
+        btnInstall = findViewById(R.id.btnInstall);
+        btnSave = findViewById(R.id.save);
 
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mClickedButton = btnDownload;
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && checkPermissions()) return;
+
                 mInfo = DownloadsUtil.add(getContext(), mTitle, mUrl, mCallback, DownloadsUtil.MIME_TYPES.APK);
                 refreshViewFromUiThread();
 
@@ -130,7 +135,7 @@ public class DownloadView extends LinearLayout {
         btnSave.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mClickedUrl = mUrl;
+                mClickedButton = btnSave;
 
                 if (checkPermissions())
                     return;
@@ -166,8 +171,8 @@ public class DownloadView extends LinearLayout {
             }
         });
 
-        progressBar = (ProgressBar) findViewById(R.id.progress);
-        txtInfo = (TextView) findViewById(R.id.txtInfo);
+        progressBar = findViewById(R.id.progress);
+        txtInfo = findViewById(R.id.txtInfo);
 
         refreshViewFromUiThread();
     }

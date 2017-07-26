@@ -3,11 +3,14 @@ package de.robv.android.xposed.installer.util;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
 import android.app.DownloadManager.Request;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 import android.util.Log;
@@ -25,6 +28,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -80,6 +84,10 @@ public class DownloadsUtil {
         String savePath = "XposedInstaller";
         if (b.mModule) {
             savePath += "/modules";
+        }
+
+        if (!b.mSave && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            b.mSave = true;
         }
 
         Request request = new Request(Uri.parse(b.mUrl));
@@ -208,9 +216,8 @@ public class DownloadsUtil {
 
         int columnUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_URI);
         int columnTitle = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TITLE);
-        int columnLastMod = c.getColumnIndexOrThrow(
-                DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
-        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
+        int columnLastMod = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
+        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_URI);
         int columnStatus = c.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
         int columnTotalSize = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
         int columnBytesDownloaded = c.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
@@ -218,6 +225,13 @@ public class DownloadsUtil {
 
         int status = c.getInt(columnStatus);
         String localFilename = c.getString(columnFilename);
+        if (localFilename != null) {
+            localFilename = localFilename.replace("file://", "");
+            localFilename = URLDecoder.decode(localFilename);
+            if (localFilename.startsWith("content")) {
+                localFilename = queryName(context.getContentResolver(), Uri.parse(localFilename));
+            }
+        }
         if (status == DownloadManager.STATUS_SUCCESSFUL && !new File(localFilename).isFile()) {
             dm.remove(id);
             c.close();
@@ -234,21 +248,14 @@ public class DownloadsUtil {
         return info;
     }
 
-    public static DownloadInfo getLatestForUrl(Context context, String url) {
-        List<DownloadInfo> all = getAllForUrl(context, url);
-        return all.isEmpty() ? null : all.get(0);
-    }
-
     public static List<DownloadInfo> getAllForUrl(Context context, String url) {
-        DownloadManager dm = (DownloadManager) context
-                .getSystemService(Context.DOWNLOAD_SERVICE);
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         Cursor c = dm.query(new Query());
         int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
         int columnUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_URI);
         int columnTitle = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TITLE);
-        int columnLastMod = c.getColumnIndexOrThrow(
-                DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
-        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
+        int columnLastMod = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
+        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_URI);
         int columnStatus = c.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
         int columnTotalSize = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
         int columnBytesDownloaded = c.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
@@ -261,6 +268,13 @@ public class DownloadsUtil {
 
             int status = c.getInt(columnStatus);
             String localFilename = c.getString(columnFilename);
+            if (localFilename != null) {
+                localFilename = localFilename.replace("file://", "");
+                localFilename = URLDecoder.decode(localFilename);
+                if (localFilename.startsWith("content")) {
+                    localFilename = queryName(context.getContentResolver(), Uri.parse(localFilename));
+                }
+            }
             if (status == DownloadManager.STATUS_SUCCESSFUL && !new File(localFilename).isFile()) {
                 dm.remove(c.getLong(columnId));
                 continue;
@@ -276,6 +290,54 @@ public class DownloadsUtil {
 
         Collections.sort(downloads);
         return downloads;
+    }
+
+    public static DownloadInfo getLatestForUrl(Context context, String url) {
+        List<DownloadInfo> all = getAllForUrl(context, url);
+        return all.isEmpty() ? null : all.get(0);
+    }
+
+    public static void removeAllForLocalFile(Context context, File file) {
+        file.delete();
+
+        String filename;
+        try {
+            filename = file.getCanonicalPath();
+        } catch (IOException e) {
+            Log.w(XposedApp.TAG, "Could not resolve path for " + file.getAbsolutePath(), e);
+            return;
+        }
+
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Cursor c = dm.query(new Query());
+        int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
+        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_URI);
+
+        List<Long> idsList = new ArrayList<>(1);
+        while (c.moveToNext()) {
+            String itemFilename = c.getString(columnFilename);
+            if (itemFilename != null) {
+                if (filename.equals(itemFilename)) {
+                    idsList.add(c.getLong(columnId));
+                } else {
+                    try {
+                        if (filename.equals(new File(itemFilename).getCanonicalPath())) {
+                            idsList.add(c.getLong(columnId));
+                        }
+                    } catch (IOException ignored) {}
+                }
+            }
+        }
+        c.close();
+
+        if (idsList.isEmpty())
+            return;
+
+        long ids[] = new long[idsList.size()];
+        for (int i = 0; i < ids.length; i++)
+            ids[i] = idsList.get(i);
+
+        dm.remove(ids);
     }
 
     public static void removeById(Context context, long id) {
@@ -306,71 +368,14 @@ public class DownloadsUtil {
         dm.remove(ids);
     }
 
-    public static void removeAllForLocalFile(Context context, File file) {
-        file.delete();
-
-        String filename;
-        try {
-            filename = file.getCanonicalPath();
-        } catch (IOException e) {
-            Log.w(XposedApp.TAG, "Could not resolve path for " + file.getAbsolutePath(), e);
-            return;
-        }
-
-        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-        Cursor c = dm.query(new Query());
-        int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
-        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
-
-        List<Long> idsList = new ArrayList<>(1);
-        while (c.moveToNext()) {
-            String itemFilename = c.getString(columnFilename);
-            if (itemFilename != null) {
-                if (filename.equals(itemFilename)) {
-                    idsList.add(c.getLong(columnId));
-                } else {
-                    try {
-                        if (filename.equals(new File(itemFilename).getCanonicalPath())) {
-                            idsList.add(c.getLong(columnId));
-                        }
-                    } catch (IOException ignored) {}
-                }
-            }
-        }
-        c.close();
-
-        if (idsList.isEmpty())
-            return;
-
-        long ids[] = new long[idsList.size()];
-        for (int i = 0; i < ids.length; i++)
-            ids[i] = idsList.get(i);
-
-        dm.remove(ids);
-    }
-
-    public static void removeOutdated(Context context, long cutoff) {
-        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-        Cursor c = dm.query(new Query());
-        int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
-        int columnLastMod = c.getColumnIndexOrThrow(
-                DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
-
-        List<Long> idsList = new ArrayList<>();
-        while (c.moveToNext()) {
-            if (c.getLong(columnLastMod) < cutoff)
-                idsList.add(c.getLong(columnId));
-        }
-        c.close();
-
-        if (idsList.isEmpty())
-            return;
-
-        long ids[] = new long[idsList.size()];
-        for (int i = 0; i < ids.length; i++)
-            ids[i] = idsList.get(0);
-
-        dm.remove(ids);
+    private static String queryName(ContentResolver resolver, Uri uri) {
+        Cursor returnCursor = resolver.query(uri, null, null, null, null);
+        assert returnCursor != null;
+        int nameIndex = returnCursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
+        returnCursor.moveToFirst();
+        String name = returnCursor.getString(nameIndex);
+        returnCursor.close();
+        return name;
     }
 
     public static void triggerDownloadFinishedCallback(Context context, long id) {

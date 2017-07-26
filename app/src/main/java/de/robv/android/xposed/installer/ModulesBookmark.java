@@ -58,7 +58,7 @@ public class ModulesBookmark extends XposedBaseActivity {
 
         mRepoLoader = RepoLoader.getInstance();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -142,7 +142,7 @@ public class ModulesBookmark extends XposedBaseActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.list_fragment, container, false);
 
-            mListView = (ListView) view.findViewById(android.R.id.list);
+            mListView = view.findViewById(android.R.id.list);
 
             mBackgroundList = view.findViewById(R.id.background_list);
             ((ImageView) view.findViewById(R.id.background_list_iv)).setImageResource(R.drawable.ic_bookmark);

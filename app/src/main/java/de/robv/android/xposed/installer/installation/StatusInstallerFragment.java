@@ -211,16 +211,16 @@ public class StatusInstallerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.status_installer, container, false);
 
-        mErrorIcon = (ImageView) v.findViewById(R.id.errorIcon);
-        mErrorTv = (TextView) v.findViewById(R.id.errorTv);
+        mErrorIcon = v.findViewById(R.id.errorIcon);
+        mErrorTv = v.findViewById(R.id.errorTv);
         mUpdateView = v.findViewById(R.id.updateView);
         mUpdateButton = v.findViewById(R.id.click_to_update);
 
-        txtKnownIssue = (TextView) v.findViewById(R.id.framework_known_issue);
+        txtKnownIssue = v.findViewById(R.id.framework_known_issue);
 
-        TextView txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
+        TextView txtInstallError = v.findViewById(R.id.framework_install_errors);
         View txtInstallContainer = v.findViewById(R.id.status_container);
-        ImageView txtInstallIcon = (ImageView) v.findViewById(R.id.status_icon);
+        ImageView txtInstallIcon = v.findViewById(R.id.status_icon);
 
         String installedXposedVersion;
         try {
@@ -230,11 +230,11 @@ public class StatusInstallerFragment extends Fragment {
         }
 
         View disableView = v.findViewById(R.id.disableView);
-        final SwitchCompat xposedDisable = (SwitchCompat) v.findViewById(R.id.disableSwitch);
+        final SwitchCompat xposedDisable = v.findViewById(R.id.disableSwitch);
 
-        TextView androidSdk = (TextView) v.findViewById(R.id.android_version);
-        TextView manufacturer = (TextView) v.findViewById(R.id.ic_manufacturer);
-        TextView cpu = (TextView) v.findViewById(R.id.cpu);
+        TextView androidSdk = v.findViewById(R.id.android_version);
+        TextView manufacturer = v.findViewById(R.id.ic_manufacturer);
+        TextView cpu = v.findViewById(R.id.cpu);
 
         if (Build.VERSION.SDK_INT >= 21) {
             if (installedXposedVersion != null) {
