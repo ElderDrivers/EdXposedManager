@@ -344,55 +344,56 @@
       ]
     }, {
       "name": "UNOFFICIAL",
-      "sdks": [25],
+      "sdks": [24, 25],
       "author": "PurifyOS",
       "stable": false,
       "compatibility": {
+        "24": "All AOSP-based ROMs; Nexus, OnePlus devices",
         "25": "All AOSP-based ROMs; Nexus, OnePlus, Pixel C devices"
       },
       "incompatibility": {
+        "24": "All other ROMs",
         "25": "All other ROMs"
       },
       "support_url": {
+        "24": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221",
         "25": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221"
       },
       "installers": {
+        "24": [
+          {
+            "name": "Xposed-SDK24-ALL-by-PurifyOS",
+            "version": "87",
+            "link": "http://fastkit.org/xposed/classic/SDK24/Xposed-SDK24-ALL-by-PurifyOS.zip",
+            "architecture": "all"
+          }
+        ],
         "25": [
           {
-            "name": "Xposed-SDK25-Nougat-ARM-by-PurifyOS",
+            "name": "Xposed-SDK25-ALL-by-PurifyOS",
             "version": "87",
-            "link": "http://fastkit.org/xposed/classic/sdk25/arm/Xposed-SDK25-Nougat-ARM-by-PurifyOS.zip",
-            "architecture": "arm"
-          },
-          {
-            "name": "Xposed-SDK25-Nougat-ARM64-by-PurifyOS",
-            "version": "87",
-            "link": "http://fastkit.org/xposed/classic/sdk25/arm64/Xposed-SDK25-Nougat-ARM64-by-PurifyOS.zip",
-            "architecture": "arm64"
-          },
-          {
-            "name": "Xposed-SDK25-Nougat-x86-by-PurifyOS",
-            "version": "87",
-            "link": "http://fastkit.org/xposed/classic/sdk25/x86/Xposed-SDK25-Nougat-X86-by-PurifyOS.zip",
-            "architecture": "x86"
+            "link": "http://fastkit.org/xposed/classic/SDK25/Xposed-SDK25-ALL-by-PurifyOS.zip",
+            "architecture": "all"
           }
         ]
       },
       "uninstallers": [
         {
-          "name": "xposed-uninstaller-20160829-arm",
-          "version": "20160829",
-          "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20160829-arm.zip",
+          "name": "xposed-uninstaller-20170719-arm",
+          "version": "20170719",
+          "link": "http://fastkit.org/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-arm.zip",
           "architecture": "arm"
-        }, {
-          "name": "xposed-uninstaller-20160829-arm64",
-          "version": "20160829",
-          "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20160829-arm64.zip",
+        },
+        {
+          "name": "xposed-uninstaller-20170719-arm64",
+          "version": "20170719",
+          "link": "http://fastkit.org/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-arm64.zip",
           "architecture": "arm64"
-        }, {
-          "name": "xposed-uninstaller-20160829-x86",
-          "version": "20160829",
-          "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20160829-x86.zip",
+        },
+        {
+          "name": "xposed-uninstaller-20170719-x86",
+          "version": "20170719",
+          "link": "http://fastkit.org/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-x86.zip",
           "architecture": "x86"
         }
       ]

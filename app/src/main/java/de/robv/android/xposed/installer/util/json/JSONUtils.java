@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 public class JSONUtils {
 
-    public static final String JSON_LINK = "https://raw.githubusercontent.com/DVDAndroid/XposedInstaller/alt-json/app/xposed_list_v2.json";
+    public static final String JSON_LINK = "https://raw.githubusercontent.com/DVDAndroid/XposedInstaller/master/app/xposed_list_v2.json";
 
     public static String getFileContent(String url) throws IOException {
         HttpURLConnection c = (HttpURLConnection) new URL(url).openConnection();
