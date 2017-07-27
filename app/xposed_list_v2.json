@@ -355,7 +355,7 @@
         "24": "All other ROMs",
         "25": "All other ROMs"
       },
-      "support_url": {
+      "support": {
         "24": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221",
         "25": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221"
       },
