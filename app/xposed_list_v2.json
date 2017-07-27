@@ -401,7 +401,7 @@
   ],
   "apk": {
     "version": "1501084800001",
-    "changelog":"<b>What's new:</b><br>&#149; <b>IMPROVEMENT:</b> faster zip loading<br>&#149; <b>FIX:</b> HOTFIX: cannot load read logs/modules&#149; <b>FIX:</b> fixed download button for Android 7.0+<br><br><br>PLEASE UPDATE TO GET LATEST ZIPS",
+    "changelog":"<b>What's new:</b><br>&#149; <b>IMPROVEMENT:</b> faster zip loading<br>&#149; <b>FIX:</b> HOTFIX: cannot load read logs/modules&#149; <b>FIX:</b> fixed download button for Android 7.0+<br><br><br>PLEASE UPDATE TO GET LATEST ZIPS<br><br>IF INSTALLATIONS DOESN'T START, THE APK IS AVAILABLE IN XPOSEDINSTALLER DIRECTORY",
     "link": "https://forum.xda-developers.com/devdb/project/dl/?id=25839&task=get"
   }
 }
