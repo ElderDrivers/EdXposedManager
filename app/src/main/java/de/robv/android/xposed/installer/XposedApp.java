@@ -253,6 +253,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private void mkdirAndChmod(String dir, int permissions) {
         dir = BASE_DIR + dir;
         new File(dir).mkdir();
+        FileUtils.setPermissions(getFilesDir().getParent(), 00751, -1, -1);
         FileUtils.setPermissions(dir, permissions, -1, -1);
     }
 
