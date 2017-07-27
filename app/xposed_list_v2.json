@@ -362,17 +362,17 @@
       "installers": {
         "24": [
           {
-            "name": "Xposed-SDK24-ALL-by-PurifyOS",
+            "name": "26-07-17-xposed-v87-sdk24-Xposed-by-PurifyOS",
             "version": "87",
-            "link": "http://fastkit.org/xposed/classic/SDK24/Xposed-SDK24-ALL-by-PurifyOS.zip",
+            "link": "http://fastkit.org/xposed/classic/SDK24/26-07-17-xposed-v87-sdk24-Xposed-by-PurifyOS.zip",
             "architecture": "all"
           }
         ],
         "25": [
           {
-            "name": "Xposed-SDK25-ALL-by-PurifyOS",
+            "name": "26-07-17-xposed-v87-sdk25-Xposed-by-PurifyOS",
             "version": "87",
-            "link": "http://fastkit.org/xposed/classic/SDK25/Xposed-SDK25-ALL-by-PurifyOS.zip",
+            "link": "http://fastkit.org/xposed/classic/SDK25/26-07-17-xposed-v87-sdk25-Xposed-by-PurifyOS.zip",
             "architecture": "all"
           }
         ]
