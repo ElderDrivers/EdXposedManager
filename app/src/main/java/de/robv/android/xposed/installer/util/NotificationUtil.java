@@ -95,8 +95,8 @@ public final class NotificationUtil {
         // enabled before,
         // to ensure that the user know the way to disable the module later.
         if (!ModuleUtil.getInstance().getEnabledModules().isEmpty()) {
-            builder.addAction(R.drawable.ic_menu_refresh, sContext.getString(R.string.activate_and_reboot), pActivateAndReboot);
-            builder.addAction(R.drawable.ic_save, sContext.getString(R.string.activate_only), pActivate);
+            builder.addAction(new NotificationCompat.Action.Builder(R.drawable.ic_menu_refresh, sContext.getString(R.string.activate_and_reboot), pActivateAndReboot).build());
+            builder.addAction(new NotificationCompat.Action.Builder(R.drawable.ic_save, sContext.getString(R.string.activate_only), pActivate).build());
         }
 
         sNotificationManager.notify(packageName, NOTIFICATION_MODULE_NOT_ACTIVATED_YET, builder.build());
@@ -134,8 +134,8 @@ public final class NotificationUtil {
         PendingIntent pReboot = PendingIntent.getBroadcast(sContext, PENDING_INTENT_REBOOT,
                 iReboot, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        builder.addAction(0, sContext.getString(R.string.reboot), pReboot);
-        builder.addAction(0, sContext.getString(R.string.soft_reboot), pSoftReboot);
+        builder.addAction(new NotificationCompat.Action.Builder(0, sContext.getString(R.string.reboot), pReboot).build());
+        builder.addAction(new NotificationCompat.Action.Builder(0, sContext.getString(R.string.soft_reboot), pSoftReboot).build());
 
         sNotificationManager.notify(null, NOTIFICATION_MODULES_UPDATED, builder.build());
     }
@@ -155,7 +155,7 @@ public final class NotificationUtil {
             iInstallApk.putExtra(ApkReceiver.EXTRA_APK_PATH, path);
             PendingIntent pInstallApk = PendingIntent.getBroadcast(sContext, PENDING_INTENT_INSTALL_APK, iInstallApk, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            builder.addAction(0, sContext.getString(R.string.installation_apk_normal), pInstallApk);
+            builder.addAction(new NotificationCompat.Action.Builder(0, sContext.getString(R.string.installation_apk_normal), pInstallApk).build());
         }
 
         if (prefs.getBoolean(HEADS_UP, true) && Build.VERSION.SDK_INT >= 21)
