@@ -79,7 +79,7 @@ public class DownloadsUtil {
 
         if (!b.mDialog) {
             synchronized (mCallbacks) {
-                mCallbacks.put(b.mUrl, b.mCallback);
+                mCallbacks.put(b.mTitle, b.mCallback);
             }
         }
 
@@ -387,7 +387,7 @@ public class DownloadsUtil {
 
         DownloadFinishedCallback callback;
         synchronized (mCallbacks) {
-            callback = mCallbacks.get(info.url);
+            callback = mCallbacks.get(info.title);
         }
 
         if (callback == null)

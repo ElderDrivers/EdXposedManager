@@ -4,9 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -38,6 +36,7 @@ import java.io.IOException;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
@@ -108,11 +107,7 @@ public class StatusInstallerFragment extends Fragment {
         DownloadsUtil.add(sActivity, "XposedInstaller_by_dvdandroid", mUpdateLink, new DownloadsUtil.DownloadFinishedCallback() {
             @Override
             public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.fromFile(new File(path)), DownloadsUtil.MIME_TYPE_APK);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                new InstallApkUtil(context, info).execute();
             }
         }, DownloadsUtil.MIME_TYPES.APK, true);
     }
