@@ -587,7 +587,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 checkbox.setEnabled(false);
                 warningText.setText(getString(R.string.no_min_version_specified));
                 warningText.setVisibility(View.VISIBLE);
-            } else if (installedXposedVersion != 0 && item.minVersion > installedXposedVersion) {
+            } else if (installedXposedVersion > 0 && item.minVersion > installedXposedVersion) {
                 checkbox.setEnabled(false);
                 warningText.setText(String.format(getString(R.string.warning_xposed_min_version), item.minVersion));
                 warningText.setVisibility(View.VISIBLE);
@@ -599,7 +599,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 checkbox.setEnabled(false);
                 warningText.setText(getString(R.string.warning_installed_on_external_storage));
                 warningText.setVisibility(View.VISIBLE);
-            } else if (installedXposedVersion == 0) {
+            } else if (installedXposedVersion == 0 || (installedXposedVersion == -1 && !StatusInstallerFragment.DISABLE_FILE.exists())) {
                 checkbox.setEnabled(false);
                 warningText.setText(getString(R.string.not_installed_no_lollipop));
                 warningText.setVisibility(View.VISIBLE);

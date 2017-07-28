@@ -24,6 +24,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import de.robv.android.xposed.installer.ModulesFragment;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.RepoDb;
 
@@ -192,7 +193,7 @@ public final class ModuleUtil {
     }
 
     public List<InstalledModule> getEnabledModules() {
-        LinkedList<InstalledModule> result = new LinkedList<InstalledModule>();
+        LinkedList<InstalledModule> result = new LinkedList<>();
 
         for (String packageName : mPref.getAll().keySet()) {
             InstalledModule module = getModule(packageName);
@@ -209,18 +210,20 @@ public final class ModuleUtil {
         try {
             Log.i(XposedApp.TAG, "ModuleUtil -> updating modules.list");
             int installedXposedVersion = XposedApp.getXposedVersion();
-            if (installedXposedVersion <= 0) {
+            boolean disabled = StatusInstallerFragment.DISABLE_FILE.exists();
+            if (!disabled && installedXposedVersion <= 0) {
                 Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
-            PrintWriter enabledModulesList = new PrintWriter(
-                    XposedApp.ENABLED_MODULES_LIST_FILE);
+            PrintWriter enabledModulesList = new PrintWriter(XposedApp.ENABLED_MODULES_LIST_FILE);
             List<InstalledModule> enabledModules = getEnabledModules();
             for (InstalledModule module : enabledModules) {
-                if (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)
+                if (!disabled && (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)) {
+                    Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
                     continue;
+                }
 
                 modulesList.println(module.app.sourceDir);
 
@@ -235,8 +238,7 @@ public final class ModuleUtil {
             enabledModulesList.close();
 
             FileUtils.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
-            FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, 00664,
-                    -1, -1);
+            FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, 00664, -1, -1);
 
             if (showToast)
                 showToast(R.string.xposed_module_list_updated);
