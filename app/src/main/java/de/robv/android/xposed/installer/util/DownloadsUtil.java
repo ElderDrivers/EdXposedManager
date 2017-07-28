@@ -90,6 +90,7 @@ public class DownloadsUtil {
 
         if (!b.mSave && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N || getPreferences().getBoolean("alt_download", false))) {
             b.mSave = true;
+            savePath += "/.temp";
         }
 
         Request request = new Request(Uri.parse(b.mUrl));
