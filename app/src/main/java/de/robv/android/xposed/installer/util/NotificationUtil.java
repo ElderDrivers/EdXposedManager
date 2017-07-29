@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer.util;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -39,6 +40,9 @@ public final class NotificationUtil {
     private static final String HEADS_UP = "heads_up";
     private static final String FRAGMENT_ID = "fragment";
 
+    private static final String NOTIFICATION_UPDATE_CHANNEL = "app_update_channel";
+    private static final String NOTIFICATION_MODULES_CHANNEL = "modules_channel";
+
     private static Context sContext = null;
     private static NotificationManager sNotificationManager;
     private static SharedPreferences prefs;
@@ -49,6 +53,13 @@ public final class NotificationUtil {
         sContext = XposedApp.getInstance();
         prefs = XposedApp.getPreferences();
         sNotificationManager = (NotificationManager) sContext.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(NOTIFICATION_UPDATE_CHANNEL, sContext.getString(R.string.download_section_update_available), NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel1 = new NotificationChannel(NOTIFICATION_MODULES_CHANNEL, sContext.getString(R.string.nav_item_modules), NotificationManager.IMPORTANCE_DEFAULT);
+            sNotificationManager.createNotificationChannel(channel);
+            sNotificationManager.createNotificationChannel(channel1);
+        }
     }
 
     public static void cancel(int id) {
@@ -89,7 +100,7 @@ public final class NotificationUtil {
         NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
         notiStyle.setBigContentTitle(title);
         notiStyle.bigText(sContext.getString(R.string.module_is_not_activated_yet_detailed, appName));
-        builder.setStyle(notiStyle);
+        builder.setStyle(notiStyle).setChannelId(NOTIFICATION_MODULES_CHANNEL);
 
         // Only show the quick activation button if any module has been
         // enabled before,
@@ -136,6 +147,7 @@ public final class NotificationUtil {
 
         builder.addAction(new NotificationCompat.Action.Builder(0, sContext.getString(R.string.reboot), pReboot).build());
         builder.addAction(new NotificationCompat.Action.Builder(0, sContext.getString(R.string.soft_reboot), pSoftReboot).build());
+        builder.setChannelId(NOTIFICATION_MODULES_CHANNEL);
 
         sNotificationManager.notify(null, NOTIFICATION_MODULES_UPDATED, builder.build());
     }
@@ -167,7 +179,7 @@ public final class NotificationUtil {
         NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
         notiStyle.setBigContentTitle(title);
         notiStyle.bigText(message);
-        builder.setStyle(notiStyle);
+        builder.setStyle(notiStyle).setChannelId(NOTIFICATION_MODULES_CHANNEL);
 
         sNotificationManager.notify(null, NOTIFICATION_MODULE_INSTALLATION, builder.build());
 
@@ -192,7 +204,7 @@ public final class NotificationUtil {
         NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
         notiStyle.setBigContentTitle(title);
         notiStyle.bigText(message);
-        builder.setStyle(notiStyle);
+        builder.setStyle(notiStyle).setChannelId(NOTIFICATION_MODULES_CHANNEL);
 
         sNotificationManager.notify(null, NOTIFICATION_MODULE_INSTALLING, builder.build());
     }
@@ -221,7 +233,7 @@ public final class NotificationUtil {
         NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
         notiStyle.setBigContentTitle(title);
         notiStyle.bigText(message);
-        builder.setStyle(notiStyle);
+        builder.setStyle(notiStyle).setChannelId(NOTIFICATION_UPDATE_CHANNEL);
 
         sNotificationManager.notify(null, NOTIFICATION_INSTALLER_UPDATE, builder.build());
     }
