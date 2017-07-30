@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,16 +23,16 @@ public class XposedTab implements Parcelable {
         }
     };
 
-    public String name;
-    public List<Integer> sdks;
-    public String author;
-    public boolean stable;
+    public String name = "";
+    public List<Integer> sdks = new ArrayList<>();
+    public String author = "";
+    public boolean stable = true;
 
-    public HashMap<String, String> compatibility;
-    public HashMap<String, String> incompatibility;
-    public HashMap<String, String> support;
-    public HashMap<String, List<XposedZip>> installers;
-    public List<XposedZip> uninstallers;
+    public HashMap<String, String> compatibility = new HashMap<>();
+    public HashMap<String, String> incompatibility = new HashMap<>();
+    public HashMap<String, String> support = new HashMap<>();
+    public HashMap<String, List<XposedZip>> installers = new HashMap<>();
+    public List<XposedZip> uninstallers = new ArrayList<>();
 
     public XposedTab() { }
 
