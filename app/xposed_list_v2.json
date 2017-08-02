@@ -352,8 +352,8 @@
         "25": "All AOSP-based ROMs; Nexus, OnePlus, Pixel C devices"
       },
       "incompatibility": {
-        "24": "All other ROMs",
-        "25": "All other ROMs"
+        "24": "MIUI, AEX, Touchwiz, all other ROMs",
+        "25": "MIUI, AEX, Touchwiz, all other ROMs""
       },
       "support": {
         "24": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221",
@@ -395,6 +395,50 @@
           "version": "20170719",
           "link": "http://fastkit.org/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-x86.zip",
           "architecture": "x86"
+        }
+      ]
+    }
+    }, {
+      "name": "UNOFFICIAL SYSTEMLESS MAGISK",
+      "sdks": [24, 25],
+      "author": "PurifyOS",
+      "stable": false,
+      "compatibility": {
+        "24": "All AOSP-based ROMs; Nexus, OnePlus devices",
+        "25": "All AOSP-based ROMs; Nexus, OnePlus, Pixel C devices"
+      },
+      "incompatibility": {
+        "24": "MIUI, AEX, Touchwiz, all other ROMs",
+        "25": "MIUI, AEX, Touchwiz, all other ROMs""
+      },
+      "support": {
+        "24": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221",
+        "25": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221"
+      },
+      "installers": {
+        "24": [
+          {
+            "name": "26-07-17-xposed-systemless-v87-sdk24-by-PurifyOS.zip",
+            "version": "87",
+            "link": "http://fastkit.org/xposed/magisk/SDK24/26-07-17-xposed-systemless-v87-sdk24-by-PurifyOS.zip",
+            "architecture": "all"
+          }
+        ],
+        "25": [
+          {
+            "name": "26-07-17-xposed-systemless-v87-sdk25-by-PurifyOS.zip",
+            "version": "87",
+            "link": "http://fastkit.org/xposed/magisk/SDK25/26-07-17-xposed-systemless-v87-sdk25-by-PurifyOS.zip",
+            "architecture": "all"
+          }
+        ]
+      },
+      "uninstallers": [
+        {
+          "name": "PurifyOS-XposedMagisk-Uninstaller.zip",
+          "version": "20170719",
+          "link": "http://fastkit.org/xposed/magisk/Uninstaller/PurifyOS-XposedMagisk-Uninstaller.zip",
+          "architecture": "all"
         }
       ]
     }
