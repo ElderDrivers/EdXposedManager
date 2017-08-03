@@ -219,7 +219,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
         reloadXposedProp();
         createDirectories();
-        cleanUpDir();
+        delete(new File(Environment.getExternalStorageDirectory() + "/XposedInstaller/.temp"));
         NotificationUtil.init();
         AssetUtil.removeBusybox();
 
@@ -246,10 +246,11 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
     }
 
-    private void cleanUpDir() {
-        File file = new File(Environment.getExternalStorageDirectory() + "/XposedInstaller/.temp");
-        File[] contents = file.listFiles();
-        if (contents != null) for (File f : contents) f.delete();
+    private void delete(File file){
+        if (file.isDirectory()) {
+            for (File f : file.listFiles())
+                delete(f);
+        }
         file.delete();
     }
 
