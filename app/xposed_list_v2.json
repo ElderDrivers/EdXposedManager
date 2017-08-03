@@ -353,7 +353,7 @@
       },
       "incompatibility": {
         "24": "MIUI, AEX, Touchwiz, all other ROMs",
-        "25": "MIUI, AEX, Touchwiz, all other ROMs""
+        "25": "MIUI, AEX, Touchwiz, all other ROMs"
       },
       "support": {
         "24": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221",
@@ -397,7 +397,6 @@
           "architecture": "x86"
         }
       ]
-    }
     }, {
       "name": "UNOFFICIAL SYSTEMLESS MAGISK",
       "sdks": [24, 25],
@@ -409,7 +408,7 @@
       },
       "incompatibility": {
         "24": "MIUI, AEX, Touchwiz, all other ROMs",
-        "25": "MIUI, AEX, Touchwiz, all other ROMs""
+        "25": "MIUI, AEX, Touchwiz, all other ROMs"
       },
       "support": {
         "24": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221",
@@ -418,7 +417,7 @@
       "installers": {
         "24": [
           {
-            "name": "26-07-17-xposed-systemless-v87-sdk24-by-PurifyOS.zip",
+            "name": "26-07-17-xposed-systemless-v87-sdk24-by-PurifyOS",
             "version": "87",
             "link": "http://fastkit.org/xposed/magisk/SDK24/26-07-17-xposed-systemless-v87-sdk24-by-PurifyOS.zip",
             "architecture": "all"
@@ -426,7 +425,7 @@
         ],
         "25": [
           {
-            "name": "26-07-17-xposed-systemless-v87-sdk25-by-PurifyOS.zip",
+            "name": "26-07-17-xposed-systemless-v87-sdk25-by-PurifyOS",
             "version": "87",
             "link": "http://fastkit.org/xposed/magisk/SDK25/26-07-17-xposed-systemless-v87-sdk25-by-PurifyOS.zip",
             "architecture": "all"
@@ -435,7 +434,7 @@
       },
       "uninstallers": [
         {
-          "name": "PurifyOS-XposedMagisk-Uninstaller.zip",
+          "name": "PurifyOS-XposedMagisk-Uninstaller",
           "version": "20170719",
           "link": "http://fastkit.org/xposed/magisk/Uninstaller/PurifyOS-XposedMagisk-Uninstaller.zip",
           "architecture": "all"
