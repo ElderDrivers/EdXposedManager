@@ -443,8 +443,8 @@
     }
   ],
   "apk": {
-    "version": "1501084800001",
-    "changelog":"<b>What's new:</b><br>&#149; <b>IMPROVEMENT:</b> faster zip loading<br>&#149; <b>FIX:</b> HOTFIX: cannot load read logs/modules&#149; <b>FIX:</b> fixed download button for Android 7.0+<br><br><br>PLEASE UPDATE TO GET LATEST ZIPS<br><br>IF INSTALLATIONS DOESN'T START, THE APK IS AVAILABLE IN XPOSEDINSTALLER DIRECTORY",
-    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=25839&task=get"
+    "version": "1501849500000",
+    "changelog":"<b>What's new:</b><br>&#149; <b>NEW:</b> added support for Purify Systemless Xposed<br>&#149; <b>IMPROVEMENT:</b> move downloaded modules in a temp directory (only 24+)<br>&#149; <b>FIX:</b> cannot download update<br>&#149; <b>FIX:</b> enable/disable modules if Xposed is disabled<br>&#149; <b>FIX:</b> prevent crash<br><br><br>PLEASE UPDATE TO GET LATEST ZIPS<br><br>IF INSTALLATIONS DOESN'T START, THE APK IS AVAILABLE IN XPOSEDINSTALLER DIRECTORY",
+    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=25965&task=get"
   }
 }
