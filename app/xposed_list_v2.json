@@ -364,7 +364,7 @@
           {
             "name": "26-07-17-xposed-v87-sdk24-Xposed-by-PurifyOS",
             "version": "87",
-            "link": "http://fastkit.org/xposed/classic/SDK24/26-07-17-xposed-v87-sdk24-Xposed-by-PurifyOS.zip",
+            "link": "http://main.purifyos.it/xposed/classic/SDK24/26-07-17-xposed-v87-sdk24-Xposed-by-PurifyOS.zip",
             "architecture": "all"
           }
         ],
@@ -372,7 +372,7 @@
           {
             "name": "26-07-17-xposed-v87-sdk25-Xposed-by-PurifyOS",
             "version": "87",
-            "link": "http://fastkit.org/xposed/classic/SDK25/26-07-17-xposed-v87-sdk25-Xposed-by-PurifyOS.zip",
+            "link": "http://main.purifyos.it/xposed/classic/SDK25/26-07-17-xposed-v87-sdk25-Xposed-by-PurifyOS.zip",
             "architecture": "all"
           }
         ]
@@ -381,19 +381,19 @@
         {
           "name": "xposed-uninstaller-20170719-arm",
           "version": "20170719",
-          "link": "http://fastkit.org/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-arm.zip",
+          "link": "http://main.purifyos.it/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-arm.zip",
           "architecture": "arm"
         },
         {
           "name": "xposed-uninstaller-20170719-arm64",
           "version": "20170719",
-          "link": "http://fastkit.org/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-arm64.zip",
+          "link": "http://main.purifyos.it/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-arm64.zip",
           "architecture": "arm64"
         },
         {
           "name": "xposed-uninstaller-20170719-x86",
           "version": "20170719",
-          "link": "http://fastkit.org/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-x86.zip",
+          "link": "http://main.purifyos.it/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-x86.zip",
           "architecture": "x86"
         }
       ]
@@ -419,7 +419,7 @@
           {
             "name": "26-07-17-xposed-systemless-v87-sdk24-by-PurifyOS",
             "version": "87",
-            "link": "http://fastkit.org/xposed/magisk/SDK24/26-07-17-xposed-systemless-v87-sdk24-by-PurifyOS.zip",
+            "link": "http://main.purifyos.it/xposed/magisk/SDK24/26-07-17-xposed-systemless-v87-sdk24-by-PurifyOS.zip",
             "architecture": "all"
           }
         ],
@@ -427,7 +427,7 @@
           {
             "name": "26-07-17-xposed-systemless-v87-sdk25-by-PurifyOS",
             "version": "87",
-            "link": "http://fastkit.org/xposed/magisk/SDK25/26-07-17-xposed-systemless-v87-sdk25-by-PurifyOS.zip",
+            "link": "http://main.purifyos.it/xposed/magisk/SDK25/26-07-17-xposed-systemless-v87-sdk25-by-PurifyOS.zip",
             "architecture": "all"
           }
         ]
@@ -436,7 +436,7 @@
         {
           "name": "PurifyOS-XposedMagisk-Uninstaller",
           "version": "20170719",
-          "link": "http://fastkit.org/xposed/magisk/Uninstaller/PurifyOS-XposedMagisk-Uninstaller.zip",
+          "link": "http://main.purifyos.it/xposed/magisk/Uninstaller/PurifyOS-XposedMagisk-Uninstaller.zip",
           "architecture": "all"
         }
       ]
