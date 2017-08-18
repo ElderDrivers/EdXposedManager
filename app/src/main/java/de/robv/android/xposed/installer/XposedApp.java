@@ -6,6 +6,8 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -39,6 +41,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import de.robv.android.xposed.installer.receivers.PackageChangeReceiver;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
@@ -222,6 +225,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         delete(new File(Environment.getExternalStorageDirectory() + "/XposedInstaller/.temp"));
         NotificationUtil.init();
         AssetUtil.removeBusybox();
+        registerReceivers();
 
         registerActivityLifecycleCallbacks(this);
 
@@ -244,6 +248,15 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
             conf.locale = Locale.ENGLISH;
             res.updateConfiguration(conf, dm);
         }
+    }
+
+    private void registerReceivers() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        filter.addDataScheme("package");
+        registerReceiver(new PackageChangeReceiver(), filter);
     }
 
     private void delete(File file){

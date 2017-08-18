@@ -169,17 +169,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.XposedInstaller.Transparent"/>
         <receiver
-            android:name=".receivers.PackageChangeReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED"/>
-                <action android:name="android.intent.action.PACKAGE_CHANGED"/>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-
-                <data android:scheme="package"/>
-            </intent-filter>
-        </receiver>
-        <receiver
             android:name=".receivers.DownloadReceiver"
             android:exported="true"
             android:permission="android.permission.SEND_DOWNLOAD_COMPLETED_INTENTS">
