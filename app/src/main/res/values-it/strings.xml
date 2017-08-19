@@ -263,7 +263,6 @@
     <string name="look_and_feel">Aspetto</string>
     <string name="compatibility">Compatibilità</string>
     <string name="later">Più tardi</string>
-    <string name="original_framework">Il tuo dispositivo è compatibile con la versione ufficiale del Xposed Framework</string>
     <string name="save">Salva</string>
     <string name="support_xda">Ottieni supporto su XDA</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>

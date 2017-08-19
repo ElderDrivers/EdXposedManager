@@ -275,7 +275,6 @@
     <string name="support_xda">Obter suporte no tópico do XDA</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Mais tarde</string>
-    <string name="original_framework">O seu dispositivo é compatível com a Xposed Framework oficial.</string>
     <string name="save">Guardar</string>
     <string name="download_location">Localização para transferências</string>
     <string name="download_location_summ">Localização para transferência de ficheiros APK (apenas módulos)</string>

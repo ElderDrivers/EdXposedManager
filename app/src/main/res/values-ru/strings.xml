@@ -309,5 +309,4 @@
     <string name="unstable_build">Это нестабильная сборка. Ставите ее на свой страх и риск.</string>
     <string name="alt_download_method">Альтернативный способ загрузки</string>
     <string name="alt_download_method_summ">Включите тут, если вы получите проблемы при загрузке модуля</string>
-    <string name="original_framework">Ваше устройство совместимо с официальным Xposed Framework.</string>
 </resources>
