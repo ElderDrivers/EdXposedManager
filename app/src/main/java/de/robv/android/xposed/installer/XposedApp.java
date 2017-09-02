@@ -260,11 +260,13 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     private void delete(File file){
-        if (file.isDirectory()) {
-            for (File f : file.listFiles())
-                delete(f);
+        if (file != null) {
+            if (file.isDirectory()) {
+                File[] files = file.listFiles();
+                if (files != null) for (File f : file.listFiles()) delete(f);
+            }
+            file.delete();
         }
-        file.delete();
     }
 
     private void createDirectories() {
