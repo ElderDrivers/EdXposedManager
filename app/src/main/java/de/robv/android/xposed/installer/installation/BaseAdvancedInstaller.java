@@ -188,7 +188,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
 
         View.OnClickListener btnClick = new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 mClickedButton = v;
                 if (checkPermissions()) return;
 
@@ -198,7 +198,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
                             public void onPositive(MaterialDialog dialog) {
                                 super.onPositive(dialog);
 
-                                XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
+                                XposedZip selectedInstaller = (XposedZip) (v == chooserInstallers ? chooserInstallers : chooserUninstallers).getSelectedItem();
 
                                 checkAndDelete(selectedInstaller.name);
 
