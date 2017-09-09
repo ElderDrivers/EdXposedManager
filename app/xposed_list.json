@@ -222,8 +222,8 @@
     }
   ],
   "apk":{
-    "version": "1501849500000",
-    "changelog":"<b>What's new:</b><br>&#149; <b>NEW:</b> added support for Purify Systemless Xposed<br>&#149; <b>IMPROVEMENT:</b> move downloaded modules in a temp directory (only 24+)<br>&#149; <b>FIX:</b> cannot download update<br>&#149; <b>FIX:</b> enable/disable modules if Xposed is disabled<br>&#149; <b>FIX:</b> prevent crash<br><br><br>PLEASE UPDATE TO GET LATEST ZIPS<br><br>IF INSTALLATIONS DOESN'T START, THE APK IS AVAILABLE IN XPOSEDINSTALLER DIRECTORY",
-    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=25965&task=get"
+    "version": "1504966500000",
+    "changelog":"<b>What's new:</b><br>&#149; <b>NEW:</b> new path for Magisk<br>&#149; <b>IMPROVEMENTS:</b> Oreo improvements<br>&#149; <b>IMPROVEMENTS:</b> translations updates<br>&#149; <b>FIX:</b> fixed FC<br>&#149; <b>FIX:</b> fixed cannot download uninstallers<br><br>IF INSTALLATIONS DOESN'T START, THE APK IS AVAILABLE IN XPOSEDINSTALLER DIRECTORY",
+    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=26581&task=get"
   }
 }

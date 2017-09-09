@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 ext {
-    VERSION_DATE = '04/08/17'
+    VERSION_DATE = '09/09/17'
     SUPPORT_LIBRARY_VERSION = '26.0.0'
     BUILD_TOOLS = "26.0.1"
-    APP_VERSION = '"1501849500000"'
+    APP_VERSION = '"1504966500000"'
 }
 
 android {
