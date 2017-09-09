@@ -381,19 +381,19 @@
         {
           "name": "xposed-uninstaller-20170719-arm",
           "version": "20170719",
-          "link": "http://main.purifyos.it/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-arm.zip",
+          "link": "http://main.purifyos.it/xposed/classic/Uninstaller/xposed-uninstaller-20170719-arm.zip",
           "architecture": "arm"
         },
         {
           "name": "xposed-uninstaller-20170719-arm64",
           "version": "20170719",
-          "link": "http://main.purifyos.it/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-arm64.zip",
+          "link": "http://main.purifyos.it/xposed/classic/Uninstaller/xposed-uninstaller-20170719-arm64.zip",
           "architecture": "arm64"
         },
         {
           "name": "xposed-uninstaller-20170719-x86",
           "version": "20170719",
-          "link": "http://main.purifyos.it/xposed/classic/Uninstaller%20/xposed-uninstaller-20170719-x86.zip",
+          "link": "http://main.purifyos.it/xposed/classic/Uninstaller/xposed-uninstaller-20170719-x86.zip",
           "architecture": "x86"
         }
       ]
@@ -443,8 +443,8 @@
     }
   ],
   "apk": {
-    "version": "1504966500000",
+    "version": "1504966500001",
     "changelog":"<b>What's new:</b><br>&#149; <b>NEW:</b> new path for Magisk<br>&#149; <b>IMPROVEMENTS:</b> Oreo improvements<br>&#149; <b>IMPROVEMENTS:</b> translations updates<br>&#149; <b>FIX:</b> fixed FC<br>&#149; <b>FIX:</b> fixed cannot download uninstallers<br><br>IF INSTALLATIONS DOESN'T START, THE APK IS AVAILABLE IN XPOSEDINSTALLER DIRECTORY",
-    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=26581&task=get"
+    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=26586&task=get"
   }
 }

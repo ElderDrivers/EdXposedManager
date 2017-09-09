@@ -186,9 +186,9 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
             }
         });
 
-        View.OnClickListener btnClick = new View.OnClickListener() {
+        btnInstall.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(final View v) {
+            public void onClick(View v) {
                 mClickedButton = v;
                 if (checkPermissions()) return;
 
@@ -198,7 +198,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
                             public void onPositive(MaterialDialog dialog) {
                                 super.onPositive(dialog);
 
-                                XposedZip selectedInstaller = (XposedZip) (v == chooserInstallers ? chooserInstallers : chooserUninstallers).getSelectedItem();
+                                XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
 
                                 checkAndDelete(selectedInstaller.name);
 
@@ -213,10 +213,36 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
                             }
                         });
             }
-        };
+        });
 
-        btnInstall.setOnClickListener(btnClick);
-        btnUninstall.setOnClickListener(btnClick);
+        btnUninstall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mClickedButton = v;
+                if (checkPermissions()) return;
+
+                areYouSure(R.string.warningArchitecture,
+                        new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
+                                super.onPositive(dialog);
+
+                                XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
+
+                                checkAndDelete(selectedUninstaller.name);
+
+                                new DownloadsUtil.Builder(getContext())
+                                        .setTitle(selectedUninstaller.name)
+                                        .setUrl(selectedUninstaller.link)
+                                        .setSave(true)
+                                        .setCallback(BaseAdvancedInstaller.this)
+                                        .setMimeType(DownloadsUtil.MIME_TYPES.ZIP)
+                                        .setDialog(true)
+                                        .download();
+                            }
+                        });
+            }
+        });
 
         compatibleTv.setText(compatibility());
         incompatibleTv.setText(incompatibility());
