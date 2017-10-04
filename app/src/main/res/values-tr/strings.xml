@@ -220,7 +220,7 @@
     <string name="downloadZipOk">%1$s doğru şekilde indirildi</string>
     <string name="permissionNotGranted">Bu özellik, harici depolama alanına yazmak için izin almadan çalışmaz.</string>
     <string name="warningArchitecture">DOĞRU XPOSED ZIP MİMARİSİNİ SEÇTİNİZ Mİ?\nYanlış zip telefonunuza zarar verebilir!</string>
-    <string name="newVersion">"Xposed Installer'ın yeni sürümü mevcut! Güncelleyin!"</string>
+    <string name="newVersion">"Xposed Yükleyicisi'nin yeni sürümü mevcut! Güncelleyin!"</string>
     <string name="update">Güncelle</string>
     <string name="choose_icon">Simge seç</string>
     <string name="custom_icon">Özel simge</string>
@@ -246,18 +246,20 @@
     <string name="undo">Geri al</string>
     <string name="notification_coloration">Renkli bildirim simgesi</string>
     <string name="file_is_empty">Dosya boş</string>
+    <string name="install_with_su">Modülü root ile yükle</string>
+    <string name="install_with_su_summ">İşaretlenmişse, Xposed Yükleyicisi, modülleri sorgu olmadan yükleyecektir</string>
     <string name="install_remove">Yükle ve kaldır</string>
     <string name="download_remove">İndir ve kaldır</string>
     <string name="module_saved">Modül %1$s içine kaydedildi</string>
     <string name="ignore_updates">Güncellemeyi yoksay</string>
-    <string name="ignore_updates_summ">Belirli bir modül için güncellemeleri yoksay.</string>
+    <string name="ignore_updates_summ">Belirli bir modül için güncellemeleri yoksay</string>
     <string name="reboot_recovery">Kurtarma modunda yeniden başlat</string>
     <string name="loading">Yükleniyor…</string>
     <string name="chrome_custom_tabs">Chrome Özel Sekmeler</string>
     <string name="chrome_custom_tabs_summ">Bağlantıları dahili tarayıcıda aç</string>
     <string name="scroll_bottom">En alta kaydır</string>
-    <string name="open_drawer_summ">Başlangıçta gezinti çekmecesini otomatik aç.</string>
-    <string name="open_drawer">Gezinti çekmecesini otomatik olarak aç</string>
+    <string name="open_drawer_summ">Başlangıçta gezinti çekmecesini otomatik aç</string>
+    <string name="open_drawer">Gezinti çekmecesini otomatik aç</string>
     <string name="share_app">Uygulamayı paylaş</string>
     <string name="share_app_text">Şuna bir bak: Materyal Tasarımlı Xposed Installer! %s</string>
     <string name="status">Xposed Durumu</string>
@@ -265,8 +267,8 @@
     <string name="xposed_off_next_reboot">Xposed Framework sonraki yeniden başlatmada devre dışı bırakılacak</string>
     <string name="rovo_89_old_icon">rovo89 (eski)</string>
     <string name="confirm_reboots">Yeniden başlatmayı onayla</string>
-    <string name="skip_xposedminversion_check">\'xposedminversion\' kontrolünü atla</string>
-    <string name="skip_xposedminversion_check_summ">Modüller için \'xposedminversion\' kontrolünü atla</string>
+    <string name="skip_xposedminversion_check">Min. xposed sürümü kontrolünü atla</string>
+    <string name="skip_xposedminversion_check_summ">Modüller için minimum xposed sürümü kontrolünü atla</string>
 
 
     <string name="compatibility">Uyumluluk</string>
@@ -293,5 +295,13 @@
     <string name="flash_error_invalid_zip">Yüklenebilir bir ZIP dosyası değil</string>
     <string name="flash_error_not_flashable_in_app">Bu dosya sadece kurtarma modu üzerinden yüklenebilir</string>
     <string name="flash_error_default">%d hatası oluştu</string>
+    <string name="rovo89_summary">Xposed\'ın ana geliştiricisi</string>
+    <string name="tungstwenty_summary">Hem kod hem de düşünceleriyle yardımcı</string>
+    <string name="dvdandroid_summary">Bu Xposed Yükleyicisi\'nin geliştiricisi</string>
+    <string name="biohazard_summary">Materyal Tasarımı uygulama konusunda yardımcı</string>
+    <string name="unstable_build">Bu stabil olmayan bir yapıdır. Yüklemek kendi sorumluluğunuzdadır.</string>
+    <string name="alt_download_method">Alternatif indirme yöntemi</string>
+    <string name="alt_download_method_summ">Bir modül indirirken sorun çıkarsa bu seçeneği işaretleyin</string>
+
 
 </resources>
