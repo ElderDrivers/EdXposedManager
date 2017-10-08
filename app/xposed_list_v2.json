@@ -2,7 +2,7 @@
   "tabs": [
     {
       "name": "OFFICIAL",
-      "sdks": [15, 16, 17, 18, 19, 21, 22, 23],
+      "sdks": [15, 16, 17, 18, 19, 21, 22, 23, 24, 25],
       "author": "rovo89",
       "stable": true,
       "compatibility": {
@@ -13,7 +13,9 @@
         "19": "All AOSP and Samsung ROM; Nexus, LG, HTC, Asus devices",
         "21": "All AOSP ROM, Nexus, LG, HTC, Huawei, Asus devices",
         "22": "All AOSP ROM, Nexus, LG, HTC, Huawei, Asus devices",
-        "23": "All AOSP ROM, Nexus, LG, HTC, Huawei, Asus devices"
+        "23": "All AOSP ROM, Nexus, LG, HTC, Huawei, Asus devices",
+        "24": "All AOSP ROM, Nexus, LG, HTC, Huawei, Asus devices",
+        "25": "All AOSP ROM, Nexus, LG, HTC, Huawei, Asus devices"
       },
       "incompatibility": {
         "15": "No incompatibility",
@@ -23,7 +25,9 @@
         "19": "No incompatibility",
         "21": "Samsung ROMs",
         "22": "Samsung ROMs",
-        "23": "Samsung ROMs"
+        "23": "Samsung ROMs",
+        "24": "Samsung ROMs",
+        "25": "Samsung ROMs"
       },
       "support": {
         "15": "http://forum.xda-developers.com/xposed",
@@ -33,7 +37,9 @@
         "19": "http://forum.xda-developers.com/xposed",
         "21": "http://forum.xda-developers.com/xposed/official-xposed-lollipop-t3030118",
         "22": "http://forum.xda-developers.com/xposed/official-xposed-lollipop-t3030118",
-        "23": "http://forum.xda-developers.com/xposed/discussion-xposed-marshmallow-t3249095"
+        "23": "http://forum.xda-developers.com/xposed/discussion-xposed-marshmallow-t3249095",
+        "24": "https://forum.xda-developers.com/xposed/discussion-xposed-nougat-t3685687",
+        "25": "https://forum.xda-developers.com/xposed/discussion-xposed-nougat-t3685687"
       },
       "installers": {
         "15": [
