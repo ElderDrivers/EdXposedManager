@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 import android.util.Log;
@@ -65,6 +64,7 @@ public class DownloadsUtil {
                 .setMimeType(mimeType)
                 .setSave(save)
                 .setModule(module)
+                .setMimeType(MIME_TYPES.APK)
                 .download();
     }
 
@@ -81,10 +81,6 @@ public class DownloadsUtil {
         String savePath = "XposedInstaller";
         if (b.mModule) {
             savePath += "/modules";
-        }
-
-        if (!b.mSave && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            b.mSave = true;
         }
 
         Request request = new Request(Uri.parse(b.mUrl));
@@ -163,7 +159,7 @@ public class DownloadsUtil {
                             }
                         });
                         return;
-                    }  else if (info.status == DownloadManager.STATUS_SUCCESSFUL) {
+                    } else if (info.status == DownloadManager.STATUS_SUCCESSFUL) {
                         dialog.dismiss();
                         // Hack to reset stat information.
                         new File(info.localFilename).setExecutable(false);
