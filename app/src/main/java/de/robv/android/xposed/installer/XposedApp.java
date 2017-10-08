@@ -17,14 +17,12 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -45,7 +43,6 @@ import java.util.regex.Pattern;
 
 import de.robv.android.xposed.installer.receivers.PackageChangeReceiver;
 import de.robv.android.xposed.installer.util.AssetUtil;
-import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
@@ -147,21 +144,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
     public static SharedPreferences getPreferences() {
         return mInstance.mPref;
-    }
-
-    public static void installApk(Context context, DownloadsUtil.DownloadInfo info) {
-        Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-        installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri uri;
-        if (Build.VERSION.SDK_INT >= 24) {
-            uri = FileProvider.getUriForFile(context, "de.robv.android.xposed.installer.fileprovider", new File(info.localFilename));
-            installIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        } else {
-            uri = Uri.fromFile(new File(info.localFilename));
-        }
-        installIntent.setDataAndType(uri, DownloadsUtil.MIME_TYPE_APK);
-        installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
-        context.startActivity(installIntent);
     }
 
     public static int getColor(Context context) {

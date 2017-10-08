@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.v4.content.FileProvider;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -32,10 +34,17 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         mRootUtil = new RootUtil();
     }
 
-    static void installApkNormally(Context context, String localFilename) {
+    public static void installApkNormally(Context context, String localFilename) {
         Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
         installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        installIntent.setDataAndType(Uri.fromFile(new File(localFilename)), DownloadsUtil.MIME_TYPE_APK);
+        Uri uri;
+        if (Build.VERSION.SDK_INT >= 24) {
+            uri = FileProvider.getUriForFile(context, "de.robv.android.xposed.installer.fileprovider", new File(localFilename));
+            installIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } else {
+            uri = Uri.fromFile(new File(localFilename));
+        }
+        installIntent.setDataAndType(uri, DownloadsUtil.MIME_TYPE_APK);
         installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
         context.startActivity(installIntent);
     }
