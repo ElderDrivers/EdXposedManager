@@ -48,6 +48,83 @@ public class DownloadsUtil {
     private static final SharedPreferences mPref = mApp
             .getSharedPreferences("download_cache", Context.MODE_PRIVATE);
 
+    public static String DOWNLOAD_FRAMEWORK = "framework";
+    public static String DOWNLOAD_MODULES = "modules";
+
+    private static DownloadInfo add(Builder b) {
+        Context context = b.mContext;
+        removeAllForUrl(context, b.mUrl);
+
+        if (!b.mDialog) {
+            synchronized (mCallbacks) {
+                mCallbacks.put(b.mUrl, b.mCallback);
+            }
+        }
+
+        String savePath = "XposedInstaller";
+        if (b.mModule) {
+            savePath += "/modules";
+        }
+
+        Request request = new Request(Uri.parse(b.mUrl));
+        request.setTitle(b.mTitle);
+        request.setMimeType(b.mMimeType.toString());
+        if (b.mSave) {
+            try {
+                request.setDestinationInExternalPublicDir(savePath, b.mTitle + b.mMimeType.getExtension());
+            } catch (IllegalStateException e) {
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        } else if (b.mDestination != null) {
+            b.mDestination.getParentFile().mkdirs();
+            removeAllForLocalFile(context, b.mDestination);
+            request.setDestinationUri(Uri.fromFile(b.mDestination));
+        }
+
+        request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
+
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        long id = dm.enqueue(request);
+
+        if (b.mDialog) {
+            showDownloadDialog(b, id);
+        }
+
+        return getById(context, id);
+    }
+
+    public static File[] getDownloadDirs(String subDir) {
+        Context context = XposedApp.getInstance();
+        ArrayList<File> dirs = new ArrayList<>(2);
+        for (File dir : ContextCompat.getExternalCacheDirs(context)) {
+            if (dir != null && EnvironmentCompat.getStorageState(dir).equals(Environment.MEDIA_MOUNTED)) {
+                dirs.add(new File(new File(dir, "downloads"), subDir));
+            }
+        }
+        dirs.add(new File(new File(context.getCacheDir(), "downloads"), subDir));
+        return dirs.toArray(new File[dirs.size()]);
+    }
+
+    public static File getDownloadTarget(String subDir, String filename) {
+        return new File(getDownloadDirs(subDir)[0], filename);
+    }
+
+    public static File getDownloadTargetForUrl(String subDir, String url) {
+        return getDownloadTarget(subDir, Uri.parse(url).getLastPathSegment());
+    }
+
+    public static DownloadInfo addModule(Context context, String title, String url, boolean save, DownloadFinishedCallback callback) {
+        return new Builder(context)
+                .setTitle(title)
+                .setUrl(url)
+                .setDestinationFromUrl(DownloadsUtil.DOWNLOAD_MODULES)
+                .setCallback(callback)
+                .setSave(save)
+                .setModule(true)
+                .setMimeType(MIME_TYPES.APK)
+                .download();
+    }
+
     public static class Builder {
         private final Context mContext;
         private String mTitle = null;
@@ -56,7 +133,8 @@ public class DownloadsUtil {
         private MIME_TYPES mMimeType = MIME_TYPES.APK;
         private File mDestination = null;
         private boolean mDialog = false;
-        private boolean save=false;
+        public boolean mModule = false;
+        private boolean mSave = false;
 
         public Builder(Context context) {
             mContext = context;
@@ -95,8 +173,12 @@ public class DownloadsUtil {
         }
 
         public Builder setSave(boolean save) {
-            this.save = save;
-            //todo
+            this.mSave = save;
+            return this;
+        }
+
+        public Builder setModule(boolean module) {
+            this.mModule = module;
             return this;
         }
 
@@ -108,70 +190,6 @@ public class DownloadsUtil {
         public DownloadInfo download() {
             return add(this);
         }
-    }
-
-    public static String DOWNLOAD_FRAMEWORK = "framework";
-    public static String DOWNLOAD_MODULES = "modules";
-
-    public static File[] getDownloadDirs(String subDir) {
-        Context context = XposedApp.getInstance();
-        ArrayList<File> dirs = new ArrayList<>(2);
-        for (File dir : ContextCompat.getExternalCacheDirs(context)) {
-            if (dir != null && EnvironmentCompat.getStorageState(dir).equals(Environment.MEDIA_MOUNTED)) {
-                dirs.add(new File(new File(dir, "downloads"), subDir));
-            }
-        }
-        dirs.add(new File(new File(context.getCacheDir(), "downloads"), subDir));
-        return dirs.toArray(new File[dirs.size()]);
-    }
-
-    public static File getDownloadTarget(String subDir, String filename) {
-        return new File(getDownloadDirs(subDir)[0], filename);
-    }
-
-    public static File getDownloadTargetForUrl(String subDir, String url) {
-        return getDownloadTarget(subDir, Uri.parse(url).getLastPathSegment());
-    }
-
-    public static DownloadInfo addModule(Context context, String title, String url, boolean save, DownloadFinishedCallback callback) {
-        return new Builder(context)
-                .setTitle(title)
-                .setUrl(url)
-                .setDestinationFromUrl(DownloadsUtil.DOWNLOAD_MODULES)
-                .setCallback(callback)
-                .setSave(save)
-                .setMimeType(MIME_TYPES.APK)
-                .download();
-    }
-
-    private static DownloadInfo add(Builder b) {
-        Context context = b.mContext;
-        removeAllForUrl(context, b.mUrl);
-
-        if (!b.mDialog) {
-            synchronized (mCallbacks) {
-                mCallbacks.put(b.mUrl, b.mCallback);
-            }
-        }
-
-        Request request = new Request(Uri.parse(b.mUrl));
-        request.setTitle(b.mTitle);
-        request.setMimeType(b.mMimeType.toString());
-        if (b.mDestination != null) {
-            b.mDestination.getParentFile().mkdirs();
-            removeAllForLocalFile(context, b.mDestination);
-            request.setDestinationUri(Uri.fromFile(b.mDestination));
-        }
-        request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
-
-        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-        long id = dm.enqueue(request);
-
-        if (b.mDialog) {
-            showDownloadDialog(b, id);
-        }
-
-        return getById(context, id);
     }
 
     private static void showDownloadDialog(final Builder b, final long id) {

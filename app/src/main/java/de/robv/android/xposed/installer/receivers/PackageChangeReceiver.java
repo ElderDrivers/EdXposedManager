@@ -10,7 +10,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 
 public class PackageChangeReceiver extends BroadcastReceiver {
-    private final static ModuleUtil mModuleUtil = ModuleUtil.getInstance();
+    private static ModuleUtil mModuleUtil = null;
 
     private static String getPackageName(Intent intent) {
         Uri uri = intent.getData();
@@ -42,7 +42,12 @@ public class PackageChangeReceiver extends BroadcastReceiver {
                 if (!isForPackage)
                     return;
             }
+        } else if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)) {
+            NotificationUtil.cancel(packageName, NotificationUtil.NOTIFICATION_MODULE_NOT_ACTIVATED_YET);
+            return;
         }
+
+        mModuleUtil = getModuleUtilInstance();
 
         InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
         if (module == null
@@ -62,5 +67,12 @@ public class PackageChangeReceiver extends BroadcastReceiver {
         } else {
             NotificationUtil.showNotActivatedNotification(packageName, module.getAppName());
         }
+    }
+
+    private ModuleUtil getModuleUtilInstance() {
+        if (mModuleUtil == null) {
+            mModuleUtil = ModuleUtil.getInstance();
+        }
+        return mModuleUtil;
     }
 }

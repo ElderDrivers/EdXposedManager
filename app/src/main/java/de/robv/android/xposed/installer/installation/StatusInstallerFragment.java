@@ -364,7 +364,7 @@ public class StatusInstallerFragment extends Fragment {
             case 25:
                 return "Nougat";
             case 26:
-//            case 27:
+            case 27:
                 return "Oreo";
         }
         return "";

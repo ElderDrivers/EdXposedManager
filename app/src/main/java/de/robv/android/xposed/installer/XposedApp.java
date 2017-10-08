@@ -223,6 +223,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
         reloadXposedProp();
         createDirectories();
+        delete(new File(Environment.getExternalStorageDirectory() + "/XposedInstaller/.temp"));
         NotificationUtil.init();
         AssetUtil.removeBusybox();
         registerReceivers();

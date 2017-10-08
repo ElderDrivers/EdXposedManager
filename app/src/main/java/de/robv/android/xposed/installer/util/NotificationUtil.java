@@ -22,7 +22,7 @@ import de.robv.android.xposed.installer.XposedApp;
 
 public final class NotificationUtil {
 
-    private static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
+    public static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
     private static final int NOTIFICATION_MODULES_UPDATED = 1;
     private static final int NOTIFICATION_INSTALLER_UPDATE = 2;
     private static final int NOTIFICATION_MODULE_INSTALLATION = 3;
@@ -64,6 +64,10 @@ public final class NotificationUtil {
 
     public static void cancel(int id) {
         sNotificationManager.cancel(id);
+    }
+
+    public static void cancel(String tag, int id) {
+        sNotificationManager.cancel(tag, id);
     }
 
     public static void cancelAll() {

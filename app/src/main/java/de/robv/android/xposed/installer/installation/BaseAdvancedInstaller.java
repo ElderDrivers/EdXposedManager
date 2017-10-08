@@ -146,8 +146,10 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         TextView author = view.findViewById(R.id.author);
         View showOnXda = view.findViewById(R.id.show_on_xda);
 
-        chooserInstallers.setAdapter(new XposedZip.MyAdapter(getContext(), installers()));
-        chooserUninstallers.setAdapter(new XposedZip.MyAdapter(getContext(), uninstallers()));
+        try {
+            chooserInstallers.setAdapter(new XposedZip.MyAdapter(getContext(), installers()));
+            chooserUninstallers.setAdapter(new XposedZip.MyAdapter(getContext(), uninstallers()));
+        } catch (Exception ignored) {}
 
         if (Build.VERSION.SDK_INT >= 21 && installers().size() >= 3 && uninstallers().size() >= 4) {
             if (StatusInstallerFragment.ARCH.contains("86")) {
@@ -248,11 +250,13 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         incompatibleTv.setText(incompatibility());
         author.setText(getString(R.string.download_author, author()));
 
-        if (uninstallers().size() == 0) {
-            infoUninstaller.setVisibility(View.GONE);
-            chooserUninstallers.setVisibility(View.GONE);
-            btnUninstall.setVisibility(View.GONE);
-        }
+        try {
+            if (uninstallers().size() == 0) {
+                infoUninstaller.setVisibility(View.GONE);
+                chooserUninstallers.setVisibility(View.GONE);
+                btnUninstall.setVisibility(View.GONE);
+            }
+        } catch (Exception ignored) {}
 
         if (!isStable()) {
             view.findViewById(R.id.warning_unstable).setVisibility(View.VISIBLE);
