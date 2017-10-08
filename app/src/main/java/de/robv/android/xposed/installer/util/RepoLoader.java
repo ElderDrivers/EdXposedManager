@@ -203,7 +203,6 @@ public class RepoLoader {
                 return;
             mIsLoading = true;
         }
-        mApp.updateProgressIndicator(mSwipeRefreshLayout);
 
         new Thread("RepositoryReload") {
             public void run() {
@@ -228,7 +227,6 @@ public class RepoLoader {
                 synchronized (this) {
                     mIsLoading = false;
                 }
-                mApp.updateProgressIndicator(mSwipeRefreshLayout);
             }
         }.start();
     }

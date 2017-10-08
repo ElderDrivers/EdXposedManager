@@ -77,7 +77,6 @@ public final class ModuleUtil {
                 return;
             mIsReloading = true;
         }
-        mApp.updateProgressIndicator(null);
 
         Map<String, InstalledModule> modules = new HashMap<String, InstalledModule>();
         RepoDb.beginTransation();
@@ -110,7 +109,6 @@ public final class ModuleUtil {
         synchronized (this) {
             mIsReloading = false;
         }
-        mApp.updateProgressIndicator(null);
         for (ModuleListener listener : mListeners) {
             listener.onInstalledModulesReloaded(mInstance);
         }

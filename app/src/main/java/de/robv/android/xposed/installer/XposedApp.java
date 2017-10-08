@@ -17,13 +17,14 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -43,6 +44,7 @@ import java.util.regex.Pattern;
 
 import de.robv.android.xposed.installer.receivers.PackageChangeReceiver;
 import de.robv.android.xposed.installer.util.AssetUtil;
+import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
@@ -69,7 +71,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private static Thread mUiThread;
     private static Handler mMainHandler;
     private boolean mIsUiLoaded = false;
-    private Activity mCurrentActivity = null;
     private SharedPreferences mPref;
     private InstallZipUtil.XposedProp mXposedProp;
 
@@ -145,6 +146,21 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         return mInstance.mPref;
     }
 
+    public static void installApk(Context context, DownloadsUtil.DownloadInfo info) {
+        Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+        installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Uri uri;
+        if (Build.VERSION.SDK_INT >= 24) {
+            uri = FileProvider.getUriForFile(context, "de.robv.android.xposed.installer.fileprovider", new File(info.localFilename));
+            installIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } else {
+            uri = Uri.fromFile(new File(info.localFilename));
+        }
+        installIntent.setDataAndType(uri, DownloadsUtil.MIME_TYPE_APK);
+        installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
+        context.startActivity(installIntent);
+    }
+
     public static int getColor(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(context.getPackageName() + "_preferences", MODE_PRIVATE);
         int defaultColor = context.getResources().getColor(R.color.colorPrimary);
@@ -152,8 +168,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         return prefs.getInt("colors", defaultColor);
     }
 
-    public static void setColors(ActionBar actionBar, Object value,
-                                 Activity activity) {
+    public static void setColors(ActionBar actionBar, Object value, Activity activity) {
         int color = (int) value;
         SharedPreferences prefs = activity.getSharedPreferences(activity.getPackageName() + "_preferences", MODE_PRIVATE);
 
@@ -223,7 +238,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
         reloadXposedProp();
         createDirectories();
-        delete(new File(Environment.getExternalStorageDirectory() + "/XposedInstaller/.temp"));
         NotificationUtil.init();
         AssetUtil.removeBusybox();
         registerReceivers();
@@ -327,22 +341,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
     }
 
-    public void updateProgressIndicator(final SwipeRefreshLayout refreshLayout) {
-        final boolean isLoading = RepoLoader.getInstance().isLoading() || ModuleUtil.getInstance().isLoading();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                synchronized (XposedApp.this) {
-                    if (mCurrentActivity != null) {
-                        mCurrentActivity.setProgressBarIndeterminateVisibility(isLoading);
-                        if (refreshLayout != null)
-                            refreshLayout.setRefreshing(isLoading);
-                    }
-                }
-            }
-        });
-    }
-
     @Override
     public synchronized void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         if (mIsUiLoaded)
@@ -354,14 +352,10 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
     @Override
     public synchronized void onActivityResumed(Activity activity) {
-        mCurrentActivity = activity;
-        updateProgressIndicator(null);
     }
 
     @Override
     public synchronized void onActivityPaused(Activity activity) {
-        activity.setProgressBarIndeterminateVisibility(false);
-        mCurrentActivity = null;
     }
 
     @Override
