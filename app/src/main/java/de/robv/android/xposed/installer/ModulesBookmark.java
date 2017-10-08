@@ -217,45 +217,44 @@ public class ModulesBookmark extends XposedBaseActivity {
 
             switch (item.getItemId()) {
                 case R.id.install_bookmark:
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.addModule(getContext(), module.name, mv.downloadLink, true, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             new InstallApkUtil(getContext(), info).execute();
                         }
-                    }, DownloadsUtil.MIME_TYPES.APK);
+                    });
                     break;
                 case R.id.install_remove_bookmark:
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.addModule(getContext(), module.name, mv.downloadLink, true, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             new InstallApkUtil(getContext(), info).execute();
                             remove(pkg);
                         }
-                    }, DownloadsUtil.MIME_TYPES.APK);
+                    });
                     break;
                 case R.id.download_bookmark:
                     if (checkPermissions())
                         return false;
 
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.addModule(getContext(), module.name, mv.downloadLink, true, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                            Toast.makeText(context, getString(R.string.module_saved,
-                                    info.localFilename), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show();
                         }
-                    }, DownloadsUtil.MIME_TYPES.APK, true, true);
+                    });
                     break;
                 case R.id.download_remove_bookmark:
                     if (checkPermissions())
                         return false;
 
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.addModule(getContext(), module.name, mv.downloadLink, true, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             remove(pkg);
                             Toast.makeText(context, getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show();
                         }
-                    }, DownloadsUtil.MIME_TYPES.APK, true, true);
+                    });
                     break;
                 case R.id.remove:
                     remove(pkg);

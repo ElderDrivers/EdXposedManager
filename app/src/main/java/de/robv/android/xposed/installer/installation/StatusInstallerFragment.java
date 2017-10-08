@@ -104,12 +104,20 @@ public class StatusInstallerFragment extends Fragment {
 
         new File(path).delete();
 
-        DownloadsUtil.add(sActivity, "XposedInstaller_by_dvdandroid", mUpdateLink, new DownloadsUtil.DownloadFinishedCallback() {
-            @Override
-            public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                new InstallApkUtil(context, info).execute();
-            }
-        }, DownloadsUtil.MIME_TYPES.APK, true);
+        new DownloadsUtil.Builder(sActivity)
+                .setTitle("XposedInstaller_by_dvdandroid")
+                .setUrl(mUpdateLink)
+                .setDestinationFromUrl(DownloadsUtil.DOWNLOAD_FRAMEWORK)
+                .setCallback(new DownloadsUtil.DownloadFinishedCallback() {
+                    @Override
+                    public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
+                        new InstallApkUtil(context, info).execute();
+                    }
+                })
+                .setMimeType(DownloadsUtil.MIME_TYPES.APK)
+                .setDialog(true)
+                .download();
+
     }
 
     private static boolean checkPermissions() {

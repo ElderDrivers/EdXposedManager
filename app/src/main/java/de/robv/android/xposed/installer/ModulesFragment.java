@@ -68,7 +68,6 @@ import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
-import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
@@ -360,12 +359,12 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
             }
 
             if (mv != null) {
-                DownloadsUtil.add(getActivity(), m.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                DownloadsUtil.addModule(getContext(), m.name, mv.downloadLink, true, new DownloadsUtil.DownloadFinishedCallback() {
                     @Override
                     public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                        new InstallApkUtil(getContext(), info).execute();
+                        Toast.makeText(context, getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show();
                     }
-                }, DownloadsUtil.MIME_TYPES.APK);
+                });
             }
         }
 
