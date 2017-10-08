@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
@@ -22,7 +21,6 @@ import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallb
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-import static de.robv.android.xposed.installer.XposedApp.getPreferences;
 
 public class DownloadView extends LinearLayout {
     public static Button mClickedButton;
@@ -122,8 +120,6 @@ public class DownloadView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 mClickedButton = btnDownload;
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && checkPermissions()) return;
 
                 mInfo = DownloadsUtil.add(getContext(), mTitle, mUrl, mCallback, DownloadsUtil.MIME_TYPES.APK);
                 refreshViewFromUiThread();
