@@ -35,6 +35,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,7 +55,9 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     public static final String TAG = "XposedInstaller";
 
     @SuppressLint("SdCardPath")
-    public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
+    private static final String BASE_DIR_LEGACY = "/data/data/de.robv.android.xposed.installer/";
+    public static final String BASE_DIR = Build.VERSION.SDK_INT >= 24
+            ? "/data/user_de/0/de.robv.android.xposed.installer/" : BASE_DIR_LEGACY;
     public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
     private static final File XPOSED_PROP_FILE_SYSTEMLESS_1 = new File("/magisk/xposed/system/xposed.prop");
     private static final File XPOSED_PROP_FILE_SYSTEMLESS_2 = new File("/su/xposed/system/xposed.prop");
@@ -274,7 +277,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         registerReceiver(new PackageChangeReceiver(), filter);
     }
 
-    private void delete(File file){
+    private void delete(File file) {
         if (file != null) {
             if (file.isDirectory()) {
                 File[] files = file.listFiles();
@@ -285,9 +288,20 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     private void createDirectories() {
-        mkdirAndChmod("bin", 00771);
+        FileUtils.setPermissions(BASE_DIR, 00711, -1, -1);
         mkdirAndChmod("conf", 00771);
         mkdirAndChmod("log", 00777);
+
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
+                Method deleteDir = FileUtils.class.getDeclaredMethod("deleteContentsAndDir", File.class);
+                deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "bin"));
+                deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "conf"));
+                deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "log"));
+            } catch (ReflectiveOperationException e) {
+                Log.w(XposedApp.TAG, "Failed to delete obsolete directories", e);
+            }
+        }
     }
 
     private void mkdirAndChmod(String dir, int permissions) {
@@ -367,8 +381,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     @Override
-    public void onActivitySaveInstanceState(Activity activity,
-                                            Bundle outState) {
+    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
     }
 
     @Override
