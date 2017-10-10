@@ -67,7 +67,7 @@
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed модуль еще не активирован</string>
     <string name="module_is_not_activated_yet_detailed">%s был установлен но не активирован.</string>
-    <string name="activate_and_reboot">Перезагрузить</string>
+    <string name="activate_and_reboot">Вкл. и перезагрузить</string>
     <string name="activate_only">Включить</string>
     <string name="module_activated">Модуль Xposed был активирован</string>
     <string name="module_empty_description">(описание отсутствует)</string>
