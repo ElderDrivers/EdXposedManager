@@ -158,7 +158,7 @@
     <string name="about_developers_label">Peamised arendajad</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ja <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> ja <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> veaparanduste ja Materjaalse disaini eest</string>
     <string name="about_translator_label">Tõlkija</string>
-    <string name="translator">Madis Otenurm</string>
+    <string name="translator">Madis0</string>
     <string name="about_version_label">Versioon</string>
     <string name="about_source_label">Lähtekood</string>
     <string name="about_libraries_label">Kasutatud teegid</string>
@@ -276,11 +276,37 @@
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Hiljem</string>
     <string name="save">Salvesta</string>
-	<string name="download_location">Allalaadimisasukoht</string>
+    <string name="download_location">Allalaadimisasukoht</string>
     <string name="download_location_summ">APK-failide allalaadimiste asukoht (ainult moodulid)</string>
     <string name="restart_needed">Taaskäivitamine vajalik</string>
     <string name="cache_cleaned">Rakenduse vahemälu on tühjendatud. Taaskäivitamine vajalik</string>
     <string name="update_download_list">Allalaadimise moodulite nimekiri laaditakse mõne sekundi pärast</string>
     <string name="no_connection_available">Ühendus puudub</string>
 
+    <string name="not_logcat">Kui keegi küsis sult Android Logcat\'i, oled sa vales kohas. See on Xposed\'i logi, XDA-st võid leida, mida sul vaja on</string>
+    <string name="force_english">Sunni inglise keel / Force English language</string>
+    <string name="warning_language">Keelemuutus rakendatakse peale rakenduse taaskäivitust.</string>
+    <string name="not_flashable_inapp">Seda ZIP-faili ei saa rakenduses välgutada. Installin automaatselt taastuses</string>
+    <string name="not_now">Mitte praegu</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">Esines ajalõpp</string>
+    <string name="flash_error_shell_died">Käivitus ootamatult katkestatud</string>
+    <string name="flash_error_invalid_zip">Pole välgutatav ZIP-fail</string>
+    <string name="flash_error_not_flashable_in_app">Seda faili saab välgutada ainult taastuse kaudu</string>
+    <string name="flash_error_default">Esines viga %d</string>
+    <string name="installation_error">Installimise viga</string>
+    <string name="installation_successful">Installimine oli edukas</string>
+    <string name="installation_successful_message">%s edukalt installitud</string>
+    <string name="installation_error_message">%1$s installimine ebaõnnestus (%2$s)</string>
+    <string name="installation_apk_normal">Installi APK tavaliselt</string>
+    <string name="install_load">Installimine…</string>
+    <string name="install_load_apk">Installin %s</string>
+
+    <string name="rovo89_summary">Põhiline Xposed\'i looja</string>
+    <string name="tungstwenty_summary">Aitas oma paljude kaastöödega, nii koodis kui mõtetes</string>
+    <string name="dvdandroid_summary">Selle Xposed Installeri looja</string>
+    <string name="biohazard_summary">Aitas rakendada Materiaalset disaini</string>
+    <string name="unstable_build">See on ebastabiilne väljalase. Installi omal vastutusel.</string>
+    <string name="alt_download_method">Alternatiivne allalaadimismeetod</string>
+    <string name="alt_download_method_summ">Märgista see valik, kui esineb moodulite allalaadimisel probleeme</string>
 </resources>
