@@ -361,66 +361,11 @@
           "architecture": "x86"
         }
       ]
-    }, {
-      "name": "UNOFFICIAL",
-      "sdks": [24, 25],
-      "author": "PurifyOS",
-      "stable": false,
-      "compatibility": {
-        "24": "All AOSP-based ROMs; Nexus, OnePlus devices",
-        "25": "All AOSP-based ROMs; Nexus, OnePlus, Pixel C devices"
-      },
-      "incompatibility": {
-        "24": "MIUI, AEX, Touchwiz, all other ROMs",
-        "25": "MIUI, AEX, Touchwiz, all other ROMs"
-      },
-      "support": {
-        "24": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221",
-        "25": "https://forum.xda-developers.com/xposed/xposed-android-nougat-sdk-25-arm64-t3639221"
-      },
-      "installers": {
-        "24": [
-          {
-            "name": "26-07-17-xposed-v87-sdk24-Xposed-by-PurifyOS",
-            "version": "87",
-            "link": "http://main.purifyos.it/xposed/classic/SDK24/26-07-17-xposed-v87-sdk24-Xposed-by-PurifyOS.zip",
-            "architecture": "all"
-          }
-        ],
-        "25": [
-          {
-            "name": "26-07-17-xposed-v87-sdk25-Xposed-by-PurifyOS",
-            "version": "87",
-            "link": "http://main.purifyos.it/xposed/classic/SDK25/26-07-17-xposed-v87-sdk25-Xposed-by-PurifyOS.zip",
-            "architecture": "all"
-          }
-        ]
-      },
-      "uninstallers": [
-        {
-          "name": "xposed-uninstaller-20170719-arm",
-          "version": "20170719",
-          "link": "http://main.purifyos.it/xposed/classic/Uninstaller/xposed-uninstaller-20170719-arm.zip",
-          "architecture": "arm"
-        },
-        {
-          "name": "xposed-uninstaller-20170719-arm64",
-          "version": "20170719",
-          "link": "http://main.purifyos.it/xposed/classic/Uninstaller/xposed-uninstaller-20170719-arm64.zip",
-          "architecture": "arm64"
-        },
-        {
-          "name": "xposed-uninstaller-20170719-x86",
-          "version": "20170719",
-          "link": "http://main.purifyos.it/xposed/classic/Uninstaller/xposed-uninstaller-20170719-x86.zip",
-          "architecture": "x86"
-        }
-      ]
     }
   ],
   "apk": {
-    "version": "1504966500001",
-    "changelog":"<b>What's new:</b><br>&#149; <b>NEW:</b> new path for Magisk<br>&#149; <b>IMPROVEMENTS:</b> Oreo improvements<br>&#149; <b>IMPROVEMENTS:</b> translations updates<br>&#149; <b>FIX:</b> fixed FC<br>&#149; <b>FIX:</b> fixed cannot download uninstallers<br><br>IF INSTALLATIONS DOESN'T START, THE APK IS AVAILABLE IN XPOSEDINSTALLER DIRECTORY",
-    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=26586&task=get"
+    "version": "1508330700000",
+    "changelog":"<b>What's new:</b><br>&#149; <b>IMPROVEMENTS:</b> Nougat improvements<br>&#149; Translation updates<br>You need to clear app's data if you have problems with Xposed",
+    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=270066&task=get"
   }
 }

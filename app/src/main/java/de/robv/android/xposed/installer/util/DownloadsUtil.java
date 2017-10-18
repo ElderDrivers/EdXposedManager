@@ -315,7 +315,13 @@ public class DownloadsUtil {
         int columnReason = c.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON);
 
         int status = c.getInt(columnStatus);
-        String localFilename = getFilenameFromUri(c.getString(columnLocalUri));
+        String localFilename;
+        try {
+            localFilename = getFilenameFromUri(c.getString(columnLocalUri));
+        } catch (UnsupportedOperationException e) {
+            Toast.makeText(context, "An error occurred. Restart app and try again.\n" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return null;
+        }
         if (status == DownloadManager.STATUS_SUCCESSFUL && !new File(localFilename).isFile()) {
             dm.remove(id);
             c.close();
@@ -357,7 +363,13 @@ public class DownloadsUtil {
                 continue;
 
             int status = c.getInt(columnStatus);
-            String localFilename = getFilenameFromUri(c.getString(columnLocalUri));
+            String localFilename;
+            try {
+                localFilename = getFilenameFromUri(c.getString(columnLocalUri));
+            } catch (UnsupportedOperationException e) {
+                Toast.makeText(context, "An error occurred. Restart app and try again.\n" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                return null;
+            }
             if (status == DownloadManager.STATUS_SUCCESSFUL && !new File(localFilename).isFile()) {
                 dm.remove(c.getLong(columnId));
                 continue;
@@ -421,7 +433,13 @@ public class DownloadsUtil {
 
         List<Long> idsList = new ArrayList<>(1);
         while (c.moveToNext()) {
-            String itemFilename = getFilenameFromUri(c.getString(columnLocalUri));
+            String itemFilename;
+            try {
+                itemFilename = getFilenameFromUri(c.getString(columnLocalUri));
+            } catch (UnsupportedOperationException e) {
+                Toast.makeText(context, "An error occurred. Restart app and try again.\n" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                itemFilename = null;
+            }
             if (itemFilename != null) {
                 if (filename.equals(itemFilename)) {
                     idsList.add(c.getLong(columnId));
