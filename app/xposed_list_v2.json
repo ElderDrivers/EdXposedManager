@@ -135,41 +135,41 @@
       "installers": {
         "21": [
           {
-            "name": "xposed-v87.3-sdk21-topjohnwu",
-            "version": "87.3",
-            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4267581&d=1504964415",
+            "name": "xposed-v88.0-sdk21-topjohnwu",
+            "version": "88.0",
+            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4297638&d=1507569580",
             "architecture": "all"
           }
         ],
         "22": [
           {
-            "name": "xposed-v87.3-sdk22-topjohnwu",
-            "version": "87.3",
-            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4267582&d=1504964519",
+            "name": "xposed-v88.0-sdk22-topjohnwu",
+            "version": "88.0",
+            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4301301&d=1507882610",
             "architecture": "all"
           }
         ],
         "23": [
           {
-            "name": "xposed-v87.3-sdk23-topjohnwu",
-            "version": "87.3",
-            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4267583&d=1504964543",
+            "name": "xposed-v88.0-sdk23-topjohnwu",
+            "version": "88.0",
+            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4301302&d=1507882629",
             "architecture": "all"
           }
         ],
         "24": [
           {
-            "name": "xposed-v87.3-sdk24-topjohnwu",
-            "version": "87.3",
-            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4267584&d=1504964570",
+            "name": "xposed-v88.1-sdk24-topjohnwu",
+            "version": "88.1",
+            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4301304&d=1507882643",
             "architecture": "all"
           }
         ],
         "25": [
           {
-            "name": "xposed-v87.3-sdk25-topjohnwu",
-            "version": "87.3",
-            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4267585&d=1504964597",
+            "name": "xposed-v88.1-sdk25-topjohnwu",
+            "version": "88.1",
+            "link": "https://forum.xda-developers.com/attachment.php?attachmentid=4301305&d=1507882657",
             "architecture": "all"
           }
         ]
