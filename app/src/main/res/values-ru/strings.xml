@@ -141,7 +141,7 @@
     <!-- Support tab -->
     <string name="support_modules_label">Поддержка модулей</string>
     <string name="support_modules_description">Долгое нажатие на модуле, в меню \"Установленные модули\" и выберите \"%1$s\".</string>
-    <string name="support_framework_label">Поддержка Xposed Framework/Installer</string>
+    <string name="support_framework_label">Поддержка Xposed Framework/Установщик</string>
     <string name="support_faq_label">Справка/известные проблемы</string>
     <string name="support_donate_label">Пожертвовать</string>
     <string name="support_donate_description">Если вы хотите отблагодарить за Xposed, вы можете сделать пожертвование для rovo89 здесь:</string>
@@ -155,7 +155,7 @@
     <string name="log_is_empty">Список логов пуст</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">Главные разработчики</string>
+    <string name="about_developers_label">О разработчиках</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> и <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> Для исправления багов и Material Дизайна</string>
     <string name="about_translator_label">Переводчик:</string>
     <string name="translator">4pda: Alexey711</string>
@@ -220,7 +220,7 @@
     <string name="downloadZipOk">%1$s загрузка завершена</string>
     <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя.</string>
     <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПАРВИЛЬНУЮ АРХИТЕКТУРУ ZIP XPOSED FRAMEWORK?\nНе правильный zip установщик может навредить вашему устройству!</string>
-    <string name="newVersion">Доступна новая версия Xposed Installer!</string>
+    <string name="newVersion">Доступна новая версия \"Установщик Xposed\"!</string>
     <string name="update">Установить обновление</string>
     <string name="choose_icon">Изменить иконку приложения</string>
     <string name="custom_icon">Выбрать иконку</string>
@@ -247,7 +247,7 @@
     <string name="notification_coloration">Цветная иконка уведомлений</string>
     <string name="file_is_empty">Файлов нет</string>
     <string name="install_with_su">Автоустановка модуля</string>
-    <string name="install_with_su_summ">Если выбрано, Xposed Installer будет устанавливать модули без запроса на установку</string>
+    <string name="install_with_su_summ">Если выбрано, \"Установщик Xposed\" будет устанавливать модули без запроса на установку</string>
     <string name="install_remove">Установить и удалить</string>
     <string name="download_remove">Скачать и удалить</string>
     <string name="module_saved">Модуль сохранен в %1$s</string>
@@ -261,7 +261,7 @@
     <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
     <string name="open_drawer">Боковое меню</string>
     <string name="share_app">Поделиться</string>
-    <string name="share_app_text">Попробуйте: Xposed Installer в Material Дизайн! %s</string>
+    <string name="share_app_text">Попробуйте: \"Установщик Xposed\" в Material Дизайн! %s</string>
     <string name="status">Состояние Xposed </string>
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
@@ -304,7 +304,7 @@
 
     <string name="rovo89_summary">Главный разработчик Xposed</string>
     <string name="tungstwenty_summary">Помог с большим вкладом, как в коде, так и мыслями</string>
-    <string name="dvdandroid_summary">Разработчик мода Xposed Installer</string>
+    <string name="dvdandroid_summary">Разработчик мода \"Установщик Xposed\"</string>
     <string name="biohazard_summary">Помог с реализацией Material Design</string>
     <string name="unstable_build">Это нестабильная сборка. Ставите ее на свой страх и риск.</string>
     <string name="alt_download_method">Альтернативный способ загрузки</string>
