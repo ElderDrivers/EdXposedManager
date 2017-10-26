@@ -320,16 +320,13 @@ public class StatusInstallerFragment extends Fragment {
 
         if (new File("/system/framework/core.jar.jex").exists()) {
             issueName = "Aliyun OS";
-            issueLink = "http://forum.xda-developers.com/showpost.php?p=52289793&postcount=5";
-
-        } else if (new File("/data/miui/DexspyInstaller.jar").exists() || checkClassExists("miui.dexspy.DexspyInstaller")) {
+            issueLink = "https://forum.xda-developers.com/showpost.php?p=52289793&postcount=5";
+        } else if (Build.VERSION.SDK_INT < 24 && (new File("/data/miui/DexspyInstaller.jar").exists() || checkClassExists("miui.dexspy.DexspyInstaller"))) {
             issueName = "MIUI/Dexspy";
-            issueLink = "http://forum.xda-developers.com/showpost.php?p=52291098&postcount=6";
-
-        } else if (checkClassExists("com.huawei.android.content.res.ResourcesEx")
-                || checkClassExists("android.content.res.NubiaResources")) {
-            issueName = "Resources subclass";
-            issueLink = "http://forum.xda-developers.com/showpost.php?p=52801382&postcount=8";
+            issueLink = "https://forum.xda-developers.com/showpost.php?p=52291098&postcount=6";
+        } else if (Build.VERSION.SDK_INT < 24 && new File("/system/framework/twframework.jar").exists()) {
+            issueName = "Samsung TouchWiz ROM";
+            issueLink = "https://forum.xda-developers.com/showthread.php?t=3034811";
         }
 
         if (issueName != null) {
