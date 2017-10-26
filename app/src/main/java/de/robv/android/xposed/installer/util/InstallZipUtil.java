@@ -8,10 +8,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.zip.ZipFile;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import de.robv.android.xposed.installer.BuildConfig;
 import de.robv.android.xposed.installer.R;
@@ -54,6 +55,15 @@ public final class InstallZipUtil {
         // Check whether the file can be flashed directly in the app.
         if (zip.getEntry("META-INF/com/google/android/flash-script.sh") != null) {
             result.mFlashableInApp = true;
+        }
+
+        ZipEntry xposedPropEntry = zip.getEntry("system/xposed.prop");
+        if (xposedPropEntry != null) {
+            try {
+                result.mXposedProp = parseXposedProp(zip.getInputStream(xposedPropEntry));
+            } catch (IOException e) {
+                Log.e(XposedApp.TAG, "Failed to read system/xposed.prop from " + zip.getName(), e);
+            }
         }
 
         return result;
@@ -115,6 +125,9 @@ public final class InstallZipUtil {
             case FlashCallback.ERROR_NOT_FLASHABLE_IN_APP:
                 return context.getString(R.string.flash_error_not_flashable_in_app);
 
+            case FlashCallback.ERROR_INSTALLER_NEEDS_UPDATE:
+                return context.getString(R.string.installer_needs_update);
+
             default:
                 return context.getString(R.string.flash_error_default, code);
         }
@@ -138,6 +151,7 @@ public final class InstallZipUtil {
     public static class ZipCheckResult {
         private boolean mValidZip = false;
         private boolean mFlashableInApp = false;
+        private XposedProp mXposedProp = null;
 
         public boolean isValidZip() {
             return mValidZip;
@@ -145,6 +159,14 @@ public final class InstallZipUtil {
 
         public boolean isFlashableInApp() {
             return mFlashableInApp;
+        }
+
+        public boolean hasXposedProp() {
+            return mXposedProp != null;
+        }
+
+        public XposedProp getXposedProp() {
+            return mXposedProp;
         }
     }
 
