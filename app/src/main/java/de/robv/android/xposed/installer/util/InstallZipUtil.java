@@ -29,21 +29,8 @@ public final class InstallZipUtil {
 
     private InstallZipUtil() {}
 
-    public static ZipCheckResult checkZip(String zipPath) {
-        ZipFile zip;
-        try {
-            zip = new ZipFile(zipPath);
-        } catch (IOException e) {
-            return new ZipCheckResult();
-        }
-
-        ZipCheckResult result = checkZip(zip);
-        closeSilently(zip);
-        return result;
-    }
-
     public static ZipCheckResult checkZip(ZipFile zip) {
-        ZipCheckResult result = new ZipCheckResult();
+        ZipCheckResult result = new ZipCheckResult(zip);
 
         // Check for update-binary.
         if (zip.getEntry("META-INF/com/google/android/update-binary") == null) {
@@ -149,9 +136,18 @@ public final class InstallZipUtil {
     }
 
     public static class ZipCheckResult {
+        private final ZipFile mZip;
         private boolean mValidZip = false;
         private boolean mFlashableInApp = false;
         private XposedProp mXposedProp = null;
+
+        private ZipCheckResult(ZipFile zip) {
+            mZip = zip;
+        }
+
+        public ZipFile getZip() {
+            return mZip;
+        }
 
         public boolean isValidZip() {
             return mValidZip;

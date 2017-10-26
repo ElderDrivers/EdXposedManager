@@ -47,35 +47,16 @@ public class FlashDirectly extends Flashable {
     }
 
     public void flash(Context context, FlashCallback callback) {
-        // Open the ZIP file.
-        ZipFile zip;
-        try {
-            zip = new ZipFile(mZipPath);
-        } catch (IOException e) {
-            triggerError(callback, FlashCallback.ERROR_INVALID_ZIP, e.getLocalizedMessage());
+        InstallZipUtil.ZipCheckResult zipCheck = openAndCheckZip(callback);
+        if (zipCheck == null) {
             return;
         }
 
-        // Do some checks.
-        InstallZipUtil.ZipCheckResult zipCheck = InstallZipUtil.checkZip(zip);
-        if (!zipCheck.isValidZip()) {
-            triggerError(callback, FlashCallback.ERROR_INVALID_ZIP);
-            closeSilently(zip);
-            return;
-        } else if (!zipCheck.isFlashableInApp()) {
+        ZipFile zip = zipCheck.getZip();
+        if (!zipCheck.isFlashableInApp()) {
             triggerError(callback, FlashCallback.ERROR_NOT_FLASHABLE_IN_APP);
             closeSilently(zip);
             return;
-        }
-
-        if (zipCheck.hasXposedProp()) {
-            Set<String> missingFeatures = zipCheck.getXposedProp().getMissingInstallerFeatures();
-            if (!missingFeatures.isEmpty()) {
-                reportMissingFeatures(missingFeatures);
-                triggerError(callback, FlashCallback.ERROR_INSTALLER_NEEDS_UPDATE);
-                closeSilently(zip);
-                return;
-            }
         }
 
         // Extract update-binary.
