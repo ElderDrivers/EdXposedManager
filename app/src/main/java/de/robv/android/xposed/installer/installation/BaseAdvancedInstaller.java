@@ -339,7 +339,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
                     }
                 });
                 return;
-            } else if (InstallZipUtil.checkZip(info.localFilename).isFlashableInApp()) {
+            } else if (InstallZipUtil.checkZip(InstallZipUtil.getZip(info.localFilename)).isFlashableInApp()) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -562,30 +562,9 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
             mRootUtil.executeWithBusybox("sync", messages);
         }
 
-        if (mRootUtil.execute("ls /cache/recovery") != 0) {
-            messages.add(getString(R.string.file_creating_directory, "/cache/recovery"));
-            if (mRootUtil.executeWithBusybox("mkdir /cache/recovery",
-                    messages) != 0) {
-                messages.add("");
-                messages.add(getString(R.string.file_create_directory_failed, "/cache/recovery"));
-                return false;
-            }
-        }
-
-        messages.add(getString(R.string.file_copying, file));
-
-        if (mRootUtil.executeWithBusybox("cp -a " + file.getAbsolutePath() + " /cache/recovery/", messages) != 0) {
-            messages.add("");
-            messages.add(getString(R.string.file_copy_failed, file, "/cache"));
-            return false;
-        }
-
-        messages.add(getString(R.string.file_writing_recovery_command));
-        if (mRootUtil.execute("echo --update_package=/cache/recovery/" + file.getName() + " > /cache/recovery/command", messages) != 0) {
-            messages.add("");
-            messages.add(getString(R.string.file_writing_recovery_command_failed));
-            return false;
-        }
+        Intent install = new Intent(getContext(), InstallationActivity.class);
+        install.putExtra(Flashable.KEY, new FlashRecoveryAuto(file.getAbsoluteFile()));
+        startActivity(install);
 
         return true;
     }

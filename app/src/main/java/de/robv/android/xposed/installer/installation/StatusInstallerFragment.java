@@ -33,6 +33,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 import de.robv.android.xposed.installer.R;
@@ -322,7 +323,7 @@ public class StatusInstallerFragment extends Fragment {
         String issueLink = null;
         final File baseDir = new File(XposedApp.BASE_DIR);
         final ApplicationInfo appInfo = getActivity().getApplicationInfo();
-        final Set<String> missingFeatures = XposedApp.getXposedProp().getMissingInstallerFeatures();
+        final Set<String> missingFeatures = XposedApp.getXposedProp() == null ? new HashSet<String>() : XposedApp.getXposedProp().getMissingInstallerFeatures();
 
         if (!missingFeatures.isEmpty()) {
             InstallZipUtil.reportMissingFeatures(missingFeatures);

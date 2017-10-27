@@ -29,6 +29,14 @@ public final class InstallZipUtil {
 
     private InstallZipUtil() {}
 
+    public static ZipFile getZip(String path) {
+        try {
+            return new ZipFile(path);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
     public static ZipCheckResult checkZip(ZipFile zip) {
         ZipCheckResult result = new ZipCheckResult(zip);
 
