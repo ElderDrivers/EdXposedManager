@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 ext {
     VERSION_DATE = '18/10/17'
-    SUPPORT_LIBRARY_VERSION = '26.1.0'
-    BUILD_TOOLS = "26.0.1"
+    SUPPORT_LIBRARY_VERSION = '27.0.0'
+    BUILD_TOOLS = "27.0.0"
     APP_VERSION = '"1508330700000"'
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion BUILD_TOOLS
 
     lintOptions {
@@ -18,7 +18,7 @@ android {
     defaultConfig {
         applicationId "de.robv.android.xposed.installer"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 39
         versionName "3.1.2 by dvdandroid - " + VERSION_DATE
         project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid_" + VERSION_DATE.replaceAll("/", "_"));
@@ -43,7 +43,7 @@ dependencies {
     compile 'eu.chainfire:libsuperuser:1.0.0.201608240809'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.psdev.licensesdialog:licensesdialog:1.8.1'
-    compile 'com.annimon:stream:1.1.8'
-    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.annimon:stream:1.1.9'
+    compile 'com.google.code.gson:gson:2.8.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
 }

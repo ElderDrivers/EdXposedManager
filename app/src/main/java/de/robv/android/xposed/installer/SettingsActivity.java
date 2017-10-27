@@ -145,8 +145,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         private Preference.OnPreferenceChangeListener iconChange = new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                String act = ".WelcomeActivity-";
-                String[] iconsValues = new String[]{"dvdandroid", "hjmodi", "rovo", "rovo-old", "staol"};
+                String act = ".WelcomeActivity";
+                String[] iconsValues = new String[]{"dvdandroid", "hjmodi", "rovo", "rovoold", "staol"};
 
                 Context context = getActivity();
                 PackageManager pm = getActivity().getPackageManager();
