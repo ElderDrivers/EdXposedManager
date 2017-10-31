@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 ext {
-    VERSION_DATE = '30/10/17'
+    VERSION_DATE = '31/10/17'
     SUPPORT_LIBRARY_VERSION = '27.0.0'
     BUILD_TOOLS = "27.0.0"
-    APP_VERSION = '"1509377400000"'
+    APP_VERSION = '"1509377400001"'
 }
 
 android {
@@ -19,9 +19,9 @@ android {
         applicationId "de.robv.android.xposed.installer"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 40
-        versionName "3.1.3 by dvdandroid - " + VERSION_DATE
-        project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid_" + VERSION_DATE.replaceAll("/", "_"));
+        versionCode 41
+        versionName "3.1.4 by dvdandroid - " + VERSION_DATE
+        project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid_" + VERSION_DATE.replaceAll("/", "_"))
 
         buildConfigField "String", "APP_VERSION", APP_VERSION
     }
