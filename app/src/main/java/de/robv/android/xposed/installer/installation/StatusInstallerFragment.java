@@ -321,9 +321,12 @@ public class StatusInstallerFragment extends Fragment {
     private void refreshKnownIssue() {
         String issueName = null;
         String issueLink = null;
-        final File baseDir = new File(XposedApp.BASE_DIR);
         final ApplicationInfo appInfo = getActivity().getApplicationInfo();
         final Set<String> missingFeatures = XposedApp.getXposedProp() == null ? new HashSet<String>() : XposedApp.getXposedProp().getMissingInstallerFeatures();
+        final File baseDir = new File(XposedApp.BASE_DIR);
+        final File baseDirCanonical = getCanonicalFile(baseDir);
+        final File baseDirActual = new File(Build.VERSION.SDK_INT >= 24 ? appInfo.deviceProtectedDataDir : appInfo.dataDir);
+        final File baseDirActualCanonical = getCanonicalFile(baseDirActual);
 
         if (!missingFeatures.isEmpty()) {
             InstallZipUtil.reportMissingFeatures(missingFeatures);
@@ -338,16 +341,10 @@ public class StatusInstallerFragment extends Fragment {
         } else if (Build.VERSION.SDK_INT < 24 && new File("/system/framework/twframework.jar").exists()) {
             issueName = "Samsung TouchWiz ROM";
             issueLink = "https://forum.xda-developers.com/showthread.php?t=3034811";
-        } else if (Build.VERSION.SDK_INT < 24 && !baseDir.equals(new File(appInfo.dataDir))) {
-            Log.e(XposedApp.TAG, "Base directory: " + appInfo.dataDir);
-            Log.e(XposedApp.TAG, "Expected: " + XposedApp.BASE_DIR);
-            issueName = getString(R.string.known_issue_wrong_base_directory, appInfo.dataDir);
-            issueLink = "https://github.com/rovo89/XposedInstaller/issues/395";
-        } else if (Build.VERSION.SDK_INT >= 24 && !baseDir.equals(new File(appInfo.deviceProtectedDataDir))) {
-            Log.e(XposedApp.TAG, "Base directory: " + appInfo.deviceProtectedDataDir);
-            Log.e(XposedApp.TAG, "Expected: " + XposedApp.BASE_DIR);
-            issueName = getString(R.string.known_issue_wrong_base_directory, appInfo.deviceProtectedDataDir);
-            issueLink = "https://github.com/rovo89/XposedInstaller/issues/395";
+        } else if (!baseDirCanonical.equals(baseDirActualCanonical)) {
+            Log.e(XposedApp.TAG, "Base directory: " + getPathWithCanonicalPath(baseDir, baseDirCanonical));
+            Log.e(XposedApp.TAG, "Expected: " + getPathWithCanonicalPath(baseDirActual, baseDirActualCanonical));
+            issueName = getString(R.string.known_issue_wrong_base_directory, getPathWithCanonicalPath(baseDirActual, baseDirActualCanonical));
         } else if (!baseDir.exists()) {
             issueName = getString(R.string.known_issue_missing_base_directory);
             issueLink = "https://github.com/rovo89/XposedInstaller/issues/393";
@@ -403,6 +400,23 @@ public class StatusInstallerFragment extends Fragment {
             manufacturer += new File("/system/framework/framework-miui-res.apk").exists() ? "(MIUI)" : "(AOSP-based ROM)";
         }
         return manufacturer;
+    }
+
+    private File getCanonicalFile(File file) {
+        try {
+            return file.getCanonicalFile();
+        } catch (IOException e) {
+            Log.e(XposedApp.TAG, "Failed to get canonical file for " + file.getAbsolutePath(), e);
+            return file;
+        }
+    }
+
+    private String getPathWithCanonicalPath(File file, File canonical) {
+        if (file.equals(canonical)) {
+            return file.getAbsolutePath();
+        } else {
+            return file.getAbsolutePath() + " \u2192 " + canonical.getAbsolutePath();
+        }
     }
 
     private int extractIntPart(String str) {
