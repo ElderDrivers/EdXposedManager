@@ -339,11 +339,16 @@ public class DownloadsUtil {
     }
 
     public static DownloadInfo getLatestForUrl(Context context, String url) {
-        List<DownloadInfo> all = getAllForUrl(context, url);
+        List<DownloadInfo> all;
+        try {
+            all = getAllForUrl(context, url);
+        } catch (Throwable throwable) {
+            return null;
+        }
         return all.isEmpty() ? null : all.get(0);
     }
 
-    public static List<DownloadInfo> getAllForUrl(Context context, String url) {
+    public static List<DownloadInfo> getAllForUrl(Context context, String url)throws Throwable {
         DownloadManager dm = (DownloadManager) context
                 .getSystemService(Context.DOWNLOAD_SERVICE);
         Cursor c = dm.query(new Query());
