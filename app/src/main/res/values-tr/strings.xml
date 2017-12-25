@@ -35,7 +35,7 @@
     <string name="reboot_confirmation">Yeniden başlatmak istiyor musunuz?</string>
     <string name="reboot_recovery_confirmation">Şimdi kurtarma modunda yeniden başlatmak istiyor musunuz?</string>
     <string name="install_warning_title">Dikkatli olun!</string>
-    <string name="install_warning">"Bazı durumlarda, Xposed yüklendikten sonra cihazınız artık açılmayabilir.\n\nDaha önce \"soft brick\" veya \"bootloop\" gibi terimleri duymadıysanız veya bunlar hakkında bilginiz yoksa, Xposed'ı "<b>YÜKLEMEYİN!</b>"\n\nHer durumda, yeni bir yedekleme yapılması şiddetle önerilir."</string>
+    <string name="install_warning">"Bazı durumlarda, Xposed yüklendikten sonra cihazınız artık açılmayabilir.\n\nDaha önce \"soft brick\" ve \"bootloop\" gibi terimleri duymadıysanız veya bunlar hakkında bilginiz yoksa, Xposed'ı "<b>YÜKLEMEYİN!</b>"\n\nHer durumda, yeni bir yedekleme yapılması şiddetle önerilir."</string>
     <string name="dont_show_again">Bunu bir daha gösterme</string>
     <string name="install_known_issue">"Kullandığınız rom sürümü ile (\"%s\") bilinen bir uyumsuzluk sorunu var gibi görünüyor. Xposed'ı yüklemek işe yaramayabilir veya ağır problemlere neden olabilir. Konuyla ilgili ayrıntılar için burayı tıklayın."</string>
     <string name="installed_lollipop">Xposed Framework %s sürümü etkin.</string>
@@ -157,7 +157,7 @@
     <!-- About tab -->
     <string name="about_developers_label">Ana geliştiriciler</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ve <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> ve <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> hata düzeltmeleri ve Materyal Tasarım</string>
-    <string name="about_translator_label">Çevirmen</string>
+    <string name="about_translator_label">Çevirmen:</string>
     <string name="translator">Fatih Fırıncı</string>
     <string name="about_version_label">Sürüm</string>
     <string name="about_source_label">Kaynak kodu</string>
@@ -270,7 +270,6 @@
     <string name="skip_xposedminversion_check">Min. xposed sürümü kontrolünü atla</string>
     <string name="skip_xposedminversion_check_summ">Modüller için minimum xposed sürümü kontrolünü atla</string>
 
-
     <string name="compatibility">Uyumluluk</string>
     <string name="details">Ayrıntılar</string>
     <string name="look_and_feel">Görünüm</string>
@@ -295,6 +294,14 @@
     <string name="flash_error_invalid_zip">Yüklenebilir bir ZIP dosyası değil</string>
     <string name="flash_error_not_flashable_in_app">Bu dosya sadece kurtarma modu üzerinden yüklenebilir</string>
     <string name="flash_error_default">%d hatası oluştu</string>
+    <string name="installation_error">Yükleme hatası</string>
+    <string name="installation_successful">Yükleme başarılı</string>
+    <string name="installation_successful_message">%s başarıyla yüklendi</string>
+    <string name="installation_error_message">%1$s yüklemesi başarısız (%2$s)</string>
+    <string name="installation_apk_normal">APK\'yi normal olarak yükle</string>
+    <string name="install_load">Yükleniyor…</string>
+    <string name="install_load_apk">%s yükleniyor</string>
+    
     <string name="rovo89_summary">Xposed\'ın ana geliştiricisi</string>
     <string name="tungstwenty_summary">Hem kod hem de düşünceleriyle yardımcı</string>
     <string name="dvdandroid_summary">Bu Xposed Yükleyicisi\'nin geliştiricisi</string>
@@ -302,6 +309,9 @@
     <string name="unstable_build">Bu stabil olmayan bir yapıdır. Yüklemek kendi sorumluluğunuzdadır.</string>
     <string name="alt_download_method">Alternatif indirme yöntemi</string>
     <string name="alt_download_method_summ">Bir modül indirirken sorun çıkarsa bu seçeneği işaretleyin</string>
-
+    
+    <string name="known_issue_wrong_base_directory">Yanlış taban dizini: %1$s</string>
+    <string name="known_issue_missing_base_directory">Eksik ana dizin</string>
+    <string name="installer_needs_update">%1$s güncellenmeli</string>
 
 </resources>
