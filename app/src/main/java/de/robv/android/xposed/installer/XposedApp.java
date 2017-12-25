@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -23,6 +24,7 @@ import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -73,6 +75,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private boolean mIsUiLoaded = false;
     private SharedPreferences mPref;
     private InstallZipUtil.XposedProp mXposedProp;
+    private Activity mCurrentActivity = null;
 
     public static XposedApp getInstance() {
         return mInstance;
@@ -258,6 +261,9 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addDataScheme("package");
         registerReceiver(new PackageChangeReceiver(), filter);
+
+        PendingIntent.getBroadcast(this, 0,
+                new Intent(this, PackageChangeReceiver.class), 0);
     }
 
     private void delete(File file) {
@@ -338,6 +344,22 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
     }
 
+    public void updateProgressIndicator(final SwipeRefreshLayout refreshLayout) {
+        final boolean isLoading = RepoLoader.getInstance().isLoading() || ModuleUtil.getInstance().isLoading();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (XposedApp.this) {
+                    if (mCurrentActivity != null) {
+                        mCurrentActivity.setProgressBarIndeterminateVisibility(isLoading);
+                        if (refreshLayout != null)
+                            refreshLayout.setRefreshing(isLoading);
+                    }
+                }
+            }
+        });
+    }
+
     @Override
     public synchronized void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         if (mIsUiLoaded)
@@ -349,10 +371,14 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
     @Override
     public synchronized void onActivityResumed(Activity activity) {
+        mCurrentActivity = activity;
+        updateProgressIndicator(null);
     }
 
     @Override
     public synchronized void onActivityPaused(Activity activity) {
+        activity.setProgressBarIndeterminateVisibility(false);
+        mCurrentActivity = null;
     }
 
     @Override

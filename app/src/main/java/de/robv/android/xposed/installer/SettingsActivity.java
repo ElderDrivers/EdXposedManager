@@ -153,7 +153,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 String packName = getActivity().getPackageName();
 
                 for (String s : iconsValues) {
-                    pm.setComponentEnabledSetting(new ComponentName(context, packName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                    pm.setComponentEnabledSetting(new ComponentName(packName, packName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
                 }
 
                 act += iconsValues[Integer.parseInt((String) newValue)];
