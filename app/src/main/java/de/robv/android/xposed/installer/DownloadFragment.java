@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -146,7 +147,9 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         backgroundList = v.findViewById(R.id.background_list);
 
         mListView = v.findViewById(R.id.listModules);
-
+        if (Build.VERSION.SDK_INT >= 26) {
+            mListView.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
+        }
         final SwipeRefreshLayout refreshLayout = v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(XposedApp.getColor(getContext()));
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
