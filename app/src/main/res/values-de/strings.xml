@@ -283,4 +283,9 @@
     <string name="update_download_list">Die Liste der Module wird gleich aktualisiert</string>
     <string name="no_connection_available">Keine Verbindung verfügbar</string>
 
+    <string name="dexopt_now">Apps jetzt optimieren</string>
+    <string name="this_may_take_a_while">Das kann eine Weile dauern.</string>
+    <string name="done">Fertig!</string>
+    <string name="not_now">Nicht jetzt</string>
+
 </resources>

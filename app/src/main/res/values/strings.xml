@@ -314,4 +314,8 @@
     <string name="known_issue_missing_base_directory">Missing base directory</string>
     <string name="installer_needs_update">%1$s needs to be updated</string>
 
+    <string name="dexopt_now">Optimize apps now</string>
+    <string name="this_may_take_a_while">This may take a while.</string>
+    <string name="done">Done!</string>
+
 </resources>

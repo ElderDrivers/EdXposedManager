@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -19,6 +20,9 @@ import android.support.v7.widget.SwitchCompat;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -33,6 +37,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,6 +47,7 @@ import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
+import de.robv.android.xposed.installer.util.RootUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
@@ -364,6 +370,55 @@ public class StatusInstallerFragment extends Fragment {
             txtKnownIssue.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (Build.VERSION.SDK_INT < 26) {
+            menu.findItem(R.id.dexopt_now).setVisible(false);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.dexopt_now:
+                new MaterialDialog.Builder(getActivity())
+                        .title(R.string.dexopt_now)
+                        .content(R.string.this_may_take_a_while)
+                        .progress(true, 0)
+                        .cancelable(false)
+                        .showListener(new DialogInterface.OnShowListener() {
+                            @Override
+                            public void onShow(final DialogInterface dialog) {
+                                new Thread("dexopt") {
+                                    @Override
+                                    public void run() {
+                                        RootUtil rootUtil = new RootUtil();
+                                        if (!rootUtil.startShell()) {
+                                            dialog.dismiss();
+                                            NavUtil.showMessage(getActivity(), getString(R.string.root_failed));
+                                            return;
+                                        }
+
+                                        rootUtil.execute("cmd package bg-dexopt-job", new ArrayList<String>());
+
+                                        dialog.dismiss();
+                                        XposedApp.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                                    }
+                                }.start();
+                            }
+                        }).show();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private String getAndroidVersion() {
         switch (Build.VERSION.SDK_INT) {

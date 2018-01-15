@@ -18,6 +18,11 @@
             android:icon="@drawable/ic_menu_refresh"
             android:title="@string/reboot_recovery"/>
 
+        <item
+            android:id="@+id/dexopt_now"
+            android:icon="@drawable/ic_flash"
+            android:title="@string/dexopt_now"/>
+
     </group>
 
 </menu>
