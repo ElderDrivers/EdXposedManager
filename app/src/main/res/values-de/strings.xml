@@ -287,5 +287,8 @@
     <string name="this_may_take_a_while">Das kann eine Weile dauern.</string>
     <string name="done">Fertig!</string>
     <string name="not_now">Nicht jetzt</string>
+    <string name="verified_boot_deactivated">Verified Boot ist deaktiviert</string>
+    <string name="verified_boot_active">Verified Boot ist aktiv</string>
+    <string name="verified_boot_explanation">Verified Boot (dm-verity) verhindert das Booten des Geräts, falls die System-Partition modifiziert ist.\n<b>Es wird nicht empfohlen, Xposed zu installieren!</b></string>
 
 </resources>

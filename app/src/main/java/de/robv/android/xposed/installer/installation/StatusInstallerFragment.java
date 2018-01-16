@@ -37,6 +37,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -319,8 +320,38 @@ public class StatusInstallerFragment extends Fragment {
         manufacturer.setText(getUIFramework());
         cpu.setText(getCompleteArch());
 
+        determineVerifiedBootState(v);
+
         refreshKnownIssue();
         return v;
+    }
+
+    private void determineVerifiedBootState(View v) {
+        try {
+            Class<?> c = Class.forName("android.os.SystemProperties");
+            Method m = c.getDeclaredMethod("get", String.class, String.class);
+            m.setAccessible(true);
+
+            String propSystemVerified = (String) m.invoke(null, "partition.system.verified", "0");
+            String propState = (String) m.invoke(null, "ro.boot.verifiedbootstate", "");
+            File fileDmVerityModule = new File("/sys/module/dm_verity");
+
+            boolean verified = !propSystemVerified.equals("0");
+            boolean detected = !propState.isEmpty() || fileDmVerityModule.exists();
+
+            TextView tv = v.findViewById(R.id.dmverity);
+            if (verified) {
+                tv.setText(R.string.verified_boot_active);
+                tv.setTextColor(getResources().getColor(R.color.warning));
+            } else if (detected) {
+                tv.setText(R.string.verified_boot_deactivated);
+                v.findViewById(R.id.dmverity_explanation).setVisibility(View.GONE);
+            } else {
+                v.findViewById(R.id.dmverity_row).setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+            Log.e(XposedApp.TAG, "Could not detect Verified Boot state", e);
+        }
     }
 
     @SuppressLint("StringFormatInvalid")
