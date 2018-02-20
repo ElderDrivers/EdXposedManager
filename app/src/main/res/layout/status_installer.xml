@@ -336,8 +336,7 @@
                                     android:id="@+id/dmverity"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                    tools:text="@string/verified_boot_deactivated"/>
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                                 <TextView
                                     android:id="@+id/dmverity_explanation"

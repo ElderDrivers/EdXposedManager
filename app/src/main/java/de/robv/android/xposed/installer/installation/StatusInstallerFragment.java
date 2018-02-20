@@ -481,7 +481,9 @@ public class StatusInstallerFragment extends Fragment {
         }
         manufacturer += " " + Build.MODEL + " ";
         if (manufacturer.contains("Samsung")) {
-            manufacturer += new File("/system/framework/twframework.jar").exists() ? "(TouchWiz)" : "(AOSP-based ROM)";
+            manufacturer += new File("/system/framework/twframework.jar").exists() ||
+                    new File("/system/framework/samsung-services.jar").exists()
+                    ? "(TouchWiz)" : "(AOSP-based ROM)";
         } else if (manufacturer.contains("Xiaomi")) {
             manufacturer += new File("/system/framework/framework-miui-res.apk").exists() ? "(MIUI)" : "(AOSP-based ROM)";
         }
