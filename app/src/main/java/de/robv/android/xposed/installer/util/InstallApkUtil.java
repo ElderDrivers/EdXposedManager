@@ -99,7 +99,7 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
             if (result.equals(0)) {
                 NotificationUtil.showModuleInstallNotification(R.string.installation_successful, R.string.installation_successful_message, info.localFilename, info.title);
             } else if (failureMatcher.find()) {
-                NotificationUtil.showModuleInstallNotification(R.string.installation_error, R.string.installation_error_message, info.localFilename, failureMatcher.group(1));
+                NotificationUtil.showModuleInstallNotification(R.string.installation_error, R.string.installation_error_message, info.localFilename, info.title, failureMatcher.group(1));
             }
         } else {
             installApkNormally(context, info.localFilename);
