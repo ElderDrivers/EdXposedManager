@@ -47,7 +47,7 @@ import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 
 public class RepoLoader {
     private static final int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000;
-    private static final String DEFAULT_REPOSITORIES = "http://dl.xposed.info/repo/full.xml.gz";
+    private static final String DEFAULT_REPOSITORIES = "https://dl-xda.xposed.info/repo/full.xml.gz";
     private static RepoLoader mInstance = null;
     private final List<RepoListener> mListeners = new CopyOnWriteArrayList<>();
     private final Map<String, ReleaseType> mLocalReleaseTypesCache = new HashMap<>();
