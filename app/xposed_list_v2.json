@@ -364,8 +364,8 @@
     }
   ],
   "apk": {
-    "version": "1514220000000",
-    "changelog":"<b>What's new:</b><br>&#149; <b>IMPROVEMENTS:</b> Fixes",
-    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=27840&task=get"
+    "version": "1539962400000",
+    "changelog":"<b>What's new:</b><br>&#149; <b>NEW:</b> Toggle to hide Chinese modules<br>&#149; <b>IMPROVEMENTS:</b> Fix list download error<br>&#149; <b>IMPROVEMENTS:</b> Fixes",
+    "link": "https://forum.xda-developers.com/devdb/project/dl/?id=30660&task=get"
   }
 }
