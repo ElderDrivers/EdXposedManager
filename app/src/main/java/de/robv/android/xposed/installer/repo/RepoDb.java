@@ -2,6 +2,7 @@ package de.robv.android.xposed.installer.repo;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import de.robv.android.xposed.installer.BuildConfig;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.InstalledModulesColumns;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.InstalledModulesUpdatesColumns;
@@ -26,11 +28,14 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public final class RepoDb extends SQLiteOpenHelper {
     public static final int SORT_STATUS = 0;
     public static final int SORT_UPDATED = 1;
     public static final int SORT_CREATED = 2;
 
+    private static Context context;
     private static SQLiteDatabase sDb;
 
     static {
@@ -42,6 +47,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 
     private RepoDb(Context context) {
         super(context, getDbPath(context), null, RepoDbDefinitions.DATABASE_VERSION);
+        this.context = context;
     }
 
     private static String getDbPath(Context context) {
@@ -377,6 +383,16 @@ public final class RepoDb extends SQLiteOpenHelper {
                     + " OR m." + ModulesColumns.AUTHOR + " LIKE ?)";
             String filterTextArg = "%" + filterText + "%";
             whereArgs = new String[]{filterTextArg, filterTextArg, filterTextArg, filterTextArg};
+        } else {
+            SharedPreferences prefs = context.getSharedPreferences(BuildConfig.APPLICATION_ID + "_preferences", MODE_PRIVATE);
+
+            if (prefs.getBoolean("ignore_chinese", false)) {
+                for (char ch : "的一是不了人我在有他这为中设微模块淘".toCharArray()) {
+                    where += " AND NOT (m." + ModulesColumns.TITLE + " LIKE '%" + ch + "%'"
+                            + " OR m." + ModulesColumns.SUMMARY + " LIKE '%" + ch + "%'"
+                            + " OR m." + ModulesColumns.DESCRIPTION + " LIKE '%" + ch + "%')";
+                }
+            }
         }
 
         // Sorting order

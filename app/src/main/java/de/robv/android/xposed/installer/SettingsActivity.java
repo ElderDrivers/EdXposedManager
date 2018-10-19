@@ -255,7 +255,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals("theme") || key.equals("nav_bar"))
+            if (key.equals("theme") || key.equals("nav_bar") || key.equals("ignore_chinese"))
                 getActivity().recreate();
 
             if (key.equals("force_english"))

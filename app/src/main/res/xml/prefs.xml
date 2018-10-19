@@ -125,6 +125,11 @@
             android:key="force_english"
             android:title="@string/force_english"/>
 
+        <CheckBoxPreference
+            android:key="ignore_chinese"
+            android:summary="@string/ignore_chinese_summary"
+            android:title="@string/ignore_chinese"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
