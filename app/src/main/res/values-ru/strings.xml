@@ -314,4 +314,13 @@
     <string name="known_issue_missing_base_directory">Основной каталог отсутсвует</string>
     <string name="installer_needs_update">%1$s необходимо обновить</string>
 
+    <string name="dexopt_now">Оптимизация приложений</string>
+    <string name="this_may_take_a_while">Это займет некоторое время.</string>
+    <string name="done">Готово!</string>
+    <string name="verified_boot_deactivated">Проверка загрузки отключена</string>
+    <string name="verified_boot_active">Проверка загрузки включена</string>
+    <string name="verified_boot_explanation">Проверка загрузки (dm-verity) предотвращает загрузку устройства, если системный раздел изменен.\n<b>Установка Xposed не рекомендуется!</b></string>
+    <string name="ignore_chinese">Китайские иероглифы</string>
+    <string name="ignore_chinese_summary">Скрыть китайские модули в \"Поиск модулей\". Модули по-прежнему доступны через иконку поиска. Включение настройки может привести к низкой производительности.</string>
+
 </resources>
