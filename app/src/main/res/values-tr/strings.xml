@@ -320,5 +320,7 @@
     <string name="verified_boot_deactivated">Doğrulanmış Önyükleme devre dışı</string>
     <string name="verified_boot_active">Doğrulanmış Önyükleme etkin</string>
     <string name="verified_boot_explanation">Doğrulanmış Önyükleme (dm-verity), sistem bölümü değiştirilirse aygıtın önyüklemesini engeller.\n<b>Xposed\'ı yüklemek önerilmez!</b></string>
+    <string name="ignore_chinese">Çince karakterleri yoksay</string>
+    <string name="ignore_chinese_summary">Çince modülleri listeden gizle. Modüller hala arama penceresinden bulunabilir. Bu seçeneğin etkinleştirilmesi performansın düşmesine neden olabilir.</string>
 
 </resources>
