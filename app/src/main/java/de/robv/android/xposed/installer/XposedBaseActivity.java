@@ -1,8 +1,8 @@
 package de.robv.android.xposed.installer;
 
 import android.os.Bundle;
-import android.support.annotation.StringRes;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import de.robv.android.xposed.installer.util.ThemeUtil;
@@ -23,7 +23,7 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
         ThemeUtil.reloadTheme(this);
     }
 
-    public void setFloating(android.support.v7.widget.Toolbar toolbar, @StringRes int details) {
+    public void setFloating(androidx.appcompat.widget.Toolbar toolbar, @StringRes int details) {
         boolean isTablet = getResources().getBoolean(R.bool.isTablet);
         if (isTablet) {
             WindowManager.LayoutParams params = getWindow().getAttributes();

@@ -2,14 +2,12 @@ apply plugin: 'com.android.application'
 
 ext {
     VERSION_DATE = '19/10/18'
-    SUPPORT_LIBRARY_VERSION = '27.0.2'
-    BUILD_TOOLS = "27.0.3"
+    SUPPORT_LIBRARY_VERSION = '1.0.0'
     APP_VERSION = '"1539962400000"'
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion BUILD_TOOLS
+    compileSdkVersion 28
 
     lintOptions {
         abortOnError false
@@ -35,9 +33,9 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
-    implementation "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
-    implementation "com.android.support:customtabs:$SUPPORT_LIBRARY_VERSION"
+    implementation "androidx.cardview:cardview:$SUPPORT_LIBRARY_VERSION"
+    implementation "com.google.android.material:material:$SUPPORT_LIBRARY_VERSION"
+    implementation "androidx.browser:browser:$SUPPORT_LIBRARY_VERSION"
     implementation 'com.afollestad.material-dialogs:commons:0.9.0.2'
     implementation 'com.github.machinarius:preferencefragment:0.1.1'
     implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
