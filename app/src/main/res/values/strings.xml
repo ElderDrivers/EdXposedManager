@@ -323,4 +323,27 @@
     <string name="ignore_chinese">Ignore Chinese characters</string>
     <string name="ignore_chinese_summary">Hide Chinese modules from list. Modules are still available in search window. Enabling this option may result in slow performance.</string>
 
+    <!-- EdXp related -->
+    <string name="nav_title_black_list">Black/White List</string>
+    <string name="nav_title_compat_list">Compat List</string>
+    <string name="nav_title_settings">Settings</string>
+    <string name="white_list_mode_title">White List mode</string>
+    <string name="title_white_list">White List</string>
+    <string name="title_black_list">Black List</string>
+    <string name="add_package_failed">Failed to edit package, check your root access.</string>
+    <string name="mode_change_failed">Failed to change mode, check your root access.</string>
+    <string name="menu_title_compile_reset">Reset compiled code</string>
+    <string name="menu_title_compile_speed">Force compile in Speed mode</string>
+    <string name="compile_reset_msg">Resetting …</string>
+    <string name="compile_speed_msg">Compiling …</string>
+    <string name="app_source_code_title">App source code</string>
+    <string name="edxp_source_code_title">EdXposed source code</string>
+    <string name="open_link_failed_toast">No application found to open the link.</string>
+    <string name="pref_title_force_global">Global mode</string>
+    <string name="pref_title_dynamic_modules">Instant module list</string>
+    <string name="pref_force_global_summary">(Reboot needed) When turned on, ignore both black list and white list</string>
+    <string name="pref_dynamic_modules_summary">(Reboot needed) When turned on, load latest activated module list on each app process started</string>
+    <string name="title_compat_list">Compat mode</string>
+    <string name="menu_title_compat_mode">About Compat mode</string>
+
 </resources>

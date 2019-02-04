@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:defaultValue="false"
+        android:icon="@drawable/ic_public"
+        android:key="force_global_mode"
+        android:summary="@string/pref_force_global_summary"
+        android:title="@string/pref_title_force_global" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:icon="@drawable/ic_sync"
+        android:key="is_dynamic_modules"
+        android:summary="@string/pref_dynamic_modules_summary"
+        android:title="@string/pref_title_dynamic_modules" />
+</PreferenceScreen>
