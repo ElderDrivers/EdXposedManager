@@ -154,9 +154,10 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 Context context = getActivity();
                 PackageManager pm = getActivity().getPackageManager();
                 String packName = getActivity().getPackageName();
+                String classPackName = "de.robv.android.xposed.installer";
 
                 for (String s : iconsValues) {
-                    pm.setComponentEnabledSetting(new ComponentName(packName, packName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                    pm.setComponentEnabledSetting(new ComponentName(packName, classPackName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
                 }
 
                 act += iconsValues[Integer.parseInt((String) newValue)];
@@ -171,7 +172,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     getActivity().setTaskDescription(tDesc);
                 }
 
-                pm.setComponentEnabledSetting(new ComponentName(context, packName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                pm.setComponentEnabledSetting(new ComponentName(context, classPackName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 return true;
             }
         };
