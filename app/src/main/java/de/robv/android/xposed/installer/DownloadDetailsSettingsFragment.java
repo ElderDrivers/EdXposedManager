@@ -4,19 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.PreferenceManager;
-
-import com.github.machinarius.preferencefragment.PreferenceFragment;
 
 import java.util.Map;
 
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.util.PrefixedSharedPreferences;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
-public class DownloadDetailsSettingsFragment extends PreferenceFragment {
+public class DownloadDetailsSettingsFragment extends PreferenceFragmentCompat {
     private DownloadDetailsActivity mActivity;
 
     @Override
@@ -26,9 +23,7 @@ public class DownloadDetailsSettingsFragment extends PreferenceFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         final Module module = mActivity.getModule();
         if (module == null)
             return;
@@ -54,13 +49,9 @@ public class DownloadDetailsSettingsFragment extends PreferenceFragment {
         }
 
         findPreference("release_type").setOnPreferenceChangeListener(
-                new OnPreferenceChangeListener() {
-                    @Override
-                    public boolean onPreferenceChange(Preference preference,
-                                                      Object newValue) {
-                        RepoLoader.getInstance().setReleaseTypeLocal(packageName, (String) newValue);
-                        return true;
-                    }
+                (preference, newValue) -> {
+                    RepoLoader.getInstance().setReleaseTypeLocal(packageName, (String) newValue);
+                    return true;
                 });
     }
 }

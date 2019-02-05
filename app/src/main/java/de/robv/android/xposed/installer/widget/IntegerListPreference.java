@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.AttributeSet;
 
-import com.afollestad.materialdialogs.prefs.MaterialListPreference;
+import androidx.preference.ListPreference;
 
-public class IntegerListPreference extends MaterialListPreference {
+public class IntegerListPreference extends ListPreference {
     public IntegerListPreference(Context context) {
         super(context);
     }

@@ -3,9 +3,9 @@ package de.robv.android.xposed.installer.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.afollestad.materialdialogs.prefs.MaterialListPreference;
+import androidx.preference.ListPreference;
 
-public class ListPreferenceSummaryFix extends MaterialListPreference {
+public class ListPreferenceSummaryFix extends ListPreference {
     public ListPreferenceSummaryFix(Context context) {
         super(context);
     }

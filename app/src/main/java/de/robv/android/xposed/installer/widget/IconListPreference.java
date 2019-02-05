@@ -18,11 +18,9 @@ package de.robv.android.xposed.installer.widget;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.preference.ListPreference;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,11 +28,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.preference.ListPreference;
+import androidx.preference.PreferenceViewHolder;
 import de.robv.android.xposed.installer.R;
 
 public class IconListPreference extends ListPreference {
@@ -65,28 +64,15 @@ public class IconListPreference extends ListPreference {
         setWidgetLayoutResource(R.layout.color_icon_preview);
     }
 
-    protected ListAdapter createListAdapter() {
-        final String selectedValue = getValue();
-        int selectedIndex = findIndexOfValue(selectedValue);
-        return new AppArrayAdapter(getContext(), R.layout.icon_preference_item, getEntries(), mEntryDrawables, selectedIndex);
-    }
-
     @Override
-    protected void onBindView(View view) {
-        super.onBindView(view);
-
+    public void onBindViewHolder(PreferenceViewHolder holder) {
+        super.onBindViewHolder(holder);
         String selectedValue = getValue();
         int selectedIndex = findIndexOfValue(selectedValue);
 
         Drawable drawable = mEntryDrawables.get(selectedIndex);
 
-        ((ImageView) view.findViewById(R.id.preview)).setImageDrawable(drawable);
-    }
-
-    @Override
-    protected void onPrepareDialogBuilder(Builder builder) {
-        builder.setAdapter(createListAdapter(), this);
-        super.onPrepareDialogBuilder(builder);
+        ((ImageView) holder.findViewById(R.id.preview)).setImageDrawable(drawable);
     }
 
     public class AppArrayAdapter extends ArrayAdapter<CharSequence> {

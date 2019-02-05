@@ -11,12 +11,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceGroup;
-import android.preference.SwitchPreference;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -32,6 +26,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.SwitchPreference;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
@@ -68,7 +68,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         setFloating(toolbar, 0);
 
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new SettingsFragment()).commit();
         }
 
@@ -114,7 +114,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         }
     }
 
-    public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
         public final static int[] PRIMARY_COLORS = new int[]{
                 Color.parseColor("#F44336"),
@@ -179,8 +179,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         }
 
         @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.prefs);
 
             PreferenceGroup groupApp = (PreferenceGroup) findPreference("group_app");
@@ -269,7 +268,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 return false;
 
             if (preference.getKey().equals("colors")) {
-                new ColorChooserDialog.Builder(act, preference.getTitleRes())
+                new ColorChooserDialog.Builder(act, R.string.choose_color)
                         .backButton(R.string.back)
                         .allowUserColorInput(false)
                         .customColors(PRIMARY_COLORS, null)

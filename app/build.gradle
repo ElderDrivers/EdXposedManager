@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 ext {
     VERSION_DATE = '19/10/18'
-    SUPPORT_LIBRARY_VERSION = '1.0.0'
     APP_VERSION = '"1539962400000"'
 }
 
@@ -38,14 +37,14 @@ android {
 }
 
 dependencies {
-    implementation "androidx.cardview:cardview:$SUPPORT_LIBRARY_VERSION"
-    implementation "com.google.android.material:material:$SUPPORT_LIBRARY_VERSION"
-    implementation "androidx.browser:browser:$SUPPORT_LIBRARY_VERSION"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "com.google.android.material:material:1.0.0"
+    implementation "androidx.browser:browser:1.0.0"
     implementation "androidx.preference:preference:1.1.0-alpha02"
     implementation "androidx.recyclerview:recyclerview:1.1.0-alpha02"
+    implementation "androidx.fragment:fragment:1.1.0-alpha03"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.afollestad.material-dialogs:commons:0.9.0.2'
-    implementation 'com.github.machinarius:preferencefragment:0.1.1'
     implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
     implementation 'eu.chainfire:libsuperuser:1.0.0.201608240809'
     implementation "com.github.topjohnwu.libsu:core:2.2.0"
