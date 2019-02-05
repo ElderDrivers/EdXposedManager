@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.WelcomeActivity;
@@ -12,7 +11,7 @@ import de.robv.android.xposed.installer.WelcomeActivity;
 import static com.solohsu.android.edxp.manager.adapter.AppHelper.setDynamicModules;
 import static com.solohsu.android.edxp.manager.adapter.AppHelper.setForceGlobalMode;
 
-public class SettingFragment extends PreferenceFragmentCompat {
+public class SettingFragment extends BasePreferenceFragment {
 
     public SettingFragment() {
 

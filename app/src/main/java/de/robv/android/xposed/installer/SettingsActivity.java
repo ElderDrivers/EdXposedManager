@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
+import com.solohsu.android.edxp.manager.fragment.BasePreferenceFragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +30,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreference;
 import de.robv.android.xposed.installer.util.RepoLoader;
@@ -115,7 +115,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         }
     }
 
-    public static class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class SettingsFragment extends BasePreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
         public final static int[] PRIMARY_COLORS = new int[]{
                 Color.parseColor("#F44336"),

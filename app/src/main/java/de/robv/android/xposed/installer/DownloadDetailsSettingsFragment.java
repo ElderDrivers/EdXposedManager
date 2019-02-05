@@ -5,15 +5,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.solohsu.android.edxp.manager.fragment.BasePreferenceFragment;
+
 import java.util.Map;
 
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.util.PrefixedSharedPreferences;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
-public class DownloadDetailsSettingsFragment extends PreferenceFragmentCompat {
+public class DownloadDetailsSettingsFragment extends BasePreferenceFragment {
     private DownloadDetailsActivity mActivity;
 
     @Override
