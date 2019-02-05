@@ -18,21 +18,29 @@ package de.robv.android.xposed.installer.widget;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.preference.ListPreference;
+import androidx.preference.PreferenceDialogFragmentCompat;
 import androidx.preference.PreferenceViewHolder;
 import de.robv.android.xposed.installer.R;
 
@@ -75,7 +83,92 @@ public class IconListPreference extends ListPreference {
         ((ImageView) holder.findViewById(R.id.preview)).setImageDrawable(drawable);
     }
 
-    public class AppArrayAdapter extends ArrayAdapter<CharSequence> {
+    public static class IconListPreferenceDialog extends PreferenceDialogFragmentCompat {
+
+        private static final java.lang.String KEY_CLICKED_ENTRY_INDEX
+                = "settings.CustomListPrefDialog.KEY_CLICKED_ENTRY_INDEX";
+        private int mClickedDialogEntryIndex;
+
+        public IconListPreferenceDialog() {
+
+        }
+
+        public static IconListPreferenceDialog newInstance(String key) {
+            IconListPreferenceDialog dialog = new IconListPreferenceDialog();
+            final Bundle b = new Bundle(1);
+            b.putString(ARG_KEY, key);
+            dialog.setArguments(b);
+            return dialog;
+        }
+
+        protected IconListPreference getCustomizablePreference() {
+            return (IconListPreference) getPreference();
+        }
+
+        protected ListAdapter createListAdapter() {
+            final String selectedValue = getCustomizablePreference().getValue();
+            int selectedIndex = getCustomizablePreference().findIndexOfValue(selectedValue);
+            return new AppArrayAdapter(getContext(), R.layout.icon_preference_item,
+                    getCustomizablePreference().getEntries(), getCustomizablePreference().mEntryDrawables, selectedIndex);
+        }
+
+        @Override
+        protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
+            builder.setAdapter(createListAdapter(), this);
+            super.onPrepareDialogBuilder(builder);
+            mClickedDialogEntryIndex = getCustomizablePreference()
+                    .findIndexOfValue(getCustomizablePreference().getValue());
+        }
+
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            Dialog dialog = super.onCreateDialog(savedInstanceState);
+            if (savedInstanceState != null) {
+                mClickedDialogEntryIndex = savedInstanceState.getInt(KEY_CLICKED_ENTRY_INDEX,
+                        mClickedDialogEntryIndex);
+            }
+            return dialog;
+        }
+
+        @Override
+        public void onSaveInstanceState(Bundle outState) {
+            super.onSaveInstanceState(outState);
+            outState.putInt(KEY_CLICKED_ENTRY_INDEX, mClickedDialogEntryIndex);
+        }
+
+        protected void setClickedDialogEntryIndex(int which) {
+            mClickedDialogEntryIndex = which;
+        }
+
+        @Override
+        public void onDialogClosed(boolean positiveResult) {
+            Log.d("solo", "onDialogClosed:" + positiveResult);
+            final ListPreference preference = getCustomizablePreference();
+            final String value = getValue();
+            if (value != null) {
+                if (preference.callChangeListener(value)) {
+                    preference.setValue(value);
+                }
+            }
+        }
+
+        private String getValue() {
+            final ListPreference preference = getCustomizablePreference();
+            if (mClickedDialogEntryIndex >= 0 && preference.getEntryValues() != null) {
+                return preference.getEntryValues()[mClickedDialogEntryIndex].toString();
+            } else {
+                return null;
+            }
+        }
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            setClickedDialogEntryIndex(which);
+        }
+    }
+
+    public static class AppArrayAdapter extends ArrayAdapter<CharSequence> {
         private List<Drawable> mImageDrawables = null;
         private int mSelectedIndex = 0;
 

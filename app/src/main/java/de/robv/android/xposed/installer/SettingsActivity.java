@@ -11,11 +11,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,6 +21,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -34,6 +34,7 @@ import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreference;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
+import de.robv.android.xposed.installer.widget.IconListPreference;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
@@ -139,6 +140,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         };
 
         private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
+        private static final String DIALOG_FRAGMENT_TAG = "list_preference_dialog";
 
         private Preference mClickedPreference;
 
@@ -315,6 +317,18 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 }
             } else {
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+            }
+        }
+
+        @Override
+        public void onDisplayPreferenceDialog(Preference preference) {
+            if (preference instanceof IconListPreference) {
+                final IconListPreference.IconListPreferenceDialog f =
+                        IconListPreference.IconListPreferenceDialog.newInstance(preference.getKey());
+                f.setTargetFragment(this, 0);
+                f.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+            } else {
+                super.onDisplayPreferenceDialog(preference);
             }
         }
     }
