@@ -24,7 +24,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 
-import de.robv.android.xposed.installer.R;
+import com.solohsu.android.edxp.manager.R;
 
 public class RepoParser {
     public final static String TAG = "XposedRepoParser";

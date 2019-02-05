@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.robv.android.xposed.installer.R;
+import com.solohsu.android.edxp.manager.R;
 import de.robv.android.xposed.installer.WelcomeActivity;
 import de.robv.android.xposed.installer.XposedApp;
 

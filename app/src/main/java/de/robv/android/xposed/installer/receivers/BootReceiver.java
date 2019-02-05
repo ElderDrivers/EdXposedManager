@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 import java.math.BigInteger;
 
-import de.robv.android.xposed.installer.BuildConfig;
+import com.solohsu.android.edxp.manager.BuildConfig;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.json.JSONUtils;

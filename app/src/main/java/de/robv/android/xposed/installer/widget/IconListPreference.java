@@ -42,7 +42,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.ListPreference;
 import androidx.preference.PreferenceDialogFragmentCompat;
 import androidx.preference.PreferenceViewHolder;
-import de.robv.android.xposed.installer.R;
+import com.solohsu.android.edxp.manager.R;
 
 public class IconListPreference extends ListPreference {
 

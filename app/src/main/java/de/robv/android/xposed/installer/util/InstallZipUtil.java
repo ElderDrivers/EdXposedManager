@@ -15,8 +15,8 @@ import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import de.robv.android.xposed.installer.BuildConfig;
-import de.robv.android.xposed.installer.R;
+import com.solohsu.android.edxp.manager.BuildConfig;
+import com.solohsu.android.edxp.manager.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.installation.FlashCallback;
 import de.robv.android.xposed.installer.installation.StatusInstallerFragment;

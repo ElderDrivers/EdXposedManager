@@ -29,6 +29,9 @@ import androidx.appcompat.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.solohsu.android.edxp.manager.BuildConfig;
+import com.solohsu.android.edxp.manager.R;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -54,9 +57,9 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     public static final String TAG = "XposedInstaller";
 
     @SuppressLint("SdCardPath")
-    private static final String BASE_DIR_LEGACY = "/data/data/de.robv.android.xposed.installer/";
+    private static final String BASE_DIR_LEGACY = "/data/data/com.solohsu.android.edxp.manager/";
     public static final String BASE_DIR = Build.VERSION.SDK_INT >= 24
-            ? "/data/user_de/0/de.robv.android.xposed.installer/" : BASE_DIR_LEGACY;
+            ? "/data/user_de/0/com.solohsu.android.edxp.manager/" : BASE_DIR_LEGACY;
     public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
     private static final File XPOSED_PROP_FILE_SYSTEMLESS_1 = new File("/magisk/xposed/system/xposed.prop");
     private static final File XPOSED_PROP_FILE_SYSTEMLESS_2 = new File("/su/xposed/system/xposed.prop");

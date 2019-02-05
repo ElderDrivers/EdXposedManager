@@ -8,7 +8,7 @@ import com.solohsu.android.edxp.manager.util.ToastUtils;
 
 import java.util.List;
 
-import de.robv.android.xposed.installer.R;
+import com.solohsu.android.edxp.manager.R;
 
 public class CompatListAdapter extends AppAdapter {
 

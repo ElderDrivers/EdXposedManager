@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import de.robv.android.xposed.installer.R;
+import com.solohsu.android.edxp.manager.R;
 
 public class BlackListFragment extends Fragment implements AppAdapter.Callback {
 

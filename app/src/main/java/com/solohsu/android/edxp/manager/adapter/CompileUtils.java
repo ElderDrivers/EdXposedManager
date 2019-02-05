@@ -6,7 +6,7 @@ import android.content.pm.ApplicationInfo;
 import com.solohsu.android.edxp.manager.fragment.CompileDialogFragment;
 
 import androidx.fragment.app.FragmentManager;
-import de.robv.android.xposed.installer.R;
+import com.solohsu.android.edxp.manager.R;
 
 public class CompileUtils {
 

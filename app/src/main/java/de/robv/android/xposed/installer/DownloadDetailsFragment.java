@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.solohsu.android.edxp.manager.R;
+
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.NavUtil;

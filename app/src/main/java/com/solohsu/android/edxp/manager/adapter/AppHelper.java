@@ -6,6 +6,7 @@ import android.content.pm.ApplicationInfo;
 import android.util.Log;
 import android.view.View;
 
+import com.solohsu.android.edxp.manager.BuildConfig;
 import com.topjohnwu.superuser.Shell;
 
 import java.util.Arrays;
@@ -16,7 +17,7 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
-import de.robv.android.xposed.installer.R;
+import com.solohsu.android.edxp.manager.R;
 
 public class AppHelper {
 
@@ -30,7 +31,7 @@ public class AppHelper {
     private static final String FORCE_GLOBAL_MODE = BASE_PATH + "forceglobal";
     private static final String DYNAMIC_MODULES = BASE_PATH + "dynamicmodules";
 
-    private static final List<String> FORCE_WHITE_LIST = Arrays.asList("de.robv.android.xposed.installer");
+    private static final List<String> FORCE_WHITE_LIST = Arrays.asList(BuildConfig.APPLICATION_ID);
 
     public static boolean makeSurePath() {
         return checkRetCode(Shell.su(

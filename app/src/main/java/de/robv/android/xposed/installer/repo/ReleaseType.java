@@ -1,6 +1,6 @@
 package de.robv.android.xposed.installer.repo;
 
-import de.robv.android.xposed.installer.R;
+import com.solohsu.android.edxp.manager.R;
 
 public enum ReleaseType {
     STABLE(R.string.reltype_stable, R.string.reltype_stable_summary), BETA(R.string.reltype_beta, R.string.reltype_beta_summary), EXPERIMENTAL(R.string.reltype_experimental, R.string.reltype_experimental_summary);

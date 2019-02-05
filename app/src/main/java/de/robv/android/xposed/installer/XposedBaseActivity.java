@@ -5,6 +5,8 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.WindowManager;
 
+import com.solohsu.android.edxp.manager.R;
+
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public abstract class XposedBaseActivity extends AppCompatActivity {

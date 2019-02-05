@@ -13,7 +13,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "de.robv.android.xposed.installer"
+        applicationId "com.solohsu.android.edxp.manager"
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 25
