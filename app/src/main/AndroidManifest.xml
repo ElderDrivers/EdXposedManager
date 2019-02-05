@@ -220,7 +220,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="de.robv.android.xposed.installer.fileprovider"
+            android:authorities="com.solohsu.android.edxp.manager.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

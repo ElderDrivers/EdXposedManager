@@ -204,7 +204,7 @@ public class LogsFragment extends Fragment {
     }
 
     private void send() {
-        Uri uri = FileProvider.getUriForFile(getActivity(), "de.robv.android.xposed.installer.fileprovider", mFileErrorLog);
+        Uri uri = FileProvider.getUriForFile(getActivity(), "com.solohsu.android.edxp.manager.fileprovider", mFileErrorLog);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_STREAM, uri);

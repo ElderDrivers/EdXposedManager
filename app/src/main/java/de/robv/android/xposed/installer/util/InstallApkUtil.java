@@ -39,7 +39,7 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri uri;
         if (Build.VERSION.SDK_INT >= 24) {
-            uri = FileProvider.getUriForFile(context, "de.robv.android.xposed.installer.fileprovider", new File(localFilename));
+            uri = FileProvider.getUriForFile(context, "com.solohsu.android.edxp.manager.fileprovider", new File(localFilename));
             installIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } else {
             uri = Uri.fromFile(new File(localFilename));
