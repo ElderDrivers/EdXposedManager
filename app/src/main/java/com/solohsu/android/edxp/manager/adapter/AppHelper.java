@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.solohsu.android.edxp.manager.BuildConfig;
+import com.solohsu.android.edxp.manager.R;
 import com.topjohnwu.superuser.Shell;
 
 import java.util.Arrays;
@@ -17,7 +18,6 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
-import com.solohsu.android.edxp.manager.R;
 
 public class AppHelper {
 
@@ -51,11 +51,6 @@ public class AppHelper {
     }
 
     public static boolean setWhiteListMode(boolean isWhiteListMode) {
-        if (isWhiteListMode) {
-            for (String pn : FORCE_WHITE_LIST) {
-                addWhiteList(pn);
-            }
-        }
         return isWhiteListMode ?
                 checkRetCode(Shell.su("touch " + WHITE_LIST_MODE).exec().getCode()) :
                 checkRetCode(Shell.su("rm " + WHITE_LIST_MODE).exec().getCode());
@@ -89,7 +84,14 @@ public class AppHelper {
     }
 
     public static List<String> getWhiteList() {
-        return Shell.su("ls " + WHITE_LIST_PATH).exec().getOut();
+        List<String> result = Shell.su("ls " + WHITE_LIST_PATH).exec().getOut();
+        for (String pn : FORCE_WHITE_LIST) {
+            if (!result.contains(pn)) {
+                result.add(pn);
+                addWhiteList(pn);
+            }
+        }
+        return result;
     }
 
     private static String whiteListFileName(String packageName, boolean isAdd) {
