@@ -348,4 +348,40 @@
     <string name="settings_group_edxposed">Elder Driver Xposed Settings (Reboot needed)</string>
     <string name="white_list_mode_summary">White List mode: Only selected app load EdXposed Framework.\nBlack List mode: Selected app NOT load EdXposed Framework.</string>
 
+    <string name="app_name" translatable="false">EdXposed Manager</string>
+    <string name="app_process" translatable="false">app_process</string>
+    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
+    <string name="none" translatable="false">---</string>
+    <string name="support_material_xda" translatable="false">http://forum.xda-developers.com/xposed/material-design-xposed-installer-t3137758</string>
+    <string name="support_faq_url" translatable="false">http://forum.xda-developers.com/xposed/xposed-faq-issues-t2735540</string>
+    <string name="support_donate_url" translatable="false">http://repo.xposed.info/donate</string>
+    <string name="about_source" translatable="false">https://github.com/solohsu/XposedInstaller/</string>
+    <string name="about_support" translatable="false">http://forum.xda-developers.com/xposed</string>
+    <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>\n<a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a>\n<a href="https://github.com/afollestad/material-dialogs">MaterialDialogs</a></string>
+
+    <string name="solohsu" translatable="false">givein2u</string>
+    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
+    <string name="meowcat">MeowCat Studio</string>
+    <string name="elderdrivers" translatable="false">Elder Drivers</string>
+
+    <string name="github" translatable="false">Github</string>
+    <string name="xda" translatable="false">XDA</string>
+    <string name="coolapk">CoolApk</string>
+    <string name="website">Website</string>
+
+    <string name="solohsu_summary">Main creator of EdXposed</string>
+    <string name="mlgmxyysd_summary">Main creator of EdXposed Manager</string>
+    <string name="elderdrivers_summary">Organization of EdXposed</string>
+    <string name="meowcat_summary">Organization of MlgmXyysd</string>
+    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
+    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
+    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
+    <string name="mlgmxyysd_coolapk" translatable="false">http://www.coolapk.com/u/814297</string>
+    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
+    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
+    <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
+    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
+    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
+    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
+
 </resources>

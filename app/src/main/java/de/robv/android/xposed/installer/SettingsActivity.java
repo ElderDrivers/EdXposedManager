@@ -28,7 +28,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.preference.CheckBoxPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
@@ -140,7 +139,11 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 Color.parseColor("#607D8B")
         };
 
-        private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
+        public static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
+        public static final File mGlobalModeFlag = new File(XposedApp.BASE_DIR + "conf/forceglobal");
+        public static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
+        public static final File mDisableXposedMinverFlag = new File(XposedApp.BASE_DIR + "conf/disablexposedminver");
+        public static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
         private static final String DIALOG_FRAGMENT_TAG = "list_preference_dialog";
 
         private Preference mClickedPreference;
@@ -210,7 +213,73 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 }
             });
 
-            CheckBoxPreference prefDisableResources = (CheckBoxPreference) findPreference("disable_resources");
+            SwitchPreference prefWhiteListMode = findPreference("white_list_switch");
+            prefWhiteListMode.setChecked(mWhiteListModeFlag.exists());
+            prefWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
+                boolean enabled = (Boolean) newValue;
+                if (enabled) {
+                    try {
+                        mWhiteListModeFlag.createNewFile();
+                    } catch (IOException e) {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    mWhiteListModeFlag.delete();
+                }
+                return (enabled == mWhiteListModeFlag.exists());
+            });
+            SwitchPreference prefMinVerResources = findPreference("skip_xposedminversion_check");
+            prefMinVerResources.setChecked(mDisableXposedMinverFlag.exists());
+            prefMinVerResources.setOnPreferenceChangeListener((preference, newValue) -> {
+                boolean enabled = (Boolean) newValue;
+                if (enabled) {
+                    try {
+                        //noinspection ResultOfMethodCallIgnored
+                        mDisableXposedMinverFlag.createNewFile();
+                    } catch (IOException e) {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    //noinspection ResultOfMethodCallIgnored
+                    mDisableXposedMinverFlag.delete();
+                }
+                return (enabled == mDisableXposedMinverFlag.exists());
+            });
+            SwitchPreference prefGlobalResources = findPreference("force_global_mode");
+            prefGlobalResources.setChecked(mGlobalModeFlag.exists());
+            prefGlobalResources.setOnPreferenceChangeListener((preference, newValue) -> {
+                boolean enabled = (Boolean) newValue;
+                if (enabled) {
+                    try {
+                        //noinspection ResultOfMethodCallIgnored
+                        mGlobalModeFlag.createNewFile();
+                    } catch (IOException e) {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    //noinspection ResultOfMethodCallIgnored
+                    mGlobalModeFlag.delete();
+                }
+                return (enabled == mGlobalModeFlag.exists());
+            });
+            SwitchPreference prefDynamicResources = findPreference("is_dynamic_modules");
+            prefDynamicResources.setChecked(mDynamicModulesFlag.exists());
+            prefDynamicResources.setOnPreferenceChangeListener((preference, newValue) -> {
+                boolean enabled = (Boolean) newValue;
+                if (enabled) {
+                    try {
+                        //noinspection ResultOfMethodCallIgnored
+                        mDynamicModulesFlag.createNewFile();
+                    } catch (IOException e) {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    //noinspection ResultOfMethodCallIgnored
+                    mDynamicModulesFlag.delete();
+                }
+                return (enabled == mDynamicModulesFlag.exists());
+            });
+            SwitchPreference prefDisableResources = (SwitchPreference) findPreference("disable_resources");
             prefDisableResources.setChecked(mDisableResourcesFlag.exists());
             prefDisableResources.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override

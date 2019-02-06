@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    app:cardBackgroundColor="?attr/list_download_item_color"
-                                    app:cardUseCompatPadding="true">
-    <!-- Design by kabouzeid (Phonograph) -->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardBackgroundColor="?attr/list_download_item_color"
+    app:cardUseCompatPadding="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,13 +46,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rovo89"
+                    android:text="@string/mlgmxyysd"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rovo89_summary"
+                    android:text="@string/mlgmxyysd_summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
             </LinearLayout>
 
@@ -68,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="openLink"
-                    android:tag="@string/rovo89_xda"
+                    android:tag="@string/mlgmxyysd_xda"
                     android:text="@string/xda"
                     android:textColor="#F57C00"/>
 
@@ -77,9 +76,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="openLink"
-                    android:tag="@string/rovo89_github"
+                    android:tag="@string/mlgmxyysd_github"
                     android:text="@string/github"
                     android:textColor="#4183c4"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="openLink"
+                    android:tag="@string/mlgmxyysd_coolapk"
+                    android:text="@string/coolapk"
+                    android:textColor="#0F9D58"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -107,13 +115,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tungstwenty"
+                    android:text="@string/solohsu"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tungstwenty_summary"
+                    android:text="@string/solohsu_summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
             </LinearLayout>
 
@@ -128,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="openLink"
-                    android:tag="@string/tungstwenty_xda"
+                    android:tag="@string/solohsu_xda"
                     android:text="@string/xda"
                     android:textColor="#F57C00"/>
 
@@ -137,7 +145,76 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="openLink"
-                    android:tag="@string/tungstwenty_github"
+                    android:tag="@string/solohsu_github"
+                    android:text="@string/github"
+                    android:textColor="#4183c4"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="openLink"
+                    android:tag="@string/solohsu_coolapk"
+                    android:text="@string/coolapk"
+                    android:textColor="#0F9D58"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/windowBackground"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/meowcat"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/meowcat_summary"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="openLink"
+                    android:tag="@string/meowcat_website"
+                    android:text="@string/website"
+                    android:textColor="#F57C00"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="openLink"
+                    android:tag="@string/meowcat_github"
                     android:text="@string/github"
                     android:textColor="#4183c4"/>
 
@@ -168,13 +245,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/dvdandroid"
+                    android:text="@string/elderdrivers"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/dvdandroid_summary"
+                    android:text="@string/elderdrivers_summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
             </LinearLayout>
 
@@ -189,8 +266,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="openLink"
-                    android:tag="@string/dvdandroid_xda"
-                    android:text="@string/xda"
+                    android:tag="@string/elderdrivers_website"
+                    android:text="@string/website"
                     android:textColor="#F57C00"/>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -198,67 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="openLink"
-                    android:tag="@string/dvdandroid_github"
-                    android:text="@string/github"
-                    android:textColor="#4183c4"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/windowBackground"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="8dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/biohazard"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/biohazard_summary"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="openLink"
-                    android:tag="@string/biohazard_xda"
-                    android:text="@string/xda"
-                    android:textColor="#F57C00"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="openLink"
-                    android:tag="@string/biohazard_github"
+                    android:tag="@string/elderdrivers_github"
                     android:text="@string/github"
                     android:textColor="#4183c4"/>
 

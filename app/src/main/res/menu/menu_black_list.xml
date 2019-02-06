@@ -8,10 +8,4 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/white_list_switch"
-        android:checkable="true"
-        android:title="@string/white_list_mode_title"
-        app:showAsAction="never|withText" />
-
 </menu>
