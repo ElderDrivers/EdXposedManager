@@ -315,5 +315,6 @@
     <string name="pref_dynamic_modules_summary">(重启后生效) 启用后，每个APP进程启动时重新加载最新的模块列表</string>
     <string name="title_compat_list">兼容模式</string>
     <string name="menu_title_compat_mode">关于兼容模式</string>
+    <string name="notinstalled">EdXposed 框架未安装</string>
 
 </resources>

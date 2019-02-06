@@ -23,6 +23,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import de.robv.android.xposed.installer.ModulesFragment;
 import org.meowcat.edxposed.manager.R;
+
+import de.robv.android.xposed.installer.SettingsActivity;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -209,18 +211,23 @@ public final class ModuleUtil {
             Log.i(XposedApp.TAG, "ModuleUtil -> updating modules.list");
             int installedXposedVersion = XposedApp.getXposedVersion();
             boolean disabled = StatusInstallerFragment.DISABLE_FILE.exists();
-            if (!disabled && installedXposedVersion <= 0) {
-                Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
-                return;
+            if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists()) {
+                if (!disabled && installedXposedVersion <= 0) {
+                    Toast.makeText(mApp, R.string.notinstalled, Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
 
             PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
             PrintWriter enabledModulesList = new PrintWriter(XposedApp.ENABLED_MODULES_LIST_FILE);
             List<InstalledModule> enabledModules = getEnabledModules();
             for (InstalledModule module : enabledModules) {
-                if (!disabled && (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)) {
-                    Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
-                    continue;
+
+                if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists()) {
+                    if (!disabled && (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)) {
+                        Toast.makeText(mApp, R.string.notinstalled, Toast.LENGTH_SHORT).show();
+                        continue;
+                    }
                 }
 
                 modulesList.println(module.app.sourceDir);

@@ -379,5 +379,6 @@
     <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
     <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
     <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
+    <string name="notinstalled">The EdXposed framework is not installed.</string>
 
 </resources>

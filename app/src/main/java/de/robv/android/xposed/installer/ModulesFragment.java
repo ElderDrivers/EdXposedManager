@@ -589,19 +589,27 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 warningText.setText(getString(R.string.no_min_version_specified));
                 warningText.setVisibility(View.VISIBLE);
             } else if (installedXposedVersion > 0 && item.minVersion > installedXposedVersion) {
-                checkbox.setEnabled(false);
+                if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists()) {
+                    checkbox.setEnabled(false);
+                }
                 warningText.setText(String.format(getString(R.string.warning_xposed_min_version), item.minVersion));
                 warningText.setVisibility(View.VISIBLE);
             } else if (item.minVersion < ModuleUtil.MIN_MODULE_VERSION) {
-                checkbox.setEnabled(false);
+                if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists()) {
+                    checkbox.setEnabled(false);
+                }
                 warningText.setText(String.format(getString(R.string.warning_min_version_too_low), item.minVersion, ModuleUtil.MIN_MODULE_VERSION));
                 warningText.setVisibility(View.VISIBLE);
             } else if (item.isInstalledOnExternalStorage()) {
-                checkbox.setEnabled(false);
+                if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists()) {
+                    checkbox.setEnabled(false);
+                }
                 warningText.setText(getString(R.string.warning_installed_on_external_storage));
                 warningText.setVisibility(View.VISIBLE);
             } else if (installedXposedVersion == 0 || (installedXposedVersion == -1 && !StatusInstallerFragment.DISABLE_FILE.exists())) {
-                checkbox.setEnabled(false);
+                if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists()) {
+                    checkbox.setEnabled(false);
+                }
                 warningText.setText(getString(R.string.not_installed_no_lollipop));
                 warningText.setVisibility(View.VISIBLE);
             } else {
