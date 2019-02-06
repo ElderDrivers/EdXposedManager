@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory
+    <!--PreferenceCategory
         android:key="group_installation"
         android:title="@string/settings_group_installation">
 
@@ -15,12 +15,13 @@
             android:title="@string/settings_install_mode"
             app:useStockLayout="true"/>
 
-    </PreferenceCategory>
+    </PreferenceCategory-->
 
     <PreferenceCategory
         android:key="group_download"
         android:title="@string/settings_group_download">
 
+        <!--suppress AndroidElementNotAllowed -->
         <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
             android:defaultValue="stable"
             android:entries="@array/release_type_texts"
@@ -161,5 +162,27 @@
             android:summary="@string/alt_download_method_summ"
             android:title="@string/alt_download_method"/>
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="group_edxposed"
+        android:title="@string/settings_group_edxposed">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="white_list_switch"
+            android:summary="@string/white_list_mode_summary"
+            android:title="@string/white_list_mode_title" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="force_global_mode"
+            android:summary="@string/pref_force_global_summary"
+            android:title="@string/pref_title_force_global" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="is_dynamic_modules"
+            android:summary="@string/pref_dynamic_modules_summary"
+            android:title="@string/pref_title_dynamic_modules" />
     </PreferenceCategory>
 </PreferenceScreen>

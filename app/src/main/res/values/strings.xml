@@ -345,5 +345,7 @@
     <string name="pref_dynamic_modules_summary">(Reboot needed) When turned on, load latest activated module list on each app process started</string>
     <string name="title_compat_list">Compat mode</string>
     <string name="menu_title_compat_mode">About Compat mode</string>
+    <string name="settings_group_edxposed">Elder Driver Xposed Settings (Reboot needed)</string>
+    <string name="white_list_mode_summary">White List mode: Only selected app load EdXposed Framework.\nBlack List mode: Selected app NOT load EdXposed Framework.</string>
 
 </resources>

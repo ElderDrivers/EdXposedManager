@@ -44,6 +44,7 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         } else {
             uri = Uri.fromFile(new File(localFilename));
         }
+        installIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         installIntent.setDataAndType(uri, DownloadsUtil.MIME_TYPE_APK);
         installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
         context.startActivity(installIntent);

@@ -21,6 +21,18 @@
             android:title="@string/nav_item_logs"/>
     </group>
     <group
+        android:id="@+id/ed_items"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_black_list"
+            android:icon="@drawable/ic_format_list_bulleted"
+            android:title="@string/nav_title_black_list"/>
+        <item
+            android:id="@+id/nav_compat_list"
+            android:icon="@drawable/ic_local_hospital"
+            android:title="@string/nav_title_compat_list"/>
+    </group>
+    <group
         android:id="@+id/option_items"
         android:checkableBehavior="all">
         <item
@@ -36,21 +48,4 @@
             android:icon="@drawable/ic_nav_about"
             android:title="@string/nav_item_about"/>
     </group>
-    <item android:title="EdXp Extras">
-        <menu>
-            <item
-                android:id="@+id/nav_black_list"
-                android:icon="@drawable/ic_format_list_bulleted"
-                android:title="@string/nav_title_black_list"/>
-            <item
-                android:id="@+id/nav_compat_list"
-                android:icon="@drawable/ic_local_hospital"
-                android:title="@string/nav_title_compat_list"/>
-            <item
-                android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_settings"
-                android:title="@string/nav_title_settings"
-                android:visible="true"/>
-        </menu>
-    </item>
 </menu>

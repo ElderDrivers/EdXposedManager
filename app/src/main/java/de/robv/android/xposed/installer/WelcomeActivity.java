@@ -7,10 +7,10 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import org.meowcat.edxposed.manager.R;
 import com.solohsu.android.edxp.manager.fragment.BlackListFragment;
 import com.solohsu.android.edxp.manager.fragment.CompatListFragment;
-import com.solohsu.android.edxp.manager.fragment.SettingFragment;
+
+import org.meowcat.edxposed.manager.R;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -164,17 +164,12 @@ public class WelcomeActivity extends XposedBaseActivity
             case R.id.nav_black_list:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.nav_title_black_list);
-                navFragment = BlackListFragment.newInstance();
+                navFragment = new BlackListFragment();
                 break;
             case R.id.nav_compat_list:
                 mPrevSelectedId = itemId;
-                setTitle(R.string.nav_title_compat_list);
-                navFragment = CompatListFragment.newInstance();
-                break;
-            case R.id.nav_settings:
-                mPrevSelectedId = itemId;
-                setTitle(R.string.nav_title_settings);
-                navFragment = SettingFragment.newInstance();
+                setTitle(R.string.title_compat_list);
+                navFragment = new CompatListFragment();
                 break;
             case R.id.drawer_item_5:
                 startActivity(new Intent(this, SettingsActivity.class));

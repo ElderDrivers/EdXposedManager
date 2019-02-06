@@ -57,18 +57,11 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     public static final String TAG = "XposedInstaller";
 
     @SuppressLint("SdCardPath")
-    private static final String BASE_DIR_LEGACY = "/data/data/com.solohsu.android.edxp.manager/";
+    private static final String BASE_DIR_LEGACY = "/data/data/org.meowcat.edxposed.manager/";
     public static final String BASE_DIR = Build.VERSION.SDK_INT >= 24
-            ? "/data/user_de/0/com.solohsu.android.edxp.manager/" : BASE_DIR_LEGACY;
+            ? "/data/user_de/0/org.meowcat.edxposed.manager/" : BASE_DIR_LEGACY;
     public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_1 = new File("/magisk/xposed/system/xposed.prop");
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_2 = new File("/su/xposed/system/xposed.prop");
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_3 = new File("/vendor/xposed.prop");
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_4 = new File("/xposed/xposed.prop");
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_5 = new File("/magisk/PurifyXposed/system/xposed.prop");
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_6 = new File("/xposed.prop");
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_OFFICIAL = new File("/su/xposed/xposed.prop");
-    private static final File XPOSED_PROP_FILE = new File("/system/xposed.prop");
+    private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.dex");
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
     private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
@@ -301,10 +294,10 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
     }
 
-    private void mkdirAndChmod(String dir, int permissions) {
+    public static void mkdirAndChmod(String dir, int permissions) {
         dir = BASE_DIR + dir;
+        //noinspection ResultOfMethodCallIgnored
         new File(dir).mkdir();
-        FileUtils.setPermissions(getFilesDir().getParent(), 00751, -1, -1);
         FileUtils.setPermissions(dir, permissions, -1, -1);
     }
 
@@ -312,22 +305,8 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         InstallZipUtil.XposedProp prop = null;
         File file = null;
 
-        if (XPOSED_PROP_FILE.canRead()) {
-            file = XPOSED_PROP_FILE;
-        } else if (XPOSED_PROP_FILE_SYSTEMLESS_OFFICIAL.canRead()) {
-            file = XPOSED_PROP_FILE_SYSTEMLESS_OFFICIAL;
-        } else if (XPOSED_PROP_FILE_SYSTEMLESS_1.canRead()) {
-            file = XPOSED_PROP_FILE_SYSTEMLESS_1;
-        } else if (XPOSED_PROP_FILE_SYSTEMLESS_2.canRead()) {
-            file = XPOSED_PROP_FILE_SYSTEMLESS_2;
-        } else if (XPOSED_PROP_FILE_SYSTEMLESS_3.canRead()) {
-            file = XPOSED_PROP_FILE_SYSTEMLESS_3;
-        } else if (XPOSED_PROP_FILE_SYSTEMLESS_4.canRead()) {
-            file = XPOSED_PROP_FILE_SYSTEMLESS_4;
-        } else if (XPOSED_PROP_FILE_SYSTEMLESS_5.canRead()) {
-            file = XPOSED_PROP_FILE_SYSTEMLESS_5;
-        } else if (XPOSED_PROP_FILE_SYSTEMLESS_6.canRead()) {
-            file = XPOSED_PROP_FILE_SYSTEMLESS_6;
+        if (EDXPOSED_PROP_FILE.canRead()) {
+            file = EDXPOSED_PROP_FILE;
         }
 
         if (file != null) {

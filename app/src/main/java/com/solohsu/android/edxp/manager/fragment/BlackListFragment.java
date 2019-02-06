@@ -50,17 +50,6 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         inflater.inflate(R.menu.menu_black_list, menu);
         mSearchView = (SearchView) menu.findItem(R.id.app_search).getActionView();
         mSearchView.setOnQueryTextListener(mSearchListener);
-        MenuItem whiteListMenuItem = menu.findItem(R.id.white_list_switch);
-        whiteListMenuItem.setChecked(isWhiteListMode());
-        whiteListMenuItem.setOnMenuItemClickListener(item -> {
-            item.setChecked(!item.isChecked());
-            if (AppHelper.setWhiteListMode(item.isChecked())) {
-                updateUi(item.isChecked());
-            } else {
-                ToastUtils.showShortToast(requireContext(), R.string.mode_change_failed);
-            }
-            return true;
-        });
     }
 
     @Override
