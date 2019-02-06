@@ -1,0 +1,16 @@
+version: 2
+groups:
+  code-review:
+    approve_by_comment:
+      approve_regex: '^(Approved|:shipit:|:\+1:|LGTM)'
+      reject_regex: '^(Rejected|:-1:)'
+      enabled: true
+    required: 1
+    reset_on_push:
+      enabled: true
+    users:
+      - DVDAndroid
+    always_approved:
+      title_regex: '(string|translation)'
+    always_pending:
+      title_regex: '(WIP|wip)'

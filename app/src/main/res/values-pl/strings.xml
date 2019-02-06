@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- General/various strings -->
+    <string name="menuSend">Wyślij</string>
+    <string name="menuSaveToSd">Zapisz na karcie SD</string>
+    <string name="xposed_not_active">Ostatnia wersja Xposed jest aktualnie nieaktywna. Czy zainstalowałeś proces framework i uruchomiłeś ponownie urządzenie?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="tabInstall">Framework</string>
+    <string name="tabDownload">Pobierz</string>
+    <string name="welcome_framework_update_available">Aktualizacja dla Xposed Framework jest dostępna (%s).</string>
+
+    <!-- navigation view items -->
+    <string name="nav_item_install">Framework</string>
+    <string name="nav_item_modules">Moduły</string>
+    <string name="nav_item_download">Pobierz</string>
+    <string name="nav_item_settings">Ustawienia</string>
+    <string name="nav_item_support">Wsparcie</string>
+    <string name="nav_item_logs">Logi</string>
+    <string name="nav_item_about">O aplikacji</string>
+    <string name="navigation_drawer_open">Otwórz wysuwany z lewej strony pasek nawigacji</string>
+    <string name="navigation_drawer_close">Zamknij wysuwany z lewej strony pasek nawigacji</string>
+
+    <!-- Installer tab -->
+    <string name="install">Zainstaluj/Aktualizuj</string>
+    <string name="uninstall">Odinstaluj</string>
+    <string name="soft_reboot">Miekki restart</string>
+    <string name="reboot">Uruchom ponownie</string>
+    <string name="areyousure">Czy jesteś pewien?</string>
+    <string name="phone_not_compatible">Xposed nie jest kompatybilny z Android SDK w wersji %1$d lub z twoją architekturą procesora (%2$s).</string>
+    <string name="reboot_failed">Ponowne uruchomienie nie powiodło się. Proszę uruchomić ponownie urządzenie ręcznie.</string>
+    <string name="auto_flash_note">%s powinien zostać zainstalowany automatycznie po naciśnięciu OK.</string>
+    <string name="manual_flash_note">Aby zakończyć operację proszę załadować %s z karty SD.</string>
+    <string name="reboot_confirmation">Chcesz teraz uruchomić ponownie urządzenie?</string>
+    <string name="reboot_recovery_confirmation">Chcesz teraz uruchomić ponownie urządzenie w trybie recovery?</string>
+    <string name="install_warning_title">Bądź ostrożny!</string>
+    <string name="install_warning">W niektórych przypadkach urządzenie może nie uruchomić się po instalacji Xposed. Jeśli nigdy nie słyszałeś o miękkiej cegle, bootloopie i nie wiesz jak odzyskać w takiej sytuacji system, nie instaluj Xposed! W każdym bądź razie, zrobienie kopii  zapasowej jest bardzo zalecane.</string>
+    <string name="dont_show_again">Nie pokazuj ponownie</string>
+    <string name="install_known_issue">Wydaje się, że to znany problem z ROM-em. Instalacja Xposed może nie działać lub prowadzić do poważnych problemów. Kliknij tutaj, aby uzyskać szczegółowe informacje na temat tej kwestii.</string>
+    <string name="installed_lollipop">Wersja %s Xposed Framework jest aktywna.</string>
+    <string name="installed_lollipop_inactive">Wersja %s Xposed Framework jest zainstalowana, ale nie jest aktywna. Proszę sprawdzić logi, aby poznać szczegóły.</string>
+    <string name="modules_updates_available">Dostępna aktualizacja modułów</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Nie udało się uzyskać dostępu do ROOT-a.\n\nUpewnij się, że urządzenie jest zrootowane prawidłowo i nie zostały zablokowane polecenia powłoki.</string>
+    <string name="file_extract_failed">Nie można wyodrębnić %s</string>
+    <string name="file_mounting_writable">Montowanie %s do zapisu&#8230;</string>
+    <string name="file_mount_writable_failed">Nie można zamontować %s do zapisu</string>
+    <string name="file_trying_to_continue">Próbowanie kontynuacji&#8230;</string>
+    <string name="file_backup_already_exists">Kopia zapasowa już istnieje %s</string>
+    <string name="file_backup_not_found">Nie znaleziono kopii zapasowej %s</string>
+    <string name="file_backup_failed">Błąd tworzenia kopii zapasowej %s</string>
+    <string name="file_backup_successful">Utworzono kopię zapasową %s</string>
+    <string name="file_backup_restoring">Przywracanie z kopii zapasowej %s</string>
+    <string name="file_copying">Kopiowanie %s&#8230;</string>
+    <string name="file_copy_failed">Nie można skopiować %1$s do %2$s</string>
+    <string name="file_move_failed">Nie można przenieść %1$s do %2$s</string>
+    <string name="file_set_perms_failed">Nie można ustawić uprawnień dla %s</string>
+    <string name="file_set_owner_failed">Nie można określić ustawień właściciela dla %s</string>
+    <string name="file_creating_directory">Tworzenie katalogu %s&#8230;</string>
+    <string name="file_create_directory_failed">Nie można utworzyć katalogu %s</string>
+    <string name="file_writing_recovery_command">Zapisywanie polecenia instalacji przez recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Instalacja poprzez recovery nie powiodła się. Proszę użyć innej metody instalacji.</string>
+    <string name="file_done">Gotowe! Zmiany będą aktywne po restarcie.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Moduł Xposed nie jest jeszcze aktywny</string>
+    <string name="module_is_not_activated_yet_detailed">%s został zainstalowany, ale nie został jeszcze aktywowany.</string>
+    <string name="activate_and_reboot">Aktywuj i zrestartuj</string>
+    <string name="activate_only">Tylko aktywuj</string>
+    <string name="module_activated">Moduł został aktywowany</string>
+    <string name="module_empty_description">(brak dołączonego opisu)</string>
+    <string name="module_no_ui">Ten moduł nie zawiera interfejsu użytkownika</string>
+    <string name="no_xposed_modules_found">Nie znaleziono żadnych modułów Xposed!</string>
+    <string name="xposed_module_list_updated">Lista modułów Xposed została zaktualizowana. Zmiany zostaną uaktywnione po ponownym uruchomieniu</string>
+    <string name="xposed_module_updated_notification_title">Moduł został zaktualizowany</string>
+    <string name="xposed_module_updated_notification">Uruchom ponownie, aby aktywować zmiany</string>
+    <string name="warning_xposed_min_version">Ten moduł wymaga nowszej wersji XposedBridge (%d) i nie może być aktywowany.</string>
+    <string name="no_min_version_specified">Ten moduł nie określa wymaganej wersji XposedBridge.</string>
+    <string name="warning_min_version_too_low">Ten moduł był stworzony dla XposedBridge w wersji %1$d, ale przez niekompatybilne zmiany w wersji %2$d, został wyłączony.</string>
+    <string name="module_launch">Uruchom</string>
+    <string name="module_download_updates">Pobierz/Aktualizuj</string>
+    <string name="module_support">Wsparcie</string>
+    <string name="module_app_info">Informacje o aplikacji</string>
+    <string name="module_uninstall">Odinstaluj</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Szukaj</string>
+    <string name="menuReload">Przeładuj</string>
+    <string name="changes">Zmiany:</string>
+    <string name="download_details_page_description">Opis</string>
+    <string name="download_details_page_versions">Wersja</string>
+    <string name="download_details_page_settings">Ustawienia</string>
+    <string name="reltype_stable">Stabilna</string>
+    <string name="reltype_stable_summary">Stabilna (niskie ryzyko błędów)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (średnie ryzyko błędów)</string>
+    <string name="reltype_experimental">Eksperymentalna</string>
+    <string name="reltype_experimental_summary">Eksperymentalna (wysokie ryzyko błędów)</string>
+    <string name="reltype_use_global_summary">Użyj globalnych ustawień</string>
+    <string name="download_author">przez %s</string>
+    <string name="download_unknown_author">autor nieznany</string>
+    <string name="download_status_installed">Zainstalowano (wersja %s)</string>
+    <string name="download_status_update_available">Dostępna aktualizacja (wersja %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Dodano %1$s \u00b7 Zaktualizowano %2$s</string>
+    <string name="download_sorting_title">Sortuj według</string>
+    <string name="download_sorting_status">Sortuj wg statusu</string>
+    <string name="download_sorting_updated">Sortuj wg ostatniej aktualizacji</string>
+    <string name="download_sorting_created">Sortuj wg daty</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Dostępna aktualizacja</string>
+    <string name="download_section_installed">Zainstalowano</string>
+    <string name="download_section_not_installed">Nie zainstalowano</string>
+    <string name="download_section_24h">Ostatnie 24 godziny</string>
+    <string name="download_section_7d">Ostatnie 7 dni</string>
+    <string name="download_section_30d">Ostatnie 30 dni</string>
+    <string name="download_section_older">Więcej niż 30 dni temu</string>
+    <string name="download_details_not_found">Nie ma modułu z nazwą pakietu \"%s\" w repozytorium.</string>
+    <string name="download_no_versions">Autor nie przekazał jeszcze niczego.</string>
+    <string name="download_test_version_not_shown">Wersja testowa jest dostępna, jednak nie jest ona widoczna z powodu globalnych lub specyficznych ustawień widoczności modułu.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_installation">Instalacja</string>
+    <string name="settings_install_mode">Tryb instalacji</string>
+    <string name="install_mode_normal">Klasyczny (bezpośredni zapis do /system)</string>
+    <string name="install_mode_recovery_auto">Przez recovery (automatyczna instalacja pliku zip)</string>
+    <string name="install_mode_recovery_manual">Przez recovery (zapisz zip na kartę SD i wykonaj instalację ręcznie)</string>
+    <string name="settings_group_download">Pobierz</string>
+    <string name="settings_release_type">Pokazywana wersja</string>
+    <string name="settings_group_experimental">Eksperymentalne</string>
+    <string name="settings_disable_resources">Wyłącz zasoby konfliktów</string>
+    <string name="settings_disable_resources_summary">Rozwiązanie konfliktów z silnikiem\n<b>OSTRZEŻENIE:</b> Moduły, które próbują zmienić zasoby nie będą pracowały, kiedy to jest włączone.</string>
+    <string name="settings_group_app">Aplikacja</string>
+    <string name="settings_theme">Motyw</string>
+    <string name="settings_theme_light">Jasny</string>
+    <string name="settings_theme_dark">Ciemny</string>
+    <string name="settings_theme_black">Czarny (użyteczne dla ekranów AMOLED)</string>
+    <string name="settings_default_view">Domyślny widok</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">Wsparcie dla modułów</string>
+    <string name="support_modules_description">Długie naciśnięcie modułu na liście i wybierz \"%1$s\".</string>
+    <string name="support_framework_label">Wsparcie Framework/Instalator</string>
+    <string name="support_faq_label">FAQ/znane problemy</string>
+    <string name="support_donate_label">Dotacja</string>
+    <string name="support_donate_description">Jeśli chcesz podziękować za Xposed, dokonaj dotacji dla rovo89 tutaj</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Nie można zapisać logu na kartę SD:</string>
+    <string name="sdcard_not_writable">Karta SD nie znaleziona lub nie można jej odczytać</string>
+    <string name="menuClearLog">Usuń teraz logi</string>
+    <string name="logs_cleared">Logi usunięte</string>
+    <string name="logs_clear_failed">Nie można usunąć logu:</string>
+    <string name="log_is_empty">Log jest pusty</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Główni deweloperzy</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> and <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> for bug fixes and Material Design</string>
+    <string name="about_translator_label">Tłumacz</string>
+    <string name="translator">Michał Bator i pantinPL</string>
+    <string name="about_version_label">Wersja</string>
+    <string name="about_source_label">Źródło kodu</string>
+    <string name="about_libraries_label">Używane biblioteki</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Pobierz</string>
+    <string name="download_view_install">Zainstaluj</string>
+    <string name="download_view_cancel">Anuluj</string>
+    <string name="download_view_no_url">Brak dostępnych adresów URL do pobrania</string>
+    <string name="download_view_running">Pobieranie jest uruchomione (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Pobieranie oczekuje</string>
+    <string name="download_view_successful">Pobieranie zakończone</string>
+    <string name="download_view_failed">Błędne pobranie (błąd %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Suma MD5 jest niepoprawna (pobrano: %1$s, przewidziano: %2$s)</string>
+    <string name="download_could_not_read_file">Nie można odczytać pobranego pliku: %s</string>
+    <string name="download_no_valid_apk">Pobrane pliki APK są niepoprawne (lub niekompatybilne)</string>
+    <string name="download_incorrect_package_name">Nazwa paczki jest niewłaściwa (pobrano: %1$s, przewidziano: %2$s)</string>
+    <string name="download_running">Trwa pobieranie</string>
+    <string name="download_progress">%1$,d / %2$,d kB</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Pobieranie %1$s błędne: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Pobieranie %1$s błędne: %2$s</string>
+    <string name="repo_load_failed">Nie można załadować repozytorium z %1$s:\n%2$s</string>
+    <string name="choose_color">Wybierz kolor…</string>
+
+    <string name="warning_installed_on_external_storage">Ten moduł nie może zostać załadowany, ponieważ jest zainstalowany na karcie SD, przenieś go do pamięci wewnętrznej.</string>
+    <string name="view">PODGLĄD</string>
+    <string name="export_">Eksport…</string>
+    <string name="import_">Import…</string>
+    <string name="export_enabled_modules">Eksport listy włączonych modułów</string>
+    <string name="import_enabled_modules">Import listy włączonych modułów</string>
+    <string name="export_installed_modules">Eksport listy zainstalowanych modułów</string>
+    <string name="import_installed_modules">Import listy zainstalowanych modułów</string>
+    <string name="no_installed_modules">Brak zainstalowanych modułów!</string>
+    <string name="enable_heads_up">Włącz wyskakujące powiadomienie</string>
+    <string name="enable_heads_up_summary">Ta opcja włącza wyskakujące powiadomienie o nowych/zaktualizowanych modułach</string>
+    <string name="nav_bar_coloration">Koloruj pasek nawigacyjny</string>
+    <string name="no_backup_found">Nie znaleziono kopii zapasowej</string>
+    <string name="no_enabled_modules">Brak aktywnych modułów</string>
+
+    <string name="share">Udostępnij przez…</string>
+    <string name="back">Wstecz</string>
+    <string name="loadingError">Błąd ładowania Xposed Zip frameworks</string>
+    <string name="info">Info</string>
+    <string name="infoInstaller">
+		Nazwa: %1$s
+		\nSDK: %2$d
+		\nArchitektura: %3$s
+        \nWersja: %4$s
+	</string>
+    <string name="infoUninstaller">
+   		Nazwa: %1$s
+        \nArchitektura: %2$s
+        \nData: %3$s
+	</string>
+    <string name="downloadZipOk">%1$s pobrany prawidłowo</string>
+    <string name="permissionNotGranted">Ta funkcja nie zadziała bez uprawnienia zapisu zewnętrznej pamięci masowej.</string>
+    <string name="warningArchitecture">CZY WYBRAŁEŚ PRAWIDŁOWĄ WERSJĘ ARCHITEKTURY XPOSED ZIP?\nBłędny instalator zip może uszkodzić twój telefon!</string>
+    <string name="newVersion">Nowa wersja Xposed Installer jest dostępna! Zaktualizuj!</string>
+    <string name="update">Aktualizuj</string>
+    <string name="choose_icon">Wybierz ikonę</string>
+    <string name="custom_icon">Niestandardowa ikona</string>
+    <string name="not_installed_no_lollipop">Xposed Framework jest niezainstalowany.</string>
+    <string name="notify_module_update">Włącz powiadomienie o aktualizacji modułu</string>
+
+    <string name="md_back_label">Wstecz</string>
+    <string name="md_done_label">Gotowe</string>
+    <string name="md_cancel_label">Anuluj</string>
+    <string name="md_choose_label">Wybierz</string>
+    <string name="md_error_label">Błąd</string>
+    <string name="md_storage_perm_error">Aplikacja nie dostała uprawnienia READ_EXTERNAL_STORAGE.</string>
+    <string name="md_custom_label">Niestandardowy</string>
+    <string name="md_presets_label">Zdefiniowane</string>
+    <string name="changelog">Lista zmian</string>
+    <string name="scroll_top">Przewiń do góry</string>
+    <string name="add_bookmark">Dodaj zakładkę</string>
+    <string name="remove_bookmark">Usuń zakładkę</string>
+    <string name="bookmarks">Zakładki</string>
+    <string name="no_bookmark_added">Brak dodanej zakładki</string>
+    <string name="bookmark_added">Dodano zakładkę</string>
+    <string name="bookmark_removed">Usunięto zakładkę</string>
+    <string name="undo">Cofnij</string>
+    <string name="notification_coloration">Koloruj ikonę powiadomienia</string>
+    <string name="file_is_empty">Plik jest pusty</string>
+    <string name="install_with_su">Zainstaluj moduł z dostępem ROOT-a</string>
+    <string name="install_with_su_summ">Jeśli zaznaczone, Xposed Installer zainstaluje moduł bez monitu</string>
+    <string name="install_remove">Zainstaluj i usuń</string>
+    <string name="download_remove">Pobierz i usuń</string>
+    <string name="module_saved">Moduł zapisany %1$s</string>
+    <string name="ignore_updates">Ignoruj aktualizację</string>
+    <string name="ignore_updates_summ">Ignoruj aktualizację dla określonego modułu.</string>
+    <string name="reboot_recovery">Restart do trybu recovery</string>
+    <string name="loading">Ładowanie…</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Otwieraj linki w wewnętrznej przeglądarce</string>
+    <string name="scroll_bottom">Przewiń do dołu</string>
+    <string name="open_drawer_summ">Otwórz automatycznie wysuwany z lewej strony pasek nawigacji podczas uruchamiania</string>
+    <string name="open_drawer">Otwórz automatycznie wysuwany z lewej strony pasek nawigacji</string>
+    <string name="share_app">Udostępnij aplikację</string>
+    <string name="share_app_text">Sprawdź to: Xposed Installer w Material Design! %s</string>
+    <string name="status">Status Xposed</string>
+    <string name="xposed_on_next_reboot">Xposed Framework zostanie włączony po ponownym uruchoimieniu</string>
+    <string name="xposed_off_next_reboot">Xposed Framework zostanie wyłączony po ponownym uruchoimieniu</string>
+    <string name="rovo_89_old_icon">rovo89 (stara)</string>
+    <string name="confirm_reboots">Potwierdź ponowne uruchomienia</string>
+    <string name="skip_xposedminversion_check">Pomiń sprawdzanie \'xposedminversion\'</string>
+    <string name="skip_xposedminversion_check_summ">Pomiń sprawdzanie modułów \'xposedminversion\'</string>
+
+    <string name="compatibility">Kompatybilność</string>
+    <string name="details">Szczegóły</string>
+    <string name="look_and_feel">Wygląd</string>
+    <string name="support_xda">Uzyskaj wsparcie w temacie na XDA</string>
+    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
+    <string name="later">Później</string>
+    <string name="save">Zapisz</string>
+    <string name="download_location">Lokalizacja pobierania</string>
+    <string name="download_location_summ">Lokalizacja pobierania dla plików APK (tylko moduły)</string>
+    <string name="restart_needed">Wymagane ponowne uruchomienie</string>
+    <string name="cache_cleaned">Pamięć podręczna aplikacji została wyczyszczona. Wymagane ponowne uruchomienie</string>
+    <string name="update_download_list">Lista pobierania modułów zostanie wczytana w ciągu kilku sekund</string>
+    <string name="no_connection_available">Brak dostępnego połączenia</string>
+    <string name="not_logcat">Gdyby ktoś zapytał o Android Logcat, jesteś w złym miejscu. To jest log Xposed; jeśli potrzebujesz logcat, na XDA możesz znaleźć to, czego potrzebujesz</string>
+    <string name="force_english">Wymuś język angielski</string>
+    <string name="warning_language">Zmiana języka zostanie zastosowana po ponownym uruchomieniu aplikacji.</string>
+    <string name="not_flashable_inapp">Ten plik zip nie może zostać zainstalowany w aplikacji. Zainstaluj automatycznie w recovery</string>
+    <string name="not_now">Nie teraz</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">Przekroczenie limitu czasu</string>
+    <string name="flash_error_shell_died">Wykonanie niespodziewanie przerwane</string>
+    <string name="flash_error_invalid_zip">Niepoprawny plik ZIP do zainstalowania</string>
+    <string name="flash_error_not_flashable_in_app">Ten plik może być zainstalowany tylko przez recovery</string>
+    <string name="flash_error_default">Wystąpił błąd %d</string>
+    <string name="installation_error">Błąd instalacji</string>
+    <string name="installation_successful">Instalacja zakończona sukcesem</string>
+    <string name="installation_successful_message">%s pomyślnie zainstalowano</string>
+    <string name="installation_error_message">%1$s instalacja nie powiodła się (%2$s)</string>
+    <string name="installation_apk_normal">Zainstaluj APK normalnie</string>
+    <string name="install_load">Instalowanie…</string>
+    <string name="install_load_apk">Instalowanie %s</string>
+
+    <string name="rovo89_summary">Główny twórca Xposed</string>
+    <string name="tungstwenty_summary">Pomógł wkładając swój udział, zarówno w kodzie jak i pomysłach</string>
+    <string name="dvdandroid_summary">Twórca tej wersji Xposed Installer</string>
+    <string name="biohazard_summary">Pomógł w wprowadzeniu stylu Material Design</string>
+    <string name="unstable_build">Jest to niestabilna wersja. Zainstaluj na własne ryzyko.</string>
+    <string name="alt_download_method">Alternatywna metoda pobierania</string>
+    <string name="alt_download_method_summ">Zaznacz tą opcję, jeśli masz problemy z pobraniem modułu</string>
+
+</resources>
