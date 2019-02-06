@@ -289,7 +289,7 @@ public class AdvancedInstallerFragment extends Fragment {
                 Integer b = Integer.valueOf(newApkVersion);
 
                 if (a.compareTo(b) < 0) {
-                    StatusInstallerFragment.setUpdate(newApkLink, newApkChangelog);
+                    StatusInstallerFragment.setUpdate(newApkLink, newApkChangelog, getContext());
                 }
 
             } catch (Exception ignored) {

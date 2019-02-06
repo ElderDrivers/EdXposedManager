@@ -218,7 +218,7 @@
     </string>
     <string name="downloadZipOk">%1$s 已正确下载</string>
     <string name="permissionNotGranted">当未允许写入外部存储空间权限时，该功能无法正常工作。</string>
-    <string name="warningArchitecture">您是否已选择了正确的 EDXPOSED ZIP 文件？\n错误的 ZIP 文件将可能损坏您的手机！</string>
+    <string name="warningArchitecture">你将会下载一个 ZIP 格式文件，请手动在 Magisk Manager 或 Recovery 中刷入。</string>
     <string name="newVersion">有新版本的 EdXposed Manager 可用！现在更新！</string>
     <string name="update">更新</string>
     <string name="choose_icon">选择一个图标</string>
@@ -253,7 +253,7 @@
     <string name="ignore_updates">忽略更新</string>
     <string name="ignore_updates_summ">忽略指定模块的更新</string>
     <string name="reboot_recovery">重启至恢复模式</string>
-    <string name="loading">正在加载...</string>
+    <string name="loading">正在加载…</string>
     <string name="chrome_custom_tabs">Chrome 自定义标签页</string>
     <string name="chrome_custom_tabs_summ">在内置浏览器中打开链接</string>
     <string name="scroll_bottom">滚动到底部</string>
@@ -271,7 +271,7 @@
     <string name="compatibility">兼容性</string>
     <string name="details">详情</string>
     <string name="look_and_feel">界面外观</string>
-    <string name="support_xda">在 XDA 论坛上获取帮助</string>
+    <string name="support_xda">获取帮助</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">稍后</string>
     <string name="save">保存</string>

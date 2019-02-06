@@ -5,8 +5,10 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -84,7 +86,7 @@ public class StatusInstallerFragment extends Fragment {
         }
     }
 
-    public static void setUpdate(final String link, final String changelog) {
+    public static void setUpdate(final String link, final String changelog,Context mContext) {
         mUpdateLink = link;
 
         mUpdateView.setVisibility(View.VISIBLE);
@@ -99,7 +101,7 @@ public class StatusInstallerFragment extends Fragment {
                         .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                update();
+                                update(mContext);
                             }
                         })
                         .positiveText(R.string.update)
@@ -108,27 +110,10 @@ public class StatusInstallerFragment extends Fragment {
         });
     }
 
-    private static void update() {
-        if (checkPermissions()) return;
-
-        final String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/XposedInstaller/XposedInstaller_by_dvdandroid.apk";
-
-        new File(path).delete();
-
-        new DownloadsUtil.Builder(sActivity)
-                .setTitle("XposedInstaller_by_dvdandroid")
-                .setUrl(mUpdateLink)
-                .setDestinationFromUrl(DownloadsUtil.DOWNLOAD_FRAMEWORK)
-                .setCallback(new DownloadsUtil.DownloadFinishedCallback() {
-                    @Override
-                    public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                        new InstallApkUtil(context, info).execute();
-                    }
-                })
-                .setMimeType(DownloadsUtil.MIME_TYPES.APK)
-                .setDialog(true)
-                .download();
-
+    private static void update(Context mContext) {
+        Uri uri = Uri.parse(mUpdateLink);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        mContext.startActivity(intent);
     }
 
     private static boolean checkPermissions() {
@@ -204,22 +189,22 @@ public class StatusInstallerFragment extends Fragment {
         sFragment = this;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == WRITE_EXTERNAL_PERMISSION) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        update();
-                    }
-                }, 500);
-            } else {
-                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
-            }
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == WRITE_EXTERNAL_PERMISSION) {
+//            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        update();
+//                    }
+//                }, 500);
+//            } else {
+//                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+//            }
+//        }
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

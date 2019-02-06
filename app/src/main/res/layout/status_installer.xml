@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -105,7 +106,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:id="@+id/errorIcon"
@@ -114,7 +116,8 @@
                             android:layout_gravity="center"
                             android:padding="6dp"
                             android:src="@drawable/ic_no_connection"
-                            android:visibility="gone"/>
+                            android:visibility="gone"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/errorTv"
@@ -152,7 +155,8 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_android"/>
+                            android:src="@drawable/ic_android"
+                            tools:ignore="ContentDescription" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -161,7 +165,8 @@
                             android:layout_marginStart="32dp"
                             android:orientation="vertical"
                             android:paddingBottom="8dp"
-                            android:paddingTop="8dp">
+                            android:paddingTop="8dp"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:id="@+id/android_version"
@@ -187,7 +192,7 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_manufacturer"/>
+                            android:src="@drawable/ic_phone"/>
 
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -241,7 +246,47 @@
 
                         </LinearLayout>
 
+                    </LinearLayout><LinearLayout
+                    android:id="@+id/dmverity_row"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_verified"/>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginStart="32dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp">
+
+                        <TextView
+                            android:id="@+id/dmverity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                        <TextView
+                            android:id="@+id/dmverity_explanation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/verified_boot_explanation"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
                     </LinearLayout>
+
+                </LinearLayout>
 
                 </LinearLayout>
 
@@ -254,9 +299,9 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
                 android:paddingTop="20dp"
-                android:visibility="gone"
                 app:cardBackgroundColor="?attr/list_download_item_color"
                 app:cardElevation="2dp"
+                android:visibility="gone"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -307,47 +352,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/dmverity_row"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:clickable="true"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="16dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_verified"/>
-
-                            <LinearLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="32dp"
-                                android:layout_marginStart="32dp"
-                                android:orientation="vertical"
-                                android:paddingBottom="8dp"
-                                android:paddingTop="8dp">
-
-                                <TextView
-                                    android:id="@+id/dmverity"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
-
-                                <TextView
-                                    android:id="@+id/dmverity_explanation"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/verified_boot_explanation"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
 
                     </LinearLayout>
 

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -199,19 +200,10 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
                             @Override
                             public void onPositive(MaterialDialog dialog) {
                                 super.onPositive(dialog);
-
                                 XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
-
-                                checkAndDelete(selectedInstaller.name);
-
-                                new DownloadsUtil.Builder(getContext())
-                                        .setTitle(selectedInstaller.name)
-                                        .setUrl(selectedInstaller.link)
-                                        .setSave(true)
-                                        .setCallback(BaseAdvancedInstaller.this)
-                                        .setMimeType(DownloadsUtil.MIME_TYPES.ZIP)
-                                        .setDialog(true)
-                                        .download();
+                                Uri uri = Uri.parse(selectedInstaller.link);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                startActivity(intent);
                             }
                         });
             }
@@ -228,19 +220,10 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
                             @Override
                             public void onPositive(MaterialDialog dialog) {
                                 super.onPositive(dialog);
-
                                 XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
-
-                                checkAndDelete(selectedUninstaller.name);
-
-                                new DownloadsUtil.Builder(getContext())
-                                        .setTitle(selectedUninstaller.name)
-                                        .setUrl(selectedUninstaller.link)
-                                        .setSave(true)
-                                        .setCallback(BaseAdvancedInstaller.this)
-                                        .setMimeType(DownloadsUtil.MIME_TYPES.ZIP)
-                                        .setDialog(true)
-                                        .download();
+                                Uri uri = Uri.parse(selectedUninstaller.link);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                startActivity(intent);
                             }
                         });
             }
