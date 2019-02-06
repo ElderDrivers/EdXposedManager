@@ -7,7 +7,7 @@ import android.os.Parcelable;
 import java.io.File;
 import java.util.ArrayList;
 
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.util.InstallZipUtil.ZipCheckResult;
 import de.robv.android.xposed.installer.util.RootUtil;
 

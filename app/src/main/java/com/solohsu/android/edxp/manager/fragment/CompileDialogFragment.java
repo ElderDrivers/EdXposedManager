@@ -19,7 +19,7 @@ import java.lang.ref.WeakReference;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 
 public class CompileDialogFragment extends AppCompatDialogFragment {
 

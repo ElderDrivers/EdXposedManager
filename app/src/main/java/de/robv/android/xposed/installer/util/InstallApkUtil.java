@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.XposedApp;
 
 public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
@@ -39,7 +39,7 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri uri;
         if (Build.VERSION.SDK_INT >= 24) {
-            uri = FileProvider.getUriForFile(context, "com.solohsu.android.edxp.manager.fileprovider", new File(localFilename));
+            uri = FileProvider.getUriForFile(context, "org.meowcat.edxposed.manager.fileprovider", new File(localFilename));
             installIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } else {
             uri = Uri.fromFile(new File(localFilename));

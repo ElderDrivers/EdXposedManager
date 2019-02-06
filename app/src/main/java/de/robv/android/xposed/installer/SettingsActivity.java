@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 import com.solohsu.android.edxp.manager.fragment.BasePreferenceFragment;
 
 import java.io.File;

@@ -22,7 +22,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
 

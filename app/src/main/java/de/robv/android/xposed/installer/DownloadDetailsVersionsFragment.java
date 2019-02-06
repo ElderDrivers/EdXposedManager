@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 
 import java.io.File;
 import java.text.DateFormat;

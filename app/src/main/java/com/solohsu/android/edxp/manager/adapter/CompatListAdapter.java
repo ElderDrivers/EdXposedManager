@@ -8,7 +8,7 @@ import com.solohsu.android.edxp.manager.util.ToastUtils;
 
 import java.util.List;
 
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 
 public class CompatListAdapter extends AppAdapter {
 

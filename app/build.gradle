@@ -1,10 +1,5 @@
 apply plugin: 'com.android.application'
 
-ext {
-    VERSION_DATE = '19/10/18'
-    APP_VERSION = '"1539962400000"'
-}
-
 android {
     compileSdkVersion 28
 
@@ -13,30 +8,17 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.solohsu.android.edxp.manager"
+        applicationId "org.meowcat.edxposed.manager"
         minSdkVersion 21
-        //noinspection OldTargetApi
-        targetSdkVersion 25
-        versionCode 4
-        versionName "2.0.0"
-        project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid_" + VERSION_DATE.replaceAll("/", "_"))
-
-        buildConfigField "String", "APP_VERSION", APP_VERSION
-    }
-
-    signingConfigs {
-        release {
-            storeFile file(STORE_FILE)
-            storePassword STORE_PASSWORD
-            keyAlias KEY_ALIAS
-            keyPassword KEY_PASSWORD
-        }
+        targetSdkVersion 28
+        versionCode 412
+        versionName "4.1.2"
+        project.ext.set("archivesBaseName", "EdXposedManager-" + versionName + "-" + versionCode)
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.release
         }
     }
 

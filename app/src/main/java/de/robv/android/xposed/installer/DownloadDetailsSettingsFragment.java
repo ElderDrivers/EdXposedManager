@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 import com.solohsu.android.edxp.manager.fragment.BasePreferenceFragment;
 
 import java.util.Map;

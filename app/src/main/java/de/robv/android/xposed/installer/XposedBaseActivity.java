@@ -5,7 +5,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 
 import de.robv.android.xposed.installer.util.ThemeUtil;
 

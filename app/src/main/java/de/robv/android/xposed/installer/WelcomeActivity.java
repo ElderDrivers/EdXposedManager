@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 import com.solohsu.android.edxp.manager.fragment.BlackListFragment;
 import com.solohsu.android.edxp.manager.fragment.CompatListFragment;
 import com.solohsu.android.edxp.manager.fragment.SettingFragment;

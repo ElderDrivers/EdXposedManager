@@ -29,8 +29,8 @@ import androidx.appcompat.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-import com.solohsu.android.edxp.manager.BuildConfig;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.BuildConfig;
+import org.meowcat.edxposed.manager.R;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -248,7 +248,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
             mPref.edit().putString("date", dateFormat.format(date)).apply();
 
             try {
-                Log.i(TAG, String.format("XposedInstaller - %s - %s", BuildConfig.APP_VERSION, getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+                Log.i(TAG, String.format("XposedInstaller - %s - %s", BuildConfig.VERSION_CODE, getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
             } catch (PackageManager.NameNotFoundException ignored) {
             }
         }

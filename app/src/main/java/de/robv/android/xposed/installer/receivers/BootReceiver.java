@@ -10,9 +10,7 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
-import java.math.BigInteger;
-
-import com.solohsu.android.edxp.manager.BuildConfig;
+import org.meowcat.edxposed.manager.BuildConfig;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.json.JSONUtils;
@@ -46,10 +44,10 @@ public class BootReceiver extends BroadcastReceiver {
 
                 String newApkVersion = new JSONObject(jsonString).getJSONObject("apk").getString("version");
 
-                BigInteger a = new BigInteger(BuildConfig.APP_VERSION);
-                BigInteger b = new BigInteger(newApkVersion);
+                Integer a = BuildConfig.VERSION_CODE;
+                Integer b = Integer.valueOf(newApkVersion);
 
-                if (a.compareTo(b) == -1) {
+                if (a.compareTo(b) < 0) {
                     NotificationUtil.showInstallerUpdateNotification();
                 }
             } catch (Exception e) {

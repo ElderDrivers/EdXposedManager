@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedBaseActivity;
 

@@ -17,8 +17,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.solohsu.android.edxp.manager.BuildConfig;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.BuildConfig;
+import org.meowcat.edxposed.manager.R;
 
 import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
@@ -111,7 +111,7 @@ public class AboutActivity extends XposedBaseActivity {
 
             SharedPreferences prefs = getContext().getSharedPreferences(packageName + "_preferences", MODE_PRIVATE);
 
-            final String changes = prefs.getString("changelog_" + BuildConfig.APP_VERSION, null);
+            final String changes = prefs.getString("changelog_" + BuildConfig.VERSION_CODE, null);
 
             if (changes == null) {
                 changelogView.setVisibility(View.GONE);

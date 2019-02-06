@@ -32,8 +32,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.solohsu.android.edxp.manager.BuildConfig;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.BuildConfig;
+import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
@@ -285,10 +285,10 @@ public class AdvancedInstallerFragment extends Fragment {
                 } catch (NullPointerException ignored) {
                 }
 
-                BigInteger a = new BigInteger(BuildConfig.APP_VERSION);
-                BigInteger b = new BigInteger(newApkVersion);
+                Integer a = BuildConfig.VERSION_CODE;
+                Integer b = Integer.valueOf(newApkVersion);
 
-                if (a.compareTo(b) == -1) {
+                if (a.compareTo(b) < 0) {
                     StatusInstallerFragment.setUpdate(newApkLink, newApkChangelog);
                 }
 

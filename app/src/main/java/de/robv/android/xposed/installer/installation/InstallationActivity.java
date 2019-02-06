@@ -28,7 +28,7 @@ import android.widget.TextView;
 
 import java.io.File;
 
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedBaseActivity;
 import de.robv.android.xposed.installer.util.RootUtil;

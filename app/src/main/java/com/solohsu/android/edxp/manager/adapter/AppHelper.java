@@ -6,8 +6,8 @@ import android.content.pm.ApplicationInfo;
 import android.util.Log;
 import android.view.View;
 
-import com.solohsu.android.edxp.manager.BuildConfig;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.BuildConfig;
+import org.meowcat.edxposed.manager.R;
 import com.topjohnwu.superuser.Shell;
 
 import java.util.Arrays;

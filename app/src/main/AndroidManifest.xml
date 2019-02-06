@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.solohsu.android.edxp.manager"
+<manifest package="org.meowcat.edxposed.manager"
           xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
@@ -220,7 +220,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.solohsu.android.edxp.manager.fileprovider"
+            android:authorities="org.meowcat.edxposed.manager.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

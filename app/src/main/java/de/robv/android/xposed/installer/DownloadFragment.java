@@ -32,7 +32,7 @@ import android.widget.FilterQueryProvider;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 
 import java.text.DateFormat;
 import java.util.Date;

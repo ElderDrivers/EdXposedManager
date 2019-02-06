@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.RecyclerView;
-import com.solohsu.android.edxp.manager.R;
+import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.WelcomeActivity;
 
 import static com.solohsu.android.edxp.manager.adapter.AppHelper.setDynamicModules;
