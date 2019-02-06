@@ -4,12 +4,12 @@
     <!-- General/various strings -->
     <string name="menuSend">Send</string>
     <string name="menuSaveToSd">Save to SD card</string>
-    <string name="xposed_not_active">The latest version of Xposed is currently not active. Did you install the Framework and reboot?</string>
+    <string name="xposed_not_active">The EdXposed Framework is currently not active. Did you install the Framework and reboot?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">Framework</string>
     <string name="tabDownload">Download</string>
-    <string name="welcome_framework_update_available">An update for the Xposed Framework is available (%s).</string>
+    <string name="welcome_framework_update_available">An update for the EdXposed Framework is available (%s).</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">Framework</string>
@@ -28,18 +28,18 @@
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
     <string name="areyousure">Are you sure?</string>
-    <string name="phone_not_compatible">Xposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s).</string>
+    <string name="phone_not_compatible">EdXposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s).</string>
     <string name="reboot_failed">Reboot failed. Please use the device\'s normal reboot function.</string>
     <string name="auto_flash_note">%s should be flashed automatically once you press "OK".</string>
     <string name="manual_flash_note">Please flash %s from the SD card to complete the operation.</string>
     <string name="reboot_confirmation">Do you want to reboot now?</string>
     <string name="reboot_recovery_confirmation">Do you want to reboot to recovery now?</string>
     <string name="install_warning_title">Be careful!</string>
-    <string name="install_warning">In some cases, your device might no longer boot after installing Xposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install Xposed!\n\nIn any case, having a recent backup is highly recommended.</string>
+    <string name="install_warning">In some cases, your device might no longer boot after installing EdXposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install EdXposed!\n\nIn any case, having a recent backup is highly recommended.</string>
     <string name="dont_show_again">Don\'t show this again</string>
-    <string name="install_known_issue">There seems to be a known issue (\"%s\") with your ROM. Installing Xposed might not work or lead to severe problems. Click here for details about the issue.</string>
-    <string name="installed_lollipop">Xposed Framework version %s is active.</string>
-    <string name="installed_lollipop_inactive">Xposed Framework version %s is installed, but not active. Please check the logs for details.</string>
+    <string name="install_known_issue">There seems to be a known issue (\"%s\") with your ROM. Installing EdXposed might not work or lead to severe problems. Click here for details about the issue.</string>
+    <string name="installed_lollipop">EdXposed Framework version %s is active.</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework version %s is installed, but not active. Please check the logs for details.</string>
     <string name="modules_updates_available">Module update(s) are available</string>
 
     <!-- File operations -->
@@ -65,20 +65,20 @@
     <string name="file_done">Done! Changes will become active on reboot.</string>
 
     <!-- Modules tab -->
-    <string name="module_is_not_activated_yet">Xposed module is not activated yet</string>
+    <string name="module_is_not_activated_yet">EdXposed module is not activated yet</string>
     <string name="module_is_not_activated_yet_detailed">%s has been installed, but is not activated yet.</string>
     <string name="activate_and_reboot">Activate and reboot</string>
     <string name="activate_only">Activate only</string>
-    <string name="module_activated">Xposed module has been activated</string>
+    <string name="module_activated">EdXposed module has been activated</string>
     <string name="module_empty_description">(no description provided)</string>
     <string name="module_no_ui">This module does not provide a user interface</string>
-    <string name="no_xposed_modules_found">No Xposed modules were found!</string>
-    <string name="xposed_module_list_updated">Xposed module list was updated\nChanges will become active on reboot</string>
-    <string name="xposed_module_updated_notification_title">Xposed module updated</string>
+    <string name="no_xposed_modules_found">No EdXposed modules were found!</string>
+    <string name="xposed_module_list_updated">EdXposed module list was updated\nChanges will become active on reboot</string>
+    <string name="xposed_module_updated_notification_title">EdXposed module updated</string>
     <string name="xposed_module_updated_notification">Reboot to activate changes</string>
-    <string name="warning_xposed_min_version">This module requires a newer Xposed version (%d) and thus cannot be activated.</string>
-    <string name="no_min_version_specified">This module does not specify the Xposed version it needs.</string>
-    <string name="warning_min_version_too_low">This module was created for Xposed version %1$d, but due to incompatible changes in version %2$d, it has been disabled.</string>
+    <string name="warning_xposed_min_version">This module requires a newer EdXposed version (%d) and thus cannot be activated.</string>
+    <string name="no_min_version_specified">This module does not specify the EdXposed version it needs.</string>
+    <string name="warning_min_version_too_low">This module was created for EdXposed version %1$d, but due to incompatible changes in version %2$d, it has been disabled.</string>
     <string name="module_launch">Launch UI</string>
     <string name="module_download_updates">Download/Updates</string>
     <string name="module_support">Support</string>
@@ -141,10 +141,10 @@
     <!-- Support tab -->
     <string name="support_modules_label">Support for modules</string>
     <string name="support_modules_description">Long-click any module in the modules list and select \"%1$s\".</string>
-    <string name="support_framework_label">Framework/Installer support</string>
+    <string name="support_framework_label">Framework/Manager support</string>
     <string name="support_faq_label">FAQ/known issues</string>
     <string name="support_donate_label">Donate</string>
-    <string name="support_donate_description">If you would like to say thanks for Xposed, you can donate to rovo89 here</string>
+    <string name="support_donate_description">If you would like to say thanks for EdXposed, you can donate to our here</string>
 
     <!-- Logs tab  -->
     <string name="logs_save_failed">Could not write log to SD card:</string>
@@ -158,7 +158,7 @@
     <string name="about_developers_label">Main developers</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> and <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> for bug fixes and Material Design</string>
     <string name="about_translator_label">Translator</string>
-    <string name="translator"></string>
+    <string name="translator">MlgmXyysd</string>
     <string name="about_version_label">Version</string>
     <string name="about_source_label">Source code</string>
     <string name="about_libraries_label">Used libraries</string>
@@ -219,12 +219,12 @@
     </string>
     <string name="downloadZipOk">%1$s downloaded correctly</string>
     <string name="permissionNotGranted">This feature will not work without permission to write external storage.</string>
-    <string name="warningArchitecture">HAVE YOU CHOSEN THE RIGHT XPOSED ZIP ARCHITECTURE?\nWrong zip can damage your phone!</string>
-    <string name="newVersion">New version of Xposed Installer is available! Update it!</string>
+    <string name="warningArchitecture">HAVE YOU CHOSEN THE RIGHT EDXPOSED ZIP ARCHITECTURE?\nWrong zip can damage your phone!</string>
+    <string name="newVersion">New version of EdXposed Manager is available! Update it!</string>
     <string name="update">Update</string>
     <string name="choose_icon">Choose an icon</string>
     <string name="custom_icon">Custom icon</string>
-    <string name="not_installed_no_lollipop">Xposed Framework is not installed.</string>
+    <string name="not_installed_no_lollipop">EdXposed Framework is not installed.</string>
     <string name="notify_module_update">Enable module update notification</string>
 
     <string name="md_back_label">Back</string>
@@ -247,7 +247,7 @@
     <string name="notification_coloration">Colorate notification icon</string>
     <string name="file_is_empty">File is empty</string>
     <string name="install_with_su">Install module with root</string>
-    <string name="install_with_su_summ">If checked Xposed Installer will install modules without a prompt</string>
+    <string name="install_with_su_summ">If checked EdXposed Manager will install modules without a prompt</string>
     <string name="install_remove">Install and remove</string>
     <string name="download_remove">Download and remove</string>
     <string name="module_saved">Module saved at %1$s</string>
@@ -261,14 +261,14 @@
     <string name="open_drawer_summ">Open the navigation drawer automatically at startup</string>
     <string name="open_drawer">Open navigation drawer automatically</string>
     <string name="share_app">Share app</string>
-    <string name="share_app_text">Check this out: Xposed Installer in Material Design! %s</string>
-    <string name="status">Xposed Status</string>
-    <string name="xposed_on_next_reboot">Xposed Framework will be enabled on next reboot</string>
-    <string name="xposed_off_next_reboot">Xposed Framework will be disabled on next reboot</string>
+    <string name="share_app_text">Check this out: EdXposed Manager is released! %s</string>
+    <string name="status">EdXposed Status</string>
+    <string name="xposed_on_next_reboot">EdXXposed Framework will be enabled on next reboot</string>
+    <string name="xposed_off_next_reboot">EdXXposed Framework will be disabled on next reboot</string>
     <string name="rovo_89_old_icon">rovo89 (old)</string>
     <string name="confirm_reboots">Confirm reboots</string>
-    <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>
-    <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
+    <string name="skip_xposedminversion_check">Skip modules check</string>
+    <string name="skip_xposedminversion_check_summ">Skip \'MinVersion\' and \'Status\' check for modules</string>
 
     <string name="compatibility">Compatibility</string>
     <string name="details">Details</string>
@@ -283,7 +283,7 @@
     <string name="cache_cleaned">App\'s cache has been cleaned. Restart is needed</string>
     <string name="update_download_list">The download\'s module list will be loaded in few seconds</string>
     <string name="no_connection_available">No connection available</string>
-    <string name="not_logcat">If someone asked you an Android Logcat, you\'re in the wrong section. This is the Xposed log; if you need a logcat, on XDA you can find what you need</string>
+    <string name="not_logcat">If someone asked you an Android Logcat, you\'re in the wrong section. This is the EdXposed log; if you need a logcat, you can try our LogCat Magisk module.</string>
     <string name="force_english">Force English language</string>
     <string name="warning_language">Language change will be applied after application restart.</string>
     <string name="not_flashable_inapp">This zip file cannot be flashed in app. Installing automatically in recovery</string>
@@ -302,10 +302,6 @@
     <string name="install_load">Installing…</string>
     <string name="install_load_apk">Installing %s</string>
 
-    <string name="rovo89_summary">Main creator of Xposed</string>
-    <string name="tungstwenty_summary">Helped with his many contributions, both in code and thoughts</string>
-    <string name="dvdandroid_summary">Creator of this Xposed Installer</string>
-    <string name="biohazard_summary">Helped with Material Design implementation</string>
     <string name="unstable_build">This is a unstable build. Install it at your own risk.</string>
     <string name="alt_download_method">Alternative download method</string>
     <string name="alt_download_method_summ">Check this option if you get issues when downloading a module</string>
@@ -319,7 +315,7 @@
     <string name="done">Done!</string>
     <string name="verified_boot_deactivated">Verified Boot is deactivated</string>
     <string name="verified_boot_active">Verified Boot is active</string>
-    <string name="verified_boot_explanation">Verified Boot (dm-verity) prevents the device from booting if the system partition is modified.\n<b>Installing Xposed is not recommended!</b></string>
+    <string name="verified_boot_explanation">Verified Boot (dm-verity) prevents the device from booting if the system partition is modified.\n<b>Installing EdXposed is not recommended!</b></string>
     <string name="ignore_chinese">Ignore Chinese characters</string>
     <string name="ignore_chinese_summary">Hide Chinese modules from list. Modules are still available in search window. Enabling this option may result in slow performance.</string>
 
@@ -352,11 +348,11 @@
     <string name="app_process" translatable="false">app_process</string>
     <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
     <string name="none" translatable="false">---</string>
-    <string name="support_material_xda" translatable="false">http://forum.xda-developers.com/xposed/material-design-xposed-installer-t3137758</string>
-    <string name="support_faq_url" translatable="false">http://forum.xda-developers.com/xposed/xposed-faq-issues-t2735540</string>
-    <string name="support_donate_url" translatable="false">http://repo.xposed.info/donate</string>
-    <string name="about_source" translatable="false">https://github.com/solohsu/XposedInstaller/</string>
-    <string name="about_support" translatable="false">http://forum.xda-developers.com/xposed</string>
+    <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
+    <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
+    <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
+    <string name="about_source" translatable="false">https://github.com/ElderDrivers/XposedInstaller/</string>
+    <string name="about_support" translatable="false">http://edxp.meowcat.org/</string>
     <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>\n<a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a>\n<a href="https://github.com/afollestad/material-dialogs">MaterialDialogs</a></string>
 
     <string name="solohsu" translatable="false">givein2u</string>
