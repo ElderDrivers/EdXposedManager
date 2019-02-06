@@ -179,7 +179,7 @@
     <string name="download_no_valid_apk">Downloaded file is not a valid APK (or incompatible)</string>
     <string name="download_incorrect_package_name">Package name is incorrect (downloaded: %1$s, expected: %2$s)</string>
     <string name="download_running">Download is running</string>
-    <string name="download_progress">%1$,d / %2$,d kB</string>
+    <string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Downloading %1$s failed: %2$d (%3$s)</string>
@@ -315,7 +315,7 @@
     <string name="done">Done!</string>
     <string name="verified_boot_deactivated">Verified Boot is deactivated</string>
     <string name="verified_boot_active">Verified Boot is active</string>
-    <string name="verified_boot_explanation">Verified Boot (dm-verity) prevents the device from booting if the system partition is modified.\n<b>Installing EdXposed is not recommended!</b></string>
+    <string name="verified_boot_explanation">Verified Boot (dm-verity) prevents the device from booting if the system partition is modified.\\n\n<b>Installing EdXposed is not recommended!</b></string>
     <string name="ignore_chinese">Ignore Chinese characters</string>
     <string name="ignore_chinese_summary">Hide Chinese modules from list. Modules are still available in search window. Enabling this option may result in slow performance.</string>
 
