@@ -455,8 +455,10 @@ public class StatusInstallerFragment extends Fragment {
             case 26:
             case 27:
                 return "Oreo";
+            case 28:
+                return "Pie";
         }
-        return "";
+        return "Unknown";
     }
 
     private String getUIFramework() {
