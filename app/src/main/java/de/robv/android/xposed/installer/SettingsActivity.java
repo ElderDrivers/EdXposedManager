@@ -302,10 +302,10 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             customIcon.setOnPreferenceChangeListener(iconChange);
             downloadLocation.setOnPreferenceClickListener(this);
 
-            if (Locale.getDefault().getLanguage().contains("en")
-                    && !XposedApp.getPreferences().getBoolean("force_english", false)) {
-                groupApp.removePreference(forceEnglish);
-            }
+            //if (Locale.getDefault().getLanguage().contains("en")
+            //        && !XposedApp.getPreferences().getBoolean("force_english", false)) {
+            //    groupApp.removePreference(forceEnglish);
+            //}
         }
 
         @Override
@@ -330,8 +330,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             if (key.equals("theme") || key.equals("nav_bar") || key.equals("ignore_chinese"))
                 getActivity().recreate();
 
-            if (key.equals("force_english"))
-                Toast.makeText(getActivity(), getString(R.string.warning_language), Toast.LENGTH_SHORT).show();
+            //if (key.equals("force_english"))
+            //    Toast.makeText(getActivity(), getString(R.string.warning_language), Toast.LENGTH_SHORT).show();
         }
 
         @Override
