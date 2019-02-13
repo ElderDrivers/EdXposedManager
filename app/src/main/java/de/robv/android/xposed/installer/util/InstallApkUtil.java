@@ -40,11 +40,10 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         Uri uri;
         if (Build.VERSION.SDK_INT >= 24) {
             uri = FileProvider.getUriForFile(context, "org.meowcat.edxposed.manager.fileprovider", new File(localFilename));
-            installIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } else {
             uri = Uri.fromFile(new File(localFilename));
         }
-        installIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         installIntent.setDataAndType(uri, DownloadsUtil.MIME_TYPE_APK);
         installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
         context.startActivity(installIntent);

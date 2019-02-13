@@ -261,7 +261,7 @@
     <string name="open_drawer">自动打开导航抽屉栏</string>
     <string name="share_app">分享应用</string>
     <string name="share_app_text">来瞧瞧这个：EdXposed Manager 已经发布！%s</string>
-    <string name="status">Xposed 状态</string>
+    <string name="status">EdXposed 状态</string>
     <string name="xposed_on_next_reboot">EdXposed 框架将在下次重新启动后启用</string>
     <string name="xposed_off_next_reboot">EdXposed 框架将在下次重新启动后禁用</string>
     <string name="rovo_89_old_icon">rovo89（旧风格）</string>

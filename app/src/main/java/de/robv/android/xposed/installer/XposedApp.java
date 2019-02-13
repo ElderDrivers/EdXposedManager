@@ -29,6 +29,8 @@ import androidx.appcompat.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import org.meowcat.bugcatcher.CrashHandler;
+import org.meowcat.bugcatcher.MeowCatApplication;
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.R;
 
