@@ -161,6 +161,11 @@ public class WelcomeActivity extends XposedBaseActivity
                 setTitle(R.string.nav_item_logs);
                 navFragment = new LogsFragment();
                 break;
+            case R.id.drawer_item_errlog:
+                mPrevSelectedId = itemId;
+                setTitle(R.string.nav_item_logs_err);
+                navFragment = new ErrorLogsFragment();
+                break;
             case R.id.nav_black_list:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.nav_title_black_list);

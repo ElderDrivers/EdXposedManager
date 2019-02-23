@@ -11,8 +11,8 @@ android {
         applicationId "org.meowcat.edxposed.manager"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 414
-        versionName "4.1.4"
+        versionCode 415
+        versionName "4.1.5"
         project.ext.set("archivesBaseName", "EdXposedManager-" + applicationId + "-" + versionName + "-" + versionCode)
     }
 

@@ -18,6 +18,7 @@
     <string name="nav_item_settings">设置</string>
     <string name="nav_item_support">支持</string>
     <string name="nav_item_logs">日志</string>
+    <string name="nav_item_logs_err">错误日志</string>
     <string name="nav_item_about">关于</string>
     <string name="navigation_drawer_open">开启导航抽屉栏</string>
     <string name="navigation_drawer_close">关闭导航抽屉栏</string>
