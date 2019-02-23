@@ -6,6 +6,6 @@
         android:title="@string/menu_title_compile_reset" />
     <item
         android:id="@+id/app_menu_compile_speed"
-        android:icon="@drawable/ic_menu_refresh"
+        android:icon="@drawable/ic_menu_refresh_black"
         android:title="@string/menu_title_compile_speed" />
 </menu>

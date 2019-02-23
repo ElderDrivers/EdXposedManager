@@ -15,6 +15,14 @@
             android:id="@+id/drawer_item_3"
             android:icon="@drawable/ic_nav_downloads"
             android:title="@string/nav_item_download"/>
+        <item
+            android:id="@+id/nav_black_list"
+            android:icon="@drawable/ic_format_list_bulleted"
+            android:title="@string/nav_title_black_list"/>
+        <item
+            android:id="@+id/nav_compat_list"
+            android:icon="@drawable/ic_local_hospital"
+            android:title="@string/nav_title_compat_list"/>
     </group>
     <group
         android:id="@+id/log_items"
@@ -27,18 +35,6 @@
             android:id="@+id/drawer_item_errlog"
             android:icon="@drawable/ic_nav_logs"
             android:title="@string/nav_item_logs_err"/>
-    </group>
-    <group
-        android:id="@+id/ed_items"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_black_list"
-            android:icon="@drawable/ic_format_list_bulleted"
-            android:title="@string/nav_title_black_list"/>
-        <item
-            android:id="@+id/nav_compat_list"
-            android:icon="@drawable/ic_local_hospital"
-            android:title="@string/nav_title_compat_list"/>
     </group>
     <group
         android:id="@+id/option_items"
