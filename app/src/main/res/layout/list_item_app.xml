@@ -9,7 +9,9 @@
     android:layout_marginStart="@dimen/card_horizontal_margin"
     android:layout_marginTop="@dimen/card_vertical_margin"
     android:layout_marginEnd="@dimen/card_horizontal_margin"
+    android:foreground="?android:attr/selectableItemBackground"
     android:layout_marginBottom="@dimen/card_vertical_margin"
+    app:cardBackgroundColor="?attr/list_download_item_color"
     android:minHeight="?android:attr/listPreferredItemHeight"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation">

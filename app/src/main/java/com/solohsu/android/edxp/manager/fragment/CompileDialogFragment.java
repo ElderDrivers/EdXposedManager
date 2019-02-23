@@ -76,10 +76,21 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (getArguments() != null) {
-            String[] commands = getArguments().getStringArray(KEY_COMMANDS);
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            String[] commandPrefixes = arguments.getStringArray(KEY_COMMANDS);
+            appInfo = arguments.getParcelable(KEY_APP_INFO);
+            if (commandPrefixes == null || commandPrefixes.length == 0 || appInfo == null) {
+                ToastUtils.showShortToast(context, "Params empty.");
+                dismissAllowingStateLoss();
+                return;
+            }
+            String[] commands = new String[commandPrefixes.length];
+            for (int i = 0; i < commandPrefixes.length; i++) {
+                commands[i] = commandPrefixes[i] + appInfo.packageName;
+            }
             new CompileTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, commands);
         } else {
             dismissAllowingStateLoss();
@@ -95,16 +106,9 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
         }
 
         @Override
-        protected String doInBackground(String... commandPrefixes) {
+        protected String doInBackground(String... commands) {
             if (outerRef.get() == null) {
                 return "";
-            }
-            if (commandPrefixes == null || commandPrefixes.length == 0) {
-                return "Failed: no commands";
-            }
-            String[] commands = new String[commandPrefixes.length];
-            for (int i = 0; i < commandPrefixes.length; i++) {
-                commands[i] = commandPrefixes[i] + outerRef.get().appInfo.packageName;
             }
             return Shell.su(commands).exec().getOut().toString();
         }

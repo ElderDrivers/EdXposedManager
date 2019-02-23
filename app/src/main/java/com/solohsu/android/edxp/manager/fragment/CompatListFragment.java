@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.solohsu.android.edxp.manager.adapter.AppAdapter;
+import com.solohsu.android.edxp.manager.adapter.AppHelper;
 import com.solohsu.android.edxp.manager.adapter.CompatListAdapter;
 
 import androidx.annotation.NonNull;
@@ -94,5 +95,8 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
 
     @Override
     public void onItemClick(View v, ApplicationInfo info) {
+        if (getFragmentManager() != null) {
+            AppHelper.showMenu(requireActivity(), getFragmentManager(), v, info);
+        }
     }
 }

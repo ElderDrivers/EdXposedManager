@@ -140,10 +140,10 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         };
 
         public static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
-        public static final File mGlobalModeFlag = new File(XposedApp.BASE_DIR + "conf/forceglobal");
         public static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
         public static final File mDisableXposedMinverFlag = new File(XposedApp.BASE_DIR + "conf/disablexposedminver");
         public static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
+        public static final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
         private static final String DIALOG_FRAGMENT_TAG = "list_preference_dialog";
 
         private Preference mClickedPreference;
@@ -194,7 +194,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             Preference headsUp = findPreference("heads_up");
             Preference colors = findPreference("colors");
-            Preference forceEnglish = findPreference("force_english");
+            //Preference forceEnglish = findPreference("force_english");
             downloadLocation = findPreference("download_location");
 
             ListPreference customIcon = (ListPreference) findPreference("custom_icon");
@@ -228,6 +228,21 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 }
                 return (enabled == mWhiteListModeFlag.exists());
             });
+            SwitchPreference prefBlackWhiteListMode = findPreference("black_white_list_switch");
+            prefBlackWhiteListMode.setChecked(mBlackWhiteListModeFlag.exists());
+            prefBlackWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
+                boolean enabled = (Boolean) newValue;
+                if (enabled) {
+                    try {
+                        mBlackWhiteListModeFlag.createNewFile();
+                    } catch (IOException e) {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    mBlackWhiteListModeFlag.delete();
+                }
+                return (enabled == mBlackWhiteListModeFlag.exists());
+            });
             SwitchPreference prefMinVerResources = findPreference("skip_xposedminversion_check");
             prefMinVerResources.setChecked(mDisableXposedMinverFlag.exists());
             prefMinVerResources.setOnPreferenceChangeListener((preference, newValue) -> {
@@ -244,23 +259,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     mDisableXposedMinverFlag.delete();
                 }
                 return (enabled == mDisableXposedMinverFlag.exists());
-            });
-            SwitchPreference prefGlobalResources = findPreference("force_global_mode");
-            prefGlobalResources.setChecked(mGlobalModeFlag.exists());
-            prefGlobalResources.setOnPreferenceChangeListener((preference, newValue) -> {
-                boolean enabled = (Boolean) newValue;
-                if (enabled) {
-                    try {
-                        //noinspection ResultOfMethodCallIgnored
-                        mGlobalModeFlag.createNewFile();
-                    } catch (IOException e) {
-                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    //noinspection ResultOfMethodCallIgnored
-                    mGlobalModeFlag.delete();
-                }
-                return (enabled == mGlobalModeFlag.exists());
             });
             SwitchPreference prefDynamicResources = findPreference("is_dynamic_modules");
             prefDynamicResources.setChecked(mDynamicModulesFlag.exists());

@@ -4,7 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+import android.widget.LinearLayout;
 import android.preference.PreferenceManager;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.solohsu.android.edxp.manager.fragment.BlackListFragment;
@@ -18,12 +25,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
-import android.widget.LinearLayout;
 
 import de.robv.android.xposed.installer.installation.AdvancedInstallerFragment;
 import de.robv.android.xposed.installer.util.ModuleUtil;
@@ -37,6 +38,7 @@ import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class WelcomeActivity extends XposedBaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,
+        SharedPreferences.OnSharedPreferenceChangeListener,
         ModuleListener, RepoListener {
 
     private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
@@ -119,9 +121,15 @@ public class WelcomeActivity extends XposedBaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-
         mDrawerLayout.setStatusBarBackgroundColor(darkenColor(XposedApp.getColor(this), 0.85f));
+        updateBlackListEntry();
+        XposedApp.getPreferences().registerOnSharedPreferenceChangeListener(this);
+    }
 
+    @Override
+    protected void onPause() {
+        XposedApp.getPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        super.onPause();
     }
 
     public void switchFragment(int itemId) {
@@ -300,5 +308,18 @@ public class WelcomeActivity extends XposedBaseActivity
         super.onDestroy();
         ModuleUtil.getInstance().removeListener(this);
         mRepoLoader.removeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if ("black_white_list_switch".equals(key)) {
+            updateBlackListEntry();
+        }
+    }
+
+    private void updateBlackListEntry() {
+        mNavigationView.getMenu().findItem(R.id.nav_black_list).setVisible(
+                XposedApp.getPreferences().getBoolean(
+                        "black_white_list_switch", false));
     }
 }

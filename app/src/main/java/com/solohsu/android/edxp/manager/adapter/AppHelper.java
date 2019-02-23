@@ -33,8 +33,12 @@ public class AppHelper {
     private static final String BLACK_LIST_PATH = "conf/blacklist/";
     private static final String COMPAT_LIST_PATH = "conf/compatlist/";
     private static final String WHITE_LIST_MODE = "conf/usewhitelist";
+    private static final String BLACK_WHITE_LIST  = "conf/blackwhitelist";
 
-    private static final List<String> FORCE_WHITE_LIST = Arrays.asList(BuildConfig.APPLICATION_ID);
+    private static final List<String> FORCE_WHITE_LIST = Arrays.asList(
+            BuildConfig.APPLICATION_ID,
+            "com.solohsu.android.edxp.manager",
+            "de.robv.android.xposed.installer");
 
     public static void makeSurePath() {
         XposedApp.mkdirAndChmod(WHITE_LIST_PATH,00771);
@@ -159,10 +163,6 @@ public class AppHelper {
             }
         }
         return returns;
-    }
-
-    private static boolean checkRetCode(int retCode) {
-        return retCode != com.topjohnwu.superuser.Shell.Result.JOB_NOT_EXECUTED;
     }
 
     public static boolean addPackageName(boolean isWhiteListMode, String packageName) {

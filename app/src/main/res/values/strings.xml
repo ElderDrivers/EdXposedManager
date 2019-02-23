@@ -336,13 +336,13 @@
     <string name="app_source_code_title">App source code</string>
     <string name="edxp_source_code_title">EdXposed source code</string>
     <string name="open_link_failed_toast">No application found to open the link.</string>
-    <string name="pref_title_force_global">Global mode</string>
     <string name="pref_title_dynamic_modules">Instant module list</string>
-    <string name="pref_force_global_summary">(Reboot needed) When turned on, ignore both black list and white list</string>
-    <string name="pref_dynamic_modules_summary">(Reboot needed) When turned on, load latest activated module list on each app process started</string>
+    <string name="pref_dynamic_modules_summary">When turned on, load latest activated module list on each app process started</string>
     <string name="title_compat_list">Compat mode</string>
     <string name="menu_title_compat_mode">About Compat mode</string>
     <string name="settings_group_edxposed">Elder Driver Xposed Settings (Reboot needed)</string>
+    <string name="pref_title_black_white_list">App List Mode</string>
+    <string name="pref_black_white_list_summary">Note: using app list mode might result in modules not working in some processes, for example com.android.phone, also it could break system-wide modules\' functions.</string>
     <string name="white_list_mode_summary">White List mode: Only selected app load EdXposed Framework.\nBlack List mode: Selected app NOT load EdXposed Framework.</string>
 
     <string name="app_name" translatable="false">EdXposed Manager</string>

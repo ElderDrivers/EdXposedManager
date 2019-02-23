@@ -309,10 +309,8 @@
     <string name="app_source_code_title">App 源代码</string>
     <string name="edxp_source_code_title">EdXposed 源代码</string>
     <string name="open_link_failed_toast">无法找到可以打开链接的应用</string>
-    <string name="pref_title_force_global">全局模式</string>
     <string name="pref_title_dynamic_modules">即时模块列表</string>
-    <string name="pref_force_global_summary">(重启后生效) 启用后，忽略所有黑名单和白名单设置</string>
-    <string name="pref_dynamic_modules_summary">(重启后生效) 启用后，每个APP进程启动时重新加载最新的模块列表</string>
+    <string name="pref_dynamic_modules_summary">启用后，每个APP进程启动时重新加载最新的模块列表</string>
     <string name="title_compat_list">兼容模式</string>
     <string name="menu_title_compat_mode">关于兼容模式</string>
     <string name="notinstalled">EdXposed 框架未安装</string>
@@ -323,11 +321,13 @@
     <string name="website">官网</string>
     <string name="coolapk">酷安</string>
     <string name="meowcat">小喵工作室</string>
-    <string name="white_list_mode_summary">白名单模式: 仅选中的应用加载 EdXposed 框架。\\n黑名单模式: 选中的应用不会加载 EdXposed 框架。</string>
+    <string name="white_list_mode_summary">白名单模式: 仅选中的应用加载 EdXposed 框架\n黑名单模式: 选中的应用不会加载 EdXposed 框架\n仅当启用应用名单模式时有效</string>
     <string name="settings_group_edxposed">Elder Driver Xposed 设置 (重启生效)</string>
+    <string name="pref_title_black_white_list">应用名单模式</string>
+    <string name="pref_black_white_list_summary">注意：使用应用名单可能会导致某些进程内的 hook 失效，例如电话进程，另外，系统全局模块可能不会正常工作。</string>
     <string name="ignore_chinese_summary">从模块列表中隐藏中文模块。模块仍然可以被搜索。启用此选项可能会降低性能。</string>
     <string name="ignore_chinese">忽略中文字符</string>
-    <string name="verified_boot_explanation">引导验证（dm verity）防止设备在修改系统分区时引导。\\n<b>不建议安装EdXposed！</b></string>
+    <string name="verified_boot_explanation">引导验证（dm verity）防止设备在修改系统分区时引导。\n<b>不建议安装EdXposed！</b></string>
     <string name="verified_boot_active">引导验证已启用</string>
     <string name="verified_boot_deactivated">引导验证已禁用</string>
     <string name="done">完成！</string>

@@ -59,9 +59,9 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     public static final String TAG = "XposedInstaller";
 
     @SuppressLint("SdCardPath")
-    private static final String BASE_DIR_LEGACY = "/data/data/org.meowcat.edxposed.manager/";
+    private static final String BASE_DIR_LEGACY = "/data/data/" + BuildConfig.APPLICATION_ID + "/";
     public static final String BASE_DIR = Build.VERSION.SDK_INT >= 24
-            ? "/data/user_de/0/org.meowcat.edxposed.manager/" : BASE_DIR_LEGACY;
+            ? "/data/user_de/0/" + BuildConfig.APPLICATION_ID + "/" : BASE_DIR_LEGACY;
     public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
     private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.dex");
     public static int WRITE_EXTERNAL_PERMISSION = 69;

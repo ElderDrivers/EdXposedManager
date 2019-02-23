@@ -22,6 +22,8 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import de.robv.android.xposed.installer.util.ThemeUtil;
+
 import org.meowcat.edxposed.manager.R;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
@@ -95,6 +97,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         holder.appIcon.setImageDrawable(info.loadIcon(pm));
         holder.appName.setText(Utils.getAppLabel(info, pm));
         holder.appPackage.setText(info.packageName);
+        holder.appPackage.setTextColor(ThemeUtil.getThemeColor(context, android.R.attr.textColorSecondary));
 
         holder.checkBox.setOnCheckedChangeListener(null);
         holder.checkBox.setChecked(checkedList.contains(info.packageName));
