@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/circle_ic_launcher"
         android:theme="@style/Theme.XposedInstaller.Light"
-        tools:ignore="ManifestResource" >
+        tools:ignore="ManifestResource,UnusedAttribute" >
         <activity
             android:name="de.robv.android.xposed.installer.WelcomeActivity"
             android:configChanges="orientation|screenSize"
