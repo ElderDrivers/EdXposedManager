@@ -26,21 +26,20 @@ import de.robv.android.xposed.installer.XposedApp;
 
 public class AppHelper {
 
-    public static final String TAG = "AppHelper";
+    public static final String TAG = XposedApp.TAG;
 
     private static final String BASE_PATH = XposedApp.BASE_DIR;
     private static final String WHITE_LIST_PATH = "conf/whitelist/";
     private static final String BLACK_LIST_PATH = "conf/blacklist/";
     private static final String COMPAT_LIST_PATH = "conf/compatlist/";
     private static final String WHITE_LIST_MODE = "conf/usewhitelist";
-    private static final String BLACK_WHITE_LIST  = "conf/blackwhitelist";
 
     private static final List<String> FORCE_WHITE_LIST = Arrays.asList(
             BuildConfig.APPLICATION_ID,
             "com.solohsu.android.edxp.manager",
             "de.robv.android.xposed.installer");
 
-    public static void makeSurePath() {
+    static void makeSurePath() {
         XposedApp.mkdirAndChmod(WHITE_LIST_PATH,00771);
         XposedApp.mkdirAndChmod(BLACK_LIST_PATH,00771);
         XposedApp.mkdirAndChmod(COMPAT_LIST_PATH,00771);
@@ -50,11 +49,11 @@ public class AppHelper {
         return new File(BASE_PATH + WHITE_LIST_MODE).exists();
     }
 
-    public static boolean addWhiteList(String packageName) {
+    private static boolean addWhiteList(String packageName) {
         return whiteListFileName(packageName, true);
     }
 
-    public static boolean addBlackList(String packageName) {
+    private static boolean addBlackList(String packageName) {
         if (FORCE_WHITE_LIST.contains(packageName)) {
             removeBlackList(packageName);
             return false;
@@ -62,18 +61,18 @@ public class AppHelper {
         return blackListFileName(packageName, true);
     }
 
-    public static boolean removeWhiteList(String packageName) {
+    private static boolean removeWhiteList(String packageName) {
         if (FORCE_WHITE_LIST.contains(packageName)) {
             return false;
         }
         return whiteListFileName(packageName, false);
     }
 
-    public static boolean removeBlackList(String packageName) {
+    private static boolean removeBlackList(String packageName) {
         return blackListFileName(packageName, false);
     }
 
-    public static List<String> getBlackList() {
+    static List<String> getBlackList() {
         File file=new File(BASE_PATH + BLACK_LIST_PATH);
         File[] files=file.listFiles();
         if (files == null){
@@ -89,7 +88,7 @@ public class AppHelper {
         return s;
     }
 
-    public static List<String> getWhiteList() {
+    static List<String> getWhiteList() {
         File file=new File(BASE_PATH + WHITE_LIST_PATH);
         File[] files=file.listFiles();
         if (files == null){
@@ -165,11 +164,11 @@ public class AppHelper {
         return returns;
     }
 
-    public static boolean addPackageName(boolean isWhiteListMode, String packageName) {
+    static boolean addPackageName(boolean isWhiteListMode, String packageName) {
         return isWhiteListMode ? addWhiteList(packageName) : addBlackList(packageName);
     }
 
-    public static boolean removePackageName(boolean isWhiteListMode, String packageName) {
+    static boolean removePackageName(boolean isWhiteListMode, String packageName) {
         return isWhiteListMode ? removeWhiteList(packageName) : removeBlackList(packageName);
     }
 
@@ -196,7 +195,7 @@ public class AppHelper {
         menuHelper.show();
     }
 
-    public static List<String> getCompatList() {
+    static List<String> getCompatList() {
         File file=new File(BASE_PATH + COMPAT_LIST_PATH);
         File[] files=file.listFiles();
         if (files == null){

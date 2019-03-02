@@ -12,7 +12,6 @@ import org.meowcat.edxposed.manager.R;
 
 public class BlackListAdapter extends AppAdapter {
 
-    private static final String TAG = "BlackListAdapter";
     private volatile boolean isWhiteListMode;
     private List<String> checkedList;
 

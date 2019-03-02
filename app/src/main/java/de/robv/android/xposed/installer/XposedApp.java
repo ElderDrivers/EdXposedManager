@@ -56,8 +56,7 @@ import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class XposedApp extends Application implements ActivityLifecycleCallbacks {
-    public static final String TAG = "XposedInstaller";
-
+    public static final String TAG = "EdXposedManager";
     @SuppressLint("SdCardPath")
     private static final String BASE_DIR_LEGACY = "/data/data/" + BuildConfig.APPLICATION_ID + "/";
     public static final String BASE_DIR = Build.VERSION.SDK_INT >= 24

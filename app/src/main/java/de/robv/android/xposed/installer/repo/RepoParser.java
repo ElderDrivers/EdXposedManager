@@ -26,8 +26,10 @@ import java.io.InputStream;
 
 import org.meowcat.edxposed.manager.R;
 
+import de.robv.android.xposed.installer.XposedApp;
+
 public class RepoParser {
-    public final static String TAG = "XposedRepoParser";
+    public final static String TAG = XposedApp.TAG;
     protected final static String NS = null;
     protected final XmlPullParser parser;
     protected RepoParserCallback mCallback;
