@@ -139,11 +139,12 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 Color.parseColor("#607D8B")
         };
 
-        public static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
-        public static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
+        static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
+        static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
         public static final File mDisableXposedMinverFlag = new File(XposedApp.BASE_DIR + "conf/disablexposedminver");
-        public static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
-        public static final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
+        static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
+        static final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
+        static final File mDeoptBootFlag = new File(XposedApp.BASE_DIR + "conf/deoptbootimage");
         private static final String DIALOG_FRAGMENT_TAG = "list_preference_dialog";
 
         private Preference mClickedPreference;
@@ -242,6 +243,21 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     mBlackWhiteListModeFlag.delete();
                 }
                 return (enabled == mBlackWhiteListModeFlag.exists());
+            });
+            SwitchPreference prefEnableDeopt = findPreference("enable_boot_image_deopt");
+            prefEnableDeopt.setChecked(mDeoptBootFlag.exists());
+            prefEnableDeopt.setOnPreferenceChangeListener((preference, newValue) -> {
+                boolean enabled = (Boolean) newValue;
+                if (enabled) {
+                    try {
+                        mDeoptBootFlag.createNewFile();
+                    } catch (IOException e) {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    mDeoptBootFlag.delete();
+                }
+                return (enabled == mDeoptBootFlag.exists());
             });
             SwitchPreference prefMinVerResources = findPreference("skip_xposedminversion_check");
             prefMinVerResources.setChecked(mDisableXposedMinverFlag.exists());

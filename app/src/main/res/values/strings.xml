@@ -321,7 +321,7 @@
     <string name="ignore_chinese_summary">Hide Chinese modules from list. Modules are still available in search window. Enabling this option may result in slow performance.</string>
 
     <!-- EdXp related -->
-    <string name="nav_title_black_list">Black/White List</string>
+    <string name="nav_title_black_list">Application List</string>
     <string name="nav_title_compat_list">Compat List</string>
     <string name="nav_title_settings">EdXp Settings</string>
     <string name="white_list_mode_title">White List mode</string>
@@ -342,7 +342,7 @@
     <string name="menu_title_compat_mode">About Compat mode</string>
     <string name="settings_group_edxposed">Elder Driver Xposed Settings (Reboot needed)</string>
     <string name="pref_title_black_white_list">App List Mode</string>
-    <string name="pref_black_white_list_summary">Note: using app list mode might result in modules not working in some processes, for example com.android.phone, also it could break system-wide modules\' functions.</string>
+    <string name="pref_black_white_list_summary">Note: using app list mode might break system-wide modules\' functions.</string>
     <string name="white_list_mode_summary">White List mode: Only selected app load EdXposed Framework.\nBlack List mode: Selected app NOT load EdXposed Framework.</string>
 
     <string name="app_name" translatable="false">EdXposed Manager</string>
@@ -381,5 +381,7 @@
     <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
     <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
     <string name="notinstalled">The EdXposed framework is not installed.</string>
+    <string name="pref_title_enable_boot_image_deopt">Deoptimize boot image</string>
+    <string name="pref_enable_boot_image_deopt_summary">Turn on to make all framework methods hookable, but the whole system will be slowed down.\nMainly used to check if one framework method is inlined when it can\'t be hooked into.</string>
 
 </resources>
