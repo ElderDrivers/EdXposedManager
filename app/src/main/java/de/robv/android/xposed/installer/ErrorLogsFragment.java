@@ -65,23 +65,12 @@ public class ErrorLogsFragment extends Fragment {
         mTxtLog.setTextIsSelectable(true);
         mSVLog = v.findViewById(R.id.svLog_err);
         mHSVLog = v.findViewById(R.id.hsvLog_err);
-/*
-        View scrollTop = v.findViewById(R.id.scroll_top_err);
-        View scrollDown = v.findViewById(R.id.scroll_down_err);
 
-        scrollTop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scrollTop();
-            }
-        });
-        scrollDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scrollDown();
-            }
-        });
-*/
+//        View scrollTop = v.findViewById(R.id.scroll_top_err);
+//        View scrollDown = v.findViewById(R.id.scroll_down_err);
+//
+//        scrollTop.setOnClickListener(v12 -> scrollTop());
+//        scrollDown.setOnClickListener(v1 -> scrollDown());
 
         if (!XposedApp.getPreferences().getBoolean("hide_logcat_warning", false)) {
             final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
@@ -147,49 +136,19 @@ public class ErrorLogsFragment extends Fragment {
     }
 
     private void scrollTop() {
-        mSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mSVLog.scrollTo(0, 0);
-            }
-        });
-        mHSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mHSVLog.scrollTo(0, 0);
-            }
-        });
+        mSVLog.post(() -> mSVLog.scrollTo(0, 0));
+        mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
     }
 
     private void scrollDown() {
-        mSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mSVLog.scrollTo(0, mTxtLog.getHeight());
-            }
-        });
-        mHSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mHSVLog.scrollTo(0, 0);
-            }
-        });
+        mSVLog.post(() -> mSVLog.scrollTo(0, mTxtLog.getHeight()));
+        mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
     }
 
     private void reloadErrorLog() {
         new LogsReader().execute(mFileErrorLog);
-        mSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mSVLog.scrollTo(0, mTxtLog.getHeight());
-            }
-        });
-        mHSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mHSVLog.scrollTo(0, 0);
-            }
-        });
+        mSVLog.post(() -> mSVLog.scrollTo(0, mTxtLog.getHeight()));
+        mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
     }
 
     private void clear() {
@@ -211,7 +170,6 @@ public class ErrorLogsFragment extends Fragment {
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
         sendIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(save()));
         sendIntent.setType("application/html");
         startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
     }
@@ -224,12 +182,7 @@ public class ErrorLogsFragment extends Fragment {
         if (requestCode == WRITE_EXTERNAL_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (mClickedMenuItem != null) {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            onOptionsItemSelected(mClickedMenuItem);
-                        }
-                    }, 500);
+                    new Handler().postDelayed(() -> onOptionsItemSelected(mClickedMenuItem), 500);
                 }
             } else {
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
@@ -251,7 +204,7 @@ public class ErrorLogsFragment extends Fragment {
 
         Calendar now = Calendar.getInstance();
         String filename = String.format(
-                "xposed_%s_%04d%02d%02d_%02d%02d%02d.log", "error",
+                "edxposed_module_%s_%04d%02d%02d_%02d%02d%02d.log", "error",
                 now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1,
                 now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
@@ -278,6 +231,7 @@ public class ErrorLogsFragment extends Fragment {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class LogsReader extends AsyncTask<File, Integer, String> {
 
         private static final int MAX_LOG_SIZE = 1000 * 1024; // 1000 KB
