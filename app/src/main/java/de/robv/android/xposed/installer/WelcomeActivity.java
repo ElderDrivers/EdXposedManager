@@ -48,7 +48,6 @@ public class WelcomeActivity extends XposedBaseActivity
     private int mPrevSelectedId;
     private NavigationView mNavigationView;
     private int mSelectedId;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +56,7 @@ public class WelcomeActivity extends XposedBaseActivity
         setContentView(R.layout.activity_welcome);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        mToolbar = findViewById(R.id.toolbar);
+        Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
         mNavigationView = findViewById(R.id.navigation_view);
@@ -122,7 +121,6 @@ public class WelcomeActivity extends XposedBaseActivity
     protected void onResume() {
         super.onResume();
         mDrawerLayout.setStatusBarBackgroundColor(darkenColor(XposedApp.getColor(this), 0.85f));
-        updateBlackListEntry();
         XposedApp.getPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -311,15 +309,5 @@ public class WelcomeActivity extends XposedBaseActivity
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if ("black_white_list_switch".equals(key)) {
-            updateBlackListEntry();
-        }
-    }
-
-    private void updateBlackListEntry() {
-        mNavigationView.getMenu().findItem(R.id.nav_black_list).setVisible(
-                XposedApp.getPreferences().getBoolean(
-                        "black_white_list_switch", false));
-    }
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {}
 }
