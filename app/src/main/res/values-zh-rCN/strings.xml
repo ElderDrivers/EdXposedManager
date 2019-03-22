@@ -17,8 +17,8 @@
     <string name="nav_item_download">下载</string>
     <string name="nav_item_settings">设置</string>
     <string name="nav_item_support">支持</string>
-    <string name="nav_item_logs">日志</string>
-    <string name="nav_item_logs_err">错误日志</string>
+    <string name="nav_item_logs">详细日志</string>
+    <string name="nav_item_logs_err">模块日志</string>
     <string name="nav_item_about">关于</string>
     <string name="navigation_drawer_open">开启导航抽屉栏</string>
     <string name="navigation_drawer_close">关闭导航抽屉栏</string>
@@ -109,7 +109,7 @@
     <string name="download_sorting_status">按状态排序</string>
     <string name="download_sorting_updated">按最后更新排序</string>
     <string name="download_sorting_created">按添加日期排序</string>
-    <string name="download_section_framework">框架</string>
+    <string name="download_section_framework">设备信息</string>
     <string name="download_section_update_available">有更新可用</string>
     <string name="download_section_installed">已安装</string>
     <string name="download_section_not_installed">未安装</string>
@@ -294,7 +294,7 @@
     <string name="flash_error_default">%d 个错误</string>
 
     <!-- EdXp related -->
-    <string name="nav_title_black_list">黑/白名单</string>
+    <string name="nav_title_black_list">应用名单</string>
     <string name="nav_title_settings">EdXp 设置</string>
     <string name="white_list_mode_title">白名单模式</string>
     <string name="nav_title_compat_list">兼容模式</string>
@@ -348,4 +348,8 @@
     <string name="this_may_take_a_while">这需要一段时间</string>
     <string name="pref_title_enable_boot_image_deopt">禁用系统代码优化</string>
     <string name="pref_enable_boot_image_deopt_summary">禁用系统代码的优化能使所有系统方法都可以被hook到，但是会降低系统流畅度。\n主要用于对比测试某个方法无法hook到是否是系统优化导致。</string>
+
+    <string name="pref_title_disable_verbose_log">禁用详细日志</string>
+    <string name="pref_disable_verbose_log_summary">下一次启动时将不再记录详细日志。</string>
+    <string name="logs_verbose_disabled">详细日志已禁用。</string>
 </resources>
