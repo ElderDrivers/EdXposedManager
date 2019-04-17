@@ -4,12 +4,12 @@
     <!-- General/various strings -->
     <string name="menuSend">Odeslat</string>
     <string name="menuSaveToSd">Uložit na SD kartu</string>
-    <string name="xposed_not_active">Poslední verze Xposed frameworku není aktivní. Byl Framework nainstalován a zařízení restartováno?</string>
+    <string name="xposed_not_active">EdXposed Framework není aktivní. Bylo zařízení po instalaci frameworku restartováno?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">Framework</string>
     <string name="tabDownload">Stáhnout</string>
-    <string name="welcome_framework_update_available">Aktualizace Xposed frameworku je k dispozici (%s).</string>
+    <string name="welcome_framework_update_available">Aktualizace EdXposed frameworku je k dispozici (%s).</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">Framework</string>
@@ -17,7 +17,8 @@
     <string name="nav_item_download">Stáhnout</string>
     <string name="nav_item_settings">Nastavení</string>
     <string name="nav_item_support">Podpora</string>
-    <string name="nav_item_logs">Log</string>
+    <string name="nav_item_logs">Podrobné záznamy</string>
+    <string name="nav_item_logs_err">Záznamy modulů</string>
     <string name="nav_item_about">O aplikaci</string>
     <string name="navigation_drawer_open">Otevřít panel navigace</string>
     <string name="navigation_drawer_close">Zavřít panel navigace</string>
@@ -28,18 +29,18 @@
     <string name="soft_reboot">Lehký restart</string>
     <string name="reboot">Restart</string>
     <string name="areyousure">Opravdu provést?</string>
-    <string name="phone_not_compatible">Xposed (zatím) není kompatibilní s Android SDK verze %1$d nebo architekturou vašeho procesoru (%2$s).</string>
+    <string name="phone_not_compatible">EdXposed (zatím) není kompatibilní s Android SDK verze %1$d nebo architekturou vašeho procesoru (%2$s).</string>
     <string name="reboot_failed">Nepodařilo se restartovat zařízení. Prosím, restartuj jej běžným způsobem.</string>
     <string name="auto_flash_note">Stisknutím \"OK\" bude %s automaticky nainstalován v recovery.</string>
     <string name="manual_flash_note">Nainstaluj prosím v recovery ručně z karty SD soubor %s.</string>
     <string name="reboot_confirmation">Restartovat?</string>
     <string name="reboot_recovery_confirmation">Restartovat do režimu recovery?</string>
     <string name="install_warning_title">Dbej opatrnosti!</string>
-    <string name="install_warning">V některých případech nemusí tvé zařízení po instalaci Xposed již naběhnout.\n\nPokud ti nic neříkají pojmy \"soft brick\" či \"bootloop\" a pokud nevíš, jak se v podobné situaci zachovat, <b>NEINSTALUJ</b> Xposed!\n\nV každém případě je vřele doporučeno mít aktuální zálohu zařízení.</string>
+    <string name="install_warning">V některých případech nemusí tvé zařízení po instalaci EdXposed již naběhnout.\n\nPokud ti nic neříkají pojmy \"soft brick\" či \"bootloop\" a pokud nevíš, jak se v podobné situaci zachovat, <b>NEINSTALUJ</b> EdXposed!\n\nV každém případě je vřele doporučeno mít aktuální zálohu zařízení.</string>
     <string name="dont_show_again">Již nezobrazovat</string>
-    <string name="install_known_issue">Zdá se, že existuje známý problém (\"%s\") s tvojí ROM. Instalace Xposed nemusí fungovat, nebo může vést k závažným problémům. Pro podrobnosti o tomto problému stiskni zde.</string>
-    <string name="installed_lollipop">Xposed Framework verze %s je aktivní.</string>
-    <string name="installed_lollipop_inactive">Xposed Framework verze %s je nainstalován, ale není aktivní. Prosím, zkontroluj log pro podrobnosti.</string>
+    <string name="install_known_issue">Zdá se, že existuje známý problém (\"%s\") s tvojí ROM. Instalace EdXposed nemusí fungovat, nebo může vést k závažným problémům. Pro podrobnosti o tomto problému stiskni zde.</string>
+    <string name="installed_lollipop">EdXposed Framework verze %s je aktivní.</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework verze %s je nainstalován, ale není aktivní. Prosím, zkontroluj log pro podrobnosti.</string>
     <string name="modules_updates_available">Aktualizace modulu k dispozici</string>
 
     <!-- File operations -->
@@ -65,20 +66,20 @@
     <string name="file_done">Hotovo! Změny se projeví po restartu zařízení.</string>
 
     <!-- Modules tab -->
-    <string name="module_is_not_activated_yet">Xposed modul zatím není aktivován</string>
+    <string name="module_is_not_activated_yet">EdXposed modul zatím není aktivován</string>
     <string name="module_is_not_activated_yet_detailed">%s byl nainstalován, ale zatím není aktivován.</string>
     <string name="activate_and_reboot">Aktivovat a restartovat</string>
     <string name="activate_only">Pouze aktivovat</string>
-    <string name="module_activated">Xposed modul byl aktivován</string>
+    <string name="module_activated">EdXposed modul byl aktivován</string>
     <string name="module_empty_description">(popis není k dispozici)</string>
     <string name="module_no_ui">Tento modul nemá žádné uživatelské rozhraní</string>
-    <string name="no_xposed_modules_found">Nebyly nalezeny žádné Xposed moduly!</string>
-    <string name="xposed_module_list_updated">Seznam Xposed modulů byl aktualizován.\nZměny se projeví po restartu zařízení.</string>
-    <string name="xposed_module_updated_notification_title">Xposed modul byl aktualizován</string>
+    <string name="no_xposed_modules_found">Nebyly nalezeny žádné EdXposed moduly!</string>
+    <string name="xposed_module_list_updated">Seznam EdXposed modulů byl aktualizován.\nZměny se projeví po restartu zařízení.</string>
+    <string name="xposed_module_updated_notification_title">EdXposed modul byl aktualizován</string>
     <string name="xposed_module_updated_notification">Restartovat pro aktivaci změn</string>
-    <string name="warning_xposed_min_version">Tento modul vyžaduje novější XposedBridge verze (%d), nemůže být proto aktivován.</string>
-    <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi XposedBridge.</string>
-    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro XposedBridge verze %1$d, ale kvůli nekompatibilním změnám ve verzi %2$d byl zakázán.</string>
+    <string name="warning_xposed_min_version">Tento modul vyžaduje novější EdXposedBridge verze (%d), nemůže být proto aktivován.</string>
+    <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi EdXposedBridge.</string>
+    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro EdXposedBridge verze %1$d, ale kvůli nekompatibilním změnám ve verzi %2$d byl zakázán.</string>
     <string name="module_launch">Spustit UI</string>
     <string name="module_download_updates">Stažení/Aktualizace</string>
     <string name="module_support">Podpora</string>
@@ -141,17 +142,17 @@
     <!-- Support tab -->
     <string name="support_modules_label">Podpora pro jednotlivé moduly</string>
     <string name="support_modules_description">Podrž prst na kterémkoliv z modulů v seznamu nainstalovaných modulů a zvol \"%1$s\".</string>
-    <string name="support_framework_label">Podpora pro Framework/instalátor</string>
+    <string name="support_framework_label">Podpora pro framework/správce</string>
     <string name="support_faq_label">FAQ/známé problémy</string>
     <string name="support_donate_label">Finanční příspěvek</string>
-    <string name="support_donate_description">Pokud chceš poděkovat za Xposed, můžeš rovo89 zaslat finanční příspěvek zde:</string>
+    <string name="support_donate_description">Pokud chceš poděkovat za EdXposed, můžeš rovo89 zaslat finanční příspěvek zde:</string>
 
     <!-- Logs tab  -->
     <string name="logs_save_failed">Nepodařilo se uložit záznam na kartu SD:</string>
     <string name="sdcard_not_writable">SD karta nebyla nenalezena nebo na ni nelze zapisovat</string>
     <string name="menuClearLog">Vymazat log</string>
-    <string name="logs_cleared">Log úspěšně smazán</string>
-    <string name="logs_clear_failed">Nepodařilo se vymazat log:</string>
+    <string name="logs_cleared">Záznam úspěšně smazán</string>
+    <string name="logs_clear_failed">Nepodařilo se smazat záznam:</string>
     <string name="log_is_empty">Záznam je prázný</string>
 
     <!-- About tab -->
@@ -178,6 +179,8 @@
     <string name="download_could_not_read_file">Nebylo možné načíst stažený soubor: %s</string>
     <string name="download_no_valid_apk">Stažený soubor není validní APK (nebo není kompatibilní)</string>
     <string name="download_incorrect_package_name">Název balíčku není správný (staženo: %1$s, očekáváno: %2$s)</string>
+    <string name="download_running">Stahování probíhá</string>
+    <string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Stahování %1$s selhalo: %2$d (%3$s)</string>
@@ -202,7 +205,7 @@
 
     <string name="share">Sdílet…</string>
     <string name="back">Zpět</string>
-    <string name="loadingError">Chyba při získávání seznamu souborů zip s Xposed frameworkem</string>
+    <string name="loadingError">Chyba při získávání seznamu instalátorů/odinstalátorů.\nNení přístup k internetu nebo chyba serveru</string>
     <string name="info">Info</string>
     <string name="infoInstaller">
         Název: %1$s
@@ -217,12 +220,12 @@
     </string>
     <string name="downloadZipOk">%1$s úspěšně stažen</string>
     <string name="permissionNotGranted">Tato funkce nebude fungovat bez udělení oprávnění k zápisu na externí úložiště.</string>
-    <string name="warningArchitecture">BYL ZVOLEN ZIP S XPOSED PRO SPRÁVNOU ARCHITEKTURU?\nNesprávný instalační zip může poškodit zařízení!</string>
-    <string name="newVersion">Nová verze Xposed Instalátoru je k dispozici! Aktualizujte!</string>
+    <string name="warningArchitecture">Stáhne se soubor ZIP, nainstaluj jej ručně přes správce Magisk nebo v recovery.</string>
+    <string name="newVersion">Nová verze EdXposed správce je k dispozici! Aktualizujte!</string>
     <string name="update">Aktualizovat</string>
     <string name="choose_icon">Zvolit ikonu</string>
     <string name="custom_icon">Vlastní ikona</string>
-    <string name="not_installed_no_lollipop">Xposed Framework není nainstalován.</string>
+    <string name="not_installed_no_lollipop">EdXposed Framework není nainstalován.</string>
     <string name="notify_module_update">Povolit oznámení o aktualizaci modulu</string>
 
     <string name="md_back_label">Zpět</string>
@@ -259,21 +262,20 @@
     <string name="open_drawer_summ">Automaticky otevřít navigační panel při spuštění</string>
     <string name="open_drawer">Otevřít navigační panel automaticky</string>
     <string name="share_app">Sdílet aplikaci</string>
-    <string name="share_app_text">Mrkni na tohle: Xposed Instalátor v material designu! %s</string>
+    <string name="share_app_text">Mrkni na tohle: Xposed správce v material designu! %s</string>
     <string name="status">Stav Xposed</string>
     <string name="xposed_on_next_reboot">Xposed Framework bude povolen při příštím restartu</string>
     <string name="xposed_off_next_reboot">Xposed Framework bude zakázán při příštím restartu</string>
     <string name="rovo_89_old_icon">rovo89 (původní)</string>
     <string name="confirm_reboots">Potvrzovat restarty</string>
-    <string name="skip_xposedminversion_check">Přeskočit kontrolu \'xposedminversion\'</string>
-    <string name="skip_xposedminversion_check_summ">Vypne kontrolu minimální verze xposed pro moduly</string>
-
+    <string name="skip_xposedminversion_check">Přeskočit kontrolu modulů</string>
+    <string name="skip_xposedminversion_check_summ">Vypne kontrolu minimální verze a stavu pro moduly</string>
 
     <string name="compatibility">Kompatibilita</string>
     <string name="details">Podrobnosti</string>
     <string name="look_and_feel">Vzhled a chování</string>
-    <string name="support_xda">Získat podporu ve vlákně na XDA</string>
-    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
+    <string name="support_xda">Získat podporu</string>
+    <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
     <string name="later">Později</string>
     <string name="save">Uložit</string>
     <string name="download_location">Umístění stahování</string>
@@ -282,7 +284,7 @@
     <string name="cache_cleaned">Vyrovnávací paměť aplikace byla vymazána. Je vyžadován restart</string>
     <string name="update_download_list">Seznam modulů ke stažení bude načten během několika vteřin</string>
     <string name="no_connection_available">Žádné připojení</string>
-    <string name="not_logcat">Pokud tě někdo požádal o logcat záznam androidu, jsi na špatném místě. Toto je záznam Xposed; pokud potřebuješ logcat, na XDA najdeš co k tomu potřebuješ</string>
+    <string name="not_logcat">Pokud tě někdo požádal o logcat záznam androidu, jsi na špatném místě. Toto je záznam EdXposed; pokud potřebuješ logcat, můžeš vyzkoušet náš LogCat modul pro Magisk</string>
     <string name="force_english">Vynutit anglický jazyk</string>
     <string name="warning_language">Změna jazyka bude aplikována při příštím spuštění aplikace.</string>
     <string name="not_flashable_inapp">Tento soubor zip nelze nainstalovat v aplikaci. Instaluji automaticky v recovery</string>
@@ -301,10 +303,6 @@
     <string name="install_load">Instaluji…</string>
     <string name="install_load_apk">Instaluji %s</string>
 
-    <string name="rovo89_summary">Hlavní tvůrce Xposed</string>
-    <string name="tungstwenty_summary">Pomáhal jeho mnohými příspěvky jak v kódu, tak i svými myšlenkami</string>
-    <string name="dvdandroid_summary">Tvůrce tohoto Xposed instalátoru</string>
-    <string name="biohazard_summary">Pomáhal s implementací Material designu</string>
     <string name="unstable_build">Toto není stabilní sestavení. Instaluj na vlastní nebezpečí.</string>
     <string name="alt_download_method">Alternativní metoda stahování</string>
     <string name="alt_download_method_summ">Zaškrtni tuto volbu pokud se objevují problémy při stahování modulů</string>
