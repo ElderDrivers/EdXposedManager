@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group>
-
-    <item
-        android:title="@string/reboot"
-        app:showAsAction="never">
-        <menu>
-        <item
-            android:id="@+id/reboot"
-            android:icon="@drawable/ic_menu_refresh"
-        app:showAsAction="never"
-            android:title="@string/reboot"/>
-
-        <item
-            android:id="@+id/soft_reboot"
-            android:icon="@drawable/ic_menu_refresh"
-        app:showAsAction="never"
-            android:title="@string/soft_reboot"/>
-
-        <item
-            android:id="@+id/reboot_recovery"
-            android:icon="@drawable/ic_menu_refresh"
-        app:showAsAction="never"
-            android:title="@string/reboot_recovery"/>
-        </menu>
-    </item>
-    
         <item
             android:id="@+id/dexopt_now"
             android:icon="@drawable/ic_flash"
             android:title="@string/dexopt_now"/>
+        <item
+            android:title="@string/reboot"
+            app:showAsAction="never">
+            <menu>
+                <item
+                    android:id="@+id/reboot"
+                    android:icon="@drawable/ic_menu_refresh"
+                    android:title="@string/reboot"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/soft_reboot"
+                    android:icon="@drawable/ic_menu_refresh"
+                    android:title="@string/soft_reboot"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/reboot_recovery"
+                    android:icon="@drawable/ic_menu_refresh"
+                    android:title="@string/reboot_recovery"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/reboot_bootloader"
+                    android:icon="@drawable/ic_menu_refresh"
+                    android:title="@string/reboot_bootloader"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/reboot_download"
+                    android:icon="@drawable/ic_menu_refresh"
+                    android:title="@string/reboot_download"
+                    app:showAsAction="never" />
+            </menu>
+        </item>
     </group>
 
 </menu>

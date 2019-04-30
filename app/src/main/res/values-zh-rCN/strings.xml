@@ -84,6 +84,7 @@
     <string name="module_download_updates">下载/更新</string>
     <string name="module_support">支持</string>
     <string name="module_app_info">应用信息</string>
+    <string name="modules_app_store">在应用商店查看</string>
     <string name="module_uninstall">卸载</string>
 
     <!-- Download tab -->
@@ -254,6 +255,8 @@
     <string name="ignore_updates">忽略更新</string>
     <string name="ignore_updates_summ">忽略指定模块的更新</string>
     <string name="reboot_recovery">重启至恢复模式</string>
+    <string name="reboot_bootloader">重启至引导加载器</string>
+    <string name="reboot_download">重启至下载模式</string>
     <string name="loading">正在加载…</string>
     <string name="chrome_custom_tabs">Chrome 自定义标签页</string>
     <string name="chrome_custom_tabs_summ">在内置浏览器中打开链接</string>
@@ -339,6 +342,7 @@
     <string name="installation_apk_normal">使用普通方式安装 APK</string>
     <string name="install_load_apk">正在安装 %s</string>
     <string name="unstable_build">这是一个不稳定的构建。自行承担安装风险。</string>
+    <string name="unofficial_build">这是一个非官方的构建。自行承担安装风险。</string>
     <string name="alt_download_method">备用下载方法</string>
     <string name="alt_download_method_summ">如果下载模块时出现问题，请开启此选项。</string>
     <string name="known_issue_wrong_base_directory">错误的配置文件夹: %1$s</string>

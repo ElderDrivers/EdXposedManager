@@ -10,10 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +22,17 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import org.meowcat.edxposed.manager.R;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.meowcat.edxposed.manager.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
@@ -50,9 +51,8 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
-    private static final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
     public static String APP_PROCESS_NAME = null;
-    private static RootUtil mRootUtil = new RootUtil();
+    public static RootUtil mRootUtil = new RootUtil();
     private List<String> messages = new ArrayList<>();
     private View mClickedButton;
 
@@ -113,6 +113,13 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
 
         assert tab != null;
         return tab.stable;
+    }
+
+    protected boolean isOfficial() {
+        XposedTab tab = getArguments().getParcelable("tab");
+
+        assert tab != null;
+        return tab.official;
     }
 
     private boolean checkPermissions() {
@@ -245,20 +252,11 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
             view.findViewById(R.id.warning_unstable).setVisibility(View.VISIBLE);
         }
 
-        showOnXda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavUtil.startURL(getActivity(), xdaUrl());
-            }
-        });
-
-        if (Build.VERSION.SDK_INT == 15) {
-            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
-        } else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 18) {
-            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
-        } else if (Build.VERSION.SDK_INT == 19) {
-            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk19";
+        if (!isOfficial()) {
+            view.findViewById(R.id.warning_unofficial).setVisibility(View.VISIBLE);
         }
+
+        showOnXda.setOnClickListener(v -> NavUtil.startURL(getActivity(), xdaUrl()));
 
         return view;
     }
@@ -289,12 +287,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
     @Override
     public void onDownloadFinished(final Context context, final DownloadsUtil.DownloadInfo info) {
         messages.clear();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(context, getString(R.string.downloadZipOk, info.localFilename), Toast.LENGTH_LONG).show();
-            }
-        });
+        runOnUiThread(() -> Toast.makeText(context, getString(R.string.downloadZipOk, info.localFilename), Toast.LENGTH_LONG).show());
 
         if (getInstallMode() == INSTALL_MODE_RECOVERY_MANUAL)
             return;
@@ -342,12 +335,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
                 });
                 return;
             } else {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(context, R.string.not_flashable_inapp, Toast.LENGTH_LONG).show();
-                    }
-                });
+                runOnUiThread(() -> Toast.makeText(context, R.string.not_flashable_inapp, Toast.LENGTH_LONG).show());
             }
         }
 

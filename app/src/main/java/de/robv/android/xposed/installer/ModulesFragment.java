@@ -4,9 +4,7 @@ import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.net.Uri;
@@ -14,10 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.ActionBar;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -41,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.meowcat.edxposed.manager.R;
 
 import java.io.BufferedReader;
@@ -56,18 +52,24 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
+import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
@@ -75,6 +77,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
+import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
@@ -83,27 +86,21 @@ import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
 public class ModulesFragment extends Fragment implements ModuleListener, AdapterView.OnItemClickListener {
     public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
+    static final String XPOSED_REPO_LINK = "http://repo.xposed.info/module/%s";
     public static final String PLAY_STORE_PACKAGE = "com.android.vending";
     public static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=%s";
-    public static final String XPOSED_REPO_LINK = "http://repo.xposed.info/module/%s";
     private static final String NOT_ACTIVE_NOTE_TAG = "NOT_ACTIVE_NOTE";
-    private static String PLAY_STORE_LABEL = null;
     private int installedXposedVersion;
     private ModuleUtil mModuleUtil;
+    private RootUtil mRootUtil = new RootUtil();
     private ModuleAdapter mAdapter = null;
-    private PackageManager mPm = null;
     private Runnable reloadModules = new Runnable() {
         public void run() {
             mAdapter.setNotifyOnChange(false);
             mAdapter.clear();
             mAdapter.addAll(mModuleUtil.getModules().values());
             final Collator col = Collator.getInstance(Locale.getDefault());
-            mAdapter.sort(new Comparator<InstalledModule>() {
-                @Override
-                public int compare(InstalledModule lhs, InstalledModule rhs) {
-                    return col.compare(lhs.getAppName(), rhs.getAppName());
-                }
-            });
+            mAdapter.sort((lhs, rhs) -> col.compare(lhs.getAppName(), rhs.getAppName()));
             mAdapter.notifyDataSetChanged();
         }
     };
@@ -115,15 +112,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModuleUtil = ModuleUtil.getInstance();
-        mPm = getActivity().getPackageManager();
-        if (PLAY_STORE_LABEL == null) {
-            try {
-                ApplicationInfo ai = mPm.getApplicationInfo(PLAY_STORE_PACKAGE,
-                        0);
-                PLAY_STORE_LABEL = mPm.getApplicationLabel(ai).toString();
-            } catch (NameNotFoundException ignored) {
-            }
-        }
+        PackageManager mPm = Objects.requireNonNull(getActivity()).getPackageManager();
     }
 
     @Override
@@ -146,7 +135,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         registerForContextMenu(getListView());
         mModuleUtil.addListener(this);
 
-        ActionBar actionBar = ((WelcomeActivity) getActivity()).getSupportActionBar();
+        ActionBar actionBar = ((WelcomeActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
@@ -165,7 +154,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list_fragment, container, false);
 
         mListView = view.findViewById(android.R.id.list);
@@ -178,13 +167,13 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     }
 
     private void addHeader() {
-        View notActiveNote = getActivity().getLayoutInflater().inflate(R.layout.xposed_not_active_note, getListView(), false);
+        View notActiveNote = Objects.requireNonNull(getActivity()).getLayoutInflater().inflate(R.layout.xposed_not_active_note, getListView(), false);
         notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);
         getListView().addHeaderView(notActiveNote);
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_modules, menu);
     }
 
@@ -195,12 +184,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         if (requestCode == WRITE_EXTERNAL_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (mClickedMenuItem != null) {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            onOptionsItemSelected(mClickedMenuItem);
-                        }
-                    }, 500);
+                    new Handler().postDelayed(() -> onOptionsItemSelected(mClickedMenuItem), 500);
                 }
             } else {
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
@@ -208,8 +192,58 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         }
     }
 
+    private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
+        new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
+                .content(contentTextId)
+                .iconAttr(android.R.attr.alertDialogIcon)
+                .positiveText(android.R.string.yes)
+                .negativeText(android.R.string.no).callback(yesHandler).show();
+    }
+
+    private boolean startShell() {
+        if (mRootUtil.startShell())
+            return false;
+
+        showAlert(getString(R.string.root_failed));
+        return true;
+    }
+
+    private void softReboot() {
+        if (startShell())
+            return;
+
+        List<String> messages = new LinkedList<>();
+        if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.reboot_failed));
+            showAlert(TextUtils.join("\n", messages).trim());
+        }
+    }
+
+    private void reboot(String mode) {
+        if (startShell())
+            return;
+
+        List<String> messages = new LinkedList<>();
+
+        String command = "reboot";
+        if (mode != null) {
+            command += " " + mode;
+            if (mode.equals("recovery"))
+                // create a flag used by some kernels to boot into recovery
+                mRootUtil.executeWithBusybox("touch /cache/recovery/boot", messages);
+        }
+
+        if (mRootUtil.executeWithBusybox(command, messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.reboot_failed));
+            showAlert(TextUtils.join("\n", messages).trim());
+        }
+        AssetUtil.removeBusybox();
+    }
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.reboot:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
@@ -248,6 +282,32 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                     });
                 } else {
                     reboot("recovery");
+                }
+                break;
+            case R.id.reboot_bootloader:
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot("bootloader");
+                        }
+                    });
+                } else {
+                    reboot("bootloader");
+                }
+                break;
+            case R.id.reboot_download:
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot("download");
+                        }
+                    });
+                } else {
+                    reboot("download");
                 }
                 break;
         }
@@ -338,7 +398,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     }
 
     private boolean checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return true;
         }
@@ -417,7 +477,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     }
 
     private void showAlert(final String result) {
-        MaterialDialog dialog = new MaterialDialog.Builder(getActivity()).content(result).positiveText(android.R.string.ok).build();
+        MaterialDialog dialog = new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).content(result).positiveText(android.R.string.ok).build();
         dialog.show();
 
         TextView txtMessage = (TextView) dialog
@@ -438,23 +498,23 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
     @Override
     public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
-        getActivity().runOnUiThread(reloadModules);
+        Objects.requireNonNull(getActivity()).runOnUiThread(reloadModules);
     }
 
     @Override
     public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
-        getActivity().runOnUiThread(reloadModules);
+        Objects.requireNonNull(getActivity()).runOnUiThread(reloadModules);
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v,
                                     ContextMenuInfo menuInfo) {
         InstalledModule installedModule = getItemFromContextMenuInfo(menuInfo);
         if (installedModule == null)
             return;
 
         menu.setHeaderTitle(installedModule.getAppName());
-        getActivity().getMenuInflater().inflate(R.menu.context_menu_modules, menu);
+        Objects.requireNonNull(getActivity()).getMenuInflater().inflate(R.menu.context_menu_modules, menu);
 
         if (getSettingsIntent(installedModule.packageName) == null)
             menu.removeItem(R.id.menu_launch);
@@ -468,20 +528,10 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
             menu.removeItem(R.id.menu_download_updates);
             menu.removeItem(R.id.menu_support);
         }
-
-        try {
-            String installer = mPm.getInstallerPackageName(installedModule.packageName);
-            if (PLAY_STORE_LABEL != null && PLAY_STORE_PACKAGE.equals(installer))
-                menu.findItem(R.id.menu_play_store).setTitle(PLAY_STORE_LABEL);
-            else
-                menu.removeItem(R.id.menu_play_store);
-        } catch (Exception e) {
-            menu.removeItem(R.id.menu_play_store);
-        }
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
         InstalledModule module = getItemFromContextMenuInfo(item.getMenuInfo());
         if (module == null)
             return false;
@@ -501,15 +551,14 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 NavUtil.startURL(getActivity(), Uri.parse(RepoDb.getModuleSupport(module.packageName)));
                 return true;
 
-            case R.id.menu_play_store:
-                Intent i = new Intent(android.content.Intent.ACTION_VIEW);
-                i.setData(Uri.parse(String.format(PLAY_STORE_LINK, module.packageName)));
-                i.setPackage(PLAY_STORE_PACKAGE);
+            case R.id.menu_app_store:
+                Uri uri = Uri.parse("market://details?id=" + module.packageName);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 try {
-                    startActivity(i);
-                } catch (ActivityNotFoundException e) {
-                    i.setPackage(null);
-                    startActivity(i);
+                    startActivity(intent);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
                 return true;
 
@@ -518,7 +567,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 return true;
 
             case R.id.menu_uninstall:
-                startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE, Uri.fromParts("package", module.packageName, null)));
+                startActivity(new Intent(Intent.ACTION_DELETE, Uri.fromParts("package", module.packageName, null)));
                 return true;
         }
 

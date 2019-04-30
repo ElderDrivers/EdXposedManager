@@ -32,6 +32,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -58,7 +59,7 @@ public class ErrorLogsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_logs_error, container, false);
         mTxtLog = v.findViewById(R.id.txtLog_err);
@@ -73,7 +74,7 @@ public class ErrorLogsFragment extends Fragment {
 //        scrollDown.setOnClickListener(v1 -> scrollDown());
 
         if (!XposedApp.getPreferences().getBoolean("hide_logcat_warning", false)) {
-            final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
+            @SuppressLint("InflateParams") final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
 
             TextView message = dontShowAgainView.findViewById(android.R.id.message);
             message.setText(R.string.not_logcat);
@@ -102,12 +103,12 @@ public class ErrorLogsFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_logs, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         mClickedMenuItem = item;
         switch (item.getItemId()) {
             case R.id.menu_scroll_top:
@@ -165,7 +166,7 @@ public class ErrorLogsFragment extends Fragment {
     }
 
     private void send() {
-        Uri uri = FileProvider.getUriForFile(getActivity(), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
+        Uri uri = FileProvider.getUriForFile(Objects.requireNonNull(getActivity()), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
@@ -192,7 +193,7 @@ public class ErrorLogsFragment extends Fragment {
 
     @SuppressLint("DefaultLocale")
     private File save() {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return null;
         }

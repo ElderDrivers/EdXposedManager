@@ -83,6 +83,7 @@
     <string name="module_launch">Launch UI</string>
     <string name="module_download_updates">Download/Updates</string>
     <string name="module_support">Support</string>
+    <string name="modules_app_store">View in App Store</string>
     <string name="module_app_info">App info</string>
     <string name="module_uninstall">Uninstall</string>
 
@@ -255,6 +256,8 @@
     <string name="ignore_updates">Ignore update</string>
     <string name="ignore_updates_summ">Ignore updates for a specific module.</string>
     <string name="reboot_recovery">Reboot to recovery</string>
+    <string name="reboot_bootloader">Reboot to bootloader</string>
+    <string name="reboot_download">Reboot to download</string>
     <string name="loading">Loading…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
@@ -304,6 +307,7 @@
     <string name="install_load_apk">Installing %s</string>
 
     <string name="unstable_build">This is a unstable build. Install it at your own risk.</string>
+    <string name="unofficial_build">This is a unofficial build. Install it at your own risk.</string>
     <string name="alt_download_method">Alternative download method</string>
     <string name="alt_download_method_summ">Check this option if you get issues when downloading a module</string>
 

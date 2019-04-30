@@ -5,12 +5,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
-import androidx.annotation.Nullable;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,16 +18,23 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.annimon.stream.Stream;
-import com.annimon.stream.function.Predicate;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.R;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
@@ -149,14 +150,14 @@ public class AdvancedInstallerFragment extends Fragment {
 
     private boolean startShell() {
         if (mRootUtil.startShell())
-            return true;
+            return false;
 
         showAlert(getString(R.string.root_failed));
-        return false;
+        return true;
     }
 
     private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-        new MaterialDialog.Builder(getActivity()).title(R.string.areyousure)
+        new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
                 .content(contentTextId)
                 .iconAttr(android.R.attr.alertDialogIcon)
                 .positiveText(android.R.string.yes)
@@ -165,7 +166,7 @@ public class AdvancedInstallerFragment extends Fragment {
 
     private void showAlert(final String result) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            getActivity().runOnUiThread(new Runnable() {
+            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     showAlert(result);
@@ -186,7 +187,7 @@ public class AdvancedInstallerFragment extends Fragment {
     }
 
     private void softReboot() {
-        if (!startShell())
+        if (startShell())
             return;
 
         List<String> messages = new LinkedList<>();
@@ -198,7 +199,7 @@ public class AdvancedInstallerFragment extends Fragment {
     }
 
     private void reboot(String mode) {
-        if (!startShell())
+        if (startShell())
             return;
 
         List<String> messages = new LinkedList<>();
@@ -237,12 +238,7 @@ public class AdvancedInstallerFragment extends Fragment {
                 final JSONUtils.XposedJson xposedJson = new Gson().fromJson(jsonString, JSONUtils.XposedJson.class);
 
                 List<XposedTab> tabs = Stream.of(xposedJson.tabs)
-                        .filter(new Predicate<XposedTab>() {
-                            @Override
-                            public boolean test(XposedTab value) {
-                                return value.sdks.contains(Build.VERSION.SDK_INT);
-                            }
-                        }).toList();
+                        .filter(value -> value.sdks.contains(Build.VERSION.SDK_INT)).toList();
 
                 noZips = tabs.isEmpty();
 
@@ -279,7 +275,7 @@ public class AdvancedInstallerFragment extends Fragment {
 
                 SharedPreferences prefs;
                 try {
-                    prefs = getContext().getSharedPreferences(getContext().getPackageName() + "_preferences", MODE_PRIVATE);
+                    prefs = getContext().getSharedPreferences(Objects.requireNonNull(getContext()).getPackageName() + "_preferences", MODE_PRIVATE);
 
                     prefs.edit().putString("changelog_" + newApkVersion, newApkChangelog).apply();
                 } catch (NullPointerException ignored) {
@@ -316,6 +312,7 @@ public class AdvancedInstallerFragment extends Fragment {
         @Override
         public int getCount() { return listFragment.size(); }
 
+        @NonNull
         @Override
         public Fragment getItem(int position) {
             return listFragment.get(position);

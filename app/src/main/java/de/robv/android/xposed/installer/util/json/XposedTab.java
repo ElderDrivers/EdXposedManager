@@ -27,6 +27,7 @@ public class XposedTab implements Parcelable {
     public List<Integer> sdks = new ArrayList<>();
     public String author = "";
     public boolean stable = true;
+    public boolean official = true;
 
     public HashMap<String, String> compatibility = new HashMap<>();
     public HashMap<String, String> incompatibility = new HashMap<>();
@@ -40,6 +41,7 @@ public class XposedTab implements Parcelable {
         name = in.readString();
         author = in.readString();
         stable = in.readByte() != 0;
+        official = in.readByte() != 0;
     }
 
     public String getCompatibility() {

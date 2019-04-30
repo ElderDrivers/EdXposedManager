@@ -11,14 +11,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.widget.SwitchCompat;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,13 +19,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.meowcat.edxposed.manager.R;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -44,10 +38,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.meowcat.edxposed.manager.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.util.DownloadsUtil;
-import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
@@ -284,19 +280,16 @@ public class StatusInstallerFragment extends Fragment {
 
         xposedDisable.setChecked(!DISABLE_FILE.exists());
 
-        xposedDisable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (DISABLE_FILE.exists()) {
-                    DISABLE_FILE.delete();
-                    Snackbar.make(xposedDisable, R.string.xposed_on_next_reboot, Snackbar.LENGTH_LONG).show();
-                } else {
-                    try {
-                        DISABLE_FILE.createNewFile();
-                        Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        Log.e(XposedApp.TAG, "StatusInstallerFragment -> " + e.getMessage());
-                    }
+        xposedDisable.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (DISABLE_FILE.exists()) {
+                DISABLE_FILE.delete();
+                Snackbar.make(xposedDisable, R.string.xposed_on_next_reboot, Snackbar.LENGTH_LONG).show();
+            } else {
+                try {
+                    DISABLE_FILE.createNewFile();
+                    Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
+                } catch (IOException e) {
+                    Log.e(XposedApp.TAG, "StatusInstallerFragment -> " + e.getMessage());
                 }
             }
         });
@@ -313,7 +306,7 @@ public class StatusInstallerFragment extends Fragment {
 
     private void determineVerifiedBootState(View v) {
         try {
-            Class<?> c = Class.forName("android.os.SystemProperties");
+            @SuppressLint("PrivateApi") Class<?> c = Class.forName("android.os.SystemProperties");
             Method m = c.getDeclaredMethod("get", String.class, String.class);
             m.setAccessible(true);
 
@@ -457,6 +450,8 @@ public class StatusInstallerFragment extends Fragment {
                 return "Oreo";
             case 28:
                 return "Pie";
+            case 29:
+                return "Q";
         }
         return "Unknown";
     }
@@ -471,6 +466,8 @@ public class StatusInstallerFragment extends Fragment {
             manufacturer += "(TouchWiz)";
         } else if (new File("/system/framework/framework-miui-res.apk").exists() || new File("/system/app/miui/miui.apk").exists() || new File("/system/app/miuisystem/miuisystem.apk").exists()) {
             manufacturer += "(MIUI)";
+        } else if (new File("/system/priv-app/oneplus-framework-res/oneplus-framework-res.apk").exists()) {
+            manufacturer += "(Oxygen/Hydrogen OS)";
         }
         /*if (manufacturer.contains("Samsung")) {
             manufacturer += new File("/system/framework/twframework.jar").exists() ||
