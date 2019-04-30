@@ -27,10 +27,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import de.robv.android.xposed.installer.XposedApp;
-
 public class CrashHandler implements UncaughtExceptionHandler {
-    private static final String TAG = XposedApp.TAG;
+    private static final String TAG = MeowCatApplication.TAG;
     private Thread.UncaughtExceptionHandler mDefaultHandler;
     @SuppressLint("StaticFieldLeak")
     private static CrashHandler INSTANCE = new CrashHandler();

@@ -38,4 +38,28 @@
         </menu>
     </item>
 
+    <item
+        android:title="@string/reboot"
+        app:showAsAction="never">
+        <menu>
+        <item
+            android:id="@+id/reboot"
+            android:icon="@drawable/ic_menu_refresh"
+        app:showAsAction="never"
+            android:title="@string/reboot"/>
+
+        <item
+            android:id="@+id/soft_reboot"
+            android:icon="@drawable/ic_menu_refresh"
+        app:showAsAction="never"
+            android:title="@string/soft_reboot"/>
+
+        <item
+            android:id="@+id/reboot_recovery"
+            android:icon="@drawable/ic_menu_refresh"
+        app:showAsAction="never"
+            android:title="@string/reboot_recovery"/>
+        </menu>
+    </item>
+    
 </menu>

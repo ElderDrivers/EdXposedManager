@@ -62,7 +62,7 @@ public class DownloadsUtil {
             }
         }
 
-        String savePath = "XposedInstaller";
+        String savePath = "Download/EdXposedManager";
         if (b.mModule) {
             savePath += "/modules";
         }

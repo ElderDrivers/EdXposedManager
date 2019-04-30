@@ -61,7 +61,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private static final String BASE_DIR_LEGACY = "/data/data/" + BuildConfig.APPLICATION_ID + "/";
     public static final String BASE_DIR = Build.VERSION.SDK_INT >= 24
             ? "/data/user_de/0/" + BuildConfig.APPLICATION_ID + "/" : BASE_DIR_LEGACY;
-    public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
+    public static final String ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
     private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.dex");
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
@@ -87,7 +87,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     public static File createFolder() {
-        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/XposedInstaller/");
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/EdXposedManager/");
 
         if (!dir.exists()) dir.mkdir();
 
@@ -216,7 +216,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     public static String getDownloadPath() {
-        return getPreferences().getString("download_location", Environment.getExternalStorageDirectory() + "/XposedInstaller");
+        return getPreferences().getString("download_location", Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/");
     }
 
     public void onCreate() {
@@ -228,7 +228,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
         reloadXposedProp();
         createDirectories();
-        delete(new File(Environment.getExternalStorageDirectory() + "/XposedInstaller/.temp"));
+        delete(new File(Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/.temp"));
         NotificationUtil.init();
         AssetUtil.removeBusybox();
         registerReceivers();
@@ -242,7 +242,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
             mPref.edit().putString("date", dateFormat.format(date)).apply();
 
             try {
-                Log.i(TAG, String.format("XposedInstaller - %s - %s", BuildConfig.VERSION_CODE, getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+                Log.i(TAG, String.format("EdXposedManager - %s - %s", BuildConfig.VERSION_CODE, getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
             } catch (PackageManager.NameNotFoundException ignored) {
             }
         }

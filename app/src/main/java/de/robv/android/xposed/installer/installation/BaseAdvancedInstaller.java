@@ -264,7 +264,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
     }
 
     private void checkAndDelete(String name) {
-        new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/XposedInstaller/" + name + ".zip").delete();
+        new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/EdXposedManager/" + name + ".zip").delete();
     }
 
     @Override

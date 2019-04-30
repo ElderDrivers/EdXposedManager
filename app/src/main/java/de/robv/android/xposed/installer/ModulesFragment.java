@@ -210,6 +210,47 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.reboot:
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot(null);
+                        }
+                    });
+                } else {
+                    reboot(null);
+                }
+                break;
+            case R.id.soft_reboot:
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.soft_reboot, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            softReboot();
+                        }
+                    });
+                } else {
+                    softReboot();
+                }
+                break;
+            case R.id.reboot_recovery:
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot("recovery");
+                        }
+                    });
+                } else {
+                    reboot("recovery");
+                }
+                break;
+        }
         if (item.getItemId() == R.id.bookmarks) {
             startActivity(new Intent(getActivity(), ModulesBookmark.class));
             return true;

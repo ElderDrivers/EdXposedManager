@@ -122,9 +122,9 @@
             android:summary="@string/open_drawer_summ"
             android:title="@string/open_drawer"/>
 
-        <!--SwitchPreference
+        <SwitchPreference
             android:key="force_english"
-            android:title="@string/force_english"/-->
+            android:title="@string/force_english"/>
 
         <SwitchPreference
             android:key="ignore_chinese"

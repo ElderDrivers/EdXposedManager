@@ -47,7 +47,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_black_list, menu);
+        inflater.inflate(R.menu.menu_app_list, menu);
         mSearchView = (SearchView) menu.findItem(R.id.app_search).getActionView();
         mSearchView.setOnQueryTextListener(mSearchListener);
     }
