@@ -93,13 +93,6 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         requireActivity().setTitle(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list);
     }
 
-    private void updateUi(boolean isWhiteListMode) {
-        changeTitle(isWhiteListMode());
-        mAppAdapter.setWhiteListMode(isWhiteListMode);
-        mSwipeRefreshLayout.setRefreshing(true);
-        mAppAdapter.refresh();
-    }
-
     private boolean isWhiteListMode() {
         return AppHelper.isWhiteListMode();
     }

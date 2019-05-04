@@ -31,11 +31,28 @@
         </activity>
 
         <activity-alias
-            android:name="de.robv.android.xposed.installer.WelcomeActivitydvdandroid"
+            android:name="de.robv.android.xposed.installer.WelcomeActivityMlgmXyysd"
             android:enabled="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/circle_ic_launcher"
+            android:targetActivity="de.robv.android.xposed.installer.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>
+        </activity-alias>
+        <activity-alias
+            android:name="de.robv.android.xposed.installer.WelcomeActivitydvdandroid"
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher_dvdandroid"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/circle_ic_launcher_dvdandroid"
             android:targetActivity="de.robv.android.xposed.installer.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

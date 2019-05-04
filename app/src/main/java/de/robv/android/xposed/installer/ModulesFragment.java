@@ -286,7 +286,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 break;
             case R.id.reboot_bootloader:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
+                    areYouSure(R.string.reboot_bootloader, new MaterialDialog.ButtonCallback() {
                         @Override
                         public void onPositive(MaterialDialog dialog) {
                             super.onPositive(dialog);
@@ -299,7 +299,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 break;
             case R.id.reboot_download:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
+                    areYouSure(R.string.reboot_download, new MaterialDialog.ButtonCallback() {
                         @Override
                         public void onPositive(MaterialDialog dialog) {
                             super.onPositive(dialog);
@@ -566,9 +566,10 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 startActivity(new Intent(ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", module.packageName, null)));
                 return true;
 
-            case R.id.menu_uninstall:
-                startActivity(new Intent(Intent.ACTION_DELETE, Uri.fromParts("package", module.packageName, null)));
-                return true;
+//            case R.id.menu_uninstall:
+////                startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE, Uri.fromParts("package", module.packageName, null)));
+//                startActivity(new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + module.packageName)));
+//                return true;
         }
 
         return false;

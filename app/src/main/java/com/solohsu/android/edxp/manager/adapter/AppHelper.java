@@ -2,10 +2,10 @@ package com.solohsu.android.edxp.manager.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.view.View;
-
-import com.topjohnwu.superuser.Shell;
 
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.R;
@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -23,6 +22,8 @@ import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
 import de.robv.android.xposed.installer.XposedApp;
+
+import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 
 public class AppHelper {
 
@@ -186,6 +187,25 @@ public class AppHelper {
                     break;
                 case R.id.app_menu_compile_speed:
                     CompileUtils.compileSpeed(context, fragmentManager, info);
+                    break;
+                case R.id.app_menu_launch:
+                    context.startActivity(context.getPackageManager().getLaunchIntentForPackage(info.packageName));
+                    break;
+                case R.id.app_menu_store:
+                    Uri uri = Uri.parse("market://details?id=" + info.packageName);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    try {
+                        context.startActivity(intent);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    break;
+                case R.id.app_menu_info:
+                    context.startActivity(new Intent(ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", info.packageName, null)));
+                    break;
+                case R.id.app_menu_uninstall:
+                    context.startActivity(new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + info.packageName)));
                     break;
             }
             return true;

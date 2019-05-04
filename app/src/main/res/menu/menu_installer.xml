@@ -6,42 +6,33 @@
         <item
             android:id="@+id/dexopt_now"
             android:icon="@drawable/ic_flash"
-            android:title="@string/dexopt_now"/>
+            android:title="@string/dexopt_now"
+            app:showAsAction="ifRoom" />
+
         <item
+            android:id="@+id/reboot"
             android:title="@string/reboot"
-            app:showAsAction="never">
-            <menu>
-                <item
-                    android:id="@+id/reboot"
-                    android:icon="@drawable/ic_menu_refresh"
-                    android:title="@string/reboot"
-                    app:showAsAction="never" />
+            app:showAsAction="never" />
 
-                <item
-                    android:id="@+id/soft_reboot"
-                    android:icon="@drawable/ic_menu_refresh"
-                    android:title="@string/soft_reboot"
-                    app:showAsAction="never" />
+        <item
+            android:id="@+id/soft_reboot"
+            android:title="@string/soft_reboot"
+            app:showAsAction="never" />
 
-                <item
-                    android:id="@+id/reboot_recovery"
-                    android:icon="@drawable/ic_menu_refresh"
-                    android:title="@string/reboot_recovery"
-                    app:showAsAction="never" />
+        <item
+            android:id="@+id/reboot_recovery"
+            android:title="@string/reboot_recovery"
+            app:showAsAction="never" />
 
-                <item
-                    android:id="@+id/reboot_bootloader"
-                    android:icon="@drawable/ic_menu_refresh"
-                    android:title="@string/reboot_bootloader"
-                    app:showAsAction="never" />
+        <item
+            android:id="@+id/reboot_bootloader"
+            android:title="@string/reboot_bootloader"
+            app:showAsAction="never" />
 
-                <item
-                    android:id="@+id/reboot_download"
-                    android:icon="@drawable/ic_menu_refresh"
-                    android:title="@string/reboot_download"
-                    app:showAsAction="never" />
-            </menu>
-        </item>
+        <item
+            android:id="@+id/reboot_download"
+            android:title="@string/reboot_download"
+            app:showAsAction="never" />
     </group>
 
 </menu>

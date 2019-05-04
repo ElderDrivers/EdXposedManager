@@ -37,6 +37,7 @@
         android:key="look_and_feel"
         android:title="@string/look_and_feel">
 
+        <!--suppress AndroidElementNotAllowed -->
         <de.robv.android.xposed.installer.widget.IconListPreference
             android:defaultValue="0"
             android:entries="@array/icons"
@@ -46,6 +47,7 @@
             android:title="@string/custom_icon"
             app:icons="@array/iconsDrawables"/>
 
+        <!--suppress AndroidElementNotAllowed -->
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/theme_texts"
@@ -108,6 +110,7 @@
             android:summary="@string/download_location_summ"
             android:title="@string/download_location"/>
 
+        <!--suppress AndroidElementNotAllowed -->
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/default_view_texts"

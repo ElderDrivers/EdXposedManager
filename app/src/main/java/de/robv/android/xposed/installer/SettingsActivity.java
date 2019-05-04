@@ -22,6 +22,7 @@ import org.meowcat.edxposed.manager.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -143,36 +144,33 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
         private Preference mClickedPreference;
 
-        private Preference.OnPreferenceChangeListener iconChange = new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                String act = ".WelcomeActivity";
-                String[] iconsValues = new String[]{"dvdandroid", "hjmodi", "rovo", "rovoold", "staol"};
+        private Preference.OnPreferenceChangeListener iconChange = (preference, newValue) -> {
+            String act = ".WelcomeActivity";
+            String[] iconsValues = new String[]{"MlgmXyysd", "dvdandroid", "hjmodi", "rovo", "rovoold", "staol"};
 
-                Context context = getActivity();
-                PackageManager pm = getActivity().getPackageManager();
-                String packName = getActivity().getPackageName();
-                String classPackName = "de.robv.android.xposed.installer";
+            Context context = getActivity();
+            PackageManager pm = Objects.requireNonNull(getActivity()).getPackageManager();
+            String packName = getActivity().getPackageName();
+            String classPackName = "de.robv.android.xposed.installer";
 
-                for (String s : iconsValues) {
-                    pm.setComponentEnabledSetting(new ComponentName(packName, classPackName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-                }
-
-                act += iconsValues[Integer.parseInt((String) newValue)];
-
-                int drawable = XposedApp.iconsValues[Integer.parseInt((String) newValue)];
-
-                if (Build.VERSION.SDK_INT >= 21) {
-
-                    ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
-                            XposedApp.drawableToBitmap(context.getDrawable(drawable)),
-                            XposedApp.getColor(context));
-                    getActivity().setTaskDescription(tDesc);
-                }
-
-                pm.setComponentEnabledSetting(new ComponentName(context, classPackName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-                return true;
+            for (String s : iconsValues) {
+                pm.setComponentEnabledSetting(new ComponentName(packName, classPackName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
             }
+
+            act += iconsValues[Integer.parseInt((String) newValue)];
+
+            int drawable = XposedApp.iconsValues[Integer.parseInt((String) newValue)];
+
+            if (Build.VERSION.SDK_INT >= 21) {
+
+                ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
+                        XposedApp.drawableToBitmap(Objects.requireNonNull(context).getDrawable(drawable)),
+                        XposedApp.getColor(context));
+                getActivity().setTaskDescription(tDesc);
+            }
+
+            pm.setComponentEnabledSetting(new ComponentName(Objects.requireNonNull(context), classPackName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            return true;
         };
 
         private Preference downloadLocation;
@@ -184,28 +182,24 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.prefs);
 
-            PreferenceGroup groupApp = (PreferenceGroup) findPreference("group_app");
-            PreferenceGroup lookFeel = (PreferenceGroup) findPreference("look_and_feel");
+            PreferenceGroup groupApp = findPreference("group_app");
+            PreferenceGroup lookFeel = findPreference("look_and_feel");
 
             Preference headsUp = findPreference("heads_up");
             Preference colors = findPreference("colors");
-            Preference forceEnglish = findPreference("force_english");
             downloadLocation = findPreference("download_location");
 
-            ListPreference customIcon = (ListPreference) findPreference("custom_icon");
-            navBar = (SwitchPreference) findPreference("nav_bar");
+            ListPreference customIcon = findPreference("custom_icon");
+            navBar = findPreference("nav_bar");
 
             if (Build.VERSION.SDK_INT < 21) {
-                groupApp.removePreference(headsUp);
-                lookFeel.removePreference(navBar);
+                Objects.requireNonNull(groupApp).removePreference(Objects.requireNonNull(headsUp));
+                Objects.requireNonNull(lookFeel).removePreference(navBar);
             }
 
-            findPreference("release_type_global").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    RepoLoader.getInstance().setReleaseTypeGlobal((String) newValue);
-                    return true;
-                }
+            findPreference("release_type_global").setOnPreferenceChangeListener((preference, newValue) -> {
+                RepoLoader.getInstance().setReleaseTypeGlobal((String) newValue);
+                return true;
             });
 
             SwitchPreference prefWhiteListMode = findPreference("white_list_switch");
@@ -308,7 +302,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 return (enabled == mDynamicModulesFlag.exists());
             });
 
-            SwitchPreference prefDisableResources = (SwitchPreference) findPreference("disable_resources");
+            SwitchPreference prefDisableResources = findPreference("disable_resources");
             prefDisableResources.setChecked(mDisableResourcesFlag.exists());
             prefDisableResources.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -390,7 +384,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         private boolean checkPermissions() {
             if (Build.VERSION.SDK_INT < 23) return false;
 
-            if (ActivityCompat.checkSelfPermission(getContext(),
+            if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
                 return true;

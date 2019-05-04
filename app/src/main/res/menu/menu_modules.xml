@@ -44,31 +44,26 @@
         <menu>
             <item
                 android:id="@+id/reboot"
-                android:icon="@drawable/ic_menu_refresh"
                 android:title="@string/reboot"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/soft_reboot"
-                android:icon="@drawable/ic_menu_refresh"
                 android:title="@string/soft_reboot"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/reboot_recovery"
-                android:icon="@drawable/ic_menu_refresh"
                 android:title="@string/reboot_recovery"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/reboot_bootloader"
-                android:icon="@drawable/ic_menu_refresh"
                 android:title="@string/reboot_bootloader"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/reboot_download"
-                android:icon="@drawable/ic_menu_refresh"
                 android:title="@string/reboot_download"
                 app:showAsAction="never" />
         </menu>
