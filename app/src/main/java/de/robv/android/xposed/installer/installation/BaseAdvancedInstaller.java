@@ -1,15 +1,16 @@
 package de.robv.android.xposed.installer.installation;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,18 +47,19 @@ import de.robv.android.xposed.installer.util.json.XposedZip;
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.runOnUiThread;
 
+@SuppressWarnings({"deprecation", "ResultOfMethodCallIgnored"})
 public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.DownloadFinishedCallback {
 
-    public static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
+    private static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
-    public static String APP_PROCESS_NAME = null;
-    public static RootUtil mRootUtil = new RootUtil();
+    private static String APP_PROCESS_NAME = null;
+    private static RootUtil mRootUtil = new RootUtil();
     private List<String> messages = new ArrayList<>();
     private View mClickedButton;
 
-    public static BaseAdvancedInstaller newInstance(XposedTab tab) {
+    static BaseAdvancedInstaller newInstance(XposedTab tab) {
         BaseAdvancedInstaller myFragment = new BaseAdvancedInstaller();
 
         Bundle args = new Bundle();
@@ -66,66 +69,55 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         return myFragment;
     }
 
-    protected List<XposedZip> installers() {
-        XposedTab tab = getArguments().getParcelable("tab");
-
-        assert tab != null;
-        return tab.getInstallers();
+    private List<XposedZip> installers() {
+        XposedTab tab = Objects.requireNonNull(getArguments()).getParcelable("tab");
+        return Objects.requireNonNull(tab).getInstallers();
     }
 
-    protected List<XposedZip> uninstallers() {
-        XposedTab tab = getArguments().getParcelable("tab");
-
-        assert tab != null;
-        return tab.uninstallers;
+    private List<XposedZip> uninstallers() {
+        XposedTab tab = Objects.requireNonNull(getArguments()).getParcelable("tab");
+        return Objects.requireNonNull(tab).uninstallers;
     }
 
-    protected String compatibility() {
-        XposedTab tab = getArguments().getParcelable("tab");
-
-        assert tab != null;
-        return tab.getCompatibility();
+    private String compatibility() {
+        XposedTab tab = Objects.requireNonNull(getArguments()).getParcelable("tab");
+        return Objects.requireNonNull(tab).getCompatibility();
     }
 
-    protected String incompatibility() {
-        XposedTab tab = getArguments().getParcelable("tab");
-
-        assert tab != null;
-        return tab.getIncompatibility();
+    private String incompatibility() {
+        XposedTab tab = Objects.requireNonNull(getArguments()).getParcelable("tab");
+        return Objects.requireNonNull(tab).getIncompatibility();
     }
 
     protected String author() {
-        XposedTab tab = getArguments().getParcelable("tab");
-
-        assert tab != null;
-        return tab.author;
+        XposedTab tab = Objects.requireNonNull(getArguments()).getParcelable("tab");
+        return Objects.requireNonNull(tab).author;
     }
 
-    protected String xdaUrl() {
-        XposedTab tab = getArguments().getParcelable("tab");
-
-        assert tab != null;
-        return tab.getSupport();
+    private String xdaUrl() {
+        XposedTab tab = Objects.requireNonNull(getArguments()).getParcelable("tab");
+        return Objects.requireNonNull(tab).getSupport();
     }
 
     protected boolean isStable() {
-        XposedTab tab = getArguments().getParcelable("tab");
-
-        assert tab != null;
-        return tab.stable;
+        XposedTab tab = Objects.requireNonNull(getArguments()).getParcelable("tab");
+        return Objects.requireNonNull(tab).stable;
     }
 
-    protected boolean isOfficial() {
-        XposedTab tab = getArguments().getParcelable("tab");
+    private boolean isOfficial() {
+        XposedTab tab = Objects.requireNonNull(getArguments()).getParcelable("tab");
+        return Objects.requireNonNull(tab).official;
+    }
 
-        assert tab != null;
-        return tab.official;
+    private String description() {
+        XposedTab tab = Objects.requireNonNull(getArguments()).getParcelable("tab");
+        return Objects.requireNonNull(tab).description;
     }
 
     private boolean checkPermissions() {
         if (Build.VERSION.SDK_INT < 23) return false;
 
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return true;
         }
@@ -140,7 +132,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.single_installer_view, container, false);
 
         final Spinner chooserInstallers = view.findViewById(R.id.chooserInstallers);
@@ -153,6 +145,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         TextView incompatibleTv = view.findViewById(R.id.incompatibilityTv);
         TextView author = view.findViewById(R.id.author);
         View showOnXda = view.findViewById(R.id.show_on_xda);
+        View updateDescription = view.findViewById(R.id.updateDescription);
 
         try {
             chooserInstallers.setAdapter(new XposedZip.MyAdapter(getContext(), installers()));
@@ -169,31 +162,25 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
             }
         }
 
-        infoInstaller.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
-                String s = getString(R.string.infoInstaller,
-                        selectedInstaller.name, Build.VERSION.SDK_INT,
-                        selectedInstaller.architecture,
-                        selectedInstaller.version);
+        infoInstaller.setOnClickListener(v -> {
+            XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
+            String s = getString(R.string.infoInstaller,
+                    selectedInstaller.name, Build.VERSION.SDK_INT,
+                    selectedInstaller.architecture,
+                    selectedInstaller.version);
 
-                new MaterialDialog.Builder(getContext()).title(R.string.info)
-                        .content(s).positiveText(android.R.string.ok).show();
-            }
+            new MaterialDialog.Builder(Objects.requireNonNull(getContext())).title(R.string.info)
+                    .content(s).positiveText(android.R.string.ok).show();
         });
-        infoUninstaller.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
-                String s = getString(R.string.infoUninstaller,
-                        selectedUninstaller.name,
-                        selectedUninstaller.architecture,
-                        selectedUninstaller.version);
+        infoUninstaller.setOnClickListener(v -> {
+            XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
+            String s = getString(R.string.infoUninstaller,
+                    selectedUninstaller.name,
+                    selectedUninstaller.architecture,
+                    selectedUninstaller.version);
 
-                new MaterialDialog.Builder(getContext()).title(R.string.info)
-                        .content(s).positiveText(android.R.string.ok).show();
-            }
+            new MaterialDialog.Builder(Objects.requireNonNull(getContext())).title(R.string.info)
+                    .content(s).positiveText(android.R.string.ok).show();
         });
 
         btnInstall.setOnClickListener(new View.OnClickListener() {
@@ -257,13 +244,17 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         }
 
         showOnXda.setOnClickListener(v -> NavUtil.startURL(getActivity(), xdaUrl()));
+        updateDescription.setOnClickListener(v -> new MaterialDialog.Builder(Objects.requireNonNull(getContext()))
+                .title(R.string.changes)
+                .content(Html.fromHtml(description()))
+                .positiveText(android.R.string.ok).show());
 
         return view;
     }
 
-    private void checkAndDelete(String name) {
-        new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/EdXposedManager/" + name + ".zip").delete();
-    }
+//    private void checkAndDelete(String name) {
+//        new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/EdXposedManager/" + name + ".zip").delete();
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -271,12 +262,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         if (requestCode == WRITE_EXTERNAL_PERMISSION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (mClickedButton != null) {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mClickedButton.performClick();
-                        }
-                    }, 500);
+                    new Handler().postDelayed(() -> mClickedButton.performClick(), 500);
                 }
             } else {
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
@@ -284,6 +270,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         }
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     @Override
     public void onDownloadFinished(final Context context, final DownloadsUtil.DownloadInfo info) {
         messages.clear();
@@ -358,7 +345,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
     }
 
     private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-        new MaterialDialog.Builder(getActivity()).title(R.string.areyousure)
+        new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
                 .content(contentTextId)
                 .iconAttr(android.R.attr.alertDialogIcon)
                 .positiveText(android.R.string.yes)
@@ -366,25 +353,20 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
     }
 
     private boolean startShell() {
-        if (mRootUtil.startShell())
+        if (mRootUtil.startShell()) {
             return true;
-
+        }
         showAlert(getString(R.string.root_failed));
         return false;
     }
 
     private void showAlert(final String result) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    showAlert(result);
-                }
-            });
+            Objects.requireNonNull(getActivity()).runOnUiThread(() -> showAlert(result));
             return;
         }
 
-        MaterialDialog dialog = new MaterialDialog.Builder(getActivity()).content(result).positiveText(android.R.string.ok).build();
+        MaterialDialog dialog = new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).content(result).positiveText(android.R.string.ok).build();
         dialog.show();
 
         TextView txtMessage = (TextView) dialog
@@ -401,25 +383,20 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
 
     private void showConfirmDialog(final String message, final MaterialDialog.ButtonCallback callback) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    showConfirmDialog(message, callback);
-                }
-            });
+            Objects.requireNonNull(getActivity()).runOnUiThread(() -> showConfirmDialog(message, callback));
             return;
         }
 
-        new MaterialDialog.Builder(getActivity())
+        new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
                 .content(message).positiveText(android.R.string.yes)
                 .negativeText(android.R.string.no).callback(callback).show();
     }
 
-    private boolean prepareInstall(List<String> messages) {
+    private void prepareInstall(List<String> messages) {
         File appProcessFile = AssetUtil.writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00700);
         if (appProcessFile == null) {
             showAlert(getString(R.string.file_extract_failed, "app_process"));
-            return false;
+            return;
         }
 
         messages.add(getString(R.string.file_copying, "XposedBridge.jar"));
@@ -427,7 +404,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         if (jarFile == null) {
             messages.add("");
             messages.add(getString(R.string.file_extract_failed, "XposedBridge.jar"));
-            return false;
+            return;
         }
 
         mRootUtil.executeWithBusybox("sync", messages);
@@ -444,7 +421,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
             if (mRootUtil.executeWithBusybox("cp -a /system/bin/app_process /system/bin/app_process.orig", messages) != 0) {
                 messages.add("");
                 messages.add(getString(R.string.file_backup_failed, "/system/bin/app_process"));
-                return false;
+                return;
             } else {
                 messages.add(getString(R.string.file_backup_successful, "/system/bin/app_process.orig"));
             }
@@ -456,28 +433,26 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         if (mRootUtil.executeWithBusybox("cp -a " + appProcessFile.getAbsolutePath() + " /system/bin/app_process", messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.file_copy_failed, "app_process", "/system/bin"));
-            return false;
+            return;
         }
         if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
-            return false;
+            return;
         }
         if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
-            return false;
         }
 
-        return true;
     }
 
-    private boolean prepareUninstall(List<String> messages) {
+    private void prepareUninstall(List<String> messages) {
         new File(JAR_PATH).delete();
         new File(XposedApp.BASE_DIR + "bin/app_process").delete();
 
         if (!startShell())
-            return false;
+            return;
 
 
         messages.add(getString(R.string.file_mounting_writable, "/system"));
@@ -490,36 +465,36 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         if (!new File("/system/bin/app_process.orig").exists()) {
             messages.add("");
             messages.add(getString(R.string.file_backup_not_found, "/system/bin/app_process.orig"));
-            return false;
+            return;
         }
 
         if (mRootUtil.executeWithBusybox("mv /system/bin/app_process.orig /system/bin/app_process", messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.file_move_failed, "/system/bin/app_process.orig", "/system/bin/app_process"));
-            return false;
+            return;
         }
         if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
-            return false;
+            return;
         }
         if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
-            return false;
+            return;
         }
         // Might help on some SELinux-enforced ROMs, shouldn't hurt on others
         mRootUtil.execute("/system/bin/restorecon /system/bin/app_process", (RootUtil.LineCallback) null);
 
-        return true;
     }
 
-    private boolean prepareAutoFlash(List<String> messages, File file) {
+    @SuppressLint("ObsoleteSdkInt")
+    private void prepareAutoFlash(List<String> messages, File file) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
             File appProcessFile = AssetUtil.writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00700);
             if (appProcessFile == null) {
                 showAlert(getString(R.string.file_extract_failed, "app_process"));
-                return false;
+                return;
             }
 
             messages.add(getString(R.string.file_copying, "XposedBridge.jar"));
@@ -527,7 +502,7 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
             if (jarFile == null) {
                 messages.add("");
                 messages.add(getString(R.string.file_extract_failed, "XposedBridge.jar"));
-                return false;
+                return;
             }
 
             mRootUtil.executeWithBusybox("sync", messages);
@@ -537,7 +512,6 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         install.putExtra(Flashable.KEY, new FlashRecoveryAuto(file.getAbsoluteFile()));
         startActivity(install);
 
-        return true;
     }
 
     private void offerReboot(List<String> messages) {

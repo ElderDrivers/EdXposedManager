@@ -1,6 +1,7 @@
 package com.solohsu.android.edxp.manager.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -13,7 +14,7 @@ import org.meowcat.edxposed.manager.R;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -35,10 +36,7 @@ public class AppHelper {
     private static final String COMPAT_LIST_PATH = "conf/compatlist/";
     private static final String WHITE_LIST_MODE = "conf/usewhitelist";
 
-    private static final List<String> FORCE_WHITE_LIST = Arrays.asList(
-            BuildConfig.APPLICATION_ID,
-            "com.solohsu.android.edxp.manager",
-            "de.robv.android.xposed.installer");
+    private static final List<String> FORCE_WHITE_LIST = Collections.singletonList(BuildConfig.APPLICATION_ID);
 
     static void makeSurePath() {
         XposedApp.mkdirAndChmod(WHITE_LIST_PATH,00771);
@@ -182,14 +180,25 @@ public class AppHelper {
         appMenu.inflate(R.menu.menu_app_item);
         appMenu.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
-                case R.id.app_menu_compile_reset:
-                    CompileUtils.reset(context, fragmentManager, info);
+                case R.id.app_menu_launch:
+                    context.startActivity(context.getPackageManager().getLaunchIntentForPackage(info.packageName));
+                    break;
+                case R.id.app_menu_stop:
+                    try {
+                        ActivityManager manager = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+                        manager.killBackgroundProcesses(info.packageName);
+                    } catch(Exception ex) {
+                        ex.printStackTrace();
+                    }
                     break;
                 case R.id.app_menu_compile_speed:
                     CompileUtils.compileSpeed(context, fragmentManager, info);
                     break;
-                case R.id.app_menu_launch:
-                    context.startActivity(context.getPackageManager().getLaunchIntentForPackage(info.packageName));
+                case R.id.app_menu_compile_dexopt:
+                    CompileUtils.compileDexopt(context, fragmentManager, info);
+                    break;
+                case R.id.app_menu_compile_reset:
+                    CompileUtils.reset(context, fragmentManager, info);
                     break;
                 case R.id.app_menu_store:
                     Uri uri = Uri.parse("market://details?id=" + info.packageName);
@@ -205,7 +214,7 @@ public class AppHelper {
                     context.startActivity(new Intent(ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", info.packageName, null)));
                     break;
                 case R.id.app_menu_uninstall:
-                    context.startActivity(new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + info.packageName)));
+                    context.startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE, Uri.fromParts("package", info.packageName, null)));
                     break;
             }
             return true;

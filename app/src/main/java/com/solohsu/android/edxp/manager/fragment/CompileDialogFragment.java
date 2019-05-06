@@ -14,12 +14,13 @@ import android.widget.TextView;
 import com.solohsu.android.edxp.manager.util.ToastUtils;
 import com.topjohnwu.superuser.Shell;
 
+import org.meowcat.edxposed.manager.R;
+
 import java.lang.ref.WeakReference;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import org.meowcat.edxposed.manager.R;
 
 public class CompileDialogFragment extends AppCompatDialogFragment {
 
@@ -27,9 +28,6 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
     private static final String KEY_MSG = "msg";
     private static final String KEY_COMMANDS = "commands";
     private ApplicationInfo appInfo;
-    private AlertDialog alertDialog;
-    private TextView msgView;
-    private ProgressBar progressView;
 
 
     public CompileDialogFragment() {
@@ -67,10 +65,10 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
                 .setCancelable(false);
         View customView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_compile_dialog, null);
         builder.setView(customView);
-        msgView = customView.findViewById(R.id.message);
-        progressView = customView.findViewById(R.id.progress);
+        TextView msgView = customView.findViewById(R.id.message);
+        ProgressBar progressView = customView.findViewById(R.id.progress);
         msgView.setText(msg);
-        alertDialog = builder.create();
+        AlertDialog alertDialog = builder.create();
         alertDialog.setCanceledOnTouchOutside(false);
         return alertDialog;
     }

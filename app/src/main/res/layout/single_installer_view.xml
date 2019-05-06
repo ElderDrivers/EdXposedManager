@@ -2,6 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -259,18 +260,57 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/updateDescription"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/show_on_xda"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:minHeight="48dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_description"/>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginStart="32dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp">
+
+                        <TextView
+                            android:id="@+id/updateDescriptionTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/update_description"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/show_on_xda"
+                    android:layout_below="@+id/updateDescription"
                     android:layout_marginTop="5dp"
                     android:padding="6dp"
                     android:text="@string/compatibility"
                     android:textAllCaps="true"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded" />
 
                 <LinearLayout
                     android:id="@+id/comp"
@@ -283,7 +323,8 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:paddingRight="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -310,6 +351,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/incomp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/comp"

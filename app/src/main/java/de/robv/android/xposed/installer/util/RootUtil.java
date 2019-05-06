@@ -3,18 +3,19 @@ package de.robv.android.xposed.installer.util;
 import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import android.text.TextUtils;
 import android.util.Log;
+
+import org.meowcat.edxposed.manager.R;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.meowcat.edxposed.manager.R;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.installation.FlashCallback;
 import eu.chainfire.libsuperuser.Shell;
@@ -44,7 +45,7 @@ public class RootUtil {
     }
 
     public static class CollectingLineCallback implements LineCallback {
-        protected List<String> mLines = new LinkedList<>();
+        List<String> mLines = new LinkedList<>();
 
         @Override
         public void onLine(String line) {
@@ -60,6 +61,7 @@ public class RootUtil {
             return mLines;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return TextUtils.join("\n", mLines);
@@ -92,6 +94,7 @@ public class RootUtil {
             }
         }
 
+        @SuppressWarnings("SynchronizeOnNonFinalField")
         @Override
         public void onCommandResult(int commandCode, int exitCode) {
             mLastExitCode = exitCode;
@@ -116,6 +119,7 @@ public class RootUtil {
         }
     };
 
+    @SuppressWarnings("SynchronizeOnNonFinalField")
     private void waitForCommandFinished() {
         synchronized (mCallbackThread) {
             while (mCommandRunning) {

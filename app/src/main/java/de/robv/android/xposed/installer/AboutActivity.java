@@ -5,9 +5,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,9 +14,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import org.meowcat.edxposed.manager.BuildConfig;
+
 import org.meowcat.edxposed.manager.R;
 
+import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
 import de.psdev.licensesdialog.licenses.MITLicense;
@@ -43,12 +46,7 @@ public class AboutActivity extends XposedBaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -94,11 +92,11 @@ public class AboutActivity extends XposedBaseActivity {
         public void onResume() {
             super.onResume();
             if (Build.VERSION.SDK_INT >= 21)
-                getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+                Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.tab_about, container, false);
 
             View changelogView = v.findViewById(R.id.changelogView);
@@ -106,46 +104,30 @@ public class AboutActivity extends XposedBaseActivity {
             View translatorsView = v.findViewById(R.id.translatorsView);
             View sourceCodeView = v.findViewById(R.id.sourceCodeView);
 
-            String packageName = getActivity().getPackageName();
+            String packageName = Objects.requireNonNull(getActivity()).getPackageName();
             String translator = getResources().getString(R.string.translator);
 
-            SharedPreferences prefs = getContext().getSharedPreferences(packageName + "_preferences", MODE_PRIVATE);
+            SharedPreferences prefs = Objects.requireNonNull(getContext()).getSharedPreferences(packageName + "_preferences", MODE_PRIVATE);
 
-            final String changes = prefs.getString("changelog_" + BuildConfig.VERSION_CODE, null);
+            final String changes = prefs.getString("changelog", null);
 
             if (changes == null) {
                 changelogView.setVisibility(View.GONE);
             } else {
-                changelogView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new MaterialDialog.Builder(getContext())
-                                .title(R.string.changes)
-                                .content(Html.fromHtml(changes))
-                                .positiveText(android.R.string.ok).show();
-                    }
-                });
+                changelogView.setOnClickListener(v1 -> new MaterialDialog.Builder(getContext())
+                        .title(R.string.changes)
+                        .content(Html.fromHtml(changes))
+                        .positiveText(android.R.string.ok).show());
             }
 
             try {
                 String version = getActivity().getPackageManager().getPackageInfo(packageName, 0).versionName;
                 ((TextView) v.findViewById(R.id.app_version)).setText(version);
-            } catch (NameNotFoundException ignored) {
-            }
+            } catch (NameNotFoundException ignored) {}
 
-            licensesView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    createLicenseDialog();
-                }
-            });
+            licensesView.setOnClickListener(v12 -> createLicenseDialog());
 
-            sourceCodeView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    NavUtil.startURL(getActivity(), getString(R.string.about_source));
-                }
-            });
+            sourceCodeView.setOnClickListener(v13 -> NavUtil.startURL(getActivity(), getString(R.string.about_source)));
 
             if (translator.isEmpty()) {
                 translatorsView.setVisibility(View.GONE);
@@ -162,7 +144,7 @@ public class AboutActivity extends XposedBaseActivity {
             notices.addNotice(new Notice("libsuperuser", "https://github.com/Chainfire/libsuperuser", "Copyright (C) 2012-2015 Jorrit \"Chainfire\" Jongma", new ApacheSoftwareLicense20()));
             notices.addNotice(new Notice("picasso", "https://github.com/square/picasso", "Copyright 2013 Square, Inc.", new ApacheSoftwareLicense20()));
 
-            new LicensesDialog.Builder(getActivity())
+            new LicensesDialog.Builder(Objects.requireNonNull(getActivity()))
                     .setNotices(notices)
                     .setIncludeOwnLicense(true)
                     .build()

@@ -2,8 +2,6 @@ package de.robv.android.xposed.installer.util.json;
 
 import android.app.Activity;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +10,16 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class XposedZip {
 
     public String name;
     public String link;
     public String version;
     public String architecture;
+    public String description;
 
     public static class MyAdapter extends ArrayAdapter<XposedZip> {
 
@@ -48,7 +50,7 @@ public class XposedZip {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(android.R.layout.simple_dropdown_item_1line, parent, false);
 
-            holder.name = (TextView) row.findViewById(android.R.id.text1);
+            holder.name = row.findViewById(android.R.id.text1);
 
             row.setTag(holder);
 

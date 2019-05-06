@@ -87,8 +87,8 @@ import static de.robv.android.xposed.installer.XposedApp.createFolder;
 public class ModulesFragment extends Fragment implements ModuleListener, AdapterView.OnItemClickListener {
     public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
     static final String XPOSED_REPO_LINK = "http://repo.xposed.info/module/%s";
-    public static final String PLAY_STORE_PACKAGE = "com.android.vending";
-    public static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=%s";
+    static final String PLAY_STORE_PACKAGE = "com.android.vending";
+    static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=%s";
     private static final String NOT_ACTIVE_NOTE_TAG = "NOT_ACTIVE_NOTE";
     private int installedXposedVersion;
     private ModuleUtil mModuleUtil;
@@ -462,12 +462,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
             }
 
             if (mv != null) {
-                DownloadsUtil.addModule(getContext(), m.name, mv.downloadLink, false, new DownloadsUtil.DownloadFinishedCallback() {
-                    @Override
-                    public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                        new InstallApkUtil(getContext(), info).execute();
-                    }
-                });
+                DownloadsUtil.addModule(getContext(), m.name, mv.downloadLink, false, (context, info) -> new InstallApkUtil(getContext(), info).execute());
             }
         }
 
@@ -566,10 +561,9 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 startActivity(new Intent(ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", module.packageName, null)));
                 return true;
 
-//            case R.id.menu_uninstall:
-////                startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE, Uri.fromParts("package", module.packageName, null)));
-//                startActivity(new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + module.packageName)));
-//                return true;
+            case R.id.menu_uninstall:
+                startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE, Uri.fromParts("package", module.packageName, null)));
+                return true;
         }
 
         return false;

@@ -82,7 +82,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
     }
 
     @Override
-    public void onColorSelection(ColorChooserDialog dialog, @ColorInt int color) {
+    public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int color) {
         int colorFrom = XposedApp.getColor(this);
 
         ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, color);
@@ -109,9 +109,10 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         }
     }
 
+    @SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
     public static class SettingsFragment extends BasePreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
-        public final static int[] PRIMARY_COLORS = new int[]{
+        final static int[] PRIMARY_COLORS = new int[]{
                 Color.parseColor("#F44336"),
                 Color.parseColor("#E91E63"),
                 Color.parseColor("#9C27B0"),
@@ -178,6 +179,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         public SettingsFragment() {
         }
 
+        @SuppressLint("ObsoleteSdkInt")
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.prefs);
@@ -203,7 +205,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             });
 
             SwitchPreference prefWhiteListMode = findPreference("white_list_switch");
-            prefWhiteListMode.setChecked(mWhiteListModeFlag.exists());
+            Objects.requireNonNull(prefWhiteListMode).setChecked(mWhiteListModeFlag.exists());
             prefWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
@@ -219,7 +221,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             });
 
             SwitchPreference prefVerboseLogs = findPreference("disable_verbose_log");
-            prefVerboseLogs.setChecked(mDisableVerboseLogsFlag.exists());
+            Objects.requireNonNull(prefVerboseLogs).setChecked(mDisableVerboseLogsFlag.exists());
             prefVerboseLogs.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
@@ -235,7 +237,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             });
 
             SwitchPreference prefBlackWhiteListMode = findPreference("black_white_list_switch");
-            prefBlackWhiteListMode.setChecked(mBlackWhiteListModeFlag.exists());
+            Objects.requireNonNull(prefBlackWhiteListMode).setChecked(mBlackWhiteListModeFlag.exists());
             prefBlackWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
@@ -251,7 +253,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             });
 
             SwitchPreference prefEnableDeopt = findPreference("enable_boot_image_deopt");
-            prefEnableDeopt.setChecked(mDeoptBootFlag.exists());
+            Objects.requireNonNull(prefEnableDeopt).setChecked(mDeoptBootFlag.exists());
             prefEnableDeopt.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
@@ -267,62 +269,55 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             });
 
             SwitchPreference prefMinVerResources = findPreference("skip_xposedminversion_check");
-            prefMinVerResources.setChecked(mDisableXposedMinverFlag.exists());
+            Objects.requireNonNull(prefMinVerResources).setChecked(mDisableXposedMinverFlag.exists());
             prefMinVerResources.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
                     try {
-                        //noinspection ResultOfMethodCallIgnored
                         mDisableXposedMinverFlag.createNewFile();
                     } catch (IOException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    //noinspection ResultOfMethodCallIgnored
                     mDisableXposedMinverFlag.delete();
                 }
                 return (enabled == mDisableXposedMinverFlag.exists());
             });
 
             SwitchPreference prefDynamicResources = findPreference("is_dynamic_modules");
-            prefDynamicResources.setChecked(mDynamicModulesFlag.exists());
+            Objects.requireNonNull(prefDynamicResources).setChecked(mDynamicModulesFlag.exists());
             prefDynamicResources.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
                     try {
-                        //noinspection ResultOfMethodCallIgnored
                         mDynamicModulesFlag.createNewFile();
                     } catch (IOException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    //noinspection ResultOfMethodCallIgnored
                     mDynamicModulesFlag.delete();
                 }
                 return (enabled == mDynamicModulesFlag.exists());
             });
 
             SwitchPreference prefDisableResources = findPreference("disable_resources");
-            prefDisableResources.setChecked(mDisableResourcesFlag.exists());
-            prefDisableResources.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    boolean enabled = (Boolean) newValue;
-                    if (enabled) {
-                        try {
-                            mDisableResourcesFlag.createNewFile();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        mDisableResourcesFlag.delete();
+            Objects.requireNonNull(prefDisableResources).setChecked(mDisableResourcesFlag.exists());
+            prefDisableResources.setOnPreferenceChangeListener((preference, newValue) -> {
+                boolean enabled = (Boolean) newValue;
+                if (enabled) {
+                    try {
+                        mDisableResourcesFlag.createNewFile();
+                    } catch (IOException e) {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                    return (enabled == mDisableResourcesFlag.exists());
+                } else {
+                    mDisableResourcesFlag.delete();
                 }
+                return (enabled == mDisableResourcesFlag.exists());
             });
 
-            colors.setOnPreferenceClickListener(this);
-            customIcon.setOnPreferenceChangeListener(iconChange);
+            Objects.requireNonNull(colors).setOnPreferenceClickListener(this);
+            Objects.requireNonNull(customIcon).setOnPreferenceChangeListener(iconChange);
             downloadLocation.setOnPreferenceClickListener(this);
 
         }
@@ -334,7 +329,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
             if (Build.VERSION.SDK_INT >= 21)
-                getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+                Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
         }
 
         @Override
@@ -347,7 +342,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             if (key.equals("theme") || key.equals("nav_bar") || key.equals("ignore_chinese"))
-                getActivity().recreate();
+                Objects.requireNonNull(getActivity()).recreate();
 
             if (key.equals("force_english"))
                 Toast.makeText(getActivity(), getString(R.string.warning_language), Toast.LENGTH_SHORT).show();
@@ -393,17 +388,12 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         }
 
         @Override
-        public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (mClickedPreference != null) {
-                    new android.os.Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            onPreferenceClick(mClickedPreference);
-                        }
-                    }, 500);
+                    new android.os.Handler().postDelayed(() -> onPreferenceClick(mClickedPreference), 500);
                 }
             } else {
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
@@ -416,7 +406,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 final IconListPreference.IconListPreferenceDialog f =
                         IconListPreference.IconListPreferenceDialog.newInstance(preference.getKey());
                 f.setTargetFragment(this, 0);
-                f.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+                f.show(Objects.requireNonNull(getFragmentManager()), DIALOG_FRAGMENT_TAG);
             } else {
                 super.onDisplayPreferenceDialog(preference);
             }

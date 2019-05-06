@@ -38,10 +38,12 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import de.robv.android.xposed.installer.util.RootUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
+@SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
 public class ErrorLogsFragment extends Fragment {
 
     private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/error.log");
@@ -51,6 +53,7 @@ public class ErrorLogsFragment extends Fragment {
     private ScrollView mSVLog;
     private HorizontalScrollView mHSVLog;
     private MenuItem mClickedMenuItem = null;
+    private RootUtil mRootUtil = new RootUtil();;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -79,7 +82,7 @@ public class ErrorLogsFragment extends Fragment {
             TextView message = dontShowAgainView.findViewById(android.R.id.message);
             message.setText(R.string.not_logcat);
 
-            new MaterialDialog.Builder(getActivity())
+            new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
                     .title(R.string.install_warning_title)
                     .customView(dontShowAgainView, false)
                     .positiveText(android.R.string.ok)
@@ -146,7 +149,22 @@ public class ErrorLogsFragment extends Fragment {
         mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
     }
 
+    private void enableLogAccess() {
+        if (mRootUtil.startShell()) {
+            mRootUtil.execute("chmod 777 " + mFileErrorLog.getAbsolutePath());
+        } else {
+            try {
+                Runtime.getRuntime().exec("chmod 777 " + mFileErrorLog.getAbsolutePath()).waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void reloadErrorLog() {
+        enableLogAccess();
         new LogsReader().execute(mFileErrorLog);
         mSVLog.post(() -> mSVLog.scrollTo(0, mTxtLog.getHeight()));
         mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
@@ -154,6 +172,7 @@ public class ErrorLogsFragment extends Fragment {
 
     private void clear() {
         try {
+            enableLogAccess();
             new FileOutputStream(mFileErrorLog).close();
             mFileErrorLogOld.delete();
             mTxtLog.setText(R.string.log_is_empty);
@@ -166,6 +185,7 @@ public class ErrorLogsFragment extends Fragment {
     }
 
     private void send() {
+        enableLogAccess();
         Uri uri = FileProvider.getUriForFile(Objects.requireNonNull(getActivity()), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
@@ -192,15 +212,15 @@ public class ErrorLogsFragment extends Fragment {
     }
 
     @SuppressLint("DefaultLocale")
-    private File save() {
+    private void save() {
         if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
-            return null;
+            return;
         }
 
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
-            return null;
+            return;
         }
 
         Calendar now = Calendar.getInstance();
@@ -213,6 +233,7 @@ public class ErrorLogsFragment extends Fragment {
         File targetFile = new File(createFolder(), filename);
 
         try {
+            enableLogAccess();
             FileInputStream in = new FileInputStream(mFileErrorLog);
             FileOutputStream out = new FileOutputStream(targetFile);
             byte[] buffer = new byte[1024];
@@ -225,10 +246,8 @@ public class ErrorLogsFragment extends Fragment {
 
             Toast.makeText(getActivity(), targetFile.toString(),
                     Toast.LENGTH_LONG).show();
-            return targetFile;
         } catch (IOException e) {
             Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
-            return null;
         }
     }
 
@@ -263,7 +282,7 @@ public class ErrorLogsFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             mTxtLog.setText("");
-            mProgressDialog = new MaterialDialog.Builder(getContext()).content(R.string.loading).progress(true, 0).show();
+            mProgressDialog = new MaterialDialog.Builder(Objects.requireNonNull(getContext())).content(R.string.loading).progress(true, 0).show();
         }
 
         @Override

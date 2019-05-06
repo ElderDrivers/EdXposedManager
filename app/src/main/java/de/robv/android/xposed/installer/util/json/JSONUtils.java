@@ -38,7 +38,7 @@ public class JSONUtils {
     private static String getLatestVersion() throws IOException {
         String site = getFileContent("http://dl-xda.xposed.info/framework/sdk" + Build.VERSION.SDK_INT + "/arm/");
 
-        Pattern pattern = Pattern.compile("(href=\")([^\\?\"]*)\\.zip");
+        Pattern pattern = Pattern.compile("(href=\")([^?\"]*)\\.zip");
         Matcher matcher = pattern.matcher(site);
         String last = "";
         while (matcher.find()) {
@@ -60,7 +60,7 @@ public class JSONUtils {
             return "";
         }
 
-        String newJson = ",\"" + Build.VERSION.SDK_INT + "\": [";
+        StringBuilder newJson = new StringBuilder(",\"" + Build.VERSION.SDK_INT + "\": [");
         String[] arch = new String[]{
                 "arm",
                 "arm64",
@@ -68,13 +68,13 @@ public class JSONUtils {
         };
 
         for (String a : arch) {
-            newJson += installerToString(latest, a) + ",";
+            newJson.append(installerToString(latest, a)).append(",");
         }
 
-        newJson = newJson.substring(0, newJson.length() - 1);
-        newJson += "]";
+        newJson = new StringBuilder(newJson.substring(0, newJson.length() - 1));
+        newJson.append("]");
 
-        return newJson;
+        return newJson.toString();
     }
 
     private static String installerToString(String latest, String architecture) {

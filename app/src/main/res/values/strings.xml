@@ -90,7 +90,7 @@
     <!-- Download tab -->
     <string name="menuSearch">Search</string>
     <string name="menuReload">Reload</string>
-    <string name="changes">Changes:</string>
+    <string name="changes">Changelog:</string>
     <string name="download_details_page_description">Description</string>
     <string name="download_details_page_versions">Versions</string>
     <string name="download_details_page_settings">Settings</string>
@@ -315,10 +315,13 @@
     <string name="known_issue_missing_base_directory">Missing base directory</string>
     <string name="installer_needs_update">%1$s needs to be updated</string>
 
-    <string name="dexopt_now">Optimize apps now</string>
-    <string name="this_may_take_a_while">This may take a while.</string>
+    <string name="dexopt_now">Optimize all apps with Dexopt</string>
+    <string name="speed_now">Optimize all apps with Speed mode</string>
+    <string name="this_may_take_a_while">This may take a while. Please wait.</string>
+    <string name="take_while_cannot_resore">Are you sure to optimize all apps?\nThis may take a while.\nAnd CANNOT be restored.\nTip: You can optimize selected app in Compat/Application List.</string>
     <string name="done">Done!</string>
     <string name="verified_boot_deactivated">Verified Boot is deactivated</string>
+    <string name="verified_boot_none">Could not detect Verified Boot state</string>
     <string name="verified_boot_active">Verified Boot is active</string>
     <string name="verified_boot_explanation">Verified Boot (dm-verity) prevents the device from booting if the system partition is modified.\\n\n<b>Installing EdXposed is not recommended!</b></string>
     <string name="ignore_chinese">Ignore Chinese characters</string>
@@ -327,18 +330,16 @@
     <!-- EdXp related -->
     <string name="nav_title_black_list">Application List</string>
     <string name="nav_title_compat_list">Compat List</string>
-    <string name="nav_title_settings">EdXp Settings</string>
     <string name="white_list_mode_title">White List mode</string>
     <string name="title_white_list">White List</string>
     <string name="title_black_list">Black List</string>
     <string name="add_package_failed">Failed to edit package, check your root access.</string>
     <string name="mode_change_failed">Failed to change mode, check your root access.</string>
-    <string name="menu_title_compile_reset">Reset compiled code</string>
-    <string name="menu_title_compile_speed">Force compile in Speed mode</string>
+    <string name="menu_title_compile_reset">Deoptimize</string>
+    <string name="menu_title_compile_speed">Optimize with Speed mode</string>
+    <string name="menu_title_compile_dexopt">Optimize with Dexopt mode</string>
     <string name="compile_reset_msg">Resetting …</string>
-    <string name="compile_speed_msg">Compiling …</string>
-    <string name="app_source_code_title">App source code</string>
-    <string name="edxp_source_code_title">EdXposed source code</string>
+    <string name="compile_speed_msg">Optimizing …</string>
     <string name="open_link_failed_toast">No application found to open the link.</string>
     <string name="pref_title_dynamic_modules">Instant module list</string>
     <string name="pref_dynamic_modules_summary">When turned on, load latest activated module list on each app process started</string>
@@ -391,5 +392,8 @@
     <string name="pref_title_disable_verbose_log">Disable verbose logs</string>
     <string name="pref_disable_verbose_log_summary">Verbose logs won\'t be recorded from next boot.</string>
     <string name="logs_verbose_disabled">Verbose logs is disabled.</string>
-    <string name="app_launch">Launch</string>
+    <string name="app_launch">Launch it</string>
+    <string name="app_stop">Stop it</string>
+    <string name="update_description">Update Changelog</string>
+    <string name="edxp_installer_installed">You must to uninstall "EdXposed Installer" to use "EdXposed Manager".</string>
 </resources>

@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer.installation;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.annimon.stream.Stream;
@@ -37,6 +39,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
+import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.json.JSONUtils;
 import de.robv.android.xposed.installer.util.json.XposedTab;
@@ -45,18 +48,19 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class AdvancedInstallerFragment extends Fragment {
 
-    private static ViewPager mPager;
+    //private static ViewPager mPager;
     private TabLayout mTabLayout;
     private RootUtil mRootUtil = new RootUtil();
     private TabsAdapter tabsAdapter;
 
-    public static void gotoPage(int page) {mPager.setCurrentItem(page);}
+    //public static void gotoPage(int page) {mPager.setCurrentItem(page);}
 
+    @SuppressWarnings("deprecation")
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_advanced_installer, container, false);
-        mPager = view.findViewById(R.id.pager);
+        ViewPager mPager = view.findViewById(R.id.pager);
         mTabLayout = view.findViewById(R.id.tab_layout);
 
         tabsAdapter = new TabsAdapter(getChildFragmentManager());
@@ -68,9 +72,9 @@ public class AdvancedInstallerFragment extends Fragment {
         new JSONParser().execute();
 
         if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
-            final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
+            @SuppressLint("InflateParams") final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
 
-            new MaterialDialog.Builder(getActivity())
+            new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
                     .title(R.string.install_warning_title)
                     .customView(dontShowAgainView, false)
                     .positiveText(android.R.string.ok)
@@ -92,18 +96,81 @@ public class AdvancedInstallerFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        mTabLayout.setBackgroundColor(XposedApp.getColor(getContext()));
+        mTabLayout.setBackgroundColor(XposedApp.getColor(Objects.requireNonNull(getContext())));
 
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_installer, menu);
+        if (Build.VERSION.SDK_INT < 26) {
+            menu.findItem(R.id.dexopt_all).setVisible(false);
+            menu.findItem(R.id.speed_all).setVisible(false);
+        }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.dexopt_all:
+                areYouSure(R.string.take_while_cannot_resore, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog mDialog) {
+                        super.onPositive(mDialog);
+                        new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
+                                .title(R.string.dexopt_now)
+                                .content(R.string.this_may_take_a_while)
+                                .progress(true, 0)
+                                .cancelable(false)
+                                .showListener(dialog -> new Thread("dexopt") {
+                                    @Override
+                                    public void run() {
+                                        RootUtil rootUtil = new RootUtil();
+                                        if (!rootUtil.startShell()) {
+                                            dialog.dismiss();
+                                            NavUtil.showMessage(Objects.requireNonNull(getActivity()), getString(R.string.root_failed));
+                                            return;
+                                        }
+
+                                        rootUtil.execute("cmd package bg-dexopt-job", new ArrayList<>());
+
+                                        dialog.dismiss();
+                                        XposedApp.runOnUiThread(() -> Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show());
+                                    }
+                                }.start()).show();
+                    }
+                });
+                break;
+            case R.id.speed_all:
+                areYouSure(R.string.take_while_cannot_resore, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog mDialog) {
+                        super.onPositive(mDialog);
+                        new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
+                                .title(R.string.speed_now)
+                                .content(R.string.this_may_take_a_while)
+                                .progress(true, 0)
+                                .cancelable(false)
+                                .showListener(dialog -> new Thread("dex2oat") {
+                                    @Override
+                                    public void run() {
+                                        RootUtil rootUtil = new RootUtil();
+                                        if (!rootUtil.startShell()) {
+                                            dialog.dismiss();
+                                            NavUtil.showMessage(Objects.requireNonNull(getActivity()), getString(R.string.root_failed));
+                                            return;
+                                        }
+
+                                        rootUtil.execute("cmd package compile -m speed -a", new ArrayList<>());
+
+                                        dialog.dismiss();
+                                        XposedApp.runOnUiThread(() -> Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show());
+                                    }
+                                }.start()).show();
+                    }
+                });
+                break;
             case R.id.reboot:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
                     areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
@@ -143,6 +210,32 @@ public class AdvancedInstallerFragment extends Fragment {
                     reboot("recovery");
                 }
                 break;
+            case R.id.reboot_bootloader:
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.reboot_bootloader, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot("bootloader");
+                        }
+                    });
+                } else {
+                    reboot("bootloader");
+                }
+                break;
+            case R.id.reboot_download:
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.reboot_download, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot("download");
+                        }
+                    });
+                } else {
+                    reboot("download");
+                }
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -156,7 +249,7 @@ public class AdvancedInstallerFragment extends Fragment {
         return true;
     }
 
-    private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
+    private void areYouSure(int contentTextId, @SuppressWarnings("deprecation") MaterialDialog.ButtonCallback yesHandler) {
         new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
                 .content(contentTextId)
                 .iconAttr(android.R.attr.alertDialogIcon)
@@ -166,16 +259,11 @@ public class AdvancedInstallerFragment extends Fragment {
 
     private void showAlert(final String result) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    showAlert(result);
-                }
-            });
+            Objects.requireNonNull(getActivity()).runOnUiThread(() -> showAlert(result));
             return;
         }
 
-        MaterialDialog dialog = new MaterialDialog.Builder(getActivity()).content(result).positiveText(android.R.string.ok).build();
+        MaterialDialog dialog = new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).content(result).positiveText(android.R.string.ok).build();
         dialog.show();
 
         TextView txtMessage = (TextView) dialog
@@ -220,6 +308,7 @@ public class AdvancedInstallerFragment extends Fragment {
         AssetUtil.removeBusybox();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class JSONParser extends AsyncTask<Void, Void, Boolean> {
 
         private String newApkVersion = null;
@@ -277,7 +366,7 @@ public class AdvancedInstallerFragment extends Fragment {
                 try {
                     prefs = getContext().getSharedPreferences(Objects.requireNonNull(getContext()).getPackageName() + "_preferences", MODE_PRIVATE);
 
-                    prefs.edit().putString("changelog_" + newApkVersion, newApkChangelog).apply();
+                    prefs.edit().putString("changelog", newApkChangelog).apply();
                 } catch (NullPointerException ignored) {
                 }
 
@@ -299,6 +388,7 @@ public class AdvancedInstallerFragment extends Fragment {
         private final ArrayList<String> titles = new ArrayList<>();
         private final ArrayList<Fragment> listFragment = new ArrayList<>();
 
+        @SuppressWarnings("deprecation")
         TabsAdapter(FragmentManager mgr) {
             super(mgr);
             addFragment(getString(R.string.status), new StatusInstallerFragment());

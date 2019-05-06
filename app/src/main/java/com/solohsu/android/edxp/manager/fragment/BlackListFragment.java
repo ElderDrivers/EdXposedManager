@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
@@ -13,19 +12,19 @@ import android.widget.SearchView;
 import com.solohsu.android.edxp.manager.adapter.AppAdapter;
 import com.solohsu.android.edxp.manager.adapter.AppHelper;
 import com.solohsu.android.edxp.manager.adapter.BlackListAdapter;
-import com.solohsu.android.edxp.manager.util.ToastUtils;
+
+import org.meowcat.edxposed.manager.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import org.meowcat.edxposed.manager.R;
 
 public class BlackListFragment extends Fragment implements AppAdapter.Callback {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
+    //private RecyclerView mRecyclerView;
     private SearchView mSearchView;
     private BlackListAdapter mAppAdapter;
 
@@ -35,9 +34,9 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         setRetainInstance(true);
     }
 
-    public static BlackListFragment newInstance() {
-        return new BlackListFragment();
-    }
+    //public static BlackListFragment newInstance() {
+    //    return new BlackListFragment();
+    //}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +45,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_app_list, menu);
         mSearchView = (SearchView) menu.findItem(R.id.app_search).getActionView();
         mSearchView.setOnQueryTextListener(mSearchListener);
@@ -63,7 +62,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_app_list, container, false);
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
-        mRecyclerView = view.findViewById(R.id.recyclerView);
+        RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
 
         final boolean isWhiteListMode = isWhiteListMode();
         mAppAdapter = new BlackListAdapter(requireActivity(), isWhiteListMode);

@@ -323,7 +323,6 @@
     <!-- EdXp related -->
     <string name="nav_title_black_list">Seznam aplikací</string>
     <string name="nav_title_compat_list">Compat List</string>
-    <string name="nav_title_settings">EdXp nastavení</string>
     <string name="white_list_mode_title">Režim bílé listiny</string>
     <string name="title_white_list">Bílá listina</string>
     <string name="title_black_list">Černá listina</string>
@@ -333,8 +332,6 @@
     <string name="menu_title_compile_speed">Vynutit kompilaci v režimu rychlosti</string>
     <string name="compile_reset_msg">Resetuji …</string>
     <string name="compile_speed_msg">Kompiluji …</string>
-    <string name="app_source_code_title">Zdrojový kód aplikace</string>
-    <string name="edxp_source_code_title">Zdrojový kód EdXposed</string>
     <string name="open_link_failed_toast">Nenalezana žádná aplikace která by mohla otevřít odkaz.</string>
     <string name="pref_title_dynamic_modules">Okamžitý seznam modulů</string>
     <string name="pref_dynamic_modules_summary">Pokud zapnuto, nahrát seznam naposledy aktivovaných modulů při každém spuštění procesu aplikace</string>

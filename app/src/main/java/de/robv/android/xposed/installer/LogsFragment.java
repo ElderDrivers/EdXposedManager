@@ -9,10 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.meowcat.edxposed.manager.R;
 
 import java.io.BufferedReader;
@@ -35,10 +32,18 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+import de.robv.android.xposed.installer.util.RootUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
+@SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
 public class LogsFragment extends Fragment {
 
     private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/all.log");
@@ -48,6 +53,7 @@ public class LogsFragment extends Fragment {
     private ScrollView mSVLog;
     private HorizontalScrollView mHSVLog;
     private MenuItem mClickedMenuItem = null;
+    private RootUtil mRootUtil = new RootUtil();;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -56,7 +62,7 @@ public class LogsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_logs, container, false);
         mTxtLog = v.findViewById(R.id.txtLog);
@@ -71,12 +77,12 @@ public class LogsFragment extends Fragment {
 //        scrollDown.setOnClickListener(v12 -> scrollDown());
 
         if (!XposedApp.getPreferences().getBoolean("hide_logcat_warning", false)) {
-            final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
+            @SuppressLint("InflateParams") final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
 
             TextView message = dontShowAgainView.findViewById(android.R.id.message);
             message.setText(R.string.not_logcat);
 
-            new MaterialDialog.Builder(getActivity())
+            new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
                     .title(R.string.install_warning_title)
                     .customView(dontShowAgainView, false)
                     .positiveText(android.R.string.ok)
@@ -100,12 +106,12 @@ public class LogsFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_logs, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         mClickedMenuItem = item;
         switch (item.getItemId()) {
             case R.id.menu_scroll_top:
@@ -143,7 +149,22 @@ public class LogsFragment extends Fragment {
         mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
     }
 
+    private void enableLogAccess() {
+        if (mRootUtil.startShell()) {
+            mRootUtil.execute("chmod 777 " + mFileErrorLog.getAbsolutePath());
+        } else {
+            try {
+                Runtime.getRuntime().exec("chmod 777 " + mFileErrorLog.getAbsolutePath()).waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void reloadErrorLog() {
+        enableLogAccess();
         new LogsReader().execute(mFileErrorLog);
         mSVLog.post(() -> mSVLog.scrollTo(0, mTxtLog.getHeight()));
         mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
@@ -151,6 +172,7 @@ public class LogsFragment extends Fragment {
 
     private void clear() {
         try {
+            enableLogAccess();
             new FileOutputStream(mFileErrorLog).close();
             mFileErrorLogOld.delete();
             mTxtLog.setText(R.string.log_is_empty);
@@ -163,7 +185,8 @@ public class LogsFragment extends Fragment {
     }
 
     private void send() {
-        Uri uri = FileProvider.getUriForFile(getActivity(), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
+        enableLogAccess();
+        Uri uri = FileProvider.getUriForFile(Objects.requireNonNull(getActivity()), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
@@ -189,15 +212,15 @@ public class LogsFragment extends Fragment {
     }
 
     @SuppressLint("DefaultLocale")
-    private File save() {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+    private void save() {
+        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
-            return null;
+            return;
         }
 
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
-            return null;
+            return;
         }
 
         Calendar now = Calendar.getInstance();
@@ -210,6 +233,7 @@ public class LogsFragment extends Fragment {
         File targetFile = new File(createFolder(), filename);
 
         try {
+            enableLogAccess();
             FileInputStream in = new FileInputStream(mFileErrorLog);
             FileOutputStream out = new FileOutputStream(targetFile);
             byte[] buffer = new byte[1024];
@@ -222,10 +246,8 @@ public class LogsFragment extends Fragment {
 
             Toast.makeText(getActivity(), targetFile.toString(),
                     Toast.LENGTH_LONG).show();
-            return targetFile;
         } catch (IOException e) {
             Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
-            return null;
         }
     }
 
@@ -260,7 +282,7 @@ public class LogsFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             mTxtLog.setText("");
-            mProgressDialog = new MaterialDialog.Builder(getContext()).content(R.string.loading).progress(true, 0).show();
+            mProgressDialog = new MaterialDialog.Builder(Objects.requireNonNull(getContext())).content(R.string.loading).progress(true, 0).show();
         }
 
         @Override
@@ -272,7 +294,7 @@ public class LogsFragment extends Fragment {
             if (XposedApp.getPreferences().getBoolean(
                     "disable_verbose_log", false)) {
                 llog.append("-----------------\n");
-                llog.append(getContext().getResources().getString(R.string.logs_verbose_disabled));
+                llog.append(Objects.requireNonNull(getContext()).getResources().getString(R.string.logs_verbose_disabled));
                 llog.append("\n-----------------\n\n");
                 return llog.toString();
             }

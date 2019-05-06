@@ -298,19 +298,17 @@
 
     <!-- EdXp related -->
     <string name="nav_title_black_list">应用名单</string>
-    <string name="nav_title_settings">EdXp 设置</string>
     <string name="white_list_mode_title">白名单模式</string>
     <string name="nav_title_compat_list">兼容模式</string>
     <string name="title_white_list">白名单</string>
     <string name="title_black_list">黑名单</string>
     <string name="add_package_failed">修改失败，请检查 Root 权限</string>
     <string name="mode_change_failed">切换模式失败，请检查 Root 权限</string>
-    <string name="menu_title_compile_reset">清除已编译的文件</string>
-    <string name="menu_title_compile_speed">强制以 Speed 模式编译</string>
+    <string name="menu_title_compile_reset">取消优化</string>
+    <string name="menu_title_compile_speed">以 Speed 模式优化应用</string>
+    <string name="menu_title_compile_dexopt">以 Dexopt 模式优化应用</string>
     <string name="compile_reset_msg">清除中…</string>
-    <string name="compile_speed_msg">编译中…</string>
-    <string name="app_source_code_title">App 源代码</string>
-    <string name="edxp_source_code_title">EdXposed 源代码</string>
+    <string name="compile_speed_msg">优化中…</string>
     <string name="open_link_failed_toast">无法找到可以打开链接的应用</string>
     <string name="pref_title_dynamic_modules">即时模块列表</string>
     <string name="pref_dynamic_modules_summary">启用后，每个APP进程启动时重新加载最新的模块列表</string>
@@ -348,12 +346,18 @@
     <string name="known_issue_wrong_base_directory">错误的配置文件夹: %1$s</string>
     <string name="known_issue_missing_base_directory">未知配置文件夹</string>
     <string name="installer_needs_update">%1$s 需要更新</string>
-    <string name="dexopt_now">优化应用</string>
-    <string name="this_may_take_a_while">这需要一段时间</string>
+    <string name="dexopt_now">以 Dexopt 模式优化全部应用</string>
+    <string name="speed_now">以 Speed 模式优化全部应用</string>
+    <string name="this_may_take_a_while">请稍后，这将需要一段时间。</string>
+    <string name="take_while_cannot_resore">你确定要优化全部应用吗？\n这将需要一段时间。 \n并且无法恢复。\n提示：你可以在兼容/应用名单中优化单个应用。</string>
     <string name="pref_title_enable_boot_image_deopt">禁用系统代码优化</string>
     <string name="pref_enable_boot_image_deopt_summary">禁用系统代码的优化能使所有系统方法都可以被hook到，但是会降低系统流畅度。\n主要用于对比测试某个方法无法hook到是否是系统优化导致。</string>
 
     <string name="pref_title_disable_verbose_log">禁用详细日志</string>
-    <string name="pref_disable_verbose_log_summary">下一次启动时将不再记录详细日志。</string>
+    <string name="pref_disable_verbose_log_summary">模块将不再记录详细日志。</string>
     <string name="logs_verbose_disabled">详细日志已禁用。</string>
+    <string name="app_launch">运行</string>
+    <string name="app_stop">停止</string>
+    <string name="update_description">更新日志</string>
+    <string name="edxp_installer_installed">你必须先卸载 "EdXposed Installer" 才能继续使用 "EdXposed Manager".</string>
 </resources>

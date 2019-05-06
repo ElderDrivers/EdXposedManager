@@ -1,12 +1,11 @@
 package de.robv.android.xposed.installer.installation;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -14,16 +13,11 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -34,28 +28,23 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
-import de.robv.android.xposed.installer.util.RootUtil;
-
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class StatusInstallerFragment extends Fragment {
 
     public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
     public static String ARCH = getArch();
     private static Activity sActivity;
-    private static Fragment sFragment;
     private static String mUpdateLink;
     private static ImageView mErrorIcon;
     private static View mUpdateView;
@@ -82,28 +71,17 @@ public class StatusInstallerFragment extends Fragment {
         }
     }
 
-    public static void setUpdate(final String link, final String changelog,Context mContext) {
+    static void setUpdate(final String link, final String changelog, Context mContext) {
         mUpdateLink = link;
 
         mUpdateView.setVisibility(View.VISIBLE);
         mUpdateButton.setVisibility(View.VISIBLE);
-        mUpdateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                new MaterialDialog.Builder(sActivity)
-                        .title(R.string.changes)
-                        .content(Html.fromHtml(changelog))
-                        .onPositive(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                update(mContext);
-                            }
-                        })
-                        .positiveText(R.string.update)
-                        .negativeText(R.string.later).show();
-            }
-        });
+        mUpdateButton.setOnClickListener(v -> new MaterialDialog.Builder(sActivity)
+                .title(R.string.changes)
+                .content(Html.fromHtml(changelog))
+                .onPositive((dialog, which) -> update(mContext))
+                .positiveText(R.string.update)
+                .negativeText(R.string.later).show());
     }
 
     private static void update(Context mContext) {
@@ -112,15 +90,15 @@ public class StatusInstallerFragment extends Fragment {
         mContext.startActivity(intent);
     }
 
-    private static boolean checkPermissions() {
-        if (Build.VERSION.SDK_INT < 23) return false;
-
-        if (ActivityCompat.checkSelfPermission(sActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            sFragment.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
-            return true;
-        }
-        return false;
-    }
+//    private static boolean checkPermissions() {
+//        if (Build.VERSION.SDK_INT < 23) return false;
+//
+//        if (ActivityCompat.checkSelfPermission(sActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//            sFragment.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+//            return true;
+//        }
+//        return false;
+//    }
 
     private static boolean checkClassExists(String className) {
         try {
@@ -182,7 +160,7 @@ public class StatusInstallerFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         sActivity = getActivity();
-        sFragment = this;
+        Fragment sFragment = this;
     }
 
 //    @Override
@@ -325,19 +303,37 @@ public class StatusInstallerFragment extends Fragment {
                 tv.setText(R.string.verified_boot_deactivated);
                 v.findViewById(R.id.dmverity_explanation).setVisibility(View.GONE);
             } else {
-                v.findViewById(R.id.dmverity_row).setVisibility(View.GONE);
+                tv.setText(R.string.verified_boot_none);
+                tv.setTextColor(getResources().getColor(R.color.warning));
+                v.findViewById(R.id.dmverity_explanation).setVisibility(View.GONE);
             }
         } catch (Exception e) {
             Log.e(XposedApp.TAG, "Could not detect Verified Boot state", e);
         }
+    }
+    private boolean checkAppInstalled(Context context, String pkgName) {
+        if (pkgName==null||pkgName.isEmpty()) {
+            return false;
+        }
+        final PackageManager packageManager = context.getPackageManager();
+        List<PackageInfo> info = packageManager.getInstalledPackages(0);
+        if (info==null||info.isEmpty()) {
+            return false;
+        }
+        for (int i=0;i<info.size();i++) {
+            if (pkgName.equals(info.get(i).packageName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @SuppressLint("StringFormatInvalid")
     private void refreshKnownIssue() {
         String issueName = null;
         String issueLink = null;
-        final ApplicationInfo appInfo = getActivity().getApplicationInfo();
-        final Set<String> missingFeatures = XposedApp.getXposedProp() == null ? new HashSet<String>() : XposedApp.getXposedProp().getMissingInstallerFeatures();
+        final ApplicationInfo appInfo = Objects.requireNonNull(getActivity()).getApplicationInfo();
+        final Set<String> missingFeatures = XposedApp.getXposedProp() == null ? new HashSet<>() : XposedApp.getXposedProp().getMissingInstallerFeatures();
         final File baseDir = new File(XposedApp.BASE_DIR);
         final File baseDirCanonical = getCanonicalFile(baseDir);
         final File baseDirActual = new File(Build.VERSION.SDK_INT >= 24 ? appInfo.deviceProtectedDataDir : appInfo.dataDir);
@@ -363,71 +359,20 @@ public class StatusInstallerFragment extends Fragment {
         } else if (!baseDir.exists()) {
             issueName = getString(R.string.known_issue_missing_base_directory);
             issueLink = "https://github.com/rovo89/XposedInstaller/issues/393";
+        } else if (checkAppInstalled(getContext(),"com.solohsu.android.edxp.manager")) {
+            issueName = getString(R.string.edxp_installer_installed);
+            issueLink = getString(R.string.about_support);
         }
 
         if (issueName != null) {
             final String issueLinkFinal = issueLink;
             txtKnownIssue.setText(getString(R.string.install_known_issue, issueName));
             txtKnownIssue.setVisibility(View.VISIBLE);
-            txtKnownIssue.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    NavUtil.startURL(getActivity(), issueLinkFinal);
-                }
-            });
+            txtKnownIssue.setOnClickListener(v -> NavUtil.startURL(getActivity(), issueLinkFinal));
         } else {
             txtKnownIssue.setVisibility(View.GONE);
         }
     }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (Build.VERSION.SDK_INT < 26) {
-            menu.findItem(R.id.dexopt_now).setVisible(false);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.dexopt_now:
-                new MaterialDialog.Builder(getActivity())
-                        .title(R.string.dexopt_now)
-                        .content(R.string.this_may_take_a_while)
-                        .progress(true, 0)
-                        .cancelable(false)
-                        .showListener(new DialogInterface.OnShowListener() {
-                            @Override
-                            public void onShow(final DialogInterface dialog) {
-                                new Thread("dexopt") {
-                                    @Override
-                                    public void run() {
-                                        RootUtil rootUtil = new RootUtil();
-                                        if (!rootUtil.startShell()) {
-                                            dialog.dismiss();
-                                            NavUtil.showMessage(getActivity(), getString(R.string.root_failed));
-                                            return;
-                                        }
-
-                                        rootUtil.execute("cmd package bg-dexopt-job", new ArrayList<String>());
-
-                                        dialog.dismiss();
-                                        XposedApp.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show();
-                                            }
-                                        });
-                                    }
-                                }.start();
-                            }
-                        }).show();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
     private String getAndroidVersion() {
         switch (Build.VERSION.SDK_INT) {
