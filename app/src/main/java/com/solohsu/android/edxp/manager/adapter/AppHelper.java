@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.view.View;
+import android.widget.Toast;
 
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.R;
@@ -181,7 +182,12 @@ public class AppHelper {
         appMenu.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.app_menu_launch:
-                    context.startActivity(context.getPackageManager().getLaunchIntentForPackage(info.packageName));
+                    Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(info.packageName);
+                    if (launchIntent != null) {
+                        context.startActivity(launchIntent);
+                    } else {
+                        Toast.makeText(context, context.getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+                    }
                     break;
                 case R.id.app_menu_stop:
                     try {

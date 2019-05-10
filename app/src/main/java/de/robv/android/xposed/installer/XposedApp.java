@@ -24,13 +24,9 @@ import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-import org.meowcat.bugcatcher.CrashHandler;
-import org.meowcat.bugcatcher.MeowCatApplication;
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.R;
 
@@ -48,6 +44,8 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import de.robv.android.xposed.installer.receivers.PackageChangeReceiver;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
@@ -55,6 +53,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
+@SuppressLint("Registered")
 public class XposedApp extends Application implements ActivityLifecycleCallbacks {
     public static final String TAG = "EdXposedManager";
     @SuppressLint("SdCardPath")
@@ -64,7 +63,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     public static final String ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
     private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.dex");
     public static int WRITE_EXTERNAL_PERMISSION = 69;
-    public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
+    public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_dvdandroid, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
     private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
     private static XposedApp mInstance = null;
     private static Thread mUiThread;

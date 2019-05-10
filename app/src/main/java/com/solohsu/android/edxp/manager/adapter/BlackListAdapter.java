@@ -5,10 +5,9 @@ import android.content.pm.ApplicationInfo;
 import android.widget.CompoundButton;
 
 import com.solohsu.android.edxp.manager.util.ToastUtils;
+import org.meowcat.edxposed.manager.R;
 
 import java.util.List;
-
-import org.meowcat.edxposed.manager.R;
 
 public class BlackListAdapter extends AppAdapter {
 
@@ -20,9 +19,9 @@ public class BlackListAdapter extends AppAdapter {
         this.isWhiteListMode = isWhiteListMode;
     }
 
-    public void setWhiteListMode(boolean isWhiteListMode) {
-        this.isWhiteListMode = isWhiteListMode;
-    }
+//    public void setWhiteListMode(boolean isWhiteListMode) {
+//        this.isWhiteListMode = isWhiteListMode;
+//    }
 
     @Override
     protected List<String> generateCheckedList() {

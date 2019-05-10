@@ -89,6 +89,27 @@
             android:title="@string/skip_xposedminversion_check"/>
 
         <SwitchPreference
+            android:defaultValue="false"
+            android:key="enabled_top"
+            android:title="@string/enabled_top"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="show_modules"
+            android:summary="@string/show_modules_summary"
+            android:title="@string/show_modules"/>
+
+        <!--suppress AndroidElementNotAllowed -->
+        <de.robv.android.xposed.installer.widget.IntegerListPreference
+            android:defaultValue="0"
+            android:entries="@array/list_sort_texts"
+            android:entryValues="@array/list_sort_values"
+            android:key="list_sort"
+            android:summary="%s"
+            android:title="@string/list_sort"
+            app:useStockLayout="true"/>
+
+        <SwitchPreference
             android:defaultValue="true"
             android:key="heads_up"
             android:summary="@string/enable_heads_up_summary"

@@ -382,11 +382,11 @@
     <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
     <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
     <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
-    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
-    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
-    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
-    <string name="notinstalled">The EdXposed framework is not installed.</string>
-    <string name="pref_title_enable_boot_image_deopt">Deoptimize boot image</string>
+<string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
+<string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
+<string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
+<string name="notinstalled">The EdXposed framework is not installed.</string>
+<string name="pref_title_enable_boot_image_deopt">Deoptimize boot image</string>
     <string name="pref_enable_boot_image_deopt_summary">Turn on to make all framework methods hookable, but the whole system will be slowed down.\nMainly used to check if one framework method is inlined when it can\'t be hooked into.</string>
 
     <string name="pref_title_disable_verbose_log">Disable verbose logs</string>
@@ -396,4 +396,19 @@
     <string name="app_stop">Stop it</string>
     <string name="update_description">Update Changelog</string>
     <string name="edxp_installer_installed">You must to uninstall "EdXposed Installer" to use "EdXposed Manager".</string>
+    <string name="install_time">Install time: </string>
+    <string name="update_time">Update time: </string>
+    <string name="enabled_top">Top the checked items</string>
+    <string name="list_sort">List sorting</string>
+    <string name="sort_by_name">Sort by application name</string>
+    <string name="sort_by_name_reverse">Sort by application name (reverse)</string>
+    <string name="sort_by_package_name">Sort by package name</string>
+    <string name="sort_by_package_name_reverse">Sort by package name (reverse)</string>
+    <string name="sort_by_install_time">Sort by install time</string>
+    <string name="sort_by_install_time_reverse">Sort by install time (reverse)</string>
+    <string name="sort_by_update_time">Sort by update time</string>
+    <string name="sort_by_update_time_reverse">Sort by update time (reverse)</string>
+    <string name="app_no_ui">This application does not provide a user interface.</string>
+    <string name="show_modules">Show modules</string>
+    <string name="show_modules_summary">Show modules in application list.\nThis option cannot remove checked application flag.</string>
 </resources>

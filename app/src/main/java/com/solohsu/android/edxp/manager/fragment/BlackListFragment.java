@@ -1,5 +1,6 @@
 package com.solohsu.android.edxp.manager.fragment;
 
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,12 +9,15 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.solohsu.android.edxp.manager.adapter.AppAdapter;
 import com.solohsu.android.edxp.manager.adapter.AppHelper;
 import com.solohsu.android.edxp.manager.adapter.BlackListAdapter;
 
 import org.meowcat.edxposed.manager.R;
+
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -107,6 +111,17 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
     public void onItemClick(View v, ApplicationInfo info) {
         if (getFragmentManager() != null) {
             AppHelper.showMenu(requireActivity(), getFragmentManager(), v, info);
+        } else {
+            String packageName = (String) v.getTag();
+            if (packageName == null)
+                return;
+
+            Intent launchIntent = Objects.requireNonNull(getContext()).getPackageManager().getLaunchIntentForPackage(packageName);
+            if (launchIntent != null) {
+                startActivity(launchIntent);
+            } else {
+                Toast.makeText(getActivity(), Objects.requireNonNull(getActivity()).getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

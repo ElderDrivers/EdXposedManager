@@ -13,6 +13,8 @@ import android.os.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.meowcat.edxposed.manager.R;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -22,8 +24,6 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import de.robv.android.xposed.installer.ModulesFragment;
-import org.meowcat.edxposed.manager.R;
-
 import de.robv.android.xposed.installer.SettingsActivity;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
@@ -39,7 +39,7 @@ public final class ModuleUtil {
     private final XposedApp mApp;
     private final PackageManager mPm;
     private final String mFrameworkPackageName;
-    private final List<ModuleListener> mListeners = new CopyOnWriteArrayList<ModuleListener>();
+    private final List<ModuleListener> mListeners = new CopyOnWriteArrayList<>();
     private SharedPreferences mPref;
     private InstalledModule mFramework = null;
     private Map<String, InstalledModule> mInstalledModules;
@@ -73,6 +73,7 @@ public final class ModuleUtil {
         return result;
     }
 
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     public void reloadInstalledModules() {
         synchronized (this) {
             if (mIsReloading)
@@ -80,7 +81,7 @@ public final class ModuleUtil {
             mIsReloading = true;
         }
 
-        Map<String, InstalledModule> modules = new HashMap<String, InstalledModule>();
+        Map<String, InstalledModule> modules = new HashMap<>();
         RepoDb.beginTransation();
         try {
             RepoDb.deleteAllInstalledModules();
@@ -287,10 +288,12 @@ public final class ModuleUtil {
     public class InstalledModule {
         private static final int FLAG_FORWARD_LOCK = 1 << 29;
         public final String packageName;
-        public final boolean isFramework;
+        final boolean isFramework;
         public final String versionName;
         public final int versionCode;
         public final int minVersion;
+        public final long installTime;
+        public final long updateTime;
         public ApplicationInfo app;
         private String appName; // loaded lazyily
         private String description; // loaded lazyily
@@ -303,6 +306,8 @@ public final class ModuleUtil {
             this.isFramework = isFramework;
             this.versionName = pkg.versionName;
             this.versionCode = pkg.versionCode;
+            this.installTime = pkg.firstInstallTime;
+            this.updateTime = pkg.lastUpdateTime;
 
             if (isFramework) {
                 this.minVersion = 0;

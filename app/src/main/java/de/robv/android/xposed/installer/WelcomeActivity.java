@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
-import android.preference.PreferenceManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -19,13 +19,12 @@ import com.solohsu.android.edxp.manager.fragment.CompatListFragment;
 
 import org.meowcat.edxposed.manager.R;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
-
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import de.robv.android.xposed.installer.installation.AdvancedInstallerFragment;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
@@ -88,12 +87,7 @@ public class WelcomeActivity extends XposedBaseActivity
 
         if (savedInstanceState == null) {
             mDrawerHandler.removeCallbacksAndMessages(null);
-            mDrawerHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    navigate(mSelectedId);
-                }
-            }, 250);
+            mDrawerHandler.postDelayed(() -> navigate(mSelectedId), 250);
 
             boolean openDrawer = prefs.getBoolean("open_drawer", false);
 

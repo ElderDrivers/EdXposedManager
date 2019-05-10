@@ -1,5 +1,6 @@
 package com.solohsu.android.edxp.manager.fragment;
 
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,22 +9,26 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.solohsu.android.edxp.manager.adapter.AppAdapter;
 import com.solohsu.android.edxp.manager.adapter.AppHelper;
 import com.solohsu.android.edxp.manager.adapter.CompatListAdapter;
+
+import org.meowcat.edxposed.manager.R;
+
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import org.meowcat.edxposed.manager.R;
 
 public class CompatListFragment extends Fragment implements AppAdapter.Callback {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
+    //private RecyclerView mRecyclerView;
     private SearchView mSearchView;
     private CompatListAdapter mAppAdapter;
 
@@ -33,9 +38,9 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
         setRetainInstance(true);
     }
 
-    public static CompatListFragment newInstance() {
-        return new CompatListFragment();
-    }
+    //public static CompatListFragment newInstance() {
+    //    return new CompatListFragment();
+    //}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +55,7 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_app_list, menu);
         mSearchView = (SearchView) menu.findItem(R.id.app_search).getActionView();
         mSearchView.setOnQueryTextListener(mSearchListener);
@@ -61,7 +66,7 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_app_list, container, false);
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
-        mRecyclerView = view.findViewById(R.id.recyclerView);
+        RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
 
         mAppAdapter = new CompatListAdapter(requireActivity());
         mRecyclerView.setAdapter(mAppAdapter);
@@ -97,6 +102,17 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
     public void onItemClick(View v, ApplicationInfo info) {
         if (getFragmentManager() != null) {
             AppHelper.showMenu(requireActivity(), getFragmentManager(), v, info);
+        } else {
+            String packageName = (String) v.getTag();
+            if (packageName == null)
+                return;
+
+            Intent launchIntent = Objects.requireNonNull(getContext()).getPackageManager().getLaunchIntentForPackage(packageName);
+            if (launchIntent != null) {
+                startActivity(launchIntent);
+            } else {
+                Toast.makeText(getActivity(), Objects.requireNonNull(getActivity()).getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
