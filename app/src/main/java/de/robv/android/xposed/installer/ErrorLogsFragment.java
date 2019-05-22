@@ -21,6 +21,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.meowcat.edxposed.manager.R;
@@ -34,26 +39,20 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
 import de.robv.android.xposed.installer.util.RootUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
-@SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
+@SuppressWarnings({"deprecation"})
 public class ErrorLogsFragment extends Fragment {
 
     private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/error.log");
-    private File mFileErrorLogOld = new File(
-            XposedApp.BASE_DIR + "log/error.log.old");
     private TextView mTxtLog;
     private ScrollView mSVLog;
     private HorizontalScrollView mHSVLog;
     private MenuItem mClickedMenuItem = null;
-    private RootUtil mRootUtil = new RootUtil();;
+    private RootUtil mRootUtil = new RootUtil();
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -96,6 +95,7 @@ public class ErrorLogsFragment extends Fragment {
                         }
                     }).cancelable(false).show();
         }
+        enableLogAccess();
         return v;
     }
 
@@ -152,19 +152,10 @@ public class ErrorLogsFragment extends Fragment {
     private void enableLogAccess() {
         if (mRootUtil.startShell()) {
             mRootUtil.execute("chmod 777 " + mFileErrorLog.getAbsolutePath());
-        } else {
-            try {
-                Runtime.getRuntime().exec("chmod 777 " + mFileErrorLog.getAbsolutePath()).waitFor();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     private void reloadErrorLog() {
-        enableLogAccess();
         new LogsReader().execute(mFileErrorLog);
         mSVLog.post(() -> mSVLog.scrollTo(0, mTxtLog.getHeight()));
         mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
@@ -172,9 +163,7 @@ public class ErrorLogsFragment extends Fragment {
 
     private void clear() {
         try {
-            enableLogAccess();
             new FileOutputStream(mFileErrorLog).close();
-            mFileErrorLogOld.delete();
             mTxtLog.setText(R.string.log_is_empty);
             Toast.makeText(getActivity(), R.string.logs_cleared,
                     Toast.LENGTH_SHORT).show();
@@ -185,7 +174,6 @@ public class ErrorLogsFragment extends Fragment {
     }
 
     private void send() {
-        enableLogAccess();
         Uri uri = FileProvider.getUriForFile(Objects.requireNonNull(getActivity()), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
@@ -225,7 +213,7 @@ public class ErrorLogsFragment extends Fragment {
 
         Calendar now = Calendar.getInstance();
         String filename = String.format(
-                "edxposed_module_%s_%04d%02d%02d_%02d%02d%02d.log", "error",
+                "EdXposed_Module_%s_%04d%02d%02d_%02d%02d%02d.log", "error",
                 now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1,
                 now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
@@ -233,7 +221,6 @@ public class ErrorLogsFragment extends Fragment {
         File targetFile = new File(createFolder(), filename);
 
         try {
-            enableLogAccess();
             FileInputStream in = new FileInputStream(mFileErrorLog);
             FileOutputStream out = new FileOutputStream(targetFile);
             byte[] buffer = new byte[1024];
@@ -297,8 +284,7 @@ public class ErrorLogsFragment extends Fragment {
                 long skipped = skipLargeFile(br, logfile.length());
                 if (skipped > 0) {
                     llog.append("-----------------\n");
-                    llog.append("Log too long");
-                    llog.append("\n-----------------\n\n");
+                    llog.append(Objects.requireNonNull(getContext()).getResources().getString(R.string.logs_too_long));
                 }
 
                 char[] temp = new char[1024];
@@ -308,7 +294,7 @@ public class ErrorLogsFragment extends Fragment {
                 }
                 br.close();
             } catch (IOException e) {
-                llog.append("Cannot read log");
+                llog.append(Objects.requireNonNull(getContext()).getResources().getString(R.string.logs_cannot_read));
                 llog.append(e.getMessage());
             }
 

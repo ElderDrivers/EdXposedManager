@@ -4,8 +4,6 @@ import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
 import org.meowcat.edxposed.manager.R;
+
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallback;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;

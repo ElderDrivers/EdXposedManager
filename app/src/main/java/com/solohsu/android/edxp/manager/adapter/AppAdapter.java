@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.solohsu.android.edxp.manager.util.Utils;
 
 import org.meowcat.edxposed.manager.R;
@@ -27,8 +30,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
@@ -69,14 +70,14 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private void loadApps() {
         fullList = pm.getInstalledApplications(0);
-        if (!XposedApp.getPreferences().getBoolean("show_modules",true)) {
-            List<ApplicationInfo> rmList= new ArrayList<>();
+        if (!XposedApp.getPreferences().getBoolean("show_modules", true)) {
+            List<ApplicationInfo> rmList = new ArrayList<>();
             for (ApplicationInfo info : fullList) {
                 if (info.metaData != null && info.metaData.containsKey("xposedmodule")) {
                     rmList.add(info);
                 }
             }
-            if (rmList.size()>0) {
+            if (rmList.size() > 0) {
                 fullList.removeAll(rmList);
             }
         }
@@ -154,7 +155,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
                 break;
         }
         Collections.sort(fullList, (a, b) -> {
-            if (XposedApp.getPreferences().getBoolean("enabled_top", false)) {
+            if (XposedApp.getPreferences().getBoolean("enabled_top", true)) {
                 boolean aChecked = checkedList.contains(a.packageName);
                 boolean bChecked = checkedList.contains(b.packageName);
                 if (aChecked == bChecked) {

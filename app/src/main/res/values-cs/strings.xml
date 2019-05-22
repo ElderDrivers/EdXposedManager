@@ -122,11 +122,6 @@
     <string name="download_test_version_not_shown">Je dostupná testovací verze, není však zobrazena kvůli globálnímu nastavení, nebo specifickému nastavení pro modul.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Instalace</string>
-    <string name="settings_install_mode">Režim instalace</string>
-    <string name="install_mode_normal">Běžný (přímý zápis do /system)</string>
-    <string name="install_mode_recovery_auto">Recovery (automatická instalace souboru zip)</string>
-    <string name="install_mode_recovery_manual">Recovery (zápis souboru zip na kartu SD, instalace ručně)</string>
     <string name="settings_group_download">Stahování</string>
     <string name="settings_release_type">Zobrazované verze</string>
     <string name="settings_group_experimental">Experimentální</string>
@@ -157,7 +152,6 @@
 
     <!-- About tab -->
     <string name="about_developers_label">Hlavní vývojáři:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a> - autoři frameworku a instalátoru\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> a <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> - opravy chyb a Material design</string>
     <string name="about_translator_label">Překlad:</string>
     <string name="translator">Petr kecinzer Řezníček, Aleš Berka (Aleq), pcpepik</string>
     <string name="about_version_label">Verze aplikace:</string>
@@ -327,31 +321,24 @@
     <string name="title_white_list">Bílá listina</string>
     <string name="title_black_list">Černá listina</string>
     <string name="add_package_failed">Úprava balíčku selhala, zkontroluj funkčnost oprávnění root.</string>
-    <string name="mode_change_failed">Změna režimu selhala, zkontroluj funkčnost oprávnění root.</string>
     <string name="menu_title_compile_reset">Resetuj zkompilovaný kód</string>
     <string name="menu_title_compile_speed">Vynutit kompilaci v režimu rychlosti</string>
     <string name="compile_reset_msg">Resetuji …</string>
     <string name="compile_speed_msg">Kompiluji …</string>
-    <string name="open_link_failed_toast">Nenalezana žádná aplikace která by mohla otevřít odkaz.</string>
     <string name="pref_title_dynamic_modules">Okamžitý seznam modulů</string>
     <string name="pref_dynamic_modules_summary">Pokud zapnuto, nahrát seznam naposledy aktivovaných modulů při každém spuštění procesu aplikace</string>
     <string name="title_compat_list">Režim kompatibility</string>
-    <string name="menu_title_compat_mode">O režimu kompatibility</string>
     <string name="settings_group_edxposed">Elder Driver Xposed nastavení (vyžadován restart)</string>
     <string name="pref_title_black_white_list">Režim seznamu aplikací</string>
     <string name="pref_black_white_list_summary">Poznámka: používání režimu seznamu aplikací může rozbít funkce modulů operujících v rámci systému.</string>
     <string name="white_list_mode_summary">Režim bílé listiny: Pouze vybraná aplikace načte EdXposed Framework.\nRežim černé listiny: Vybraná aplikace nenačte EdXposed Framework.</string>
 
     <string name="app_name" translatable="false">EdXposed správce</string>
-    <string name="app_process" translatable="false">app_process</string>
-    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
-    <string name="none" translatable="false">---</string>
     <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
     <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
     <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
     <string name="about_source" translatable="false">https://github.com/ElderDrivers/XposedInstaller/</string>
     <string name="about_support" translatable="false">http://edxp.meowcat.org/</string>
-    <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>\n<a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a>\n<a href="https://github.com/afollestad/material-dialogs">MaterialDialogs</a></string>
 
     <string name="solohsu" translatable="false">givein2u</string>
     <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>

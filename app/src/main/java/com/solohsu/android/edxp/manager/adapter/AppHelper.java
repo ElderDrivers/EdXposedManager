@@ -6,27 +6,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
+import android.os.FileUtils;
 import android.view.View;
 import android.widget.Toast;
-
-import org.meowcat.edxposed.manager.BuildConfig;
-import org.meowcat.edxposed.manager.R;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
+
+import org.meowcat.edxposed.manager.BuildConfig;
+import org.meowcat.edxposed.manager.R;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import de.robv.android.xposed.installer.XposedApp;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 
+@SuppressWarnings("deprecation")
 public class AppHelper {
 
     public static final String TAG = XposedApp.TAG;
@@ -39,10 +44,11 @@ public class AppHelper {
 
     private static final List<String> FORCE_WHITE_LIST = Collections.singletonList(BuildConfig.APPLICATION_ID);
 
+    @SuppressWarnings("OctalInteger")
     static void makeSurePath() {
-        XposedApp.mkdirAndChmod(WHITE_LIST_PATH,00771);
-        XposedApp.mkdirAndChmod(BLACK_LIST_PATH,00771);
-        XposedApp.mkdirAndChmod(COMPAT_LIST_PATH,00771);
+        XposedApp.mkdirAndChmod(WHITE_LIST_PATH, 00777);
+        XposedApp.mkdirAndChmod(BLACK_LIST_PATH, 00777);
+        XposedApp.mkdirAndChmod(COMPAT_LIST_PATH, 00777);
     }
 
     public static boolean isWhiteListMode() {
@@ -73,9 +79,9 @@ public class AppHelper {
     }
 
     static List<String> getBlackList() {
-        File file=new File(BASE_PATH + BLACK_LIST_PATH);
-        File[] files=file.listFiles();
-        if (files == null){
+        File file = new File(BASE_PATH + BLACK_LIST_PATH);
+        File[] files = file.listFiles();
+        if (files == null) {
             return new ArrayList<>();
         }
         List<String> s = new ArrayList<>();
@@ -89,9 +95,9 @@ public class AppHelper {
     }
 
     static List<String> getWhiteList() {
-        File file=new File(BASE_PATH + WHITE_LIST_PATH);
-        File[] files=file.listFiles();
-        if (files == null){
+        File file = new File(BASE_PATH + WHITE_LIST_PATH);
+        File[] files = file.listFiles();
+        if (files == null) {
             return FORCE_WHITE_LIST;
         }
         List<String> result = new ArrayList<>();
@@ -107,15 +113,31 @@ public class AppHelper {
         return new ArrayList<>(result);
     }
 
+    @SuppressLint("WorldReadableFiles")
     private static Boolean whiteListFileName(String packageName, boolean isAdd) {
-        boolean returns=true;
-        File file=new File(BASE_PATH + WHITE_LIST_PATH + packageName);
+        boolean returns = true;
+        File file = new File(BASE_PATH + WHITE_LIST_PATH + packageName);
         if (isAdd) {
             if (!file.exists()) {
+                FileOutputStream fos = null;
                 try {
-                    returns = file.createNewFile();
-                } catch (IOException e) {
+                    fos = new FileOutputStream(file.getPath());
+                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
                     e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            try {
+                                returns = file.createNewFile();
+                            } catch (IOException e1) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
             }
         } else {
@@ -126,15 +148,45 @@ public class AppHelper {
         return returns;
     }
 
+    @SuppressWarnings("SameParameterValue")
+    @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
+    private static void setFilePermissionsFromMode(String name, int mode) {
+        int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
+                | FileUtils.S_IRGRP | FileUtils.S_IWGRP;
+        if ((mode & Context.MODE_WORLD_READABLE) != 0) {
+            perms |= FileUtils.S_IROTH;
+        }
+        if ((mode & Context.MODE_WORLD_WRITEABLE) != 0) {
+            perms |= FileUtils.S_IWOTH;
+        }
+        FileUtils.setPermissions(name, perms, -1, -1);
+    }
+
+    @SuppressLint("WorldReadableFiles")
     private static Boolean blackListFileName(String packageName, boolean isAdd) {
-        boolean returns=true;
-        File file=new File(BASE_PATH + BLACK_LIST_PATH + packageName);
+        boolean returns = true;
+        File file = new File(BASE_PATH + BLACK_LIST_PATH + packageName);
         if (isAdd) {
             if (!file.exists()) {
+                FileOutputStream fos = null;
                 try {
-                    returns = file.createNewFile();
-                } catch (IOException e) {
+                    fos = new FileOutputStream(file.getPath());
+                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
                     e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            try {
+                                returns = file.createNewFile();
+                            } catch (IOException e1) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
             }
         } else {
@@ -145,15 +197,31 @@ public class AppHelper {
         return returns;
     }
 
+    @SuppressLint("WorldReadableFiles")
     private static Boolean compatListFileName(String packageName, boolean isAdd) {
-        boolean returns=true;
-        File file=new File(BASE_PATH + COMPAT_LIST_PATH + packageName);
+        boolean returns = true;
+        File file = new File(BASE_PATH + COMPAT_LIST_PATH + packageName);
         if (isAdd) {
             if (!file.exists()) {
+                FileOutputStream fos = null;
                 try {
-                    returns = file.createNewFile();
-                } catch (IOException e) {
+                    fos = new FileOutputStream(file.getPath());
+                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
                     e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            try {
+                                returns = file.createNewFile();
+                            } catch (IOException e1) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
             }
         } else {
@@ -191,9 +259,9 @@ public class AppHelper {
                     break;
                 case R.id.app_menu_stop:
                     try {
-                        ActivityManager manager = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+                        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
                         manager.killBackgroundProcesses(info.packageName);
-                    } catch(Exception ex) {
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                     break;
@@ -231,9 +299,9 @@ public class AppHelper {
     }
 
     static List<String> getCompatList() {
-        File file=new File(BASE_PATH + COMPAT_LIST_PATH);
-        File[] files=file.listFiles();
-        if (files == null){
+        File file = new File(BASE_PATH + COMPAT_LIST_PATH);
+        File[] files = file.listFiles();
+        if (files == null) {
             return new ArrayList<>();
         }
         List<String> s = new ArrayList<>();
@@ -243,11 +311,11 @@ public class AppHelper {
         return s;
     }
 
-    public static boolean addCompatList(String packageName) {
+    static boolean addCompatList(String packageName) {
         return compatListFileName(packageName, true);
     }
 
-    public static boolean removeCompatList(String packageName) {
+    static boolean removeCompatList(String packageName) {
         return compatListFileName(packageName, false);
     }
 }

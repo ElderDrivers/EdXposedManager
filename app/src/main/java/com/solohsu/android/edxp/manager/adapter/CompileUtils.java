@@ -3,11 +3,11 @@ package com.solohsu.android.edxp.manager.adapter;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.solohsu.android.edxp.manager.fragment.CompileDialogFragment;
 
 import org.meowcat.edxposed.manager.R;
-
-import androidx.fragment.app.FragmentManager;
 
 public class CompileUtils {
 
@@ -30,7 +30,7 @@ public class CompileUtils {
     }
 
     static void compileDexopt(Context context, FragmentManager fragmentManager,
-                             ApplicationInfo info) {
+                              ApplicationInfo info) {
         compilePackageInBg(fragmentManager, info,
                 context.getString(R.string.compile_speed_msg), COMPILE_DEXOPT_COMMAND);
     }

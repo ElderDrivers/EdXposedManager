@@ -6,6 +6,7 @@
     android:layout_gravity="center"
     app:cardBackgroundColor="?attr/list_download_item_color"
     app:cardUseCompatPadding="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,18 +16,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
-            android:paddingBottom="16dp"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:paddingTop="24dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
             android:text="@string/about_developers_label"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="?android:textColorSecondary"/>
+            android:textColor="?android:textColorSecondary" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="?android:attr/windowBackground"/>
+            android:background="?android:attr/windowBackground" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,22 +39,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="8dp"
                 android:paddingLeft="16dp"
+                android:paddingTop="8dp"
                 android:paddingRight="16dp"
-                android:paddingTop="8dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mlgmxyysd"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mlgmxyysd_summary"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,7 +70,7 @@
                     android:onClick="openLink"
                     android:tag="@string/mlgmxyysd_xda"
                     android:text="@string/xda"
-                    android:textColor="#F57C00"/>
+                    android:textColor="#F57C00" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/Widget.AppCompat.Button.Borderless"
@@ -78,7 +79,7 @@
                     android:onClick="openLink"
                     android:tag="@string/mlgmxyysd_github"
                     android:text="@string/github"
-                    android:textColor="#4183c4"/>
+                    android:textColor="#4183c4" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/Widget.AppCompat.Button.Borderless"
@@ -87,7 +88,7 @@
                     android:onClick="openLink"
                     android:tag="@string/mlgmxyysd_coolapk"
                     android:text="@string/coolapk"
-                    android:textColor="#0F9D58"/>
+                    android:textColor="#0F9D58" />
             </LinearLayout>
 
         </LinearLayout>
@@ -95,7 +96,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="?android:attr/windowBackground"/>
+            android:background="?android:attr/windowBackground" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,22 +108,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="8dp"
                 android:paddingLeft="16dp"
+                android:paddingTop="8dp"
                 android:paddingRight="16dp"
-                android:paddingTop="8dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/solohsu"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/solohsu_summary"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
             </LinearLayout>
 
             <LinearLayout
@@ -138,7 +139,7 @@
                     android:onClick="openLink"
                     android:tag="@string/solohsu_xda"
                     android:text="@string/xda"
-                    android:textColor="#F57C00"/>
+                    android:textColor="#F57C00" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/Widget.AppCompat.Button.Borderless"
@@ -147,7 +148,7 @@
                     android:onClick="openLink"
                     android:tag="@string/solohsu_github"
                     android:text="@string/github"
-                    android:textColor="#4183c4"/>
+                    android:textColor="#4183c4" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/Widget.AppCompat.Button.Borderless"
@@ -156,7 +157,7 @@
                     android:onClick="openLink"
                     android:tag="@string/solohsu_coolapk"
                     android:text="@string/coolapk"
-                    android:textColor="#0F9D58"/>
+                    android:textColor="#0F9D58" />
             </LinearLayout>
 
         </LinearLayout>
@@ -164,7 +165,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="?android:attr/windowBackground"/>
+            android:background="?android:attr/windowBackground" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,22 +177,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="8dp"
                 android:paddingLeft="16dp"
+                android:paddingTop="8dp"
                 android:paddingRight="16dp"
-                android:paddingTop="8dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/meowcat"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/meowcat_summary"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
             </LinearLayout>
 
             <LinearLayout
@@ -207,7 +208,7 @@
                     android:onClick="openLink"
                     android:tag="@string/meowcat_website"
                     android:text="@string/website"
-                    android:textColor="#F57C00"/>
+                    android:textColor="#F57C00" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/Widget.AppCompat.Button.Borderless"
@@ -216,7 +217,7 @@
                     android:onClick="openLink"
                     android:tag="@string/meowcat_github"
                     android:text="@string/github"
-                    android:textColor="#4183c4"/>
+                    android:textColor="#4183c4" />
 
             </LinearLayout>
 
@@ -225,7 +226,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="?android:attr/windowBackground"/>
+            android:background="?android:attr/windowBackground" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -237,22 +238,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="8dp"
                 android:paddingLeft="16dp"
+                android:paddingTop="8dp"
                 android:paddingRight="16dp"
-                android:paddingTop="8dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/elderdrivers"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/elderdrivers_summary"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
             </LinearLayout>
 
             <LinearLayout
@@ -268,7 +269,7 @@
                     android:onClick="openLink"
                     android:tag="@string/elderdrivers_website"
                     android:text="@string/website"
-                    android:textColor="#F57C00"/>
+                    android:textColor="#F57C00" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/Widget.AppCompat.Button.Borderless"
@@ -277,7 +278,7 @@
                     android:onClick="openLink"
                     android:tag="@string/elderdrivers_github"
                     android:text="@string/github"
-                    android:textColor="#4183c4"/>
+                    android:textColor="#4183c4" />
 
             </LinearLayout>
 

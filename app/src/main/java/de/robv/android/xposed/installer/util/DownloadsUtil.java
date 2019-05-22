@@ -10,17 +10,20 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
-import androidx.core.content.ContextCompat;
-import androidx.core.os.EnvironmentCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
+import androidx.core.content.ContextCompat;
+import androidx.core.os.EnvironmentCompat;
+
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.MaterialDialog.SingleButtonCallback;
+
+import org.meowcat.edxposed.manager.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,7 +38,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -126,73 +128,6 @@ public class DownloadsUtil {
                 .download();
     }
 
-    public static class Builder {
-        private final Context mContext;
-        private String mTitle = null;
-        private String mUrl = null;
-        private DownloadFinishedCallback mCallback = null;
-        private MIME_TYPES mMimeType = MIME_TYPES.APK;
-        private File mDestination = null;
-        private boolean mDialog = false;
-        public boolean mModule = false;
-        private boolean mSave = false;
-
-        public Builder(Context context) {
-            mContext = context;
-        }
-
-        public Builder setTitle(String title) {
-            mTitle = title;
-            return this;
-        }
-
-        public Builder setUrl(String url) {
-            mUrl = url;
-            return this;
-        }
-
-        public Builder setCallback(DownloadFinishedCallback callback) {
-            mCallback = callback;
-            return this;
-        }
-
-        public Builder setMimeType(MIME_TYPES mimeType) {
-            mMimeType = mimeType;
-            return this;
-        }
-
-        public Builder setDestination(File file) {
-            mDestination = file;
-            return this;
-        }
-
-        public Builder setDestinationFromUrl(String subDir) {
-            if (mUrl == null) {
-                throw new IllegalStateException("URL must be set first");
-            }
-            return setDestination(getDownloadTargetForUrl(subDir, mUrl));
-        }
-
-        public Builder setSave(boolean save) {
-            this.mSave = save;
-            return this;
-        }
-
-        public Builder setModule(boolean module) {
-            this.mModule = module;
-            return this;
-        }
-
-        public Builder setDialog(boolean dialog) {
-            mDialog = dialog;
-            return this;
-        }
-
-        public DownloadInfo download() {
-            return add(this);
-        }
-    }
-
     private static void showDownloadDialog(final Builder b, final long id) {
         final Context context = b.mContext;
         final DownloadDialog dialog = new DownloadDialog(new MaterialDialog.Builder(context)
@@ -272,20 +207,6 @@ public class DownloadsUtil {
         }.start();
     }
 
-    private static class DownloadDialog extends MaterialDialog {
-        public DownloadDialog(Builder builder) {
-            super(builder);
-        }
-
-        @UiThread
-        public void setShowProcess(boolean show) {
-            int visibility = show ? View.VISIBLE : View.GONE;
-            mProgress.setVisibility(visibility);
-            mProgressLabel.setVisibility(visibility);
-            mProgressMinMax.setVisibility(visibility);
-        }
-    }
-
     public static ModuleVersion getStableVersion(Module m) {
         for (int i = 0; i < m.versions.size(); i++) {
             ModuleVersion mvTemp = m.versions.get(i);
@@ -348,7 +269,7 @@ public class DownloadsUtil {
         return all.isEmpty() ? null : all.get(0);
     }
 
-    public static List<DownloadInfo> getAllForUrl(Context context, String url)throws Throwable {
+    public static List<DownloadInfo> getAllForUrl(Context context, String url) throws Throwable {
         DownloadManager dm = (DownloadManager) context
                 .getSystemService(Context.DOWNLOAD_SERVICE);
         Cursor c = dm.query(new Query());
@@ -660,6 +581,87 @@ public class DownloadsUtil {
 
     public interface DownloadFinishedCallback {
         void onDownloadFinished(Context context, DownloadInfo info);
+    }
+
+    public static class Builder {
+        private final Context mContext;
+        public boolean mModule = false;
+        private String mTitle = null;
+        private String mUrl = null;
+        private DownloadFinishedCallback mCallback = null;
+        private MIME_TYPES mMimeType = MIME_TYPES.APK;
+        private File mDestination = null;
+        private boolean mDialog = false;
+        private boolean mSave = false;
+
+        public Builder(Context context) {
+            mContext = context;
+        }
+
+        public Builder setTitle(String title) {
+            mTitle = title;
+            return this;
+        }
+
+        public Builder setUrl(String url) {
+            mUrl = url;
+            return this;
+        }
+
+        public Builder setCallback(DownloadFinishedCallback callback) {
+            mCallback = callback;
+            return this;
+        }
+
+        public Builder setMimeType(MIME_TYPES mimeType) {
+            mMimeType = mimeType;
+            return this;
+        }
+
+        public Builder setDestination(File file) {
+            mDestination = file;
+            return this;
+        }
+
+        public Builder setDestinationFromUrl(String subDir) {
+            if (mUrl == null) {
+                throw new IllegalStateException("URL must be set first");
+            }
+            return setDestination(getDownloadTargetForUrl(subDir, mUrl));
+        }
+
+        public Builder setSave(boolean save) {
+            this.mSave = save;
+            return this;
+        }
+
+        public Builder setModule(boolean module) {
+            this.mModule = module;
+            return this;
+        }
+
+        public Builder setDialog(boolean dialog) {
+            mDialog = dialog;
+            return this;
+        }
+
+        public DownloadInfo download() {
+            return add(this);
+        }
+    }
+
+    private static class DownloadDialog extends MaterialDialog {
+        public DownloadDialog(Builder builder) {
+            super(builder);
+        }
+
+        @UiThread
+        public void setShowProcess(boolean show) {
+            int visibility = show ? View.VISIBLE : View.GONE;
+            mProgress.setVisibility(visibility);
+            mProgressLabel.setVisibility(visibility);
+            mProgressMinMax.setVisibility(visibility);
+        }
     }
 
     public static class DownloadInfo implements Comparable<DownloadInfo> {

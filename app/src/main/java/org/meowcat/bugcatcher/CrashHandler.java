@@ -4,6 +4,16 @@
 
 package org.meowcat.bugcatcher;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
+import android.os.Looper;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -17,21 +27,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.os.Build;
-import android.os.Looper;
-import android.util.Log;
-import android.widget.Toast;
-
 public class CrashHandler implements UncaughtExceptionHandler {
     private static final String TAG = MeowCatApplication.TAG;
-    private Thread.UncaughtExceptionHandler mDefaultHandler;
     @SuppressLint("StaticFieldLeak")
     private static CrashHandler INSTANCE = new CrashHandler();
+    private Thread.UncaughtExceptionHandler mDefaultHandler;
     private Context Context;
     private Map<String, String> infos = new HashMap<>();
     @SuppressLint("SimpleDateFormat")

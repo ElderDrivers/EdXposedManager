@@ -22,7 +22,7 @@
     <string name="nav_item_about">关于</string>
     <string name="navigation_drawer_open">开启导航抽屉栏</string>
     <string name="navigation_drawer_close">关闭导航抽屉栏</string>
-	
+
     <!-- Installer tab -->
     <string name="install">安装/更新</string>
     <string name="uninstall">卸载</string>
@@ -42,7 +42,7 @@
     <string name="installed_lollipop">EdXposed 框架 %s 版已激活。</string>
     <string name="installed_lollipop_inactive">EdXposed 框架 %s 版已安装，但尚未激活。 请查看日志以了解详情。</string>
     <string name="modules_updates_available">有模块更新可用</string>
-	
+
     <!-- File operations -->
     <string name="root_failed">无法获取 root 权限。\n\n请确认您的设备已正确 root 且没有阻止 shell 命令。</string>
     <string name="file_extract_failed">无法解压缩 %s</string>
@@ -123,16 +123,12 @@
     <string name="download_test_version_not_shown">有新的测试版可用。但根据全局或模块的设置未被显示。</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">安装</string>
-    <string name="settings_install_mode">安装方式</string>
-    <string name="install_mode_normal">传统（直接写入 /system）</string>
-    <string name="install_mode_recovery_auto">恢复模式（自动刷入 zip 包）</string>
-    <string name="install_mode_recovery_manual">恢复模式（将 zip 包写入 SD 卡，手动刷入）</string>
     <string name="settings_group_download">下载</string>
     <string name="settings_release_type">要显示的版本</string>
     <string name="settings_group_experimental">实验性</string>
     <string name="settings_disable_resources">禁用资源钩子</string>
     <string name="settings_disable_resources_summary">解决与主题引擎的冲突\n<b>警告：</b> 启用该选项将导致修改资源的模块无法工作</string>
+    <string name="settings_lists">列表</string>
     <string name="settings_group_app">应用</string>
     <string name="settings_theme">主题</string>
     <string name="settings_theme_light">亮色</string>
@@ -158,7 +154,6 @@
 
     <!-- About tab -->
     <string name="about_developers_label">主要开发者</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 和 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> 和 <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> 修复问题并适配质感设计</string>
     <string name="about_translator_label">翻译</string>
     <string name="translator">MlgmXyysd</string>
     <string name="about_version_label">版本</string>
@@ -303,17 +298,14 @@
     <string name="title_white_list">白名单</string>
     <string name="title_black_list">黑名单</string>
     <string name="add_package_failed">修改失败，请检查 Root 权限</string>
-    <string name="mode_change_failed">切换模式失败，请检查 Root 权限</string>
     <string name="menu_title_compile_reset">取消优化</string>
     <string name="menu_title_compile_speed">以 Speed 模式优化应用</string>
     <string name="menu_title_compile_dexopt">以 Dexopt 模式优化应用</string>
     <string name="compile_reset_msg">清除中…</string>
     <string name="compile_speed_msg">优化中…</string>
-    <string name="open_link_failed_toast">无法找到可以打开链接的应用</string>
     <string name="pref_title_dynamic_modules">即时模块列表</string>
     <string name="pref_dynamic_modules_summary">启用后，每个APP进程启动时重新加载最新的模块列表</string>
     <string name="title_compat_list">兼容模式</string>
-    <string name="menu_title_compat_mode">关于兼容模式</string>
     <string name="notinstalled">EdXposed 框架未安装</string>
     <string name="meowcat_summary">MlgmXyysd 所属团队</string>
     <string name="elderdrivers_summary">EdXposed 的开发团队</string>
@@ -357,6 +349,8 @@
     <string name="pref_title_disable_verbose_log">禁用详细日志</string>
     <string name="pref_disable_verbose_log_summary">模块将不再记录详细日志.</string>
     <string name="logs_verbose_disabled">详细日志已禁用.</string>
+    <string name="logs_too_long">日志过长，未完全显示.</string>
+    <string name="logs_cannot_read">无法读取日志: \n</string>
     <string name="app_launch">运行</string>
     <string name="app_stop">停止</string>
     <string name="update_description">更新日志</string>
@@ -376,4 +370,5 @@
     <string name="app_no_ui">该应用未提供用户界面</string>
     <string name="show_modules">显示模块</string>
     <string name="show_modules_summary">在应用列表内显示模块.\n此选项并不会移除已勾选的应用标识.</string>
+    <string name="compile_failed">优化失败，请检查root权限.</string>
 </resources>

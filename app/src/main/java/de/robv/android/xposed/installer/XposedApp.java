@@ -27,6 +27,9 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.R;
 
@@ -41,11 +44,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import de.robv.android.xposed.installer.receivers.PackageChangeReceiver;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
@@ -53,6 +55,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
+@SuppressWarnings({"ResultOfMethodCallIgnored", "OctalInteger"})
 @SuppressLint("Registered")
 public class XposedApp extends Application implements ActivityLifecycleCallbacks {
     public static final String TAG = "EdXposedManager";
@@ -60,11 +63,12 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private static final String BASE_DIR_LEGACY = "/data/data/" + BuildConfig.APPLICATION_ID + "/";
     public static final String BASE_DIR = Build.VERSION.SDK_INT >= 24
             ? "/data/user_de/0/" + BuildConfig.APPLICATION_ID + "/" : BASE_DIR_LEGACY;
+    private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.jar");
     public static final String ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
-    private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.dex");
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_dvdandroid, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
     private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
+    @SuppressLint("StaticFieldLeak")
     private static XposedApp mInstance = null;
     private static Thread mUiThread;
     private static Handler mMainHandler;
@@ -131,6 +135,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     // This method is hooked by XposedBridge to return the current version
+    @SuppressWarnings({"NumericOverflow", "divzero"})
     public static Integer getActiveXposedVersion() {
         try {
             Log.d("stub", String.valueOf(1 / 0));
@@ -140,6 +145,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         return -1;
     }
 
+    @SuppressWarnings("SynchronizeOnNonFinalField")
     public static InstallZipUtil.XposedProp getXposedProp() {
         synchronized (mInstance) {
             return mInstance.mXposedProp;
@@ -157,11 +163,11 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         return prefs.getInt("colors", defaultColor);
     }
 
-    public static void setColors(ActionBar actionBar, Object value, Activity activity) {
-        int color = (int) value;
+    public static void setColors(ActionBar actionBar, Integer value, Activity activity) {
+        int color = value;
         SharedPreferences prefs = activity.getSharedPreferences(activity.getPackageName() + "_preferences", MODE_PRIVATE);
 
-        int drawable = iconsValues[Integer.parseInt(prefs.getString("custom_icon", "0"))];
+        int drawable = iconsValues[Integer.parseInt(Objects.requireNonNull(prefs.getString("custom_icon", "0")))];
 
         if (actionBar != null)
             actionBar.setBackgroundDrawable(new ColorDrawable(color));
@@ -218,6 +224,13 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         return getPreferences().getString("download_location", Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/");
     }
 
+    public static void mkdirAndChmod(String dir, int permissions) {
+        dir = BASE_DIR + dir;
+        //noinspection ResultOfMethodCallIgnored
+        new File(dir).mkdir();
+        FileUtils.setPermissions(dir, permissions, -1, -1);
+    }
+
     public void onCreate() {
         super.onCreate();
         mInstance = this;
@@ -237,7 +250,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
 
-        if (!mPref.getString("date", "").equals(dateFormat.format(date))) {
+        if (!Objects.requireNonNull(mPref.getString("date", "")).equals(dateFormat.format(date))) {
             mPref.edit().putString("date", dateFormat.format(date)).apply();
 
             try {
@@ -277,14 +290,15 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
     }
 
+    @SuppressWarnings("JavaReflectionMemberAccess")
     private void createDirectories() {
-        FileUtils.setPermissions(BASE_DIR, 00711, -1, -1);
-        mkdirAndChmod("conf", 00771);
+        FileUtils.setPermissions(BASE_DIR, 00777, -1, -1);
+        mkdirAndChmod("conf", 00777);
         mkdirAndChmod("log", 00777);
 
         if (Build.VERSION.SDK_INT >= 24) {
             try {
-                Method deleteDir = FileUtils.class.getDeclaredMethod("deleteContentsAndDir", File.class);
+                @SuppressLint("PrivateApi") Method deleteDir = FileUtils.class.getDeclaredMethod("deleteContentsAndDir", File.class);
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "bin"));
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "conf"));
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "log"));
@@ -292,13 +306,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
                 Log.w(XposedApp.TAG, "Failed to delete obsolete directories", e);
             }
         }
-    }
-
-    public static void mkdirAndChmod(String dir, int permissions) {
-        dir = BASE_DIR + dir;
-        //noinspection ResultOfMethodCallIgnored
-        new File(dir).mkdir();
-        FileUtils.setPermissions(dir, permissions, -1, -1);
     }
 
     private void reloadXposedProp() {
@@ -310,19 +317,10 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
 
         if (file != null) {
-            FileInputStream is = null;
-            try {
-                is = new FileInputStream(file);
+            try (FileInputStream is = new FileInputStream(file)) {
                 prop = InstallZipUtil.parseXposedProp(is);
             } catch (IOException e) {
                 Log.e(XposedApp.TAG, "Could not read " + file.getPath(), e);
-            } finally {
-                if (is != null) {
-                    try {
-                        is.close();
-                    } catch (IOException ignored) {
-                    }
-                }
             }
         }
 
@@ -333,15 +331,12 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
     public void updateProgressIndicator(final SwipeRefreshLayout refreshLayout) {
         final boolean isLoading = RepoLoader.getInstance().isLoading() || ModuleUtil.getInstance().isLoading();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                synchronized (XposedApp.this) {
-                    if (mCurrentActivity != null) {
-                        mCurrentActivity.setProgressBarIndeterminateVisibility(isLoading);
-                        if (refreshLayout != null)
-                            refreshLayout.setRefreshing(isLoading);
-                    }
+        runOnUiThread(() -> {
+            synchronized (XposedApp.this) {
+                if (mCurrentActivity != null) {
+                    mCurrentActivity.setProgressBarIndeterminateVisibility(isLoading);
+                    if (refreshLayout != null)
+                        refreshLayout.setRefreshing(isLoading);
                 }
             }
         });

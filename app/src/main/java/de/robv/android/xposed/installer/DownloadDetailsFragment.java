@@ -3,13 +3,14 @@ package de.robv.android.xposed.installer;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.text.method.LinkMovementMethod;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import org.meowcat.edxposed.manager.R;
 

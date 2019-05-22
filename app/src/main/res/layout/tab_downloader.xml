@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:layout_marginTop="?attr/actionBarSize"
-              android:orientation="vertical"
-              tools:context=".DownloadFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:orientation="vertical"
+    tools:context=".DownloadFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefreshlayout"
@@ -24,7 +24,7 @@
                 android:clipToPadding="false"
                 android:drawSelectorOnTop="true"
                 android:fastScrollEnabled="true"
-                android:scrollbarStyle="outsideOverlay"/>
+                android:scrollbarStyle="outsideOverlay" />
 
             <LinearLayout
                 android:id="@+id/background_list"
@@ -38,7 +38,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/ic_menu_refresh"
-                    android:tint="#757575"/>
+                    android:tint="#757575" />
 
                 <TextView
                     android:id="@+id/list_status"
@@ -48,14 +48,14 @@
                     android:gravity="center"
                     android:text="@string/update_download_list"
                     android:textSize="16sp"
-                    android:textStyle="italic"/>
+                    android:textStyle="italic" />
 
                 <ProgressBar
                     android:id="@+id/progress"
                     style="?android:progressBarStyleHorizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:indeterminate="true"/>
+                    android:indeterminate="true" />
 
             </LinearLayout>
 

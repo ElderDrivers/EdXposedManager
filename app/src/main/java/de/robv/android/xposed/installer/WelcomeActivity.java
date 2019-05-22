@@ -12,6 +12,13 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.solohsu.android.edxp.manager.fragment.BlackListFragment;
@@ -19,12 +26,6 @@ import com.solohsu.android.edxp.manager.fragment.CompatListFragment;
 
 import org.meowcat.edxposed.manager.R;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import de.robv.android.xposed.installer.installation.AdvancedInstallerFragment;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
@@ -303,5 +304,6 @@ public class WelcomeActivity extends XposedBaseActivity
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {}
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    }
 }

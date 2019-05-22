@@ -12,17 +12,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.widget.Toast;
-
-import com.afollestad.materialdialogs.color.ColorChooserDialog;
-import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
-import com.solohsu.android.edxp.manager.fragment.BasePreferenceFragment;
-
-import org.meowcat.edxposed.manager.R;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -33,6 +24,19 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreference;
+
+import com.afollestad.materialdialogs.color.ColorChooserDialog;
+import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
+import com.solohsu.android.edxp.manager.fragment.BasePreferenceFragment;
+
+import org.meowcat.edxposed.manager.R;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Objects;
+
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.widget.IconListPreference;
@@ -112,6 +116,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
     @SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
     public static class SettingsFragment extends BasePreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
+        public static final File mDisableXposedMinverFlag = new File(XposedApp.BASE_DIR + "conf/disablexposedminver");
         final static int[] PRIMARY_COLORS = new int[]{
                 Color.parseColor("#F44336"),
                 Color.parseColor("#E91E63"),
@@ -133,10 +138,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 Color.parseColor("#9E9E9E"),
                 Color.parseColor("#607D8B")
         };
-
         static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
         static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
-        public static final File mDisableXposedMinverFlag = new File(XposedApp.BASE_DIR + "conf/disablexposedminver");
         static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
         static final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
         static final File mDeoptBootFlag = new File(XposedApp.BASE_DIR + "conf/deoptbootimage");
@@ -179,10 +182,25 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         public SettingsFragment() {
         }
 
-        @SuppressLint("ObsoleteSdkInt")
+        @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
+        static void setFilePermissionsFromMode(String name, int mode) {
+            int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
+                    | FileUtils.S_IRGRP | FileUtils.S_IWGRP;
+            if ((mode & Context.MODE_WORLD_READABLE) != 0) {
+                perms |= FileUtils.S_IROTH;
+            }
+            if ((mode & Context.MODE_WORLD_WRITEABLE) != 0) {
+                perms |= FileUtils.S_IWOTH;
+            }
+            FileUtils.setPermissions(name, perms, -1, -1);
+        }
+
+        @SuppressLint({"ObsoleteSdkInt", "WorldReadableFiles"})
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.prefs);
+
+            File flagFile = null;
 
             PreferenceGroup groupApp = findPreference("group_app");
             PreferenceGroup lookFeel = findPreference("look_and_feel");
@@ -205,115 +223,234 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             });
 
             SwitchPreference prefWhiteListMode = findPreference("white_list_switch");
-            Objects.requireNonNull(prefWhiteListMode).setChecked(mWhiteListModeFlag.exists());
+            flagFile = mWhiteListModeFlag;
+            Objects.requireNonNull(prefWhiteListMode).setChecked(flagFile.exists());
+            File finalFlagFile6 = flagFile;
             prefWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
+                    FileOutputStream fos = null;
                     try {
-                        mWhiteListModeFlag.createNewFile();
-                    } catch (IOException e) {
+                        fos = new FileOutputStream(finalFlagFile6.getPath());
+                        setFilePermissionsFromMode(finalFlagFile6.getPath(), Context.MODE_WORLD_READABLE);
+                    } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    } finally {
+                        if (fos != null) {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    finalFlagFile6.createNewFile();
+                                } catch (IOException e1) {
+                                    Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
                     }
                 } else {
-                    mWhiteListModeFlag.delete();
+                    finalFlagFile6.delete();
                 }
-                return (enabled == mWhiteListModeFlag.exists());
+                return (enabled == finalFlagFile6.exists());
             });
 
             SwitchPreference prefVerboseLogs = findPreference("disable_verbose_log");
-            Objects.requireNonNull(prefVerboseLogs).setChecked(mDisableVerboseLogsFlag.exists());
+            flagFile = mDisableVerboseLogsFlag;
+            Objects.requireNonNull(prefVerboseLogs).setChecked(flagFile.exists());
+            File finalFlagFile5 = flagFile;
             prefVerboseLogs.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
+                    FileOutputStream fos = null;
                     try {
-                        mDisableVerboseLogsFlag.createNewFile();
-                    } catch (IOException e) {
+                        fos = new FileOutputStream(finalFlagFile5.getPath());
+                        setFilePermissionsFromMode(finalFlagFile5.getPath(), Context.MODE_WORLD_READABLE);
+                    } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    } finally {
+                        if (fos != null) {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    finalFlagFile5.createNewFile();
+                                } catch (IOException e1) {
+                                    Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
                     }
                 } else {
-                    mDisableVerboseLogsFlag.delete();
+                    finalFlagFile5.delete();
                 }
-                return (enabled == mDisableVerboseLogsFlag.exists());
+                return (enabled == finalFlagFile5.exists());
             });
 
             SwitchPreference prefBlackWhiteListMode = findPreference("black_white_list_switch");
-            Objects.requireNonNull(prefBlackWhiteListMode).setChecked(mBlackWhiteListModeFlag.exists());
+            flagFile = mBlackWhiteListModeFlag;
+            Objects.requireNonNull(prefBlackWhiteListMode).setChecked(flagFile.exists());
+            File finalFlagFile4 = flagFile;
             prefBlackWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
+                    FileOutputStream fos = null;
                     try {
-                        mBlackWhiteListModeFlag.createNewFile();
-                    } catch (IOException e) {
+                        fos = new FileOutputStream(finalFlagFile4.getPath());
+                        setFilePermissionsFromMode(finalFlagFile4.getPath(), Context.MODE_WORLD_READABLE);
+                    } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    } finally {
+                        if (fos != null) {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    finalFlagFile4.createNewFile();
+                                } catch (IOException e1) {
+                                    Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
                     }
                 } else {
-                    mBlackWhiteListModeFlag.delete();
+                    finalFlagFile4.delete();
                 }
-                return (enabled == mBlackWhiteListModeFlag.exists());
+                return (enabled == finalFlagFile4.exists());
             });
 
             SwitchPreference prefEnableDeopt = findPreference("enable_boot_image_deopt");
-            Objects.requireNonNull(prefEnableDeopt).setChecked(mDeoptBootFlag.exists());
+            flagFile = mDeoptBootFlag;
+            Objects.requireNonNull(prefEnableDeopt).setChecked(flagFile.exists());
+            File finalFlagFile3 = flagFile;
             prefEnableDeopt.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
+                    FileOutputStream fos = null;
                     try {
-                        mDeoptBootFlag.createNewFile();
-                    } catch (IOException e) {
+                        fos = new FileOutputStream(finalFlagFile3.getPath());
+                        setFilePermissionsFromMode(finalFlagFile3.getPath(), Context.MODE_WORLD_READABLE);
+                    } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    } finally {
+                        if (fos != null) {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    finalFlagFile3.createNewFile();
+                                } catch (IOException e1) {
+                                    Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
                     }
                 } else {
-                    mDeoptBootFlag.delete();
+                    finalFlagFile3.delete();
                 }
-                return (enabled == mDeoptBootFlag.exists());
+                return (enabled == finalFlagFile3.exists());
             });
 
             SwitchPreference prefMinVerResources = findPreference("skip_xposedminversion_check");
-            Objects.requireNonNull(prefMinVerResources).setChecked(mDisableXposedMinverFlag.exists());
+            flagFile = mDisableXposedMinverFlag;
+            Objects.requireNonNull(prefMinVerResources).setChecked(flagFile.exists());
+            File finalFlagFile2 = flagFile;
             prefMinVerResources.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
+                    FileOutputStream fos = null;
                     try {
-                        mDisableXposedMinverFlag.createNewFile();
-                    } catch (IOException e) {
+                        fos = new FileOutputStream(finalFlagFile2.getPath());
+                        setFilePermissionsFromMode(finalFlagFile2.getPath(), Context.MODE_WORLD_READABLE);
+                    } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    } finally {
+                        if (fos != null) {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    finalFlagFile2.createNewFile();
+                                } catch (IOException e1) {
+                                    Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
                     }
                 } else {
-                    mDisableXposedMinverFlag.delete();
+                    finalFlagFile2.delete();
                 }
-                return (enabled == mDisableXposedMinverFlag.exists());
+                return (enabled == finalFlagFile2.exists());
             });
 
             SwitchPreference prefDynamicResources = findPreference("is_dynamic_modules");
-            Objects.requireNonNull(prefDynamicResources).setChecked(mDynamicModulesFlag.exists());
+            flagFile = mDynamicModulesFlag;
+            Objects.requireNonNull(prefDynamicResources).setChecked(flagFile.exists());
+            File finalFlagFile1 = flagFile;
             prefDynamicResources.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
+                    FileOutputStream fos = null;
                     try {
-                        mDynamicModulesFlag.createNewFile();
-                    } catch (IOException e) {
+                        fos = new FileOutputStream(finalFlagFile1.getPath());
+                        setFilePermissionsFromMode(finalFlagFile1.getPath(), Context.MODE_WORLD_READABLE);
+                    } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    } finally {
+                        if (fos != null) {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    finalFlagFile1.createNewFile();
+                                } catch (IOException e1) {
+                                    Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
                     }
                 } else {
-                    mDynamicModulesFlag.delete();
+                    finalFlagFile1.delete();
                 }
-                return (enabled == mDynamicModulesFlag.exists());
+                return (enabled == finalFlagFile1.exists());
             });
 
             SwitchPreference prefDisableResources = findPreference("disable_resources");
-            Objects.requireNonNull(prefDisableResources).setChecked(mDisableResourcesFlag.exists());
+            flagFile = mDisableResourcesFlag;
+            Objects.requireNonNull(prefDisableResources).setChecked(flagFile.exists());
+            File finalFlagFile = flagFile;
             prefDisableResources.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
+                    FileOutputStream fos = null;
                     try {
-                        mDisableResourcesFlag.createNewFile();
-                    } catch (IOException e) {
+                        fos = new FileOutputStream(finalFlagFile.getPath());
+                        setFilePermissionsFromMode(finalFlagFile.getPath(), Context.MODE_WORLD_READABLE);
+                    } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    } finally {
+                        if (fos != null) {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    finalFlagFile.createNewFile();
+                                } catch (IOException e1) {
+                                    Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
                     }
                 } else {
-                    mDisableResourcesFlag.delete();
+                    finalFlagFile.delete();
                 }
-                return (enabled == mDisableResourcesFlag.exists());
+                return (enabled == finalFlagFile.exists());
             });
 
             Objects.requireNonNull(colors).setOnPreferenceClickListener(this);

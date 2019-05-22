@@ -10,11 +10,12 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Pair;
 
+import org.meowcat.edxposed.manager.BuildConfig;
+
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.meowcat.edxposed.manager.BuildConfig;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.InstalledModulesColumns;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.InstalledModulesUpdatesColumns;

@@ -5,6 +5,7 @@ import android.content.pm.ApplicationInfo;
 import android.widget.CompoundButton;
 
 import com.solohsu.android.edxp.manager.util.ToastUtils;
+
 import org.meowcat.edxposed.manager.R;
 
 import java.util.List;

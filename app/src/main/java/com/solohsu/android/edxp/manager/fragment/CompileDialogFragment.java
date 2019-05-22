@@ -1,5 +1,6 @@
 package com.solohsu.android.edxp.manager.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -11,16 +12,16 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDialogFragment;
+
 import com.solohsu.android.edxp.manager.util.ToastUtils;
 import com.topjohnwu.superuser.Shell;
 
 import org.meowcat.edxposed.manager.R;
 
 import java.lang.ref.WeakReference;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class CompileDialogFragment extends AppCompatDialogFragment {
 
@@ -30,9 +31,7 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
     private ApplicationInfo appInfo;
 
 
-    public CompileDialogFragment() {
-
-    }
+    public CompileDialogFragment() {}
 
     public static CompileDialogFragment newInstance(ApplicationInfo appInfo,
                                                     String msg, String[] commands) {
@@ -63,7 +62,7 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
                 .setIcon(appInfo.loadIcon(pm))
                 .setTitle(appInfo.loadLabel(pm))
                 .setCancelable(false);
-        View customView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_compile_dialog, null);
+        @SuppressLint("InflateParams") View customView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_compile_dialog, null);
         builder.setView(customView);
         TextView msgView = customView.findViewById(R.id.message);
         ProgressBar progressView = customView.findViewById(R.id.progress);
@@ -106,7 +105,7 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
         @Override
         protected String doInBackground(String... commands) {
             if (outerRef.get() == null) {
-                return "";
+                return outerRef.get().requireContext().getString(R.string.compile_failed);
             }
             return Shell.su(commands).exec().getOut().toString();
         }
@@ -116,7 +115,11 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
             if (outerRef.get() == null || !outerRef.get().isAdded()) {
                 return;
             }
-            ToastUtils.showLongToast(outerRef.get().requireContext(), result.substring(1, result.length() - 1));
+            if ("".equals(result.substring(1, result.length() - 1))) {
+                ToastUtils.showLongToast(outerRef.get().requireContext(), R.string.compile_failed);
+            } else {
+                ToastUtils.showLongToast(outerRef.get().requireContext(), R.string.done);
+            }
             outerRef.get().dismissAllowingStateLoss();
         }
     }

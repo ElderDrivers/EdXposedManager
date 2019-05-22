@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Browser;
-import androidx.annotation.AnyThread;
-import androidx.annotation.NonNull;
-import androidx.browser.customtabs.CustomTabsIntent;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
+
+import androidx.annotation.AnyThread;
+import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsIntent;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 

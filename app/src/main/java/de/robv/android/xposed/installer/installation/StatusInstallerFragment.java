@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,6 +30,8 @@ import org.meowcat.edxposed.manager.R;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -33,13 +40,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.fragment.app.Fragment;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 
+@SuppressWarnings("deprecation")
 public class StatusInstallerFragment extends Fragment {
 
     public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
@@ -155,12 +160,17 @@ public class StatusInstallerFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        sActivity = getActivity();
-        Fragment sFragment = this;
+    @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
+    private static void setFilePermissionsFromMode(String name, int mode) {
+        int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
+                | FileUtils.S_IRGRP | FileUtils.S_IWGRP;
+        if ((mode & Context.MODE_WORLD_READABLE) != 0) {
+            perms |= FileUtils.S_IROTH;
+        }
+        if ((mode & Context.MODE_WORLD_WRITEABLE) != 0) {
+            perms |= FileUtils.S_IWOTH;
+        }
+        FileUtils.setPermissions(name, perms, -1, -1);
     }
 
 //    @Override
@@ -181,6 +191,16 @@ public class StatusInstallerFragment extends Fragment {
 //    }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        sActivity = getActivity();
+        Fragment sFragment = this;
+    }
+
+    @SuppressLint("WorldReadableFiles")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.status_installer, container, false);
 
@@ -197,7 +217,7 @@ public class StatusInstallerFragment extends Fragment {
 
         String installedXposedVersion;
         try {
-            installedXposedVersion= XposedApp.getXposedProp().getVersion();
+            installedXposedVersion = XposedApp.getXposedProp().getVersion();
         } catch (NullPointerException e) {
             installedXposedVersion = null;
         }
@@ -263,11 +283,29 @@ public class StatusInstallerFragment extends Fragment {
                 DISABLE_FILE.delete();
                 Snackbar.make(xposedDisable, R.string.xposed_on_next_reboot, Snackbar.LENGTH_LONG).show();
             } else {
-                try {
-                    DISABLE_FILE.createNewFile();
-                    Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
-                } catch (IOException e) {
-                    Log.e(XposedApp.TAG, "StatusInstallerFragment -> " + e.getMessage());
+                if (!DISABLE_FILE.exists()) {
+                    FileOutputStream fos = null;
+                    try {
+                        fos = new FileOutputStream(DISABLE_FILE.getPath());
+                        setFilePermissionsFromMode(DISABLE_FILE.getPath(), Context.MODE_WORLD_READABLE);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (fos != null) {
+                            try {
+                                fos.close();
+                                Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                try {
+                                    DISABLE_FILE.createNewFile();
+                                    Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
+                                } catch (IOException e1) {
+                                    Log.e(XposedApp.TAG, "StatusInstallerFragment -> " + e.getMessage());
+                                }
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -311,16 +349,17 @@ public class StatusInstallerFragment extends Fragment {
             Log.e(XposedApp.TAG, "Could not detect Verified Boot state", e);
         }
     }
+
     private boolean checkAppInstalled(Context context, String pkgName) {
-        if (pkgName==null||pkgName.isEmpty()) {
+        if (pkgName == null || pkgName.isEmpty()) {
             return false;
         }
         final PackageManager packageManager = context.getPackageManager();
         List<PackageInfo> info = packageManager.getInstalledPackages(0);
-        if (info==null||info.isEmpty()) {
+        if (info == null || info.isEmpty()) {
             return false;
         }
-        for (int i=0;i<info.size();i++) {
+        for (int i = 0; i < info.size(); i++) {
             if (pkgName.equals(info.get(i).packageName)) {
                 return true;
             }
@@ -359,7 +398,7 @@ public class StatusInstallerFragment extends Fragment {
         } else if (!baseDir.exists()) {
             issueName = getString(R.string.known_issue_missing_base_directory);
             issueLink = "https://github.com/rovo89/XposedInstaller/issues/393";
-        } else if (checkAppInstalled(getContext(),"com.solohsu.android.edxp.manager")) {
+        } else if (checkAppInstalled(getContext(), "com.solohsu.android.edxp.manager")) {
             issueName = getString(R.string.edxp_installer_installed);
             issueLink = getString(R.string.about_support);
         }

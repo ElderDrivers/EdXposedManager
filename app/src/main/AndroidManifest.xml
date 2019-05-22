@@ -1,34 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.meowcat.edxposed.manager"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?><!--suppress AndroidDomInspection -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.meowcat.edxposed.manager">
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <application
-        android:networkSecurityConfig="@xml/network_security_config"
         android:name="org.meowcat.bugcatcher.MeowCatApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/circle_ic_launcher"
+        android:supportsRtl="true"
         android:theme="@style/Theme.XposedInstaller.Light"
-        tools:ignore="ManifestResource,UnusedAttribute" >
+        tools:ignore="ManifestResource,UnusedAttribute">
         <activity
             android:name="de.robv.android.xposed.installer.WelcomeActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
@@ -40,14 +41,14 @@
             android:roundIcon="@mipmap/circle_ic_launcher"
             android:targetActivity="de.robv.android.xposed.installer.WelcomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
             android:name="de.robv.android.xposed.installer.WelcomeActivitydvdandroid"
@@ -57,14 +58,14 @@
             android:roundIcon="@mipmap/circle_ic_launcher_dvdandroid"
             android:targetActivity="de.robv.android.xposed.installer.WelcomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
             android:name="de.robv.android.xposed.installer.WelcomeActivityhjmodi"
@@ -74,14 +75,14 @@
             android:roundIcon="@mipmap/circle_ic_launcher_hjmodi"
             android:targetActivity="de.robv.android.xposed.installer.WelcomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
             android:name="de.robv.android.xposed.installer.WelcomeActivityrovo"
@@ -91,14 +92,14 @@
             android:roundIcon="@mipmap/circle_ic_launcher_rovo"
             android:targetActivity="de.robv.android.xposed.installer.WelcomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
             android:name="de.robv.android.xposed.installer.WelcomeActivityrovoold"
@@ -107,14 +108,14 @@
             android:label="@string/app_name"
             android:targetActivity="de.robv.android.xposed.installer.WelcomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
             android:name="de.robv.android.xposed.installer.WelcomeActivitystaol"
@@ -123,14 +124,14 @@
             android:label="@string/app_name"
             android:targetActivity="de.robv.android.xposed.installer.WelcomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity-alias>
 
         <activity
@@ -139,64 +140,64 @@
             android:exported="true"
             android:theme="@style/Theme.XposedInstaller.Transparent">
             <intent-filter>
-                <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS"/>
+                <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS" />
 
-                <data android:scheme="package"/>
+                <data android:scheme="package" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
                 <data
                     android:host="repo.xposed.info"
                     android:pathPrefix="/module/"
-                    android:scheme="http"/>
+                    android:scheme="http" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <data android:scheme="xposed"/>
+                <data android:scheme="xposed" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
         <activity
             android:name="de.robv.android.xposed.installer.SettingsActivity"
             android:theme="@style/Theme.XposedInstaller.Transparent">
             <intent-filter>
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES"/>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name="de.robv.android.xposed.installer.SupportActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+            android:theme="@style/Theme.XposedInstaller.Transparent" />
         <activity
             android:name="de.robv.android.xposed.installer.AboutActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+            android:theme="@style/Theme.XposedInstaller.Transparent" />
         <activity
             android:name="de.robv.android.xposed.installer.ModulesBookmark"
-            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+            android:theme="@style/Theme.XposedInstaller.Transparent" />
         <activity
             android:name="de.robv.android.xposed.installer.installation.InstallationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+            android:theme="@style/Theme.XposedInstaller.Transparent" />
 
         <receiver
             android:name="de.robv.android.xposed.installer.receivers.PackageChangeReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED"/>
-                <action android:name="android.intent.action.PACKAGE_CHANGED"/>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
 
-                <data android:scheme="package"/>
+                <data android:scheme="package" />
             </intent-filter>
         </receiver>
         <receiver
@@ -204,39 +205,39 @@
             android:exported="true"
             android:permission="android.permission.SEND_DOWNLOAD_COMPLETED_INTENTS">
             <intent-filter>
-                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
         </receiver>
         <receiver
             android:name="de.robv.android.xposed.installer.util.NotificationUtil$RebootReceiver"
-            android:exported="false"/>
+            android:exported="false" />
         <receiver
             android:name="de.robv.android.xposed.installer.util.NotificationUtil$ApkReceiver"
-            android:exported="false"/>
+            android:exported="false" />
         <receiver
             android:name="de.robv.android.xposed.installer.receivers.BootReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <uses-library
             android:name="com.sec.android.app.multiwindow"
-            android:required="false"/>
+            android:required="false" />
 
         <meta-data
             android:name="com.sec.android.support.multiwindow"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W"
-            android:value="632.0dip"/>
+            android:value="632.0dip" />
         <meta-data
             android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H"
-            android:value="598.0dip"/>
+            android:value="598.0dip" />
         <meta-data
             android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W"
-            android:value="632.0dip"/>
+            android:value="632.0dip" />
         <meta-data
             android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
-            android:value="598.0dip"/>
+            android:value="598.0dip" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -245,7 +246,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
 
     </application>

@@ -5,6 +5,9 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.util.Log;
 
+import org.meowcat.edxposed.manager.BuildConfig;
+import org.meowcat.edxposed.manager.R;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,8 +18,6 @@ import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import org.meowcat.edxposed.manager.BuildConfig;
-import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.installation.FlashCallback;
 import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
@@ -28,7 +29,8 @@ public final class InstallZipUtil {
         FEATURES.add("fbe_aware"); // BASE_DIR in /data/user_de/0 on SDK24+
     }
 
-    private InstallZipUtil() {}
+    private InstallZipUtil() {
+    }
 
     public static ZipFile getZip(String path) {
         try {
@@ -137,7 +139,8 @@ public final class InstallZipUtil {
     public static void closeSilently(ZipFile z) {
         try {
             z.close();
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
     }
 
     public static void reportMissingFeatures(Set<String> missingFeatures) {

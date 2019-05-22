@@ -6,6 +6,10 @@ import android.os.HandlerThread;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+
 import org.meowcat.edxposed.manager.R;
 
 import java.io.File;
@@ -13,9 +17,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.installation.FlashCallback;
 import eu.chainfire.libsuperuser.Shell;
@@ -24,13 +25,6 @@ import eu.chainfire.libsuperuser.Shell.OnCommandResultListener;
 import static de.robv.android.xposed.installer.util.InstallZipUtil.triggerError;
 
 public class RootUtil {
-    private Shell.Interactive mShell = null;
-    private HandlerThread mCallbackThread = null;
-
-    private boolean mCommandRunning = false;
-    private int mLastExitCode = -1;
-    private LineCallback mCallback = null;
-
     private static final String EMULATED_STORAGE_SOURCE;
     private static final String EMULATED_STORAGE_TARGET;
 
@@ -39,54 +33,11 @@ public class RootUtil {
         EMULATED_STORAGE_TARGET = getEmulatedStorageVariable("EMULATED_STORAGE_TARGET");
     }
 
-    public interface LineCallback {
-        void onLine(String line);
-        void onErrorLine(String line);
-    }
-
-    public static class CollectingLineCallback implements LineCallback {
-        List<String> mLines = new LinkedList<>();
-
-        @Override
-        public void onLine(String line) {
-            mLines.add(line);
-        }
-
-        @Override
-        public void onErrorLine(String line) {
-            mLines.add(line);
-        }
-
-        public List<String> getLines() {
-            return mLines;
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-            return TextUtils.join("\n", mLines);
-        }
-    }
-
-    private static String getEmulatedStorageVariable(String variable) {
-        String result = System.getenv(variable);
-        if (result != null) {
-            result = getCanonicalPath(new File(result));
-            if (!result.endsWith("/")) {
-                result += "/";
-            }
-        }
-        return result;
-    }
-
-
-    private final Shell.OnCommandResultListener mOpenListener = new Shell.OnCommandResultListener() {
-        @Override
-        public void onCommandResult(int commandCode, int exitCode, List<String> output) {
-            mStdoutListener.onCommandResult(commandCode, exitCode);
-        }
-    };
-
+    private Shell.Interactive mShell = null;
+    private HandlerThread mCallbackThread = null;
+    private boolean mCommandRunning = false;
+    private int mLastExitCode = -1;
+    private LineCallback mCallback = null;
     private final Shell.OnCommandLineListener mStdoutListener = new Shell.OnCommandLineListener() {
         public void onLine(String line) {
             if (mCallback != null) {
@@ -104,7 +55,12 @@ public class RootUtil {
             }
         }
     };
-
+    private final Shell.OnCommandResultListener mOpenListener = new Shell.OnCommandResultListener() {
+        @Override
+        public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+            mStdoutListener.onCommandResult(commandCode, exitCode);
+        }
+    };
     private final Shell.OnCommandLineListener mStderrListener = new Shell.OnCommandLineListener() {
         @Override
         public void onLine(String line) {
@@ -118,6 +74,59 @@ public class RootUtil {
             // Not called for STDERR listener.
         }
     };
+
+    private static String getEmulatedStorageVariable(String variable) {
+        String result = System.getenv(variable);
+        if (result != null) {
+            result = getCanonicalPath(new File(result));
+            if (!result.endsWith("/")) {
+                result += "/";
+            }
+        }
+        return result;
+    }
+
+    private static String getCanonicalPath(File file) {
+        try {
+            return file.getCanonicalPath();
+        } catch (IOException e) {
+            Log.w(XposedApp.TAG, "Could not get canonical path for " + file);
+            return file.getAbsolutePath();
+        }
+    }
+
+    public static String getShellPath(File file) {
+        return getShellPath(getCanonicalPath(file));
+    }
+
+    public static String getShellPath(String path) {
+        if (EMULATED_STORAGE_SOURCE != null && EMULATED_STORAGE_TARGET != null
+                && path.startsWith(EMULATED_STORAGE_TARGET)) {
+            path = EMULATED_STORAGE_SOURCE + path.substring(EMULATED_STORAGE_TARGET.length());
+        }
+        return path;
+    }
+
+    public static boolean reboot(RebootMode mode, @NonNull Context context) {
+        RootUtil rootUtil = new RootUtil();
+        if (!rootUtil.startShell()) {
+            NavUtil.showMessage(context, context.getString(R.string.root_failed));
+            return false;
+        }
+
+        LineCallback callback = new CollectingLineCallback();
+        if (!rootUtil.reboot(mode, callback)) {
+            StringBuilder message = new StringBuilder(callback.toString());
+            if (message.length() > 0) {
+                message.append("\n\n");
+            }
+            message.append(context.getString(R.string.reboot_failed));
+            NavUtil.showMessage(context, message);
+            return false;
+        }
+
+        return true;
+    }
 
     @SuppressWarnings("SynchronizeOnNonFinalField")
     private void waitForCommandFinished() {
@@ -248,76 +257,9 @@ public class RootUtil {
         return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command);
     }
 
-    private static String getCanonicalPath(File file) {
-        try {
-            return file.getCanonicalPath();
-        } catch (IOException e) {
-            Log.w(XposedApp.TAG, "Could not get canonical path for " + file);
-            return file.getAbsolutePath();
-        }
-    }
-
-    public static String getShellPath(File file) {
-        return getShellPath(getCanonicalPath(file));
-    }
-
-    public static String getShellPath(String path) {
-        if (EMULATED_STORAGE_SOURCE != null && EMULATED_STORAGE_TARGET != null
-                && path.startsWith(EMULATED_STORAGE_TARGET)) {
-            path = EMULATED_STORAGE_SOURCE + path.substring(EMULATED_STORAGE_TARGET.length());
-        }
-        return path;
-    }
-
     @Override
     protected void finalize() throws Throwable {
         dispose();
-    }
-
-    public enum RebootMode {
-        NORMAL(R.string.reboot),
-        SOFT(R.string.soft_reboot),
-        RECOVERY(R.string.reboot_recovery);
-
-        public final int titleRes;
-
-        RebootMode(@StringRes int titleRes) {
-            this.titleRes = titleRes;
-        }
-
-        public static RebootMode fromId(@IdRes int id) {
-            switch (id) {
-                case R.id.reboot:
-                    return NORMAL;
-                case R.id.soft_reboot:
-                    return SOFT;
-                case R.id.reboot_recovery:
-                    return RECOVERY;
-                default:
-                    throw new IllegalArgumentException();
-            }
-        }
-    }
-
-    public static boolean reboot(RebootMode mode, @NonNull Context context) {
-        RootUtil rootUtil = new RootUtil();
-        if (!rootUtil.startShell()) {
-            NavUtil.showMessage(context, context.getString(R.string.root_failed));
-            return false;
-        }
-
-        LineCallback callback = new CollectingLineCallback();
-        if (!rootUtil.reboot(mode, callback)) {
-            StringBuilder message = new StringBuilder(callback.toString());
-            if (message.length() > 0) {
-                message.append("\n\n");
-            }
-            message.append(context.getString(R.string.reboot_failed));
-            NavUtil.showMessage(context, message);
-            return false;
-        }
-
-        return true;
     }
 
     public boolean reboot(RebootMode mode, LineCallback callback) {
@@ -349,5 +291,60 @@ public class RootUtil {
         executeWithBusybox("touch /cache/recovery/boot", callback);
 
         return executeWithBusybox("reboot recovery", callback) == 0;
+    }
+
+    public enum RebootMode {
+        NORMAL(R.string.reboot),
+        SOFT(R.string.soft_reboot),
+        RECOVERY(R.string.reboot_recovery);
+
+        public final int titleRes;
+
+        RebootMode(@StringRes int titleRes) {
+            this.titleRes = titleRes;
+        }
+
+        public static RebootMode fromId(@IdRes int id) {
+            switch (id) {
+                case R.id.reboot:
+                    return NORMAL;
+                case R.id.soft_reboot:
+                    return SOFT;
+                case R.id.reboot_recovery:
+                    return RECOVERY;
+                default:
+                    throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public interface LineCallback {
+        void onLine(String line);
+
+        void onErrorLine(String line);
+    }
+
+    public static class CollectingLineCallback implements LineCallback {
+        List<String> mLines = new LinkedList<>();
+
+        @Override
+        public void onLine(String line) {
+            mLines.add(line);
+        }
+
+        @Override
+        public void onErrorLine(String line) {
+            mLines.add(line);
+        }
+
+        public List<String> getLines() {
+            return mLines;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return TextUtils.join("\n", mLines);
+        }
     }
 }

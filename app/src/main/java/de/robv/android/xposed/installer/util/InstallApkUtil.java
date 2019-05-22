@@ -6,7 +6,10 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+
 import androidx.core.content.FileProvider;
+
+import org.meowcat.edxposed.manager.R;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -14,7 +17,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.XposedApp;
 
 public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
@@ -88,7 +90,7 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
             }
 
             StringBuilder out = new StringBuilder();
-            for (Object o : output) {
+            for (String o : output) {
                 out.append(o.toString());
                 out.append("\n");
             }

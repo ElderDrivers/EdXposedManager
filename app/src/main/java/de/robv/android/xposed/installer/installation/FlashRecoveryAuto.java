@@ -4,10 +4,11 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.meowcat.edxposed.manager.R;
+
 import java.io.File;
 import java.util.ArrayList;
 
-import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.util.InstallZipUtil.ZipCheckResult;
 import de.robv.android.xposed.installer.util.RootUtil;
 

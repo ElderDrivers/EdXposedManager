@@ -7,9 +7,9 @@
             android:dither="true"
             android:shape="rectangle">
 
-            <corners android:radius="2dp"/>
+            <corners android:radius="2dp" />
 
-            <solid android:color="@color/card_shadow_black"/>
+            <solid android:color="@color/card_shadow_black" />
 
         </shape>
     </item>
@@ -19,15 +19,15 @@
             android:dither="true"
             android:shape="rectangle">
 
-            <corners android:radius="2dp"/>
+            <corners android:radius="2dp" />
 
-            <solid android:color="@color/card_background_black"/>
+            <solid android:color="@color/card_background_black" />
 
             <padding
                 android:bottom="8dp"
                 android:left="8dp"
                 android:right="8dp"
-                android:top="8dp"/>
+                android:top="8dp" />
         </shape>
     </item>
 </layer-list>

@@ -22,13 +22,13 @@
                 android:id="@+id/disableSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_margin="12dp"
                 android:checked="true"
                 android:text="@string/status"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -36,15 +36,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip"
             android:layout_marginTop="6dp"
+            android:layout_marginRight="5dip"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 app:cardBackgroundColor="?attr/list_download_item_color"
                 app:cardUseCompatPadding="true">
 
@@ -64,7 +64,7 @@
                             android:id="@+id/status_icon"
                             android:layout_width="84dp"
                             android:layout_height="84dp"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center" />
 
                     </FrameLayout>
 
@@ -76,14 +76,14 @@
                         android:gravity="center"
                         android:padding="6dp"
                         android:textColor="@color/warning"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/framework_known_issue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/warning"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -92,8 +92,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 app:cardBackgroundColor="?attr/list_download_item_color"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
@@ -128,7 +128,7 @@
                             android:padding="6dp"
                             android:text="@string/loadingError"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
@@ -139,7 +139,7 @@
                         android:padding="6dp"
                         android:text="@string/tabInstall"
                         android:textAllCaps="true"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -161,18 +161,18 @@
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
                             android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
                             android:orientation="vertical"
-                            android:paddingBottom="8dp"
                             android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
                             tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:id="@+id/android_version"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                         </LinearLayout>
 
@@ -192,22 +192,22 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_phone"/>
+                            android:src="@drawable/ic_phone" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
                             android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
                             android:orientation="vertical"
-                            android:paddingBottom="8dp"
-                            android:paddingTop="8dp">
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp">
 
                             <TextView
                                 android:id="@+id/ic_manufacturer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                         </LinearLayout>
 
@@ -227,66 +227,67 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_chip"/>
+                            android:src="@drawable/ic_chip" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
                             android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
                             android:orientation="vertical"
-                            android:paddingBottom="8dp"
-                            android:paddingTop="8dp">
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp">
 
                             <TextView
                                 android:id="@+id/cpu"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                         </LinearLayout>
 
-                    </LinearLayout><LinearLayout
-                    android:id="@+id/dmverity_row"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_verified"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginStart="32dp"
-                        android:orientation="vertical"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp">
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
 
-                        <TextView
-                            android:id="@+id/dmverity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_verified" />
 
-                        <TextView
-                            android:id="@+id/dmverity_explanation"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/verified_boot_explanation"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                            android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp">
+
+                            <TextView
+                                android:id="@+id/dmverity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                            <TextView
+                                android:id="@+id/dmverity_explanation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/verified_boot_explanation"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
-
-                </LinearLayout>
 
                 </LinearLayout>
 
@@ -296,12 +297,12 @@
                 android:id="@+id/updateView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 android:paddingTop="20dp"
+                android:visibility="gone"
                 app:cardBackgroundColor="?attr/list_download_item_color"
                 app:cardElevation="2dp"
-                android:visibility="gone"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -315,7 +316,7 @@
                         android:padding="6dp"
                         android:text="@string/update"
                         android:textAllCaps="true"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:id="@+id/click_to_update"
@@ -332,23 +333,23 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_update"/>
+                            android:src="@drawable/ic_update" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
                             android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
                             android:orientation="vertical"
-                            android:paddingBottom="8dp"
-                            android:paddingTop="8dp">
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/newVersion"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                android:textColor="@color/darker_green"/>
+                                android:textColor="@color/darker_green" />
 
                         </LinearLayout>
 

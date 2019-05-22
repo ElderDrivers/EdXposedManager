@@ -13,16 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.meowcat.edxposed.manager.R;
 
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
 import de.psdev.licensesdialog.licenses.MITLicense;
@@ -123,7 +124,8 @@ public class AboutActivity extends XposedBaseActivity {
             try {
                 String version = getActivity().getPackageManager().getPackageInfo(packageName, 0).versionName;
                 ((TextView) v.findViewById(R.id.app_version)).setText(version);
-            } catch (NameNotFoundException ignored) {}
+            } catch (NameNotFoundException ignored) {
+            }
 
             licensesView.setOnClickListener(v12 -> createLicenseDialog());
 

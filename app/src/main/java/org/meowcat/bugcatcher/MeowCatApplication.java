@@ -8,7 +8,7 @@ import de.robv.android.xposed.installer.XposedApp;
 
 public class MeowCatApplication extends XposedApp {
     public static final String TAG = XposedApp.TAG;
-    
+
     @Override
     public void onCreate() {
         super.onCreate();

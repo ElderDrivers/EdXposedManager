@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import org.meowcat.edxposed.manager.R;
+import androidx.preference.PreferenceManager;
+
 import com.solohsu.android.edxp.manager.fragment.BasePreferenceFragment;
+
+import org.meowcat.edxposed.manager.R;
 
 import java.util.Map;
 
-import androidx.preference.PreferenceManager;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.util.PrefixedSharedPreferences;
 import de.robv.android.xposed.installer.util.RepoLoader;

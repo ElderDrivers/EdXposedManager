@@ -30,6 +30,7 @@ import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.RepoDb;
 
+@SuppressWarnings("OctalInteger")
 public final class ModuleUtil {
     // xposedminversion below this
     private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/modules.list";
@@ -212,11 +213,9 @@ public final class ModuleUtil {
             Log.i(XposedApp.TAG, "ModuleUtil -> updating modules.list");
             int installedXposedVersion = XposedApp.getXposedVersion();
             boolean disabled = StatusInstallerFragment.DISABLE_FILE.exists();
-            if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists()) {
-                if (!disabled && installedXposedVersion <= 0) {
-                    Toast.makeText(mApp, R.string.notinstalled, Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists() && !disabled && installedXposedVersion <= 0 && showToast) {
+                Toast.makeText(mApp, R.string.notinstalled, Toast.LENGTH_SHORT).show();
+                return;
             }
 
             PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
@@ -224,11 +223,9 @@ public final class ModuleUtil {
             List<InstalledModule> enabledModules = getEnabledModules();
             for (InstalledModule module : enabledModules) {
 
-                if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists()) {
-                    if (!disabled && (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)) {
-                        Toast.makeText(mApp, R.string.notinstalled, Toast.LENGTH_SHORT).show();
-                        continue;
-                    }
+                if (!SettingsActivity.SettingsFragment.mDisableXposedMinverFlag.exists() && (!disabled && (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)) && showToast) {
+                    Toast.makeText(mApp, R.string.notinstalled, Toast.LENGTH_SHORT).show();
+                    continue;
                 }
 
                 modulesList.println(module.app.sourceDir);
@@ -246,14 +243,16 @@ public final class ModuleUtil {
             FileUtils.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
             FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, 00664, -1, -1);
 
-            if (showToast)
+            if (showToast) {
                 showToast(R.string.xposed_module_list_updated);
+            }
         } catch (IOException e) {
             Log.e(XposedApp.TAG, "ModuleUtil -> cannot write " + MODULES_LIST_FILE, e);
             Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e, Toast.LENGTH_SHORT).show();
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void showToast(int message) {
         if (mToast != null) {
             mToast.cancel();
@@ -288,12 +287,12 @@ public final class ModuleUtil {
     public class InstalledModule {
         private static final int FLAG_FORWARD_LOCK = 1 << 29;
         public final String packageName;
-        final boolean isFramework;
         public final String versionName;
         public final int versionCode;
         public final int minVersion;
         public final long installTime;
         public final long updateTime;
+        final boolean isFramework;
         public ApplicationInfo app;
         private String appName; // loaded lazyily
         private String description; // loaded lazyily

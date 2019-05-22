@@ -30,14 +30,14 @@ public class XposedTab implements Parcelable {
     public String description = "v0<br />None";
     public boolean stable = true;
     public boolean official = true;
-
+    public HashMap<String, String> support = new HashMap<>();
+    public List<XposedZip> uninstallers = new ArrayList<>();
     private HashMap<String, String> compatibility = new HashMap<>();
     private HashMap<String, String> incompatibility = new HashMap<>();
-    public HashMap<String, String> support = new HashMap<>();
     private HashMap<String, List<XposedZip>> installers = new HashMap<>();
-    public List<XposedZip> uninstallers = new ArrayList<>();
 
-    public XposedTab() { }
+    public XposedTab() {
+    }
 
     private XposedTab(Parcel in) {
         name = in.readString();

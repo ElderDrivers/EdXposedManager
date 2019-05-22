@@ -26,13 +26,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.solohsu.android.edxp.manager.util.Utils;
 
 import org.meowcat.edxposed.manager.R;
 
@@ -50,6 +61,7 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -60,13 +72,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.view.menu.MenuPopupHelper;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
 import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -95,6 +100,9 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=%s";
     private static final String NOT_ACTIVE_NOTE_TAG = "NOT_ACTIVE_NOTE";
     private int installedXposedVersion;
+    private ApplicationFilter filter;
+    private SearchView mSearchView;
+    private SearchView.OnQueryTextListener mSearchListener;
     private PackageManager mPm;
     private Comparator<ApplicationInfo> cmp;
     private ApplicationInfo.DisplayNameComparator displayNameComparator;
@@ -106,7 +114,22 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         public void run() {
             mAdapter.setNotifyOnChange(false);
             mAdapter.clear();
-            mAdapter.addAll(mModuleUtil.getModules().values());
+            String queryStr = mSearchView != null ? mSearchView.getQuery().toString() : "";
+            Collection<InstalledModule> showList;
+            Collection<InstalledModule> fullList = mModuleUtil.getModules().values();
+            if (queryStr.length() == 0) {
+                showList = fullList;
+            } else {
+                showList = new ArrayList<>();
+                String filter = queryStr.toLowerCase();
+                for (InstalledModule info : fullList) {
+                    if (lowercaseContains(Utils.getAppLabel(info.app, mPm), filter)
+                            || lowercaseContains(info.packageName, filter)) {
+                        showList.add(info);
+                    }
+                }
+            }
+            mAdapter.addAll(showList);
             switch (XposedApp.getPreferences().getInt("list_sort", 0)) {
                 case 7:
                     cmp = Collections.reverseOrder((ApplicationInfo a, ApplicationInfo b) -> {
@@ -163,7 +186,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                     break;
             }
             mAdapter.sort((lhs, rhs) -> {
-                if (XposedApp.getPreferences().getBoolean("enabled_top", false)) {
+                if (XposedApp.getPreferences().getBoolean("enabled_top", true)) {
                     boolean aChecked = mModuleUtil.isModuleEnabled(lhs.packageName);
                     boolean bChecked = mModuleUtil.isModuleEnabled(rhs.packageName);
                     if (aChecked == bChecked) {
@@ -185,13 +208,21 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     private ListView mListView;
     private View mBackgroundList;
 
+    public ModulesFragment() {
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        filter = new ApplicationFilter();
         mModuleUtil = ModuleUtil.getInstance();
         mPm = Objects.requireNonNull(getActivity()).getPackageManager();
         displayNameComparator = new ApplicationInfo.DisplayNameComparator(mPm);
         cmp = displayNameComparator;
+    }
+
+    private void filter(String constraint) {
+        filter.filter(constraint);
     }
 
     @Override
@@ -212,7 +243,6 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         reloadModules.run();
         getListView().setAdapter(mAdapter);
         mModuleUtil.addListener(this);
-
         ActionBar actionBar = ((WelcomeActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -241,6 +271,19 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         ((ImageView) view.findViewById(R.id.background_list_iv)).setImageResource(R.drawable.ic_nav_modules);
         ((TextView) view.findViewById(R.id.list_status)).setText(R.string.no_xposed_modules_found);
 
+        mSearchListener = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        };
         return view;
     }
 
@@ -253,6 +296,8 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_modules, menu);
+        mSearchView = (SearchView) menu.findItem(R.id.app_search).getActionView();
+        mSearchView.setOnQueryTextListener(mSearchListener);
     }
 
     @Override
@@ -453,10 +498,9 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                     BufferedWriter bw = new BufferedWriter(fw);
                     PrintWriter fileOut = new PrintWriter(bw);
 
-                    Set keys = installedModules.keySet();
-                    for (Object key1 : keys) {
-                        String packageName = (String) key1;
-                        fileOut.println(packageName);
+                    Set<String> keys = installedModules.keySet();
+                    for (String key1 : keys) {
+                        fileOut.println(key1);
                     }
 
                     fileOut.close();
@@ -814,6 +858,24 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 warningText.setVisibility(View.GONE);
             }
             return view;
+        }
+    }
+
+    private boolean lowercaseContains(String s, CharSequence filter) {
+        return !TextUtils.isEmpty(s) && s.toLowerCase().contains(filter);
+    }
+
+    class ApplicationFilter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            Objects.requireNonNull(getActivity()).runOnUiThread(reloadModules);
+            return null;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            Objects.requireNonNull(getActivity()).runOnUiThread(reloadModules);
         }
     }
 }

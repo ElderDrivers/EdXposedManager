@@ -5,7 +5,6 @@
     android:layout_marginTop="?attr/actionBarSize">
 
     <LinearLayout
-        android:id="@+id/body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"

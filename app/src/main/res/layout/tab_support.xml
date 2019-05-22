@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            tools:ignore="UseCompoundDrawables,ContentDescription">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:ignore="UseCompoundDrawables,ContentDescription">
 
     <LinearLayout
         android:id="@android:id/content"
@@ -41,29 +41,29 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_info"/>
+                        android:src="@drawable/ic_info" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
                         android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
                         android:orientation="vertical"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp">
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/support_modules_label"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                         <TextView
                             android:id="@+id/tab_support_module_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/support_modules_description"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
                     </LinearLayout>
 
@@ -84,22 +84,22 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_help"/>
+                        android:src="@drawable/ic_help" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
                         android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
                         android:orientation="vertical"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp">
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/support_framework_label"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                     </LinearLayout>
 
@@ -120,22 +120,22 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_nav_logs"/>
+                        android:src="@drawable/ic_nav_logs" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
                         android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
                         android:orientation="vertical"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp">
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/support_faq_label"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                     </LinearLayout>
 
@@ -156,28 +156,28 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_donate"/>
+                        android:src="@drawable/ic_donate" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
                         android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
                         android:orientation="vertical"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp">
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/support_donate_label"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/support_donate_description"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
                     </LinearLayout>
 

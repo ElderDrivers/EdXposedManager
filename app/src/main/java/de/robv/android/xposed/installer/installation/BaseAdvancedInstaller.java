@@ -21,6 +21,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.meowcat.edxposed.manager.R;
@@ -31,10 +36,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
@@ -150,7 +151,8 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
         try {
             chooserInstallers.setAdapter(new XposedZip.MyAdapter(getContext(), installers()));
             chooserUninstallers.setAdapter(new XposedZip.MyAdapter(getContext(), uninstallers()));
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         if (Build.VERSION.SDK_INT >= 21 && installers().size() >= 3 && uninstallers().size() >= 4) {
             if (StatusInstallerFragment.ARCH.contains("86")) {
@@ -233,7 +235,8 @@ public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.Dow
                 chooserUninstallers.setVisibility(View.GONE);
                 btnUninstall.setVisibility(View.GONE);
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         if (!isStable()) {
             view.findViewById(R.id.warning_unstable).setVisibility(View.VISIBLE);

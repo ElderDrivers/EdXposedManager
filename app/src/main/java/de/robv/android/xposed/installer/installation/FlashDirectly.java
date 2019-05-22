@@ -7,7 +7,6 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -17,7 +16,6 @@ import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 
 import static de.robv.android.xposed.installer.util.InstallZipUtil.closeSilently;
-import static de.robv.android.xposed.installer.util.InstallZipUtil.reportMissingFeatures;
 import static de.robv.android.xposed.installer.util.InstallZipUtil.triggerError;
 import static de.robv.android.xposed.installer.util.RootUtil.getShellPath;
 

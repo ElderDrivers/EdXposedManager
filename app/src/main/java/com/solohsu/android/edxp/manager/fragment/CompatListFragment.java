@@ -8,8 +8,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.solohsu.android.edxp.manager.adapter.AppAdapter;
 import com.solohsu.android.edxp.manager.adapter.AppHelper;
@@ -18,12 +24,6 @@ import com.solohsu.android.edxp.manager.adapter.CompatListAdapter;
 import org.meowcat.edxposed.manager.R;
 
 import java.util.Objects;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class CompatListFragment extends Fragment implements AppAdapter.Callback {
 

@@ -8,26 +8,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
-import androidx.annotation.StringRes;
-import androidx.core.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.StringRes;
+import androidx.core.app.NotificationCompat;
+
+import org.meowcat.edxposed.manager.R;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import org.meowcat.edxposed.manager.R;
 import de.robv.android.xposed.installer.WelcomeActivity;
 import de.robv.android.xposed.installer.XposedApp;
 
 public final class NotificationUtil {
 
     public static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
+    public static final int NOTIFICATION_MODULE_INSTALLING = 4;
     private static final int NOTIFICATION_MODULES_UPDATED = 1;
     private static final int NOTIFICATION_INSTALLER_UPDATE = 2;
     private static final int NOTIFICATION_MODULE_INSTALLATION = 3;
-    public static final int NOTIFICATION_MODULE_INSTALLING = 4;
-
     private static final int PENDING_INTENT_OPEN_MODULES = 0;
     private static final int PENDING_INTENT_OPEN_INSTALL = 1;
     private static final int PENDING_INTENT_SOFT_REBOOT = 2;
@@ -250,12 +251,12 @@ public final class NotificationUtil {
         @Override
         public void onReceive(Context context, Intent intent) {
             /*
-            * Close the notification bar in order to see the toast that module
-            * was enabled successfully. Furthermore, if SU permissions haven't
-            * been granted yet, the SU dialog will be prompted behind the
-            * expanded notification panel and is therefore not visible to the
-            * user.
-            */
+             * Close the notification bar in order to see the toast that module
+             * was enabled successfully. Furthermore, if SU permissions haven't
+             * been granted yet, the SU dialog will be prompted behind the
+             * expanded notification panel and is therefore not visible to the
+             * user.
+             */
             sContext.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
             cancelAll();
 
@@ -300,12 +301,12 @@ public final class NotificationUtil {
         @Override
         public void onReceive(Context context, Intent intent) {
             /*
-            * Close the notification bar in order to see the toast that module
-            * was enabled successfully. Furthermore, if SU permissions haven't
-            * been granted yet, the SU dialog will be prompted behind the
-            * expanded notification panel and is therefore not visible to the
-            * user.
-            */
+             * Close the notification bar in order to see the toast that module
+             * was enabled successfully. Furthermore, if SU permissions haven't
+             * been granted yet, the SU dialog will be prompted behind the
+             * expanded notification panel and is therefore not visible to the
+             * user.
+             */
             sContext.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 
             if (intent.hasExtra(EXTRA_APK_PATH)) {

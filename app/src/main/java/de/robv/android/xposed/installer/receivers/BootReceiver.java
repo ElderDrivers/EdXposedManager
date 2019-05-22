@@ -9,8 +9,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.json.JSONObject;
-
 import org.meowcat.edxposed.manager.BuildConfig;
+
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.json.JSONUtils;

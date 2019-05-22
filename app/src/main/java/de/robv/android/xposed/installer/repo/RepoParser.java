@@ -17,14 +17,13 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.meowcat.edxposed.manager.R;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import org.meowcat.edxposed.manager.R;
 
 import de.robv.android.xposed.installer.XposedApp;
 

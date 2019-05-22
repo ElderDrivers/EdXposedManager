@@ -32,7 +32,6 @@
         <item name="background_card_pressed">@drawable/background_card_pressed_black</item>
     </style>
 
-    <style name="Theme.XposedInstaller.Transparent" parent="Theme.AppCompat.NoActionBar">
-    </style>
+    <style name="Theme.XposedInstaller.Transparent" parent="Theme.AppCompat.NoActionBar"></style>
 
 </resources>

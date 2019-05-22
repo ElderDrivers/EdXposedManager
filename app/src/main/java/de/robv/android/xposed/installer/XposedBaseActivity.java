@@ -1,9 +1,10 @@
 package de.robv.android.xposed.installer;
 
 import android.os.Bundle;
+import android.view.WindowManager;
+
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.WindowManager;
 
 import org.meowcat.edxposed.manager.R;
 

@@ -18,6 +18,13 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.annimon.stream.Stream;
 import com.google.android.material.tabs.TabLayout;
@@ -31,12 +38,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
@@ -400,7 +401,9 @@ public class AdvancedInstallerFragment extends Fragment {
         }
 
         @Override
-        public int getCount() { return listFragment.size(); }
+        public int getCount() {
+            return listFragment.size();
+        }
 
         @NonNull
         @Override
