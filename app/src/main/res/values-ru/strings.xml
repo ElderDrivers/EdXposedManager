@@ -337,7 +337,7 @@
     <string name="pref_title_dynamic_modules">Мгновенный список модулей</string>
     <string name="pref_dynamic_modules_summary">При включении загружать последний активированный список модулей в каждом запущенном процессе приложения</string>
     <string name="title_compat_list">Режим Compat</string>
-    <string name="settings_group_edxposed">Настройки старого драйвера Xposed (необходима перезагрузка)</string>
+    <string name="settings_group_edxposed">Настройки Elder Driver Xposed (Нужна перезагрузка)</string>
     <string name="pref_title_black_white_list">Режим списка приложений</string>
     <string name="pref_black_white_list_summary">Примечание: использование режима списка приложений может нарушить функции общесистемных модулей.</string>
     <string name="white_list_mode_summary">Режим белого списка: Выбранное приложение будет использовать EdXposed Framework.\nРежим черного списка: Выбранное приложение не будет использовать EdXposed Framework.</string>
