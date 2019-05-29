@@ -250,9 +250,9 @@
     <string name="module_saved">Модуль сохранен в %1$s</string>
     <string name="ignore_updates">Игнорировать обновление</string>
     <string name="ignore_updates_summ">Игнорировать обновления для конкретного модуля.</string>
-    <string name="reboot_recovery">Перезагрузить в рекавери</string>
-    <string name="reboot_bootloader">Перезагрузить в загрузчик</string>
-    <string name="reboot_download">Перезагрузить режим загрузки</string>
+    <string name="reboot_recovery">Перезагрузка в рекавери</string>
+    <string name="reboot_bootloader">Перезагрузка в фастбут</string>
+    <string name="reboot_download">Перезагрузка в загрузчик</string>
     <string name="loading">Загрузка…</string>
     <string name="chrome_custom_tabs">Пользовательские вкладки Chrome</string>
     <string name="chrome_custom_tabs_summ">Открытие ссылок внутри приложения</string>
