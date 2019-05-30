@@ -27,7 +27,7 @@
     <string name="install">Установить или обновить</string>
     <string name="uninstall">Удалить</string>
     <string name="soft_reboot">Быстрая перезагрузка</string>
-    <string name="reboot">Полная перезагрузка</string>
+    <string name="reboot">Перезагрузка</string>
     <string name="areyousure">Вы уверены?</string>
     <string name="phone_not_compatible">Xposed (пока) не совместим с версией Android SDK %1$d или архитектурой процессора (%2$s).</string>
     <string name="reboot_failed">Сбой перезагрузки. Используйте встроенную функцию перезагрузки на устройстве.</string>
@@ -364,7 +364,7 @@
     <string name="edxp_installer_installed">Вы должны удалить «Xposed Installer», чтобы использовать «EdXposed Менеджер».</string>
     <string name="install_time">Время установки: </string>
     <string name="update_time">Время обновления: </string>
-    <string name="enabled_top">Топ проверенных пунктов</string>
+    <string name="enabled_top">Показывать включенные модули/приложения в начале списка</string>
     <string name="list_sort">Сортировка списков</string>
     <string name="sort_by_name">Сортировать по названию приложения</string>
     <string name="sort_by_name_reverse">Сортировать по названию приложения (обратный)</string>
