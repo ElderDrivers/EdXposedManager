@@ -67,11 +67,12 @@
 
     <string-array name="icons">
         <item>MlgmXyysd</item>
-        <item>dvdandroid</item>
-        <item>hjmodi</item>
+        <item>DVDAndroid</item>
+        <item>Hjmodi</item>
         <item>rovo89</item>
+        <item>Cornie</item>
         <item>@string/rovo_89_old_icon</item>
-        <item>staol</item>
+        <item>Staol</item>
     </string-array>
 
     <string-array name="iconsValues" translatable="false">
@@ -81,6 +82,7 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
     </string-array>
 
     <string-array name="iconsDrawables" translatable="false">
@@ -88,6 +90,7 @@
         <item>ic_launcher_dvdandroid</item>
         <item>ic_launcher_hjmodi</item>
         <item>ic_launcher_rovo</item>
+        <item>ic_launcher_cornie</item>
         <item>ic_launcher_rovo_old</item>
         <item>ic_launcher_staol</item>
     </string-array>

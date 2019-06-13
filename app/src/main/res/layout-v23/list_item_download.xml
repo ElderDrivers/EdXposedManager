@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@android:id/text1"
-            android:layout_alignLeft="@android:id/text1"
+            android:layout_alignStart="@android:id/text1"
             android:layout_marginBottom="8dip"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@android:id/text2"
-            android:layout_alignLeft="@android:id/text2"
+            android:layout_alignStart="@android:id/text2"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/downloadStatus"
-            android:layout_alignLeft="@android:id/text2"
+            android:layout_alignStart="@android:id/text2"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@android:color/tertiary_text_dark" />
     </RelativeLayout>

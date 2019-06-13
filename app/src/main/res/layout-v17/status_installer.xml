@@ -15,8 +15,8 @@
             android:id="@+id/disableView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="2dp"
-            app:cardCornerRadius="0dp">
+            android:elevation="@dimen/card_elevation"
+            app:cardCornerRadius="@dimen/card_corner_radius">
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/disableSwitch"
@@ -28,7 +28,8 @@
                 android:layout_margin="12dp"
                 android:checked="true"
                 android:text="@string/status"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded" />
 
         </androidx.cardview.widget.CardView>
 
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardBackgroundColor="?attr/list_download_item_color"
                 app:cardUseCompatPadding="true">
 
@@ -64,7 +66,8 @@
                             android:id="@+id/status_icon"
                             android:layout_width="84dp"
                             android:layout_height="84dp"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            tools:ignore="ContentDescription" />
 
                     </FrameLayout>
 
@@ -94,8 +97,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardBackgroundColor="?attr/list_download_item_color"
-                app:cardElevation="2dp"
+                app:cardElevation="@dimen/card_elevation"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -150,7 +154,8 @@
                         android:minHeight="48dp"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
+                        android:paddingEnd="16dp"
+                        android:focusable="true">
 
                         <ImageView
                             android:layout_width="24dp"
@@ -186,12 +191,14 @@
                         android:minHeight="48dp"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
+                        android:paddingEnd="16dp"
+                        android:focusable="true">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_phone" />
+                            android:src="@drawable/ic_phone"
+                            tools:ignore="ContentDescription" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -220,12 +227,14 @@
                         android:minHeight="48dp"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
+                        android:paddingEnd="16dp"
+                        android:focusable="true">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_chip" />
+                            android:src="@drawable/ic_chip"
+                            tools:ignore="ContentDescription" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -254,12 +263,14 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
+                        android:paddingEnd="16dp"
+                        android:focusable="true">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_verified" />
+                            android:src="@drawable/ic_verified"
+                            tools:ignore="ContentDescription" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -298,8 +309,9 @@
                 android:layout_marginBottom="4dp"
                 android:paddingTop="20dp"
                 android:visibility="gone"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardBackgroundColor="?attr/list_download_item_color"
-                app:cardElevation="2dp"
+                app:cardElevation="@dimen/card_elevation"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -325,12 +337,14 @@
                         android:minHeight="48dp"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
+                        android:paddingEnd="16dp"
+                        android:focusable="true">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_update" />
+                            android:src="@drawable/ic_update"
+                            tools:ignore="ContentDescription" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"

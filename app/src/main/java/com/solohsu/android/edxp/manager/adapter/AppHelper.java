@@ -24,7 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import de.robv.android.xposed.installer.XposedApp;
@@ -42,7 +42,8 @@ public class AppHelper {
     private static final String COMPAT_LIST_PATH = "conf/compatlist/";
     private static final String WHITE_LIST_MODE = "conf/usewhitelist";
 
-    private static final List<String> FORCE_WHITE_LIST = Collections.singletonList(BuildConfig.APPLICATION_ID);
+    static final List<String> FORCE_WHITE_LIST  = new ArrayList<>(Arrays.asList(BuildConfig.APPLICATION_ID, "com.solohsu.android.edxp.manager", "de.robv.android.xposed.installer"));
+    static List<String> FORCE_WHITE_LIST_MODULE = new ArrayList<>(FORCE_WHITE_LIST);
 
     @SuppressWarnings("OctalInteger")
     static void makeSurePath() {
@@ -60,7 +61,7 @@ public class AppHelper {
     }
 
     private static boolean addBlackList(String packageName) {
-        if (FORCE_WHITE_LIST.contains(packageName)) {
+        if (FORCE_WHITE_LIST_MODULE.contains(packageName)) {
             removeBlackList(packageName);
             return false;
         }
@@ -68,7 +69,7 @@ public class AppHelper {
     }
 
     private static boolean removeWhiteList(String packageName) {
-        if (FORCE_WHITE_LIST.contains(packageName)) {
+        if (FORCE_WHITE_LIST_MODULE.contains(packageName)) {
             return false;
         }
         return whiteListFileName(packageName, false);
@@ -87,8 +88,13 @@ public class AppHelper {
         List<String> s = new ArrayList<>();
         for (File file1 : files) {
             if (!file1.isDirectory()) {
-                System.out.println(file1.getName());
                 s.add(file1.getName());
+            }
+        }
+        for (String pn : FORCE_WHITE_LIST_MODULE) {
+            if (s.contains(pn)) {
+                s.remove(pn);
+                removeBlackList(pn);
             }
         }
         return s;
@@ -98,19 +104,19 @@ public class AppHelper {
         File file = new File(BASE_PATH + WHITE_LIST_PATH);
         File[] files = file.listFiles();
         if (files == null) {
-            return FORCE_WHITE_LIST;
+            return FORCE_WHITE_LIST_MODULE;
         }
         List<String> result = new ArrayList<>();
         for (File file1 : files) {
             result.add(file1.getName());
         }
-        for (String pn : FORCE_WHITE_LIST) {
+        for (String pn : FORCE_WHITE_LIST_MODULE) {
             if (!result.contains(pn)) {
                 result.add(pn);
                 addWhiteList(pn);
             }
         }
-        return new ArrayList<>(result);
+        return result;
     }
 
     @SuppressLint("WorldReadableFiles")

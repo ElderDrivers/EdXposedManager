@@ -8,7 +8,7 @@
     android:elevation="2dp"
     android:foreground="?selectableItemBackground"
     card_view:cardBackgroundColor="?attr/list_download_item_color"
-    card_view:cardCornerRadius="2dp"
+    card_view:cardCornerRadius="@dimen/card_corner_radius"
     card_view:cardUseCompatPadding="true">
 
     <LinearLayout

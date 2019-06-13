@@ -33,6 +33,7 @@
         android:elevation="4dp"
         android:fitsSystemWindows="true"
         app:insetForeground="#4000"
-        app:menu="@menu/drawer" />
+        app:menu="@menu/drawer"
+        android:focusable="true" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

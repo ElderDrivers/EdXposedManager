@@ -51,7 +51,7 @@
                 android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
-            android:name="de.robv.android.xposed.installer.WelcomeActivitydvdandroid"
+            android:name="de.robv.android.xposed.installer.WelcomeActivityDVDAndroid"
             android:enabled="false"
             android:icon="@mipmap/ic_launcher_dvdandroid"
             android:label="@string/app_name"
@@ -68,7 +68,7 @@
                 android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
-            android:name="de.robv.android.xposed.installer.WelcomeActivityhjmodi"
+            android:name="de.robv.android.xposed.installer.WelcomeActivityHjmodi"
             android:enabled="false"
             android:icon="@mipmap/ic_launcher_hjmodi"
             android:label="@string/app_name"
@@ -85,7 +85,7 @@
                 android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
-            android:name="de.robv.android.xposed.installer.WelcomeActivityrovo"
+            android:name="de.robv.android.xposed.installer.WelcomeActivityRovo"
             android:enabled="false"
             android:icon="@mipmap/ic_launcher_rovo"
             android:label="@string/app_name"
@@ -102,7 +102,23 @@
                 android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
-            android:name="de.robv.android.xposed.installer.WelcomeActivityrovoold"
+            android:name="de.robv.android.xposed.installer.WelcomeActivityCornie"
+            android:enabled="false"
+            android:icon="@mipmap/ic_launcher_cornie"
+            android:label="@string/app_name"
+            android:targetActivity="de.robv.android.xposed.installer.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity-alias>
+        <activity-alias
+            android:name="de.robv.android.xposed.installer.WelcomeActivityRovoOld"
             android:enabled="false"
             android:icon="@mipmap/ic_launcher_rovo_old"
             android:label="@string/app_name"
@@ -118,7 +134,7 @@
                 android:resource="@xml/shortcuts" />
         </activity-alias>
         <activity-alias
-            android:name="de.robv.android.xposed.installer.WelcomeActivitystaol"
+            android:name="de.robv.android.xposed.installer.WelcomeActivityStaol"
             android:enabled="false"
             android:icon="@mipmap/ic_launcher_staol"
             android:label="@string/app_name"

@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
+            app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardBackgroundColor="?attr/list_download_item_color"
             app:cardUseCompatPadding="true">
 
@@ -36,7 +37,8 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:paddingRight="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -50,7 +52,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -79,7 +82,8 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:paddingRight="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -93,7 +97,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -115,7 +120,8 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:paddingRight="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -129,7 +135,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -151,7 +158,8 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:paddingRight="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -165,7 +173,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"

@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
+            app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardBackgroundColor="?attr/list_download_item_color"
             app:cardUseCompatPadding="true">
 
@@ -58,7 +59,8 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingEnd="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -72,7 +74,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -99,7 +102,8 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingEnd="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -114,7 +118,8 @@
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
                         android:text="@string/changelog"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        tools:ignore="RtlHardcoded" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -127,7 +132,8 @@
                     android:minHeight="@dimen/md_listitem_height"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingEnd="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -142,7 +148,8 @@
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
                         android:text="@string/about_libraries_label"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        tools:ignore="RtlHardcoded" />
 
                 </LinearLayout>
 
@@ -156,7 +163,8 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingEnd="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -170,7 +178,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -197,7 +206,8 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingEnd="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -211,7 +221,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"

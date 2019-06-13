@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/card_background_dark"
-            app:cardCornerRadius="2dp">
+            app:cardCornerRadius="@dimen/card_corner_radius">
 
             <TextView
                 android:id="@+id/console"
@@ -37,7 +37,8 @@
                 android:scaleType="fitStart"
                 android:visibility="gone"
                 tools:src="@drawable/ic_check_circle"
-                tools:visibility="visible" />
+                tools:visibility="visible"
+                tools:ignore="ContentDescription" />
 
         </androidx.cardview.widget.CardView>
 
@@ -66,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/progressBar"
-            android:layout_toLeftOf="@+id/reboot"
+            android:layout_toStartOf="@+id/reboot"
             android:text="@string/not_now"
             android:textColor="?android:attr/textColorSecondary"
             android:visibility="gone"
@@ -83,7 +84,8 @@
             android:gravity="start|center_vertical"
             android:visibility="gone"
             tools:text="Reboot (15)"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 

@@ -328,7 +328,7 @@
     <string name="white_list_mode_title">White List mode</string>
     <string name="title_white_list">White List</string>
     <string name="title_black_list">Black List</string>
-    <string name="add_package_failed">Failed to edit package, check your root access.</string>
+    <string name="add_package_failed">Failed to edit, one or more settings prevent you from editing.</string>
     <string name="menu_title_compile_reset">Deoptimize</string>
     <string name="menu_title_compile_speed">Optimize with Speed mode</string>
     <string name="menu_title_compile_dexopt">Optimize with Dexopt mode</string>
@@ -399,7 +399,9 @@
     <string name="sort_by_update_time">Sort by update time</string>
     <string name="sort_by_update_time_reverse">Sort by update time (reverse)</string>
     <string name="app_no_ui">This application does not provide a user interface.</string>
-    <string name="show_modules">Show modules</string>
-    <string name="show_modules_summary">Show modules in application list.\nThis option cannot remove checked application flag.</string>
+    <string name="show_modules">Show modules and managers</string>
+    <string name="show_modules_summary">Show modules and managers in application list.\nThis option does not remove checked application flag.</string>
     <string name="compile_failed">Optimize failed, check your root access.</string>
+    <string name="hook_modules">Force hook modules</string>
+    <string name="hook_modules_summary">Force add modules to white-list and remove modules from black-list.\nClosing this option does not remove modules from white-list.</string>
 </resources>

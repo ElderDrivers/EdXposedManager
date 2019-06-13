@@ -66,7 +66,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.jar");
     public static final String ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
     public static int WRITE_EXTERNAL_PERMISSION = 69;
-    public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_dvdandroid, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
+    public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_dvdandroid, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_cornie, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
     private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
     @SuppressLint("StaticFieldLeak")
     private static XposedApp mInstance = null;
@@ -238,6 +238,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         mMainHandler = new Handler();
 
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
+
         reloadXposedProp();
         createDirectories();
         delete(new File(Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/.temp"));
@@ -291,6 +292,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     @SuppressWarnings("JavaReflectionMemberAccess")
+    @SuppressLint({"PrivateApi", "NewApi"})
     private void createDirectories() {
         FileUtils.setPermissions(BASE_DIR, 00777, -1, -1);
         mkdirAndChmod("conf", 00777);
@@ -298,7 +300,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
         if (Build.VERSION.SDK_INT >= 24) {
             try {
-                @SuppressLint("PrivateApi") Method deleteDir = FileUtils.class.getDeclaredMethod("deleteContentsAndDir", File.class);
+                Method deleteDir = FileUtils.class.getDeclaredMethod("deleteContentsAndDir", File.class);
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "bin"));
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "conf"));
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "log"));

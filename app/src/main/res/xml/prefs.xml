@@ -94,6 +94,12 @@
             android:summary="@string/show_modules_summary"
             android:title="@string/show_modules" />
 
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="hook_modules"
+            android:summary="@string/hook_modules_summary"
+            android:title="@string/hook_modules" />
+
         <!--suppress AndroidElementNotAllowed -->
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"

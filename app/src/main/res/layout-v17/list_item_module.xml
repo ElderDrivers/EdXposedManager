@@ -12,8 +12,8 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:minHeight="?android:attr/listPreferredItemHeight"
     card_view:cardBackgroundColor="?attr/list_download_item_color"
-    card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="2dp">
+    card_view:cardCornerRadius="@dimen/card_corner_radius"
+    card_view:cardElevation="@dimen/card_elevation">
 
     <LinearLayout
         android:layout_width="match_parent"

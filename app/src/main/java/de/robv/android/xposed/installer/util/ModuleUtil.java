@@ -167,7 +167,7 @@ public final class ModuleUtil {
         return mFrameworkPackageName;
     }
 
-    public boolean isFramework(String packageName) {
+    private boolean isFramework(String packageName) {
         return mFrameworkPackageName.equals(packageName);
     }
 
@@ -184,10 +184,11 @@ public final class ModuleUtil {
     }
 
     public void setModuleEnabled(String packageName, boolean enabled) {
-        if (enabled)
+        if (enabled) {
             mPref.edit().putInt(packageName, 1).apply();
-        else
+        } else {
             mPref.edit().remove(packageName).apply();
+        }
     }
 
     public boolean isModuleEnabled(String packageName) {

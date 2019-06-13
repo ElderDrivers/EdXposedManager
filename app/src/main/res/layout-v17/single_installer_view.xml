@@ -18,7 +18,7 @@
             android:layout_marginBottom="8dp"
             android:fillViewport="true"
             app:cardBackgroundColor="?attr/list_download_item_color"
-            app:cardElevation="2dp"
+            app:cardElevation="@dimen/card_elevation"
             app:cardUseCompatPadding="true">
 
             <RelativeLayout
@@ -49,7 +49,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_toStartOf="@+id/infoInstaller"
                         android:layout_toLeftOf="@+id/infoInstaller"
-                        android:spinnerMode="dropdown" />
+                        android:spinnerMode="dropdown"
+                        tools:ignore="RtlHardcoded" />
 
                     <ImageView
                         android:id="@+id/infoInstaller"
@@ -61,7 +62,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:src="@drawable/ic_info" />
+                        android:src="@drawable/ic_info"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/warning_unstable"
@@ -71,19 +73,21 @@
                         android:orientation="horizontal"
                         android:visibility="gone"
                         app:cardBackgroundColor="@color/amber_500"
-                        app:cardCornerRadius="2dp">
+                        app:cardCornerRadius="@dimen/card_corner_radius">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:id="@+id/imageView"
                                 android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="8dp"
-                                android:src="@drawable/ic_warning" />
+                                android:src="@drawable/ic_warning"
+                                tools:ignore="ContentDescription" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -108,19 +112,21 @@
                         android:orientation="horizontal"
                         android:visibility="gone"
                         app:cardBackgroundColor="@color/amber_500"
-                        app:cardCornerRadius="2dp">
+                        app:cardCornerRadius="@dimen/card_corner_radius">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:id="@+id/imageView1"
                                 android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="8dp"
-                                android:src="@drawable/ic_warning" />
+                                android:src="@drawable/ic_warning"
+                                tools:ignore="ContentDescription" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -144,7 +150,8 @@
                         android:layout_below="@id/warning_unofficial"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
-                        android:text="@string/install" />
+                        android:text="@string/install"
+                        tools:ignore="RtlHardcoded" />
 
                     <Spinner
                         android:id="@+id/chooserUninstallers"
@@ -157,7 +164,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_toStartOf="@+id/infoUninstaller"
                         android:layout_toLeftOf="@+id/infoUninstaller"
-                        android:spinnerMode="dropdown" />
+                        android:spinnerMode="dropdown"
+                        tools:ignore="RtlHardcoded" />
 
                     <ImageView
                         android:id="@+id/infoUninstaller"
@@ -170,7 +178,8 @@
                         android:layout_gravity="center|end"
                         android:layout_marginTop="5dp"
                         android:padding="5dp"
-                        android:src="@drawable/ic_info" />
+                        android:src="@drawable/ic_info"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                     <Button
                         android:id="@+id/btnUninstall"
@@ -179,7 +188,8 @@
                         android:layout_below="@+id/chooserUninstallers"
                         android:layout_alignEnd="@+id/infoUninstaller"
                         android:layout_alignRight="@+id/infoUninstaller"
-                        android:text="@string/uninstall" />
+                        android:text="@string/uninstall"
+                        tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
 
@@ -195,12 +205,14 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingEnd="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_person" />
+                        android:src="@drawable/ic_person"
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -209,7 +221,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:id="@+id/author"
@@ -233,12 +246,14 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingEnd="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_help" />
+                        android:src="@drawable/ic_help"
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -247,7 +262,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -270,12 +286,14 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingEnd="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_description" />
+                        android:src="@drawable/ic_description"
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -284,7 +302,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:id="@+id/updateDescriptionTv"
@@ -328,7 +347,8 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_action_thumb_up" />
+                        android:src="@drawable/ic_action_thumb_up"
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -337,7 +357,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:id="@+id/compatibilityTv"
@@ -360,12 +381,14 @@
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingEnd="16dp"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_action_thumb_down" />
+                        android:src="@drawable/ic_action_thumb_down"
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -374,7 +397,8 @@
                         android:layout_marginLeft="32dp"
                         android:orientation="vertical"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:id="@+id/incompatibilityTv"

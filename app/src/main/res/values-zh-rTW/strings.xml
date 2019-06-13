@@ -4,12 +4,12 @@
     <!-- General/various strings -->
     <string name="menuSend">傳送</string>
     <string name="menuSaveToSd">儲存到 SD 卡</string>
-    <string name="xposed_not_active">最新版本的 EdXposed 尚未啟用。您是否已安裝過框架並重啟手機？</string>
+    <string name="xposed_not_active">最新版本的 EdXposed 尚未啟用。您是否已安裝過框架並重新啟動手機？</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">框架</string>
     <string name="tabDownload">下載</string>
-    <string name="welcome_framework_update_available">EdXposed 框架有更新可用（%s）。</string>
+    <string name="welcome_framework_update_available">EdXposed 框架有新的更新可供使用（%s）。</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">框架</string>
@@ -26,25 +26,25 @@
     <!-- Installer tab -->
     <string name="install">安裝/更新</string>
     <string name="uninstall">解除安裝</string>
-    <string name="soft_reboot">軟重啟</string>
-    <string name="reboot">重啟</string>
+    <string name="soft_reboot">快速重新啟動</string>
+    <string name="reboot">完整重新啟動</string>
     <string name="areyousure">您確定？</string>
-    <string name="phone_not_compatible">EdXposed 尚不相容您手機的 Android SDK %1$d 版本或處理器架構（%2$s）。</string>
-    <string name="reboot_failed">重啟失敗，請使用裝置自帶的重啟功能。</string>
-    <string name="auto_flash_note">當按下 “OK” 後，%s 將會被自動刷入到裝置中。</string>
+    <string name="phone_not_compatible">EdXposed 目前不相容您手機的 Android SDK %1$d 版本或處理器架構（%2$s）。</string>
+    <string name="reboot_failed">重新啟動失敗，請使用裝置內建的重新啟動功能。</string>
+    <string name="auto_flash_note">當按下 “確定” 後，%s 將會被自動刷入到裝置中。</string>
     <string name="manual_flash_note">請從 SD 卡中刷入 %s 以完成操作。</string>
-    <string name="reboot_confirmation">您想要現在重啟嗎？</string>
-    <string name="reboot_recovery_confirmation">您想要現在重啟至恢復模式嗎？</string>
+    <string name="reboot_confirmation">您想要現在重新啟動嗎？</string>
+    <string name="reboot_recovery_confirmation">您想要現在重新啟動至復原模式嗎？</string>
     <string name="install_warning_title">請小心！</string>
-    <string name="install_warning">某些情況下，您的裝置可能會在安裝 EdXposed 過後變得無法正常啟動。\n\n如果您先前從未聽說過「軟變磚」或「無限重啟」，又或者您不知道如何從這些情況中恢復手機，那麼請"<b>不要</b>"安裝 EdXposed！\n\n無論如何，都強烈建議您做好近期的資料備份。</string>
+    <string name="install_warning">某些情況下，您的裝置可能會在安裝 EdXposed 過後變得無法正常啟動。\n\n如果您先前從未聽說過「軟變磚」或「無限重新啟動」，又或者您不知道如何從這些情況中恢復手機，那麼請"<b>不要</b>"安裝 EdXposed！\n\n無論如何，我們都強烈建議您做好近期的資料備份。</string>
     <string name="dont_show_again">不再提示</string>
-    <string name="install_known_issue">EdXposed 與您的裝置間似乎存在已知的問題（\"%s\"）。這可能將導致 EdXposed 無法被安裝或是更為嚴重的問題。點選這裡來了解詳情。</string>
+    <string name="install_known_issue">EdXposed 與您的裝置間似乎存在已知的問題（\"%s\"）。這可能將導致 EdXposed 無法被安裝或是更為嚴重的問題。點選這裡來了解詳細情形。</string>
     <string name="installed_lollipop">EdXposed 框架 %s 版已啟用。</string>
-    <string name="installed_lollipop_inactive">EdXposed 框架 %s 版已安裝，但尚未啟用。 請檢視日誌以瞭解詳情。</string>
+    <string name="installed_lollipop_inactive">EdXposed 框架 %s 版已安裝，但尚未啟用。 請檢視日誌以瞭解詳細情形。</string>
     <string name="modules_updates_available">有模組更新可用</string>
 
     <!-- File operations -->
-    <string name="root_failed">無法獲取 root 許可權。\n\n請確認您的裝置已正確 root 且沒有阻止 shell 命令。</string>
+    <string name="root_failed">無法取得 Root 權限。\n\n請確認您的裝置已正確 Root 且沒有阻止 shell 命令。</string>
     <string name="file_extract_failed">無法解壓縮 %s</string>
     <string name="file_mounting_writable">正在掛載 %s 為可寫入&#8230;</string>
     <string name="file_mount_writable_failed">無法將 %s 掛載為可寫入</string>
@@ -57,34 +57,34 @@
     <string name="file_copying">正在複製 %s&#8230;</string>
     <string name="file_copy_failed">無法將 %1$s 複製到 %2$s</string>
     <string name="file_move_failed">無法將 %1$s 移動到 %2$s</string>
-    <string name="file_set_perms_failed">無法為 %s 設定許可權</string>
+    <string name="file_set_perms_failed">無法為 %s 設定權限</string>
     <string name="file_set_owner_failed">無法為 %s 設定所有者</string>
     <string name="file_creating_directory">正在建立目錄 %s&#8230;</string>
     <string name="file_create_directory_failed">無法建立目錄 %s</string>
     <string name="file_writing_recovery_command">正在寫入 recovery 命令&#8230;</string>
-    <string name="file_writing_recovery_command_failed">寫入 recovery 命令失敗。請嘗試更換安裝方式。</string>
-    <string name="file_done">完成！變更將在重啟後生效。</string>
+    <string name="file_writing_recovery_command_failed">寫入 recovery 命令失敗。請嘗試變更安裝方式。</string>
+    <string name="file_done">完成！變更將在重新啟動後生效。</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">EdXposed 模組尚未啟用</string>
     <string name="module_is_not_activated_yet_detailed">%s 已安裝，但尚未啟用。</string>
-    <string name="activate_and_reboot">啟用並重啟</string>
+    <string name="activate_and_reboot">啟用並重新啟動</string>
     <string name="activate_only">僅啟用</string>
     <string name="module_activated">EdXposed 模組已啟用</string>
-    <string name="module_empty_description">（未提供介紹）</string>
-    <string name="module_no_ui">該模組未提供使用者介面</string>
-    <string name="no_xposed_modules_found">未找到 EdXposed 模組！</string>
-    <string name="xposed_module_list_updated">EdXposed 模組列表已更新\n變更將在重啟後生效</string>
+    <string name="module_empty_description">（模組未提供介紹）</string>
+    <string name="module_no_ui">模組未提供使用者介面</string>
+    <string name="no_xposed_modules_found">未發現 EdXposed 模組！</string>
+    <string name="xposed_module_list_updated">EdXposed 模組清單已更新\n變更將在重新啟動後生效</string>
     <string name="xposed_module_updated_notification_title">EdXposed 模組已更新</string>
-    <string name="xposed_module_updated_notification">重啟以使變更生效。</string>
+    <string name="xposed_module_updated_notification">重新啟動以使變更生效。</string>
     <string name="warning_xposed_min_version">該模組需要更新版本的 EdXposed（%d），因此無法被啟用。</string>
     <string name="no_min_version_specified">該模組未指定所需的 EdXposed 版本。</string>
-    <string name="warning_min_version_too_low">該模組針對 EdXposed %1$d 版本構建 ，由於不相容 %2$d 版本中的變更，現已被停用。</string>
+    <string name="warning_min_version_too_low">該模組針對 EdXposed %1$d 版本構建，由於不相容 %2$d 版本中的變更，現已被停用。</string>
     <string name="module_launch">開啟</string>
     <string name="module_download_updates">下載/更新</string>
     <string name="module_support">支援</string>
     <string name="module_app_info">應用資訊</string>
-    <string name="modules_app_store">在應用商店檢視</string>
+    <string name="modules_app_store">在 Play 商店內檢視</string>
     <string name="module_uninstall">解除安裝</string>
 
     <!-- Download tab -->
@@ -118,7 +118,7 @@
     <string name="download_section_7d">最近 7 天</string>
     <string name="download_section_30d">最近 30 天</string>
     <string name="download_section_older">超過 30 天前</string>
-    <string name="download_details_not_found">在倉庫中找不到包名為 \"%s\" 的模組。</string>
+    <string name="download_details_not_found">在倉庫中找不到包裝名稱為 \"%s\" 的模組。</string>
     <string name="download_no_versions">作者還沒有上傳過任何內容。</string>
     <string name="download_test_version_not_shown">有新的測試版可用。但根據全域性或模組的設定未被顯示。</string>
 
@@ -126,9 +126,10 @@
     <string name="settings_group_download">下載</string>
     <string name="settings_release_type">要顯示的版本</string>
     <string name="settings_group_experimental">實驗性</string>
-    <string name="settings_disable_resources">禁用資源鉤子</string>
+    <string name="settings_disable_resources">停用資源鉤子</string>
     <string name="settings_disable_resources_summary">解決與主題引擎的衝突\n<b>警告：</b> 啟用該選項將導致修改資源的模組無法工作</string>
-    <string name="settings_group_app">應用</string>
+	<string name="settings_lists">清單</string>
+    <string name="settings_group_app">應用程式</string>
     <string name="settings_theme">主題</string>
     <string name="settings_theme_light">亮色</string>
     <string name="settings_theme_dark">暗色</string>
@@ -137,7 +138,7 @@
 
     <!-- Support tab -->
     <string name="support_modules_label">模組支援</string>
-    <string name="support_modules_description">在模組列表中長按任意模組並選擇 \"%1$s\"</string>
+    <string name="support_modules_description">在模組清單中長按任意模組並選擇 \"%1$s\"</string>
     <string name="support_framework_label">框架/管理器 支援</string>
     <string name="support_faq_label">常見/已知問題</string>
     <string name="support_donate_label">捐贈</string>
@@ -153,11 +154,11 @@
 
     <!-- About tab -->
     <string name="about_developers_label">主要開發者</string>
-    <string name="about_translator_label">翻譯</string>
-    <string name="translator">文藝青年</string>
+    <string name="about_translator_label">繁體中文(臺灣)翻譯</string>
+    <string name="translator">文藝青年、孟武.尼德霍格.龍</string>
     <string name="about_version_label">版本</string>
     <string name="about_source_label">原始碼</string>
-    <string name="about_libraries_label">使用的庫</string>
+    <string name="about_libraries_label">使用的開源資料庫</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">下載</string>
@@ -175,6 +176,7 @@
     <string name="download_no_valid_apk">下載的檔案並非有效的 APK （或存在相容性問題）</string>
     <string name="download_incorrect_package_name">檔案包名不正確（下載：%1$s，預期：%2$s）</string>
     <string name="download_running">正在下載中…</string>
+	<string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">下載 %1$s 失敗：%2$d（%3$s）</string>
@@ -182,14 +184,14 @@
     <string name="repo_load_failed">無法從 %1$s:\n%2$s 中載入倉庫</string>
     <string name="choose_color">選擇顏色</string>
 
-    <string name="warning_installed_on_external_storage">此模組因被安裝在 SD 卡中而導致無法載入，請將其移動到內部儲存。</string>
+    <string name="warning_installed_on_external_storage">此模組因被安裝在記憶卡中而導致無法載入，請將其移動到內部儲存空間。</string>
     <string name="view">檢視</string>
     <string name="export_">匯出…</string>
     <string name="import_">匯入…</string>
-    <string name="export_enabled_modules">匯出已啟用模組列表</string>
-    <string name="import_enabled_modules">匯入已啟用模組列表</string>
-    <string name="export_installed_modules">匯出已安裝模組列表</string>
-    <string name="import_installed_modules">匯入已安裝模組列表</string>
+    <string name="export_enabled_modules">匯出已啟用模組清單</string>
+    <string name="import_enabled_modules">匯入已啟用模組清單</string>
+    <string name="export_installed_modules">匯出已安裝模組清單</string>
+    <string name="import_installed_modules">匯入已安裝模組清單</string>
     <string name="no_installed_modules">沒有任何已安裝的模組</string>
     <string name="enable_heads_up">啟用浮動通知</string>
     <string name="enable_heads_up_summary">對新安裝或已更新的模組啟用浮動通知</string>
@@ -199,7 +201,7 @@
 
     <string name="share">分享</string>
     <string name="back">返回</string>
-    <string name="loadingError">獲取安裝器/解除安裝器列表時出現錯誤。\n無法接入網路或伺服器出現錯誤</string>
+    <string name="loadingError">取得安裝器/解除安裝器清單時出現錯誤。\n無法接入網路或伺服器出現錯誤</string>
     <string name="info">資訊</string>
     <string name="infoInstaller">
         名稱：%1$s
@@ -213,12 +215,12 @@
         \n日期：%3$s
     </string>
     <string name="downloadZipOk">%1$s 已正確下載</string>
-    <string name="permissionNotGranted">當未允許寫入外部儲存空間許可權時，該功能無法正常工作。</string>
-    <string name="warningArchitecture">你將會下載一個 ZIP 格式檔案，請手動在 Magisk Manager 或 Recovery 中刷入。</string>
-    <string name="newVersion">有新版本的 EdXposed Manager 可用！現在更新！</string>
+    <string name="permissionNotGranted">當未允許寫入外部儲存空間權限時，該功能無法正常工作。</string>
+    <string name="warningArchitecture">你將會下載一個 ZIP 格式檔案，請手動在 Magisk Manager 或重新啟動到 Recovery 刷入。</string>
+    <string name="newVersion">有新版本的 EdXposed Manager 可以使用！現在更新！</string>
     <string name="update">更新</string>
     <string name="choose_icon">選擇一個圖示</string>
-    <string name="custom_icon">自定義圖示</string>
+    <string name="custom_icon">自訂圖示</string>
     <string name="not_installed_no_lollipop">EdXposed 框架未安裝。</string>
     <string name="notify_module_update">啟用模組更新通知</string>
 
@@ -227,11 +229,11 @@
     <string name="md_cancel_label">取消</string>
     <string name="md_choose_label">選擇</string>
     <string name="md_error_label">錯誤</string>
-    <string name="md_storage_perm_error">您的應用未獲取 READ_EXTERNAL_STORAGE 許可權.</string>
-    <string name="md_custom_label">自定義</string>
-    <string name="md_presets_label">預置</string>
+    <string name="md_storage_perm_error">您的應用程式未取得 READ_EXTERNAL_STORAGE 權限！</string>
+    <string name="md_custom_label">自訂</string>
+    <string name="md_presets_label">預設</string>
     <string name="changelog">更新日誌</string>
-    <string name="scroll_top">滾動到頂部</string>
+    <string name="scroll_top">滑動到最上面</string>
     <string name="add_bookmark">新增書籤</string>
     <string name="remove_bookmark">移除書籤</string>
     <string name="bookmarks">書籤</string>
@@ -241,18 +243,18 @@
     <string name="undo">撤銷</string>
     <string name="notification_coloration">通知圖示著色</string>
     <string name="file_is_empty">檔案為空</string>
-    <string name="install_with_su">使用 root 許可權安裝模組</string>
+    <string name="install_with_su">使用 Root 權限安裝模組</string>
     <string name="install_with_su_summ">勾選後在 EdXposed Manager 內安裝模組時將不再顯示安裝提示</string>
     <string name="install_remove">安裝並移除</string>
     <string name="download_remove">下載並移除</string>
     <string name="module_saved">模組已儲存至 %1$s</string>
     <string name="ignore_updates">忽略更新</string>
     <string name="ignore_updates_summ">忽略指定模組的更新</string>
-    <string name="reboot_recovery">重啟至恢復模式</string>
-    <string name="reboot_bootloader">重啟至引導載入器</string>
-    <string name="reboot_download">重啟至下載模式</string>
+    <string name="reboot_recovery">重新啟動至復原模式</string>
+    <string name="reboot_bootloader">重新啟動至開機載入器</string>
+    <string name="reboot_download">重新啟動至下載模式</string>
     <string name="loading">正在載入…</string>
-    <string name="chrome_custom_tabs">Chrome 自定義標籤頁</string>
+    <string name="chrome_custom_tabs">Chrome 自訂標籤頁</string>
     <string name="chrome_custom_tabs_summ">在內建瀏覽器中開啟連結</string>
     <string name="scroll_bottom">滾動到底部</string>
     <string name="open_drawer_summ">在啟動應用時自動開啟導航抽屜欄</string>
@@ -261,110 +263,143 @@
     <string name="share_app_text">來瞧瞧這個：EdXposed Manager 已經發布！%s</string>
     <string name="status">EdXposed 狀態</string>
     <string name="xposed_on_next_reboot">EdXposed 框架將在下次重新啟動後啟用</string>
-    <string name="xposed_off_next_reboot">EdXposed 框架將在下次重新啟動後禁用</string>
+    <string name="xposed_off_next_reboot">EdXposed 框架將在下次重新啟動後停用</string>
     <string name="rovo_89_old_icon">rovo89（舊風格）</string>
-    <string name="confirm_reboots">重啟確認</string>
+    <string name="confirm_reboots">重新啟動確認</string>
     <string name="skip_xposedminversion_check">跳過模組檢查</string>
     <string name="skip_xposedminversion_check_summ">跳過針對模組的 \'EdXposed 最低版本\' 和 \'EdXposed 安裝狀態\' 檢查</string>
+	
     <string name="compatibility">相容性</string>
-    <string name="details">詳情</string>
+    <string name="details">詳細情形</string>
     <string name="look_and_feel">介面外觀</string>
-    <string name="support_xda">獲取幫助</string>
+    <string name="support_xda">取得說明</string>
+    <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
     <string name="later">稍後</string>
     <string name="save">儲存</string>
     <string name="download_location">下載位置</string>
     <string name="download_location_summ">選擇 APK 檔案的下載位置（僅限模組）</string>
-    <string name="restart_needed">需要重啟</string>
+    <string name="restart_needed">需要重新啟動</string>
     <string name="cache_cleaned">應用快取已清除。需要重新開啟</string>
-    <string name="update_download_list">模組列表將在幾秒鐘內載入</string>
+    <string name="update_download_list">模組清單將在幾秒鐘內載入</string>
     <string name="no_connection_available">沒有可用的連線</string>
     <string name="not_logcat">如果有人要求您提供一份 Android 系統日誌，那麼您來錯了地方。在此處顯示的是 EdXposed 的日誌資訊；如果您想抓取系統日誌，可嘗試我們的 Logcat Magisk 模組。</string>
     <string name="force_english">強制顯示為英語</string>
-    <string name="warning_language">語言設定將在應用重啟後生效。</string>
-    <string name="not_flashable_inapp">應用不能刷入此ZIP檔案。將在恢復模式中自動安裝</string>
+    <string name="warning_language">語言設定將在應用程式重新啟動後生效。</string>
+    <string name="not_flashable_inapp">應用不能刷入此 ZIP 檔案。將在復原模式中自動安裝</string>
     <string name="not_now">稍後</string>
     <string name="countdown">%1$s (%2$d)</string>
-    <string name="flash_error_timeout">超時</string>
+    <string name="flash_error_timeout">逾時</string>
     <string name="flash_error_shell_died">執行意外中止</string>
-    <string name="flash_error_invalid_zip">不是一個可刷入的ZIP檔案</string>
-    <string name="flash_error_not_flashable_in_app">此檔案僅能通過恢復模式刷入</string>
+    <string name="flash_error_invalid_zip">不是一個可刷入的 ZIP 檔案</string>
+    <string name="flash_error_not_flashable_in_app">此檔案僅能通過復原模式刷入</string>
     <string name="flash_error_default">%d 個錯誤</string>
+	<string name="installation_error">安裝錯誤</string>
+    <string name="installation_successful">安裝成功</string>
+    <string name="installation_successful_message">成功安裝 %s</string>
+    <string name="installation_error_message">%1$s 安裝失敗 (%2$s)</string>
+	<string name="installation_apk_normal">使用普通的方式安裝 APK</string>
+    <string name="install_load">安裝中…</string>
+    <string name="install_load_apk">正在安裝 %s</string>
+	
+    <string name="unstable_build">這是一個不穩定的組建。自行承擔安裝後的風險。</string>
+    <string name="unofficial_build">這是一個非官方的組建。自行承擔安裝後的風險。</string>
+    <string name="alt_download_method">備用下載方法</string>
+    <string name="alt_download_method_summ">如果下載模組時出現問題，請開啟此選項。</string>
+    
+	<string name="known_issue_wrong_base_directory">錯誤的配置資料夾: %1$s</string>
+    <string name="known_issue_missing_base_directory">未知配置的資料夾</string>
+    <string name="installer_needs_update">%1$s 需要更新</string>
+	
+    <string name="dexopt_now">以 Dexopt 模式最佳化全部應用程式</string>
+    <string name="speed_now">以 Speed 模式最佳化全部應用程式</string>
+    <string name="this_may_take_a_while">請稍候，這將需要一段時間…</string>
+    <string name="take_while_cannot_resore">你確定要最佳化全部應用程式嗎？\n這將需要一段時間。 \n並且無法恢復。\n提示：你可以在相容/應用程式名單中最佳化單個應用程式。</string>
+    <string name="done">完成！</string>
+	<string name="verified_boot_deactivated">開機驗證已停用</string>
+	<string name="verified_boot_none">無法取得開機驗證的狀態</string>
+    <string name="verified_boot_active">開機驗證已啟動</string>
+	<string name="verified_boot_explanation">開機驗證（dm-verity） 防止裝置在開機時修改系統分割區。\n<b>不建議安裝 EdXposed！</b></string>						 
+	<string name="ignore_chinese">忽略中文字元</string>
+    <string name="ignore_chinese_summary">從模組清單中隱藏中文模組。模組仍然可以被搜尋。啟用此選項可能會降低效能。</string>
 
     <!-- EdXp related -->
-    <string name="nav_title_black_list">應用名單</string>
+    <string name="nav_title_black_list">應用程式名單</string>
     <string name="white_list_mode_title">白名單模式</string>
     <string name="nav_title_compat_list">相容模式</string>
     <string name="title_white_list">白名單</string>
     <string name="title_black_list">黑名單</string>
-    <string name="add_package_failed">修改失敗，請檢查 Root 許可權</string>
-    <string name="menu_title_compile_reset">取消優化</string>
-    <string name="menu_title_compile_speed">以 Speed 模式優化應用</string>
-    <string name="menu_title_compile_dexopt">以 Dexopt 模式優化應用</string>
+    <string name="add_package_failed">修改失敗，請檢查 Root 權限</string>
+    <string name="menu_title_compile_reset">重設最佳化</string>
+    <string name="menu_title_compile_speed">以 Speed 模式最佳化應用程式</string>
+    <string name="menu_title_compile_dexopt">以 Dexopt 模式最佳化應用程式</string>
     <string name="compile_reset_msg">清除中…</string>
-    <string name="compile_speed_msg">優化中…</string>
-    <string name="pref_title_dynamic_modules">即時模組列表</string>
-    <string name="pref_dynamic_modules_summary">啟用後，每個APP程序啟動時重新載入最新的模組列表</string>
+    <string name="compile_speed_msg">最佳化中…</string>
+    <string name="pref_title_dynamic_modules">即時模組清單</string>
+    <string name="pref_dynamic_modules_summary">啟用後，每個應用程式啟動時重新載入最新的模組清單</string>
     <string name="title_compat_list">相容模式</string>
-    <string name="notinstalled">EdXposed 框架未安裝</string>
-    <string name="meowcat_summary">MlgmXyysd 所屬團隊</string>
-    <string name="elderdrivers_summary">EdXposed 的開發團隊</string>
-    <string name="solohsu_summary">EdXposed 的主要開發者</string>
-    <string name="mlgmxyysd_summary">EdXposed Manager 的主要開發者</string>
-    <string name="website">官網</string>
-    <string name="coolapk">酷安</string>
-    <string name="meowcat">小喵工作室</string>
-    <string name="white_list_mode_summary">白名單模式: 僅選中的應用載入 EdXposed 框架\n黑名單模式: 選中的應用不會載入 EdXposed 框架\n僅當啟用應用名單模式時有效</string>
-    <string name="settings_group_edxposed">Elder Driver Xposed 設定 (重啟生效)</string>
-    <string name="pref_title_black_white_list">應用名單模式</string>
-    <string name="pref_black_white_list_summary">注意：使用應用名單可能會導致某些系統全域性模組不能正常工作.</string>
-    <string name="ignore_chinese_summary">從模組列表中隱藏中文模組。模組仍然可以被搜尋。啟用此選項可能會降低效能.</string>
-    <string name="ignore_chinese">忽略中文字元</string>
-    <string name="verified_boot_explanation">引導驗證（dm-verity）防止裝置在修改系統分割槽時引導.\n<b>不建議安裝EdXposed！</b></string>
-    <string name="verified_boot_active">引導驗證已啟用</string>
-    <string name="verified_boot_deactivated">引導驗證已禁用</string>
-    <string name="verified_boot_none">無法獲取引導驗證狀態</string>
-    <string name="done">完成！</string>
-    <string name="installation_error">安裝錯誤</string>
-    <string name="installation_successful">安裝成功</string>
-    <string name="installation_successful_message">成功安裝 %s</string>
-    <string name="installation_error_message">%1$s 安裝失敗 (%2$s)</string>
-    <string name="install_load">安裝中…</string>
-    <string name="installation_apk_normal">使用普通方式安裝 APK</string>
-    <string name="install_load_apk">正在安裝 %s</string>
-    <string name="unstable_build">這是一個不穩定的構建。自行承擔安裝風險。</string>
-    <string name="unofficial_build">這是一個非官方的構建。自行承擔安裝風險。</string>
-    <string name="alt_download_method">備用下載方法</string>
-    <string name="alt_download_method_summ">如果下載模組時出現問題，請開啟此選項.</string>
-    <string name="known_issue_wrong_base_directory">錯誤的配置資料夾: %1$s</string>
-    <string name="known_issue_missing_base_directory">未知配置資料夾</string>
-    <string name="installer_needs_update">%1$s 需要更新</string>
-    <string name="dexopt_now">以 Dexopt 模式優化全部應用</string>
-    <string name="speed_now">以 Speed 模式優化全部應用</string>
-    <string name="this_may_take_a_while">請稍後，這將需要一段時間…</string>
-    <string name="take_while_cannot_resore">你確定要優化全部應用嗎？\n這將需要一段時間. \n並且無法恢復.\n提示：你可以在相容/應用名單中優化單個應用.</string>
-    <string name="pref_title_enable_boot_image_deopt">禁用系統程式碼優化</string>
-    <string name="pref_enable_boot_image_deopt_summary">禁用系統程式碼的優化能使所有系統方法都可以被hook到，但是會降低系統流暢度.\n主要用於對比測試某個方法無法hook到是否是系統優化導致.</string>
+	<string name="settings_group_edxposed">Elder Driver Xposed 設定 (重新啟動生效)</string>
+    <string name="pref_title_black_white_list">應用程式名單模式</string>
+    <string name="pref_black_white_list_summary">注意：使用應用程式名單可能會導致某些系統全域性模組不能正常工作。</string>
+	<string name="white_list_mode_summary">白名單模式: 僅被選擇的的應用程式載入 EdXposed 框架\n黑名單模式: 被選擇的應用不會載入 EdXposed 框架\n僅當啟用應用程式名單模式時有效</string>
+	
+	<string name="app_name" translatable="false">EdXposed Manager</string>
+    <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
+    <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
+    <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
+    <string name="about_source" translatable="false">https://github.com/ElderDrivers/XposedInstaller/</string>
+    <string name="about_support" translatable="false">http://edxp.meowcat.org/</string>
 
-    <string name="pref_title_disable_verbose_log">禁用詳細日誌</string>
-    <string name="pref_disable_verbose_log_summary">模組將不再記錄詳細日誌.</string>
-    <string name="logs_verbose_disabled">詳細日誌已禁用.</string>
+    <string name="solohsu" translatable="false">givein2u</string>
+    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
+    <string name="meowcat">小喵工作室</string>
+    <string name="elderdrivers" translatable="false">Elder Drivers</string>
+
+    <string name="github" translatable="false">Github</string>
+    <string name="xda" translatable="false">XDA</string>
+	<string name="coolapk">酷安</string>
+    <string name="website">官網</string>
+
+    <string name="solohsu_summary">EdXposed 的主要開發者</string>	
+	<string name="mlgmxyysd_summary">EdXposed Manager 的主要開發者</string>
+	<string name="elderdrivers_summary">EdXposed 的開發團隊</string>
+	<string name="meowcat_summary">MlgmXyysd 所屬團隊</string>
+    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
+    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
+    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
+    <string name="mlgmxyysd_coolapk" translatable="false">http://www.coolapk.com/u/814297</string>
+    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
+    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
+    <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
+    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
+    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
+    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>	
+    <string name="notinstalled">EdXposed 框架未安裝</string>
+	<string name="pref_title_enable_boot_image_deopt">不要最佳化開機鏡像</string>
+    <string name="pref_enable_boot_image_deopt_summary">啟用能使所有 Framework 框架都可以被 hook 到，但是會降低系統流暢度。\n主要用於對比測試某個方法無法 hook 到是否為系統最佳化所導致。</string>		
+	
+    <string name="pref_title_disable_verbose_log">停用 Verbose 日誌</string>
+    <string name="pref_disable_verbose_log_summary">模組將不再記錄 Verbose 日誌。</string>
+    <string name="logs_verbose_disabled">Verbose 日誌已停用。</string>
+    <string name="logs_too_long">日誌太長！</string>
+    <string name="logs_cannot_read">無法讀取日誌：\n</string>	
     <string name="app_launch">執行</string>
     <string name="app_stop">停止</string>
     <string name="update_description">更新日誌</string>
-    <string name="edxp_installer_installed">你必須先解除安裝 "EdXposed Installer" 才能繼續使用 "EdXposed Manager".</string>
+    <string name="edxp_installer_installed">你必須先解除安裝 "EdXposed Installer" 才能繼續使用 "EdXposed Manager"！</string>
     <string name="install_time">安裝日期: </string>
     <string name="update_time">更新日期: </string>
-    <string name="enabled_top">頂置已勾選專案</string>
-    <string name="list_sort">列表排序方式</string>
-    <string name="sort_by_name">應用名稱</string>
-    <string name="sort_by_name_reverse">應用名稱（降序）</string>
-    <string name="sort_by_package_name">包體名稱</string>
-    <string name="sort_by_package_name_reverse">包體名稱（降序）</string>
+    <string name="enabled_top">最上層已勾選的專案</string>
+    <string name="list_sort">清單排序方式</string>
+    <string name="sort_by_name">應用程式名稱</string>
+    <string name="sort_by_name_reverse">應用程式名稱（降序）</string>
+    <string name="sort_by_package_name">包裝名稱</string>
+    <string name="sort_by_package_name_reverse">包裝名稱（降序）</string>
     <string name="sort_by_install_time">安裝時間</string>
     <string name="sort_by_install_time_reverse">安裝時間（降序）</string>
     <string name="sort_by_update_time">更新時間</string>
     <string name="sort_by_update_time_reverse">更新時間（降序）</string>
-    <string name="app_no_ui">該應用未提供使用者介面</string>
+    <string name="app_no_ui">應用程式未提供使用者介面</string>
     <string name="show_modules">顯示模組</string>
-    <string name="show_modules_summary">在應用列表內顯示模組.\n此選項並不會移除已勾選的應用標識.</string>
+    <string name="show_modules_summary">在應用程式清單內顯示模組。\n此選項並不會移除已勾選的應用標識。</string>
+	<string name="compile_failed">最佳化失敗，請檢查您的 Root 權限。</string>
 </resources>
