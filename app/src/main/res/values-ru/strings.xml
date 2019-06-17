@@ -106,7 +106,7 @@
     <string name="download_status_installed">Установленная (версия %s)</string>
     <string name="download_status_update_available">Доступно обновление (версия %1$s \u2192 %2$s)</string>
     <string name="download_timestamps">Добавлено %1$s \u00b7 Обновлено %2$s</string>
-    <string name="download_sorting_title">Порядок сортировк</string>
+    <string name="download_sorting_title">Сортировка</string>
     <string name="download_sorting_status">Сортировать по статусу</string>
     <string name="download_sorting_updated">Сортировать по последнему обновлению</string>
     <string name="download_sorting_created">Сортировать по дате создания</string>
