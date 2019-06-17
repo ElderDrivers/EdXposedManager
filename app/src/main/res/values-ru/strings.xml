@@ -127,7 +127,7 @@
     <string name="settings_release_type">Отображение версий модуля</string>
     <string name="settings_group_experimental">Экспериментальное</string>
     <string name="settings_disable_resources">Не изменять ресурсы</string>
-    <string name="settings_disable_resources_summary">Временное решение для конфликтов с темами системы\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта опция включена</string>
+    <string name="settings_disable_resources_summary">Временное решение для конфликтов с темами системы\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
     <string name="settings_lists">Списки</string>
     <string name="settings_group_app">Приложение</string>
     <string name="settings_theme">Тема</string>
@@ -320,7 +320,7 @@
     <string name="verified_boot_active">Проверка загрузки включена</string>
     <string name="verified_boot_explanation">Проверка загрузки (dm-verity) запрещает загрузку устройства, если системный раздел изменен.\n<b>Установка EdXposed не рекомендуется!</b></string>
     <string name="ignore_chinese">Фильтровать иероглифы</string>
-    <string name="ignore_chinese_summary">В «Поиске модулей» не показывать модули на китайском языке. Модули останутся доступны через иконку поиска. Включение этой опции может привести к низкой производительности</string>
+    <string name="ignore_chinese_summary">В «Поиске модулей» не показывать модули на китайском языке. Модули останутся доступны через иконку поиска. Включение этой настройки может привести к низкой производительности</string>
 
     <!-- EdXp related -->
     <string name="nav_title_black_list">Черный/Белый список</string>
@@ -328,7 +328,7 @@
     <string name="white_list_mode_title">Режим черного/белого списка</string>
     <string name="title_white_list">Белый список</string>
     <string name="title_black_list">Черный список</string>
-    <string name="add_package_failed">Не удалось отредактировать, проверьте ваш root-доступ</string>
+    <string name="add_package_failed">Не удалось отредактировать, некоторые настройки не позволяют редактировать</string>
     <string name="menu_title_compile_reset">Деоптимизация</string>
     <string name="menu_title_compile_speed">Оптимизировать в режиме Speed</string>
     <string name="menu_title_compile_dexopt">Оптимизировать в режиме Dexopt</string>
@@ -378,4 +378,6 @@
     <string name="show_modules">Отображение модулей</string>
     <string name="show_modules_summary">Показывать модули в «Черный/Белый список» и «Список совместимости».\nЭтот параметр не может удалять отмеченный флаг приложения</string>
     <string name="compile_failed">Не удалось оптимизировать, проверьте ваш root-доступ</string>
+    <string name="hook_modules">Принудительное добавление модулей</string>
+    <string name="hook_modules_summary">Принудительно добавить модули в белый список и удалить модули из черного списка. Выключение этой настройки не удаляет модули из белого списка</string>
 </resources>
