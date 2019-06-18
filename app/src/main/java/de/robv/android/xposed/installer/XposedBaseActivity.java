@@ -1,13 +1,20 @@
 package de.robv.android.xposed.installer;
 
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.meowcat.edxposed.manager.R;
 
+import java.util.Locale;
+
+import de.robv.android.xposed.installer.util.LocaleUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public abstract class XposedBaseActivity extends AppCompatActivity {
@@ -17,6 +24,8 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
         ThemeUtil.setTheme(this);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        checkForceEnglish(prefs);
     }
 
     @Override
@@ -24,6 +33,14 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
         super.onResume();
         XposedApp.setColors(getSupportActionBar(), XposedApp.getColor(this), this);
         ThemeUtil.reloadTheme(this);
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // keep force English after orientation changed
+        checkForceEnglish(prefs);
     }
 
     public void setFloating(androidx.appcompat.widget.Toolbar toolbar, @StringRes int details) {
@@ -42,6 +59,14 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
             }
             toolbar.setNavigationIcon(R.drawable.ic_close);
             setFinishOnTouchOutside(true);
+        }
+    }
+
+    private void checkForceEnglish(SharedPreferences prefs) {
+        if (prefs.getBoolean("force_english", false)) {
+            LocaleUtil.setLacale(this.getBaseContext(), Locale.ENGLISH);
+        }else {
+            LocaleUtil.setLacale(this.getBaseContext(), Locale.getDefault());
         }
     }
 }
