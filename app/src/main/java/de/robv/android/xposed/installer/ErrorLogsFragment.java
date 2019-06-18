@@ -283,8 +283,8 @@ public class ErrorLogsFragment extends Fragment {
                 br = new BufferedReader(new FileReader(logfile));
                 long skipped = skipLargeFile(br, logfile.length());
                 if (skipped > 0) {
-                    llog.append("-----------------\n");
                     llog.append(Objects.requireNonNull(getContext()).getResources().getString(R.string.logs_too_long));
+                    llog.append("\n-----------------\n");
                 }
 
                 char[] temp = new char[1024];
