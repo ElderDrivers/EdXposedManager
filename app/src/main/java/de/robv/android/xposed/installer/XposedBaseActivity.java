@@ -64,9 +64,9 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
 
     private void checkForceEnglish(SharedPreferences prefs) {
         if (prefs.getBoolean("force_english", false)) {
-            LocaleUtil.setLacale(this.getBaseContext(), Locale.ENGLISH);
+            LocaleUtil.setLocale(this.getBaseContext(), Locale.ENGLISH);
         }else {
-            LocaleUtil.setLacale(this.getBaseContext(), Locale.getDefault());
+            LocaleUtil.setLocale(this.getBaseContext(), Locale.getDefault());
         }
     }
 }
