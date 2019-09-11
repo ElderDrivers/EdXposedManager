@@ -305,6 +305,8 @@
     <string name="unofficial_build">This is a unofficial build. Install it at your own risk.</string>
     <string name="alt_download_method">Alternative download method</string>
     <string name="alt_download_method_summ">Check this option if you get issues when downloading a module</string>
+    <string name="custom_list">Use custom modules list</string>
+    <string name="custom_list_summ">Mirrored modules list can help load faster.\nBut the newly submitted module display will be delayed (about 24 hours)</string>
 
     <string name="known_issue_wrong_base_directory">Wrong base directory: %1$s</string>
     <string name="known_issue_missing_base_directory">Missing base directory</string>

@@ -373,4 +373,6 @@
     <string name="compile_failed">优化失败，请检查root权限.</string>
     <string name="hook_modules">强制添加模块</string>
     <string name="hook_modules_summary">强制将模块添加进白名单并移出黑名单.\n关闭此选项并不会移除已勾选的应用标识.</string>
+    <string name="custom_list">使用自定义模块列表</string>
+    <string name="custom_list_summ">镜像化的模块列表可以帮助加速加载\n但是新提交的模块显示会有延迟（大约24小时）</string>
 </resources>
