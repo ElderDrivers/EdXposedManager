@@ -1,2 +1,4 @@
-# EdXposedManager
-Companion Android application for EdXposed
+EdXposedManager
+===============
+
+Companion Android application for EdXposed.
