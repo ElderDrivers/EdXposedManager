@@ -332,7 +332,7 @@
     <string name="title_white_list">White List</string>
     <string name="title_black_list">Black List</string>
     <string name="add_package_failed">Failed to edit, one or more settings prevent you from editing.</string>
-    <string name="menu_title_compile_reset">Deoptimize</string>
+    <string name="menu_title_compile_reset">De-optimize</string>
     <string name="menu_title_compile_speed">Optimize with Speed mode</string>
     <string name="menu_title_compile_dexopt">Optimize with Dexopt mode</string>
     <string name="compile_reset_msg">Resetting …</string>
@@ -341,6 +341,7 @@
     <string name="pref_dynamic_modules_summary">When turned on, load latest activated module list on each app process started</string>
     <string name="title_compat_list">Compat mode</string>
     <string name="settings_group_edxposed">Elder Driver Xposed Settings (Reboot needed)</string>
+    <string name="settings_group_log">Logs</string>
     <string name="pref_title_black_white_list">App List Mode</string>
     <string name="pref_black_white_list_summary">Note: using app list mode might break system-wide modules\' functions.</string>
     <string name="white_list_mode_summary">White List mode: Only selected app load EdXposed Framework.\nBlack List mode: Selected app NOT load EdXposed Framework.</string>
@@ -377,7 +378,7 @@
     <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
     <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
     <string name="notinstalled">The EdXposed framework is not installed.</string>
-    <string name="pref_title_enable_boot_image_deopt">Deoptimize boot image</string>
+    <string name="pref_title_enable_boot_image_deopt">De-optimize boot image</string>
     <string name="pref_enable_boot_image_deopt_summary">Turn on to make all framework methods hookable, but the whole system will be slowed down.\nMainly used to check if one framework method is inlined when it can\'t be hooked into.</string>
 
     <string name="pref_title_disable_verbose_log">Disable verbose logs</string>
@@ -408,7 +409,7 @@
     <string name="hook_modules">Force hook modules</string>
     <string name="hook_modules_summary">Force add modules to white-list and remove modules from black-list.\nClosing this option does not remove modules from white-list.</string>
     <string name="stop_verbose_log">Stop verbose log catcher</string>
-    <string name="stop_verbose_log_summ">Stop the verbose log catcher.\nVerbose log will wont be record until the next reboot.</string>
+    <string name="stop_verbose_log_summary">Stop the verbose log catcher.\nVerbose log will wont be record until the next reboot.</string>
     <string name="stop_log">Stop all log catcher</string>
-    <string name="stop_log_summ">Stop all of the log catcher.\nModules and Verbose log will wont be record until the next reboot.</string>
+    <string name="stop_log_summary">Stop all of the log catcher.\nModules and Verbose log will wont be record until the next reboot.</string>
 </resources>
