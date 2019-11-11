@@ -110,7 +110,7 @@
     <string name="download_sorting_status">Sort by status</string>
     <string name="download_sorting_updated">Sort by last update</string>
     <string name="download_sorting_created">Sort by creation date</string>
-    <string name="download_section_framework">Your device</string>
+    <string name="download_section_framework">EdXposed Framework</string>
     <string name="download_section_update_available">Update available</string>
     <string name="download_section_installed">Installed</string>
     <string name="download_section_not_installed">Not installed</string>
