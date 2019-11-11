@@ -233,11 +233,27 @@
             android:key="enable_boot_image_deopt"
             android:summary="@string/pref_enable_boot_image_deopt_summary"
             android:title="@string/pref_title_enable_boot_image_deopt" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="group_log"
+        android:title="@string/settings_group_edxposed">
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="disable_verbose_log"
             android:summary="@string/pref_disable_verbose_log_summary"
             android:title="@string/pref_title_disable_verbose_log" />
+
+        <Preference
+            android:key="stop_verbose_log"
+            android:summary="@string/stop_verbose_log_summ"
+            android:title="@string/stop_verbose_log" />
+
+        <Preference
+            android:key="stop_log"
+            android:summary="@string/stop_log_summ"
+            android:title="@string/stop_log" />
+
     </PreferenceCategory>
 </PreferenceScreen>

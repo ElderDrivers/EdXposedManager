@@ -161,8 +161,9 @@
     <string name="about_libraries_label">Used libraries</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">Download</string>
+    <string name="download_view_download">Download and Install</string>
     <string name="download_view_install">Install</string>
+    <string name="download_view_remove">Remove</string>
     <string name="download_view_cancel">Cancel</string>
     <string name="download_view_no_url">No download URL available</string>
     <string name="download_view_running">Download is running (%1$,d of %2$,d kB)</string>
@@ -275,7 +276,7 @@
     <string name="support_xda">Get support</string>
     <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
     <string name="later">Later</string>
-    <string name="save">Save</string>
+    <string name="save">Save only</string>
     <string name="download_location">Download location</string>
     <string name="download_location_summ">Download location for APK files (modules only)</string>
     <string name="restart_needed">Restart needed</string>
@@ -406,4 +407,8 @@
     <string name="compile_failed">Optimize failed, check your root access.</string>
     <string name="hook_modules">Force hook modules</string>
     <string name="hook_modules_summary">Force add modules to white-list and remove modules from black-list.\nClosing this option does not remove modules from white-list.</string>
+    <string name="stop_verbose_log">Stop verbose log catcher</string>
+    <string name="stop_verbose_log_summ">Stop the verbose log catcher.\nVerbose log will wont be record until the next reboot.</string>
+    <string name="stop_log">Stop all log catcher</string>
+    <string name="stop_log_summ">Stop all of the log catcher.\nModules and Verbose log will wont be record until the next reboot.</string>
 </resources>

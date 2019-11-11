@@ -55,12 +55,7 @@ public class RootUtil {
             }
         }
     };
-    private final Shell.OnCommandResultListener mOpenListener = new Shell.OnCommandResultListener() {
-        @Override
-        public void onCommandResult(int commandCode, int exitCode, List<String> output) {
-            mStdoutListener.onCommandResult(commandCode, exitCode);
-        }
-    };
+    private final Shell.OnCommandResultListener mOpenListener = (commandCode, exitCode, output) -> mStdoutListener.onCommandResult(commandCode, exitCode);
     private final Shell.OnCommandLineListener mStderrListener = new Shell.OnCommandLineListener() {
         @Override
         public void onLine(String line) {

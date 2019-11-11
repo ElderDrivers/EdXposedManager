@@ -182,6 +182,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         public SettingsFragment() {
         }
 
+        @SuppressWarnings("SameParameterValue")
         @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
         static void setFilePermissionsFromMode(String name, int mode) {
             int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
@@ -200,7 +201,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.prefs);
 
-            File flagFile = null;
+            File flagFile;
 
             PreferenceGroup groupApp = findPreference("group_app");
             PreferenceGroup lookFeel = findPreference("look_and_feel");
@@ -217,6 +218,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 Objects.requireNonNull(lookFeel).removePreference(navBar);
             }
 
+            //noinspection ConstantConditions
             findPreference("release_type_global").setOnPreferenceChangeListener((preference, newValue) -> {
                 RepoLoader.getInstance().setReleaseTypeGlobal((String) newValue);
                 return true;
@@ -508,6 +510,10 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                         .cancelButton(android.R.string.cancel)
                         .initialPath(XposedApp.getDownloadPath())
                         .show();
+            } else if (preference.getKey().equals(downloadLocation.getKey())) {
+
+            } else if (preference.getKey().equals(downloadLocation.getKey())) {
+
             }
 
             return true;
