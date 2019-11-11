@@ -9,7 +9,7 @@ import com.solohsu.android.edxp.manager.fragment.CompileDialogFragment;
 
 import org.meowcat.edxposed.manager.R;
 
-public class CompileUtils {
+class CompileUtils {
 
     private static final String COMPILE_COMMAND_PREFIX = "cmd package ";
     private static final String COMPILE_RESET_COMMAND = COMPILE_COMMAND_PREFIX + "compile --reset ";

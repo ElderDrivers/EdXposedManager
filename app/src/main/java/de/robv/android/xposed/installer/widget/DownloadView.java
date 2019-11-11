@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer.widget;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -18,6 +19,8 @@ import androidx.fragment.app.Fragment;
 
 import org.meowcat.edxposed.manager.R;
 
+import java.util.Objects;
+
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallback;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
@@ -25,10 +28,12 @@ import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class DownloadView extends LinearLayout {
+    @SuppressLint("StaticFieldLeak")
     public static Button mClickedButton;
     private final Button btnDownload;
     private final Button btnDownloadCancel;
     private final Button btnInstall;
+    private final Button btnRemove;
     private final Button btnSave;
     private final ProgressBar progressBar;
     private final TextView txtInfo;
@@ -42,6 +47,7 @@ public class DownloadView extends LinearLayout {
                 btnDownload.setVisibility(View.GONE);
                 btnSave.setVisibility(View.GONE);
                 btnDownloadCancel.setVisibility(View.GONE);
+                btnRemove.setVisibility(View.GONE);
                 btnInstall.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
                 txtInfo.setVisibility(View.VISIBLE);
@@ -50,6 +56,7 @@ public class DownloadView extends LinearLayout {
                 btnDownload.setVisibility(View.VISIBLE);
                 btnSave.setVisibility(View.VISIBLE);
                 btnDownloadCancel.setVisibility(View.GONE);
+                btnRemove.setVisibility(View.GONE);
                 btnInstall.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
                 txtInfo.setVisibility(View.GONE);
@@ -61,6 +68,7 @@ public class DownloadView extends LinearLayout {
                         btnDownload.setVisibility(View.GONE);
                         btnSave.setVisibility(View.GONE);
                         btnDownloadCancel.setVisibility(View.VISIBLE);
+                        btnRemove.setVisibility(View.GONE);
                         btnInstall.setVisibility(View.GONE);
                         progressBar.setVisibility(View.VISIBLE);
                         txtInfo.setVisibility(View.VISIBLE);
@@ -82,6 +90,7 @@ public class DownloadView extends LinearLayout {
                         btnDownload.setVisibility(View.VISIBLE);
                         btnSave.setVisibility(View.VISIBLE);
                         btnDownloadCancel.setVisibility(View.GONE);
+                        btnRemove.setVisibility(View.GONE);
                         btnInstall.setVisibility(View.GONE);
                         progressBar.setVisibility(View.GONE);
                         txtInfo.setVisibility(View.VISIBLE);
@@ -93,6 +102,7 @@ public class DownloadView extends LinearLayout {
                         btnDownload.setVisibility(View.GONE);
                         btnSave.setVisibility(View.GONE);
                         btnDownloadCancel.setVisibility(View.GONE);
+                        btnRemove.setVisibility(View.VISIBLE);
                         btnInstall.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                         txtInfo.setVisibility(View.VISIBLE);
@@ -111,62 +121,54 @@ public class DownloadView extends LinearLayout {
         setOrientation(LinearLayout.VERTICAL);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.download_view, this, true);
+        Objects.requireNonNull(inflater).inflate(R.layout.download_view, this, true);
 
         btnDownload = findViewById(R.id.btnDownload);
         btnDownloadCancel = findViewById(R.id.btnDownloadCancel);
+        btnRemove = findViewById(R.id.btnRemove);
         btnInstall = findViewById(R.id.btnInstall);
         btnSave = findViewById(R.id.save);
 
-        btnDownload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mClickedButton = btnDownload;
+        btnDownload.setOnClickListener(v -> {
+            mClickedButton = btnDownload;
 
-                mInfo = DownloadsUtil.addModule(getContext(), mTitle, mUrl, false, mCallback);
-                refreshViewFromUiThread();
+            mInfo = DownloadsUtil.addModule(getContext(), mTitle, mUrl, false, mCallback);
+            refreshViewFromUiThread();
 
-                if (mInfo != null)
-                    new DownloadMonitor().start();
-            }
+            if (mInfo != null)
+                new DownloadMonitor().start();
         });
 
-        btnSave.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mClickedButton = btnSave;
+        btnSave.setOnClickListener(v -> {
+            mClickedButton = btnSave;
 
-                if (checkPermissions())
-                    return;
+            if (checkPermissions())
+                return;
 
-                mInfo = DownloadsUtil.addModule(getContext(), mTitle, mUrl, true, new DownloadFinishedCallback() {
-                    @Override
-                    public void onDownloadFinished(Context context, DownloadInfo info) {
-                        Toast.makeText(context, context.getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
+            mInfo = DownloadsUtil.addModule(getContext(), mTitle, mUrl, true, (context1, info) -> Toast.makeText(context1, context1.getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show());
         });
 
-        btnDownloadCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mInfo == null)
-                    return;
+        btnDownloadCancel.setOnClickListener(v -> {
+            if (mInfo == null)
+                return;
 
-                DownloadsUtil.removeById(getContext(), mInfo.id);
-                // UI update will happen automatically by the DownloadMonitor
-            }
+            DownloadsUtil.removeById(getContext(), mInfo.id);
+            // UI update will happen automatically by the DownloadMonitor
         });
 
-        btnInstall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCallback == null)
-                    return;
+        btnRemove.setOnClickListener(v -> {
+            if (mInfo == null)
+                return;
 
-                mCallback.onDownloadFinished(getContext(), mInfo);
-            }
+            DownloadsUtil.removeById(getContext(), mInfo.id);
+            // UI update will happen automatically by the DownloadMonitor
+        });
+
+        btnInstall.setOnClickListener(v -> {
+            if (mCallback == null)
+                return;
+
+            mCallback.onDownloadFinished(getContext(), mInfo);
         });
 
         progressBar = findViewById(R.id.progress);
@@ -215,6 +217,7 @@ public class DownloadView extends LinearLayout {
         this.mTitle = title;
     }
 
+    @SuppressWarnings("unused")
     public DownloadFinishedCallback getDownloadFinishedCallback() {
         return mCallback;
     }
@@ -224,7 +227,7 @@ public class DownloadView extends LinearLayout {
     }
 
     private class DownloadMonitor extends Thread {
-        public DownloadMonitor() {
+        DownloadMonitor() {
             super("DownloadMonitor");
         }
 

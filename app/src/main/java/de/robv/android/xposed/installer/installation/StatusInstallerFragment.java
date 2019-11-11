@@ -436,6 +436,8 @@ public class StatusInstallerFragment extends Fragment {
                 return "Pie";
             case 29:
                 return "Q";
+            case 30:
+                return "R";
         }
         return "Unknown";
     }

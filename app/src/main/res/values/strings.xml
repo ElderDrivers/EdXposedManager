@@ -36,7 +36,7 @@
     <string name="reboot_confirmation">Do you want to reboot now?</string>
     <string name="reboot_recovery_confirmation">Do you want to reboot to recovery now?</string>
     <string name="install_warning_title">Be careful!</string>
-    <string name="install_warning">In some cases, your device might no longer boot after installing EdXposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install EdXposed!\n\nIn any case, having a recent backup is highly recommended.</string>
+    <string name="install_warning">In some cases, your device might no longer boot after installing EdXposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install or use EdXposed!\n\nIn any case, having a recent backup is highly recommended.</string>
     <string name="dont_show_again">Don\'t show this again</string>
     <string name="install_known_issue">There seems to be a known issue (\"%s\") with your ROM. Installing EdXposed might not work or lead to severe problems. Click here for details about the issue.</string>
     <string name="installed_lollipop">EdXposed Framework version %s is active.</string>
@@ -110,7 +110,7 @@
     <string name="download_sorting_status">Sort by status</string>
     <string name="download_sorting_updated">Sort by last update</string>
     <string name="download_sorting_created">Sort by creation date</string>
-    <string name="download_section_framework">Your device</string>
+    <string name="download_section_framework">EdXposed Framework</string>
     <string name="download_section_update_available">Update available</string>
     <string name="download_section_installed">Installed</string>
     <string name="download_section_not_installed">Not installed</string>
@@ -161,8 +161,9 @@
     <string name="about_libraries_label">Used libraries</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">Download</string>
+    <string name="download_view_download">Download and Install</string>
     <string name="download_view_install">Install</string>
+    <string name="download_view_remove">Remove</string>
     <string name="download_view_cancel">Cancel</string>
     <string name="download_view_no_url">No download URL available</string>
     <string name="download_view_running">Download is running (%1$,d of %2$,d kB)</string>
@@ -275,7 +276,7 @@
     <string name="support_xda">Get support</string>
     <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
     <string name="later">Later</string>
-    <string name="save">Save</string>
+    <string name="save">Save only</string>
     <string name="download_location">Download location</string>
     <string name="download_location_summ">Download location for APK files (modules only)</string>
     <string name="restart_needed">Restart needed</string>
@@ -331,7 +332,7 @@
     <string name="title_white_list">White List</string>
     <string name="title_black_list">Black List</string>
     <string name="add_package_failed">Failed to edit, one or more settings prevent you from editing.</string>
-    <string name="menu_title_compile_reset">Deoptimize</string>
+    <string name="menu_title_compile_reset">De-optimize</string>
     <string name="menu_title_compile_speed">Optimize with Speed mode</string>
     <string name="menu_title_compile_dexopt">Optimize with Dexopt mode</string>
     <string name="compile_reset_msg">Resetting …</string>
@@ -340,6 +341,7 @@
     <string name="pref_dynamic_modules_summary">When turned on, load latest activated module list on each app process started</string>
     <string name="title_compat_list">Compat mode</string>
     <string name="settings_group_edxposed">Elder Driver Xposed Settings (Reboot needed)</string>
+    <string name="settings_group_log">Logs</string>
     <string name="pref_title_black_white_list">App List Mode</string>
     <string name="pref_black_white_list_summary">Note: using app list mode might break system-wide modules\' functions.</string>
     <string name="white_list_mode_summary">White List mode: Only selected app load EdXposed Framework.\nBlack List mode: Selected app NOT load EdXposed Framework.</string>
@@ -376,7 +378,7 @@
     <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
     <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
     <string name="notinstalled">The EdXposed framework is not installed.</string>
-    <string name="pref_title_enable_boot_image_deopt">Deoptimize boot image</string>
+    <string name="pref_title_enable_boot_image_deopt">De-optimize boot image</string>
     <string name="pref_enable_boot_image_deopt_summary">Turn on to make all framework methods hookable, but the whole system will be slowed down.\nMainly used to check if one framework method is inlined when it can\'t be hooked into.</string>
 
     <string name="pref_title_disable_verbose_log">Disable verbose logs</string>
@@ -406,4 +408,8 @@
     <string name="compile_failed">Optimize failed, check your root access.</string>
     <string name="hook_modules">Force hook modules</string>
     <string name="hook_modules_summary">Force add modules to white-list and remove modules from black-list.\nClosing this option does not remove modules from white-list.</string>
+    <string name="stop_verbose_log">Stop verbose log catcher</string>
+    <string name="stop_verbose_log_summary">Stop the verbose log catcher.\nVerbose log will wont be record until the next reboot.</string>
+    <string name="stop_log">Stop all log catcher</string>
+    <string name="stop_log_summary">Stop all of the log catcher.\nModules and Verbose log will wont be record until the next reboot.</string>
 </resources>

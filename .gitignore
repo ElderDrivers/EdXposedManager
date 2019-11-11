@@ -1,11 +1,8 @@
 *.apk
-*.ap_
-*.iml
+*.ap
 *.dex
 *.class
 .idea/
 .gradle/
 build/
 local.properties
-app/lint.xml
-app/proguard-project.txt

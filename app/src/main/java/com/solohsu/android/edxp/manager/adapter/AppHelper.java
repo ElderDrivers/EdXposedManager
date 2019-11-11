@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import de.robv.android.xposed.installer.XposedApp;
 
@@ -266,7 +267,7 @@ public class AppHelper {
                 case R.id.app_menu_stop:
                     try {
                         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-                        manager.killBackgroundProcesses(info.packageName);
+                        Objects.requireNonNull(manager).killBackgroundProcesses(info.packageName);
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

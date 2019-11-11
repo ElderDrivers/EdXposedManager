@@ -36,7 +36,7 @@
     <string name="reboot_confirmation">您想要现在重启吗？</string>
     <string name="reboot_recovery_confirmation">您想要现在重启至恢复模式吗？</string>
     <string name="install_warning_title">请小心！</string>
-    <string name="install_warning">某些情况下，您的设备可能会在安装 EdXposed 过后变得无法正常启动。\n\n如果您先前从未听说过「软变砖」或「无限重启」，又或者您不知道如何从这些情况中恢复手机，那么请"<b>不要</b>"安装 EdXposed！\n\n无论如何，都强烈建议您做好近期的数据备份。</string>
+    <string name="install_warning">某些情况下，您的设备可能会在安装 EdXposed 过后变得无法正常启动。\n\n如果您先前从未听说过「软变砖」或「无限重启」，又或者您不知道如何从这些情况中恢复手机，那么请"<b>不要</b>"安装或使用 EdXposed！\n\n无论如何，都强烈建议您做好近期的数据备份。</string>
     <string name="dont_show_again">不再提示</string>
     <string name="install_known_issue">EdXposed 与您的设备间似乎存在已知的问题（\"%s\"）。这可能将导致 EdXposed 无法被安装或是更为严重的问题。点击这里来了解详情。</string>
     <string name="installed_lollipop">EdXposed 框架 %s 版已激活。</string>
@@ -110,7 +110,7 @@
     <string name="download_sorting_status">按状态排序</string>
     <string name="download_sorting_updated">按最后更新排序</string>
     <string name="download_sorting_created">按添加日期排序</string>
-    <string name="download_section_framework">设备信息</string>
+    <string name="download_section_framework">EdXposed 框架</string>
     <string name="download_section_update_available">有更新可用</string>
     <string name="download_section_installed">已安装</string>
     <string name="download_section_not_installed">未安装</string>
@@ -161,8 +161,9 @@
     <string name="about_libraries_label">使用的库</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">下载</string>
+    <string name="download_view_download">下载并安装</string>
     <string name="download_view_install">安装</string>
+    <string name="download_view_remove">删除</string>
     <string name="download_view_cancel">取消</string>
     <string name="download_view_no_url">无可用的下载链接</string>
     <string name="download_view_running">正在下载（%1$,d / %2$,d kB）</string>
@@ -272,7 +273,7 @@
     <string name="look_and_feel">界面外观</string>
     <string name="support_xda">获取帮助</string>
     <string name="later">稍后</string>
-    <string name="save">保存</string>
+    <string name="save">仅下载</string>
     <string name="download_location">下载位置</string>
     <string name="download_location_summ">选择 APK 文件的下载位置（仅限模块）</string>
     <string name="restart_needed">需要重启</string>
@@ -316,6 +317,7 @@
     <string name="meowcat">小喵工作室</string>
     <string name="white_list_mode_summary">白名单模式: 仅选中的应用加载 EdXposed 框架\n黑名单模式: 选中的应用不会加载 EdXposed 框架\n仅当启用应用名单模式时有效</string>
     <string name="settings_group_edxposed">Elder Driver Xposed 设置 (重启生效)</string>
+    <string name="settings_group_log">日志</string>
     <string name="pref_title_black_white_list">应用名单模式</string>
     <string name="pref_black_white_list_summary">注意：使用应用名单可能会导致某些系统全局模块不能正常工作.</string>
     <string name="ignore_chinese_summary">从模块列表中隐藏中文模块。模块仍然可以被搜索。启用此选项可能会降低性能.</string>
@@ -375,4 +377,8 @@
     <string name="hook_modules_summary">强制将模块添加进白名单并移出黑名单.\n关闭此选项并不会移除已勾选的应用标识.</string>
     <string name="custom_list">使用自定义模块列表</string>
     <string name="custom_list_summ">镜像化的模块列表可以帮助加速加载\n但是新提交的模块显示会有延迟（大约24小时）</string>
+    <string name="stop_verbose_log">停止记录详细日志</string>
+    <string name="stop_verbose_log_summary">结束详细日志记录程序.\n在下次重新启动之前，将不会记录详细日志.</string>
+    <string name="stop_log">停止记录所有日志</string>
+    <string name="stop_log_summary">结束详细日志记录程序.\n在下次重新启动之前，将不会记录模块和详细日志.</string>
 </resources>

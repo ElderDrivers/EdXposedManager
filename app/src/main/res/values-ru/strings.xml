@@ -305,6 +305,7 @@
     <string name="unofficial_build">Это неофициальная сборка. Установка на свой страх и риск</string>
     <string name="alt_download_method">Альтернативный способ загрузки</string>
     <string name="alt_download_method_summ">Включите этот параметр, если у вас есть проблемы при загрузке модуля</string>
+
     <string name="custom_list">Альтернативный список модулей</string>
     <string name="custom_list_summ">Использование зеркала для списка модулей может увеличить загрузку.\nНо отображение новых модулей будет отложено (примерно до 24 часов)</string>
 
