@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -129,12 +130,7 @@ public class WelcomeActivity extends XposedBaseActivity
         mSelectedId = mNavigationView.getMenu().getItem(itemId).getItemId();
         mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
         mDrawerHandler.removeCallbacksAndMessages(null);
-        mDrawerHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                navigate(mSelectedId);
-            }
-        }, 250);
+        mDrawerHandler.postDelayed(() -> navigate(mSelectedId), 250);
         mDrawerLayout.closeDrawers();
     }
 
@@ -241,7 +237,7 @@ public class WelcomeActivity extends XposedBaseActivity
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(SELECTED_ITEM_ID, mSelectedId);
     }

@@ -36,7 +36,7 @@
     <string name="reboot_confirmation">您想要现在重启吗？</string>
     <string name="reboot_recovery_confirmation">您想要现在重启至恢复模式吗？</string>
     <string name="install_warning_title">请小心！</string>
-    <string name="install_warning">某些情况下，您的设备可能会在安装 EdXposed 过后变得无法正常启动。\n\n如果您先前从未听说过「软变砖」或「无限重启」，又或者您不知道如何从这些情况中恢复手机，那么请"<b>不要</b>"安装 EdXposed！\n\n无论如何，都强烈建议您做好近期的数据备份。</string>
+    <string name="install_warning">某些情况下，您的设备可能会在安装 EdXposed 过后变得无法正常启动。\n\n如果您先前从未听说过「软变砖」或「无限重启」，又或者您不知道如何从这些情况中恢复手机，那么请"<b>不要</b>"安装或使用 EdXposed！\n\n无论如何，都强烈建议您做好近期的数据备份。</string>
     <string name="dont_show_again">不再提示</string>
     <string name="install_known_issue">EdXposed 与您的设备间似乎存在已知的问题（\"%s\"）。这可能将导致 EdXposed 无法被安装或是更为严重的问题。点击这里来了解详情。</string>
     <string name="installed_lollipop">EdXposed 框架 %s 版已激活。</string>

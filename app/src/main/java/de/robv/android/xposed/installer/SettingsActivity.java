@@ -25,6 +25,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreference;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.solohsu.android.edxp.manager.fragment.BasePreferenceFragment;
@@ -178,6 +179,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         };
 
         private Preference downloadLocation;
+        private Preference stopVerboseLog;
+        private Preference stopLog;
 
         public SettingsFragment() {
         }
@@ -209,6 +212,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             Preference headsUp = findPreference("heads_up");
             Preference colors = findPreference("colors");
             downloadLocation = findPreference("download_location");
+            stopVerboseLog = findPreference("stop_verbose_log");
+            stopLog = findPreference("stop_log");
 
             ListPreference customIcon = findPreference("custom_icon");
             navBar = findPreference("nav_bar");
@@ -510,13 +515,43 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                         .cancelButton(android.R.string.cancel)
                         .initialPath(XposedApp.getDownloadPath())
                         .show();
-            } else if (preference.getKey().equals(downloadLocation.getKey())) {
-
-            } else if (preference.getKey().equals(downloadLocation.getKey())) {
-
             }
-
+//            } else if (preference.getKey().equals(stopVerboseLog.getKey())) {
+//                new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        areYouSure(R.string.install_warning, new MaterialDialog.ButtonCallback() {
+//                            @Override
+//                            public void onPositive(MaterialDialog dialog) {
+//                                super.onPositive(dialog);
+//                                Shell.su("pkill -f EdXposed:V").exec();
+//                            }
+//                        });
+//                    }
+//                };
+//            } else if (preference.getKey().equals(stopLog.getKey())) {
+//                new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        areYouSure(R.string.install_warning, new MaterialDialog.ButtonCallback() {
+//                            @Override
+//                            public void onPositive(MaterialDialog dialog) {
+//                                super.onPositive(dialog);
+//                                Shell.su("pkill -f EdXposed-Bridge:V").exec();
+//                            }
+//                        });
+//                    }
+//                };
+//            }
             return true;
+        }
+
+        private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
+            new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
+                    .content(contentTextId)
+                    .iconAttr(android.R.attr.alertDialogIcon)
+                    .positiveText(android.R.string.yes)
+                    .negativeText(android.R.string.no).callback(yesHandler).show();
         }
 
         private boolean checkPermissions() {
