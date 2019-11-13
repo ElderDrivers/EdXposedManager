@@ -9,7 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
-import android.os.FileUtils;
+import de.robv.android.xposed.installer.util.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
 

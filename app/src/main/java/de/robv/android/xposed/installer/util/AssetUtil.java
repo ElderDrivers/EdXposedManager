@@ -2,7 +2,6 @@ package de.robv.android.xposed.installer.util;
 
 import android.content.res.AssetManager;
 import android.os.Build;
-import android.os.FileUtils;
 import android.util.Log;
 
 import java.io.File;

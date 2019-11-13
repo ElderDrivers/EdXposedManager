@@ -10,7 +10,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.FileUtils;
+import de.robv.android.xposed.installer.util.FileUtils;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;

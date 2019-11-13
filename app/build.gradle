@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     lintOptions {
         abortOnError false
@@ -9,9 +9,9 @@ android {
 
     defaultConfig {
         applicationId "org.meowcat.edxposed.manager"
-        minSdkVersion 21
+        minSdkVersion 23
         //noinspection OldTargetApi
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 452
         versionName "4.5.2"
         //noinspection GroovyAccessibility
@@ -42,8 +42,8 @@ dependencies {
     implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
     implementation 'eu.chainfire:libsuperuser:1.0.0.201608240809'
     implementation "com.github.topjohnwu.libsu:core:2.2.0"
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'de.psdev.licensesdialog:licensesdialog:1.8.3'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
     implementation 'com.annimon:stream:1.2.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation fileTree(include: ['*.jar'], dir: 'libs')

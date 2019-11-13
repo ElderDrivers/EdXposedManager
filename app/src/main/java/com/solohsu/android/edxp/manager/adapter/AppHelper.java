@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
-import android.os.FileUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,6 +28,7 @@ import java.util.List;
 import java.util.Objects;
 
 import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.util.FileUtils;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 

@@ -12,7 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.FileUtils;
+import de.robv.android.xposed.installer.util.FileUtils;
 import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
