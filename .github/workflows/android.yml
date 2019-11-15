@@ -1,4 +1,4 @@
-name: Android CI
+name: Build Manager
 
 on: [push]
 
