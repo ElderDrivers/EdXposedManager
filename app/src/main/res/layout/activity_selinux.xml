@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:gravity="center|end">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/closed_temporarily"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temporarily_closed"
+                android:textColor="@color/colorAccent"
+                skin:enable="true"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/closed_forever"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/closed_forever"
+                android:textColor="#FFF"
+                app:backgroundTint="@color/colorAccent"
+                skin:enable="true" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/status_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="25dp">
+
+            <ImageView
+                android:id="@+id/selinux_status"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:src="@drawable/selinux_status" />
+
+            <TextView
+                android:id="@+id/status_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:alpha="0.3"
+                android:text="@string/enabled"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/selinux_status_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/status_container"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="35dp"
+            android:textColor="#959595"
+            tools:text="模式:  PERMISSIVE" />
+
+        <ScrollView
+            android:id="@+id/command_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/buttons"
+            android:layout_below="@id/selinux_status_info"
+            android:layout_margin="15dp">
+
+            <TextView
+                android:id="@+id/command_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.75"
+                android:textColor="#323232"
+                android:textSize="13sp"
+                tools:text="Permissive" />
+
+        </ScrollView>
+
+        <View
+            android:id="@+id/shadow_above"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@id/selinux_status_info"
+            android:background="@drawable/shadow_layer" />
+
+        <View
+            android:id="@+id/shadow_below"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_above="@id/buttons"
+            android:background="@drawable/shadow_layer_inverse" />
+
+    </RelativeLayout>
+
+</LinearLayout>

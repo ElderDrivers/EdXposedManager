@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <shape>
+            <!--设置圆角大小-->
+            <!--            <corners android:radius="7dp"/>-->
+            <!--设置背景颜色渐变-->
+            <gradient android:angle="270" android:centerColor="#FFFFFF" android:centerX="0.65" android:centerY="0.5" android:endColor="#FFFFFF" android:startColor="#01FFFFFF" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape>
+            <!--设置圆角大小-->
+            <!--            <corners android:radius="7dp"/>-->
+            <!--设置背景颜色渐变-->
+            <gradient android:angle="270" android:centerColor="@color/app_dark" android:centerX="0.65" android:centerY="0.5" android:endColor="@color/app_dark" android:startColor="#01000000" />
+        </shape>
+    </item>
+</selector>

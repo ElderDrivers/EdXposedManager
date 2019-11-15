@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+    <!--黑色背景颜色-->
+    <item android:drawable="@android:color/white" />
+    <!-- 产品logo-->
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/edxp_logo" />
+    </item>
+    <!--最下面的文字-->
+    <item android:bottom="20dp">
+        <bitmap
+            android:gravity="bottom"
+            android:src="@mipmap/made_by_krins" />
+    </item>
+</layer-list>

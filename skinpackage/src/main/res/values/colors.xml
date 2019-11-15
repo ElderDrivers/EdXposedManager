@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- base colors-->
+    <color name="colorPrimary">#FFF</color>
+    <color name="colorPrimaryDark">#F5F5F5</color>
+    <color name="colorAccent">#88ADA6</color>
+    <color name="colorAccentLight">#2588ADA6</color>
+    <color name="cardShadow">#18000000</color>
+    <color name="switchOnLight">#5588ADA6</color>
+    <color name="colorAccentDeep">#88ADA6</color>
+    <color name="stroke_dark">#20212121</color>
+    <color name="stroke_light">#25FFFFFF</color>
+    <color name="buttonStroker">#7588ADA6</color>
+    <color name="sticky_header_bg_light">#DEEDFF</color>
+    <color name="sticky_header_bg_dark">#252E36</color>
+    <color name="nav_text_item_color_light">#4F5B62</color>
+    <color name="nav_text_item_color_dark">#DFDFDF</color>
+    <color name="material_ver_info_color_light">#35000000</color>
+    <color name="material_ver_info_color_dark">#35FFFFFF</color>
+    <color name="card_bg_dark">#212121</color>
+    <color name="card_bg_light">@color/colorAccent</color>
+    <color name="tab_unselected_color">#323232</color>
+
+    <color name="switch_thumb_off_color">#FAFAFA</color>
+    <color name="switch_thumb_on_color">@color/colorAccent</color>
+    <color name="switch_track_off_color">#BFBFBF</color>
+    <color name="switch_track_on_color">@color/colorAccentLight</color>
+
+    <!--    SnailBar背景颜色-->
+    <color name="coxylicSnailBarColor">#FF102027</color>
+    <!--    SnailBar消息颜色-->
+    <color name="coxylicSnailBarMsgColor">#FFF</color>
+    <!--    SnailBar按钮颜色-->
+    <color name="coxylicSnailBarActionTextColor">@color/colorAccent</color>
+
+    <!--    对话框强调色-->
+    <color name="coxylicDialogAccent">@color/colorAccent</color>
+    <!--    对话框深强调色-->
+    <color name="coxylicDialogAccentDeep">@color/colorAccent</color>
+    <!--    对话框按钮边框颜色-->
+    <color name="coxylicDialogButtonStroke">@color/colorAccent</color>
+    <!--    对话框背景颜色-->
+    <color name="coxylicDialogBackground">#FFF</color>
+
+</resources>

@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:windowBackground"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?android:windowBackground"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/buttonStroker"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp">
+
+            <TextView
+                android:id="@+id/console"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <ImageView
+                android:id="@+id/console_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.45"
+                android:padding="75dp"
+                android:scaleType="fitStart"
+                android:visibility="gone"
+                tools:src="@drawable/ic_check_circle"
+                tools:visibility="visible" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            tools:indeterminate="false"
+            tools:max="15"
+            tools:progress="10"
+            tools:rotation="180" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_marginEnd="15dp"
+            android:layout_toStartOf="@+id/reboot"
+            android:text="@string/waitamin"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            app:rippleColor="@color/colorAccent"
+            app:strokeColor="@color/buttonStroker"
+            tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/reboot"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_alignParentEnd="true"
+            android:gravity="start|center_vertical"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            app:rippleColor="@color/colorAccent"
+            app:strokeColor="@color/buttonStroker"
+            tools:text="Reboot -> 15s"
+            tools:visibility="visible" />
+
+    </RelativeLayout>
+
+</LinearLayout>

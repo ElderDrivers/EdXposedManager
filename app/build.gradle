@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+ext {
+    VERSION_DATE = '19/10/18'
+    APP_VERSION = '"1539962400000"'
+    VERSION_NAME = '墜入夢魘 · RC9 · 预览版'
+}
+
+android {
+    compileSdkVersion 29
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.solohsu.android.edxp.manager"
+        minSdkVersion 23
+        //noinspection OldTargetApi
+        targetSdkVersion 29
+        versionCode 8
+        versionName "墜入夢魘 · RC9 · 预览版"
+        project.ext.set("archivesBaseName", "EdXposed")
+
+        buildConfigField "String", "APP_VERSION", APP_VERSION
+    }
+
+//    signingConfigs {
+//        release {
+//            storeFile file(STORE_FILE)
+//            storePassword STORE_PASSWORD
+//            keyAlias KEY_ALIAS
+//            keyPassword KEY_PASSWORD
+//        }
+//    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.browser:browser:1.0.0"
+    implementation "androidx.preference:preference:1.1.0"
+    implementation "androidx.palette:palette:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-rc01"
+    implementation "androidx.fragment:fragment:1.2.0-rc02"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.afollestad.material-dialogs:commons:0.9.0.2'
+    implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
+    implementation 'eu.chainfire:libsuperuser:1.0.0.201608240809'
+    implementation "com.github.topjohnwu.libsu:core:2.2.0"
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
+    implementation 'com.annimon:stream:1.2.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    api "com.google.android.material:material:1.2.0-alpha01" //Material Components
+    api 'com.github.coxylicacid:mdwidgets:0.0.1-beta04' //MDWidget
+    implementation 'com.jpardogo.googleprogressbar:library:1.2.0'
+    implementation 'com.github.stealthcopter:AndroidNetworkTools:0.4.0' //NetWork Tool
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
+
+    implementation 'com.rxjava.rxhttp:rxhttp:1.2.4'
+    annotationProcessor 'com.rxjava.rxhttp:rxhttp-compiler:1.2.4' //注解处理器，生成RxHttp类
+    implementation 'com.rxjava.rxlife:rxlife:1.1.0'  //页面销毁，关闭请求，非必须
+
+    implementation "com.sergivonavi:materialbanner:1.2.0" //Banner
+    implementation 'com.github.lihangleo2:ShadowLayout:2.0.1' //Shadow Layout
+    implementation 'com.shuhart.stepview:stepview:1.5.0' //StepView
+
+    implementation project(':skinlibrary') //主题模块
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/nav_update_apk"
+        android:icon="@drawable/ic_update"
+        android:iconTint="@color/colorAccent"
+        android:title="@string/update"
+        android:visible="false"
+        app:showAsAction="always"
+        tools:targetApi="o" />
+
+    <item
+        android:id="@+id/nav_update_list"
+        android:title="@string/update_list" />
+
+    <item
+        android:id="@+id/nav_github"
+        android:title="@string/github" />
+
+</menu>

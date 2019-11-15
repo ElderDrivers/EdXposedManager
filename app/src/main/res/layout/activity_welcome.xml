@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:windowBackground"
+    android:fitsSystemWindows="true">
+
+    <de.robv.android.xposed.installer.widget.BottomNavigationViewCompact
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="?android:windowBackground"
+        app:bItemSelectedIconColor="@color/colorAccent"
+        app:bItemSelectedTextColor="@color/colorAccent"
+        app:bItemUnSelectedIconColor="@color/tab_unselected_color"
+        app:bItemUnSelectedTextColor="@color/tab_unselected_color"
+        app:elevation="5dp"
+        app:itemRippleColor="@color/colorAccentLight"
+        app:menu="@menu/bottom_navigation_menu"
+        skin:enable="true" />
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        android:background="?android:windowBackground" />
+
+    <include layout="@layout/toolbar" />
+
+</RelativeLayout>

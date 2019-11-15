@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <shape>
+            <!--设置圆角大小-->
+            <corners android:radius="7dp" />
+            <!--设置背景颜色渐变-->
+            <gradient android:angle="45" android:centerColor="#CFD6BA32" android:centerX="0.55" android:centerY="0.5" android:endColor="#CFC7A115" android:startColor="#BDAF2E" />
+        </shape>
+    </item>
+</selector>

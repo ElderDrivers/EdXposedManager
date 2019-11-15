@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/selectableItemBackground">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/about_bg" />
+
+    <ImageView
+        android:id="@+id/nav_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="5dp"
+        android:src="@drawable/ic_back"
+        android:tint="@color/colorAccent"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/edxp_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="65dp"
+        android:src="@mipmap/circle_ic_launcher"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/made_by_krins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp"
+        android:text="@string/made_by_krins"
+        android:textColor="?attr/material_ver_info_color"
+        android:textSize="15sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/made_by_krins"
+        android:layout_below="@id/edxp_ver"
+        android:layout_marginTop="25dp">
+
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            app:hl_cornerRadius="7dp"
+            app:hl_shadowBackColor="?attr/card_background_color"
+            app:hl_shadowColor="@color/cardShadow"
+            app:hl_shadowLimit="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/donateMe"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_gravity="top"
+                        android:background="?attr/card_background_color">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="15dp"
+                            android:alpha="0.75"
+                            android:gravity="center|start"
+                            android:text="@string/author_krins"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/donateIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="217dp"
+                        android:layout_marginTop="58dp"
+                        android:src="@drawable/qrcode"
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription"
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:alpha="0.5"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:id="@+id/icon_designer"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="top"
+                    android:background="?android:attr/selectableItemBackground">
+
+                    <TextView
+                        android:id="@+id/icon_designer_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center|start"
+                        android:text="@string/icon_designer"
+                        android:textColor="#959595"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:alpha="0.5"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:id="@+id/github_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="top"
+                    android:background="?android:attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center|start"
+                        android:text="@string/github_link"
+                        android:textColor="#959595"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:alpha="0.75"
+                    android:gravity="center|start"
+                    android:text="@string/web_github_ps"
+                    android:textColor="#959595"
+                    android:textSize="13sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:alpha="0.5"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:id="@+id/update_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="top"
+                    android:background="?android:attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center|start"
+                        android:text="@string/update_plan"
+                        android:textColor="#959595"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:alpha="0.5"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:id="@+id/update_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_gravity="top"
+                    android:background="?android:attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_weight="1"
+                        android:gravity="center|start"
+                        android:text="@string/auto_check_update"
+                        android:textColor="#959595"
+                        android:textSize="15sp" />
+
+                    <Switch
+                        android:id="@+id/update_check_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:clickable="false" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.lihang.ShadowLayout>
+
+    </ScrollView>
+
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_below="@id/edxp_icon"
+        android:background="@drawable/shadow_layer" />
+
+    <TextView
+        android:id="@+id/edxp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edxp_icon"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/app_name_full"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/edxp_ver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edxp_name"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:text="@string/app_ver_code"
+        android:textColor="?attr/material_ver_info_color"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/egg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:windowBackground"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/egg_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="25dp" />
+
+        <TextView
+            android:id="@+id/egg_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="准备中"
+            android:textColor="#959595"
+            android:textSize="35sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

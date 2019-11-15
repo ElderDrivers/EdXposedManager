@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/refresh_ball">
+
+    <target
+        android:name="ball"
+        android:animation="@animator/refresh" />
+
+    <target
+        android:name="shadow"
+        android:animation="@animator/refresh_shadow" />
+
+</animated-vector>

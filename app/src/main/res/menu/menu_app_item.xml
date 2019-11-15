@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/app_menu_compile_reset"
+        android:icon="@drawable/ic_swipe"
+        android:title="@string/menu_title_compile_reset" />
+    <item
+        android:id="@+id/app_menu_compile_speed"
+        android:icon="@drawable/ic_refresh"
+        android:title="@string/menu_title_compile_speed" />
+</menu>

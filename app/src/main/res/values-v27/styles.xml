@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.XposedInstaller.Light" parent="Theme.XposedInstaller.Light.Base">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/app_light</item>
+        <item name="download_status_installed">@android:color/holo_orange_dark</item>
+        <item name="android:navigationBarColor">@color/app_light</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="stroke_color">@color/stroke_dark</item>
+        <item name="nav_text_item_color">@color/nav_text_item_color_light</item>
+        <item name="material_ver_info_color">@color/material_ver_info_color_light</item>
+        <item name="card_background_color">@color/card_bg_light</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Dark" parent="Theme.XposedInstaller.Dark.Base">
+        <item name="android:windowBackground">@color/app_dark</item>
+        <item name="android:navigationBarColor">@color/app_dark</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="stroke_color">@color/stroke_light</item>
+        <item name="nav_text_item_color">@color/nav_text_item_color_dark</item>
+        <item name="material_ver_info_color">@color/material_ver_info_color_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="card_background_color">@color/card_bg_dark</item>
+    </style>
+
+</resources>

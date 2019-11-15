@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_item_framework"
+        android:icon="@drawable/ic_nav_install"
+        android:title="@string/nav_item_install"/>
+    <item
+        android:id="@+id/nav_item_modules"
+        android:icon="@drawable/ic_version"
+        android:title="@string/nav_item_modules"/>
+    <item
+        android:id="@+id/nav_item_downloads"
+        android:icon="@drawable/ic_cloud_"
+        android:title="@string/nav_item_download"/>
+    <item
+        android:id="@+id/nav_item_logs"
+        android:icon="@drawable/ic_chip_"
+        android:title="@string/nav_item_logs"/>
+
+    <item
+        android:id="@+id/nav_item_more"
+        android:icon="@drawable/ic_settings_"
+        android:title="@string/options"/>
+
+</menu>

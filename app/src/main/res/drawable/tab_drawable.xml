@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+
+        <inset android:insetLeft="15dp" android:insetRight="15dp">
+            <shape android:shape="rectangle">
+                <!-- 为形状(rectangle)产生圆角 -->
+                <corners android:topLeftRadius="3dp" android:topRightRadius="3dp" />
+
+                <size android:width="45dp" android:height="3dp" />
+
+                <solid android:color="@color/colorAccent" />
+            </shape>
+        </inset>
+    </item>
+</selector>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group
+        android:id="@+id/main_items"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_item_framework"
+            android:icon="@drawable/ic_nav_install"
+            android:title="@string/nav_item_install" />
+        <item
+            android:id="@+id/nav_item_modules"
+            android:icon="@drawable/ic_version"
+            android:title="@string/nav_item_modules" />
+        <item
+            android:id="@+id/nav_item_downloads"
+            android:icon="@drawable/ic_cloud_"
+            android:title="@string/nav_item_download" />
+        <item
+            android:id="@+id/nav_item_logs"
+            android:icon="@drawable/ic_chip_"
+            android:title="@string/nav_item_logs" />
+    </group>
+
+    <group
+        android:id="@+id/advanced_items"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_black_white_list"
+            android:icon="@drawable/ic_black_list"
+            android:title="@string/black_and_white_list"
+            android:visible="false" />
+        <item
+            android:id="@+id/nav_verbose_logs"
+            android:icon="@drawable/ic_details"
+            android:title="@string/verbose_logs" />
+        <item
+            android:id="@+id/nav_support_mode"
+            android:icon="@drawable/ic_compact_mode"
+            android:title="@string/support_mode" />
+        <item
+            android:id="@+id/nav_edxp_settings"
+            android:icon="@drawable/ic_functions"
+            android:title="@string/edxp_settings" />
+    </group>
+
+    <group android:id="@+id/selinux_items">
+
+        <item
+            android:id="@+id/nav_selinux"
+            android:icon="@drawable/ic_security"
+            android:title="@string/selinux_item" />
+
+    </group>
+
+    <group android:id="@+id/setting_items">
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info"
+            android:title="@string/about" />
+        <item
+            android:id="@+id/nav_support_me"
+            android:icon="@drawable/ic_support_me"
+            android:title="@string/support" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_nav_settings"
+            android:title="@string/settings" />
+    </group>
+
+    <group android:id="@+id/back_to_bottom_mode">
+        <item
+            android:id="@+id/nav_night_mode"
+            android:enabled="true"
+            android:icon="@drawable/ic_night_mode"
+            android:title="@string/night_mode"
+            app:actionViewClass="de.robv.android.xposed.installer.widget.CoxylicSwitch" />
+        <item
+            android:id="@+id/nav_back_to_bottom_mode"
+            android:icon="@drawable/ic_exit_to_app"
+            android:title="@string/back_to_bottom_mode" />
+    </group>
+
+</menu>

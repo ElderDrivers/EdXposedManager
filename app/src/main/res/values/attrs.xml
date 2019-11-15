@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="download_status_installed" format="reference|color" />
+    <attr name="sticky_header_background" format="reference|color" />
+    <attr name="stroke_color" format="reference|color" />
+    <attr name="nav_text_item_color" format="reference|color" />
+    <attr name="material_ver_info_color" format="reference|color" />
+    <attr name="card_background_color" format="reference|color" />
+
+    <declare-styleable name="IconListPreference">
+        <attr name="icons" format="reference" />
+        <attr name="titleColorIconList" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="IntegerListPreference">
+        <attr name="titleColorIntegerList" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ListPreferenceSummaryFix">
+        <attr name="titleColorListSummaryFix" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="SwitchPreferenceMaterial">
+        <attr name="titleColor" format="color" />
+        <attr name="summaryColor" format="color" />
+        <attr name="margin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="XposedStatusPanel">
+        <attr name="errorBackground" format="reference|color" />
+        <attr name="successBackground" format="reference|color" />
+        <attr name="warnBackground" format="reference|color" />
+        <attr name="xposedState" format="enum">
+            <enum name="error" value="-2" />
+            <enum name="warn" value="-1" />
+            <enum name="success" value="0" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="NavigationViewCompact">
+        <attr name="itemSelectedIconColor" format="color" />
+        <attr name="itemUnSelectedIconColor" format="color" />
+        <attr name="itemSelectedTextColor" format="color" />
+        <attr name="itemUnSelectedTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomNavigationViewCompact">
+        <attr name="bItemSelectedIconColor" format="color" />
+        <attr name="bItemUnSelectedIconColor" format="color" />
+        <attr name="bItemSelectedTextColor" format="color" />
+        <attr name="bItemUnSelectedTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="CoxylicSwitch">
+        <attr name="thumbOnColor" format="color" />
+        <attr name="thumbOffColor" format="color" />
+        <attr name="trackOnColor" format="color" />
+        <attr name="trackOffColor" format="color" />
+    </declare-styleable>
+
+</resources>

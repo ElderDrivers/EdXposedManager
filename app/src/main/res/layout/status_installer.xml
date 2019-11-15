@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:background="?android:windowBackground"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!--        Xp状态-->
+        <com.lihang.ShadowLayout
+            android:id="@+id/disableView_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            app:hl_cornerRadius="7dp"
+            app:hl_shadowBackColor="?attr/card_background_color"
+            app:hl_shadowColor="@color/cardShadow"
+            app:hl_shadowLimit="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/status_ico"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:padding="14dp"
+                    android:src="@drawable/ic_status"
+                    skin:enable="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@id/status_ico"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/status_xp"
+                        android:textColor="#656565"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/disableSwitch_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="15dp"
+                    android:checked="true"
+                    android:padding="2dp"
+                    skin:enable="true" />
+
+            </RelativeLayout>
+
+        </com.lihang.ShadowLayout>
+
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="-25dp"
+            android:layout_marginBottom="3dp"
+            app:hl_cornerRadius="7dp"
+            app:hl_shadowBackColor="#fff"
+            app:hl_shadowColor="@color/cardShadow"
+            app:hl_shadowLimit="10dp"
+            skin:enable="true">
+
+            <io.supercharge.shimmerlayout.ShimmerLayout
+                android:id="@+id/shimmer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                app:shimmer_animation_duration="2500"
+                app:shimmer_color="#55FFFFFF"
+                app:shimmer_mask_width="0.65">
+
+                <de.robv.android.xposed.installer.widget.XposedStatusPanel
+                    android:id="@+id/status_container_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="@drawable/ripple"
+                    android:orientation="vertical"
+                    app:errorBackground="@drawable/status_bg_error"
+                    app:successBackground="@drawable/status_bg"
+                    app:warnBackground="@drawable/status_bg_warn"
+                    app:xposedState="success"
+                    skin:enable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/status_icon_"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="15dp"
+                            android:alpha="0.72"
+                            tools:src="@drawable/ic_check_circle" />
+
+                        <TextView
+                            android:id="@+id/install_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="35dp"
+                            android:alpha="0.45"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="30sp"
+                            tools:text="已安装" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center|end">
+
+                            <ImageView
+                                android:id="@+id/helperExpander"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_margin="15dp"
+                                android:alpha="0.65"
+                                android:contentDescription="@string/install_the_module"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_expand_more"
+                                android:tint="#FFF" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@color/stroke_light" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/helper_text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="15dp"
+                            android:layout_weight="1"
+                            android:alpha="0.85"
+                            android:text="@string/xposed_install_helper_info"
+                            android:textColor="#FFF"
+                            android:textSize="13sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/helper_button"
+                            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/install_xp"
+                            android:textColor="#FFF" />
+
+                    </LinearLayout>
+
+                </de.robv.android.xposed.installer.widget.XposedStatusPanel>
+
+            </io.supercharge.shimmerlayout.ShimmerLayout>
+
+            <View
+                android:id="@+id/night_mask"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#15000000"
+                android:visibility="gone" />
+
+        </com.lihang.ShadowLayout>
+
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            app:hl_cornerRadius="7dp"
+            app:hl_shadowBackColor="?attr/card_background_color"
+            app:hl_shadowColor="@color/cardShadow"
+            app:hl_shadowLimit="10dp"
+            skin:enable="true">
+
+            <LinearLayout
+                android:id="@+id/status_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--                管理器版本-->
+                <RelativeLayout
+                    android:id="@+id/easter_egg"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/ver_ico"
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:padding="18dp"
+                        android:src="@drawable/ic_version" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_toEndOf="@id/ver_ico"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_ver"
+                            android:textColor="#656565"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/app_ver_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_ver_code"
+                            android:textColor="#858585"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <!--                        更新按钮-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/click_to_update"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="15dp"
+                        android:text="@string/update"
+                        android:textColor="@color/colorAccent"
+                        android:visibility="gone"
+                        app:icon="@drawable/ic_update"
+                        app:iconPadding="5dp"
+                        app:iconTint="@color/colorAccent"
+                        app:strokeColor="@color/buttonStroker"
+                        skin:enable="true"
+                        tools:visibility="visible" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="?attr/stroke_color" />
+
+                </RelativeLayout>
+
+                <!--                Xposed版本-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp">
+
+                    <ImageView
+                        android:id="@+id/xp_ver_ico"
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:padding="18dp"
+                        android:src="@drawable/ic_xp_ver" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_toEndOf="@id/xp_ver_ico"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/edxp_ver"
+                            android:textColor="#656565"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/xp_ver"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xp_ver"
+                            android:textColor="#858585"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </com.lihang.ShadowLayout>
+
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            app:hl_cornerRadius="7dp"
+            app:hl_shadowBackColor="#00000000"
+            app:hl_shadowColor="@color/cardShadow"
+            app:hl_shadowLimit="0dp">
+
+            <LinearLayout
+                android:id="@+id/zips_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/framework_known_issue_"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:alpha="0.75"
+                    android:padding="15dp"
+                    android:textColor="@color/warning"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    tools:text="@string/install_known_issue"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </com.lihang.ShadowLayout>
+
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            app:hl_cornerRadius="7dp"
+            app:hl_shadowBackColor="?attr/card_background_color"
+            app:hl_shadowColor="@color/cardShadow"
+            app:hl_shadowLimit="10dp"
+            skin:enable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/my_devices"
+                    android:textAllCaps="true"
+                    android:textColor="#656565"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_android" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/android_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                            android:textColor="#858585"
+                            android:textSize="14sp"
+                            tools:text="Android 6.0.1 (Marshmallow, API 23)" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_devices" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/ic_manufacturer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                            android:textColor="#858585"
+                            android:textSize="14sp"
+                            tools:text="LGE Google Nexus 5" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="1dp"
+                        android:src="@drawable/ic_chip_" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/cpu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                            android:textColor="#858585"
+                            android:textSize="14sp"
+                            tools:text="arm" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:id="@+id/dmverity_row"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:minHeight="55dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_security" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/dmverity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                            android:textColor="#858585"
+                            android:textSize="13sp"
+                            tools:text="@string/verified_boot_deactivated" />
+
+                        <TextView
+                            android:id="@+id/dmverity_explanation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/verified_boot_explanation"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="#858585"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </com.lihang.ShadowLayout>
+
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hl_cornerRadius="5dp"
+            app:hl_shadowBackColor="?attr/card_background_color"
+            app:hl_shadowColor="@color/cardShadow"
+            app:hl_shadowLimit="10dp">
+
+            <LinearLayout
+                android:id="@+id/checkConnection"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_gravity="top"
+                android:background="@drawable/ripple">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center|start"
+                    android:text="@string/check_source_connection"
+                    android:textColor="#858585"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </com.lihang.ShadowLayout>
+
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hl_cornerRadius="5dp"
+            app:hl_shadowBackColor="?attr/card_background_color"
+            app:hl_shadowColor="@color/cardShadow"
+            app:hl_shadowLimit="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/loadDefaultSkin"
+                    android:layout_width="0dp"
+                    android:layout_height="58dp"
+                    android:layout_gravity="top"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center|start"
+                        android:text="默认主题"
+                        android:textColor="#858585"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:id="@+id/loadSkin"
+                    android:layout_width="0dp"
+                    android:layout_height="58dp"
+                    android:layout_gravity="top"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center|start"
+                        android:text="加载主题"
+                        android:textColor="#858585"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.lihang.ShadowLayout>
+
+    </LinearLayout>
+
+</ScrollView>

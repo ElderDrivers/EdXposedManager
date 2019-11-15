@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+        android:defaultValue="false"
+        android:key="dynamic_modules_enabled"
+        android:summary="@string/pref_dynamic_modules_summary"
+        android:title="@string/pref_title_dynamic_modules"
+        app:margin="25dp"
+        app:titleColor="?attr/nav_text_item_color" />
+    <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+        android:defaultValue="false"
+        android:key="black_white_list_enabled"
+        android:summary="@string/pref_black_white_list_summary"
+        android:title="@string/pref_title_black_white_list"
+        app:margin="25dp"
+        app:titleColor="?attr/nav_text_item_color" />
+    <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+        android:defaultValue="false"
+        android:key="enable_boot_image_deopt"
+        android:summary="@string/pref_enable_boot_image_deopt_summary"
+        android:title="@string/pref_title_enable_boot_image_deopt"
+        app:margin="25dp"
+        app:titleColor="?attr/nav_text_item_color" />
+    <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+        android:defaultValue="false"
+        android:key="disable_verbose_log"
+        android:summary="@string/pref_disable_verbose_log_summary"
+        android:title="@string/pref_title_disable_verbose_log"
+        app:margin="25dp"
+        app:titleColor="?attr/nav_text_item_color" />
+
+</PreferenceScreen>

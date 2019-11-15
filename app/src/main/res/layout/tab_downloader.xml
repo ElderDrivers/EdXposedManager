@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:background="?android:windowBackground"
+    android:orientation="vertical"
+    tools:context=".DownloadFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/listModules"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:drawSelectorOnTop="true"
+            android:fastScrollEnabled="true"
+            android:scrollbarStyle="outsideOverlay" />
+
+        <LinearLayout
+            android:id="@+id/refresh_hint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="35dp"
+                app:type="chrome_floating_circles" />
+
+            <TextView
+                android:id="@+id/list_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/update_download_list"
+                android:textColor="#656565"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <!--            <ProgressBar-->
+            <!--                android:id="@+id/progress"-->
+            <!--                style="?android:progressBarStyleHorizontal"-->
+            <!--                android:layout_width="100dp"-->
+            <!--                android:layout_height="35dp"-->
+            <!--                android:indeterminate="true"-->
+            <!--                android:visibility="gone" />-->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="-20dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/refresh"
+        android:textColor="#FFF"
+        app:icon="@drawable/ic_refresh"
+        app:iconSize="22dp"
+        app:iconTint="#FFF" />
+
+</RelativeLayout>
