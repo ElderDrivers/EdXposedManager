@@ -18,7 +18,6 @@ public class XposedZip {
     public String name;
     public String link;
     public String version;
-    public String architecture;
     public String description;
 
     public static class MyAdapter extends ArrayAdapter<XposedZip> {
