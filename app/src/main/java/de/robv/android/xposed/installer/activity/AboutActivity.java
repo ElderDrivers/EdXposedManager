@@ -60,8 +60,6 @@ public class AboutActivity extends XposedBaseActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container, new AboutFragment()).commit();
         }
-
-        ThemeUtil.setTheme(this);
     }
 
     @Override

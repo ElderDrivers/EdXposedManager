@@ -27,6 +27,7 @@ import com.solohsu.android.edxp.manager.adapter.AppHelper;
 import com.solohsu.android.edxp.manager.adapter.CompatListAdapter;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 public class CompatListFragment extends Fragment implements AppAdapter.Callback {
 
@@ -74,7 +75,7 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
         mSearchView = (androidx.appcompat.widget.SearchView) menu.findItem(R.id.app_search).getActionView();
         mSearchView.setOnQueryTextListener(mSearchListener);
         DisplayMetrics outMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
+        requireActivity().getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
         mSearchView.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
         mSearchView.setMaxWidth(outMetrics.widthPixels);
         try {        //--拿到字节码
@@ -85,7 +86,7 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
             ownField.setAccessible(true);
             View mView = (View) ownField.get(mSearchView);
             //--设置背景
-            mView.setBackgroundColor(Color.TRANSPARENT);
+            Objects.requireNonNull(mView).setBackgroundColor(Color.TRANSPARENT);
         } catch (Exception e) {
             e.printStackTrace();
         }

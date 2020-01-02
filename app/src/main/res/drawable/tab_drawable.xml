@@ -9,7 +9,7 @@
 
                 <size android:width="45dp" android:height="3dp" />
 
-                <solid android:color="@color/colorAccent" />
+                <solid android:color="?attr/appColorAccent" />
             </shape>
         </inset>
     </item>

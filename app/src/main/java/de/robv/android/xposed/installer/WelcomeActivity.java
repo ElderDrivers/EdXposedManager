@@ -5,14 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -32,19 +30,19 @@ import com.solohsu.android.edxp.manager.fragment.CompatListFragment;
 import com.solohsu.android.edxp.manager.fragment.SettingFragment;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 import de.robv.android.xposed.installer.activity.AboutActivity;
+import de.robv.android.xposed.installer.activity.PersonalizeFragment;
 import de.robv.android.xposed.installer.activity.SELinuxActivity;
-import de.robv.android.xposed.installer.activity.SettingsActivity;
 import de.robv.android.xposed.installer.activity.SupportActivity;
+import de.robv.android.xposed.installer.activity.XposedSettingsActivity;
 import de.robv.android.xposed.installer.installation.AdvancedInstallerFragment;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
-import de.robv.android.xposed.installer.util.ThemeUtil;
-import de.robv.android.xposed.installer.widget.CoxylicSwitch;
 import de.robv.android.xposed.installer.widget.NavigationViewCompact;
 
 public class WelcomeActivity extends XposedBaseActivity implements
@@ -65,8 +63,7 @@ public class WelcomeActivity extends XposedBaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-        boolean isDrawerMode = prefs.getBoolean("drawer_layout_home", false);
+        boolean isDrawerMode = XposedApp.getPreferences().getBoolean("drawer_layout_home", false);
         if (isDrawerMode) {
             setContentView(R.layout.activity_welcome_drawer);
             setUpDrawerMode(savedInstanceState);
@@ -77,28 +74,11 @@ public class WelcomeActivity extends XposedBaseActivity implements
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         enableMenuIcon();
-        ThemeUtil.setTheme(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-//        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-//        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
-//        boolean showEasterEgg = prefs.getBoolean("easter_egg", true);
-//        if (showEasterEgg) {
-//            SnailBar.make(this, "这个界面上有彩蛋嗷", SnailBar.LENGTH_NEVER)
-//                    .gravity(SnailBar.Gravity.BOTTOM)
-//                    .actionTextColor(getResources().getColor(R.color.colorAccent))
-//                    .action("知道了", new SnailBar.SnailBarActionListenerAdapter() {
-//                        @Override
-//                        public void onClick(View view, SnailBar snailBar) {
-//                            editor.putBoolean("easter_egg", false);
-//                            editor.apply();
-//                            snailBar.dismiss();
-//                        }
-//                    }).show();
-//        }
     }
 
     @Override
@@ -118,20 +98,12 @@ public class WelcomeActivity extends XposedBaseActivity implements
     private void setUpBottomNavigationMode(Bundle savedInstanceState) {
         mNavigationView = findViewById(R.id.bottom_navigation);
         assert mNavigationView != null;
-        mNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                menuItem.setChecked(true);
-                mSelectedId = menuItem.getItemId();
-                mSwitchHandler.removeCallbacksAndMessages(null);
-                mSwitchHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        navigate(mSelectedId);
-                    }
-                }, 250);
-                return true;
-            }
+        mNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+            menuItem.setChecked(true);
+            mSelectedId = menuItem.getItemId();
+            mSwitchHandler.removeCallbacksAndMessages(null);
+            mSwitchHandler.postDelayed(() -> navigate(mSelectedId), 250);
+            return true;
         });
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -143,17 +115,15 @@ public class WelcomeActivity extends XposedBaseActivity implements
 
         if (savedInstanceState == null) {
             mSwitchHandler.removeCallbacksAndMessages(null);
-            mSwitchHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    navigate(mSelectedId);
-                }
-            }, 250);
+            mSwitchHandler.postDelayed(() -> navigate(mSelectedId), 250);
         }
+
+        int value = XposedApp.getPreferences().getInt("default_view", 0);
+        switchFragment(value);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            int value = extras.getInt("fragment", prefs.getInt("default_view", 0));
+            value = extras.getInt("fragment", XposedApp.getPreferences().getInt("default_view", 0));
             switchFragment(value);
         }
 
@@ -191,43 +161,16 @@ public class WelcomeActivity extends XposedBaseActivity implements
         drawer = findViewById(R.id.drawer);
         navView = findViewById(R.id.navigation_View);
 
-        View navDivider = navView.getHeaderView(0).findViewById(R.id.nav_header_divider);
-
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mSelectedId = navView.getMenu().getItem(prefs.getInt("default_view", 0)).getItemId();
         mSelectedId = savedInstanceState == null ? mSelectedId : savedInstanceState.getInt(SELECTED_ITEM_ID);
         mPrevSelectedId = mSelectedId;
         isFirstTimeLoad = true;
         navView.getMenu().findItem(mSelectedId).setChecked(true);
-        String theme = XposedApp.getPreferences().getString("theme", "light");
-        CoxylicSwitch switchView = ((CoxylicSwitch) navView.getMenu().findItem(R.id.nav_night_mode).getActionView());
-        switchView.setClickable(false);
-
-        dynamicAddView(switchView, "thumbOnColor", R.color.switch_thumb_on_color);
-        dynamicAddView(switchView, "thumbOffColor", R.color.switch_thumb_off_color);
-        dynamicAddView(switchView, "trackOnColor", R.color.switch_track_on_color);
-        dynamicAddView(switchView, "trackOffColor", R.color.switch_track_off_color);
-
-        if (theme.equals("light")) {
-            switchView.setChecked(false);
-            navView.getMenu().findItem(R.id.nav_night_mode).setChecked(false);
-            setNavigationMenuLineStyle(navView, 0xFFF5F5F5, dp(1));
-            navDivider.setBackgroundColor(0xFFF5F5F5);
-        } else if (theme.equals("dark")) {
-            switchView.setChecked(true);
-            navView.getMenu().findItem(R.id.nav_night_mode).setChecked(true);
-            setNavigationMenuLineStyle(navView, 0x15FFFFFF, dp(1));
-            navDivider.setBackgroundColor(0x15FFFFFF);
-        }
 
         if (savedInstanceState == null) {
             mSwitchHandler.removeCallbacksAndMessages(null);
-            mSwitchHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    navigateDrawer(mSelectedId);
-                }
-            }, 250);
+            mSwitchHandler.postDelayed(() -> navigateDrawer(mSelectedId), 250);
 
             boolean openDrawer = prefs.getBoolean("open_drawer", false);
 
@@ -237,42 +180,31 @@ public class WelcomeActivity extends XposedBaseActivity implements
                 drawer.closeDrawers();
         }
 
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_about:
-                    case R.id.nav_support_me:
-                    case R.id.nav_settings:
-                    case R.id.nav_back_to_bottom_mode:
-                    case R.id.nav_selinux:
-                        break;
-                    default:
-                        item.setChecked(true);
-                        break;
-                    case R.id.nav_night_mode:
-                        switchView.toggle();
-                        boolean isChecked = switchView.isChecked();
-                        XposedApp.getPreferences().edit().putString("theme", isChecked ? "dark" : "light").apply();
-                        ThemeUtil.reloadTheme(WelcomeActivity.this);
-                        break;
-                }
-                mSelectedId = item.getItemId();
-                mSwitchHandler.removeCallbacksAndMessages(null);
-                mSwitchHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        navigateDrawer(mSelectedId);
-                    }
-                }, 250);
-                drawer.closeDrawers();
-                return true;
+        navView.setNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_about:
+                case R.id.nav_support_me:
+                case R.id.nav_settings:
+                case R.id.nav_back_to_bottom_mode:
+                case R.id.nav_selinux:
+                    break;
+                default:
+                    item.setChecked(true);
+                    break;
             }
+            mSelectedId = item.getItemId();
+            mSwitchHandler.removeCallbacksAndMessages(null);
+            mSwitchHandler.postDelayed(() -> navigateDrawer(mSelectedId), 250);
+            drawer.closeDrawers();
+            return true;
         });
+
+        int value = XposedApp.getPreferences().getInt("default_view", 0);
+        switchFragment(value);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            int value = extras.getInt("fragment", prefs.getInt("default_view", 0));
+            value = extras.getInt("fragment", XposedApp.getPreferences().getInt("default_view", 0));
             switchFragment(value);
         }
 
@@ -288,30 +220,20 @@ public class WelcomeActivity extends XposedBaseActivity implements
             mSelectedId = navView.getMenu().getItem(itemId).getItemId();
             navView.getMenu().findItem(mSelectedId).setChecked(true);
             mSwitchHandler.removeCallbacksAndMessages(null);
-            mSwitchHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    navigateDrawer(mSelectedId);
-                }
-            }, 250);
+            mSwitchHandler.postDelayed(() -> navigateDrawer(mSelectedId), 250);
             drawer.closeDrawers();
         } else {
             mSelectedId = mNavigationView.getMenu().getItem(itemId).getItemId();
             mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
             mSwitchHandler.removeCallbacksAndMessages(null);
-            mSwitchHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    navigate(mSelectedId);
-                }
-            }, 250);
+            mSwitchHandler.postDelayed(() -> navigate(mSelectedId), 250);
         }
     }
 
     private String jsonData;
     private AdvancedInstallerFragment advancedInstallerFragment;
 
-    private void navigateDrawer(final int itemId) {
+    public void navigateDrawer(final int itemId) {
         Fragment navFragment = null;
         switch (itemId) {
             case R.id.nav_item_framework:
@@ -411,6 +333,17 @@ public class WelcomeActivity extends XposedBaseActivity implements
                 }
                 startActivity(new Intent(WelcomeActivity.this, SELinuxActivity.class));
                 break;
+            case R.id.nav_personalize:
+                if (mPrevSelectedId != itemId || isFirstTimeLoad) {
+                    mPrevSelectedId = itemId;
+                    setTitle(R.string.personalize);
+                    navFragment = new PersonalizeFragment();
+                    isFirstTimeLoad = false;
+                    if (advancedInstallerFragment != null) {
+                        jsonData = advancedInstallerFragment.getJSON_DATA();
+                    }
+                }
+                break;
             case R.id.nav_about:
                 if (advancedInstallerFragment != null) {
                     jsonData = advancedInstallerFragment.getJSON_DATA();
@@ -427,14 +360,14 @@ public class WelcomeActivity extends XposedBaseActivity implements
                 if (advancedInstallerFragment != null) {
                     jsonData = advancedInstallerFragment.getJSON_DATA();
                 }
-                startActivity(new Intent(WelcomeActivity.this, SettingsActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, XposedSettingsActivity.class));
                 break;
             case R.id.nav_back_to_bottom_mode:
-                SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = XposedApp.getPreferences().edit();
                 editor.putBoolean("drawer_layout_home", false);
                 editor.apply();
                 Intent intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Objects.requireNonNull(intent).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
                 break;
@@ -598,12 +531,12 @@ public class WelcomeActivity extends XposedBaseActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if ("black_white_list_enabled".equals(key)) {
-            updateBlackListEntry();
-        }
-        if ("disable_verbose_log".equals(key)) {
-            updateVerboseLogsEntry();
-        }
+//        if ("black_white_list_enabled".equals(key)) {
+//            updateBlackListEntry();
+//        }
+//        if ("disable_verbose_log".equals(key)) {
+//            updateVerboseLogsEntry();
+//        }
     }
 
     private void updateBlackListEntry() {

@@ -1,3 +1,0 @@
-key store password:123456
-key alias:skin_demo
-key password:123456

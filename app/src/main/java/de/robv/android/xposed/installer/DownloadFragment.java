@@ -36,7 +36,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
-import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.solohsu.android.edxp.manager.R;
 
@@ -55,11 +55,10 @@ import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
-import solid.ren.skinlibrary.base.SkinBaseFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class DownloadFragment extends SkinBaseFragment implements RepoListener, ModuleListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class DownloadFragment extends Fragment implements RepoListener, ModuleListener, SharedPreferences.OnSharedPreferenceChangeListener {
     public static Activity sActivity;
     private SharedPreferences mPref;
     private DownloadsAdapter mAdapter;
@@ -76,7 +75,7 @@ public class DownloadFragment extends SkinBaseFragment implements RepoListener, 
         @Override
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+            NetworkInfo networkInfo = Objects.requireNonNull(cm).getActiveNetworkInfo();
 
             if (backgroundList != null && mRepoLoader != null) {
 //                if (networkInfo == null) {
@@ -108,7 +107,7 @@ public class DownloadFragment extends SkinBaseFragment implements RepoListener, 
         mSortingOrder = mPref.getInt("download_sorting_order",
                 RepoDb.SORT_STATUS);
 
-        mIgnoredUpdatesPref = getContext()
+        mIgnoredUpdatesPref = Objects.requireNonNull(getContext())
                 .getSharedPreferences("update_ignored", MODE_PRIVATE);
         setHasOptionsMenu(true);
     }
@@ -178,16 +177,13 @@ public class DownloadFragment extends SkinBaseFragment implements RepoListener, 
         mModuleUtil.addListener(this);
         mListView.setAdapter(mAdapter);
 
-        mListView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cursor cursor = (Cursor) mAdapter.getItem(position);
-                String packageName = cursor.getString(OverviewColumnsIndexes.PKGNAME);
+        mListView.setOnItemClickListener((parent, view, position, id) -> {
+            Cursor cursor = (Cursor) mAdapter.getItem(position);
+            String packageName = cursor.getString(OverviewColumnsIndexes.PKGNAME);
 
-                Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
-                detailsIntent.setData(Uri.fromParts("package", packageName, null));
-                startActivity(detailsIntent);
-            }
+            Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
+            detailsIntent.setData(Uri.fromParts("package", packageName, null));
+            startActivity(detailsIntent);
         });
         mListView.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -281,14 +277,10 @@ public class DownloadFragment extends SkinBaseFragment implements RepoListener, 
         switch (item.getItemId()) {
             case R.id.menu_sort:
 
-                new MD2Dialog(getActivity())
-                        .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                        .title(R.string.download_sorting_title)
-                        .singleChoiceMode(true)
-                        .items(R.array.download_sort_order)
-                        .removeDivider()
-                        .listenChoices(mSortingOrder, (dialog, pos, choice) -> {
-                            mSortingOrder = pos;
+                new MaterialAlertDialogBuilder(requireContext())
+                        .setTitle(R.string.download_sorting_title)
+                        .setSingleChoiceItems(R.array.download_sort_order, mSortingOrder, (dialog, which) -> {
+                            mSortingOrder = which;
                             mPref.edit().putInt("download_sorting_order", mSortingOrder).apply();
                             reloadItems();
                             dialog.dismiss();

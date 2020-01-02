@@ -4,11 +4,13 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,7 +29,6 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +41,9 @@ import androidx.fragment.app.Fragment;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
+import com.lihang.ShadowLayout;
 import com.solohsu.android.edxp.manager.BuildConfig;
 import com.solohsu.android.edxp.manager.R;
 
@@ -56,8 +59,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.activity.EasterEggActivity;
 import de.robv.android.xposed.installer.activity.PingActivity;
+import de.robv.android.xposed.installer.activity.XposedGuideActivity;
 import de.robv.android.xposed.installer.anim.ViewSizeChangeAnimation;
 import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
@@ -69,14 +72,11 @@ import de.robv.android.xposed.installer.widget.XposedStatusPanel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.supercharge.shimmerlayout.ShimmerLayout;
 import rxhttp.wrapper.param.RxHttp;
-import solid.ren.skinlibrary.SkinLoaderListener;
-import solid.ren.skinlibrary.base.SkinBaseFragment;
-import solid.ren.skinlibrary.loader.SkinManager;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 @SuppressLint("StaticFieldLeak")
-public class StatusInstallerFragment extends SkinBaseFragment {
+public class StatusInstallerFragment extends Fragment {
 
     public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
     public static String ARCH = getArch();
@@ -95,6 +95,7 @@ public class StatusInstallerFragment extends SkinBaseFragment {
     private boolean isPanelAnimeStarted = false;
     private int statusPanelHeight;
     private int defaultPanelHeight;
+    private boolean dontTwice = false;
 
     public static void setError(boolean connectionFailed, boolean noSdks) {
         if (!connectionFailed && !noSdks) {
@@ -118,17 +119,15 @@ public class StatusInstallerFragment extends SkinBaseFragment {
         mUpdateLink = link;
         mVersion = version;
         mUpdateButton.setVisibility(View.VISIBLE);
-        mUpdateButton.setOnClickListener(v -> new MD2Dialog(sActivity)
-                .title(R.string.changes)
-                .msg(BuildConfig.VERSION_NAME + " -> " + changelog)
-                .buttonStyle(MD2Dialog.ButtonStyle.FLAT)
-                .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                .onConfirmClick("更新", (view, dialog) -> {
+        mUpdateButton.setOnClickListener(v -> new MaterialAlertDialogBuilder(sActivity)
+                .setTitle(R.string.changes)
+                .setMessage(BuildConfig.VERSION_NAME + " -> " + changelog)
+                .setPositiveButton("更新", (dialog, which) -> {
                     update();
                     dialog.dismiss();
                 })
-                .onCancelClick("稍后", (view, dialog) -> dialog.dismiss())
-                .onNegativeClick("Github", ((view, dialog) -> NavUtil.startURL(sActivity, Uri.parse("https://github.com/coxylicacid/Xposed-Fast-Repo")))).show());
+                .setNegativeButton("稍后", (dialog, which) -> dialog.dismiss())
+                .setNeutralButton("Github", ((dialog, which) -> NavUtil.startURL(sActivity, Uri.parse("https://github.com/coxylicacid/Xposed-Fast-Repo")))).show());
     }
 
     @SuppressLint("CheckResult")
@@ -146,7 +145,7 @@ public class StatusInstallerFragment extends SkinBaseFragment {
                 .progress(false, 100)
                 .kbs("")
                 .canceledOnTouchOutside(false)
-                .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
+                .darkMode(XposedApp.isNightMode())
                 .onCancelClick(R.string.download_view_cancel, (view, dialog) -> dialog.dismiss()).show();
 
         long length = new File(path).length();
@@ -172,8 +171,6 @@ public class StatusInstallerFragment extends SkinBaseFragment {
     }
 
     public static boolean checkPermissions() {
-        if (Build.VERSION.SDK_INT < 23) return false;
-
         if (ActivityCompat.checkSelfPermission(sActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             sFragment.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return true;
@@ -265,8 +262,10 @@ public class StatusInstallerFragment extends SkinBaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.status_installer, container, false);
 
+        File img = new File(requireActivity().getExternalFilesDir("img"), "panel_background.png");
+        Bitmap panel_bg = BitmapFactory.decodeFile(img.getAbsolutePath());
         View nightMask = v.findViewById(R.id.night_mask);
-        nightMask.setVisibility(ThemeUtil.getSelectTheme().equals("dark") ? View.VISIBLE : View.GONE);
+        nightMask.setVisibility(XposedApp.isNightMode() ? View.VISIBLE : View.GONE);
         TextView app_ver = v.findViewById(R.id.app_ver_code);
         String packageName = getActivity().getPackageName();
         String version = null;
@@ -287,15 +286,20 @@ public class StatusInstallerFragment extends SkinBaseFragment {
         MaterialButton helperButton = v.findViewById(R.id.helper_button);
         ImageView txtInstallIcon = v.findViewById(R.id.status_icon_);
         ImageView helperExpander = v.findViewById(R.id.helperExpander);
+        ImageView panelView = v.findViewById(R.id.panel_background_view);
         TextView installStatus = v.findViewById(R.id.install_status);
-        View defaultSkin = v.findViewById(R.id.loadDefaultSkin);
-        View loadSkin = v.findViewById(R.id.loadSkin);
+//        View defaultSkin = v.findViewById(R.id.loadDefaultSkin);
+//        View loadSkin = v.findViewById(R.id.loadSkin);
+        ShadowLayout shadowL = v.findViewById(R.id.panelShadowLayout);
+
+        ShimmerLayout shimmer = v.findViewById(R.id.shimmer);
+        if (XposedApp.getPreferences().getBoolean("mask_animate", true)) {
+            shimmer.startShimmerAnimation();
+        } else {
+            shimmer.stopShimmerAnimation();
+        }
 
         helperExpander.setRotation(-180f);
-
-        dynamicAddView(panel, "errorBackground", R.drawable.status_bg_error);
-        dynamicAddView(panel, "warnBackground", R.drawable.status_bg_warn);
-        dynamicAddView(panel, "successBackground", R.drawable.status_bg);
 
         String installedXposedVersion;
         try {
@@ -317,16 +321,24 @@ public class StatusInstallerFragment extends SkinBaseFragment {
                 txtInstallError.setText(sActivity.getString(R.string.xp_ver, installedXposedVersion));
                 installStatus.setText("已安装");
                 panel.setXposedState(XposedStatusPanel.XPOSED_STATE_SUCCESS);
-                txtInstallIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_check_circle));
+                panel.setBackground(sActivity.getDrawable(ThemeUtil.PanelDrawable.get(ThemeUtil.getAppAccent())));
+                txtInstallIcon.setImageDrawable(sActivity.getDrawable(R.drawable.ic_check_circle));
                 panel.setOnClickListener(null);
                 isXposedInstalled = true;
 
                 RootUtil rootUtil = new RootUtil();
                 helperButton.setText("详情");
+                helperButton.setOnClickListener(v1 -> {
+                    Intent i = new Intent(requireActivity(), XposedGuideActivity.class);
+                    i.putExtra("guide_fragment", XposedApp.Constant.INSTALLED_DETAILS_GUIDE);
+                    startActivity(i);
+                });
                 //, SeLinux正处于 %s 模式, 模块处于%s激活状态
-                String installedInfo = "您已安装EdXposed，目前的版本为: %s, 管理器版本为: %s, 您的手机中一共安装了%s个模块";
+                String installedInfo = "目前EdXposed版本为: %s, 管理器版本为: %s, \n您的手机中一共安装了%s个模块\n其中共启用了%s个模块";
                 helpertext.setText(String.format(installedInfo,
-                        installedXposedVersion, getString(R.string.app_ver_code), ModuleUtil.getInstance().getModules().size(), "宽容", "可"));
+                        installedXposedVersion, getString(R.string.app_ver_code),
+                        ModuleUtil.getInstance().getModules().size(),
+                        ModuleUtil.getInstance().getEnabledModules().size()));
             } else {
                 txtInstallError.setText(sActivity.getString(R.string.xp_ver, installedXposedVersion));
                 installStatus.setText("未启用");
@@ -335,13 +347,16 @@ public class StatusInstallerFragment extends SkinBaseFragment {
                 helpertext.setText(getString(R.string.xp_not_active_info));
                 helperButton.setText(R.string.reboot);
                 helperButton.setOnClickListener(v1 -> {
-                    if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                        MD2Dialog.create(requireActivity())
-                                .title(R.string.reboot).msg(R.string.areyousure).simpleCancel(android.R.string.cancel)
-                                .onConfirmClick(android.R.string.yes, (view, dialog) -> RootUtil.reboot(RootUtil.RebootMode.NORMAL, requireContext())).show();
-                    } else {
-                        RootUtil.reboot(RootUtil.RebootMode.NORMAL, requireContext());
-                    }
+//                    if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+//                        MD2Dialog.create(requireActivity())
+//                                .title(R.string.reboot).msg(R.string.areyousure).simpleCancel(android.R.string.cancel)
+//                                .onConfirmClick(android.R.string.yes, (view, dialog) -> RootUtil.reboot(RootUtil.RebootMode.NORMAL, requireContext())).show();
+//                    } else {
+//                        RootUtil.reboot(RootUtil.RebootMode.NORMAL, requireContext());
+//                    }
+                    Intent i = new Intent(requireActivity(), XposedGuideActivity.class);
+                    i.putExtra("guide_fragment", XposedApp.Constant.NOT_ACTIVE_HELP_GUIDE);
+                    startActivity(i);
                 });
             }
         } else {
@@ -353,6 +368,9 @@ public class StatusInstallerFragment extends SkinBaseFragment {
             disableView.setVisibility(View.GONE);
             helpertext.setText(getString(R.string.xposed_install_helper_info));
             helperButton.setOnClickListener(v1 -> {
+                Intent i = new Intent(requireActivity(), XposedGuideActivity.class);
+                i.putExtra("guide_fragment", XposedApp.Constant.NOT_INSTALLED_HELP_GUIDE);
+                startActivity(i);
             });
         }
 
@@ -362,8 +380,32 @@ public class StatusInstallerFragment extends SkinBaseFragment {
                 // TODO Auto-generated method stub
                 panel.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 statusPanelHeight = panel.getMeasuredHeight();
+                XposedApp.getPreferences().edit().putInt("suggested_panel_width", panel.getMeasuredWidth()).apply();
+                XposedApp.getPreferences().edit().putInt("suggested_panel_height", statusPanelHeight).apply();
+                if (XposedApp.getPreferences().getBoolean("fold_panel_info", false)) {
+                    if (!dontTwice) {
+                        dontTwice = true;
+                        exeAnime(panel, helperExpander);
+                    }
+                }
             }
         });
+
+        if (XposedApp.getPreferences().getBoolean("enabled_panel_background", false)
+                && img.exists() && panel_bg != null) {
+            panelView.setImageBitmap(panel_bg);
+            int color;
+            if (XposedApp.getPreferences().getBoolean("is_dark_panel_background", true)) {
+                color = 0xFF323232;
+            } else {
+                color = 0xFFFFFFFF;
+            }
+            helpertext.setTextColor(color);
+            installStatus.setTextColor(color);
+            txtInstallIcon.setImageTintList(ColorStateList.valueOf(color));
+            helperButton.setTextColor(color);
+            helperExpander.setImageTintList(ColorStateList.valueOf(color));
+        }
 
         xposedDisable.setChecked(!DISABLE_FILE.exists());
 
@@ -381,66 +423,7 @@ public class StatusInstallerFragment extends SkinBaseFragment {
             }
         });
 
-        panel.setOnClickListener(v1 -> {
-            if (!isPanelAnimeStarted) {
-                panel.clearAnimation();
-//                Log.e("STATUS", "isHelperShow: " + isHelperShow + ", panelExpandedHeight: " + statusPanelHeight + ", panelUnExpandedHeight: " + defaultPanelHeight);
-//                Log.e("STATUS", "currentHeight: " + (isHelperShow ? defaultPanelHeight : statusPanelHeight));
-                ViewSizeChangeAnimation animation = new ViewSizeChangeAnimation(panel,
-                        (isHelperShow ? defaultPanelHeight : statusPanelHeight),
-                        (isHelperShow ? panel.getWidth() : panel.getWidth()));
-                animation.setDuration(150);
-                animation.setFillAfter(true);
-                animation.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-                        isPanelAnimeStarted = true;
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        isPanelAnimeStarted = false;
-                        isHelperShow = !isHelperShow;
-                        panel.clearAnimation();
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-                        panel.clearAnimation();
-                    }
-                });
-
-                Animation rotation = new RotateAnimation(isHelperShow ? -180f : 0, isHelperShow ? 0 : -180f, helperExpander.getPivotX(), helperExpander.getPivotY());
-                rotation.setDuration(150);
-                rotation.setFillAfter(true);
-
-                helperExpander.startAnimation(rotation);
-                panel.setAnimation(animation);
-                panel.startLayoutAnimation();
-            }
-        });
-
-        defaultSkin.setOnClickListener(v1 -> SkinManager.getInstance().restoreDefaultTheme());
-
-        loadSkin.setOnClickListener(v1 -> {
-            if (checkPermissions()) return;
-            SkinManager.getInstance().loadSkin("theme-20191103.skin", new SkinLoaderListener() {
-                @Override
-                public void onStart() {
-                    Toast.makeText(getContext(), "正在切换中", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onSuccess() {
-                    Toast.makeText(getContext(), "切换成功", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailed(String errMsg) {
-                    Toast.makeText(getContext(), "切换失败", Toast.LENGTH_SHORT).show();
-                }
-            });
-        });
+        panel.setOnClickListener(v1 -> exeAnime(panel, helperExpander));
 
         androidSdk.setText(
 
@@ -456,39 +439,20 @@ public class StatusInstallerFragment extends SkinBaseFragment {
 
         refreshKnownIssue();
 
-        RelativeLayout egg = v.findViewById(R.id.easter_egg);
-//        Toast toast = Toast.makeText(getContext(), "彩蛋", Toast.LENGTH_SHORT);
-        egg.setOnClickListener(view ->
-
-        {
-//            if (System.currentTimeMillis() - lastClickTime < 300) {
-//                if (clickCount >= 5 && clickCount < 10) {
-//                    toast.show();
-//                    toast.setText("再点击" + (10 - clickCount) + "次就能开启彩蛋");
-//                } else if (clickCount >= 10) {
-//
-//                }
-//                clickCount++;
-//            } else {
-//                clickCount = 0;
-//                toast.cancel();
-//            }
-            startActivity(new Intent(getActivity(), EasterEggActivity.class));
-//            lastClickTime = System.currentTimeMillis();
-        });
-
-        ShimmerLayout shimmer = v.findViewById(R.id.shimmer);
-        if (XposedApp.getPreferences().
-
-                getBoolean("mask_animate", true)) {
-            shimmer.startShimmerAnimation();
-        } else {
-            shimmer.stopShimmerAnimation();
-        }
-
-
         LinearLayout checkConnection = v.findViewById(R.id.checkConnection);
         checkConnection.setOnClickListener(v1 -> startActivity(new Intent(getActivity(), PingActivity.class)));
+
+        if (XposedApp.getPreferences().getBoolean("helper_button", false)) {
+            helperButton.setVisibility(View.GONE);
+        }
+
+        if (XposedApp.getPreferences().getBoolean("status_icon", false)) {
+            txtInstallIcon.setVisibility(View.INVISIBLE);
+        }
+
+        if (XposedApp.getPreferences().getBoolean("status_info", false)) {
+            txtInstallError.setVisibility(View.INVISIBLE);
+        }
         return v;
     }
 
@@ -572,7 +536,7 @@ public class StatusInstallerFragment extends SkinBaseFragment {
         }
         final PackageManager packageManager = context.getPackageManager();
         List<PackageInfo> info = packageManager.getInstalledPackages(0);
-        if (info == null || info.isEmpty()) {
+        if (info.isEmpty()) {
             return false;
         }
         for (int i = 0; i < info.size(); i++) {
@@ -586,48 +550,33 @@ public class StatusInstallerFragment extends SkinBaseFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_installer, menu);
-        if (Build.VERSION.SDK_INT < 26) {
-            menu.findItem(R.id.dexopt_all).setVisible(false);
-            menu.findItem(R.id.speed_all).setVisible(false);
-        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.dexopt_all:
-                new MaterialDialog.Builder(getActivity())
-                        .title(R.string.dexopt_now)
-                        .content(R.string.this_may_take_a_while)
-                        .progress(true, 0)
-                        .cancelable(false)
-                        .showListener(new DialogInterface.OnShowListener() {
-                            @Override
-                            public void onShow(final DialogInterface dialog) {
-                                new Thread("dexopt") {
-                                    @Override
-                                    public void run() {
-                                        RootUtil rootUtil = new RootUtil();
-                                        if (!rootUtil.startShell()) {
-                                            dialog.dismiss();
-                                            NavUtil.showMessage(getActivity(), getString(R.string.root_failed));
-                                            return;
-                                        }
-
-                                        rootUtil.execute("cmd package bg-dexopt-job", new ArrayList<String>());
-
-                                        dialog.dismiss();
-                                        XposedApp.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show();
-                                            }
-                                        });
-                                    }
-                                }.start();
+        if (item.getItemId() == R.id.dexopt_all) {
+            new MaterialDialog.Builder(requireActivity())
+                    .title(R.string.dexopt_now)
+                    .content(R.string.this_may_take_a_while)
+                    .progress(true, 0)
+                    .cancelable(false)
+                    .showListener(dialog -> new Thread("dexopt") {
+                        @Override
+                        public void run() {
+                            RootUtil rootUtil = new RootUtil();
+                            if (!rootUtil.startShell()) {
+                                dialog.dismiss();
+                                NavUtil.showMessage(requireActivity(), getString(R.string.root_failed));
+                                return;
                             }
-                        }).show();
-                return true;
+
+                            rootUtil.execute("cmd package bg-dexopt-job", new ArrayList<String>());
+
+                            dialog.dismiss();
+                            XposedApp.runOnUiThread(() -> Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show());
+                        }
+                    }.start()).show();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -655,6 +604,10 @@ public class StatusInstallerFragment extends SkinBaseFragment {
                 return "Oreo";
             case 28:
                 return "Pie";
+            case 29:
+                return "Q";
+            case 30:
+                return "R";
         }
         return "";
     }
@@ -710,5 +663,44 @@ public class StatusInstallerFragment extends SkinBaseFragment {
             return 0;
         }
         return (int) Math.ceil(density * value);
+    }
+
+    private void exeAnime(XposedStatusPanel panel, ImageView helperExpander) {
+        if (!isPanelAnimeStarted) {
+            panel.clearAnimation();
+//                Log.e("STATUS", "isHelperShow: " + isHelperShow + ", panelExpandedHeight: " + statusPanelHeight + ", panelUnExpandedHeight: " + defaultPanelHeight);
+//                Log.e("STATUS", "currentHeight: " + (isHelperShow ? defaultPanelHeight : statusPanelHeight));
+            ViewSizeChangeAnimation animation = new ViewSizeChangeAnimation(panel,
+                    (isHelperShow ? defaultPanelHeight : statusPanelHeight),
+                    (isHelperShow ? panel.getWidth() : panel.getWidth()));
+            animation.setDuration(150);
+            animation.setFillAfter(true);
+            animation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    isPanelAnimeStarted = true;
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    isPanelAnimeStarted = false;
+                    isHelperShow = !isHelperShow;
+                    panel.clearAnimation();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                    panel.clearAnimation();
+                }
+            });
+
+            Animation rotation = new RotateAnimation(isHelperShow ? -180f : 0, isHelperShow ? 0 : -180f, helperExpander.getPivotX(), helperExpander.getPivotY());
+            rotation.setDuration(150);
+            rotation.setFillAfter(true);
+
+            helperExpander.startAnimation(rotation);
+            panel.setAnimation(animation);
+            panel.startLayoutAnimation();
+        }
     }
 }

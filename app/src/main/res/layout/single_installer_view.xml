@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/android/skin"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:windowBackground"
-    xmlns:skin="http://schemas.android.com/android/skin">
+    android:background="?android:windowBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="?actionBarSize">
 
         <com.lihang.ShadowLayout
             android:layout_width="match_parent"
@@ -116,11 +117,11 @@
                         android:layout_below="@id/warning_unstable"
                         android:layout_alignParentEnd="true"
                         android:layout_margin="5dp"
-                        android:backgroundTint="@color/colorAccent"
+                        android:backgroundTint="?attr/appColorAccent"
                         android:text="@string/install"
                         android:textColor="#FFF"
                         app:strokeColor="@color/buttonStroker"
-                        skin:enable="true"/>
+                        skin:enable="true" />
 
                     <Spinner
                         android:id="@+id/chooserUninstallers"
@@ -156,11 +157,11 @@
                         android:layout_below="@+id/chooserUninstallers"
                         android:layout_alignEnd="@+id/infoUninstaller"
                         android:layout_margin="5dp"
-                        android:backgroundTint="@color/colorAccent"
+                        android:backgroundTint="?attr/appColorAccent"
                         android:text="@string/uninstall"
                         android:textColor="#FFF"
                         app:strokeColor="@color/buttonStroker"
-                        skin:enable="true"/>
+                        skin:enable="true" />
 
                     <View
                         android:layout_width="match_parent"

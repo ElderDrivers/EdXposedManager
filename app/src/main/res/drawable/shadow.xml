@@ -7,10 +7,10 @@
             <!--设置背景颜色渐变-->
             <gradient
                 android:startColor="#00000000"
-                android:endColor="#2788D5"
-                android:centerColor="#852EA1FF"
-                android:centerX="0.65"
-                android:centerY="0.5"
+                android:endColor="#15000000"
+                android:centerColor="#09000000"
+                android:centerX="0.55"
+                android:centerY="0.9"
                 android:angle="90"/>
         </shape>
     </item>

@@ -1,93 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application light theme. -->
-    <style name="Theme.XposedInstaller.Light.Base" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimaryLight</item>
-        <item name="colorSecondary">@color/colorAccent</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">#000</item>
-        <item name="android:navigationBarColor">@color/app_light</item>
-        <item name="android:fontFamily">@font/regular</item>
-        <item name="stroke_color">@color/stroke_dark</item>
-        <item name="nav_text_item_color">@color/nav_text_item_color_light</item>
-        <item name="material_ver_info_color">@color/material_ver_info_color_light</item>
-        <item name="card_background_color">@color/card_bg_light</item>
-    </style>
-
-    <!-- Base application dark theme. -->
-    <style name="Theme.XposedInstaller.Dark.Base" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorSecondary">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/regular</item>
-        <item name="stroke_color">@color/stroke_light</item>
-        <item name="nav_text_item_color">@color/nav_text_item_color_dark</item>
-        <item name="material_ver_info_color">@color/material_ver_info_color_dark</item>
-        <item name="card_background_color">@color/card_bg_dark</item>
-    </style>
-
-    <style name="Theme.XposedInstaller.Light" parent="Theme.XposedInstaller.Light.Base">
+    <style name="Theme.XposedInstaller.Light" parent="Theme.Coxylic.Light">
         <item name="android:windowBackground">@color/app_light</item>
-        <item name="download_status_installed">@android:color/holo_orange_dark</item>
         <item name="android:navigationBarColor">@color/app_light</item>
-        <item name="toolbarStyle">@style/Theme.XposedInstaller.Toolbar</item>
-        <item name="stroke_color">@color/stroke_dark</item>
-        <item name="nav_text_item_color">@color/nav_text_item_color_light</item>
-        <item name="material_ver_info_color">@color/material_ver_info_color_light</item>
-        <item name="card_background_color">@color/card_bg_light</item>
+        <item name="android:textColorHighlight">@color/colorAccent</item>
+        <item name="colorAccentLight">@color/colorAccentLightDefault</item>
+        <item name="appColorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Theme.XposedInstaller.Dark" parent="Theme.XposedInstaller.Dark.Base">
-        <item name="android:windowBackground">@color/app_dark</item>
-        <item name="download_status_installed">@android:color/holo_orange_light</item>
-        <item name="android:navigationBarColor">@color/app_dark</item>
-        <item name="toolbarStyle">@style/Theme.XposedInstaller.Toolbar.Dark</item>
-        <item name="android:textColorPrimary">#FFF</item>
-        <item name="stroke_color">@color/stroke_light</item>
-        <item name="nav_text_item_color">@color/nav_text_item_color_dark</item>
-        <item name="material_ver_info_color">@color/material_ver_info_color_dark</item>
-        <item name="card_background_color">@color/card_bg_dark</item>
-    </style>
-
-    <style name="Theme.XposedInstaller.Toolbar" parent="ThemeOverlay.AppCompat.Light">
+    <style name="Theme.XposedInstaller.Toolbar" parent="ThemeOverlay.MaterialComponents.ActionBar">
         <!--        <item name="colorPrimary">@color/colorPrimary</item>-->
         <item name="android:textColorPrimary">#656565</item>
         <item name="actionMenuTextColor">#656565</item>
         <item name="android:textColorSecondary">#858585</item>
-        <item name="android:fontFamily">@font/regular</item>
-        <item name="stroke_color">@color/stroke_dark</item>
-        <item name="nav_text_item_color">@color/nav_text_item_color_light</item>
-        <item name="material_ver_info_color">@color/material_ver_info_color_light</item>
-        <item name="android:searchViewStyle">@style/Widget.AppCompat.SearchView.ActionBar</item>
-        <item name="card_background_color">@color/card_bg_light</item>
+        <item name="colorAccentLight">@color/colorAccentLightDefault</item>
+        <item name="appColorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Theme.XposedInstaller.Toolbar.Dark" parent="ThemeOverlay.AppCompat">
-        <!--        <item name="colorPrimary">@color/colorPrimary</item>-->
-        <item name="android:textColorPrimary">#FFF</item>
-        <item name="actionMenuTextColor">#FFF</item>
-        <item name="android:textColorSecondary">#F5F5F5</item>
-        <item name="android:fontFamily">@font/regular</item>
-        <item name="stroke_color">@color/stroke_light</item>
-        <item name="nav_text_item_color">@color/nav_text_item_color_dark</item>
-        <item name="material_ver_info_color">@color/material_ver_info_color_dark</item>
-        <item name="android:searchViewStyle">@style/Widget.AppCompat.SearchView.ActionBar</item>
-        <item name="card_background_color">@color/card_bg_dark</item>
-    </style>
-
-    <style name="Theme.XposedInstaller.Transparent" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="stroke_color">@color/stroke_dark</item>
-        <item name="nav_text_item_color">@color/nav_text_item_color_light</item>
-        <item name="material_ver_info_color">@color/material_ver_info_color_light</item>
-        <item name="card_background_color">@color/card_bg_light</item>
+    <style name="Theme.XposedInstaller.Transparent" parent="Theme.Coxylic">
+        <item name="colorAccentLight">@color/colorAccentLightDefault</item>
+        <item name="appColorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Theme.BootUp" parent="Theme.XposedInstaller.Light">
         <item name="android:windowBackground">@drawable/edxp_launcher</item>
+        <item name="colorAccentLight">@color/colorAccentLightDefault</item>
+        <item name="appColorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Theme.XposedInstaller.Light.Blue" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentBlue</item>
+        <item name="appColorAccent">@color/colorAccentBlue</item>
+        <item name="colorAccentLight">@color/colorAccentLightBlue</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.NavyBlue" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentNavyBlue</item>
+        <item name="appColorAccent">@color/colorAccentNavyBlue</item>
+        <item name="colorAccentLight">@color/colorAccentLightNavyBlue</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.DIM" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentDIM</item>
+        <item name="appColorAccent">@color/colorAccentDIM</item>
+        <item name="colorAccentLight">@color/colorAccentLightDIM</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.TianYi" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentTianYi</item>
+        <item name="appColorAccent">@color/colorAccentTianYi</item>
+        <item name="colorAccentLight">@color/colorAccentLightTianYi</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.Purple" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentPurple</item>
+        <item name="appColorAccent">@color/colorAccentPurple</item>
+        <item name="colorAccentLight">@color/colorAccentLightPurple</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.Limb" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentLimb</item>
+        <item name="appColorAccent">@color/colorAccentLimb</item>
+        <item name="colorAccentLight">@color/colorAccentLightLimb</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.Pink" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentPink</item>
+        <item name="appColorAccent">@color/colorAccentPink</item>
+        <item name="colorAccentLight">@color/colorAccentLightPink</item>
+    </style>
 </resources>

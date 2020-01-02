@@ -20,7 +20,6 @@ public class SupportActivity extends XposedBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

@@ -24,7 +24,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.annimon.stream.Stream;
-import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.solohsu.android.edxp.manager.BuildConfig;
@@ -36,19 +36,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import de.robv.android.xposed.installer.activity.PingActivity;
 import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.activity.PingActivity;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
-import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.json.JSONUtils;
 import de.robv.android.xposed.installer.util.json.XposedTab;
-import solid.ren.skinlibrary.base.SkinBaseFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class AdvancedInstallerFragment extends SkinBaseFragment {
+public class AdvancedInstallerFragment extends Fragment {
 
     private static ViewPager mPager;
     private TabLayout mTabLayout;
@@ -67,11 +65,6 @@ public class AdvancedInstallerFragment extends SkinBaseFragment {
         mPager = view.findViewById(R.id.pager);
         mTabLayout = view.findViewById(R.id.tab_layout);
 
-        dynamicAddView(mTabLayout, "tabIndicator", R.color.colorAccent);
-        dynamicAddView(mTabLayout, "tabTextColor", R.color.tab_unselected_color);
-        dynamicAddView(mTabLayout, "tabSelectedTextColor", R.color.colorAccent);
-        dynamicAddView(mTabLayout, "tabRippleColor", R.color.colorAccentLight);
-
         tabsAdapter = new TabsAdapter(getChildFragmentManager());
         tabsAdapter.notifyDataSetChanged();
         mPager.setAdapter(tabsAdapter);
@@ -80,25 +73,17 @@ public class AdvancedInstallerFragment extends SkinBaseFragment {
         setHasOptionsMenu(true);
         new JSONParser().execute();
 
-        boolean autoUpdate = XposedApp.getPreferences().getBoolean("auto_update_checkable", true);
-//        Log.e("UpdatePush", "自动更新状态: " + autoUpdate);
-        if (autoUpdate) {
-            UpdatePush updatePush = new UpdatePush(); //更新推送
-            updatePush.execute();
-        }
-
         if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
             final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
 
-            new MD2Dialog(getActivity())
-                    .title(R.string.install_warning_title)
-                    .msg(R.string.install_warning)
-                    .enableCheckBox(R.string.dont_show_again, true)
-                    .onConfirmClick(android.R.string.ok, (view1, dialog) -> {
-                        if (dialog.getCheckBoxStatus())
-                            XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
+            new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(R.string.install_warning_title)
+                    .setMessage(R.string.install_warning)
+                    .setNeutralButton(R.string.dont_show_again, (dialog, which) -> {
+                        XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
                         dialog.dismiss();
-                    }).show();
+                    })
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss()).show();
 
 //            new MaterialDialog.Builder(getActivity())
 //                    .title(R.string.install_warning_title)
@@ -139,13 +124,10 @@ public class AdvancedInstallerFragment extends SkinBaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.dexopt_all:
-                MD2Dialog.create(this.getActivity())
-                        .title(R.string.areyousure)
-                        .msg(R.string.take_while_cannot_resore)
-                        .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                        .simpleCancel()
-                        .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                        .onConfirmClick((view, dg) -> {
+                new MaterialAlertDialogBuilder(requireContext())
+                        .setTitle(R.string.areyousure)
+                        .setMessage(R.string.take_while_cannot_resore)
+                        .setPositiveButton(android.R.string.yes, (dg, which) -> {
                             new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
                                     .title(R.string.dexopt_now)
                                     .content(R.string.this_may_take_a_while)
@@ -171,13 +153,10 @@ public class AdvancedInstallerFragment extends SkinBaseFragment {
                         }).show();
                 break;
             case R.id.speed_all:
-                MD2Dialog.create(this.getActivity())
-                        .title(R.string.areyousure)
-                        .msg(R.string.take_while_cannot_resore)
-                        .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                        .simpleCancel()
-                        .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                        .onConfirmClick((view, dg) -> {
+                new MaterialAlertDialogBuilder(requireContext())
+                        .setTitle(R.string.areyousure)
+                        .setMessage(R.string.take_while_cannot_resore)
+                        .setPositiveButton(android.R.string.yes, (dg, which) -> {
                             new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
                                     .title(R.string.speed_now)
                                     .content(R.string.this_may_take_a_while)
@@ -262,34 +241,29 @@ public class AdvancedInstallerFragment extends SkinBaseFragment {
     }
 
     private void areYouSure(int contentTextId, int mode) {
-        new MD2Dialog(getActivity())
-                .title(R.string.areyousure)
-                .msg(contentTextId)
-                .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                .onConfirmClick(android.R.string.yes, new MD2Dialog.OptionsButtonCallBack() {
-                    @Override
-                    public void onClick(View view, MD2Dialog dialog) {
-                        switch (mode) {
-                            case 0:
-                                reboot(null);
-                                break;
-                            case 1:
-                                softReboot();
-                                break;
-                            case 2:
-                                reboot("recovery");
-                                break;
-                            case 3:
-                                reboot("bootloader");
-                                break;
-                            case 4:
-                                reboot("download");
-                                break;
-                        }
-                        dialog.dismiss();
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.areyousure)
+                .setMessage(contentTextId)
+                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                    switch (mode) {
+                        case 0:
+                            reboot(null);
+                            break;
+                        case 1:
+                            softReboot();
+                            break;
+                        case 2:
+                            reboot("recovery");
+                            break;
+                        case 3:
+                            reboot("bootloader");
+                            break;
+                        case 4:
+                            reboot("download");
+                            break;
                     }
-                }).simpleCancel().show();
+                    dialog.dismiss();
+                }).show();
 
 
 //        new MaterialDialog.Builder(getActivity()).title(R.string.areyousure)
@@ -301,18 +275,11 @@ public class AdvancedInstallerFragment extends SkinBaseFragment {
 
     private void showAlert(final String result) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    showAlert(result);
-                }
-            });
+            Objects.requireNonNull(getActivity()).runOnUiThread(() -> showAlert(result));
             return;
         }
 
-        MD2Dialog dialog = new MD2Dialog(getActivity()).msg(result).simpleConfirm(android.R.string.ok);
-        dialog.darkMode(ThemeUtil.getSelectTheme().equals("dark"));
-        dialog.show();
+        new MaterialAlertDialogBuilder(requireContext()).setMessage(result).setPositiveButton(android.R.string.ok, ((dialog, which) -> dialog.dismiss()));
     }
 
     private void softReboot() {

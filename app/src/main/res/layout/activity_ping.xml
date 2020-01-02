@@ -80,7 +80,7 @@
                             android:background="?selectableItemBackgroundBorderless"
                             android:padding="5dp"
                             android:src="@drawable/ic_expand_more"
-                            android:tint="@color/colorAccent"
+                            android:tint="?attr/appColorAccent"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -105,7 +105,7 @@
                             android:layout_marginEnd="5dp"
                             android:layout_weight="1"
                             android:alpha="0.85"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/appColorAccent"
                             android:textSize="15sp"
                             tools:text="https://" />
 
@@ -116,7 +116,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|end"
                             android:text="@string/reset"
-                            android:textColor="@color/colorAccent" />
+                            android:textColor="?attr/appColorAccent" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/framework_source_custom"
@@ -125,7 +125,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|end"
                             android:text="@string/custom"
-                            android:textColor="@color/colorAccent" />
+                            android:textColor="?attr/appColorAccent" />
 
                     </LinearLayout>
 
@@ -194,7 +194,7 @@
                             android:background="?selectableItemBackgroundBorderless"
                             android:padding="5dp"
                             android:src="@drawable/ic_expand_more"
-                            android:tint="@color/colorAccent"
+                            android:tint="?attr/appColorAccent"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -219,7 +219,7 @@
                             android:layout_marginEnd="5dp"
                             android:layout_weight="1"
                             android:alpha="0.85"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/appColorAccent"
                             android:textSize="15sp"
                             tools:text="https://" />
 
@@ -230,7 +230,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|end"
                             android:text="@string/reset"
-                            android:textColor="@color/colorAccent" />
+                            android:textColor="?attr/appColorAccent" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/modules_source_custom"
@@ -239,7 +239,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|end"
                             android:text="@string/custom"
-                            android:textColor="@color/colorAccent" />
+                            android:textColor="?attr/appColorAccent" />
 
                     </LinearLayout>
 
@@ -308,7 +308,7 @@
                             android:background="?selectableItemBackgroundBorderless"
                             android:padding="5dp"
                             android:src="@drawable/ic_expand_more"
-                            android:tint="@color/colorAccent"
+                            android:tint="?attr/appColorAccent"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -333,7 +333,7 @@
                             android:layout_marginEnd="5dp"
                             android:layout_weight="1"
                             android:alpha="0.85"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/appColorAccent"
                             android:textSize="15sp"
                             tools:text="https://" />
 
@@ -344,7 +344,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|end"
                             android:text="@string/reset"
-                            android:textColor="@color/colorAccent" />
+                            android:textColor="?attr/appColorAccent" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/md2_source_custom"
@@ -353,7 +353,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|end"
                             android:text="@string/custom"
-                            android:textColor="@color/colorAccent" />
+                            android:textColor="?attr/appColorAccent" />
 
                     </LinearLayout>
 
@@ -384,7 +384,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="?attr/appColorAccent"
         android:text="@string/ping"
         android:textColor="#FFF"
         app:icon="@drawable/ic_ping"

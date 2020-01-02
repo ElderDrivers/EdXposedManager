@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer.activity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,10 +13,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 
 import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.solohsu.android.edxp.manager.R;
@@ -27,6 +30,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -115,7 +119,6 @@ public class PingActivity extends XposedBaseActivity implements View.OnClickList
 
         initData();
         initViews();
-        ThemeUtil.setTheme(this);
     }
 
     private void initData() {
@@ -195,54 +198,52 @@ public class PingActivity extends XposedBaseActivity implements View.OnClickList
         });
 
         frameWorkCustom.setOnClickListener(v -> {
-            MD2Dialog alert = MD2Dialog.create(this)
-                    .title("自定义框架获取源")
-                    .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                    .customView(R.layout.md2_custom_source)
-                    .simpleCancel(android.R.string.cancel).show();
+            AlertDialog alert = new MaterialAlertDialogBuilder(this)
+                    .setTitle("自定义框架获取源")
+                    .setView(R.layout.md2_custom_source)
+                    .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss()).show();
 
-            TextInputEditText editText = (TextInputEditText) alert.findView(R.id.md2_custom_edit);
-            editText.setText(getMaterialApkLink());
+            TextInputEditText editText = alert.findViewById(R.id.md2_custom_edit);
+            Objects.requireNonNull(editText).setText(getFrameWorkLink());
 
-            alert.onConfirmClick(android.R.string.ok, (view, dialog) -> {
+            alert.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), (dialog, which) -> {
                 if (TextUtils.isEmpty(editText.getText())) {
                     editText.setError("不能为空");
                 } else {
                     if (isUrl(editText.getText().toString())) {
                         setFrameWorkLink(editText.getText().toString());
-                        Toast.makeText(view.getContext(), "已更新框架源为:" + editText.getText().toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PingActivity.this, "已更新框架源为:" + editText.getText().toString(), Toast.LENGTH_SHORT).show();
                         frameWorkLink.setText(editText.getText().toString());
                         refreshPing();
                         dialog.dismiss();
                     } else {
-                        Toast.makeText(view.getContext(), "您输入的不是一个合法地址", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PingActivity.this, "您输入的不是一个合法地址", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         });
 
         modulesCustom.setOnClickListener(v -> {
-            MD2Dialog alert = MD2Dialog.create(this)
-                    .title("自定义模块获取源")
-                    .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                    .customView(R.layout.md2_custom_source)
-                    .simpleCancel(android.R.string.cancel).show();
+            AlertDialog alert = new MaterialAlertDialogBuilder(this)
+                    .setTitle("自定义模块源")
+                    .setView(R.layout.md2_custom_source)
+                    .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss()).show();
 
-            TextInputEditText editText = (TextInputEditText) alert.findView(R.id.md2_custom_edit);
-            editText.setText(getMaterialApkLink());
+            TextInputEditText editText = alert.findViewById(R.id.md2_custom_edit);
+            Objects.requireNonNull(editText).setText(getModulesLink());
 
-            alert.onConfirmClick(android.R.string.ok, (view, dialog) -> {
+            alert.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), (dialog, which) -> {
                 if (TextUtils.isEmpty(editText.getText())) {
                     editText.setError("不能为空");
                 } else {
                     if (isUrl(editText.getText().toString())) {
                         setModulesLink(editText.getText().toString());
-                        Toast.makeText(view.getContext(), "已更新模块源为:" + editText.getText().toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PingActivity.this, "已更新模块源为:" + editText.getText().toString(), Toast.LENGTH_SHORT).show();
                         modulesLink.setText(editText.getText().toString());
                         refreshPing();
                         dialog.dismiss();
                     } else {
-                        Toast.makeText(view.getContext(), "您输入的不是一个合法地址", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PingActivity.this, "您输入的不是一个合法地址", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -250,16 +251,15 @@ public class PingActivity extends XposedBaseActivity implements View.OnClickList
 
         md2Custom.setOnClickListener(v -> {
 
-            MD2Dialog alert = MD2Dialog.create(this)
-                    .title("自定义美化版本获取源")
-                    .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                    .customView(R.layout.md2_custom_source)
-                    .simpleCancel(android.R.string.cancel).show();
+            AlertDialog alert = new MaterialAlertDialogBuilder(this)
+                    .setTitle("自定义美化版本获取源")
+                    .setView(R.layout.md2_custom_source)
+                    .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss()).show();
 
-            TextInputEditText editText = (TextInputEditText) alert.findView(R.id.md2_custom_edit);
-            editText.setText(getMaterialApkLink());
+            TextInputEditText editText = alert.findViewById(R.id.md2_custom_edit);
+            Objects.requireNonNull(editText).setText(getModulesLink());
 
-            alert.onConfirmClick(android.R.string.ok, (view, dialog) -> {
+            alert.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), (dialog, which) -> {
                 if (TextUtils.isEmpty(editText.getText())) {
                     editText.setError("不能为空");
                 } else {
@@ -333,12 +333,10 @@ public class PingActivity extends XposedBaseActivity implements View.OnClickList
                 }
                 break;
             case R.id.framework_source_reset:
-                MD2Dialog.create(this).title("重置")
-                        .msg("您确定重置?")
-                        .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                        .simpleCancel()
-                        .darkMode(mTheme.equals("dark"))
-                        .onConfirmClick(android.R.string.ok, (view, dialog) -> {
+                new MaterialAlertDialogBuilder(this).setTitle("重置")
+                        .setMessage("您确定重置?")
+                        .setNegativeButton(android.R.string.cancel,(dialog, which) -> dialog.dismiss())
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                             frameWorkLink.setText(JSONUtils.JSON_LINK);
                             setFrameWorkLink(JSONUtils.JSON_LINK);
                             Toast.makeText(this, "已重置", Toast.LENGTH_SHORT).show();
@@ -347,12 +345,10 @@ public class PingActivity extends XposedBaseActivity implements View.OnClickList
                         }).show();
                 break;
             case R.id.modules_source_reset:
-                MD2Dialog.create(this).title("重置")
-                        .msg("您确定重置?")
-                        .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                        .simpleCancel()
-                        .darkMode(mTheme.equals("dark"))
-                        .onConfirmClick(android.R.string.ok, (view, dialog) -> {
+                new MaterialAlertDialogBuilder(this).setTitle("重置")
+                        .setMessage("您确定重置?")
+                        .setNegativeButton(android.R.string.cancel,(dialog, which) -> dialog.dismiss())
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                             modulesLink.setText(RepoLoader.DEFAULT_REPOSITORIES);
                             setModulesLink(RepoLoader.DEFAULT_REPOSITORIES);
                             Toast.makeText(this, "已重置", Toast.LENGTH_SHORT).show();
@@ -361,12 +357,10 @@ public class PingActivity extends XposedBaseActivity implements View.OnClickList
                         }).show();
                 break;
             case R.id.md2_source_reset:
-                MD2Dialog.create(this).title("重置")
-                        .msg("您确定重置?")
-                        .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                        .simpleCancel()
-                        .darkMode(mTheme.equals("dark"))
-                        .onConfirmClick(android.R.string.ok, (view, dialog) -> {
+                new MaterialAlertDialogBuilder(this).setTitle("重置")
+                        .setMessage("您确定重置?")
+                        .setNegativeButton(android.R.string.cancel,(dialog, which) -> dialog.dismiss())
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                             md2Link.setText(JSONUtils.UNOFFICIAL_UPDATE_LINK);
                             setMaterialApkLink(JSONUtils.UNOFFICIAL_UPDATE_LINK);
                             Toast.makeText(this, "已重置", Toast.LENGTH_SHORT).show();

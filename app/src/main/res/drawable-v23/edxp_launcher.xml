@@ -10,7 +10,7 @@
         android:gravity="center">
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/edxp_logo" />
+            android:src="@mipmap/edxp_logo"/>
     </item>
     <!--最下面的文字-->
     <item android:top="150dp">

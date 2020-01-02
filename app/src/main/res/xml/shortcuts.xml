@@ -1,18 +1,20 @@
-<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <shortcut
         android:enabled="true"
         android:icon="@drawable/shortcut_ic_modules"
         android:shortcutId="modules"
         android:shortcutLongLabel="@string/nav_item_modules"
-        android:shortcutShortLabel="@string/nav_item_modules">
+        android:shortcutShortLabel="@string/nav_item_modules"
+        tools:targetApi="n_mr1">
         <intent
             android:action="android.intent.action.MAIN"
             android:targetClass="de.robv.android.xposed.installer.WelcomeActivity"
-            android:targetPackage="com.github.coxylicacid.edxp.material">
+            android:targetPackage="com.solohsu.android.edxp.manager">
             <extra
                 android:name="fragment"
-                android:value="1"/>
+                android:value="1" />
         </intent>
     </shortcut>
 
@@ -21,14 +23,15 @@
         android:icon="@drawable/shortcut_ic_downloads"
         android:shortcutId="downloads"
         android:shortcutLongLabel="@string/nav_item_download"
-        android:shortcutShortLabel="@string/nav_item_download">
+        android:shortcutShortLabel="@string/nav_item_download"
+        tools:targetApi="n_mr1">
         <intent
             android:action="android.intent.action.MAIN"
             android:targetClass="de.robv.android.xposed.installer.WelcomeActivity"
-            android:targetPackage="com.github.coxylicacid.edxp.material">
+            android:targetPackage="com.solohsu.android.edxp.manager">
             <extra
                 android:name="fragment"
-                android:value="2"/>
+                android:value="2" />
         </intent>
     </shortcut>
 

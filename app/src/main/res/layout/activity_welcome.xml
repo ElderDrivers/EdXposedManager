@@ -14,12 +14,12 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:background="?android:windowBackground"
-        app:bItemSelectedIconColor="@color/colorAccent"
-        app:bItemSelectedTextColor="@color/colorAccent"
+        app:bItemSelectedIconColor="?attr/appColorAccent"
+        app:bItemSelectedTextColor="?attr/appColorAccent"
         app:bItemUnSelectedIconColor="@color/tab_unselected_color"
         app:bItemUnSelectedTextColor="@color/tab_unselected_color"
         app:elevation="5dp"
-        app:itemRippleColor="@color/colorAccentLight"
+        app:itemRippleColor="?attr/colorAccentLight"
         app:menu="@menu/bottom_navigation_menu"
         skin:enable="true" />
 

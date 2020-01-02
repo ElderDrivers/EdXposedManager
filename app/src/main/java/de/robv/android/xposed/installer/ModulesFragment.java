@@ -12,6 +12,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -40,12 +41,15 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 import androidx.palette.graphics.Palette;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
-import com.google.android.material.chip.Chip;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.sergivonavi.materialbanner.Banner;
 import com.solohsu.android.edxp.manager.R;
 
@@ -82,13 +86,12 @@ import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-import solid.ren.skinlibrary.base.SkinBaseFragment;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
-public class ModulesFragment extends SkinBaseFragment implements ModuleListener {
+public class ModulesFragment extends Fragment implements ModuleListener {
     public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
     public static final String PLAY_STORE_PACKAGE = "com.android.vending";
     public static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=%s";
@@ -103,13 +106,23 @@ public class ModulesFragment extends SkinBaseFragment implements ModuleListener 
     private Banner banner;
     private Runnable reloadModules = new Runnable() {
         public void run() {
+            int sortMode = XposedApp.getPreferences().getInt("modules_sorting", 0);
             mModuleUtil.reloadInstalledModules();
             mModuleUtil.updateModulesList(false);
             mAdapter.setNotifyOnChange(false);
             mAdapter.clear();
             mAdapter.addAll(mModuleUtil.getModules().values());
-            final Collator col = Collator.getInstance(Locale.getDefault());
-            mAdapter.sort((lhs, rhs) -> col.compare(lhs.getAppName(), rhs.getAppName()));
+            if (sortMode == 0) { //按激活状态进行排序
+                final Collator col = Collator.getInstance();
+                mAdapter.sort((o1, o2) -> {
+                    boolean m1 = mModuleUtil.isModuleEnabled(o1.packageName);
+                    boolean m2 = mModuleUtil.isModuleEnabled(o2.packageName);
+                    return Boolean.compare(m2, m1);
+                });
+            } else if (sortMode == 1) {
+                final Collator col = Collator.getInstance(Locale.getDefault());
+                mAdapter.sort((lhs, rhs) -> col.compare(lhs.getAppName(), rhs.getAppName()));
+            }
             mAdapter.notifyDataSetChanged();
             if (swipeRefreshLayout.isRefreshing()) {
                 swipeRefreshLayout.setRefreshing(false);
@@ -198,6 +211,34 @@ public class ModulesFragment extends SkinBaseFragment implements ModuleListener 
 //        ((ImageView) view.findViewById(R.id.background_list_iv)).setImageResource(R.drawable.ic_nav_modules);
         ((TextView) view.findViewById(R.id.list_status)).setText(R.string.no_xposed_modules_found);
 
+        int left = requireActivity().getWindow().getDecorView().getWidth() - dp(130);
+        int top = dp(35);
+        int right = requireActivity().getWindow().getDecorView().getWidth();
+        int bottom = top + dp(35);
+        if (!XposedApp.getPreferences().getBoolean("modules_sort_guide", false)) {
+            new TapTargetSequence(requireActivity())
+                    .targets(
+                            XposedApp.targetView(new Rect(left, top, right, bottom), "模块排序", "你可以在这里切换模块的排序方式")
+                    ).listener(new TapTargetSequence.Listener() {
+                // This listener will tell us when interesting(tm) events happen in regards
+                // to the sequence
+                @Override
+                public void onSequenceFinish() {
+                    XposedApp.getPreferences().edit().putBoolean("modules_sort_guide", true).apply();
+                }
+
+                @Override
+                public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+
+                }
+
+                @Override
+                public void onSequenceCanceled(TapTarget lastTarget) {
+                    // Boo
+                }
+            }).start();
+        }
+
         return view;
     }
 
@@ -261,14 +302,10 @@ public class ModulesFragment extends SkinBaseFragment implements ModuleListener 
 
         switch (item.getItemId()) {
             case R.id.menu_sort:
-                new MD2Dialog(getActivity())
-                        .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                        .title(R.string.download_sorting_title)
-                        .singleChoiceMode(true)
-                        .items(R.array.download_sort_order)
-                        .removeDivider()
-                        .listenChoices(sortNum, (dialog, pos, choice) -> {
-                            sortNum = pos;
+                new MaterialAlertDialogBuilder(requireActivity())
+                        .setTitle(R.string.download_sorting_title)
+                        .setSingleChoiceItems(R.array.modules_sort_order, sortNum, (dialog, which) -> {
+                            sortNum = which;
                             XposedApp.getPreferences().edit().putInt("modules_sorting", sortNum).apply();
                             reloadModules.run();
                             dialog.dismiss();
@@ -346,7 +383,7 @@ public class ModulesFragment extends SkinBaseFragment implements ModuleListener 
     }
 
     private boolean checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return true;
         }
@@ -453,40 +490,6 @@ public class ModulesFragment extends SkinBaseFragment implements ModuleListener 
     public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
         swipeRefreshLayout.setRefreshing(true);
     }
-
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v,
-//                                    ContextMenuInfo menuInfo) {
-//        InstalledModule installedModule = getItemFromContextMenuInfo(menuInfo);
-//        if (installedModule == null)
-//            return;
-//
-//        menu.setHeaderTitle(installedModule.getAppName());
-//        getActivity().getMenuInflater().inflate(R.menu.context_menu_modules, menu);
-//
-//        if (getSettingsIntent(installedModule.packageName) == null)
-//            menu.removeItem(R.id.menu_launch);
-//
-//        try {
-//            String support = RepoDb
-//                    .getModuleSupport(installedModule.packageName);
-//            if (NavUtil.parseURL(support) == null)
-//                menu.removeItem(R.id.menu_support);
-//        } catch (RowNotFoundException e) {
-//            menu.removeItem(R.id.menu_download_updates);
-//            menu.removeItem(R.id.menu_support);
-//        }
-//
-//        try {
-//            String installer = mPm.getInstallerPackageName(installedModule.packageName);
-//            if (PLAY_STORE_LABEL != null && PLAY_STORE_PACKAGE.equals(installer))
-//                menu.findItem(R.id.menu_play_store).setTitle(PLAY_STORE_LABEL);
-//            else
-//                menu.removeItem(R.id.menu_play_store);
-//        } catch (Exception e) {
-//            menu.removeItem(R.id.menu_play_store);
-//        }
-//    }
 
     @SuppressLint("RestrictedApi")
     private void showMenu(@NonNull Context context,
@@ -736,11 +739,10 @@ public class ModulesFragment extends SkinBaseFragment implements ModuleListener 
 
                 view.findViewById(R.id.viewClicker).setOnLongClickListener(v -> {
                     String pn = (String) view.getTag();
-                    MD2Dialog.create(v.getContext()).title(R.string.uninstall)
-                            .msg(String.format(getString(R.string.uninstall_warning), pn))
-                            .buttonStyle(MD2Dialog.ButtonStyle.FILL)
-                            .simpleCancel(android.R.string.cancel)
-                            .onConfirmClick(android.R.string.yes, (view1, dialog) -> {
+                    new MaterialAlertDialogBuilder(v.getContext()).setTitle(R.string.uninstall)
+                            .setMessage(String.format(getString(R.string.uninstall_warning), pn))
+                            .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
+                            .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                                 startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE, Uri.fromParts("package", pn, null)));
                                 dialog.dismiss();
                             }).show();
@@ -750,10 +752,8 @@ public class ModulesFragment extends SkinBaseFragment implements ModuleListener 
 
             InstalledModule item = getItem(position);
 
-            Chip version = view.findViewById(R.id.chipVersion);
-            version.setText(String.format("版本: %s", item.versionName));
-            version.setSelected(true);
-//            version.setTextColor(Color.parseColor("#959595"));
+            TextView version = view.findViewById(R.id.version);
+            version.setText(item != null ? item.versionName : "?");
 
             // Store the package name in some views' tag for later access
             view.findViewById(R.id.checkbox).setTag(item.packageName);
@@ -774,7 +774,7 @@ public class ModulesFragment extends SkinBaseFragment implements ModuleListener 
 
             CheckBox checkbox = view.findViewById(R.id.checkbox);
             checkbox.setChecked(mModuleUtil.isModuleEnabled(item.packageName));
-            Chip warningText = view.findViewById(R.id.chipWarning);
+            TextView warningText = view.findViewById(R.id.warning);
 
             if (item.minVersion == 0) {
                 checkbox.setEnabled(false);
@@ -836,6 +836,14 @@ public class ModulesFragment extends SkinBaseFragment implements ModuleListener 
                 bitmap.recycle();
             });
         }
+    }
+
+    private int dp(float value) {
+        float density = requireActivity().getResources().getDisplayMetrics().density;
+        if (value == 0) {
+            return 0;
+        }
+        return (int) Math.ceil(density * value);
     }
 
 }

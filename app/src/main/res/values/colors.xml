@@ -4,8 +4,11 @@
     <color name="colorPrimary">#FFF</color>
     <color name="colorPrimaryDark">#FAFAFA</color>
     <color name="colorPrimaryLight">#727272</color>
-    <color name="colorAccent">#1871EF</color>
-    <color name="colorAccentLight">#251871EF</color>
+    <color name="colorAccent">#E3272B</color>
+    <color name="colorAccentLightDefault">#25E3272B</color>
+    <color name="colorOnSecondary">#FAFAFA</color>
+    <color name="colorOnPrimary">#FAFAFA</color>
+    <color name="colorError">#F44336</color>
     <color name="cardShadow">#18000000</color>
     <color name="red_500">#F44336</color>
     <color name="warning">@color/red_500</color>
@@ -14,23 +17,39 @@
     <color name="amber_500">#FFC107</color>
     <color name="stroke_dark">#20212121</color>
     <color name="stroke_light">#25FFFFFF</color>
-    <color name="buttonStroker">#751871EF</color>
+    <color name="buttonStroker">#75E3272B</color>
     <color name="sticky_header_bg_light">#DEEDFF</color>
     <color name="sticky_header_bg_dark">#252E36</color>
     <color name="nav_text_item_color_light">#4F5B62</color>
     <color name="nav_text_item_color_dark">#DFDFDF</color>
-    <color name="material_ver_info_color_light">#35000000</color>
-    <color name="material_ver_info_color_dark">#35FFFFFF</color>
     <color name="app_light">#FFFFFF</color>
-    <color name="app_dark">#050505</color>
-    <color name="card_bg_dark">#212121</color>
-    <color name="card_bg_light">#FFFFFF</color>\
-    <color name="tab_unselected_color">#323232</color>
+    <color name="app_dark">#212121</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="tab_unselected_color">#656565</color>
+    <color name="toolbar_background">#DFFFFFFF</color>
+    <color name="nav_divider_color">#F5F5F5</color>
+    <color name="text_color_hint">#35000000</color>
+
+    <color name="colorAccentBlue">#1871EF</color>
+    <color name="colorAccentNavyBlue">#2e4e7e</color>
+    <color name="colorAccentDIM">#41555d</color>
+    <color name="colorAccentTianYi">#66CCFF</color>
+    <color name="colorAccentPurple">#c71cec</color>
+    <color name="colorAccentLimb">#98FB98</color>
+    <color name="colorAccentPink">#EEA2AD</color>
+
+    <color name="colorAccentLightBlue">#251871EF</color>
+    <color name="colorAccentLightNavyBlue">#252e4e7e</color>
+    <color name="colorAccentLightDIM">#2541555d</color>
+    <color name="colorAccentLightTianYi">#2566CCFF</color>
+    <color name="colorAccentLightPurple">#25c71cec</color>
+    <color name="colorAccentLightLimb">#2598FB98</color>
+    <color name="colorAccentLightPink">#25EEA2AD</color>
 
     <color name="switch_thumb_off_color">#FAFAFA</color>
     <color name="switch_thumb_on_color">@color/colorAccent</color>
     <color name="switch_track_off_color">#BFBFBF</color>
-    <color name="switch_track_on_color">@color/colorAccentLight</color>
+    <color name="switch_track_on_color">@color/colorAccentLightDefault</color>
 
     <!--    SnailBar背景颜色-->
     <color name="coxylicSnailBarColor">#FF102027</color>

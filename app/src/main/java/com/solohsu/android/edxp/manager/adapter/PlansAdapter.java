@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.ViewHolder> {
@@ -69,7 +70,7 @@ public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_plan, parent, false);
         final ViewHolder holder = new ViewHolder(view);
-        holder.alreadyUpdate.setTextColor((ThemeUtil.getSelectTheme().equals("dark") ? 0xFFFFFFFF : MD2Dialog.COLOR_SUCCESSFUL));
+        holder.alreadyUpdate.setTextColor((XposedApp.isNightMode() ? 0xFFFFFFFF : MD2Dialog.COLOR_SUCCESSFUL));
         return holder;
     }
 

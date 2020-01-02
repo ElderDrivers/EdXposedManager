@@ -27,8 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/temporarily_closed"
-                android:textColor="@color/colorAccent"
-                skin:enable="true"/>
+                android:textColor="?attr/appColorAccent"
+                skin:enable="true" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/closed_forever"
@@ -39,7 +39,7 @@
                 android:layout_marginEnd="10dp"
                 android:text="@string/closed_forever"
                 android:textColor="#FFF"
-                app:backgroundTint="@color/colorAccent"
+                app:backgroundTint="?attr/appColorAccent"
                 skin:enable="true" />
 
         </LinearLayout>
@@ -99,19 +99,19 @@
 
         </ScrollView>
 
-        <View
-            android:id="@+id/shadow_above"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_below="@id/selinux_status_info"
-            android:background="@drawable/shadow_layer" />
+        <!--        <View-->
+        <!--            android:id="@+id/shadow_above"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="35dp"-->
+        <!--            android:layout_below="@id/selinux_status_info"-->
+        <!--            android:background="@drawable/shadow_layer" />-->
 
-        <View
-            android:id="@+id/shadow_below"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_above="@id/buttons"
-            android:background="@drawable/shadow_layer_inverse" />
+        <!--        <View-->
+        <!--            android:id="@+id/shadow_below"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="35dp"-->
+        <!--            android:layout_above="@id/buttons"-->
+        <!--            android:background="@drawable/shadow_layer_inverse" />-->
 
     </RelativeLayout>
 

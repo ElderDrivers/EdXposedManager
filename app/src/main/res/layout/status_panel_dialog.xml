@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <com.lihang.ShadowLayout
+        android:id="@+id/disableView_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:hl_cornerRadius="7dp"
+        app:hl_shadowBackColor="?attr/card_background_color"
+        app:hl_shadowColor="@color/cardShadow"
+        app:hl_shadowLimit="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/status_ico"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_image"
+                    android:tint="?attr/appColorAccent"
+                    skin:enable="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@id/status_ico"
+                    android:orientation="vertical"
+                    skin:ignore="RelativeOverlap">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/enabled_panel_background"
+                        android:textColor="#656565"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/enableSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="15dp"
+                    android:checked="true"
+                    android:padding="2dp"
+                    skin:enable="true" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:alpha="0.15"
+                android:background="#212121" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/dark_bg"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_color" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@id/dark_bg"
+                    android:orientation="vertical"
+                    skin:ignore="RelativeOverlap">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/is_dark_background"
+                        android:textColor="#656565"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/isDarkBackground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="15dp"
+                    android:checked="true"
+                    android:padding="2dp"
+                    skin:enable="true" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </com.lihang.ShadowLayout>
+
+    <com.lihang.ShadowLayout
+        android:id="@+id/panelShadowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="-25dp"
+        android:layout_marginBottom="3dp"
+        app:hl_cornerRadius="7dp"
+        app:hl_shadowBackColor="#fff"
+        app:hl_shadowColor="@color/cardShadow"
+        app:hl_shadowLimit="10dp"
+        skin:enable="true">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:windowBackground"
+            app:cardCornerRadius="7dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/panel_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:scaleType="centerCrop"
+                android:src="@drawable/status_bg" />
+
+            <ImageView
+                android:id="@+id/chooseBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#35000000"
+                android:foreground="@drawable/ripple"
+                android:padding="25dp"
+                android:src="@drawable/ic_plus" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </com.lihang.ShadowLayout>
+
+</LinearLayout>

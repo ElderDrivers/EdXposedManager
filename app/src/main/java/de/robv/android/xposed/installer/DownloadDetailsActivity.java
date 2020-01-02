@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -33,7 +32,6 @@ import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
-import de.robv.android.xposed.installer.util.ThemeUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.TAG;
 
@@ -53,7 +51,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        ThemeUtil.setTheme(this);
 
         mPackageName = getModulePackageName();
         try {
@@ -76,12 +73,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    finish();
-                }
-            });
+            toolbar.setNavigationOnClickListener(view -> finish());
 
             ActionBar ab = getSupportActionBar();
 
@@ -109,12 +101,9 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
             TextView txtMessage = findViewById(android.R.id.message);
             txtMessage.setText(getResources().getString(R.string.download_details_not_found, mPackageName));
 
-            findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.setEnabled(false);
-                    sRepoLoader.triggerReload(true);
-                }
+            findViewById(R.id.reload).setOnClickListener(v -> {
+                v.setEnabled(false);
+                sRepoLoader.triggerReload(true);
             });
         }
     }
@@ -174,12 +163,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
     }
 
     private void reload() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                recreate();
-            }
-        });
+        runOnUiThread(this::recreate);
     }
 
     @Override

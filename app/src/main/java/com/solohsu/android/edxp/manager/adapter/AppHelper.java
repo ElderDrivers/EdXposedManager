@@ -1,93 +1,116 @@
 package com.solohsu.android.edxp.manager.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.view.View;
-
-import com.solohsu.android.edxp.manager.BuildConfig;
-import com.solohsu.android.edxp.manager.R;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
+
+import com.solohsu.android.edxp.manager.BuildConfig;
+import com.solohsu.android.edxp.manager.R;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.MyFileUtils;
 
-import static de.robv.android.xposed.installer.XposedApp.BASE_DIR;
+import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 
 public class AppHelper {
 
     public static final String TAG = XposedApp.TAG;
 
-    private static final String WHITE_LIST_PATH = BASE_DIR + "conf/whitelist/";
-    private static final String BLACK_LIST_PATH = BASE_DIR + "conf/blacklist/";
-    private static final String COMPAT_LIST_PATH = BASE_DIR + "conf/compatlist/";
-    private static final String WHITE_LIST_MODE = BASE_DIR + "conf/usewhitelist";
-    private static final String DYNAMIC_MODULES = BASE_DIR + "conf/dynamicmodules";
-    private static final String BLACK_WHITE_LIST = BASE_DIR + "conf/blackwhitelist";
-    private static final String DEOPT_BOOT_IMAGE = BASE_DIR + "conf/deoptbootimage";
+    private static final String BASE_PATH = XposedApp.BASE_DIR;
+    private static final String WHITE_LIST_PATH = "conf/whitelist/";
+    private static final String BLACK_LIST_PATH = "conf/blacklist/";
+    private static final String COMPAT_LIST_PATH = "conf/compatlist/";
+    private static final String WHITE_LIST_MODE = "conf/usewhitelist";
 
-    private static final List<String> FORCE_WHITE_LIST = Arrays.asList(
-            BuildConfig.APPLICATION_ID,
-            "org.meowcat.edxposed.manager",
-            "de.robv.android.xposed.installer");
+    static final List<String> FORCE_WHITE_LIST = new ArrayList<>(Arrays.asList(BuildConfig.APPLICATION_ID, "com.solohsu.android.edxp.manager", "de.robv.android.xposed.installer"));
+    static List<String> FORCE_WHITE_LIST_MODULE = new ArrayList<>(FORCE_WHITE_LIST);
 
-    public static void makeSurePath() {
-        new File(WHITE_LIST_PATH).mkdirs();
-        new File(BLACK_LIST_PATH).mkdirs();
-        new File(COMPAT_LIST_PATH).mkdirs();
-        MyFileUtils.setPermissions(WHITE_LIST_PATH, 00711, -1, -1);
-        MyFileUtils.setPermissions(BLACK_LIST_PATH, 00711, -1, -1);
-        MyFileUtils.setPermissions(COMPAT_LIST_PATH, 00711, -1, -1);
+    @SuppressWarnings("OctalInteger")
+    static void makeSurePath() {
+        XposedApp.mkdirAndChmod(WHITE_LIST_PATH, 00777);
+        XposedApp.mkdirAndChmod(BLACK_LIST_PATH, 00777);
+        XposedApp.mkdirAndChmod(COMPAT_LIST_PATH, 00777);
     }
 
     public static boolean isWhiteListMode() {
-        return isFileExists(WHITE_LIST_MODE);
+        return new File(BASE_PATH + WHITE_LIST_MODE).exists();
     }
 
-    public static boolean setWhiteListMode(boolean isWhiteListMode) {
-        return isWhiteListMode ? createFile(WHITE_LIST_MODE) : deleteFile(WHITE_LIST_MODE);
+    private static boolean addWhiteList(String packageName) {
+        return whiteListFileName(packageName, true);
     }
 
-    public static boolean addWhiteList(String packageName) {
-        return createFile(WHITE_LIST_PATH + packageName);
-    }
-
-    public static boolean addBlackList(String packageName) {
-        if (FORCE_WHITE_LIST.contains(packageName)) {
+    private static boolean addBlackList(String packageName) {
+        if (FORCE_WHITE_LIST_MODULE.contains(packageName)) {
             removeBlackList(packageName);
             return false;
         }
-        return createFile(BLACK_LIST_PATH + packageName);
+        return blackListFileName(packageName, true);
     }
 
-    public static boolean removeWhiteList(String packageName) {
-        if (FORCE_WHITE_LIST.contains(packageName)) {
+    private static boolean removeWhiteList(String packageName) {
+        if (FORCE_WHITE_LIST_MODULE.contains(packageName)) {
             return false;
         }
-        return deleteFile(WHITE_LIST_PATH + packageName);
+        return whiteListFileName(packageName, false);
     }
 
-    public static boolean removeBlackList(String packageName) {
-        return deleteFile(BLACK_LIST_PATH + packageName);
+    private static boolean removeBlackList(String packageName) {
+        return blackListFileName(packageName, false);
     }
 
-    public static List<String> getBlackList() {
-        return listFiles(BLACK_LIST_PATH);
+    static List<String> getBlackList() {
+        File file = new File(BASE_PATH + BLACK_LIST_PATH);
+        File[] files = file.listFiles();
+        if (files == null) {
+            return new ArrayList<>();
+        }
+        List<String> s = new ArrayList<>();
+        for (File file1 : files) {
+            if (!file1.isDirectory()) {
+                s.add(file1.getName());
+            }
+        }
+        for (String pn : FORCE_WHITE_LIST_MODULE) {
+            if (s.contains(pn)) {
+                s.remove(pn);
+                removeBlackList(pn);
+            }
+        }
+        return s;
     }
 
-    public static List<String> getWhiteList() {
-        List<String> result = listFiles(WHITE_LIST_PATH);
-        for (String pn : FORCE_WHITE_LIST) {
+    static List<String> getWhiteList() {
+        File file = new File(BASE_PATH + WHITE_LIST_PATH);
+        File[] files = file.listFiles();
+        if (files == null) {
+            return FORCE_WHITE_LIST_MODULE;
+        }
+        List<String> result = new ArrayList<>();
+        for (File file1 : files) {
+            result.add(file1.getName());
+        }
+        for (String pn : FORCE_WHITE_LIST_MODULE) {
             if (!result.contains(pn)) {
                 result.add(pn);
                 addWhiteList(pn);
@@ -96,36 +119,131 @@ public class AppHelper {
         return result;
     }
 
-    public static boolean addPackageName(boolean isWhiteListMode, String packageName) {
+    @SuppressLint("WorldReadableFiles")
+    private static Boolean whiteListFileName(String packageName, boolean isAdd) {
+        boolean returns = true;
+        File file = new File(BASE_PATH + WHITE_LIST_PATH + packageName);
+        if (isAdd) {
+            if (!file.exists()) {
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(file.getPath());
+                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            try {
+                                returns = file.createNewFile();
+                            } catch (IOException e1) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if (file.exists()) {
+                returns = file.delete();
+            }
+        }
+        return returns;
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
+    private static void setFilePermissionsFromMode(String name, int mode) {
+        int perms = MyFileUtils.S_IRUSR | MyFileUtils.S_IWUSR
+                | MyFileUtils.S_IRGRP | MyFileUtils.S_IWGRP;
+        if ((mode & Context.MODE_WORLD_READABLE) != 0) {
+            perms |= MyFileUtils.S_IROTH;
+        }
+        if ((mode & Context.MODE_WORLD_WRITEABLE) != 0) {
+            perms |= MyFileUtils.S_IWOTH;
+        }
+        MyFileUtils.setPermissions(name, perms, -1, -1);
+    }
+
+    @SuppressLint("WorldReadableFiles")
+    private static Boolean blackListFileName(String packageName, boolean isAdd) {
+        boolean returns = true;
+        File file = new File(BASE_PATH + BLACK_LIST_PATH + packageName);
+        if (isAdd) {
+            if (!file.exists()) {
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(file.getPath());
+                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            try {
+                                returns = file.createNewFile();
+                            } catch (IOException e1) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if (file.exists()) {
+                returns = file.delete();
+            }
+        }
+        return returns;
+    }
+
+    @SuppressLint("WorldReadableFiles")
+    private static Boolean compatListFileName(String packageName, boolean isAdd) {
+        boolean returns = true;
+        File file = new File(BASE_PATH + COMPAT_LIST_PATH + packageName);
+        if (isAdd) {
+            if (!file.exists()) {
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(file.getPath());
+                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            try {
+                                returns = file.createNewFile();
+                            } catch (IOException e1) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if (file.exists()) {
+                returns = file.delete();
+            }
+        }
+        return returns;
+    }
+
+    static boolean addPackageName(boolean isWhiteListMode, String packageName) {
         return isWhiteListMode ? addWhiteList(packageName) : addBlackList(packageName);
     }
 
-    public static boolean removePackageName(boolean isWhiteListMode, String packageName) {
+    static boolean removePackageName(boolean isWhiteListMode, String packageName) {
         return isWhiteListMode ? removeWhiteList(packageName) : removeBlackList(packageName);
-    }
-
-    public static boolean setDynamicModulesEnabled(boolean dynamicModulesEnabled) {
-        return dynamicModulesEnabled ? createFile(DYNAMIC_MODULES) : deleteFile(DYNAMIC_MODULES);
-    }
-
-    public static boolean dynamicModulesEnabled() {
-        return isFileExists(DYNAMIC_MODULES);
-    }
-
-    public static boolean blackWhiteListEnabled() {
-        return isFileExists(BLACK_WHITE_LIST);
-    }
-
-    public static boolean setBlackWhiteListEnabled(boolean blackWhiteListEnabled) {
-        return blackWhiteListEnabled ? createFile(BLACK_WHITE_LIST) : deleteFile(BLACK_WHITE_LIST);
-    }
-
-    public static boolean bootImageDeoptEnabled() {
-        return isFileExists(DEOPT_BOOT_IMAGE);
-    }
-
-    public static boolean setBootImageDeoptEnabled(boolean bootImageDeoptEnabled) {
-        return bootImageDeoptEnabled ? createFile(DEOPT_BOOT_IMAGE) : deleteFile(DEOPT_BOOT_IMAGE);
     }
 
     @SuppressLint("RestrictedApi")
@@ -137,11 +255,46 @@ public class AppHelper {
         appMenu.inflate(R.menu.menu_app_item);
         appMenu.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
-                case R.id.app_menu_compile_reset:
-                    CompileUtils.reset(context, fragmentManager, info);
+                case R.id.app_menu_launch:
+                    Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(info.packageName);
+                    if (launchIntent != null) {
+                        context.startActivity(launchIntent);
+                    } else {
+                        Toast.makeText(context, context.getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+                    }
+                    break;
+                case R.id.app_menu_stop:
+                    try {
+                        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+                        Objects.requireNonNull(manager).killBackgroundProcesses(info.packageName);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                     break;
                 case R.id.app_menu_compile_speed:
                     CompileUtils.compileSpeed(context, fragmentManager, info);
+                    break;
+                case R.id.app_menu_compile_dexopt:
+                    CompileUtils.compileDexopt(context, fragmentManager, info);
+                    break;
+                case R.id.app_menu_compile_reset:
+                    CompileUtils.reset(context, fragmentManager, info);
+                    break;
+                case R.id.app_menu_store:
+                    Uri uri = Uri.parse("market://details?id=" + info.packageName);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    try {
+                        context.startActivity(intent);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    break;
+                case R.id.app_menu_info:
+                    context.startActivity(new Intent(ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", info.packageName, null)));
+                    break;
+                case R.id.app_menu_uninstall:
+                    context.startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE, Uri.fromParts("package", info.packageName, null)));
                     break;
             }
             return true;
@@ -151,43 +304,24 @@ public class AppHelper {
         menuHelper.show();
     }
 
-    public static List<String> getCompatList() {
-        return listFiles(COMPAT_LIST_PATH);
-    }
-
-    public static boolean addCompatList(String packageName) {
-        return createFile(COMPAT_LIST_PATH + packageName);
-    }
-
-    public static boolean removeCompatList(String packageName) {
-        return deleteFile(COMPAT_LIST_PATH + packageName);
-    }
-
-    private static List<String> listFiles(String path) {
-        File file = new File(path);
-        if (file.isDirectory()) {
-            return new ArrayList<>(Arrays.asList(file.list()));
-        } else {
+    static List<String> getCompatList() {
+        File file = new File(BASE_PATH + COMPAT_LIST_PATH);
+        File[] files = file.listFiles();
+        if (files == null) {
             return new ArrayList<>();
         }
-    }
-
-    private static boolean isFileExists(String path) {
-        return new File(path).exists();
-    }
-
-    private static boolean deleteFile(String path) {
-        return new File(path).delete();
-    }
-
-    private static boolean createFile(String path) {
-        try {
-            new File(path).createNewFile();
-            MyFileUtils.setPermissions(path, 00664, -1, -1);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+        List<String> s = new ArrayList<>();
+        for (File file1 : files) {
+            s.add(file1.getName());
         }
+        return s;
+    }
+
+    static boolean addCompatList(String packageName) {
+        return compatListFileName(packageName, true);
+    }
+
+    static boolean removeCompatList(String packageName) {
+        return compatListFileName(packageName, false);
     }
 }

@@ -11,20 +11,24 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/Theme.XposedInstaller.Toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="?android:attr/actionBarSize"
             android:background="?android:windowBackground"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:theme="?attr/toolbarStyle" />
+            app:popupTheme="@style/Widget.MaterialComponents.PopupMenu" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:windowBackground"
-            app:tabIndicatorColor="@color/colorAccent"
+            app:tabIndicator="@drawable/tab_drawable"
+            app:tabIndicatorColor="?attr/appColorAccent"
             app:tabMode="scrollable"
-            app:tabTextAppearance="@style/TextAppearance.Design.Tab" />
+            app:tabRippleColor="?attr/colorAccentLight"
+            app:tabSelectedTextColor="@color/tab_color_selector"
+            app:tabTextAppearance="@style/TextAppearance.Design.Tab"
+            app:tabTextColor="@color/tab_unselected_color" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

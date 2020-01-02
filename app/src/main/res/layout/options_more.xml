@@ -38,8 +38,7 @@
                     android:orientation="horizontal"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:visibility="gone"
-                    tools:visibility="visible">
+                    android:visibility="visible">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -73,8 +72,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="?attr/stroke_color"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+                    android:visibility="visible" />
 
                 <LinearLayout
                     android:id="@+id/opt_logs_details"
@@ -201,6 +199,94 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3px"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:id="@+id/opt_personalize"
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_theme" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/personalize"
+                            android:textColor="#858585"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3px"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="?attr/stroke_color" />
+
+                <LinearLayout
+                    android:id="@+id/opt_settings"
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_settings_" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings"
+                            android:textColor="#858585"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </com.lihang.ShadowLayout>
@@ -260,230 +346,10 @@
             app:hl_shadowColor="@color/cardShadow"
             app:hl_shadowLimit="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/opt_settings"
-                    android:layout_width="fill_parent"
-                    android:layout_height="55dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:padding="3dp"
-                        android:src="@drawable/ic_nav_settings" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/settings"
-                            android:textColor="#858585"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3px"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="?attr/stroke_color" />
-
-                <LinearLayout
-                    android:id="@+id/opt_support_me"
-                    android:layout_width="fill_parent"
-                    android:layout_height="55dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:padding="3dp"
-                        android:src="@drawable/ic_support_me" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/support"
-                            android:textColor="#858585"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3px"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="?attr/stroke_color" />
-
-                <LinearLayout
-                    android:id="@+id/opt_about"
-                    android:layout_width="fill_parent"
-                    android:layout_height="55dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:padding="2dp"
-                        android:src="@drawable/ic_info" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/about"
-                            android:textColor="#858585"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </com.lihang.ShadowLayout>
-
-        <com.lihang.ShadowLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            app:hl_cornerRadius="7dp"
-            app:hl_shadowBackColor="?attr/card_background_color"
-            app:hl_shadowColor="@color/cardShadow"
-            app:hl_shadowLimit="10dp">
-
-            <LinearLayout
-                android:id="@+id/night_mode_container"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_gravity="top"
-                android:background="?android:attr/selectableItemBackground">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:gravity="center|start"
-                    android:text="@string/night_mode"
-                    android:textColor="#959595"
-                    android:textSize="15sp" />
-
-                <de.robv.android.xposed.installer.widget.CoxylicSwitch
-                    android:id="@+id/night_mode_switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:clickable="false"
-                    app:thumbOffColor="@color/switch_thumb_off_color"
-                    app:thumbOnColor="@color/switch_thumb_on_color"
-                    app:trackOffColor="@color/switch_track_off_color"
-                    app:trackOnColor="@color/switch_track_on_color"
-                    skin:enable="true" />
-
-            </LinearLayout>
-
-        </com.lihang.ShadowLayout>
-
-        <com.lihang.ShadowLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            app:hl_cornerRadius="7dp"
-            app:hl_shadowBackColor="?attr/card_background_color"
-            app:hl_shadowColor="@color/cardShadow"
-            app:hl_shadowLimit="10dp">
-
-            <LinearLayout
-                android:id="@+id/changeToDrawer"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_gravity="top"
-                android:background="?android:attr/selectableItemBackground">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center|start"
-                    android:paddingLeft="15dp"
-                    android:text="@string/change_to_drawer_mode"
-                    android:textColor="#858585"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-        </com.lihang.ShadowLayout>
-
-        <com.lihang.ShadowLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            app:hl_cornerRadius="7dp"
-            app:hl_shadowBackColor="?attr/card_background_color"
-            app:hl_shadowColor="@color/cardShadow"
-            app:hl_shadowLimit="10dp">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="39.4dp"
-                android:layout_gravity="bottom"
-                android:background="?android:windowBackground" />
-
             <ImageView
                 android:id="@+id/donateIcon"
                 android:layout_width="wrap_content"
-                android:layout_height="217dp"
+                android:layout_height="305dp"
                 android:layout_marginTop="58dp"
                 android:src="@drawable/qrcode"
                 android:visibility="gone"
@@ -502,7 +368,7 @@
                     android:gravity="center|start"
                     android:paddingStart="15dp"
                     android:text="@string/donate_me"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="?attr/appColorAccent"
                     android:textSize="15sp"
                     skin:enable="true" />
 

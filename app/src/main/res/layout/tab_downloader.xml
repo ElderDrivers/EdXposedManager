@@ -67,7 +67,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="-20dp"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="?attr/appColorAccent"
         android:text="@string/refresh"
         android:textColor="#FFF"
         app:icon="@drawable/ic_refresh"

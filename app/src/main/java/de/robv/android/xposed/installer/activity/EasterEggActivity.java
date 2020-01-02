@@ -45,7 +45,6 @@ public class EasterEggActivity extends XposedBaseActivity implements View.OnTouc
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
-        ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_easter_egg);
         View donateMe = findViewById(R.id.donateMe);
         View iconDesigner = findViewById(R.id.icon_designer);
@@ -96,11 +95,6 @@ public class EasterEggActivity extends XposedBaseActivity implements View.OnTouc
         });
 
         back.setOnClickListener(v -> finish());
-
-        if (mTheme.equals("light"))
-            shadow.setEnabled(true);
-        else if (mTheme.equals("dark"))
-            shadow.setEnabled(false);
     }
 
     @Override

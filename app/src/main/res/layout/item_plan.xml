@@ -14,7 +14,7 @@
         android:focusable="true"
         android:foreground="?selectableItemBackgroundBorderless"
         app:cardCornerRadius="5dp"
-        app:rippleColor="@color/card_bg_light"
+        app:rippleColor="@color/card_bg"
         app:cardElevation="2dp">
 
         <LinearLayout

@@ -38,7 +38,7 @@ public class CoxylicSwitch extends Switch {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CoxylicSwitch);
         thumbOnColor = a.getColor(R.styleable.CoxylicSwitch_thumbOnColor, getResources().getColor(R.color.colorAccent));
         thumbOffColor = a.getColor(R.styleable.CoxylicSwitch_thumbOffColor, 0xFFF5F5F5);
-        trackOnColor = a.getColor(R.styleable.CoxylicSwitch_trackOnColor, getResources().getColor(R.color.colorAccentLight));
+        trackOnColor = a.getColor(R.styleable.CoxylicSwitch_trackOnColor, getResources().getColor(R.color.colorAccent));
         trackOffColor = a.getColor(R.styleable.CoxylicSwitch_trackOnColor, 0xFFBFBFBF);
         setThumbTintList(createColorStateList(thumbOnColor, thumbOffColor));
         setTrackTintList(createColorStateList(trackOnColor, trackOffColor));

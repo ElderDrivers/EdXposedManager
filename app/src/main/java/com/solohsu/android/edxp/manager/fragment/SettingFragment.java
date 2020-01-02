@@ -1,18 +1,17 @@
 package com.solohsu.android.edxp.manager.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.SwitchPreference;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.solohsu.android.edxp.manager.R;
-import com.solohsu.android.edxp.manager.adapter.AppHelper;
-import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,15 +19,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
-import de.robv.android.xposed.installer.WelcomeActivity;
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.activity.SELinuxActivity;
 import de.robv.android.xposed.installer.util.MyFileUtils;
 import de.robv.android.xposed.installer.util.RootUtil;
-import de.robv.android.xposed.installer.util.ThemeUtil;
-
-import static com.solohsu.android.edxp.manager.adapter.AppHelper.setBlackWhiteListEnabled;
-import static com.solohsu.android.edxp.manager.adapter.AppHelper.setBootImageDeoptEnabled;
 
 public class SettingFragment extends BasePreferenceFragment {
 
@@ -44,42 +37,23 @@ public class SettingFragment extends BasePreferenceFragment {
         return new SettingFragment();
     }
 
-    private static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
+    static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
+    static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
+    static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
+    static final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
+    static final File mDeoptBootFlag = new File(XposedApp.BASE_DIR + "conf/deoptbootimage");
+    static final File mDisableVerboseLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_verbose_log");
+    private static final String DIALOG_FRAGMENT_TAG = "list_preference_dialog";
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ActionBar actionBar = ((WelcomeActivity) getActivity()).getSupportActionBar();
-        int toolBarDp = actionBar.getHeight() == 0 ? 196 : actionBar.getHeight();
+        ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
+        int toolBarDp = Objects.requireNonNull(actionBar).getHeight() == 0 ? 196 : actionBar.getHeight();
         RecyclerView listView = getListView();
         listView.setPadding(listView.getPaddingLeft(), toolBarDp + listView.getPaddingTop(),
                 listView.getPaddingRight(), listView.getPaddingBottom());
-
-        try {
-            mRootUtil.startShell();
-            mRootUtil.execute("getenforce", new RootUtil.LineCallback() {
-                @Override
-                public void onLine(String line) {
-                    if ((line.contains("Permissive") || line.contains("permissive")) && ((SwitchPreference) findPreference("dynamic_modules_enabled")).isChecked()) {
-                        Toast.makeText(getContext(), "即时模块运行中", Toast.LENGTH_LONG).show();
-                    } else {
-                        MD2Dialog.create(getContext()).darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                                .title("SELinux")
-                                .msg(R.string.selinux_describe)
-                                .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                                .onConfirmClick("关闭它!", (view, dialog) -> startActivity(new Intent(getContext(), SELinuxActivity.class)))
-                                .onCancelClick("我害怕.", ((view, dialog) -> dialog.dismiss())).show();
-                    }
-                }
-
-                @Override
-                public void onErrorLine(String line) {
-                    Toast.makeText(getContext(), "SELinux状态获取错误", Toast.LENGTH_LONG).show();
-                }
-            });
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -106,92 +80,195 @@ public class SettingFragment extends BasePreferenceFragment {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(finalFlagFile1.getPath());
-                    setFilePermissionsFromMode(finalFlagFile1.getPath(), MODE_WORLD_READABLE);
-//                    Log.e("DYNAMIC_MODULES", "File is already existed,Now giving the permission");
+                    setFilePermissionsFromMode(finalFlagFile1.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 } finally {
                     if (fos != null) {
                         try {
                             fos.close();
-//                            Log.e("DYNAMIC_MODULES", "File Output Stream is closed");
                         } catch (IOException e) {
                             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                             try {
-                                boolean isCreate = finalFlagFile1.createNewFile();
-//                                Log.e("DYNAMIC_MODULES", "Create new file: " + isCreate);
+                                finalFlagFile1.createNewFile();
                             } catch (IOException e1) {
                                 Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 }
-
-                try {
-                    mRootUtil.startShell();
-                    mRootUtil.execute("getenforce", new RootUtil.LineCallback() {
-                        @Override
-                        public void onLine(String line) {
-                            if (line.contains("Permissive") || line.contains("permissive")) {
-                                Toast.makeText(getContext(), "已开启即时模块", Toast.LENGTH_LONG).show();
-                            } else {
-                                MD2Dialog.create(getContext()).darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                                        .title("SELinux")
-                                        .msg(R.string.selinux_describe)
-                                        .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                                        .onConfirmClick("关闭它!", (view, dialog) -> startActivity(new Intent(getContext(), SELinuxActivity.class)))
-                                        .onCancelClick("我害怕.", ((view, dialog) -> dialog.dismiss())).show();
-                            }
-                        }
-
-                        @Override
-                        public void onErrorLine(String line) {
-                            Toast.makeText(getContext(), "SELinux状态获取错误", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                } catch (IllegalStateException e) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            MD2Dialog.create(getActivity()).darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                                    .title("警告").msg("您的手机没有root权限\n即时模块功能开启后将会没有任何效果").simpleConfirm("OK").show();
-                        }
-                    });
-                }
             } else {
-                boolean isDeleted = finalFlagFile1.delete();
-//                Log.e("DYNAMIC_MODULES", "File Deleted: " + isDeleted);
+                finalFlagFile1.delete();
             }
             return (enabled == finalFlagFile1.exists());
         });
+//        flagFile = mDynamicModulesFlag;
+//        Objects.requireNonNull(prefDynamicResources).setChecked(flagFile.exists());
+//        File finalFlagFile1 = flagFile;
+//        prefDynamicResources.setOnPreferenceChangeListener((preference, newValue) -> {
+//            boolean enabled = (Boolean) newValue;
+//            if (enabled) {
+//                FileOutputStream fos = null;
+//                try {
+//                    fos = new FileOutputStream(finalFlagFile1.getPath());
+//                    setFilePermissionsFromMode(finalFlagFile1.getPath(), MODE_WORLD_READABLE);
+////                    Log.e("DYNAMIC_MODULES", "File is already existed,Now giving the permission");
+//                } catch (FileNotFoundException e) {
+//                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+//                } finally {
+//                    if (fos != null) {
+//                        try {
+//                            fos.close();
+////                            Log.e("DYNAMIC_MODULES", "File Output Stream is closed");
+//                        } catch (IOException e) {
+//                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+//                            try {
+//                                boolean isCreate = finalFlagFile1.createNewFile();
+////                                Log.e("DYNAMIC_MODULES", "Create new file: " + isCreate);
+//                            } catch (IOException e1) {
+//                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                try {
+//                    mRootUtil.startShell();
+//                    mRootUtil.execute("getenforce", new RootUtil.LineCallback() {
+//                        @Override
+//                        public void onLine(String line) {
+//                            if (line.contains("Permissive") || line.contains("permissive")) {
+//                                Toast.makeText(getContext(), "已开启即时模块", Toast.LENGTH_LONG).show();
+//                            } else {
+//                                MD2Dialog.create(getContext()).darkMode(XposedApp.isNightMode())
+//                                        .title("SELinux")
+//                                        .msg(R.string.selinux_describe)
+//                                        .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
+//                                        .onConfirmClick("关闭它!", (view, dialog) -> startActivity(new Intent(getContext(), SELinuxActivity.class)))
+//                                        .onCancelClick("我害怕.", ((view, dialog) -> dialog.dismiss())).show();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onErrorLine(String line) {
+//                            Toast.makeText(getContext(), "SELinux状态获取错误", Toast.LENGTH_LONG).show();
+//                        }
+//                    });
+//                } catch (IllegalStateException e) {
+//                    getActivity().runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            MD2Dialog.create(getActivity()).darkMode(XposedApp.isNightMode())
+//                                    .title("警告").msg("您的手机没有root权限\n即时模块功能开启后将会没有任何效果").simpleConfirm("OK").show();
+//                        }
+//                    });
+//                }
+//            } else {
+//                boolean isDeleted = finalFlagFile1.delete();
+//            }
+//            return (enabled == finalFlagFile1.exists());
+//        });
 
         SwitchPreference blackListPref = findPreference("black_white_list_enabled");
-        blackListPref.setChecked(AppHelper.blackWhiteListEnabled());
-        blackListPref.setOnPreferenceChangeListener(
-                (preference, newValue) -> setBlackWhiteListEnabled((Boolean) newValue));
+        flagFile = mBlackWhiteListModeFlag;
+        Objects.requireNonNull(blackListPref).setChecked(flagFile.exists());
+        File finalFlagFile4 = flagFile;
+        blackListPref.setOnPreferenceChangeListener((preference, newValue) -> {
+            boolean enabled = (Boolean) newValue;
+            if (enabled) {
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(finalFlagFile4.getPath());
+                    setFilePermissionsFromMode(finalFlagFile4.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            try {
+                                finalFlagFile4.createNewFile();
+                            } catch (IOException e1) {
+                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+            } else {
+                finalFlagFile4.delete();
+            }
+            return (enabled == finalFlagFile4.exists());
+        });
 
 
         SwitchPreference enableDeoptPref = findPreference("enable_boot_image_deopt");
-        enableDeoptPref.setChecked(AppHelper.bootImageDeoptEnabled());
-        enableDeoptPref.setOnPreferenceChangeListener(
-                (preference, newValue) -> setBootImageDeoptEnabled((Boolean) newValue));
+        flagFile = mDeoptBootFlag;
+        Objects.requireNonNull(enableDeoptPref).setChecked(flagFile.exists());
+        File finalFlagFile3 = flagFile;
+        enableDeoptPref.setOnPreferenceChangeListener((preference, newValue) -> {
+            boolean enabled = (Boolean) newValue;
+            if (enabled) {
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(finalFlagFile3.getPath());
+                    setFilePermissionsFromMode(finalFlagFile3.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            try {
+                                finalFlagFile3.createNewFile();
+                            } catch (IOException e1) {
+                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+            } else {
+                finalFlagFile3.delete();
+            }
+            return (enabled == finalFlagFile3.exists());
+        });
 
-        final File disableVerboseLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_verbose_log");
         SwitchPreference prefDisableResources = findPreference("disable_verbose_log");
-        prefDisableResources.setChecked(disableVerboseLogsFlag.exists());
+        flagFile = mDisableVerboseLogsFlag;
+        Objects.requireNonNull(prefDisableResources).setChecked(flagFile.exists());
+        File finalFlagFile5 = flagFile;
         prefDisableResources.setOnPreferenceChangeListener((preference, newValue) -> {
             boolean enabled = (Boolean) newValue;
             if (enabled) {
+                FileOutputStream fos = null;
                 try {
-                    disableVerboseLogsFlag.createNewFile();
-                } catch (IOException e) {
+                    fos = new FileOutputStream(finalFlagFile5.getPath());
+                    setFilePermissionsFromMode(finalFlagFile5.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            try {
+                                finalFlagFile5.createNewFile();
+                            } catch (IOException e1) {
+                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
                 }
             } else {
-                disableVerboseLogsFlag.delete();
+                finalFlagFile5.delete();
             }
-            return (enabled == disableVerboseLogsFlag.exists());
+            return (enabled == finalFlagFile5.exists());
         });
+
     }
 
     @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})

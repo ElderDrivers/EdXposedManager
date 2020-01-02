@@ -1,10 +1,10 @@
 package de.robv.android.xposed.installer.activity;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
@@ -15,10 +15,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.solohsu.android.edxp.manager.R;
 import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.solohsu.android.edxp.manager.R;
 
+import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedBaseActivity;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
@@ -38,7 +40,6 @@ public class SELinuxActivity extends XposedBaseActivity {
 
     protected void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
-        ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_selinux);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,12 +56,15 @@ public class SELinuxActivity extends XposedBaseActivity {
         statusInfo = findViewById(R.id.status_info);
         commandLog = findViewById(R.id.command_log);
         scrollView = findViewById(R.id.command_scrollview);
-        View shadowAbove = findViewById(R.id.shadow_above);
-        View shadowBelow = findViewById(R.id.shadow_below);
 
-        if (ThemeUtil.getSelectTheme().equals("dark")) {
-            shadowAbove.setEnabled(false);
-            shadowBelow.setEnabled(false);
+        forever.setEnabled(false);
+        temporarily.setEnabled(false);
+        forever.setBackgroundTintList(ColorStateList.valueOf(0xFF959595));
+        temporarily.setBackgroundTintList(ColorStateList.valueOf(0xFF959595));
+        commandLog.setTextSize(35f);
+        log("注意", "请前往主群群文件中下载关闭seLinux模块来关闭，160631351");
+
+        if (XposedApp.isNightMode()) {
             statusInfo.setTextColor(0xFFEAEAEA);
             statusImg.setImageResource(R.drawable.selinux_status_dark);
         }
@@ -80,16 +84,10 @@ public class SELinuxActivity extends XposedBaseActivity {
                 log("Status", "the selinux has been turned on", MD2Dialog.COLOR_SUCCESSFUL);
                 refreshStatus(true);
             } else {
-                MD2Dialog.create(this)
-                        .title("请选择一种关闭方式")
-                        .singleChoiceMode(true)
-                        .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                        .items(new String[]{"将命令写入init.d (开机时启动的服务)", "将命令写入系统配置 (/system/etc/selinux/config)", "将命令写入post-fs-data (面具做法)"}, 0)
-                        .removeDivider()
-                        .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                        .simpleCancel(android.R.string.cancel)
-                        .onConfirmClick(android.R.string.ok, (view, dialog) -> {
-                            switch (dialog.getSelectedItem()) {
+                new MaterialAlertDialogBuilder(this)
+                        .setTitle("请选择一种关闭方式")
+                        .setSingleChoiceItems(new CharSequence[]{"将命令写入init.d (开机时启动的服务)", "将命令写入系统配置 (/system/etc/selinux/config)", "将命令写入post-fs-data (面具做法)"}, 0, (dialog, which) -> {
+                            switch (which) {
                                 case 0:
                                     log("Executing", "Mounting the system into writable mode...", MD2Dialog.COLOR_SUCCESSFUL);
                                     exec("mount -o remount,rw /system", new RootUtil.LineCallback() {
@@ -152,7 +150,8 @@ public class SELinuxActivity extends XposedBaseActivity {
                                     Toast.makeText(SELinuxActivity.this, "作者正在努力完善", Toast.LENGTH_SHORT).show();
                                     break;
                             }
-                        }).show();
+                        })
+                        .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss()).show();
             }
         });
 
@@ -190,7 +189,7 @@ public class SELinuxActivity extends XposedBaseActivity {
                     temporarily.setVisibility(View.VISIBLE);
                 }
                 statusText.setText("状态:  " + line);
-                log("Status", "Status has been changed to " + line + ".");
+                //log("Status", "Status has been changed to " + line + ".");
             }
 
             @Override
@@ -198,7 +197,7 @@ public class SELinuxActivity extends XposedBaseActivity {
                 Toast.makeText(SELinuxActivity.this, R.string.selinux_fetch_failed, Toast.LENGTH_LONG).show();
                 statusText.setTextColor(MD2Dialog.COLOR_ERROR);
                 statusText.setText("SELinux状态获取错误");
-                log("Status", "Fetch selinux status error, details: " + (TextUtils.isEmpty(line) ? "none." : line), MD2Dialog.COLOR_ERROR);
+                //log("Status", "Fetch selinux status error, details: " + (TextUtils.isEmpty(line) ? "none." : line), MD2Dialog.COLOR_ERROR);
             }
         });
     }
@@ -227,8 +226,8 @@ public class SELinuxActivity extends XposedBaseActivity {
             mRootUtil.startShell();
             mRootUtil.execute(command);
         } catch (IllegalStateException e) {
-            runOnUiThread(() -> MD2Dialog.create(SELinuxActivity.this).darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                    .title(R.string.warning).msg(R.string.not_su_permission_selinux).simpleConfirm("OK").show());
+            runOnUiThread(() -> new MaterialAlertDialogBuilder(SELinuxActivity.this)
+                    .setTitle(R.string.warning).setMessage(R.string.not_su_permission_selinux).setPositiveButton("OK", (dialog, which) -> dialog.dismiss()).show());
             log("ROOT", "You don't have the root permission", MD2Dialog.COLOR_WARNING);
         }
     }
@@ -238,8 +237,8 @@ public class SELinuxActivity extends XposedBaseActivity {
             mRootUtil.startShell();
             mRootUtil.execute(command, callback);
         } catch (IllegalStateException e) {
-            runOnUiThread(() -> MD2Dialog.create(SELinuxActivity.this).darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                    .title(R.string.warning).msg(R.string.not_su_permission_selinux).simpleConfirm("OK").show());
+            runOnUiThread(() -> new MaterialAlertDialogBuilder(SELinuxActivity.this)
+                    .setTitle(R.string.warning).setMessage(R.string.not_su_permission_selinux).setPositiveButton("OK", (dialog, which) -> dialog.dismiss()).show());
             log("ROOT", "You don't have the root permission", MD2Dialog.COLOR_WARNING);
         }
     }
@@ -247,14 +246,14 @@ public class SELinuxActivity extends XposedBaseActivity {
     @SuppressLint("SetTextI18n")
     private void log(String tag, String logs) {
         Log.v("Edxp/SELinux", logs);
-        commandLog.append("\nEdxp/SELinux · " + tag + ": " + logs);
+        commandLog.append("\n" + tag + ": " + logs);
         scrollView.fullScroll(ScrollView.FOCUS_DOWN);
     }
 
     @SuppressLint("SetTextI18n")
     private void log(String tag, String logs, int color) {
         Log.v("Edxp/SELinux", logs);
-        String log_out = "\nEdxp/SELinux · " + tag + ": " + logs;
+        String log_out = "\n" + tag + ": " + logs;
         SpannableString spanString = new SpannableString(log_out);
         ForegroundColorSpan span = new ForegroundColorSpan(color);
         spanString.setSpan(span, 0, log_out.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

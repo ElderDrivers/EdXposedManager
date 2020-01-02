@@ -20,16 +20,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.gson.Gson;
+import com.rxjava.rxlife.RxLife;
 import com.solohsu.android.edxp.manager.BuildConfig;
 import com.solohsu.android.edxp.manager.R;
 import com.solohsu.android.edxp.manager.adapter.PlansAdapter;
-import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
-import com.google.gson.Gson;
-import com.rxjava.rxlife.RxLife;
 
 import java.io.File;
 import java.io.IOException;
 
+import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedBaseActivity;
 import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
 import de.robv.android.xposed.installer.util.InstallApkUtil;
@@ -55,7 +57,6 @@ public class PlansActivity extends XposedBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
-        ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_plans);
 
         progress = findViewById(R.id.progress);
@@ -117,17 +118,15 @@ public class PlansActivity extends XposedBaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_update_apk:
-                MD2Dialog.create(this)
-                        .title(R.string.changes)
-                        .msg(BuildConfig.VERSION_NAME + " -> " + newApkChangelog)
-                        .buttonStyle(MD2Dialog.ButtonStyle.FLAT)
-                        .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                        .onConfirmClick("更新", (view, dialog) -> {
+                new MaterialAlertDialogBuilder(this)
+                        .setTitle(R.string.changes)
+                        .setMessage(BuildConfig.VERSION_NAME + " -> " + newApkChangelog)
+                        .setPositiveButton("更新", (dialog, which) -> {
                             update();
                             dialog.dismiss();
                         })
-                        .onCancelClick("稍后", (view, dialog) -> dialog.dismiss())
-                        .onNegativeClick("Github", ((view, dialog) -> NavUtil.startURL(this, Uri.parse("https://github.com/coxylicacid/Xposed-Fast-Repo")))).show();
+                        .setNegativeButton("稍后", (dialog, which) -> dialog.dismiss())
+                        .setNeutralButton("Github", ((dialog, which) -> NavUtil.startURL(this, Uri.parse("https://github.com/coxylicacid/Xposed-Fast-Repo")))).show();
                 break;
             case R.id.nav_update_list:
                 loading(true);
@@ -155,7 +154,7 @@ public class PlansActivity extends XposedBaseActivity {
                 .progress(false, 100)
                 .kbs("")
                 .canceledOnTouchOutside(false)
-                .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
+                .darkMode(XposedApp.isNightMode())
                 .onCancelClick(R.string.download_view_cancel, (view, dialog) -> dialog.dismiss()).show();
 
         long length = new File(path).length();

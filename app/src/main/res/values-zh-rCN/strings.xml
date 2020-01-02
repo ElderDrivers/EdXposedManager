@@ -353,7 +353,7 @@
     <string name="ignore_chinese">忽略中文字符</string>
     <string name="ignore_chinese_summary">从列表中隐藏中文模块。搜索窗口中仍有可用的模块。启用此选项可能会导致性能降低。</string>
     <string name="module_sort_name">按模块名称排序</string>
-    <string name="module_sort_random">随机杂交式排序</string>
+    <string name="module_sort_date">按安装日期排序</string>
     <string name="module_sort_status">按激活状态排序</string>
     <string name="modules_source">模块获取源</string>
     <string name="my_devices">我的设备</string>
@@ -394,5 +394,9 @@
     <string name="about">关于</string>
     <string name="install_xp">安装</string>
     <string name="xposed_install_helper_info">我们检测到您目前尚未安装有任何的Xposed框架,如果您需要我们的安装引导，请点击右边的安装按钮</string>
+    <string name="app_stop">停止应用</string>
+    <string name="app_launch">打开App</string>
+    <string name="modules_app_store">AppStore</string>
+    <string name="app_no_ui">该APP没有UI界面</string>
 
 </resources>

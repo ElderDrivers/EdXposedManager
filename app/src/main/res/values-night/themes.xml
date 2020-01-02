@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Coxylic.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">#000</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+
+        <item name="download_status_installed">#4CAF50</item>
+        <item name="stroke_color">@color/stroke_dark</item>
+        <item name="nav_text_item_color">@color/nav_text_item_color_light</item>
+        <item name="card_background_color">@color/card_bg</item>
+
+        <item name="materialAlertDialogTheme">@style/MaterialDialog</item>
+    </style>
+
+    <style name="Theme.Coxylic" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="android:textColorPrimary">#FFF</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+
+        <item name="download_status_installed">#4CAF50</item>
+        <item name="stroke_color">@color/stroke_dark</item>
+        <item name="nav_text_item_color">@color/nav_text_item_color_light</item>
+        <item name="card_background_color">@color/card_bg</item>
+
+        <item name="materialAlertDialogTheme">@style/MaterialDialog</item>
+    </style>
+
+    <style name="MaterialDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="buttonBarPositiveButtonStyle">@style/positiveBtnStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/negativeBtnStyle</item>
+        <item name="buttonBarNeutralButtonStyle">@style/neutralBtnStyle</item>
+    </style>
+
+    <!--确定按钮样式-->
+    <style name="positiveBtnStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog.Flush">
+        <item name="android:textColor">?attr/appColorAccent</item>
+        <item name="rippleColor">?attr/colorAccentLight</item>
+    </style>
+
+    <!--取消按钮样式-->
+    <style name="negativeBtnStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog.Flush">
+        <item name="android:textColor">?attr/appColorAccent</item>
+        <item name="rippleColor">?attr/colorAccentLight</item>
+    </style>
+
+    <style name="neutralBtnStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog.Flush">
+        <item name="android:textColor">?attr/appColorAccent</item>
+        <item name="rippleColor">?attr/colorAccentLight</item>
+    </style>
+</resources>

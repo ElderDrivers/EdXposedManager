@@ -12,7 +12,7 @@
             <shape>
                 <size android:width="@dimen/nav_drawer_width" android:height="50dp" />
                 <corners android:bottomRightRadius="100dp" android:topRightRadius="100dp" />
-                <solid android:color="@color/colorAccentLight" />
+                <solid android:color="?attr/colorAccentLight" />
             </shape>
         </inset>
     </item>

@@ -17,13 +17,13 @@
 
     <LinearLayout
         android:id="@+id/viewClicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
         android:foreground="@drawable/ripple"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="8dp">
 
         <RelativeLayout
             android:layout_width="55dp"
@@ -65,6 +65,16 @@
                 android:textIsSelectable="false"
                 android:textSize="15sp" />
 
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="3dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?attr/appColorAccent"
+                android:textIsSelectable="false"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/description"
@@ -86,46 +96,15 @@
                 android:textColor="@color/warning"
                 android:textSize="13sp"
                 android:visibility="gone" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:overScrollMode="never"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipVersion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:textColor="@color/colorAccent"
-                        app:chipBackgroundColor="#E3F2Fd" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipWarning"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:clickable="false"
-                        android:textColor="@color/red_500"
-                        app:chipBackgroundColor="#FFEBEE" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
         </LinearLayout>
 
         <CheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:buttonTint="?attr/appColorAccent"
             android:focusable="false"
-            android:gravity="top"
+            android:gravity="center"
             android:padding="3dp" />
 
     </LinearLayout>

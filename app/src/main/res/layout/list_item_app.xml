@@ -8,7 +8,7 @@
     android:layout_marginTop="@dimen/card_vertical_margin"
     android:layout_marginEnd="@dimen/card_horizontal_margin"
     android:layout_marginBottom="@dimen/card_vertical_margin"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:foreground="@drawable/ripple"
     android:minHeight="?android:attr/listPreferredItemHeight"
     app:hl_cornerRadius="7dp"
     app:hl_shadowBackColor="?attr/card_background_color"
@@ -19,6 +19,7 @@
         android:id="@+id/info_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:foreground="@drawable/ripple"
         android:padding="5dp">
 
         <ImageView
@@ -74,9 +75,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
+            android:buttonTint="?attr/appColorAccent"
             android:checked="false"
             android:focusable="false"
-            android:buttonTint="@color/tab_unselected_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/app_name"

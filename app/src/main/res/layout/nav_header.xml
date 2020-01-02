@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name_full"
-        android:textColor="@color/colorAccent"
+        android:textColor="?attr/appColorAccent"
         android:textSize="18sp"
         skin:enable="true" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/made_by_krins"
-        android:textColor="?attr/material_ver_info_color"
+        android:textColor="@color/text_color_hint"
         android:textSize="15sp" />
 
     <TextView
@@ -31,7 +31,7 @@
         android:layout_gravity="end"
         android:layout_marginTop="10dp"
         android:text="@string/app_ver_code"
-        android:textColor="?attr/material_ver_info_color"
+        android:textColor="@color/text_color_hint"
         android:textSize="15sp" />
 
     <View
@@ -39,6 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:background="#F5F5F5" />
+        android:background="@color/nav_divider_color" />
 
 </LinearLayout>

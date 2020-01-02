@@ -72,6 +72,7 @@
         </com.lihang.ShadowLayout>
 
         <com.lihang.ShadowLayout
+            android:id="@+id/panelShadowLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="-25dp"
@@ -91,111 +92,138 @@
                 app:shimmer_color="#55FFFFFF"
                 app:shimmer_mask_width="0.65">
 
-                <de.robv.android.xposed.installer.widget.XposedStatusPanel
-                    android:id="@+id/status_container_bg"
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="@drawable/ripple"
-                    android:orientation="vertical"
-                    app:errorBackground="@drawable/status_bg_error"
-                    app:successBackground="@drawable/status_bg"
-                    app:warnBackground="@drawable/status_bg_warn"
-                    app:xposedState="success"
-                    skin:enable="true">
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="0dp">
 
-                    <LinearLayout
+                    <de.robv.android.xposed.installer.widget.XposedStatusPanel
+                        android:id="@+id/status_container_bg"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="@drawable/ripple"
+                        android:orientation="vertical"
+                        app:errorBackground="@drawable/status_bg_error"
+                        app:successBackground="@drawable/status_bg"
+                        app:warnBackground="@drawable/status_bg_warn"
+                        app:xposedState="success"
+                        skin:enable="true">
 
-                        <ImageView
-                            android:id="@+id/status_icon_"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="15dp"
-                            android:alpha="0.72"
-                            tools:src="@drawable/ic_check_circle" />
-
-                        <TextView
-                            android:id="@+id/install_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="35dp"
-                            android:alpha="0.45"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="30sp"
-                            tools:text="已安装" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center|end">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
                             <ImageView
-                                android:id="@+id/helperExpander"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                android:layout_margin="15dp"
-                                android:alpha="0.65"
-                                android:contentDescription="@string/install_the_module"
-                                android:padding="10dp"
-                                android:src="@drawable/ic_expand_more"
-                                android:tint="#FFF" />
+                                android:id="@+id/panel_background_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                tools:ignore="ContentDescription" />
 
-                        </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
 
-                    </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    android:orientation="horizontal">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:background="@color/stroke_light" />
+                                    <ImageView
+                                        android:id="@+id/status_icon_"
+                                        android:layout_width="55dp"
+                                        android:layout_height="55dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginStart="15dp"
+                                        android:alpha="0.72"
+                                        tools:src="@drawable/ic_check_circle" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="16dp">
+                                    <TextView
+                                        android:id="@+id/install_status"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginStart="35dp"
+                                        android:alpha="0.45"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="30sp"
+                                        tools:text="已安装" />
 
-                        <TextView
-                            android:id="@+id/helper_text"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="15dp"
-                            android:layout_weight="1"
-                            android:alpha="0.85"
-                            android:text="@string/xposed_install_helper_info"
-                            android:textColor="#FFF"
-                            android:textSize="13sp" />
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center|end">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/helper_button"
-                            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/install_xp"
-                            android:textColor="#FFF" />
+                                        <ImageView
+                                            android:id="@+id/helperExpander"
+                                            android:layout_width="55dp"
+                                            android:layout_height="55dp"
+                                            android:layout_margin="15dp"
+                                            android:alpha="0.65"
+                                            android:contentDescription="@string/install_the_module"
+                                            android:padding="10dp"
+                                            android:src="@drawable/ic_expand_more"
+                                            android:tint="#FFF" />
 
-                    </LinearLayout>
+                                    </LinearLayout>
 
-                </de.robv.android.xposed.installer.widget.XposedStatusPanel>
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:background="@color/stroke_light" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="16dp">
+
+                                    <TextView
+                                        android:id="@+id/helper_text"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="15dp"
+                                        android:layout_weight="1"
+                                        android:alpha="0.85"
+                                        android:text="@string/xposed_install_helper_info"
+                                        android:textColor="#FFF"
+                                        android:textSize="13sp" />
+
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/helper_button"
+                                        style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/install_xp"
+                                        android:textColor="#FFF" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </de.robv.android.xposed.installer.widget.XposedStatusPanel>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/night_mask"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#15000000"
+                    android:visibility="gone" />
 
             </io.supercharge.shimmerlayout.ShimmerLayout>
-
-            <View
-                android:id="@+id/night_mask"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#15000000"
-                android:visibility="gone" />
 
         </com.lihang.ShadowLayout>
 
@@ -220,7 +248,7 @@
                     android:id="@+id/easter_egg"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:background="?selectableItemBackground"
+                    android:background="@drawable/ripple"
                     android:clickable="true"
                     android:focusable="true">
 
@@ -265,18 +293,18 @@
                         android:layout_centerInParent="true"
                         android:layout_marginEnd="15dp"
                         android:text="@string/update"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/appColorAccent"
                         android:visibility="gone"
                         app:icon="@drawable/ic_update"
                         app:iconPadding="5dp"
-                        app:iconTint="@color/colorAccent"
+                        app:iconTint="?attr/appColorAccent"
                         app:strokeColor="@color/buttonStroker"
                         skin:enable="true"
                         tools:visibility="visible" />
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="3px"
+                        android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
@@ -397,7 +425,7 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="55dp"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@drawable/ripple"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center_vertical"
@@ -442,7 +470,7 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="55dp"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@drawable/ripple"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center_vertical"
@@ -487,7 +515,7 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="55dp"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@drawable/ripple"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center_vertical"
@@ -533,7 +561,7 @@
                     android:id="@+id/dmverity_row"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@drawable/ripple"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center_vertical"
@@ -611,66 +639,66 @@
 
         </com.lihang.ShadowLayout>
 
-        <com.lihang.ShadowLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:hl_cornerRadius="5dp"
-            app:hl_shadowBackColor="?attr/card_background_color"
-            app:hl_shadowColor="@color/cardShadow"
-            app:hl_shadowLimit="10dp">
+        <!--        <com.lihang.ShadowLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:hl_cornerRadius="5dp"-->
+        <!--            app:hl_shadowBackColor="?attr/card_background_color"-->
+        <!--            app:hl_shadowColor="@color/cardShadow"-->
+        <!--            app:hl_shadowLimit="10dp">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="horizontal">-->
 
-                <LinearLayout
-                    android:id="@+id/loadDefaultSkin"
-                    android:layout_width="0dp"
-                    android:layout_height="58dp"
-                    android:layout_gravity="top"
-                    android:layout_weight="1"
-                    android:background="@drawable/ripple">
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/loadDefaultSkin"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="58dp"-->
+        <!--                    android:layout_gravity="top"-->
+        <!--                    android:layout_weight="1"-->
+        <!--                    android:background="@drawable/ripple">-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="15dp"
-                        android:gravity="center|start"
-                        android:text="默认主题"
-                        android:textColor="#858585"
-                        android:textSize="15sp" />
+        <!--                    <TextView-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:layout_marginStart="15dp"-->
+        <!--                        android:gravity="center|start"-->
+        <!--                        android:text="默认主题"-->
+        <!--                        android:textColor="#858585"-->
+        <!--                        android:textSize="15sp" />-->
 
-                </LinearLayout>
+        <!--                </LinearLayout>-->
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:background="?attr/stroke_color" />
+        <!--                <View-->
+        <!--                    android:layout_width="1dp"-->
+        <!--                    android:layout_height="45dp"-->
+        <!--                    android:layout_gravity="center"-->
+        <!--                    android:background="?attr/stroke_color" />-->
 
-                <LinearLayout
-                    android:id="@+id/loadSkin"
-                    android:layout_width="0dp"
-                    android:layout_height="58dp"
-                    android:layout_gravity="top"
-                    android:layout_weight="1"
-                    android:background="@drawable/ripple">
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/loadSkin"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="58dp"-->
+        <!--                    android:layout_gravity="top"-->
+        <!--                    android:layout_weight="1"-->
+        <!--                    android:background="@drawable/ripple">-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="15dp"
-                        android:gravity="center|start"
-                        android:text="加载主题"
-                        android:textColor="#858585"
-                        android:textSize="15sp" />
+        <!--                    <TextView-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:layout_marginStart="15dp"-->
+        <!--                        android:gravity="center|start"-->
+        <!--                        android:text="加载主题"-->
+        <!--                        android:textColor="#858585"-->
+        <!--                        android:textSize="15sp" />-->
 
-                </LinearLayout>
+        <!--                </LinearLayout>-->
 
-            </LinearLayout>
+        <!--            </LinearLayout>-->
 
-        </com.lihang.ShadowLayout>
+        <!--        </com.lihang.ShadowLayout>-->
 
     </LinearLayout>
 

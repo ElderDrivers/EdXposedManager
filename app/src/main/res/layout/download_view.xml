@@ -20,11 +20,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="?attr/appColorAccent"
             android:text="@string/download_view_download"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#FFF"
-            app:strokeColor="@color/buttonStroker" />
+            app:strokeColor="?attr/colorAccentLight" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/save"
@@ -32,11 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="?attr/appColorAccent"
             android:text="@string/save"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#FFF"
-            app:strokeColor="@color/buttonStroker" />
+            app:strokeColor="?attr/colorAccentLight" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDownloadCancel"
@@ -46,8 +46,9 @@
             android:layout_margin="5dp"
             android:text="@string/download_view_cancel"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/appColorAccent"
             android:visibility="gone"
-            app:strokeColor="@color/buttonStroker"
+            app:strokeColor="?attr/colorAccentLight"
             tools:ignore="com.google.android.material.button.MaterialButtonOrder" />
 
         <com.google.android.material.button.MaterialButton
@@ -58,8 +59,9 @@
             android:layout_margin="5dp"
             android:text="@string/download_view_install"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/appColorAccent"
             android:visibility="gone"
-            app:strokeColor="@color/buttonStroker" />
+            app:strokeColor="?attr/colorAccentLight" />
 
     </LinearLayout>
 

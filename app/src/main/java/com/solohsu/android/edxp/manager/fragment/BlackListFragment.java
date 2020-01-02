@@ -1,8 +1,10 @@
 package com.solohsu.android.edxp.manager.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,13 +25,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.solohsu.android.edxp.manager.R;
 import com.solohsu.android.edxp.manager.adapter.AppAdapter;
 import com.solohsu.android.edxp.manager.adapter.AppHelper;
 import com.solohsu.android.edxp.manager.adapter.BlackListAdapter;
-import com.solohsu.android.edxp.manager.util.ToastUtils;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
+
+import de.robv.android.xposed.installer.WelcomeActivity;
+import de.robv.android.xposed.installer.XposedApp;
 
 public class BlackListFragment extends Fragment implements AppAdapter.Callback {
 
@@ -36,6 +45,8 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
     private RecyclerView mRecyclerView;
     private androidx.appcompat.widget.SearchView mSearchView;
     private BlackListAdapter mAppAdapter;
+    private MenuItem whiteList;
+    private boolean white_liste_mode = false;
 
     private androidx.appcompat.widget.SearchView.OnQueryTextListener mSearchListener;
 
@@ -65,12 +76,13 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_black_list, menu);
-        mSearchView = (androidx.appcompat.widget.SearchView) menu.findItem(R.id.app_search).getActionView();
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_app_list, menu);
+        whiteList = menu.add(R.string.white_list_mode_title).setTitle(R.string.white_list_mode_title);
+        mSearchView = (SearchView) menu.findItem(R.id.app_search).getActionView();
         mSearchView.setOnQueryTextListener(mSearchListener);
         DisplayMetrics outMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
+        requireActivity().getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
         mSearchView.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
         mSearchView.setMaxWidth(outMetrics.widthPixels);
         try {        //--拿到字节码
@@ -81,27 +93,46 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
             ownField.setAccessible(true);
             View mView = (View) ownField.get(mSearchView);
             //--设置背景
-            mView.setBackgroundColor(Color.TRANSPARENT);
+            Objects.requireNonNull(mView).setBackgroundColor(Color.TRANSPARENT);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        MenuItem whiteListMenuItem = menu.findItem(R.id.white_list_switch);
-        whiteListMenuItem.setChecked(isWhiteListMode());
-        whiteListMenuItem.setOnMenuItemClickListener(item -> {
-            item.setChecked(!item.isChecked());
-            if (AppHelper.setWhiteListMode(item.isChecked())) {
-                updateUi(item.isChecked());
+        changeTitle(isWhiteListMode());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == whiteList.getItemId()) {
+            if (white_liste_mode) {
+                updateUi(false);
+                changeTitle(false);
             } else {
-                ToastUtils.showShortToast(requireContext(), R.string.mode_change_failed);
+                updateUi(true);
+                changeTitle(true);
             }
-            return true;
-        });
+        }
+        return true;
     }
 
     @Override
     public void onResume() {
         super.onResume();
         changeTitle(isWhiteListMode());
+
+        if (!XposedApp.getPreferences().getBoolean("black_white_list_enabled", false)) {
+            new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("注意")
+                    .setMessage("您目前尚未开启黑白名单功能，请打开EdXp设置打开\"黑/白名单\"选项")
+                    .setNegativeButton("稍后", (dialog, which) -> dialog.dismiss())
+                    .setPositiveButton("去打开", (dialog, which) -> {
+                        if (requireActivity() instanceof WelcomeActivity) {
+                            ((WelcomeActivity) requireActivity()).navigateDrawer(R.id.nav_edxp_settings);
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(requireContext(), "无法跳转,请自行打开", Toast.LENGTH_LONG).show();
+                        }
+                    }).show();
+        }
     }
 
     @Nullable
@@ -132,11 +163,43 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
                 return false;
             }
         };
+
+        int left = requireActivity().getWindow().getDecorView().getWidth() - dp(45);
+        int top = dp(35);
+        int right = requireActivity().getWindow().getDecorView().getWidth();
+        int bottom = top + dp(35);
+        if (!XposedApp.getPreferences().getBoolean("first_show_guide", false)) {
+            new TapTargetSequence(requireActivity())
+                    .targets(
+                            XposedApp.targetView(new Rect(left, top, right, bottom), "白名单入口", "切换EdXposed白名单/黑名单")
+                    ).listener(new TapTargetSequence.Listener() {
+                // This listener will tell us when interesting(tm) events happen in regards
+                // to the sequence
+                @Override
+                public void onSequenceFinish() {
+                    XposedApp.getPreferences().edit().putBoolean("first_show_guide", true).apply();
+                }
+
+                @Override
+                public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+
+                }
+
+                @Override
+                public void onSequenceCanceled(TapTarget lastTarget) {
+                    // Boo
+                }
+            }).start();
+        }
         return view;
     }
 
     private void changeTitle(boolean isWhiteListMode) {
         requireActivity().setTitle(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list);
+        if (whiteList != null) {
+            whiteList.setTitle(isWhiteListMode ? R.string.title_black_list : R.string.title_white_list);
+            whiteList.setTooltipText(isWhiteListMode ? getString(R.string.title_black_list) : getString(R.string.title_white_list));
+        }
     }
 
     private void updateUi(boolean isWhiteListMode) {
@@ -144,6 +207,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         mAppAdapter.setWhiteListMode(isWhiteListMode);
         mSwipeRefreshLayout.setRefreshing(true);
         mAppAdapter.refresh();
+        white_liste_mode = !white_liste_mode;
     }
 
     private boolean isWhiteListMode() {
@@ -163,6 +227,25 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
     public void onItemClick(View v, ApplicationInfo info) {
         if (getFragmentManager() != null) {
             AppHelper.showMenu(requireActivity(), getFragmentManager(), v, info);
+        } else {
+            String packageName = (String) v.getTag();
+            if (packageName == null)
+                return;
+
+            Intent launchIntent = Objects.requireNonNull(getContext()).getPackageManager().getLaunchIntentForPackage(packageName);
+            if (launchIntent != null) {
+                startActivity(launchIntent);
+            } else {
+                Toast.makeText(getActivity(), Objects.requireNonNull(getActivity()).getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
+            }
         }
+    }
+
+    private int dp(float value) {
+        float density = requireActivity().getResources().getDisplayMetrics().density;
+        if (value == 0) {
+            return 0;
+        }
+        return (int) Math.ceil(density * value);
     }
 }

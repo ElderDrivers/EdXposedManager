@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.solohsu.android.edxp.manager">
 
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -119,7 +120,7 @@
             android:name="de.robv.android.xposed.installer.DownloadDetailsActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
-            android:theme="@style/Theme.XposedInstaller.Transparent">
+            android:theme="@style/Theme.XposedInstaller.Light">
             <intent-filter>
                 <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS" />
 
@@ -148,39 +149,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="de.robv.android.xposed.installer.activity.SettingsActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent">
+            android:name="de.robv.android.xposed.installer.activity.XposedSettingsActivity"
+            android:theme="@style/Theme.XposedInstaller.Light">
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name="de.robv.android.xposed.installer.activity.SupportActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller.Light" />
         <activity
             android:name="de.robv.android.xposed.installer.activity.AboutActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller.Light" />
         <activity
             android:name="de.robv.android.xposed.installer.ModulesBookmark"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller.Light" />
         <activity
             android:name="de.robv.android.xposed.installer.installation.InstallationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller.Light" />
         <activity
             android:name="de.robv.android.xposed.installer.activity.EasterEggActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller.Light" />
         <activity
             android:name="de.robv.android.xposed.installer.activity.PingActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller.Light" />
         <activity
             android:name="de.robv.android.xposed.installer.activity.SELinuxActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller.Light" />
         <activity
             android:name="de.robv.android.xposed.installer.activity.PlansActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller.Light" />
+        <activity
+            android:name="de.robv.android.xposed.installer.activity.XposedGuideActivity"
+            android:theme="@style/Theme.XposedInstaller.Light" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.XposedInstaller.Light" />
 
         <receiver android:name="de.robv.android.xposed.installer.receivers.PackageChangeReceiver">
             <intent-filter>

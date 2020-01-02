@@ -1,29 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.XposedInstaller.Light" parent="Theme.XposedInstaller.Light.Base">
+    <style name="Theme.XposedInstaller.Light" parent="Theme.Coxylic.Light">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowBackground">@color/app_light</item>
-        <item name="download_status_installed">@android:color/holo_orange_dark</item>
-        <item name="android:navigationBarColor">@color/app_light</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:windowLightNavigationBar">false</item>
         <item name="android:fontFamily">@font/regular</item>
         <item name="stroke_color">@color/stroke_dark</item>
         <item name="nav_text_item_color">@color/nav_text_item_color_light</item>
-        <item name="material_ver_info_color">@color/material_ver_info_color_light</item>
-        <item name="card_background_color">@color/card_bg_light</item>
+        <item name="card_background_color">@color/card_bg</item>
+        <item name="colorAccentLight">@color/colorAccentLightDefault</item>
+        <item name="appColorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Theme.XposedInstaller.Dark" parent="Theme.XposedInstaller.Dark.Base">
-        <item name="android:windowBackground">@color/app_dark</item>
-        <item name="android:navigationBarColor">@color/app_dark</item>
-        <item name="android:windowLightNavigationBar">false</item>
-        <item name="stroke_color">@color/stroke_light</item>
-        <item name="nav_text_item_color">@color/nav_text_item_color_dark</item>
-        <item name="material_ver_info_color">@color/material_ver_info_color_dark</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="card_background_color">@color/card_bg_dark</item>
+    <style name="Theme.XposedInstaller.Light.Blue" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentBlue</item>
+        <item name="appColorAccent">@color/colorAccentBlue</item>
+        <item name="colorAccentLight">@color/colorAccentLightBlue</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.NavyBlue" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentNavyBlue</item>
+        <item name="appColorAccent">@color/colorAccentNavyBlue</item>
+        <item name="colorAccentLight">@color/colorAccentLightNavyBlue</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.DIM" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentDIM</item>
+        <item name="appColorAccent">@color/colorAccentDIM</item>
+        <item name="colorAccentLight">@color/colorAccentLightDIM</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.TianYi" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentTianYi</item>
+        <item name="appColorAccent">@color/colorAccentTianYi</item>
+        <item name="colorAccentLight">@color/colorAccentLightTianYi</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.Purple" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentPurple</item>
+        <item name="appColorAccent">@color/colorAccentPurple</item>
+        <item name="colorAccentLight">@color/colorAccentLightPurple</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.Limb" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentLimb</item>
+        <item name="appColorAccent">@color/colorAccentLimb</item>
+        <item name="colorAccentLight">@color/colorAccentLightLimb</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light.Pink" parent="Theme.XposedInstaller.Light">
+        <item name="colorAccent">@color/colorAccentPink</item>
+        <item name="appColorAccent">@color/colorAccentPink</item>
+        <item name="colorAccentLight">@color/colorAccentLightPink</item>
     </style>
 
 </resources>

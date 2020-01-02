@@ -39,33 +39,10 @@
         android:key="look_and_feel"
         android:title="@string/look_and_feel">
 
-        <de.robv.android.xposed.installer.widget.IconListPreference
-            android:defaultValue="0"
-            android:entries="@array/icons"
-            android:entryValues="@array/iconsValues"
-            android:key="custom_icon"
-            android:summary="@string/choose_icon"
-            android:title="@string/custom_icon"
-            app:icons="@array/iconsDrawables"
-            app:titleColorIconList="?attr/nav_text_item_color" />
-
-        <!--        <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial-->
-        <!--            android:defaultValue="false"-->
-        <!--            android:key="nav_bar"-->
-        <!--            android:title="@string/nav_bar_coloration"-->
-        <!--            app:titleColor="?attr/nav_text_item_color" />-->
-
         <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
             android:defaultValue="false"
             android:key="colored_notification"
             android:title="@string/notification_coloration"
-            app:titleColor="?attr/nav_text_item_color" />
-
-        <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
-            android:defaultValue="true"
-            android:key="mask_animate"
-            android:summary="一层扫过状态面板的遮罩动画"
-            android:title="状态面板显示Shimmer动画"
             app:titleColor="?attr/nav_text_item_color" />
 
     </PreferenceCategory>

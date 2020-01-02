@@ -4,7 +4,10 @@ buildscript {
         google()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.5.2'
+            classpath 'com.android.tools.build:gradle:3.5.3'
+            classpath 'com.github.megatronking.stringfog:gradle-plugin:2.2.0'
+            classpath 'com.github.megatronking.stringfog:xor:1.1.0'
+            classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.17'
         }
     }
 

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="?actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:hl_cornerRadius="5dp"
+                    app:hl_shadowBackColor="?attr/card_background_color"
+                    app:hl_shadowColor="@color/cardShadow"
+                    app:hl_shadowLimit="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/basic"
+                        android:layout_width="match_parent"
+                        android:layout_height="125dp"
+                        android:layout_gravity="top"
+                        android:background="@drawable/ripple">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/basic_settings"
+                            android:textColor="#757575"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </com.lihang.ShadowLayout>
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:hl_cornerRadius="5dp"
+                    app:hl_shadowBackColor="?attr/card_background_color"
+                    app:hl_shadowColor="@color/cardShadow"
+                    app:hl_shadowLimit="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/edxp"
+                        android:layout_width="match_parent"
+                        android:layout_height="125dp"
+                        android:layout_gravity="top"
+                        android:background="@drawable/ripple">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/edxposed_settings"
+                            android:textColor="#757575"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </com.lihang.ShadowLayout>
+
+            </LinearLayout>
+
+            <com.lihang.ShadowLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hl_cornerRadius="5dp"
+                app:hl_shadowBackColor="?attr/card_background_color"
+                app:hl_shadowColor="@color/cardShadow"
+                app:hl_shadowLimit="10dp">
+
+                <LinearLayout
+                    android:id="@+id/personalize"
+                    android:layout_width="match_parent"
+                    android:layout_height="115dp"
+                    android:layout_gravity="top"
+                    android:background="@drawable/ripple">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/personalize"
+                        android:textColor="#757575"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </com.lihang.ShadowLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

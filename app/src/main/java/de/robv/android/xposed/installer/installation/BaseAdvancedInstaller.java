@@ -2,6 +2,7 @@ package de.robv.android.xposed.installer.installation;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -23,9 +24,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.solohsu.android.edxp.manager.R;
 
 import java.io.File;
@@ -39,15 +41,13 @@ import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
-import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.json.XposedTab;
 import de.robv.android.xposed.installer.util.json.XposedZip;
-import solid.ren.skinlibrary.base.SkinBaseFragment;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.runOnUiThread;
 
-public class BaseAdvancedInstaller extends SkinBaseFragment implements DownloadsUtil.DownloadFinishedCallback {
+public class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.DownloadFinishedCallback {
 
     public static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
     private static final int INSTALL_MODE_NORMAL = 0;
@@ -166,65 +166,53 @@ public class BaseAdvancedInstaller extends SkinBaseFragment implements Downloads
             }
         }
 
-        infoInstaller.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
-                String s = getString(R.string.infoInstaller,
-                        selectedInstaller.name, Build.VERSION.SDK_INT,
-                        selectedInstaller.architecture,
-                        selectedInstaller.version);
-                new MD2Dialog(getContext()).title(R.string.info).msg(s).simpleConfirm(android.R.string.ok).show();
-            }
+        infoInstaller.setOnClickListener(v -> {
+            XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
+            String s = getString(R.string.infoInstaller,
+                    selectedInstaller.name, Build.VERSION.SDK_INT,
+                    selectedInstaller.architecture,
+                    selectedInstaller.version);
+            new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.info).setMessage(s).setPositiveButton(android.R.string.ok, ((dialog, which) -> dialog.dismiss())).show();
         });
-        infoUninstaller.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
-                String s = getString(R.string.infoUninstaller,
-                        selectedUninstaller.name,
-                        selectedUninstaller.architecture,
-                        selectedUninstaller.version);
-                new MD2Dialog(getContext()).title(R.string.info).msg(s).simpleConfirm(android.R.string.ok).show();
-            }
+        infoUninstaller.setOnClickListener(v -> {
+            XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
+            String s = getString(R.string.infoUninstaller,
+                    selectedUninstaller.name,
+                    selectedUninstaller.architecture,
+                    selectedUninstaller.version);
+            new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.info).setMessage(s).setPositiveButton(android.R.string.ok, ((dialog, which) -> dialog.dismiss())).show();
         });
 
-        btnInstall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mClickedButton = v;
-                if (checkPermissions()) return;
+        btnInstall.setOnClickListener(v -> {
+            mClickedButton = v;
+            if (checkPermissions()) return;
 
-                areYouSure(R.string.warningArchitecture,
-                        (view12, dialog) -> {
-                            XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
-                            Uri uri = Uri.parse(selectedInstaller.link);
-                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                        });
-            }
+            areYouSure(R.string.warningArchitecture,
+                    (view12, dialog) -> {
+                        XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
+                        Uri uri = Uri.parse(selectedInstaller.link);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    });
         });
 
-        btnUninstall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mClickedButton = v;
-                if (checkPermissions()) return;
+        btnUninstall.setOnClickListener(v -> {
+            mClickedButton = v;
+            if (checkPermissions()) return;
 
-                areYouSure(R.string.warningArchitecture,
-                        (view1, dialog) -> {
-                            XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
-                            checkAndDelete(selectedUninstaller.name);
-                            new DownloadsUtil.Builder(getContext())
-                                    .setTitle(selectedUninstaller.name)
-                                    .setUrl(selectedUninstaller.link)
-                                    .setCallback(BaseAdvancedInstaller.this)
-                                    .setMimeType(DownloadsUtil.MIME_TYPES.ZIP)
-                                    .setDialog(true)
-                                    .download();
-                            dialog.dismiss();
-                        });
-            }
+            areYouSure(R.string.warningArchitecture,
+                    (dialog, which) -> {
+                        XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
+                        checkAndDelete(selectedUninstaller.name);
+                        new DownloadsUtil.Builder(getContext())
+                                .setTitle(selectedUninstaller.name)
+                                .setUrl(selectedUninstaller.link)
+                                .setCallback(BaseAdvancedInstaller.this)
+                                .setMimeType(DownloadsUtil.MIME_TYPES.ZIP)
+                                .setDialog(true)
+                                .download();
+                        dialog.dismiss();
+                    });
         });
 
         compatibleTv.setText(compatibility());
@@ -244,20 +232,7 @@ public class BaseAdvancedInstaller extends SkinBaseFragment implements Downloads
             view.findViewById(R.id.warning_unstable).setVisibility(View.VISIBLE);
         }
 
-        showOnXda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavUtil.startURL(getActivity(), xdaUrl());
-            }
-        });
-
-        if (Build.VERSION.SDK_INT == 15) {
-            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
-        } else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 18) {
-            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
-        } else if (Build.VERSION.SDK_INT == 19) {
-            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk19";
-        }
+        showOnXda.setOnClickListener(v -> NavUtil.startURL(getActivity(), xdaUrl()));
 
         return view;
     }
@@ -289,20 +264,8 @@ public class BaseAdvancedInstaller extends SkinBaseFragment implements Downloads
             return;
 
         if (getInstallMode() == INSTALL_MODE_NORMAL) {
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-                runOnUiThread(() -> areYouSure(R.string.install_warning, (view, dialog) -> {
-                    if (!startShell()) return;
-                    if (info.localFilename.contains("Disabler")) {
-                        prepareUninstall(messages);
-                    } else {
-                        prepareInstall(messages);
-                    }
-                    offerReboot(messages);
-                    dialog.dismiss();
-                }));
-                return;
-            } else if (InstallZipUtil.checkZip(InstallZipUtil.getZip(info.localFilename)).isFlashableInApp()) {
-                runOnUiThread(() -> areYouSure(R.string.install_warning, (view, dialog) -> {
+            if (InstallZipUtil.checkZip(InstallZipUtil.getZip(info.localFilename)).isFlashableInApp()) {
+                runOnUiThread(() -> areYouSure(R.string.install_warning, (dialog, which) -> {
                     if (!startShell()) return;
                     Intent install = new Intent(getContext(), InstallationActivity.class);
                     install.putExtra(Flashable.KEY, new FlashDirectly(info.localFilename, false));
@@ -315,7 +278,7 @@ public class BaseAdvancedInstaller extends SkinBaseFragment implements Downloads
             }
         }
 
-        runOnUiThread(() -> areYouSure(R.string.install_warning, (view, dialog) -> {
+        runOnUiThread(() -> areYouSure(R.string.install_warning, (dialog, which) -> {
             if (!startShell()) return;
             prepareAutoFlash(messages, new File(info.localFilename));
             offerRebootToRecovery(messages, info.title, INSTALL_MODE_RECOVERY_AUTO);
@@ -323,14 +286,11 @@ public class BaseAdvancedInstaller extends SkinBaseFragment implements Downloads
         }));
     }
 
-    private void areYouSure(int contentTextId, MD2Dialog.OptionsButtonCallBack callBack) {
-        new MD2Dialog(getActivity()).title(R.string.areyousure)
-                .msg(contentTextId)
-                .buttonStyle(MD2Dialog.ButtonStyle.AGREEMENT)
-                .simpleConfirm(android.R.string.yes)
-                .simpleCancel(android.R.string.no)
-                .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                .callConfirm(callBack).show();
+    private void areYouSure(int contentTextId, DialogInterface.OnClickListener callBack) {
+        new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.areyousure)
+                .setMessage(contentTextId)
+                .setPositiveButton(android.R.string.yes, callBack)
+                .setNeutralButton(android.R.string.no, ((dialog, which) -> dialog.dismiss())).show();
     }
 
     private boolean startShell() {
@@ -352,7 +312,7 @@ public class BaseAdvancedInstaller extends SkinBaseFragment implements Downloads
             return;
         }
 
-        new MD2Dialog(getActivity()).msg(result).simpleConfirm(android.R.string.ok).show();
+        new MaterialAlertDialogBuilder(requireContext()).setMessage(result).setPositiveButton(android.R.string.ok, ((dialog, which) -> dialog.dismiss())).show();
     }
 
     private int getInstallMode() {

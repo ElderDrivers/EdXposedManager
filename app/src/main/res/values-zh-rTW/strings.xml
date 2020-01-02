@@ -295,5 +295,9 @@
     <string name="flash_error_invalid_zip">不是可刷入的ZIP檔案</string>
     <string name="flash_error_not_flashable_in_app">這個檔案僅能在 Recovery 模式下刷入</string>
     <string name="flash_error_default">發生錯誤 %d</string>
+    <string name="app_stop">停止应用</string>
+    <string name="app_launch">打开App</string>
+    <string name="modules_app_store">AppStore</string>
+    <string name="app_no_ui">该APP没有UI界面</string>
 
 </resources>

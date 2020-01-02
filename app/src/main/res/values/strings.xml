@@ -403,7 +403,7 @@
 
     <string name="module_sort_status">Sort by active state</string>
     <string name="module_sort_name">Sort by module name</string>
-    <string name="module_sort_random">Sort by random</string>
+    <string name="module_sort_date">Sort by date</string>
     <string name="alt_download_method">Alt Download Method</string>
     <string name="save_loaded_state_summary">After loading zip and updating data on the home page, save the data status to prevent reloading due to data loss after application switching interface (data will not be saved locally)</string>
     <string name="waitamin">Later</string>
@@ -423,7 +423,32 @@
     <string name="xposed_install_helper_info">We have detected that you have not installed any xposed framework at present. If you need our installation guide, please click the installation button on the right</string>
     <string name="install_xp">Install</string>
 
-    <string name="app_ver_code">墜入夢魘 · RC9 · 预览版</string>
+    <string name="app_ver_code">元旦版本</string>
     <string name="xp_not_active_info">检测到您目前的Xposed状态为未启用/未激活状态，您可能需要重启或者更换框架再重启（如果您的框架有问题的话）</string>
+    <string name="app_stop">停止应用</string>
+    <string name="app_launch">打开App</string>
+    <string name="modules_app_store">AppStore</string>
+    <string name="app_no_ui">该APP没有UI界面</string>
+    <string name="installation_guide">安装引导</string>
+    <string name="active_guide">激活引导</string>
+    <string name="installed_details">安装详情</string>
+    <string name="next_step">下一步</string>
+    <string name="rirucore_description">Riru-Core模块,这是你安装EdXposed模块的前提, 当前最新版本为: %s</string>
+    <string name="riruedxposed_description">Riru-EdXposed模块, EdXposed模块, 目前分为YAHFA (相对稳定) 和 Sandhook (相对流畅)  \n\nY : %s\nS : %s\n\n请按照自己的需求进行安装</string>
+    <string name="reboot_description">在您完成上述操作后, 还需要重启您的手机以始得模块完全生效, 请点击重启按钮进行重启</string>
+    <string name="previous_step">上一步</string>
+    <string name="basic_settings">基础设置</string>
+    <string name="edxposed_settings">EdXposed设置</string>
+    <string name="personalize">个性化设置</string>
+    <string name="manager_settings">管理器设置</string>
+
+    <string name="night_mode_off">关闭</string>
+    <string name="night_mode_on">开启</string>
+    <string name="night_mode_auto">跟随系统</string>
+    <string name="main_appearance">主要外观</string>
+    <string name="manager_theme">管理器主题</string>
+    <string name="panel_background">面板背景图</string>
+    <string name="enabled_panel_background">开启面板背景图</string>
+    <string name="is_dark_background">背景图为深色系</string>
 
 </resources>

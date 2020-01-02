@@ -2,14 +2,12 @@ package de.robv.android.xposed.installer;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,23 +17,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.solohsu.android.edxp.manager.R;
-import com.solohsu.android.edxp.manager.adapter.AppHelper;
 import com.solohsu.android.edxp.manager.fragment.BlackListFragment;
 import com.solohsu.android.edxp.manager.fragment.CompatListFragment;
 import com.solohsu.android.edxp.manager.fragment.SettingFragment;
 
-import java.util.Objects;
-
-import de.robv.android.xposed.installer.activity.AboutActivity;
+import de.robv.android.xposed.installer.activity.PersonalizeFragment;
 import de.robv.android.xposed.installer.activity.SELinuxActivity;
-import de.robv.android.xposed.installer.activity.SettingsActivity;
-import de.robv.android.xposed.installer.activity.SupportActivity;
-import de.robv.android.xposed.installer.util.ThemeUtil;
-import solid.ren.skinlibrary.base.SkinBaseFragment;
+import de.robv.android.xposed.installer.activity.XposedSettingsActivity;
 
-import static android.content.Context.MODE_PRIVATE;
-
-public class MoreOptionsFragment extends SkinBaseFragment {
+public class MoreOptionsFragment extends Fragment {
 
     private View rootView = null;
     private BottomNavigationView bnv;
@@ -81,21 +71,12 @@ public class MoreOptionsFragment extends SkinBaseFragment {
         LinearLayout support_mode = rootView.findViewById(R.id.opt_support_mode);
         LinearLayout edxp = rootView.findViewById(R.id.opt_edxp_settings);
         LinearLayout settings = rootView.findViewById(R.id.opt_settings);
-        LinearLayout support = rootView.findViewById(R.id.opt_support_me);
-        LinearLayout about = rootView.findViewById(R.id.opt_about);
+        LinearLayout personalize = rootView.findViewById(R.id.opt_personalize);
         View donateMe = rootView.findViewById(R.id.donateMe);
-        View changeToDrawer = rootView.findViewById(R.id.changeToDrawer);
-        View nightMode = rootView.findViewById(R.id.night_mode_container);
         View selinux = rootView.findViewById(R.id.opt_selinux);
-        Switch nightModeSwitch = rootView.findViewById(R.id.night_mode_switch);
         View divider = rootView.findViewById(R.id.black_list_divider);
         final ImageView ico = rootView.findViewById(R.id.donateIcon);
         final int[] click = {0};
-
-        if (AppHelper.blackWhiteListEnabled()) {
-            black_lis.setVisibility(View.VISIBLE);
-            divider.setVisibility(View.VISIBLE);
-        }
 
         black_lis.setOnClickListener(view -> switchFragment(rootView.getContext(), new BlackListFragment()));
 
@@ -104,6 +85,10 @@ public class MoreOptionsFragment extends SkinBaseFragment {
         support_mode.setOnClickListener(view -> switchFragment(rootView.getContext(), new CompatListFragment()));
 
         edxp.setOnClickListener(view -> switchFragment(rootView.getContext(), new SettingFragment()));
+
+        settings.setOnClickListener(view -> startActivity(new Intent(rootView.getContext(), XposedSettingsActivity.class)));
+
+        personalize.setOnClickListener(v -> switchFragment(rootView.getContext(), new PersonalizeFragment()));
 
         donateMe.setOnClickListener(view -> {
             if (click[0] == 0) {
@@ -117,39 +102,7 @@ public class MoreOptionsFragment extends SkinBaseFragment {
             }
         });
 
-        changeToDrawer.setOnClickListener(v -> {
-            SharedPreferences.Editor editor = getActivity().getPreferences(MODE_PRIVATE).edit();
-            editor.putBoolean("drawer_layout_home", true);
-            editor.apply();
-            Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(getActivity().getApplication().getPackageName());
-            Objects.requireNonNull(intent).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            getActivity().finish();
-        });
-
-        if (ThemeUtil.getSelectTheme().equals("light")) {
-            nightModeSwitch.setChecked(false);
-        } else if (ThemeUtil.getSelectTheme().equals("dark")) {
-            nightModeSwitch.setChecked(true);
-        }
-
-        nightMode.setOnClickListener(v -> {
-            nightModeSwitch.toggle();
-            boolean isChecked = nightModeSwitch.isChecked();
-            XposedApp.getPreferences().edit().putString("theme", isChecked ? "dark" : "light").apply();
-            Intent intent = Objects.requireNonNull(getActivity()).getPackageManager().getLaunchIntentForPackage(getActivity().getApplication().getPackageName());
-            Objects.requireNonNull(intent).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            getActivity().finish();
-        });
-
         selinux.setOnClickListener(v -> startActivity(new Intent(rootView.getContext(), SELinuxActivity.class)));
-
-        settings.setOnClickListener(view -> startActivity(new Intent(rootView.getContext(), SettingsActivity.class)));
-
-        support.setOnClickListener(view -> startActivity(new Intent(rootView.getContext(), SupportActivity.class)));
-
-        about.setOnClickListener(view -> startActivity(new Intent(rootView.getContext(), AboutActivity.class)));
 
         super.onActivityCreated(savedInstanceState);
     }

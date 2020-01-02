@@ -20,7 +20,7 @@
         android:background="?selectableItemBackgroundBorderless"
         android:padding="5dp"
         android:src="@drawable/ic_back"
-        android:tint="@color/colorAccent"
+        android:tint="?attr/appColorAccent"
         tools:ignore="ContentDescription" />
 
     <ImageView
@@ -42,7 +42,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="25dp"
         android:text="@string/made_by_krins"
-        android:textColor="?attr/material_ver_info_color"
+        android:textColor="@color/text_color_hint"
         android:textSize="15sp" />
 
     <ScrollView
@@ -85,7 +85,7 @@
                             android:alpha="0.75"
                             android:gravity="center|start"
                             android:text="@string/author_krins"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/appColorAccent"
                             android:textSize="15sp" />
 
                     </LinearLayout>
@@ -247,7 +247,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:text="@string/app_name_full"
-        android:textColor="@color/colorAccent"
+        android:textColor="?attr/appColorAccent"
         android:textSize="18sp" />
 
     <TextView
@@ -258,7 +258,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="8dp"
         android:text="@string/app_ver_code"
-        android:textColor="?attr/material_ver_info_color"
+        android:textColor="@color/text_color_hint"
         android:textSize="14sp" />
 
     <RelativeLayout

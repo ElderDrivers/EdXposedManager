@@ -20,8 +20,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.os.EnvironmentCompat;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.solohsu.android.edxp.manager.R;
 import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
+import com.solohsu.android.edxp.manager.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -204,13 +204,10 @@ public class DownloadsUtil {
                 .progress(false, 0)
                 .kbs("")
                 .canceledOnTouchOutside(false)
-                .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                .onCancelClick(R.string.download_view_cancel, new MD2Dialog.OptionsButtonCallBack() {
-                    @Override
-                    public void onClick(View view, MD2Dialog dialog) {
-                        dialog.dismiss();
-                        removeById(context, id);
-                    }
+                .darkMode(XposedApp.isNightMode())
+                .onCancelClick(R.string.download_view_cancel, (view, dialog) -> {
+                    dialog.dismiss();
+                    removeById(context, id);
                 }).show();
 
 //        final DownloadDialog dialog = new DownloadDialog(new MaterialDialog.Builder(context)

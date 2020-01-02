@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="group_main_appearance"
+        android:title="@string/main_appearance">
+
+        <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+            android:icon="@drawable/ic_app_navigation"
+            android:key="drawer_layout_home"
+            android:summary="开启此选项后，将会更改底部导航方式为侧滑导航"
+            android:title="侧滑导航" />
+
+        <com.solohsu.android.edxp.manager.preference.PreferenceMaterial
+            android:icon="@drawable/ic_theme"
+            android:key="manager_theme"
+            android:summary="设置您的管理器的主题, 让你每一次使用都是元气满满的呢ヾ(•ω•`)o"
+            android:title="@string/manager_theme" />
+
+        <com.solohsu.android.edxp.manager.preference.PreferenceMaterial
+            android:icon="@drawable/ic_image"
+            android:key="panel_background"
+            android:summary="设置主页状态面板上的背景图"
+            android:title="@string/panel_background" />
+
+        <com.solohsu.android.edxp.manager.preference.DropDownPreferenceMaterial
+            android:defaultValue="1"
+            android:entries="@array/night_mode"
+            android:entryValues="@array/night_mode_value"
+            android:icon="@drawable/ic_night_mode"
+            android:key="night_mode"
+            android:summary="%s"
+            android:title="@string/night_mode" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="group_status_panel"
+        android:title="状态面板">
+
+        <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+            android:icon="@drawable/ic_status_panel"
+            android:key="fold_panel_info"
+            android:summary="默认不折叠主页面板信息，您可以使用这个选项来默认折叠面板信息"
+            android:title="折叠状态面板信息" />
+
+        <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+            android:defaultValue="true"
+            android:icon="@drawable/ic_empty"
+            android:key="mask_animate"
+            android:summary="一层扫过状态面板的遮罩动画"
+            android:title="状态面板动画" />
+
+        <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+            android:defaultValue="false"
+            android:icon="@drawable/ic_empty"
+            android:key="helper_button"
+            android:summary="启用后, 状态面板上的辅助按钮将被移除"
+            android:title="不显示辅助按钮" />
+
+        <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+            android:defaultValue="false"
+            android:icon="@drawable/ic_empty"
+            android:key="status_icon"
+            android:summary="启用后, 状态面板上的状态图标将被不会显示"
+            android:title="不显示状态图标" />
+
+        <com.solohsu.android.edxp.manager.preference.SwitchPreferenceMaterial
+            android:defaultValue="false"
+            android:icon="@drawable/ic_empty"
+            android:key="status_info"
+            android:summary="启用后，状态面板上将不会显示未安装, 已安装和未启用字样"
+            android:title="不显示状态信息" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -27,6 +27,7 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.github.coxylicacid.mdwidgets.dialog.MD2Dialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.solohsu.android.edxp.manager.R;
 
 import java.io.BufferedReader;
@@ -38,13 +39,11 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import de.robv.android.xposed.installer.util.RootUtil;
-import de.robv.android.xposed.installer.util.ThemeUtil;
-import solid.ren.skinlibrary.base.SkinBaseFragment;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
-public class LogsFragment extends SkinBaseFragment {
+public class LogsFragment extends Fragment {
 
     private static final String KEY_LOG_NAME = "log_name";
     private static final String DEFAULT_LOG_NAME = "error";
@@ -112,33 +111,14 @@ public class LogsFragment extends SkinBaseFragment {
             TextView message = dontShowAgainView.findViewById(android.R.id.message);
             message.setText(R.string.not_logcat);
 
-            new MD2Dialog(getActivity())
-                    .title(R.string.install_warning_title)
-                    .msg(R.string.not_logcat)
-                    .enableCheckBox(R.string.dont_show_again, true)
-                    .darkMode(ThemeUtil.getSelectTheme().equals("dark"))
-                    .onConfirmClick(android.R.string.ok, new MD2Dialog.OptionsButtonCallBack() {
-                        @Override
-                        public void onClick(View view, MD2Dialog dialog) {
-                            if (dialog.getCheckBoxStatus())
-                                XposedApp.getPreferences().edit().putBoolean("hide_logcat_warning", true).apply();
-                            dialog.dismiss();
-                        }
-                    }).show();
-
-//            new MaterialDialog.Builder(getActivity())
-//                    .title(R.string.install_warning_title)
-//                    .customView(dontShowAgainView, false)
-//                    .positiveText(android.R.string.ok)
-//                    .callback(new MaterialDialog.ButtonCallback() {
-//                        @Override
-//                        public void onPositive(MaterialDialog dialog) {
-//                            super.onPositive(dialog);
-//                            CheckBox checkBox = dontShowAgainView.findViewById(android.R.id.checkbox);
-//                            if (checkBox.isChecked())
-//                                XposedApp.getPreferences().edit().putBoolean("hide_logcat_warning", true).apply();
-//                        }
-//                    }).cancelable(false).show();
+            new MaterialAlertDialogBuilder(requireActivity())
+                    .setTitle(R.string.install_warning_title)
+                    .setMessage(R.string.not_logcat)
+                    .setNeutralButton(R.string.dont_show_again, (dialog, which) -> {
+                        XposedApp.getPreferences().edit().putBoolean("hide_logcat_warning", true).apply();
+                        dialog.dismiss();
+                    })
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss()).show();
         }
         return v;
     }
@@ -191,33 +171,13 @@ public class LogsFragment extends SkinBaseFragment {
     }
 
     private void scrollTop() {
-        mSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mSVLog.scrollTo(0, 0);
-            }
-        });
-        mHSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mHSVLog.scrollTo(0, 0);
-            }
-        });
+        mSVLog.post(() -> mSVLog.scrollTo(0, 0));
+        mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
     }
 
     private void scrollDown() {
-        mSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mSVLog.scrollTo(0, mTxtLog.getHeight());
-            }
-        });
-        mHSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mHSVLog.scrollTo(0, 0);
-            }
-        });
+        mSVLog.post(() -> mSVLog.scrollTo(0, mTxtLog.getHeight()));
+        mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
     }
 
     private void enableLogAccess() {
@@ -228,7 +188,7 @@ public class LogsFragment extends SkinBaseFragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    MD2Dialog.create(getActivity()).darkMode(ThemeUtil.getSelectTheme().equals("dark")).title("警告").msg("您的手机没有root权限").simpleConfirm("OK").show();
+                    new MaterialAlertDialogBuilder(requireActivity()).setMessage("您的手机没有root权限").setPositiveButton("OK", (dialog, which) -> dialog.dismiss()).show();
                 }
             });
         }
@@ -236,18 +196,8 @@ public class LogsFragment extends SkinBaseFragment {
 
     private void reloadErrorLog() {
         new LogsReader().execute(mFileErrorLog);
-        mSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mSVLog.scrollTo(0, mTxtLog.getHeight());
-            }
-        });
-        mHSVLog.post(new Runnable() {
-            @Override
-            public void run() {
-                mHSVLog.scrollTo(0, 0);
-            }
-        });
+        mSVLog.post(() -> mSVLog.scrollTo(0, mTxtLog.getHeight()));
+        mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
     }
 
     private void clear() {
@@ -368,7 +318,7 @@ public class LogsFragment extends SkinBaseFragment {
         @Override
         protected void onPreExecute() {
             mTxtLog.setText("");
-            mProgressDialog = new MD2Dialog(getContext()).darkMode(ThemeUtil.getSelectTheme().equals("dark")).onLoading().msg(R.string.loading).show();
+            mProgressDialog = new MD2Dialog(getContext()).darkMode(XposedApp.isNightMode()).onLoading().msg(R.string.loading).show();
 //            mProgressDialog = new MaterialDialog.Builder(getContext()).content(R.string.loading).progress(true, 0).show();
         }
 

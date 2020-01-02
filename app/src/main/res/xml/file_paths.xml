@@ -2,16 +2,22 @@
 <resources>
     <paths>
         <external-path
+            name="files_root"
+            path="Android/data/com.solohsu.android.edxp.manager/files" />
+        <external-path
             name="download"
             path="Download/" />
+        <external-path
+            name="external"
+            path="." />
         <external-cache-path
             name="downloads"
             path="downloads" />
         <root-path
             name="log_legacy"
-            path="/data/data/com.github.coxylicacid.edxp.manager/log" />
+            path="/data/data/com.solohsu.android.edxp.manager/log" />
         <root-path
             name="log"
-            path="/data/user_de/0/com.github.coxylicacid.edxp.manager/log" />
+            path="/data/user_de/0/com.solohsu.android.edxp.manager/log" />
     </paths>
 </resources>

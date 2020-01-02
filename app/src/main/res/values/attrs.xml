@@ -2,11 +2,15 @@
 <resources>
 
     <attr name="download_status_installed" format="reference|color" />
-    <attr name="sticky_header_background" format="reference|color" />
     <attr name="stroke_color" format="reference|color" />
     <attr name="nav_text_item_color" format="reference|color" />
-    <attr name="material_ver_info_color" format="reference|color" />
     <attr name="card_background_color" format="reference|color" />
+    <attr name="colorAccentLight" format="color" />
+    <attr name="appColorAccent" format="color" />
+
+    <attr name="titleColor" format="color" />
+    <attr name="summaryColor" format="color" />
+    <attr name="margin" format="dimension" />
 
     <declare-styleable name="IconListPreference">
         <attr name="icons" format="reference" />
@@ -22,9 +26,21 @@
     </declare-styleable>
 
     <declare-styleable name="SwitchPreferenceMaterial">
-        <attr name="titleColor" format="color" />
-        <attr name="summaryColor" format="color" />
-        <attr name="margin" format="dimension" />
+        <attr name="titleColor" />
+        <attr name="summaryColor" />
+        <attr name="margin" />
+    </declare-styleable>
+
+    <declare-styleable name="DropDownPreferenceMaterial">
+        <attr name="titleColor" />
+        <attr name="summaryColor" />
+        <attr name="margin" />
+    </declare-styleable>
+
+    <declare-styleable name="PreferenceMaterial">
+        <attr name="titleColor" />
+        <attr name="summaryColor" />
+        <attr name="margin" />
     </declare-styleable>
 
     <declare-styleable name="XposedStatusPanel">

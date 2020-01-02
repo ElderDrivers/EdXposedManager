@@ -3,6 +3,7 @@ package de.robv.android.xposed.installer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -24,10 +26,13 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.getkeepsafe.taptargetview.TapTarget;
 import com.solohsu.android.edxp.manager.BuildConfig;
 import com.solohsu.android.edxp.manager.R;
 
@@ -46,24 +51,6 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.robv.android.xposed.installer.attr.SwitchThumbOffColorAttr;
-import de.robv.android.xposed.installer.attr.SwitchThumbOnColorAttr;
-import de.robv.android.xposed.installer.attr.SwitchTrackOffColorAttr;
-import de.robv.android.xposed.installer.attr.SwitchTrackOnColorAttr;
-import de.robv.android.xposed.installer.attr.TabLayoutIndicatorAttr;
-import de.robv.android.xposed.installer.attr.XposedStateErrorAttr;
-import de.robv.android.xposed.installer.attr.XposedStateSuccessAttr;
-import de.robv.android.xposed.installer.attr.XposedStateWarnAttr;
-import de.robv.android.xposed.installer.attr.navigation.BottomNavItemRippleColorAttr;
-import de.robv.android.xposed.installer.attr.navigation.BottomNavItemSelectedIconTintAttr;
-import de.robv.android.xposed.installer.attr.navigation.BottomNavItemSelectedTextColorAttr;
-import de.robv.android.xposed.installer.attr.navigation.BottomNavItemUnSelectedIconTintAttr;
-import de.robv.android.xposed.installer.attr.navigation.BottomNavItemUnSelectedTextColorAttr;
-import de.robv.android.xposed.installer.attr.navigation.NavItemBackgroundAttr;
-import de.robv.android.xposed.installer.attr.navigation.NavItemSelectedIconTintAttr;
-import de.robv.android.xposed.installer.attr.navigation.NavItemSelectedTextColorAttr;
-import de.robv.android.xposed.installer.attr.navigation.NavItemUnSelectedIconTintAttr;
-import de.robv.android.xposed.installer.attr.navigation.NavItemUnSelectedTextColorAttr;
 import de.robv.android.xposed.installer.receivers.PackageChangeReceiver;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
@@ -71,17 +58,14 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.MyFileUtils;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
-import solid.ren.skinlibrary.SkinConfig;
-import solid.ren.skinlibrary.base.SkinBaseApplication;
 
 @SuppressWarnings({"ResultOfMethodCallIgnored", "OctalInteger"})
 @SuppressLint("Registered")
-public class XposedApp extends SkinBaseApplication implements ActivityLifecycleCallbacks {
+public class XposedApp extends Application implements ActivityLifecycleCallbacks {
     public static final String TAG = "EdXposedManager";
     @SuppressLint("SdCardPath")
     private static final String BASE_DIR_LEGACY = "/data/data/" + BuildConfig.APPLICATION_ID + "/";
-    public static final String BASE_DIR = Build.VERSION.SDK_INT >= 24
-            ? "/data/user_de/0/" + BuildConfig.APPLICATION_ID + "/" : BASE_DIR_LEGACY;
+    public static final String BASE_DIR = "/data/user_de/0/" + BuildConfig.APPLICATION_ID + "/";
     private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.jar");
     public static final String ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
     public static int WRITE_EXTERNAL_PERMISSION = 69;
@@ -106,35 +90,6 @@ public class XposedApp extends SkinBaseApplication implements ActivityLifecycleC
         } else {
             action.run();
         }
-    }
-
-    private void initAttrs() {
-        SkinConfig.setCanChangeStatusColor(true);
-        SkinConfig.setCanChangeFont(true);
-        SkinConfig.setDebug(true);
-        SkinConfig.addSupportAttr("tabLayoutIndicator", new TabLayoutIndicatorAttr());
-        SkinConfig.addSupportAttr("errorBackground", new XposedStateErrorAttr());
-        SkinConfig.addSupportAttr("warnBackground", new XposedStateWarnAttr());
-        SkinConfig.addSupportAttr("successBackground", new XposedStateSuccessAttr());
-
-        SkinConfig.addSupportAttr("itemBackground", new NavItemBackgroundAttr());
-        SkinConfig.addSupportAttr("itemSelectedTextColor", new NavItemSelectedTextColorAttr());
-        SkinConfig.addSupportAttr("itemUnSelectedTextColor", new NavItemUnSelectedTextColorAttr());
-        SkinConfig.addSupportAttr("itemSelectedIconColor", new NavItemSelectedIconTintAttr());
-        SkinConfig.addSupportAttr("itemUnSelectedIconColor", new NavItemUnSelectedIconTintAttr());
-
-        SkinConfig.addSupportAttr("itemRippleColor", new BottomNavItemRippleColorAttr());
-        SkinConfig.addSupportAttr("bItemSelectedTextColor", new BottomNavItemSelectedTextColorAttr());
-        SkinConfig.addSupportAttr("bItemUnSelectedTextColor", new BottomNavItemUnSelectedTextColorAttr());
-        SkinConfig.addSupportAttr("bItemSelectedIconColor", new BottomNavItemSelectedIconTintAttr());
-        SkinConfig.addSupportAttr("bItemUnSelectedIconColor", new BottomNavItemUnSelectedIconTintAttr());
-
-        SkinConfig.addSupportAttr("thumbOnColor", new SwitchThumbOnColorAttr());
-        SkinConfig.addSupportAttr("thumbOffColor", new SwitchThumbOffColorAttr());
-        SkinConfig.addSupportAttr("trackOnColor", new SwitchTrackOnColorAttr());
-        SkinConfig.addSupportAttr("trackOffColor", new SwitchTrackOffColorAttr());
-
-        SkinConfig.enableGlobalSkinApply();
     }
 
     public static File createFolder() {
@@ -287,8 +242,6 @@ public class XposedApp extends SkinBaseApplication implements ActivityLifecycleC
 
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        initAttrs();
-
         reloadXposedProp();
         createDirectories();
         delete(new File(Environment.getExternalStorageDirectory() + "/Download/EdXposedMaterial/.temp"));
@@ -429,5 +382,30 @@ public class XposedApp extends SkinBaseApplication implements ActivityLifecycleC
 
     @Override
     public void onActivityDestroyed(Activity activity) {
+    }
+
+    public static boolean isNightMode() {
+        return AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+                || AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+    }
+
+    public static int getNightMode() {
+        String nightMode = getPreferences().getString("night_mode", AppCompatDelegate.MODE_NIGHT_NO + "");
+        return nightMode == null ? AppCompatDelegate.MODE_NIGHT_NO : Integer.valueOf(nightMode);
+    }
+
+    public static TapTarget targetView(Rect bounds, CharSequence title, CharSequence description) {
+        return TapTarget.forBounds(bounds, title, description)
+                .textColor(R.color.colorAccent).titleTextColor(R.color.colorAccent)
+                .descriptionTextColor(R.color.colorAccent)
+                .transparentTarget(true)
+                .dimColorInt(0x55000000)
+                .targetCircleColor(R.color.colorAccent).cancelable(false);
+    }
+
+    public class Constant {
+        public static final String NOT_INSTALLED_HELP_GUIDE = "Not Installed Help Guide";
+        public static final String NOT_ACTIVE_HELP_GUIDE = "Not Active Help Guide";
+        public static final String INSTALLED_DETAILS_GUIDE = "Installed Details Guide";
     }
 }

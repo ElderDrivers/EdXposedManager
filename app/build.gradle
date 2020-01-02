@@ -1,9 +1,38 @@
 apply plugin: 'com.android.application'
+apply plugin: 'stringfog'
+apply plugin: 'AndResGuard'
+
+stringfog {
+    key '0xOo0oOQDsSxXx0'
+    enable true
+    implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
+}
+
+andResGuard {
+//    mappingFile = file("./resource_mapping.txt")
+    mappingFile = null
+    use7zip = true
+    useSign = true
+    // 打开这个开关，会keep住所有资源的原始路径，只混淆资源的名字
+    keepRoot = false
+    whiteList = [
+            "R.mipmap.ic_launcher"
+    ]
+    compressFilePattern = [
+            "*.png",
+            "*.jpg",
+            "*.jpeg",
+            "resources.arsc"
+    ]
+    sevenzip {
+        artifact = 'com.tencent.mm:SevenZip:1.1.14'
+    }
+}
 
 ext {
     VERSION_DATE = '19/10/18'
     APP_VERSION = '"1539962400000"'
-    VERSION_NAME = '墜入夢魘 · RC9 · 预览版'
+    VERSION_NAME = '元旦版本'
 }
 
 android {
@@ -15,31 +44,36 @@ android {
 
     defaultConfig {
         applicationId "com.solohsu.android.edxp.manager"
-        minSdkVersion 23
+        minSdkVersion 26
         //noinspection OldTargetApi
         targetSdkVersion 29
-        versionCode 8
-        versionName "墜入夢魘 · RC9 · 预览版"
+        versionCode 520
+        versionName VERSION_NAME
         project.ext.set("archivesBaseName", "EdXposed")
-
         buildConfigField "String", "APP_VERSION", APP_VERSION
     }
 
-//    signingConfigs {
-//        release {
-//            storeFile file(STORE_FILE)
-//            storePassword STORE_PASSWORD
-//            keyAlias KEY_ALIAS
-//            keyPassword KEY_PASSWORD
-//        }
-//    }
+    signingConfigs {
+        myConfig {
+            storeFile file('C:/Users/walke/AndroidStudioProjects/krins.jks')
+            storePassword "krins0381."
+            keyAlias "key0"
+            keyPassword "krins0381."
+        }
+    }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            shrinkResources false
+        debug {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.myConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.myConfig
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -51,11 +85,11 @@ android {
 
 dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.browser:browser:1.0.0"
+    implementation "androidx.browser:browser:1.2.0"
     implementation "androidx.preference:preference:1.1.0"
     implementation "androidx.palette:palette:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.1.0-rc01"
-    implementation "androidx.fragment:fragment:1.2.0-rc02"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.fragment:fragment:1.2.0-rc04"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.afollestad.material-dialogs:commons:0.9.0.2'
     implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
@@ -65,21 +99,30 @@ dependencies {
     implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
     implementation 'com.annimon:stream:1.2.0'
     implementation 'com.google.code.gson:gson:2.8.5'
-    api "com.google.android.material:material:1.2.0-alpha01" //Material Components
+    api "com.google.android.material:material:1.2.0-alpha03" //Material Components
     api 'com.github.coxylicacid:mdwidgets:0.0.1-beta04' //MDWidget
     implementation 'com.jpardogo.googleprogressbar:library:1.2.0'
     implementation 'com.github.stealthcopter:AndroidNetworkTools:0.4.0' //NetWork Tool
+//    implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'io.supercharge:shimmerlayout:2.1.0'
 
     implementation 'com.rxjava.rxhttp:rxhttp:1.2.4'
     annotationProcessor 'com.rxjava.rxhttp:rxhttp-compiler:1.2.4' //注解处理器，生成RxHttp类
     implementation 'com.rxjava.rxlife:rxlife:1.1.0'  //页面销毁，关闭请求，非必须
 
-    implementation "com.sergivonavi:materialbanner:1.2.0" //Banner
-    implementation 'com.github.lihangleo2:ShadowLayout:2.0.1' //Shadow Layout
-    implementation 'com.shuhart.stepview:stepview:1.5.0' //StepView
+    implementation "com.sergivonavi:materialbanner:1.2.0" // Banner
+    implementation 'com.github.lihangleo2:ShadowLayout:2.1.4' // Shadow Layout
+    implementation 'com.shuhart.stepview:stepview:1.5.0' // StepView
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.0' // TapTargetView
+    implementation 'com.scottyab:secure-preferences-lib:0.1.7' // Secure Preference
+    implementation 'com.github.coxylicacid:takagi:1.0.1-alpha02' // Takagi Step Guide
+    implementation 'com.github.megatronking.stringfog:xor:1.1.0'
+    implementation 'com.github.yalantis:ucrop:2.2.4'
 
-    implementation project(':skinlibrary') //主题模块
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 }
+
+//adb install app\build\outputs\apk\debug\AndResGuard_EdXposed-debug\EdXposed-debug_7zip_aligned_signed.apk && adb shell am start -n com.solohsu.android.edxp.manager/de.robv.android.xposed.installer.WelcomeActivity
