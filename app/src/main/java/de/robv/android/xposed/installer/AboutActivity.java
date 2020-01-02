@@ -3,7 +3,6 @@ package de.robv.android.xposed.installer;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -92,8 +91,7 @@ public class AboutActivity extends XposedBaseActivity {
         @Override
         public void onResume() {
             super.onResume();
-            if (Build.VERSION.SDK_INT >= 21)
-                Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+            Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
         }
 
         @Override
@@ -104,6 +102,7 @@ public class AboutActivity extends XposedBaseActivity {
             View licensesView = v.findViewById(R.id.licensesView);
             View translatorsView = v.findViewById(R.id.translatorsView);
             View sourceCodeView = v.findViewById(R.id.sourceCodeView);
+            View tgChannelView = v.findViewById(R.id.tgChannelView);
 
             String packageName = Objects.requireNonNull(getActivity()).getPackageName();
             String translator = getResources().getString(R.string.translator);
@@ -118,7 +117,7 @@ public class AboutActivity extends XposedBaseActivity {
                 changelogView.setOnClickListener(v1 -> new MaterialDialog.Builder(getContext())
                         .title(R.string.changes)
                         .content(Html.fromHtml(changes))
-                        .positiveText(android.R.string.ok).show());
+                        .positiveText(R.string.ok).show());
             }
 
             try {
@@ -130,6 +129,7 @@ public class AboutActivity extends XposedBaseActivity {
             licensesView.setOnClickListener(v12 -> createLicenseDialog());
 
             sourceCodeView.setOnClickListener(v13 -> NavUtil.startURL(getActivity(), getString(R.string.about_source)));
+            tgChannelView.setOnClickListener(v14 -> NavUtil.startURL(getActivity(), getString(R.string.group_telegram_channel_link)));
 
             if (translator.isEmpty()) {
                 translatorsView.setVisibility(View.GONE);

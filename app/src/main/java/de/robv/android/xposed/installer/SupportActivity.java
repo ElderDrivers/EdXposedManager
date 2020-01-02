@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import org.meowcat.edxposed.manager.R;
+
+import java.util.Objects;
 
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
@@ -28,12 +29,7 @@ public class SupportActivity extends XposedBaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -57,8 +53,7 @@ public class SupportActivity extends XposedBaseActivity {
         @Override
         public void onResume() {
             super.onResume();
-            if (Build.VERSION.SDK_INT >= 21)
-                getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+            Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
         }
 
         @Override
@@ -70,24 +65,23 @@ public class SupportActivity extends XposedBaseActivity {
             View faqView = v.findViewById(R.id.faqView);
             View donateView = v.findViewById(R.id.donateView);
             TextView txtModuleSupport = v.findViewById(R.id.tab_support_module_description);
+            View qqGroupView = v.findViewById(R.id.qqGroupView);
+            View tgGroupView = v.findViewById(R.id.tgGroupView);
 
             txtModuleSupport.setText(getString(R.string.support_modules_description,
                     getString(R.string.module_support)));
 
             setupView(installerSupportView, R.string.support_material_xda);
             setupView(faqView, R.string.support_faq_url);
+            setupView(tgGroupView, R.string.group_telegram_link);
+            setupView(qqGroupView, R.string.group_qq_link);
             setupView(donateView, R.string.support_donate_url);
 
             return v;
         }
 
-        public void setupView(View v, final int url) {
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    NavUtil.startURL(getActivity(), getString(url));
-                }
-            });
+        void setupView(View v, final int url) {
+            v.setOnClickListener(v1 -> NavUtil.startURL(getActivity(), getString(url)));
         }
     }
 }
