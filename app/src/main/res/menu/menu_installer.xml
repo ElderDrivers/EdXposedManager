@@ -30,6 +30,11 @@
             app:showAsAction="never" />
 
         <item
+            android:id="@+id/reboot_edl"
+            android:title="@string/reboot_edl"
+            app:showAsAction="never" />
+
+        <item
             android:id="@+id/dexopt_all"
             android:icon="@drawable/ic_optimize"
             android:title="@string/dexopt_now"

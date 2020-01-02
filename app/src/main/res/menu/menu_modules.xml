@@ -72,6 +72,11 @@
                 android:id="@+id/reboot_download"
                 android:title="@string/reboot_download"
                 app:showAsAction="never" />
+
+            <item
+                android:id="@+id/reboot_edl"
+                android:title="@string/reboot_edl"
+                app:showAsAction="never" />
         </menu>
     </item>
 
