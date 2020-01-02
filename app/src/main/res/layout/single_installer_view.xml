@@ -17,7 +17,6 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             android:fillViewport="true"
-            app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardBackgroundColor="?attr/list_download_item_color"
             app:cardElevation="@dimen/card_elevation"
             app:cardUseCompatPadding="true">
@@ -74,7 +73,6 @@
                         android:orientation="horizontal"
                         android:visibility="gone"
                         app:cardBackgroundColor="@color/amber_500"
-                        app:cardElevation="@dimen/card_elevation"
                         app:cardCornerRadius="@dimen/card_corner_radius">
 
                         <LinearLayout
@@ -113,7 +111,6 @@
                         android:orientation="horizontal"
                         android:visibility="gone"
                         app:cardBackgroundColor="@color/amber_500"
-                        app:cardElevation="@dimen/card_elevation"
                         app:cardCornerRadius="@dimen/card_corner_radius">
 
                         <LinearLayout
@@ -205,8 +202,8 @@
                     android:gravity="center_vertical"
                     android:minHeight="48dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:focusable="true">
 
                     <ImageView
@@ -246,8 +243,8 @@
                     android:gravity="center_vertical"
                     android:minHeight="48dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:focusable="true">
 
                     <ImageView
@@ -286,8 +283,8 @@
                     android:gravity="center_vertical"
                     android:minHeight="48dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:focusable="true">
 
                     <ImageView
@@ -325,13 +322,13 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="5dp"
                     android:padding="6dp"
-                    android:text="@string/compatibility"
+                    android:text="@string/notice"
                     android:textAllCaps="true"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded" />
 
                 <LinearLayout
-                    android:id="@+id/comp"
+                    android:id="@+id/notice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView4"
@@ -341,13 +338,13 @@
                     android:gravity="center_vertical"
                     android:minHeight="48dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_action_thumb_up"
+                        android:src="@drawable/ic_info"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout
@@ -361,7 +358,7 @@
                         tools:ignore="RtlHardcoded">
 
                         <TextView
-                            android:id="@+id/compatibilityTv"
+                            android:id="@+id/noticeTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
@@ -370,44 +367,86 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/comp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:focusable="true">
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/comp"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/textView4"-->
+<!--                    android:background="?android:attr/selectableItemBackground"-->
+<!--                    android:clickable="true"-->
+<!--                    android:focusable="true"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:minHeight="48dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingStart="16dp"-->
+<!--                    android:paddingEnd="16dp"-->
+<!--                    android:visibility="gone">-->
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_action_thumb_down"
-                        tools:ignore="ContentDescription" />
+<!--                    <ImageView-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/ic_action_thumb_up"-->
+<!--                        tools:ignore="ContentDescription" />-->
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        tools:ignore="RtlHardcoded">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="fill_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="32dp"-->
+<!--                        android:layout_marginLeft="32dp"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:paddingTop="8dp"-->
+<!--                        android:paddingBottom="8dp"-->
+<!--                        tools:ignore="RtlHardcoded">-->
 
-                        <TextView
-                            android:id="@+id/incompatibilityTv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/compatibilityTv"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />-->
 
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/comp"-->
+<!--                    android:background="?android:attr/selectableItemBackground"-->
+<!--                    android:clickable="true"-->
+<!--                    android:focusable="true"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:minHeight="48dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingStart="16dp"-->
+<!--                    android:paddingEnd="16dp"-->
+<!--                    android:visibility="gone">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/ic_action_thumb_down"-->
+<!--                        tools:ignore="ContentDescription" />-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="fill_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="32dp"-->
+<!--                        android:layout_marginLeft="32dp"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:paddingTop="8dp"-->
+<!--                        android:paddingBottom="8dp"-->
+<!--                        tools:ignore="RtlHardcoded">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/incompatibilityTv"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
 
             </RelativeLayout>
 

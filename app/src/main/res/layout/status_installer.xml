@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="@dimen/card_elevation"
+            android:visibility="gone"
             app:cardCornerRadius="@dimen/card_corner_radius">
 
             <androidx.appcompat.widget.SwitchCompat
@@ -36,9 +37,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
+            android:layout_marginStart="5dip"
             android:layout_marginTop="6dp"
-            android:layout_marginRight="5dip"
+            android:layout_marginEnd="5dip"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
@@ -97,8 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                app:cardBackgroundColor="?attr/list_download_item_color"
                 app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardBackgroundColor="?attr/list_download_item_color"
                 app:cardElevation="@dimen/card_elevation"
                 app:cardUseCompatPadding="true">
 
@@ -143,7 +144,44 @@
                         android:padding="6dp"
                         android:text="@string/tabInstall"
                         android:textAllCaps="true"
-                        android:textStyle="bold" />
+                        android:textStyle="bold" /><LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:minHeight="48dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_modules"
+                        tools:ignore="ContentDescription" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        tools:ignore="RtlHardcoded">
+
+                        <TextView
+                            android:id="@+id/api"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/not_installed"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -160,7 +198,7 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_android"
+                            android:src="@drawable/ic_framework"
                             tools:ignore="ContentDescription" />
 
                         <LinearLayout
@@ -168,6 +206,82 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
                             android:layout_marginLeft="32dp"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            tools:ignore="RtlHardcoded">
+
+                            <TextView
+                                android:id="@+id/framework"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/not_installed"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:minHeight="48dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_manager"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            tools:ignore="RtlHardcoded">
+
+                            <TextView
+                                android:id="@+id/manager"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:minHeight="48dp"
+                        android:orientation="horizontal"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_android"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
                             android:orientation="vertical"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
@@ -191,8 +305,8 @@
                         android:gravity="center_vertical"
                         android:minHeight="48dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
                         android:focusable="true">
 
                         <ImageView
@@ -205,11 +319,9 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:layout_marginLeft="32dp"
                             android:orientation="vertical"
                             android:paddingTop="8dp"
-                            android:paddingBottom="8dp"
-                            tools:ignore="RtlHardcoded">
+                            android:paddingBottom="8dp">
 
                             <TextView
                                 android:id="@+id/ic_manufacturer"
@@ -229,8 +341,8 @@
                         android:gravity="center_vertical"
                         android:minHeight="48dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
                         android:focusable="true">
 
                         <ImageView
@@ -243,11 +355,9 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:layout_marginLeft="32dp"
                             android:orientation="vertical"
                             android:paddingTop="8dp"
-                            android:paddingBottom="8dp"
-                            tools:ignore="RtlHardcoded">
+                            android:paddingBottom="8dp">
 
                             <TextView
                                 android:id="@+id/cpu"
@@ -266,8 +376,8 @@
                         android:clickable="true"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
                         android:focusable="true">
 
                         <ImageView
@@ -280,11 +390,9 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:layout_marginLeft="32dp"
                             android:orientation="vertical"
                             android:paddingTop="8dp"
-                            android:paddingBottom="8dp"
-                            tools:ignore="RtlHardcoded">
+                            android:paddingBottom="8dp">
 
                             <TextView
                                 android:id="@+id/dmverity"
@@ -342,8 +450,8 @@
                         android:gravity="center_vertical"
                         android:minHeight="48dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
                         android:focusable="true">
 
                         <ImageView
@@ -356,20 +464,19 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:layout_marginLeft="32dp"
                             android:orientation="vertical"
                             android:paddingTop="8dp"
-                            android:paddingBottom="8dp"
-                            tools:ignore="RtlHardcoded">
+                            android:paddingBottom="8dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/newVersion"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                android:textColor="@color/darker_green" />
+                                android:textColor="@color/download_status_update_available" />
 
                         </LinearLayout>
+
 
                     </LinearLayout>
 
