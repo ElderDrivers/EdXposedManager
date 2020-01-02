@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,7 @@ import com.google.android.material.tabs.TabLayout;
 import org.meowcat.edxposed.manager.R;
 
 import java.util.List;
+import java.util.Objects;
 
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.util.ModuleUtil;
@@ -79,12 +81,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    finish();
-                }
-            });
+            toolbar.setNavigationOnClickListener(view -> finish());
 
             ActionBar ab = getSupportActionBar();
 
@@ -101,7 +98,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 
             setupTabs();
 
-            Boolean directDownload = getIntent().getBooleanExtra("direct_download", false);
+            boolean directDownload = getIntent().getBooleanExtra("direct_download", false);
             // Updates available => start on the versions page
             if (mInstalledModule != null && mInstalledModule.isUpdate(sRepoLoader.getLatestVersion(mModule)) || directDownload)
                 mPager.setCurrentItem(DOWNLOAD_VERSIONS);
@@ -115,12 +112,9 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
             TextView txtMessage = findViewById(android.R.id.message);
             txtMessage.setText(getResources().getString(R.string.download_details_not_found, mPackageName));
 
-            findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.setEnabled(false);
-                    sRepoLoader.triggerReload(true);
-                }
+            findViewById(R.id.reload).setOnClickListener(v -> {
+                v.setEnabled(false);
+                sRepoLoader.triggerReload(true);
             });
         }
     }
@@ -150,7 +144,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
         String scheme = uri.getScheme();
         if (TextUtils.isEmpty(scheme)) {
             return null;
-        } else switch (scheme) {
+        } else switch (Objects.requireNonNull(scheme)) {
             case "xposed":
                 changeIcon = true;
             case "package":
@@ -184,12 +178,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
     }
 
     private void reload() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                recreate();
-            }
-        });
+        runOnUiThread(this::recreate);
     }
 
     @Override
@@ -314,9 +303,9 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 
     class SwipeFragmentPagerAdapter extends FragmentPagerAdapter {
         final int PAGE_COUNT = 3;
-        private String tabTitles[] = new String[]{getString(R.string.download_details_page_description), getString(R.string.download_details_page_versions), getString(R.string.download_details_page_settings),};
+        private String[] tabTitles = new String[]{getString(R.string.download_details_page_description), getString(R.string.download_details_page_versions), getString(R.string.download_details_page_settings),};
 
-        public SwipeFragmentPagerAdapter(FragmentManager fm) {
+        SwipeFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -325,6 +314,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
             return PAGE_COUNT;
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int position) {
             switch (position) {
@@ -335,6 +325,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
                 case DOWNLOAD_SETTINGS:
                     return new DownloadDetailsSettingsFragment();
                 default:
+                    //noinspection ConstantConditions
                     return null;
             }
         }

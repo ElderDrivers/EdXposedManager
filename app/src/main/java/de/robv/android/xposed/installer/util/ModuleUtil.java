@@ -9,9 +9,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import org.meowcat.edxposed.manager.R;
 
@@ -62,7 +65,7 @@ public final class ModuleUtil {
         return mInstance;
     }
 
-    public static int extractIntPart(String str) {
+    static int extractIntPart(String str) {
         int result = 0, length = str.length();
         for (int offset = 0; offset < length; offset++) {
             char c = str.charAt(offset);
@@ -171,9 +174,9 @@ public final class ModuleUtil {
         return mFrameworkPackageName.equals(packageName);
     }
 
-    public boolean isInstalled(String packageName) {
-        return mInstalledModules.containsKey(packageName) || isFramework(packageName);
-    }
+//    public boolean isInstalled(String packageName) {
+//        return mInstalledModules.containsKey(packageName) || isFramework(packageName);
+//    }
 
     public InstalledModule getModule(String packageName) {
         return mInstalledModules.get(packageName);
@@ -286,10 +289,10 @@ public final class ModuleUtil {
     }
 
     public class InstalledModule {
-        private static final int FLAG_FORWARD_LOCK = 1 << 29;
+        //private static final int FLAG_FORWARD_LOCK = 1 << 29;
         public final String packageName;
         public final String versionName;
-        public final int versionCode;
+        public final long versionCode;
         public final int minVersion;
         public final long installTime;
         public final long updateTime;
@@ -305,7 +308,12 @@ public final class ModuleUtil {
             this.packageName = pkg.packageName;
             this.isFramework = isFramework;
             this.versionName = pkg.versionName;
-            this.versionCode = pkg.versionCode;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                //noinspection deprecation
+                this.versionCode = pkg.versionCode;
+            } else {
+                this.versionCode = pkg.getLongVersionCode();
+            }
             this.installTime = pkg.firstInstallTime;
             this.updateTime = pkg.lastUpdateTime;
 
@@ -336,9 +344,9 @@ public final class ModuleUtil {
         /**
          * @hide
          */
-        public boolean isForwardLocked() {
-            return (app.flags & FLAG_FORWARD_LOCK) != 0;
-        }
+//        public boolean isForwardLocked() {
+//            return (app.flags & FLAG_FORWARD_LOCK) != 0;
+//        }
 
         public String getAppName() {
             if (appName == null)
@@ -388,6 +396,7 @@ public final class ModuleUtil {
             return result;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return getAppName();
