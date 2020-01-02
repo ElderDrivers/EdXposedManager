@@ -1,4 +1,10 @@
-EdXposed Manager Material Design
+EdXposed Manager Third Party Ver.
 ===============
-EdXposed Manager Material Design版本，后续提交代码至仓库（待我整理）
+#####
+This maybe the final version.
+thx all supports from y'all
+for more information,
+you can join our qq group, num : 160631351
+if you have any question, i'll glad to answer you.
+
 -------
