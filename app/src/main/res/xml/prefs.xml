@@ -216,7 +216,7 @@
         <!--            android:key="stop_log"-->
         <!--            android:summary="@string/stop_log_summary"-->
         <!--            android:title="@string/stop_log" />-->
-        
+
     </PreferenceCategory>
 
 </PreferenceScreen>
