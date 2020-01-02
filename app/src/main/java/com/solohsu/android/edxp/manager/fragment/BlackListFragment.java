@@ -58,7 +58,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
     @Override
     public void onResume() {
         super.onResume();
-        changeTitle(isWhiteListMode());
+        changeTitle(isBlackListMode(), isWhiteListMode());
     }
 
     @Nullable
@@ -92,12 +92,20 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         return view;
     }
 
-    private void changeTitle(boolean isWhiteListMode) {
-        requireActivity().setTitle(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list);
+    private void changeTitle(boolean isBlackListMode, boolean isWhiteListMode) {
+        if (isBlackListMode) {
+            requireActivity().setTitle(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list);
+        } else {
+            requireActivity().setTitle(R.string.nav_title_black_list);
+        }
     }
 
     private boolean isWhiteListMode() {
         return AppHelper.isWhiteListMode();
+    }
+
+    private boolean isBlackListMode() {
+        return AppHelper.isBlackListMode();
     }
 
     @Override
@@ -107,6 +115,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         mAppAdapter.filter(queryStr);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onItemClick(View v, ApplicationInfo info) {
         if (getFragmentManager() != null) {
