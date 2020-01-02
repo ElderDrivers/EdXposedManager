@@ -32,33 +32,18 @@
     <string name="phone_not_compatible">EdXposed (zatím) není kompatibilní s Android SDK verze %1$d nebo architekturou vašeho procesoru (%2$s).</string>
     <string name="reboot_failed">Nepodařilo se restartovat zařízení. Prosím, restartuj jej běžným způsobem.</string>
     <string name="auto_flash_note">Stisknutím \"OK\" bude %s automaticky nainstalován v recovery.</string>
-    <string name="manual_flash_note">Nainstaluj prosím v recovery ručně z karty SD soubor %s.</string>
-    <string name="reboot_confirmation">Restartovat?</string>
-    <string name="reboot_recovery_confirmation">Restartovat do režimu recovery?</string>
     <string name="install_warning_title">Dbej opatrnosti!</string>
     <string name="install_warning">V některých případech nemusí tvé zařízení po instalaci EdXposed již naběhnout.\n\nPokud ti nic neříkají pojmy \"soft brick\" či \"bootloop\" a pokud nevíš, jak se v podobné situaci zachovat, <b>NEINSTALUJ</b> EdXposed!\n\nV každém případě je vřele doporučeno mít aktuální zálohu zařízení.</string>
     <string name="dont_show_again">Již nezobrazovat</string>
     <string name="install_known_issue">Zdá se, že existuje známý problém (\"%s\") s tvojí ROM. Instalace EdXposed nemusí fungovat, nebo může vést k závažným problémům. Pro podrobnosti o tomto problému stiskni zde.</string>
-    <string name="installed_lollipop">EdXposed Framework verze %s je aktivní.</string>
-    <string name="installed_lollipop_inactive">EdXposed Framework verze %s je nainstalován, ale není aktivní. Prosím, zkontroluj log pro podrobnosti.</string>
+    <string name="installed_lollipop">EdXposed Framework je aktivní</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework je nainstalován, ale není aktivní\nProsím, zkontroluj log pro podrobnosti.</string>
     <string name="modules_updates_available">Aktualizace modulu k dispozici</string>
 
     <!-- File operations -->
     <string name="root_failed">Nepodařilo se získat oprávnění root.\n\nUjisti se, že je tvé zařízení správně rootnuté a nejsou blokovány příkazy shellu.</string>
-    <string name="file_extract_failed">Nepodařilo se extrahovat %s</string>
-    <string name="file_mounting_writable">Připojuji %s v režimu pro zápis&#8230;</string>
-    <string name="file_mount_writable_failed">Nelze připojit %s v režimu pro zápis</string>
-    <string name="file_trying_to_continue">Pokus o zotavení&#8230;</string>
-    <string name="file_backup_already_exists">Záloha v %s již existuje</string>
-    <string name="file_backup_not_found">Žádná záloha nenalezena v %s</string>
-    <string name="file_backup_failed">Selhalo vytvoření zálohy %s</string>
-    <string name="file_backup_successful">Záloha v %s vytvořena</string>
-    <string name="file_backup_restoring">Obnovování zálohy z %s</string>
     <string name="file_copying">Kopíruji %s&#8230;</string>
     <string name="file_copy_failed">Nelze zkopírovat %1$s do %2$s</string>
-    <string name="file_move_failed">Nelze přesunout %1$s do %2$s</string>
-    <string name="file_set_perms_failed">Nelze nastavit oprávnění u %s</string>
-    <string name="file_set_owner_failed">Nepodařilo se nastavit vlastníka u %s</string>
     <string name="file_creating_directory">Vytvářím adresář %s&#8230;</string>
     <string name="file_create_directory_failed">Nepodařilo se vytvořit adresář %s</string>
     <string name="file_writing_recovery_command">Zapisuji příkazy recovery&#8230;</string>
@@ -109,7 +94,7 @@
     <string name="download_sorting_status">Dle stavu</string>
     <string name="download_sorting_updated">Dle poslední aktualizace</string>
     <string name="download_sorting_created">Dle data vytvoření</string>
-    <string name="download_section_framework">Framework</string>
+    <string name="download_section_framework">EdXposed Framework</string>
     <string name="download_section_update_available">Aktualizace k dispozici</string>
     <string name="download_section_installed">Nainstalováno</string>
     <string name="download_section_not_installed">Nenainstalováno</string>
@@ -124,7 +109,6 @@
     <!-- Settings tab -->
     <string name="settings_group_download">Stahování</string>
     <string name="settings_release_type">Zobrazované verze</string>
-    <string name="settings_group_experimental">Experimentální</string>
     <string name="settings_disable_resources">Zakázat ovlivňování prostředků</string>
     <string name="settings_disable_resources_summary">(Resource hooks)\nŘeší konflikty s tématy (theme engines)\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat</string>
     <string name="settings_group_app">Aplikace</string>
@@ -174,7 +158,6 @@
     <string name="download_no_valid_apk">Stažený soubor není validní APK (nebo není kompatibilní)</string>
     <string name="download_incorrect_package_name">Název balíčku není správný (staženo: %1$s, očekáváno: %2$s)</string>
     <string name="download_running">Stahování probíhá</string>
-    <string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Stahování %1$s selhalo: %2$d (%3$s)</string>
@@ -203,16 +186,12 @@
     <string name="info">Info</string>
     <string name="infoInstaller">
         Název: %1$s
-        \nSDK: %2$d
-        \nArchitektura: %3$s
-        \nVerze: %4$s
+        \nVerze: %2$s
     </string>
     <string name="infoUninstaller">
         Název: %1$s
-        \nArchitektura: %2$s
-        \nDatum: %3$s
+        \nDatum: %2$s
     </string>
-    <string name="downloadZipOk">%1$s úspěšně stažen</string>
     <string name="permissionNotGranted">Tato funkce nebude fungovat bez udělení oprávnění k zápisu na externí úložiště.</string>
     <string name="warningArchitecture">Stáhne se soubor ZIP, nainstaluj jej ručně přes správce Magisk nebo v recovery.</string>
     <string name="newVersion">Nová verze EdXposed správce je k dispozici! Aktualizujte!</string>
@@ -267,9 +246,7 @@
 
     <string name="compatibility">Kompatibilita</string>
     <string name="details">Podrobnosti</string>
-    <string name="look_and_feel">Vzhled a chování</string>
     <string name="support_xda">Získat podporu</string>
-    <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
     <string name="later">Později</string>
     <string name="save">Uložit</string>
     <string name="download_location">Umístění stahování</string>
@@ -281,7 +258,6 @@
     <string name="not_logcat">Pokud tě někdo požádal o logcat záznam androidu, jsi na špatném místě. Toto je záznam EdXposed; pokud potřebuješ logcat, můžeš vyzkoušet náš LogCat modul pro Magisk</string>
     <string name="force_english">Vynutit anglický jazyk</string>
     <string name="warning_language">Změna jazyka bude aplikována při příštím spuštění aplikace.</string>
-    <string name="not_flashable_inapp">Tento soubor zip nelze nainstalovat v aplikaci. Instaluji automaticky v recovery</string>
     <string name="not_now">Teď ne</string>
     <string name="countdown">%1$s (%2$d)</string>
     <string name="flash_error_timeout">Vypršel časový limit</string>
@@ -328,25 +304,11 @@
     <string name="pref_title_dynamic_modules">Okamžitý seznam modulů</string>
     <string name="pref_dynamic_modules_summary">Pokud zapnuto, nahrát seznam naposledy aktivovaných modulů při každém spuštění procesu aplikace</string>
     <string name="title_compat_list">Režim kompatibility</string>
-    <string name="settings_group_edxposed">Elder Driver Xposed nastavení (vyžadován restart)</string>
     <string name="pref_title_black_white_list">Režim seznamu aplikací</string>
     <string name="pref_black_white_list_summary">Poznámka: používání režimu seznamu aplikací může rozbít funkce modulů operujících v rámci systému.</string>
     <string name="white_list_mode_summary">Režim bílé listiny: Pouze vybraná aplikace načte EdXposed Framework.\nRežim černé listiny: Vybraná aplikace nenačte EdXposed Framework.</string>
 
-    <string name="app_name" translatable="false">EdXposed správce</string>
-    <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
-    <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
-    <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
-    <string name="about_source" translatable="false">https://github.com/ElderDrivers/XposedInstaller/</string>
-    <string name="about_support" translatable="false">http://edxp.meowcat.org/</string>
-
-    <string name="solohsu" translatable="false">givein2u</string>
-    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
     <string name="meowcat">MeowCat Studio</string>
-    <string name="elderdrivers" translatable="false">Elder Drivers</string>
-
-    <string name="github" translatable="false">Github</string>
-    <string name="xda" translatable="false">XDA</string>
     <string name="coolapk">CoolApk</string>
     <string name="website">Web</string>
 
@@ -354,16 +316,6 @@
     <string name="mlgmxyysd_summary">Hlavní tvůrce EdXposed správce</string>
     <string name="elderdrivers_summary">Organizování EdXposed</string>
     <string name="meowcat_summary">Organizování MlgmXyysd</string>
-    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
-    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
-    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
-    <string name="mlgmxyysd_coolapk" translatable="false">http://www.coolapk.com/u/814297</string>
-    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
-    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
-    <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
-    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
-    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
-    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
     <string name="notinstalled">EdXposed framework není nainstalován.</string>
     <string name="pref_title_enable_boot_image_deopt">Deoptimalizovat spouštěcí obraz</string>
     <string name="pref_enable_boot_image_deopt_summary">Turn on to make all framework methods hookable, but the whole system will be slowed down.\nMainly used to check if one framework method is inlined when it can\'t be hooked into.</string>

@@ -157,6 +157,7 @@
             android:theme="@style/Theme.XposedInstaller.Transparent">
             <intent-filter>
                 <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS" />
+                <action android:name="org.meowcat.edxposed.manager.DOWNLOAD_DETAILS" />
 
                 <data android:scheme="package" />
 
@@ -233,7 +234,8 @@
         <receiver
             android:name="de.robv.android.xposed.installer.receivers.BootReceiver"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="ExportedReceiver" />
 
         <uses-library
             android:name="com.sec.android.app.multiwindow"

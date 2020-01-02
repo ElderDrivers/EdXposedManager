@@ -32,33 +32,18 @@
     <string name="phone_not_compatible">EdXposed 目前不相容您手機的 Android SDK %1$d 版本或處理器架構（%2$s）。</string>
     <string name="reboot_failed">重新啟動失敗，請使用裝置內建的重新啟動功能。</string>
     <string name="auto_flash_note">當按下 “確定” 後，%s 將會被自動刷入到裝置中。</string>
-    <string name="manual_flash_note">請從 SD 卡中刷入 %s 以完成操作。</string>
-    <string name="reboot_confirmation">您想要現在重新啟動嗎？</string>
-    <string name="reboot_recovery_confirmation">您想要現在重新啟動至復原模式嗎？</string>
     <string name="install_warning_title">請小心！</string>
     <string name="install_warning">某些情況下，您的裝置可能會在安裝 EdXposed 過後變得無法正常啟動。\n\n如果您先前從未聽說過「軟變磚」或「無限重新啟動」，又或者您不知道如何從這些情況中恢復手機，那麼請"<b>不要</b>"安裝 EdXposed！\n\n無論如何，我們都強烈建議您做好近期的資料備份。</string>
     <string name="dont_show_again">不再提示</string>
     <string name="install_known_issue">EdXposed 與您的裝置間似乎存在已知的問題（\"%s\"）。這可能將導致 EdXposed 無法被安裝或是更為嚴重的問題。點選這裡來了解詳細情形。</string>
-    <string name="installed_lollipop">EdXposed 框架 %s 版已啟用。</string>
-    <string name="installed_lollipop_inactive">EdXposed 框架 %s 版已安裝，但尚未啟用。 請檢視日誌以瞭解詳細情形。</string>
+    <string name="installed_lollipop">EdXposed 框架已啟用</string>
+    <string name="installed_lollipop_inactive">EdXposed 框架已安裝，但尚未啟用\n請檢視日誌以瞭解詳細情形。</string>
     <string name="modules_updates_available">有模組更新可用</string>
 
     <!-- File operations -->
     <string name="root_failed">無法取得 Root 權限。\n\n請確認您的裝置已正確 Root 且沒有阻止 shell 命令。</string>
-    <string name="file_extract_failed">無法解壓縮 %s</string>
-    <string name="file_mounting_writable">正在掛載 %s 為可寫入&#8230;</string>
-    <string name="file_mount_writable_failed">無法將 %s 掛載為可寫入</string>
-    <string name="file_trying_to_continue">正在嘗試繼續操作&#8230;</string>
-    <string name="file_backup_already_exists">備份已存在於 %s</string>
-    <string name="file_backup_not_found">沒有在 %s 中找到備份</string>
-    <string name="file_backup_failed">建立 %s 的備份時失敗</string>
-    <string name="file_backup_successful">建立備份於 %s</string>
-    <string name="file_backup_restoring">正在從 %s 中恢復備份</string>
     <string name="file_copying">正在複製 %s&#8230;</string>
     <string name="file_copy_failed">無法將 %1$s 複製到 %2$s</string>
-    <string name="file_move_failed">無法將 %1$s 移動到 %2$s</string>
-    <string name="file_set_perms_failed">無法為 %s 設定權限</string>
-    <string name="file_set_owner_failed">無法為 %s 設定所有者</string>
     <string name="file_creating_directory">正在建立目錄 %s&#8230;</string>
     <string name="file_create_directory_failed">無法建立目錄 %s</string>
     <string name="file_writing_recovery_command">正在寫入 recovery 命令&#8230;</string>
@@ -125,10 +110,8 @@
     <!-- Settings tab -->
     <string name="settings_group_download">下載</string>
     <string name="settings_release_type">要顯示的版本</string>
-    <string name="settings_group_experimental">實驗性</string>
     <string name="settings_disable_resources">停用資源鉤子</string>
     <string name="settings_disable_resources_summary">解決與主題引擎的衝突\n<b>警告：</b> 啟用該選項將導致修改資源的模組無法工作</string>
-	<string name="settings_lists">清單</string>
     <string name="settings_group_app">應用程式</string>
     <string name="settings_theme">主題</string>
     <string name="settings_theme_light">亮色</string>
@@ -176,7 +159,6 @@
     <string name="download_no_valid_apk">下載的檔案並非有效的 APK （或存在相容性問題）</string>
     <string name="download_incorrect_package_name">檔案包名不正確（下載：%1$s，預期：%2$s）</string>
     <string name="download_running">正在下載中…</string>
-	<string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">下載 %1$s 失敗：%2$d（%3$s）</string>
@@ -205,16 +187,12 @@
     <string name="info">資訊</string>
     <string name="infoInstaller">
         名稱：%1$s
-        \nSDK：%2$d
-        \n架構：%3$s
-        \n版本：%4$s
+        \n版本：%2$s
     </string>
     <string name="infoUninstaller">
         名稱：%1$s
-        \n架構：%2$s
-        \n日期：%3$s
+        \n日期：%2$s
     </string>
-    <string name="downloadZipOk">%1$s 已正確下載</string>
     <string name="permissionNotGranted">當未允許寫入外部儲存空間權限時，該功能無法正常工作。</string>
     <string name="warningArchitecture">你將會下載一個 ZIP 格式檔案，請手動在 Magisk Manager 或重新啟動到 Recovery 刷入。</string>
     <string name="newVersion">有新版本的 EdXposed Manager 可以使用！現在更新！</string>
@@ -271,9 +249,7 @@
 	
     <string name="compatibility">相容性</string>
     <string name="details">詳細情形</string>
-    <string name="look_and_feel">介面外觀</string>
     <string name="support_xda">取得說明</string>
-    <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
     <string name="later">稍後</string>
     <string name="save">儲存</string>
     <string name="download_location">下載位置</string>
@@ -285,7 +261,6 @@
     <string name="not_logcat">如果有人要求您提供一份 Android 系統日誌，那麼您來錯了地方。在此處顯示的是 EdXposed 的日誌資訊；如果您想抓取系統日誌，可嘗試我們的 Logcat Magisk 模組。</string>
     <string name="force_english">強制顯示為英語</string>
     <string name="warning_language">語言設定將在應用程式重新啟動後生效。</string>
-    <string name="not_flashable_inapp">應用不能刷入此 ZIP 檔案。將在復原模式中自動安裝</string>
     <string name="not_now">稍後</string>
     <string name="countdown">%1$s (%2$d)</string>
     <string name="flash_error_timeout">逾時</string>
@@ -323,7 +298,7 @@
     <string name="ignore_chinese_summary">從模組清單中隱藏中文模組。模組仍然可以被搜尋。啟用此選項可能會降低效能。</string>
 
     <!-- EdXp related -->
-    <string name="nav_title_black_list">應用程式名單</string>
+    <string name="nav_title_black_list">應用程式</string>
     <string name="white_list_mode_title">白名單模式</string>
     <string name="nav_title_compat_list">相容模式</string>
     <string name="title_white_list">白名單</string>
@@ -337,25 +312,11 @@
     <string name="pref_title_dynamic_modules">即時模組清單</string>
     <string name="pref_dynamic_modules_summary">啟用後，每個應用程式啟動時重新載入最新的模組清單</string>
     <string name="title_compat_list">相容模式</string>
-	<string name="settings_group_edxposed">Elder Driver Xposed 設定 (重新啟動生效)</string>
     <string name="pref_title_black_white_list">應用程式名單模式</string>
     <string name="pref_black_white_list_summary">注意：使用應用程式名單可能會導致某些系統全域性模組不能正常工作。</string>
 	<string name="white_list_mode_summary">白名單模式: 僅被選擇的的應用程式載入 EdXposed 框架\n黑名單模式: 被選擇的應用不會載入 EdXposed 框架\n僅當啟用應用程式名單模式時有效</string>
-	
-	<string name="app_name" translatable="false">EdXposed Manager</string>
-    <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
-    <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
-    <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
-    <string name="about_source" translatable="false">https://github.com/ElderDrivers/XposedInstaller/</string>
-    <string name="about_support" translatable="false">http://edxp.meowcat.org/</string>
 
-    <string name="solohsu" translatable="false">givein2u</string>
-    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
     <string name="meowcat">小喵工作室</string>
-    <string name="elderdrivers" translatable="false">Elder Drivers</string>
-
-    <string name="github" translatable="false">Github</string>
-    <string name="xda" translatable="false">XDA</string>
 	<string name="coolapk">酷安</string>
     <string name="website">官網</string>
 
@@ -363,16 +324,6 @@
 	<string name="mlgmxyysd_summary">EdXposed Manager 的主要開發者</string>
 	<string name="elderdrivers_summary">EdXposed 的開發團隊</string>
 	<string name="meowcat_summary">MlgmXyysd 所屬團隊</string>
-    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
-    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
-    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
-    <string name="mlgmxyysd_coolapk" translatable="false">http://www.coolapk.com/u/814297</string>
-    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
-    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
-    <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
-    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
-    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
-    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>	
     <string name="notinstalled">EdXposed 框架未安裝</string>
 	<string name="pref_title_enable_boot_image_deopt">不要最佳化開機鏡像</string>
     <string name="pref_enable_boot_image_deopt_summary">啟用能使所有 Framework 框架都可以被 hook 到，但是會降低系統流暢度。\n主要用於對比測試某個方法無法 hook 到是否為系統最佳化所導致。</string>		

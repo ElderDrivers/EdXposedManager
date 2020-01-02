@@ -32,33 +32,18 @@
     <string name="phone_not_compatible">EdXposed (пока) не совместим с версией Android SDK %1$d или архитектурой процессора (%2$s)</string>
     <string name="reboot_failed">Сбой перезагрузки. Используйте встроенную функцию перезагрузки на устройстве</string>
     <string name="auto_flash_note">%s будет прошита автоматически при нажатии "OK"</string>
-    <string name="manual_flash_note">Для завершения операции прошейте %s с SD-карты</string>
-    <string name="reboot_confirmation">Перезагрузить устройство сейчас?</string>
-    <string name="reboot_recovery_confirmation">Перезагрузить устройство в режим восстановления?</string>
     <string name="install_warning_title">Будьте осторожны!</string>
     <string name="install_warning">В некоторых случаях устройство может не загрузиться после установки EdXposed.\n\nЕсли вы не знаете, что означают слова «soft brick» и «bootloop» (кирпич и бутлуп), и не знаете, как восстановить систему, <b>НЕ</b> устанавливайте EdXposed!\n\nИ даже если уверены в себе, не забудьте сделать резервную копию системы."</string>
     <string name="dont_show_again">Больше не показывать это сообщение</string>
     <string name="install_known_issue">Похоже, присутствует известная несовместимость (\"%s\") с вашей прошивкой. Пожалуй, вам не стоит устанавливать EdXposed. Нажмите здесь для дополнительной информации</string>
-    <string name="installed_lollipop">EdXposed Framework версии %s активирован!</string>
-    <string name="installed_lollipop_inactive">EdXposed Framework версия %s установлена, но не активирована. Проверьте логи</string>
+    <string name="installed_lollipop">EdXposed Framework активирован!</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework установлена, но не активирована\nПроверьте логи</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
 
     <!-- File operations -->
     <string name="root_failed">"Сбой получения прав рут-доступа.\n\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются."</string>
-    <string name="file_extract_failed">Невозможно извлечь %s</string>
-    <string name="file_mounting_writable">Установка %s для записи&#8230;</string>
-    <string name="file_mount_writable_failed">Невозможно установить %s для записи</string>
-    <string name="file_trying_to_continue">Попытка продолжить&#8230;</string>
-    <string name="file_backup_already_exists">Резервная копия уже существует в %s</string>
-    <string name="file_backup_not_found">Не найдено резервной копии в %s</string>
-    <string name="file_backup_failed">Невозможно создать резервную копию %s</string>
-    <string name="file_backup_successful">Резервная копия создана в %s</string>
-    <string name="file_backup_restoring">Восстановление резервной копии из %s</string>
     <string name="file_copying">Копирование %s&#8230;</string>
     <string name="file_copy_failed">Невозможно копировать %1$s в %2$s</string>
-    <string name="file_move_failed">Невозможно переместить %1$s в %2$s</string>
-    <string name="file_set_perms_failed">Невозможно установить разрешения для %s</string>
-    <string name="file_set_owner_failed">Невозможно установить владельца для %s</string>
     <string name="file_creating_directory">Создание каталога %s&#8230;</string>
     <string name="file_create_directory_failed">Невозможно создать каталог %s</string>
     <string name="file_writing_recovery_command">Запись команды восстановления&#8230;</string>
@@ -125,10 +110,8 @@
     <!-- Settings tab -->
     <string name="settings_group_download">Загрузка</string>
     <string name="settings_release_type">Отображение версий модуля</string>
-    <string name="settings_group_experimental">Экспериментальное</string>
     <string name="settings_disable_resources">Не изменять ресурсы</string>
     <string name="settings_disable_resources_summary">Временное решение для конфликтов с темами системы\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
-    <string name="settings_lists">Списки</string>
     <string name="settings_group_app">Приложение</string>
     <string name="settings_theme">Тема</string>
     <string name="settings_theme_light">Светлая</string>
@@ -176,7 +159,6 @@
     <string name="download_no_valid_apk">Загруженный файл не является APK (или несовместим)</string>
     <string name="download_incorrect_package_name">Некорректное название пакета (загружено: %1$s, ожидалось: %2$s)</string>
 	<string name="download_running">Выполняется загрузка</string>
-    <string name="download_progress">%1$,d / %2$,d кб</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Загрузка %1$s прервана: %2$d (%3$s)</string>
@@ -205,16 +187,12 @@
     <string name="info">Информация</string>
     <string name="infoInstaller">
         Имя: %1$s
-        \nSDK: %2$d
-        \nАрхитектура: %3$s
-        \nВерсия: %4$s
+        \nВерсия: %2$s
     </string>
     <string name="infoUninstaller">
         Имя: %1$s
-        \nАрхитектура: %2$s
-        \nДата: %3$s
+        \nДата: %2$s
     </string>
-    <string name="downloadZipOk">%1$s загрузка завершена</string>
     <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя</string>
     <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПАРВИЛЬНУЮ АРХИТЕКТУРУ ZIP EDXPOSED FRAMEWORK?\nНе правильный zip установщик может навредить вашему устройству!</string>
     <string name="newVersion">Доступна новая версия EdXposed Менеджер!</string>
@@ -271,9 +249,7 @@
 
     <string name="compatibility">Совместимость</string>
     <string name="details">Детали</string>
-    <string name="look_and_feel">Попробовать</string>
     <string name="support_xda">Поддержка на форуме XDA</string>
-    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Позже</string>
     <string name="save">Сохранить</string>
     <string name="download_location">Папка для загрузок</string>
@@ -285,7 +261,6 @@
     <string name="not_logcat">Если вас попросили прислать Logcat с Android, вы ищете не там. Здесь логи EdXposed. О том, как получить Logcat, можно почитать на XDA или 4pda</string>
     <string name="force_english">Английский язык</string>
     <string name="warning_language">Игнорировать язык системы и использовать английский. Нужен перезапуск приложения!</string>
-    <string name="not_flashable_inapp">Этот zip-файл не может быть прошит в приложении. Автоматическая установка через рекавери</string>
     <string name="not_now">Не сейчас</string>
     <string name="countdown">%1$s (%2$d)</string>
     <string name="flash_error_timeout">Время ожидания истекло</string>
@@ -340,12 +315,10 @@
     <string name="pref_title_dynamic_modules">Мгновенный список модулей</string>
     <string name="pref_dynamic_modules_summary">При включении загружать список последних активированных модулей для каждого запущенного процесса приложения</string>
     <string name="title_compat_list">Список совместимости</string>
-    <string name="settings_group_edxposed">Настройки EdXposed (Нужна перезагрузка)</string>
     <string name="pref_title_black_white_list">Режим списка приложений</string>
     <string name="pref_black_white_list_summary">Примечание: использование режима списка приложений может нарушить функции общесистемных модулей</string>
     <string name="white_list_mode_summary">Режим белого списка: Выбранное приложение будет использовать EdXposed Framework.\nРежим черного списка: Выбранное приложение не будет использовать EdXposed Framework</string>
 
-    <string name="app_name" translatable="false">EdXposed Менеджер</string>
     <string name="website">Веб-сайт</string>
 
     <string name="solohsu_summary">Разработчик EdXposed</string>
