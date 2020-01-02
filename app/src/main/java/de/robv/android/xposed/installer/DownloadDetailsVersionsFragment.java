@@ -123,7 +123,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
     public static class DownloadModuleCallback implements DownloadsUtil.DownloadFinishedCallback {
         private final ModuleVersion moduleVersion;
 
-        public DownloadModuleCallback(ModuleVersion moduleVersion) {
+        DownloadModuleCallback(ModuleVersion moduleVersion) {
             this.moduleVersion = moduleVersion;
         }
 
@@ -177,7 +177,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
         private final int mColorUpdateAvailable;
         private final String mTextInstalled;
         private final String mTextUpdateAvailable;
-        private final int mInstalledVersionCode;
+        private final long mInstalledVersionCode;
 
         public VersionsAdapter(Context context, InstalledModule installed) {
             super(context, R.layout.list_item_version);
