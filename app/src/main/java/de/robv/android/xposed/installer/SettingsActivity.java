@@ -22,10 +22,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreference;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.solohsu.android.edxp.manager.fragment.BasePreferenceFragment;
@@ -137,7 +135,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 Color.parseColor("#FF5722"),
                 Color.parseColor("#795548"),
                 Color.parseColor("#9E9E9E"),
-                Color.parseColor("#607D8B")
+                Color.parseColor("#607D8B"),
+                Color.parseColor("#FA7298")
         };
         static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
         static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
@@ -206,8 +205,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             File flagFile;
 
-            PreferenceGroup groupApp = findPreference("group_app");
-            PreferenceGroup lookFeel = findPreference("look_and_feel");
+//            PreferenceGroup groupApp = findPreference("group_app");
+//            PreferenceGroup lookFeel = findPreference("look_and_feel");
 
             Preference headsUp = findPreference("heads_up");
             Preference colors = findPreference("colors");
@@ -218,10 +217,10 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             ListPreference customIcon = findPreference("custom_icon");
             navBar = findPreference("nav_bar");
 
-            if (Build.VERSION.SDK_INT < 21) {
-                Objects.requireNonNull(groupApp).removePreference(Objects.requireNonNull(headsUp));
-                Objects.requireNonNull(lookFeel).removePreference(navBar);
-            }
+//            if (Build.VERSION.SDK_INT < 21) {
+//                Objects.requireNonNull(groupApp).removePreference(Objects.requireNonNull(headsUp));
+//                Objects.requireNonNull(groupApp).removePreference(navBar);
+//            }
 
             //noinspection ConstantConditions
             findPreference("release_type_global").setOnPreferenceChangeListener((preference, newValue) -> {
@@ -472,7 +471,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
-            if (Build.VERSION.SDK_INT >= 21)
+            //if (Build.VERSION.SDK_INT >= 21)
                 Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
         }
 
@@ -503,7 +502,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                         .backButton(R.string.back)
                         .allowUserColorInput(false)
                         .customColors(PRIMARY_COLORS, null)
-                        .doneButton(android.R.string.ok)
+                        .doneButton(R.string.ok)
                         .preselect(XposedApp.getColor(act)).show();
             } else if (preference.getKey().equals(downloadLocation.getKey())) {
                 if (checkPermissions()) {
@@ -546,13 +545,13 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             return true;
         }
 
-        private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-            new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
-                    .content(contentTextId)
-                    .iconAttr(android.R.attr.alertDialogIcon)
-                    .positiveText(android.R.string.yes)
-                    .negativeText(android.R.string.no).callback(yesHandler).show();
-        }
+//        private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
+//            new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
+//                    .content(contentTextId)
+//                    .iconAttr(android.R.attr.alertDialogIcon)
+//                    .positiveText(android.R.string.yes)
+//                    .negativeText(android.R.string.no).callback(yesHandler).show();
+//        }
 
         private boolean checkPermissions() {
             if (Build.VERSION.SDK_INT < 23) return false;
