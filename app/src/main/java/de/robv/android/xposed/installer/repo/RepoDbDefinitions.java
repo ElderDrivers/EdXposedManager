@@ -4,8 +4,8 @@ import android.database.Cursor;
 import android.provider.BaseColumns;
 
 public class RepoDbDefinitions {
-    public static final int DATABASE_VERSION = 4;
-    public static final String DATABASE_NAME = "repo_cache.db";
+    static final int DATABASE_VERSION = 4;
+    static final String DATABASE_NAME = "repo_cache.db";
     static final String SQL_CREATE_TABLE_REPOSITORIES = "CREATE TABLE "
             + RepositoriesColumns.TABLE_NAME + " (" + RepositoriesColumns._ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT," + RepositoriesColumns.URL
@@ -194,7 +194,7 @@ public class RepoDbDefinitions {
         private OverviewColumnsIndexes() {
         }
 
-        public static void fillFromCursor(Cursor cursor) {
+        static void fillFromCursor(Cursor cursor) {
             if (isFilled || cursor == null)
                 return;
 

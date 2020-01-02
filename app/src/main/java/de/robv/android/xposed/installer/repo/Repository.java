@@ -7,6 +7,6 @@ public class Repository {
     public String partialUrl;
     public String version;
 
-    /* package */ Repository() {
+    Repository() {
     }
 }

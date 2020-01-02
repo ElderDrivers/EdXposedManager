@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.style.ForegroundColorSpan;
@@ -29,7 +28,7 @@ import androidx.fragment.app.Fragment;
 
 import org.meowcat.edxposed.manager.R;
 
-import java.io.File;
+import java.util.Objects;
 
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedBaseActivity;
@@ -61,12 +60,7 @@ public class InstallationActivity extends XposedBaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -86,9 +80,7 @@ public class InstallationActivity extends XposedBaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-
-        if (Build.VERSION.SDK_INT >= 21)
-            getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
+        getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
     }
 
     public static class InstallationFragment extends Fragment implements FlashCallback {
@@ -149,7 +141,7 @@ public class InstallationActivity extends XposedBaseActivity {
             return animator;
         }
 
-        public void startInstallation(final Context context, final Flashable flashable) {
+        void startInstallation(final Context context, final Flashable flashable) {
             mFlashable = flashable;
             new Thread("FlashZip") {
                 @Override
@@ -192,12 +184,7 @@ public class InstallationActivity extends XposedBaseActivity {
                 Thread.sleep(60);
             } catch (InterruptedException ignored) {
             }
-            XposedApp.postOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    appendText(line, TYPE_NONE);
-                }
-            });
+            XposedApp.postOnUiThread(() -> appendText(line, TYPE_NONE));
         }
 
         @Override
@@ -206,12 +193,7 @@ public class InstallationActivity extends XposedBaseActivity {
                 Thread.sleep(60);
             } catch (InterruptedException ignored) {
             }
-            XposedApp.postOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    appendText(line, TYPE_ERROR);
-                }
-            });
+            XposedApp.postOnUiThread(() -> appendText(line, TYPE_ERROR));
         }
 
         @Override
@@ -220,138 +202,127 @@ public class InstallationActivity extends XposedBaseActivity {
                 Thread.sleep(LONG_ANIM_TIME);
             } catch (InterruptedException ignored) {
             }
-            XposedApp.postOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    appendText("\n" + getString(R.string.file_done), TYPE_OK);
+            XposedApp.postOnUiThread(() -> {
+                appendText("\n" + getString(R.string.file_done), TYPE_OK);
 
-                    // Fade in the result image.
-                    mConsoleResult.setImageResource(R.drawable.ic_check_circle);
-                    mConsoleResult.setVisibility(View.VISIBLE);
-                    ObjectAnimator fadeInResult = ObjectAnimator.ofFloat(mConsoleResult, "alpha", 0.0f, 0.03f);
-                    fadeInResult.setDuration(MEDIUM_ANIM_TIME * 2);
+                // Fade in the result image.
+                mConsoleResult.setImageResource(R.drawable.ic_check_circle);
+                mConsoleResult.setVisibility(View.VISIBLE);
+                ObjectAnimator fadeInResult = ObjectAnimator.ofFloat(mConsoleResult, "alpha", 0.0f, 0.03f);
+                fadeInResult.setDuration(MEDIUM_ANIM_TIME * 2);
 
-                    // Collapse the whole bottom bar.
-                    View buttomBar = getView().findViewById(R.id.buttonPanel);
-                    Animator collapseBottomBar = createExpandCollapseAnimator(buttomBar, false);
-                    collapseBottomBar.setDuration(MEDIUM_ANIM_TIME);
-                    collapseBottomBar.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            mProgress.setIndeterminate(false);
-                            mProgress.setRotation(180);
-                            mProgress.setMax(REBOOT_COUNTDOWN);
-                            mProgress.setProgress(REBOOT_COUNTDOWN);
+                // Collapse the whole bottom bar.
+                View buttomBar = Objects.requireNonNull(getView()).findViewById(R.id.buttonPanel);
+                Animator collapseBottomBar = createExpandCollapseAnimator(buttomBar, false);
+                collapseBottomBar.setDuration(MEDIUM_ANIM_TIME);
+                collapseBottomBar.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mProgress.setIndeterminate(false);
+                        mProgress.setRotation(180);
+                        mProgress.setMax(REBOOT_COUNTDOWN);
+                        mProgress.setProgress(REBOOT_COUNTDOWN);
 
-                            mBtnReboot.setVisibility(View.VISIBLE);
-                            mBtnCancel.setVisibility(View.VISIBLE);
+                        mBtnReboot.setVisibility(View.VISIBLE);
+                        mBtnCancel.setVisibility(View.VISIBLE);
+                    }
+                });
+
+                Animator expandBottomBar = createExpandCollapseAnimator(buttomBar, true);
+                expandBottomBar.setDuration(MEDIUM_ANIM_TIME * 2);
+                expandBottomBar.setStartDelay(LONG_ANIM_TIME * 4);
+
+                final ObjectAnimator countdownProgress = ObjectAnimator.ofInt(mProgress, "progress", REBOOT_COUNTDOWN, 0);
+                countdownProgress.setDuration(REBOOT_COUNTDOWN);
+                countdownProgress.setInterpolator(new LinearInterpolator());
+
+                final ValueAnimator countdownButton = ValueAnimator.ofInt(REBOOT_COUNTDOWN / 1000, 0);
+                countdownButton.setDuration(REBOOT_COUNTDOWN);
+                countdownButton.setInterpolator(new LinearInterpolator());
+
+                final String format = getString(R.string.countdown);
+                final RootUtil.RebootMode rebootMode = mFlashable.getRebootMode();
+                final String action = getString(rebootMode.titleRes);
+                mBtnReboot.setText(String.format(format, action, REBOOT_COUNTDOWN / 1000));
+
+                countdownButton.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    private int minWidth = 0;
+
+                    @SuppressLint("StringFormatMatches")
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        mBtnReboot.setText(String.format(format, action, animation.getAnimatedValue()));
+
+                        // Make sure that the button width doesn't shrink.
+                        if (mBtnReboot.getWidth() > minWidth) {
+                            minWidth = mBtnReboot.getWidth();
+                            mBtnReboot.setMinimumWidth(minWidth);
                         }
-                    });
+                    }
+                });
 
-                    Animator expandBottomBar = createExpandCollapseAnimator(buttomBar, true);
-                    expandBottomBar.setDuration(MEDIUM_ANIM_TIME * 2);
-                    expandBottomBar.setStartDelay(LONG_ANIM_TIME * 4);
+                countdownButton.addListener(new AnimatorListenerAdapter() {
+                    private boolean canceled = false;
 
-                    final ObjectAnimator countdownProgress = ObjectAnimator.ofInt(mProgress, "progress", REBOOT_COUNTDOWN, 0);
-                    countdownProgress.setDuration(REBOOT_COUNTDOWN);
-                    countdownProgress.setInterpolator(new LinearInterpolator());
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        canceled = true;
+                    }
 
-                    final ValueAnimator countdownButton = ValueAnimator.ofInt(REBOOT_COUNTDOWN / 1000, 0);
-                    countdownButton.setDuration(REBOOT_COUNTDOWN);
-                    countdownButton.setInterpolator(new LinearInterpolator());
-
-                    final String format = getString(R.string.countdown);
-                    final RootUtil.RebootMode rebootMode = mFlashable.getRebootMode();
-                    final String action = getString(rebootMode.titleRes);
-                    mBtnReboot.setText(String.format(format, action, REBOOT_COUNTDOWN / 1000));
-
-                    countdownButton.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        private int minWidth = 0;
-
-                        @Override
-                        public void onAnimationUpdate(ValueAnimator animation) {
-                            mBtnReboot.setText(String.format(format, action, animation.getAnimatedValue()));
-
-                            // Make sure that the button width doesn't shrink.
-                            if (mBtnReboot.getWidth() > minWidth) {
-                                minWidth = mBtnReboot.getWidth();
-                                mBtnReboot.setMinimumWidth(minWidth);
-                            }
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        if (!canceled) {
+                            mBtnReboot.callOnClick();
                         }
-                    });
+                    }
+                });
 
-                    countdownButton.addListener(new AnimatorListenerAdapter() {
-                        private boolean canceled = false;
+                mBtnReboot.setOnClickListener(v -> {
+                    countdownProgress.cancel();
+                    countdownButton.cancel();
 
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
-                            canceled = true;
-                        }
+                    RootUtil rootUtil = new RootUtil();
+                    if (!rootUtil.startShell(InstallationFragment.this)
+                            || !rootUtil.reboot(rebootMode, InstallationFragment.this)) {
+                        onError(FlashCallback.ERROR_GENERIC, getString(R.string.reboot_failed));
+                    }
+                });
 
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            if (!canceled) {
-                                mBtnReboot.callOnClick();
-                            }
-                        }
-                    });
+                mBtnCancel.setOnClickListener(v -> {
+                    countdownProgress.cancel();
+                    countdownButton.cancel();
 
-                    mBtnReboot.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            countdownProgress.cancel();
-                            countdownButton.cancel();
+                    Objects.requireNonNull(getActivity()).finish();
+                });
 
-                            RootUtil rootUtil = new RootUtil();
-                            if (!rootUtil.startShell(InstallationFragment.this)
-                                    || !rootUtil.reboot(rebootMode, InstallationFragment.this)) {
-                                onError(FlashCallback.ERROR_GENERIC, getString(R.string.reboot_failed));
-                            }
-                        }
-                    });
-
-                    mBtnCancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            countdownProgress.cancel();
-                            countdownButton.cancel();
-
-                            getActivity().finish();
-                        }
-                    });
-
-                    AnimatorSet as = new AnimatorSet();
-                    as.play(fadeInResult);
-                    as.play(collapseBottomBar).with(fadeInResult);
-                    as.play(expandBottomBar).after(collapseBottomBar);
-                    as.play(countdownProgress).after(expandBottomBar);
-                    as.play(countdownButton).after(expandBottomBar);
-                    as.start();
-                }
+                AnimatorSet as = new AnimatorSet();
+                as.play(fadeInResult);
+                as.play(collapseBottomBar).with(fadeInResult);
+                as.play(expandBottomBar).after(collapseBottomBar);
+                as.play(countdownProgress).after(expandBottomBar);
+                as.play(countdownButton).after(expandBottomBar);
+                as.start();
             });
         }
 
         @Override
         public void onError(final int exitCode, final String error) {
-            XposedApp.postOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    appendText(error, TYPE_ERROR);
+            XposedApp.postOnUiThread(() -> {
+                appendText(error, TYPE_ERROR);
 
-                    mConsoleResult.setImageResource(R.drawable.ic_error);
-                    mConsoleResult.setVisibility(View.VISIBLE);
-                    ObjectAnimator fadeInResult = ObjectAnimator.ofFloat(mConsoleResult, "alpha", 0.0f, 0.03f);
-                    fadeInResult.setDuration(MEDIUM_ANIM_TIME * 2);
+                mConsoleResult.setImageResource(R.drawable.ic_error);
+                mConsoleResult.setVisibility(View.VISIBLE);
+                ObjectAnimator fadeInResult = ObjectAnimator.ofFloat(mConsoleResult, "alpha", 0.0f, 0.03f);
+                fadeInResult.setDuration(MEDIUM_ANIM_TIME * 2);
 
-                    View buttomBar = getView().findViewById(R.id.buttonPanel);
-                    Animator collapseBottomBar = createExpandCollapseAnimator(buttomBar, false);
-                    collapseBottomBar.setDuration(MEDIUM_ANIM_TIME);
+                View buttomBar = Objects.requireNonNull(getView()).findViewById(R.id.buttonPanel);
+                Animator collapseBottomBar = createExpandCollapseAnimator(buttomBar, false);
+                collapseBottomBar.setDuration(MEDIUM_ANIM_TIME);
 
-                    AnimatorSet as = new AnimatorSet();
-                    as.play(fadeInResult);
-                    as.play(collapseBottomBar).with(fadeInResult);
-                    as.start();
-                }
+                AnimatorSet as = new AnimatorSet();
+                as.play(fadeInResult);
+                as.play(collapseBottomBar).with(fadeInResult);
+                as.start();
             });
         }
 
@@ -360,10 +331,10 @@ public class InstallationActivity extends XposedBaseActivity {
             int color;
             switch (type) {
                 case TYPE_ERROR:
-                    color = ContextCompat.getColor(getActivity(), R.color.red_500);
+                    color = ContextCompat.getColor(Objects.requireNonNull(getActivity()), R.color.red_500);
                     break;
                 case TYPE_OK:
-                    color = ContextCompat.getColor(getActivity(), R.color.darker_green);
+                    color = ContextCompat.getColor(Objects.requireNonNull(getActivity()), R.color.status_success);
                     break;
                 default:
                     mLogText.append(text);
@@ -378,15 +349,10 @@ public class InstallationActivity extends XposedBaseActivity {
             mLogText.append("\n");
         }
 
-        private boolean isOkSystemless() {
-            boolean suPartition = new File("/su").exists() && new File("/data/su.img").exists();
-            boolean m = Build.VERSION.SDK_INT >= 23;
-
-            /*
-            TODO: Add toggle for user to force system installation
-             */
-
-            return m && suPartition;
-        }
+//        private boolean isOkSystemless() {
+//            boolean suPartition = new File("/su").exists() && new File("/data/su.img").exists();
+//            boolean m = Build.VERSION.SDK_INT >= 23;
+//            return m && suPartition;
+//        }
     }
 }

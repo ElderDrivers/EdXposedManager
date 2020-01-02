@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,8 +15,6 @@ import org.meowcat.edxposed.manager.R;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import de.robv.android.xposed.installer.XposedApp;
 
@@ -24,6 +23,7 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
     private static final int ERROR_ROOT_NOT_GRANTED = -99;
 
     private final DownloadsUtil.DownloadInfo info;
+    @SuppressLint("StaticFieldLeak")
     private final Context context;
     private RootUtil mRootUtil;
     private boolean isApkRootInstallOn;
@@ -36,7 +36,7 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         mRootUtil = new RootUtil();
     }
 
-    public static void installApkNormally(Context context, String localFilename) {
+    static void installApkNormally(Context context, String localFilename) {
         Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
         installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri uri;
@@ -69,7 +69,10 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         int returnCode = 0;
         if (isApkRootInstallOn) {
             try {
-                returnCode = mRootUtil.execute("pm install -r \"" + info.localFilename + "\"", output);
+                String path = "/data/local/tmp/";
+                String fileName = new File(info.localFilename).getName();
+                mRootUtil.execute("cat \"" + info.localFilename + "\">" + path + fileName, output);
+                returnCode = mRootUtil.execute("pm install -r -f \"" + path + fileName + "\"", output);
             } catch (IllegalStateException e) {
                 returnCode = ERROR_ROOT_NOT_GRANTED;
             }
@@ -91,17 +94,17 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
 
             StringBuilder out = new StringBuilder();
             for (String o : output) {
-                out.append(o.toString());
+                out.append(o);
                 out.append("\n");
             }
-
-            Pattern failurePattern = Pattern.compile("(?m)^Failure\\s+\\[(.*?)\\]$");
-            Matcher failureMatcher = failurePattern.matcher(out);
+//            Pattern failurePattern = Pattern.compile("(?m)^Failure\\s+\\[(.*?)]$");
+//            Matcher failureMatcher = failurePattern.matcher(out);
 
             if (result.equals(0)) {
                 NotificationUtil.showModuleInstallNotification(R.string.installation_successful, R.string.installation_successful_message, info.localFilename, info.title);
-            } else if (failureMatcher.find()) {
-                NotificationUtil.showModuleInstallNotification(R.string.installation_error, R.string.installation_error_message, info.localFilename, info.title, failureMatcher.group(1));
+            } else {
+                NotificationUtil.showModuleInstallNotification(R.string.installation_error, R.string.installation_error_message, info.localFilename, info.title, out);
+                installApkNormally(context, info.localFilename);
             }
         } else {
             installApkNormally(context, info.localFilename);

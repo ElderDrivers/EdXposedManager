@@ -13,10 +13,9 @@ import java.io.InputStream;
 import de.robv.android.xposed.installer.XposedApp;
 
 public class AssetUtil {
-    public static final File BUSYBOX_FILE = new File(XposedApp.getInstance().getCacheDir(), "busybox-xposed");
+    static final File BUSYBOX_FILE = new File(XposedApp.getInstance().getCacheDir(), "busybox-xposed");
 
-    @SuppressWarnings("deprecation")
-    public static String getBinariesFolder() {
+    private static String getBinariesFolder() {
         if (Build.CPU_ABI.startsWith("arm")) {
             return "arm/";
         } else if (Build.CPU_ABI.startsWith("x86")) {
@@ -26,28 +25,29 @@ public class AssetUtil {
         }
     }
 
-    public static File writeAssetToCacheFile(String name, int mode) {
-        return writeAssetToCacheFile(name, name, mode);
-    }
+//    public static File writeAssetToCacheFile(String name, int mode) {
+//        return writeAssetToCacheFile(name, name, mode);
+//    }
+//
+//    private static File writeAssetToCacheFile(String assetName, String fileName, int mode) {
+//        return writeAssetToFile(assetName, new File(XposedApp.getInstance().getCacheDir(), fileName), mode);
+//    }
+//
+//    public static File writeAssetToSdcardFile(String name, int mode) {
+//        return writeAssetToSdcardFile(name, name, mode);
+//    }
+//
+//    private static File writeAssetToSdcardFile(String assetName, String fileName, int mode) {
+//        File dir = XposedApp.getInstance().getExternalFilesDir(null);
+//        return writeAssetToFile(assetName, new File(dir, fileName), mode);
+//    }
+//
+//    private static File writeAssetToFile(String assetName, File targetFile, int mode) {
+//        return writeAssetToFile(null, assetName, targetFile, mode);
+//    }
 
-    public static File writeAssetToCacheFile(String assetName, String fileName, int mode) {
-        return writeAssetToFile(assetName, new File(XposedApp.getInstance().getCacheDir(), fileName), mode);
-    }
-
-    public static File writeAssetToSdcardFile(String name, int mode) {
-        return writeAssetToSdcardFile(name, name, mode);
-    }
-
-    public static File writeAssetToSdcardFile(String assetName, String fileName, int mode) {
-        File dir = XposedApp.getInstance().getExternalFilesDir(null);
-        return writeAssetToFile(assetName, new File(dir, fileName), mode);
-    }
-
-    public static File writeAssetToFile(String assetName, File targetFile, int mode) {
-        return writeAssetToFile(null, assetName, targetFile, mode);
-    }
-
-    public static File writeAssetToFile(AssetManager assets, String assetName, File targetFile, int mode) {
+    @SuppressWarnings("UnusedReturnValue")
+    private static File writeAssetToFile(@SuppressWarnings("SameParameterValue") AssetManager assets, String assetName, @SuppressWarnings("SameParameterValue") File targetFile, @SuppressWarnings("SameParameterValue") int mode) {
         try {
             if (assets == null)
                 assets = XposedApp.getInstance().getAssets();
@@ -57,6 +57,7 @@ public class AssetUtil {
         } catch (IOException e) {
             Log.e(XposedApp.TAG, "AssetUtil -> could not extract asset", e);
             if (targetFile != null)
+                //noinspection ResultOfMethodCallIgnored
                 targetFile.delete();
 
             return null;
@@ -77,15 +78,16 @@ public class AssetUtil {
         FileUtils.setPermissions(targetFile.getAbsolutePath(), mode, -1, -1);
     }
 
-    public synchronized static void extractBusybox() {
+    synchronized static void extractBusybox() {
         if (BUSYBOX_FILE.exists())
             return;
 
-        AssetManager assets = null;
-        writeAssetToFile(assets, getBinariesFolder() + "busybox-xposed", BUSYBOX_FILE, 00700);
+        //noinspection OctalInteger
+        writeAssetToFile(null, getBinariesFolder() + "busybox-xposed", BUSYBOX_FILE, 00700);
     }
 
     public synchronized static void removeBusybox() {
+        //noinspection ResultOfMethodCallIgnored
         BUSYBOX_FILE.delete();
     }
 }

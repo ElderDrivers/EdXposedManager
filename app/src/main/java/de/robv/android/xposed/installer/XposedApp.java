@@ -33,20 +33,15 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.R;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import de.robv.android.xposed.installer.receivers.PackageChangeReceiver;
 import de.robv.android.xposed.installer.util.AssetUtil;
@@ -67,7 +62,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     public static final String ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_dvdandroid, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_cornie, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
-    private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
+    //private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
     @SuppressLint("StaticFieldLeak")
     private static XposedApp mInstance = null;
     private static Thread mUiThread;
@@ -102,37 +97,37 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     public static Integer getXposedVersion() {
-        if (Build.VERSION.SDK_INT >= 21) {
+//        if (Build.VERSION.SDK_INT >= 21) {
             return getActiveXposedVersion();
-        } else {
-            return getInstalledAppProcessVersion();
-        }
+//        } else {
+//            return getInstalledAppProcessVersion();
+//        }
     }
 
-    private static int getInstalledAppProcessVersion() {
-        try {
-            return getAppProcessVersion(new FileInputStream("/system/bin/app_process"));
-        } catch (IOException e) {
-            return 0;
-        }
-    }
+//    private static int getInstalledAppProcessVersion() {
+//        try {
+//            return getAppProcessVersion(new FileInputStream("/system/bin/app_process"));
+//        } catch (IOException e) {
+//            return 0;
+//        }
+//    }
 
-    private static int getAppProcessVersion(InputStream is) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String line;
-        while ((line = br.readLine()) != null) {
-            if (!line.contains("Xposed"))
-                continue;
-
-            Matcher m = PATTERN_APP_PROCESS_VERSION.matcher(line);
-            if (m.find()) {
-                is.close();
-                return ModuleUtil.extractIntPart(m.group(1));
-            }
-        }
-        is.close();
-        return 0;
-    }
+//    private static int getAppProcessVersion(InputStream is) throws IOException {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+//        String line;
+//        while ((line = br.readLine()) != null) {
+//            if (!line.contains("Xposed"))
+//                continue;
+//
+//            Matcher m = PATTERN_APP_PROCESS_VERSION.matcher(line);
+//            if (m.find()) {
+//                is.close();
+//                return ModuleUtil.extractIntPart(m.group(1));
+//            }
+//        }
+//        is.close();
+//        return 0;
+//    }
 
     // This method is hooked by XposedBridge to return the current version
     @SuppressWarnings({"NumericOverflow", "divzero"})
@@ -300,7 +295,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
         if (Build.VERSION.SDK_INT >= 24) {
             try {
-                Method deleteDir = FileUtils.class.getDeclaredMethod("deleteContentsAndDir", File.class);
+                @SuppressLint("SoonBlockedPrivateApi") Method deleteDir = FileUtils.class.getDeclaredMethod("deleteContentsAndDir", File.class);
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "bin"));
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "conf"));
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "log"));

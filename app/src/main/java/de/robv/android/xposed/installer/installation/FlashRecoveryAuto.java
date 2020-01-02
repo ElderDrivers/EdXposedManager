@@ -6,8 +6,8 @@ import android.os.Parcelable;
 
 import org.meowcat.edxposed.manager.R;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.robv.android.xposed.installer.util.InstallZipUtil.ZipCheckResult;
 import de.robv.android.xposed.installer.util.RootUtil;
@@ -29,11 +29,11 @@ public class FlashRecoveryAuto extends Flashable {
         }
     };
 
-    public FlashRecoveryAuto(File zipPath) {
-        super(zipPath);
-    }
+//    public FlashRecoveryAuto(File zipPath) {
+//        super(zipPath);
+//    }
 
-    protected FlashRecoveryAuto(Parcel in) {
+    private FlashRecoveryAuto(Parcel in) {
         super(in);
     }
 
@@ -46,7 +46,7 @@ public class FlashRecoveryAuto extends Flashable {
             closeSilently(zipCheck.getZip());
         }
 
-        final String zipName = mZipPath.getName();
+        final String zipName = Objects.requireNonNull(mZipPath).getName();
         String cmd;
 
         // Execute the flash commands.
@@ -58,7 +58,7 @@ public class FlashRecoveryAuto extends Flashable {
         callback.onStarted();
 
         // Make sure /cache/recovery/ exists.
-        if (rootUtil.execute("ls /cache/recovery", new ArrayList<String>()) != 0) {
+        if (rootUtil.execute("ls /cache/recovery", new ArrayList<>()) != 0) {
             callback.onLine(context.getString(R.string.file_creating_directory, "/cache/recovery"));
             if (rootUtil.executeWithBusybox("mkdir /cache/recovery", callback) != 0) {
                 callback.onError(FlashCallback.ERROR_GENERIC,

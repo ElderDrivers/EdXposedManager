@@ -86,7 +86,7 @@ public class LogsFragment extends Fragment {
             new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
                     .title(R.string.install_warning_title)
                     .customView(dontShowAgainView, false)
-                    .positiveText(android.R.string.ok)
+                    .positiveText(R.string.ok)
                     .callback(new MaterialDialog.ButtonCallback() {
                         @Override
                         public void onPositive(MaterialDialog dialog) {

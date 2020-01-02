@@ -17,19 +17,19 @@ import static de.robv.android.xposed.installer.util.InstallZipUtil.reportMissing
 import static de.robv.android.xposed.installer.util.InstallZipUtil.triggerError;
 
 public abstract class Flashable implements Parcelable {
-    public static final String KEY = "flash";
+    static final String KEY = "flash";
 
-    protected final File mZipPath;
+    final File mZipPath;
 
-    public Flashable(File zipPath) {
+    Flashable(File zipPath) {
         mZipPath = zipPath;
     }
 
-    protected Flashable(Parcel in) {
+    Flashable(Parcel in) {
         mZipPath = (File) in.readSerializable();
     }
 
-    protected InstallZipUtil.ZipCheckResult openAndCheckZip(FlashCallback callback) {
+    InstallZipUtil.ZipCheckResult openAndCheckZip(FlashCallback callback) {
         // Open the ZIP file.
         ZipFile zip;
         try {

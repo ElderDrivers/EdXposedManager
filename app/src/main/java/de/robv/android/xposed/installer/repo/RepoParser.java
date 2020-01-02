@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer.repo;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -29,12 +30,12 @@ import de.robv.android.xposed.installer.XposedApp;
 
 public class RepoParser {
     public final static String TAG = XposedApp.TAG;
-    protected final static String NS = null;
-    protected final XmlPullParser parser;
-    protected RepoParserCallback mCallback;
+    private final static String NS = null;
+    private final XmlPullParser parser;
+    private RepoParserCallback mCallback;
     private boolean mRepoEventTriggered = false;
 
-    protected RepoParser(InputStream is, RepoParserCallback callback) throws XmlPullParserException, IOException {
+    private RepoParser(InputStream is, RepoParserCallback callback) throws XmlPullParserException, IOException {
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         parser = factory.newPullParser();
         parser.setInput(is, null);
@@ -79,7 +80,7 @@ public class RepoParser {
             return new SpannableStringBuilder(html, 0, end);
     }
 
-    protected void readRepo() throws XmlPullParserException, IOException {
+    private void readRepo() throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "repository");
         Repository repository = new Repository();
         repository.isPartial = "true".equals(parser.getAttributeValue(NS, "partial"));
@@ -121,7 +122,7 @@ public class RepoParser {
         mRepoEventTriggered = true;
     }
 
-    protected Module readModule(Repository repository) throws XmlPullParserException, IOException {
+    private Module readModule(Repository repository) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "module");
         final int startDepth = parser.getDepth();
 
@@ -196,7 +197,7 @@ public class RepoParser {
         }
     }
 
-    protected ModuleVersion readModuleVersion(Module module) throws XmlPullParserException, IOException {
+    private ModuleVersion readModuleVersion(Module module) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "version");
         final int startDepth = parser.getDepth();
         ModuleVersion version = new ModuleVersion(module);
@@ -246,7 +247,7 @@ public class RepoParser {
         return version;
     }
 
-    protected String readRemoveModule() throws XmlPullParserException, IOException {
+    private String readRemoveModule() throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "remove-module");
         final int startDepth = parser.getDepth();
 
@@ -260,7 +261,7 @@ public class RepoParser {
         return packageName;
     }
 
-    protected void skip(boolean showWarning) throws XmlPullParserException, IOException {
+    private void skip(boolean showWarning) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, null, null);
         if (showWarning)
             Log.w(TAG, "skipping unknown/erronous tag: " + parser.getPositionDescription());
@@ -275,7 +276,7 @@ public class RepoParser {
         }
     }
 
-    protected void leave(int targetDepth) throws XmlPullParserException, IOException {
+    private void leave(int targetDepth) throws XmlPullParserException, IOException {
         Log.w(TAG, "leaving up to level " + targetDepth + ": " + parser.getPositionDescription());
         while (parser.getDepth() > targetDepth) {
             //noinspection StatementWithEmptyBody
@@ -285,7 +286,7 @@ public class RepoParser {
         }
     }
 
-    protected void logError(String error) {
+    private void logError(String error) {
         Log.e(TAG, parser.getPositionDescription() + ": " + error);
     }
 
@@ -302,11 +303,13 @@ public class RepoParser {
     static class ImageGetterAsyncTask extends AsyncTask<TextView, Void, Bitmap> {
 
         private LevelListDrawable levelListDrawable;
+        @SuppressLint("StaticFieldLeak")
         private Context context;
         private String source;
+        @SuppressLint("StaticFieldLeak")
         private TextView t;
 
-        public ImageGetterAsyncTask(Context context, String source, LevelListDrawable levelListDrawable) {
+        ImageGetterAsyncTask(Context context, String source, LevelListDrawable levelListDrawable) {
             this.context = context;
             this.source = source;
             this.levelListDrawable = levelListDrawable;

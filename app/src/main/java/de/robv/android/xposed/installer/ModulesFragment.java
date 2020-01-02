@@ -349,7 +349,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
         List<String> messages = new LinkedList<>();
 
-        String command = "reboot";
+        String command = "/system/bin/svc power reboot";
         if (mode != null) {
             command += " " + mode;
             if (mode.equals("recovery"))
@@ -357,7 +357,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 mRootUtil.executeWithBusybox("touch /cache/recovery/boot", messages);
         }
 
-        if (mRootUtil.executeWithBusybox(command, messages) != 0) {
+        if (mRootUtil.execute(command, messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.reboot_failed));
             showAlert(TextUtils.join("\n", messages).trim());
@@ -431,6 +431,19 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                     });
                 } else {
                     reboot("download");
+                }
+                break;
+            case R.id.reboot_edl:
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.reboot_download, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot("edl");
+                        }
+                    });
+                } else {
+                    reboot("edl");
                 }
                 break;
         }
@@ -594,7 +607,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     }
 
     private void showAlert(final String result) {
-        MaterialDialog dialog = new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).content(result).positiveText(android.R.string.ok).build();
+        MaterialDialog dialog = new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).content(result).positiveText(R.string.ok).build();
         dialog.show();
 
         TextView txtMessage = (TextView) dialog

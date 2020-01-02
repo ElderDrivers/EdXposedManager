@@ -1,12 +1,12 @@
 package de.robv.android.xposed.installer.repo;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -34,8 +34,9 @@ import static android.content.Context.MODE_PRIVATE;
 public final class RepoDb extends SQLiteOpenHelper {
     public static final int SORT_STATUS = 0;
     public static final int SORT_UPDATED = 1;
-    public static final int SORT_CREATED = 2;
+    private static final int SORT_CREATED = 2;
 
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
     private static SQLiteDatabase sDb;
 
@@ -48,15 +49,11 @@ public final class RepoDb extends SQLiteOpenHelper {
 
     private RepoDb(Context context) {
         super(context, getDbPath(context), null, RepoDbDefinitions.DATABASE_VERSION);
-        this.context = context;
+        RepoDb.context = context;
     }
 
     private static String getDbPath(Context context) {
-        if (Build.VERSION.SDK_INT >= 21) {
-            return new File(context.getNoBackupFilesDir(), RepoDbDefinitions.DATABASE_NAME).getPath();
-        } else {
-            return RepoDbDefinitions.DATABASE_NAME;
-        }
+        return new File(context.getNoBackupFilesDir(), RepoDbDefinitions.DATABASE_NAME).getPath();
     }
 
     public static void beginTransation() {
@@ -71,7 +68,7 @@ public final class RepoDb extends SQLiteOpenHelper {
         sDb.endTransaction();
     }
 
-    private static String getString(String table, String searchColumn, String searchValue, String resultColumn) {
+    private static String getString(@SuppressWarnings("SameParameterValue") String table, @SuppressWarnings("SameParameterValue") String searchColumn, String searchValue, @SuppressWarnings("SameParameterValue") String resultColumn) {
         String[] projection = new String[]{resultColumn};
         String where = searchColumn + " = ?";
         String[] whereArgs = new String[]{searchValue};
@@ -86,6 +83,7 @@ public final class RepoDb extends SQLiteOpenHelper {
         }
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public static long insertRepository(String url) {
         ContentValues values = new ContentValues();
         values.put(RepositoriesColumns.URL, url);
@@ -98,7 +96,7 @@ public final class RepoDb extends SQLiteOpenHelper {
     }
 
     public static Map<Long, Repository> getRepositories() {
-        Map<Long, Repository> result = new LinkedHashMap<Long, Repository>(1);
+        Map<Long, Repository> result = new LinkedHashMap<>(1);
 
         String[] projection = new String[]{
                 RepositoriesColumns._ID,
@@ -137,6 +135,7 @@ public final class RepoDb extends SQLiteOpenHelper {
         sDb.update(RepositoriesColumns.TABLE_NAME, values, RepositoriesColumns._ID + " = ?", new String[]{Long.toString(repoId)});
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public static long insertModule(long repoId, Module mod) {
         ContentValues values = new ContentValues();
         values.put(ModulesColumns.REPO_ID, repoId);
@@ -198,6 +197,7 @@ public final class RepoDb extends SQLiteOpenHelper {
                 values);
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     private static long insertMoreInfo(long moduleId, String title, String value) {
         ContentValues values = new ContentValues();
         values.put(MoreInfoColumns.MODULE_ID, moduleId);
@@ -334,6 +334,7 @@ public final class RepoDb extends SQLiteOpenHelper {
         }
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public static long insertInstalledModule(InstalledModule installed) {
         ContentValues values = new ContentValues();
         values.put(InstalledModulesColumns.PKGNAME, installed.packageName);
@@ -375,13 +376,10 @@ public final class RepoDb extends SQLiteOpenHelper {
         };
 
         // Conditions
-        String where = ModulesColumns.PREFERRED + " = 1";
-        String whereArgs[] = null;
+        StringBuilder where = new StringBuilder(ModulesColumns.PREFERRED + " = 1");
+        String[] whereArgs = null;
         if (!TextUtils.isEmpty(filterText)) {
-            where += " AND (m." + ModulesColumns.TITLE + " LIKE ?"
-                    + " OR m." + ModulesColumns.SUMMARY + " LIKE ?"
-                    + " OR m." + ModulesColumns.DESCRIPTION + " LIKE ?"
-                    + " OR m." + ModulesColumns.AUTHOR + " LIKE ?)";
+            where.append(" AND (m." + ModulesColumns.TITLE + " LIKE ?" + " OR m." + ModulesColumns.SUMMARY + " LIKE ?" + " OR m." + ModulesColumns.DESCRIPTION + " LIKE ?" + " OR m." + ModulesColumns.AUTHOR + " LIKE ?)");
             String filterTextArg = "%" + filterText + "%";
             whereArgs = new String[]{filterTextArg, filterTextArg, filterTextArg, filterTextArg};
         } else {
@@ -389,9 +387,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 
             if (prefs.getBoolean("ignore_chinese", false)) {
                 for (char ch : "的一是不了人我在有他这为中设微模块淘".toCharArray()) {
-                    where += " AND NOT (m." + ModulesColumns.TITLE + " LIKE '%" + ch + "%'"
-                            + " OR m." + ModulesColumns.SUMMARY + " LIKE '%" + ch + "%'"
-                            + " OR m." + ModulesColumns.DESCRIPTION + " LIKE '%" + ch + "%')";
+                    where.append(" AND NOT (m." + ModulesColumns.TITLE + " LIKE '%").append(ch).append("%'").append(" OR m.").append(ModulesColumns.SUMMARY).append(" LIKE '%").append(ch).append("%'").append(" OR m.").append(ModulesColumns.DESCRIPTION).append(" LIKE '%").append(ch).append("%')");
                 }
             }
         }
@@ -424,7 +420,7 @@ public final class RepoDb extends SQLiteOpenHelper {
                         + " ON v." + ModuleVersionsColumns._ID + " = m." + ModulesColumns.LATEST_VERSION
                         + " LEFT JOIN " + InstalledModulesColumns.TABLE_NAME + " AS i"
                         + " ON i." + InstalledModulesColumns.PKGNAME + " = m." + ModulesColumns.PKGNAME,
-                projection, where, whereArgs, null, null, sbOrder.toString());
+                projection, where.toString(), whereArgs, null, null, sbOrder.toString());
 
         // Cache column indexes
         OverviewColumnsIndexes.fillFromCursor(c);
@@ -490,7 +486,7 @@ public final class RepoDb extends SQLiteOpenHelper {
     public static class RowNotFoundException extends RuntimeException {
         private static final long serialVersionUID = -396324186622439535L;
 
-        public RowNotFoundException(String reason) {
+        RowNotFoundException(String reason) {
             super(reason);
         }
     }

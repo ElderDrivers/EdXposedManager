@@ -8,14 +8,12 @@ import com.solohsu.android.edxp.manager.util.ToastUtils;
 
 import org.meowcat.edxposed.manager.R;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 
-import static com.solohsu.android.edxp.manager.adapter.AppHelper.FORCE_WHITE_LIST;
 import static com.solohsu.android.edxp.manager.adapter.AppHelper.FORCE_WHITE_LIST_MODULE;
 
 public class BlackListAdapter extends AppAdapter {
@@ -39,8 +37,6 @@ public class BlackListAdapter extends AppAdapter {
             for (ModuleUtil.InstalledModule info : installedModules) {
                 FORCE_WHITE_LIST_MODULE.add(info.packageName);
             }
-        } else {
-            FORCE_WHITE_LIST_MODULE = new ArrayList<>(FORCE_WHITE_LIST);
         }
         AppHelper.makeSurePath();
         if (isWhiteListMode) {

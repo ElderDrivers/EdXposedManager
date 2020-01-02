@@ -8,7 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class HashUtil {
-    public static final String hash(String input, String algorithm) {
+    private static String hash(String input, @SuppressWarnings("SameParameterValue") String algorithm) {
         try {
             MessageDigest md = MessageDigest.getInstance(algorithm);
             byte[] messageDigest = md.digest(input.getBytes());
@@ -18,20 +18,20 @@ public class HashUtil {
         }
     }
 
-    public static final String md5(String input) {
+    static String md5(String input) {
         return hash(input, "MD5");
     }
 
-    public static final String sha1(String input) {
-        return hash(input, "SHA-1");
-    }
+//    public static String sha1(String input) {
+//        return hash(input, "SHA-1");
+//    }
 
-    public static final String hash(File file, String algorithm) throws IOException {
+    private static String hash(File file, @SuppressWarnings("SameParameterValue") String algorithm) throws IOException {
         try {
             MessageDigest md = MessageDigest.getInstance(algorithm);
             InputStream is = new FileInputStream(file);
             byte[] buffer = new byte[8192];
-            int read = 0;
+            int read;
             while ((read = is.read(buffer)) > 0) {
                 md.update(buffer, 0, read);
             }
@@ -43,13 +43,13 @@ public class HashUtil {
         }
     }
 
-    public static final String md5(File input) throws IOException {
+    public static String md5(File input) throws IOException {
         return hash(input, "MD5");
     }
 
-    public static final String sha1(File input) throws IOException {
-        return hash(input, "SHA-1");
-    }
+//    public static String sha1(File input) throws IOException {
+//        return hash(input, "SHA-1");
+//    }
 
     private static String toHexString(byte[] bytes) {
         StringBuilder sb = new StringBuilder();

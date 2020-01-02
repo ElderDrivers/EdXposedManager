@@ -7,10 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Module {
+    @SuppressWarnings("WeakerAccess")
     public final Repository repository;
-    public final List<Pair<String, String>> moreInfo = new LinkedList<Pair<String, String>>();
-    public final List<ModuleVersion> versions = new ArrayList<ModuleVersion>();
-    public final List<String> screenshots = new ArrayList<String>();
+    public final List<Pair<String, String>> moreInfo = new LinkedList<>();
+    public final List<ModuleVersion> versions = new ArrayList<>();
+    final List<String> screenshots = new ArrayList<>();
     public String packageName;
     public String name;
     public String summary;
@@ -18,10 +19,10 @@ public class Module {
     public boolean descriptionIsHtml = false;
     public String author;
     public String support;
-    public long created = -1;
-    public long updated = -1;
+    long created = -1;
+    long updated = -1;
 
-    /* package */ Module(Repository repository) {
+    Module(Repository repository) {
         this.repository = repository;
     }
 }

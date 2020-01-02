@@ -13,7 +13,7 @@ public class CustomTabsURLSpan extends URLSpan {
 
     private Activity activity;
 
-    public CustomTabsURLSpan(Activity activity, String url) {
+    CustomTabsURLSpan(Activity activity, String url) {
         super(url);
         this.activity = activity;
     }

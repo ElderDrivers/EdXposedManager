@@ -2,7 +2,6 @@ package de.robv.android.xposed.installer.util;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Build;
 import android.util.Log;
 
 import org.meowcat.edxposed.manager.BuildConfig;
@@ -20,7 +19,6 @@ import java.util.zip.ZipFile;
 
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.installation.FlashCallback;
-import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
 
 public final class InstallZipUtil {
     private static final Set<String> FEATURES = new HashSet<>();
@@ -32,13 +30,13 @@ public final class InstallZipUtil {
     private InstallZipUtil() {
     }
 
-    public static ZipFile getZip(String path) {
-        try {
-            return new ZipFile(path);
-        } catch (IOException e) {
-            return null;
-        }
-    }
+//    public static ZipFile getZip(String path) {
+//        try {
+//            return new ZipFile(path);
+//        } catch (IOException e) {
+//            return null;
+//        }
+//    }
 
     public static ZipCheckResult checkZip(ZipFile zip) {
         ZipCheckResult result = new ZipCheckResult(zip);
@@ -101,7 +99,7 @@ public final class InstallZipUtil {
         return prop.isComplete() ? prop : null;
     }
 
-    public static String messageForError(int code, Object... args) {
+    private static String messageForError(int code, Object... args) {
         Context context = XposedApp.getInstance();
         switch (code) {
             case FlashCallback.ERROR_TIMEOUT:
@@ -199,17 +197,17 @@ public final class InstallZipUtil {
             return mVersion;
         }
 
-        public int getVersionInt() {
-            return mVersionInt;
-        }
+//        public int getVersionInt() {
+//            return mVersionInt;
+//        }
 
-        public boolean isArchCompatible() {
-            return StatusInstallerFragment.ARCH.equals(mArch);
-        }
-
-        public boolean isSdkCompatible() {
-            return mMinSdk <= Build.VERSION.SDK_INT && Build.VERSION.SDK_INT <= mMaxSdk;
-        }
+//        boolean isArchCompatible() {
+//            return StatusInstallerFragment.ARCH.equals(mArch);
+//        }
+//
+//        boolean isSdkCompatible() {
+//            return mMinSdk <= Build.VERSION.SDK_INT && Build.VERSION.SDK_INT <= mMaxSdk;
+//        }
 
         public Set<String> getMissingInstallerFeatures() {
             Set<String> missing = new TreeSet<>(mRequires);
@@ -217,9 +215,9 @@ public final class InstallZipUtil {
             return missing;
         }
 
-        public boolean isCompatible() {
-            return isSdkCompatible() && isArchCompatible();
-        }
+//        public boolean isCompatible() {
+//            return isSdkCompatible() && isArchCompatible();
+//        }
 
     }
 }

@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer.receivers;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,13 +20,10 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!isOnline(context)) return;
+        new android.os.Handler().postDelayed(() -> {
+            if (!isOnline(context)) return;
 
-                new CheckUpdates().execute();
-            }
+            new CheckUpdates().execute();
         }, 60 * 60 * 1000 /*60 min*/);
     }
 
@@ -35,6 +33,7 @@ public class BootReceiver extends BroadcastReceiver {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class CheckUpdates extends AsyncTask<Void, Void, Void> {
 
         @Override

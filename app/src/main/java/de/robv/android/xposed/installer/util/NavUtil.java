@@ -16,6 +16,8 @@ import androidx.browser.customtabs.CustomTabsIntent;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import org.meowcat.edxposed.manager.R;
+
 import de.robv.android.xposed.installer.XposedApp;
 
 public final class NavUtil {
@@ -27,7 +29,7 @@ public final class NavUtil {
         Spannable spannable = new SpannableString(str);
         Linkify.addLinks(spannable, Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES);
 
-        URLSpan spans[] = spannable.getSpans(0, spannable.length(), URLSpan.class);
+        URLSpan[] spans = spannable.getSpans(0, spannable.length(), URLSpan.class);
         return (spans.length > 0) ? Uri.parse(spans[0].getURL()) : null;
     }
 
@@ -51,14 +53,9 @@ public final class NavUtil {
 
     @AnyThread
     public static void showMessage(final @NonNull Context context, final CharSequence message) {
-        XposedApp.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                new MaterialDialog.Builder(context)
-                        .content(message)
-                        .positiveText(android.R.string.ok)
-                        .show();
-            }
-        });
+        XposedApp.runOnUiThread(() -> new MaterialDialog.Builder(context)
+                .content(message)
+                .positiveText(R.string.ok)
+                .show());
     }
 }
