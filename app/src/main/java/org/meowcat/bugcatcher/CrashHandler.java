@@ -6,13 +6,12 @@ package org.meowcat.bugcatcher;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
+
+import org.meowcat.edxposed.manager.BuildConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class CrashHandler implements UncaughtExceptionHandler {
     private static final String TAG = MeowCatApplication.TAG;
@@ -77,26 +77,16 @@ public class CrashHandler implements UncaughtExceptionHandler {
                 Looper.loop();
             }
         }.start();
-        collectDeviceInfo(Context);
+        collectDeviceInfo();
         saveCrashInfo2File(ex);
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
         return true;
     }
 
-    private void collectDeviceInfo(Context ctx) {
-        try {
-            PackageManager pm = ctx.getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);
-            if (pi != null) {
-                String versionName = pi.versionName == null ? "null" : pi.versionName;
-                String versionCode = pi.versionCode + "";
-                infos.put("versionName", versionName);
-                infos.put("versionCode", versionCode);
-            }
-        } catch (NameNotFoundException e) {
-            Log.e(TAG, "An error occurred when collect package info", e);
-        }
+    private void collectDeviceInfo() {
+        infos.put("versionName", BuildConfig.VERSION_NAME);
+        infos.put("versionCode", BuildConfig.VERSION_CODE + "");
         Field[] fields = Build.class.getDeclaredFields();
         for (Field field : fields) {
             try {
@@ -138,14 +128,14 @@ public class CrashHandler implements UncaughtExceptionHandler {
             long timestamp = System.currentTimeMillis();
             String time = formatter.format(new Date());
             String fileName = "BugCatcher-" + time + "-" + timestamp + ".log";
-            String crashPath = Context.getExternalFilesDir("crash").getPath() + "/";
+            String crashPath = Objects.requireNonNull(Context.getExternalFilesDir("crash")).getPath() + "/";
             if (isFolderExists(crashPath)) {
                 FileOutputStream fos = new FileOutputStream(crashPath + fileName);
                 fos.write(sb.toString().getBytes());
                 fos.close();
             }
         } catch (Exception e) {
-            Log.e(TAG, "An error occured while writing crash file...", e);
+            Log.e(TAG, "An error occurred while writing crash file...", e);
         }
     }
 }
