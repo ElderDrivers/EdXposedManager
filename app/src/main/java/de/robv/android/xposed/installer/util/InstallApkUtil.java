@@ -73,6 +73,8 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
                 String fileName = new File(info.localFilename).getName();
                 mRootUtil.execute("cat \"" + info.localFilename + "\">" + path + fileName, output);
                 returnCode = mRootUtil.execute("pm install -r -f \"" + path + fileName + "\"", output);
+                //noinspection ResultOfMethodCallIgnored
+                new File(path + fileName).delete();
             } catch (IllegalStateException e) {
                 returnCode = ERROR_ROOT_NOT_GRANTED;
             }
