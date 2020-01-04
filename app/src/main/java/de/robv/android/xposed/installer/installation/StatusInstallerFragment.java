@@ -453,12 +453,14 @@ public class StatusInstallerFragment extends Fragment {
             manufacturer += " " + Character.toUpperCase(Build.BRAND.charAt(0)) + Build.BRAND.substring(1);
         }
         manufacturer += " " + Build.MODEL + " ";
-        if (new File("/system/framework/samsung-services.jar").exists()) {
+        if (new File("/system/framework/twframework.jar").exists() || new File("/system/framework/samsung-services.jar").exists()) {
             manufacturer += "(TouchWiz)";
         } else if (new File("/system/framework/framework-miui-res.apk").exists() || new File("/system/app/miui/miui.apk").exists() || new File("/system/app/miuisystem/miuisystem.apk").exists()) {
-            manufacturer += "(MIUI)";
+            manufacturer += "(Mi UI)";
         } else if (new File("/system/priv-app/oneplus-framework-res/oneplus-framework-res.apk").exists()) {
             manufacturer += "(Oxygen/Hydrogen OS)";
+        } else if (new File("/system/framework/com.samsung.device.jar").exists() || new File("/system/framework/sec_platform_library.jar").exists()) {
+            manufacturer += "(One UI)";
         }
         /*if (manufacturer.contains("Samsung")) {
             manufacturer += new File("/system/framework/twframework.jar").exists() ||
