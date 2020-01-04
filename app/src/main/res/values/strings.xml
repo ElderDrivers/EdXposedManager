@@ -322,7 +322,7 @@
     <string name="pref_dynamic_modules_summary">When turned on, load latest activated module list on each app process started</string>
     <string name="title_compat_list">Compat mode</string>
     <string name="pref_title_black_white_list">App List mode</string>
-    <string name="pref_black_white_list_summary">Note: using app list mode might break system-wide modules\' functions\nBlack List mode: Selected app NOT to load EdXposed modules</string>
+    <string name="pref_black_white_list_summary">After opening, you can set the list in \"Application\"\nBlack List mode: Selected app NOT to load EdXposed modules\nNote: using app list mode might break system-wide modules\' functions</string>
     <string name="white_list_mode_summary">White List mode: Only selected app load EdXposed modules\nApp list mode is required to enable</string>
 
     <string name="app_name" translatable="false">EdXposed Manager</string>

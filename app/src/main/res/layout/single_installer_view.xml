@@ -35,7 +35,7 @@
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/tabInstall"
+                        android:text="@string/nav_item_install"
                         android:textAllCaps="true"
                         android:textStyle="bold" />
 
