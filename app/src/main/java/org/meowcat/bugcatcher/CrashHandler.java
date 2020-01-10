@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2018 MeowCat Studio Powered by MlgmXyysd All Rights Reserved.
+ * Copyright (c) 2013-2020 MeowCat Studio Powered by MlgmXyysd All Rights Reserved.
  */
 
 package org.meowcat.bugcatcher;
@@ -91,7 +91,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
         for (Field field : fields) {
             try {
                 field.setAccessible(true);
-                infos.put(field.getName(), field.get(null).toString());
+                infos.put(field.getName(), field.get(null) + "");
                 Log.d(TAG, field.getName() + " : " + field.get(null));
             } catch (Exception e) {
                 Log.e(TAG, "An error occurred when collect crash info", e);

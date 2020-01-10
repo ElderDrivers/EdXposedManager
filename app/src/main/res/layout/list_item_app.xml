@@ -135,6 +135,15 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/warning_list_not_enabled"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/warning"
+                android:visibility="gone" />
+
         </LinearLayout>
 
         <Switch

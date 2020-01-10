@@ -3,7 +3,7 @@
 
     <!--<shortcut-->
     <!--android:enabled="true"-->
-    <!--android:icon="@drawable/shortcut_ic_downloads"-->
+    <!--android:icon="@drawable/shortcut_ic_framework"-->
     <!--android:shortcutId="framework"-->
     <!--android:shortcutLongLabel="@string/nav_item_install"-->
     <!--android:shortcutShortLabel="@string/nav_item_install"-->
@@ -27,7 +27,7 @@
         tools:targetApi="n_mr1">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="de.robv.android.xposed.installer.WelcomeActivity"
+            android:targetClass=".WelcomeActivity"
             android:targetPackage="org.meowcat.edxposed.manager">
             <extra
                 android:name="fragment"
@@ -44,7 +44,7 @@
         tools:targetApi="n_mr1">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="de.robv.android.xposed.installer.WelcomeActivity"
+            android:targetClass=".WelcomeActivity"
             android:targetPackage="org.meowcat.edxposed.manager">
             <extra
                 android:name="fragment"
@@ -54,14 +54,14 @@
 
     <!--<shortcut-->
     <!--android:enabled="true"-->
-    <!--android:icon="@drawable/shortcut_ic_blacklist"-->
-    <!--android:shortcutId="blacklist"-->
+    <!--android:icon="@drawable/shortcut_ic_application"-->
+    <!--android:shortcutId="application"-->
     <!--android:shortcutLongLabel="@string/nav_title_black_list"-->
     <!--android:shortcutShortLabel="@string/nav_title_black_list"-->
     <!--tools:targetApi="n_mr1">-->
     <!--<intent-->
     <!--android:action="android.intent.action.MAIN"-->
-    <!--android:targetClass="de.robv.android.xposed.installer.WelcomeActivity"-->
+    <!--android:targetClass=".WelcomeActivity"-->
     <!--android:targetPackage="org.meowcat.edxposed.manager">-->
     <!--<extra-->
     <!--android:name="fragment"-->
@@ -72,13 +72,13 @@
     <!--<shortcut-->
     <!--android:enabled="true"-->
     <!--android:icon="@drawable/ic_local_hospital"-->
-    <!--android:shortcutId="compatlist"-->
+    <!--android:shortcutId="compat"-->
     <!--android:shortcutLongLabel="@string/nav_title_compat_list"-->
     <!--android:shortcutShortLabel="@string/nav_title_compat_list"-->
     <!--tools:targetApi="n_mr1">-->
     <!--<intent-->
     <!--android:action="android.intent.action.MAIN"-->
-    <!--android:targetClass="de.robv.android.xposed.installer.WelcomeActivity"-->
+    <!--android:targetClass=".WelcomeActivity"-->
     <!--android:targetPackage="org.meowcat.edxposed.manager">-->
     <!--<extra-->
     <!--android:name="fragment"-->
@@ -95,7 +95,7 @@
     <!--tools:targetApi="n_mr1">-->
     <!--<intent-->
     <!--android:action="android.intent.action.MAIN"-->
-    <!--android:targetClass="de.robv.android.xposed.installer.WelcomeActivity"-->
+    <!--android:targetClass=".WelcomeActivity"-->
     <!--android:targetPackage="org.meowcat.edxposed.manager">-->
     <!--<extra-->
     <!--android:name="fragment"-->

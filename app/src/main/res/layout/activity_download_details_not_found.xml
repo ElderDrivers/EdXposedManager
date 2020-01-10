@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context="de.robv.android.xposed.installer.DownloadDetailsActivity">
+    tools:context=".DownloadDetailsActivity">
 
     <ImageView
         android:layout_width="wrap_content"

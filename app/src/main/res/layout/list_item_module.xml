@@ -139,6 +139,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/warning"
                 android:visibility="gone" />
+
         </LinearLayout>
 
         <Switch

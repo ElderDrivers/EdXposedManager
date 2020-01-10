@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
     android:orientation="vertical"
-    tools:context="de.robv.android.xposed.installer.DownloadFragment">
+    tools:context=".DownloadFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefreshlayout"
