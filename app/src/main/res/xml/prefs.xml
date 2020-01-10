@@ -5,7 +5,7 @@
         android:key="group_app"
         android:title="@string/settings_group_app">
 
-        <de.robv.android.xposed.installer.widget.IconListPreference
+        <org.meowcat.edxposed.manager.widget.IconListPreference
             android:defaultValue="0"
             android:entries="@array/icons"
             android:entryValues="@array/iconsValues"
@@ -20,6 +20,11 @@
 
         <SwitchPreference
             android:defaultValue="false"
+            android:key="old_success_color"
+            android:title="@string/old_success_color" />
+
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="nav_bar"
             android:title="@string/nav_bar_coloration" />
 
@@ -28,7 +33,7 @@
             android:key="colored_notification"
             android:title="@string/notification_coloration" />
 
-        <de.robv.android.xposed.installer.widget.IntegerListPreference
+        <org.meowcat.edxposed.manager.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/theme_texts"
             android:entryValues="@array/theme_values"
@@ -37,7 +42,7 @@
             android:title="@string/settings_theme"
             app:useStockLayout="true" />
 
-        <de.robv.android.xposed.installer.widget.IntegerListPreference
+        <org.meowcat.edxposed.manager.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/default_view_texts"
             android:entryValues="@array/default_view_values"
@@ -66,7 +71,7 @@
             android:key="confirm_reboots"
             android:title="@string/confirm_reboots" />
 
-        <de.robv.android.xposed.installer.widget.IntegerListPreference
+        <org.meowcat.edxposed.manager.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/list_sort_texts"
             android:entryValues="@array/list_sort_values"
@@ -109,7 +114,7 @@
             android:summary="@string/install_with_su_summ"
             android:title="@string/install_with_su" />
 
-        <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
+        <org.meowcat.edxposed.manager.widget.ListPreferenceSummaryFix
             android:defaultValue="stable"
             android:entries="@array/release_type_texts"
             android:entryValues="@array/release_type_values"
@@ -204,18 +209,25 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="disable_verbose_log"
-            android:summary="@string/pref_disable_verbose_log_summary"
             android:title="@string/pref_title_disable_verbose_log" />
 
-        <!--        <Preference-->
-        <!--            android:key="stop_verbose_log"-->
-        <!--            android:summary="@string/stop_verbose_log_summary"-->
-        <!--            android:title="@string/stop_verbose_log" />-->
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="disable_modules_log"
+            android:summary="@string/pref_disable_modules_log_summary"
+            android:title="@string/pref_title_disable_modules_log" />
 
-        <!--        <Preference-->
-        <!--            android:key="stop_log"-->
-        <!--            android:summary="@string/stop_log_summary"-->
-        <!--            android:title="@string/stop_log" />-->
+<!--        <Preference-->
+<!--            android:key="stop_verbose_log"-->
+<!--            android:summary="@string/stop_verbose_log_summary"-->
+<!--            android:title="@string/stop_verbose_log"-->
+<!--            android:shouldDisableView="true" />-->
+
+<!--        <Preference-->
+<!--            android:key="stop_log"-->
+<!--            android:summary="@string/stop_log_summary"-->
+<!--            android:title="@string/stop_log"-->
+<!--            android:shouldDisableView="true" />-->
 
     </PreferenceCategory>
 
