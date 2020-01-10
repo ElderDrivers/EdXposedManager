@@ -1,4 +1,4 @@
-package de.robv.android.xposed.installer;
+package org.meowcat.edxposed.manager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,7 +19,8 @@ import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import org.meowcat.edxposed.manager.R;
+import org.meowcat.edxposed.manager.util.NavUtil;
+import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.util.Objects;
 
@@ -28,12 +29,10 @@ import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
 import de.psdev.licensesdialog.licenses.MITLicense;
 import de.psdev.licensesdialog.model.Notice;
 import de.psdev.licensesdialog.model.Notices;
-import de.robv.android.xposed.installer.util.NavUtil;
-import de.robv.android.xposed.installer.util.ThemeUtil;
 
 import static android.content.Intent.ACTION_SEND;
 import static android.content.Intent.EXTRA_TEXT;
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
+import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public class AboutActivity extends XposedBaseActivity {
 
@@ -103,6 +102,12 @@ public class AboutActivity extends XposedBaseActivity {
             View translatorsView = v.findViewById(R.id.translatorsView);
             View sourceCodeView = v.findViewById(R.id.sourceCodeView);
             View tgChannelView = v.findViewById(R.id.tgChannelView);
+            View installerSupportView = v.findViewById(R.id.installerSupportView);
+            View faqView = v.findViewById(R.id.faqView);
+            View donateView = v.findViewById(R.id.donateView);
+            TextView txtModuleSupport = v.findViewById(R.id.tab_support_module_description);
+            View qqGroupView = v.findViewById(R.id.qqGroupView);
+            View tgGroupView = v.findViewById(R.id.tgGroupView);
 
             String packageName = Objects.requireNonNull(getActivity()).getPackageName();
             String translator = getResources().getString(R.string.translator);
@@ -128,14 +133,26 @@ public class AboutActivity extends XposedBaseActivity {
 
             licensesView.setOnClickListener(v12 -> createLicenseDialog());
 
-            sourceCodeView.setOnClickListener(v13 -> NavUtil.startURL(getActivity(), getString(R.string.about_source)));
-            tgChannelView.setOnClickListener(v14 -> NavUtil.startURL(getActivity(), getString(R.string.group_telegram_channel_link)));
+            txtModuleSupport.setText(getString(R.string.support_modules_description,
+                    getString(R.string.module_support)));
+
+            setupView(installerSupportView, R.string.support_material_xda);
+            setupView(faqView, R.string.support_faq_url);
+            setupView(tgGroupView, R.string.group_telegram_link);
+            setupView(qqGroupView, R.string.group_qq_link);
+            setupView(donateView, R.string.support_donate_url);
+            setupView(sourceCodeView, R.string.about_source);
+            setupView(tgChannelView, R.string.group_telegram_channel_link);
 
             if (translator.isEmpty()) {
                 translatorsView.setVisibility(View.GONE);
             }
 
             return v;
+        }
+
+        void setupView(View v, final int url) {
+            v.setOnClickListener(v1 -> NavUtil.startURL(getActivity(), getString(url)));
         }
 
         private void createLicenseDialog() {
