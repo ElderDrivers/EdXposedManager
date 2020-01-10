@@ -28,8 +28,6 @@ import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import org.meowcat.edxposed.manager.util.RootUtil;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -52,7 +50,6 @@ public class LogsFragment extends Fragment {
     private ScrollView mSVLog;
     private HorizontalScrollView mHSVLog;
     private MenuItem mClickedMenuItem = null;
-    private RootUtil mRootUtil = new RootUtil();
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -95,7 +92,6 @@ public class LogsFragment extends Fragment {
                         }
                     }).cancelable(false).show();
         }
-        enableLogAccess();
         return v;
     }
 
@@ -147,12 +143,6 @@ public class LogsFragment extends Fragment {
     private void scrollDown() {
         mSVLog.post(() -> mSVLog.scrollTo(0, mTxtLog.getHeight()));
         mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
-    }
-
-    private void enableLogAccess() {
-        if (mRootUtil.startShell()) {
-            mRootUtil.execute("chmod 777 " + mFileErrorLog.getAbsolutePath());
-        }
     }
 
     private void reloadErrorLog() {
