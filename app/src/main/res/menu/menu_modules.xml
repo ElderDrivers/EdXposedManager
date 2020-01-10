@@ -49,13 +49,13 @@
         app:showAsAction="never">
         <menu>
             <item
-                android:id="@+id/reboot"
-                android:title="@string/reboot"
+                android:id="@+id/soft_reboot"
+                android:title="@string/soft_reboot"
                 app:showAsAction="never" />
 
             <item
-                android:id="@+id/soft_reboot"
-                android:title="@string/soft_reboot"
+                android:id="@+id/reboot"
+                android:title="@string/reboot_system"
                 app:showAsAction="never" />
 
             <item

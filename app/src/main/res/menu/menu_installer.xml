@@ -5,13 +5,25 @@
     <group>
 
         <item
-            android:id="@+id/reboot"
-            android:title="@string/reboot"
-            app:showAsAction="never" />
+            android:id="@+id/dexopt_all"
+            android:icon="@drawable/ic_optimize_white"
+            android:title="@string/dexopt_now"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/speed_all"
+            android:icon="@drawable/ic_optimize_white"
+            android:title="@string/speed_now"
+            app:showAsAction="ifRoom" />
 
         <item
             android:id="@+id/soft_reboot"
             android:title="@string/soft_reboot"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/reboot"
+            android:title="@string/reboot_system"
             app:showAsAction="never" />
 
         <item
@@ -32,18 +44,6 @@
         <item
             android:id="@+id/reboot_edl"
             android:title="@string/reboot_edl"
-            app:showAsAction="never" />
-
-        <item
-            android:id="@+id/dexopt_all"
-            android:icon="@drawable/ic_optimize"
-            android:title="@string/dexopt_now"
-            app:showAsAction="never" />
-
-        <item
-            android:id="@+id/speed_all"
-            android:icon="@drawable/ic_optimize"
-            android:title="@string/speed_now"
             app:showAsAction="never" />
 
     </group>
