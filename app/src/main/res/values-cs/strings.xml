@@ -16,7 +16,6 @@
     <string name="nav_item_modules">Moduly</string>
     <string name="nav_item_download">Stáhnout</string>
     <string name="nav_item_settings">Nastavení</string>
-    <string name="nav_item_support">Podpora</string>
     <string name="nav_item_logs">Podrobné záznamy</string>
     <string name="nav_item_logs_err">Záznamy modulů</string>
     <string name="nav_item_about">O aplikaci</string>
@@ -31,7 +30,6 @@
     <string name="areyousure">Opravdu provést?</string>
     <string name="phone_not_compatible">EdXposed (zatím) není kompatibilní s Android SDK verze %1$d nebo architekturou vašeho procesoru (%2$s).</string>
     <string name="reboot_failed">Nepodařilo se restartovat zařízení. Prosím, restartuj jej běžným způsobem.</string>
-    <string name="auto_flash_note">Stisknutím \"OK\" bude %s automaticky nainstalován v recovery.</string>
     <string name="install_warning_title">Dbej opatrnosti!</string>
     <string name="install_warning">V některých případech nemusí tvé zařízení po instalaci EdXposed již naběhnout.\n\nPokud ti nic neříkají pojmy \"soft brick\" či \"bootloop\" a pokud nevíš, jak se v podobné situaci zachovat, <b>NEINSTALUJ</b> EdXposed!\n\nV každém případě je vřele doporučeno mít aktuální zálohu zařízení.</string>
     <string name="dont_show_again">Již nezobrazovat</string>
@@ -42,13 +40,6 @@
 
     <!-- File operations -->
     <string name="root_failed">Nepodařilo se získat oprávnění root.\n\nUjisti se, že je tvé zařízení správně rootnuté a nejsou blokovány příkazy shellu.</string>
-    <string name="file_copying">Kopíruji %s&#8230;</string>
-    <string name="file_copy_failed">Nelze zkopírovat %1$s do %2$s</string>
-    <string name="file_creating_directory">Vytvářím adresář %s&#8230;</string>
-    <string name="file_create_directory_failed">Nepodařilo se vytvořit adresář %s</string>
-    <string name="file_writing_recovery_command">Zapisuji příkazy recovery&#8230;</string>
-    <string name="file_writing_recovery_command_failed">Zápis příkazu recovery selhal. Použij prosím jiný způsob instalace.</string>
-    <string name="file_done">Hotovo! Změny se projeví po restartu zařízení.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">EdXposed modul zatím není aktivován</string>
@@ -244,7 +235,6 @@
     <string name="skip_xposedminversion_check">Přeskočit kontrolu modulů</string>
     <string name="skip_xposedminversion_check_summ">Vypne kontrolu minimální verze a stavu pro moduly</string>
 
-    <string name="compatibility">Kompatibilita</string>
     <string name="details">Podrobnosti</string>
     <string name="support_xda">Získat podporu</string>
     <string name="later">Později</string>
@@ -258,13 +248,6 @@
     <string name="not_logcat">Pokud tě někdo požádal o logcat záznam androidu, jsi na špatném místě. Toto je záznam EdXposed; pokud potřebuješ logcat, můžeš vyzkoušet náš LogCat modul pro Magisk</string>
     <string name="force_english">Vynutit anglický jazyk</string>
     <string name="warning_language">Změna jazyka bude aplikována při příštím spuštění aplikace.</string>
-    <string name="not_now">Teď ne</string>
-    <string name="countdown">%1$s (%2$d)</string>
-    <string name="flash_error_timeout">Vypršel časový limit</string>
-    <string name="flash_error_shell_died">Vykonávání úkonu bylo nečekaně přerušeno</string>
-    <string name="flash_error_invalid_zip">Tento soubor ZIP není instalovatelným</string>
-    <string name="flash_error_not_flashable_in_app">Tento soubor lze nainstalovat pouze v recovery</string>
-    <string name="flash_error_default">Chyba %d</string>
     <string name="installation_error">Chyba instalace</string>
     <string name="installation_successful">Instalace úspěšná</string>
     <string name="installation_successful_message">%s úspěšně nainstalován</string>
@@ -279,7 +262,6 @@
 
     <string name="known_issue_wrong_base_directory">Chybný základní adresář: %1$s</string>
     <string name="known_issue_missing_base_directory">Chybějící základní adresář</string>
-    <string name="installer_needs_update">%1$s vyžaduje aktualizaci</string>
 
     <string name="dexopt_now">Optimalizovat aplikace</string>
     <string name="this_may_take_a_while">Toto bude chvíli trvat.</string>
@@ -321,6 +303,5 @@
     <string name="pref_enable_boot_image_deopt_summary">Turn on to make all framework methods hookable, but the whole system will be slowed down.\nMainly used to check if one framework method is inlined when it can\'t be hooked into.</string>
 
     <string name="pref_title_disable_verbose_log">Zakázat podrobné záznamy</string>
-    <string name="pref_disable_verbose_log_summary">Podrobné záznamy nebudou zaznamenávány od příštího startu systému.</string>
     <string name="logs_verbose_disabled">Podrobné záznamy vypnuty.</string>
 </resources>

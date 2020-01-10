@@ -16,7 +16,6 @@
     <string name="nav_item_modules">模块</string>
     <string name="nav_item_download">下载</string>
     <string name="nav_item_settings">设置</string>
-    <string name="nav_item_support">支持</string>
     <string name="nav_item_logs">详细日志</string>
     <string name="nav_item_logs_err">模块日志</string>
     <string name="nav_item_about">关于</string>
@@ -31,7 +30,6 @@
     <string name="areyousure">您确定？</string>
     <string name="phone_not_compatible">EdXposed 尚不兼容您手机的 Android SDK %1$d 版本或处理器架构(%2$s)</string>
     <string name="reboot_failed">重启失败, 请使用设备自带的重启功能</string>
-    <string name="auto_flash_note">当按下 “OK” 后, %s 将会被自动刷入到设备中</string>
     <string name="install_warning_title">请小心！</string>
     <string name="install_warning">某些情况下, 您的设备可能会在安装 EdXposed 过后变得无法正常启动\n\n如果您先前从未听说过「软变砖」或「无限重启」, 又或者您不知道如何从这些情况中恢复手机, 那么请"<b>不要</b>"安装或使用 EdXposed！\n\n无论如何, 都强烈建议您做好近期的数据备份</string>
     <string name="dont_show_again">不再提示</string>
@@ -42,13 +40,6 @@
 
     <!-- File operations -->
     <string name="root_failed">无法获取 root 权限\n\n请确认您的设备已正确 root 且没有阻止 shell 命令</string>
-    <string name="file_copying">正在复制 %s …</string>
-    <string name="file_copy_failed">无法将 %1$s 复制到 %2$s</string>
-    <string name="file_creating_directory">正在创建目录 %s …</string>
-    <string name="file_create_directory_failed">无法创建目录 %s</string>
-    <string name="file_writing_recovery_command">正在写入 recovery 命令 …</string>
-    <string name="file_writing_recovery_command_failed">写入 recovery 命令失败\n请尝试更换安装方式</string>
-    <string name="file_done">完成！变更将在重启后生效</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">EdXposed 模块尚未激活</string>
@@ -187,7 +178,7 @@
 
     <string name="share">分享</string>
     <string name="back">返回</string>
-    <string name="loadingError">获取安列表时出现错误\n无法接入网络或服务器出现错误</string>
+    <string name="loadingError">获取列表时出现错误\n无法接入网络或服务器出现错误</string>
     <string name="info">信息</string>
     <string name="infoInstaller">
         名称: %1$s
@@ -199,7 +190,7 @@
     </string>
     <string name="permissionNotGranted">当未允许写入外部存储空间权限时, 该功能无法正常工作</string>
     <string name="warningArchitecture">你将会下载一个 ZIP 格式文件, 请手动在 Magisk Manager 或 Recovery 中刷入</string>
-    <string name="newVersion">有新版本的 EdXposed Manager 可用！现在更新！</string>
+    <string name="newVersion">EdXposed Manager 有新版本可用！现在更新！</string>
     <string name="update">更新</string>
     <string name="choose_icon">选择一个图标</string>
     <string name="custom_icon">自定义图标</string>
@@ -265,13 +256,6 @@
     <string name="not_logcat">此处仅显示 EdXposed 及模块相关日志信息\n如果您想抓取系统日志, 可以尝试我们的 Log Catcher Magisk 模块</string>
     <string name="force_english">强制显示为英语</string>
     <string name="warning_language">语言设置将在应用重启后生效</string>
-    <string name="not_now">稍后</string>
-    <string name="countdown">%1$s (%2$d)</string>
-    <string name="flash_error_timeout">超时</string>
-    <string name="flash_error_shell_died">执行意外中止</string>
-    <string name="flash_error_invalid_zip">不是一个可刷入的ZIP文件</string>
-    <string name="flash_error_not_flashable_in_app">此文件仅能通过恢复模式刷入</string>
-    <string name="flash_error_default">%d 个错误</string>
 
     <!-- EdXp related -->
     <string name="nav_title_black_list">应用</string>
@@ -319,7 +303,6 @@
     <string name="alt_download_method_summ">如果下载模块时出现问题, 请开启此选项</string>
     <string name="known_issue_wrong_base_directory">错误的配置文件夹: %1$s</string>
     <string name="known_issue_missing_base_directory">未知配置文件夹</string>
-    <string name="installer_needs_update">%1$s 需要更新</string>
     <string name="dexopt_now">以 Dexopt 模式优化全部应用</string>
     <string name="speed_now">以 Speed 模式优化全部应用</string>
     <string name="this_may_take_a_while">请稍后, 这将需要一段时间…</string>
@@ -328,7 +311,6 @@
     <string name="pref_enable_boot_image_deopt_summary">禁用系统代码的优化能使所有系统方法都可以被 hook 到, 但是会降低系统流畅度\n主要用于对比测试某个方法无法 hook 到是否为系统优化导致</string>
 
     <string name="pref_title_disable_verbose_log">禁用详细日志</string>
-    <string name="pref_disable_verbose_log_summary">详细日志将不再被记录</string>
     <string name="logs_verbose_disabled">详细日志已禁用</string>
     <string name="logs_too_long">日志过长, 未完全显示</string>
     <string name="logs_cannot_read">无法读取日志: \n</string>
@@ -351,14 +333,24 @@
     <string name="app_no_ui">该应用未提供用户界面</string>
     <string name="show_modules">显示模块和管理器</string>
     <string name="show_modules_summary">在应用列表内显示模块和管理器\n此选项并不会移除已勾选的应用标识</string>
-    <string name="compile_failed">优化失败, 请检查root权限</string>
+    <string name="compile_failed">优化失败或返回值为空</string>
     <string name="hook_modules">强制添加模块</string>
     <string name="hook_modules_summary">强制将模块添加进白名单并移出黑名单\n关闭此选项并不会移除已勾选的应用标识\n仅当启用应用名单模式时有效</string>
-    <string name="custom_list">使用自定义模块列表</string>
+    <string name="custom_list">使用镜像化的模块列表</string>
     <string name="custom_list_summ">镜像化的模块列表可以帮助加速加载\n但新提交的模块显示会有延迟(大约24小时)</string>
     <string name="not_installed">未安装</string>
     <string name="ok">好</string>
     <string name="pass_safetynet">通过 SafetyNet 校验</string>
     <string name="pass_safetynet_summary">强制将 GMS 和 GSF 加入黑名单并移出白名单\n关闭此选项并不会移除已勾选的应用标识\n仅当启用应用名单模式时有效</string>
     <string name="support_group_telegram_channel">Telegram 频道: @EdXposed</string>
+    <string name="old_success_color">使用旧的激活状态颜色 (绿色)</string>
+    <string name="warning_list_not_enabled">应用名单模式未启用，您可以在设置中启用</string>
+    <string name="empty_param">参数为空</string>
+    <string name="reboot_system">重启至系统</string>
+    <string name="stop_log">停止模块日志捕获程序</string>
+    <string name="stop_log_summary">在下次启动之前，模块日志将不再被记录</string>
+    <string name="stop_verbose_log">停止详细日志捕获程序</string>
+    <string name="stop_verbose_log_summary">在下次启动之前，详细日志将不再被记录</string>
+    <string name="pref_title_disable_modules_log">禁用模块日志</string>
+    <string name="pref_disable_modules_log_summary">模块抛出的的异常堆栈仍将正常抓取</string>
 </resources>

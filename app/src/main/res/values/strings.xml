@@ -16,7 +16,7 @@
     <string name="nav_item_modules">Modules</string>
     <string name="nav_item_download">Download</string>
     <string name="nav_item_logs">Verbose Logs</string>
-    <string name="nav_item_logs_err">Module Logs</string>
+    <string name="nav_item_logs_err">Modules Logs</string>
     <string name="nav_item_settings">Settings</string>
     <string name="nav_item_about">About</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -30,7 +30,6 @@
     <string name="areyousure">Are you sure?</string>
     <string name="phone_not_compatible">EdXposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s)</string>
     <string name="reboot_failed">Reboot failed. Please use the device\'s normal reboot function</string>
-    <string name="auto_flash_note">%s should be flashed automatically once you press OK</string>
     <string name="install_warning_title">Be careful!</string>
     <string name="install_warning">In some cases, your device might no longer boot after installing EdXposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install or use EdXposed!\n\nIn any case, having a recent backup is highly recommended.</string>
     <string name="dont_show_again">Don\'t show this again</string>
@@ -41,13 +40,6 @@
 
     <!-- File operations -->
     <string name="root_failed">Failed to get root access\n\nMake sure your device is rooted properly and you have not blocked shell commands</string>
-    <string name="file_copying">Copying %s …</string>
-    <string name="file_copy_failed">Could not copy %1$s to %2$s</string>
-    <string name="file_creating_directory">Creating directory %s …</string>
-    <string name="file_create_directory_failed">Could not create directory %s</string>
-    <string name="file_writing_recovery_command">Writing recovery command …</string>
-    <string name="file_writing_recovery_command_failed">Writing recovery command failed\nPlease use a different installation method</string>
-    <string name="file_done">Done! Changes will become active on reboot.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">EdXposed module is not activated yet</string>
@@ -267,13 +259,6 @@
     <string name="not_logcat">This is the EdXposed Framework and modules log\nif you need a Android logcat, you can try our Log Catcher Magisk module</string>
     <string name="force_english">Force English language</string>
     <string name="warning_language">Language change will be applied after application restart</string>
-    <string name="not_now">Not now</string>
-    <string name="countdown">%1$s (%2$d)</string>
-    <string name="flash_error_timeout">Timeout occurred</string>
-    <string name="flash_error_shell_died">Execution aborted unexpectedly</string>
-    <string name="flash_error_invalid_zip">Not a flashable ZIP file</string>
-    <string name="flash_error_not_flashable_in_app">This file can only be flashed via recovery</string>
-    <string name="flash_error_default">Error %d occurred</string>
     <string name="installation_error">Installation error</string>
     <string name="installation_successful">Installation successful</string>
     <string name="installation_successful_message">%s installed successfully</string>
@@ -286,12 +271,11 @@
     <string name="unofficial_build">This is a unofficial build\nInstall it at your own risk</string>
     <string name="alt_download_method">Alternative download method</string>
     <string name="alt_download_method_summ">Check this option if you get issues when downloading a module</string>
-    <string name="custom_list">Use custom modules list</string>
+    <string name="custom_list">Use mirrored modules list</string>
     <string name="custom_list_summ">Mirrored modules list can help load faster\nBut the newly submitted module display will be delayed (about 24 hours)</string>
 
     <string name="known_issue_wrong_base_directory">Wrong base directory: %1$s</string>
     <string name="known_issue_missing_base_directory">Missing base directory</string>
-    <string name="installer_needs_update">%1$s needs to be updated</string>
 
     <string name="dexopt_now">Optimize all apps with Dexopt</string>
     <string name="speed_now">Optimize all apps with Speed mode</string>
@@ -363,7 +347,6 @@
     <string name="pref_enable_boot_image_deopt_summary">Turn on to make all framework methods hookable, but the whole system will be slowed down\nMainly used to check if one framework method is inlined when it can\'t be hooked into</string>
 
     <string name="pref_title_disable_verbose_log">Disable verbose logs</string>
-    <string name="pref_disable_verbose_log_summary">Verbose logs won\'t be recorded from next boot</string>
     <string name="logs_verbose_disabled">Verbose logs is disabled</string>
     <string name="logs_too_long">Log is too long, not fully displayed</string>
     <string name="logs_cannot_read">Cannot read log: \n</string>
@@ -386,7 +369,7 @@
     <string name="app_no_ui">This application does not provide a user interface</string>
     <string name="show_modules">Show modules and manager</string>
     <string name="show_modules_summary">Show modules and manager in application list\nThis option does not remove checked application flag</string>
-    <string name="compile_failed">Optimize failed, check your root access</string>
+    <string name="compile_failed">Optimization failed or return value is empty</string>
     <string name="hook_modules">Force hook modules</string>
     <string name="hook_modules_summary">Force add modules to white-list and remove from black list\nClosing this option does not remove modules from white list\nApp list mode is required to enable</string>
     <string name="not_installed">Not installed</string>
@@ -396,4 +379,12 @@
     <string name="support_group_telegram_channel">Telegram Channel: @EdXposed</string>
     <string name="old_success_color">Use old status active color (green)</string>
     <string name="warning_list_not_enabled">Application list mode is not enabled, you can enable in settings</string>
+    <string name="empty_param">Params empty</string>
+    <string name="reboot_system">Reboot to System</string>
+    <string name="stop_verbose_log">Stop verbose log catcher</string>
+    <string name="stop_verbose_log_summary">Verbose log will stop catch before the next boot</string>
+    <string name="stop_log_summary">Modules log will stop catch before the next boot</string>
+    <string name="stop_log">Stop modules log catcher</string>
+    <string name="pref_title_disable_modules_log">Disable modules logs</string>
+    <string name="pref_disable_modules_log_summary">Exception stack thrown by the module will still be catched normally</string>
 </resources>

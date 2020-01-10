@@ -16,7 +16,6 @@
     <string name="nav_item_modules">模組</string>
     <string name="nav_item_download">下載</string>
     <string name="nav_item_settings">設定</string>
-    <string name="nav_item_support">支援</string>
     <string name="nav_item_logs">詳細日誌</string>
     <string name="nav_item_logs_err">模組日誌</string>
     <string name="nav_item_about">關於</string>
@@ -31,7 +30,6 @@
     <string name="areyousure">您確定？</string>
     <string name="phone_not_compatible">EdXposed 目前不相容您手機的 Android SDK %1$d 版本或處理器架構（%2$s）。</string>
     <string name="reboot_failed">重新啟動失敗，請使用裝置內建的重新啟動功能。</string>
-    <string name="auto_flash_note">當按下 “確定” 後，%s 將會被自動刷入到裝置中。</string>
     <string name="install_warning_title">請小心！</string>
     <string name="install_warning">某些情況下，您的裝置可能會在安裝 EdXposed 過後變得無法正常啟動。\n\n如果您先前從未聽說過「軟變磚」或「無限重新啟動」，又或者您不知道如何從這些情況中恢復手機，那麼請"<b>不要</b>"安裝 EdXposed！\n\n無論如何，我們都強烈建議您做好近期的資料備份。</string>
     <string name="dont_show_again">不再提示</string>
@@ -42,13 +40,6 @@
 
     <!-- File operations -->
     <string name="root_failed">無法取得 Root 權限。\n\n請確認您的裝置已正確 Root 且沒有阻止 shell 命令。</string>
-    <string name="file_copying">正在複製 %s&#8230;</string>
-    <string name="file_copy_failed">無法將 %1$s 複製到 %2$s</string>
-    <string name="file_creating_directory">正在建立目錄 %s&#8230;</string>
-    <string name="file_create_directory_failed">無法建立目錄 %s</string>
-    <string name="file_writing_recovery_command">正在寫入 recovery 命令&#8230;</string>
-    <string name="file_writing_recovery_command_failed">寫入 recovery 命令失敗。請嘗試變更安裝方式。</string>
-    <string name="file_done">完成！變更將在重新啟動後生效。</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">EdXposed 模組尚未啟用</string>
@@ -246,8 +237,7 @@
     <string name="confirm_reboots">重新啟動確認</string>
     <string name="skip_xposedminversion_check">跳過模組檢查</string>
     <string name="skip_xposedminversion_check_summ">跳過針對模組的 \'EdXposed 最低版本\' 和 \'EdXposed 安裝狀態\' 檢查</string>
-	
-    <string name="compatibility">相容性</string>
+
     <string name="details">詳細情形</string>
     <string name="support_xda">取得說明</string>
     <string name="later">稍後</string>
@@ -261,14 +251,7 @@
     <string name="not_logcat">如果有人要求您提供一份 Android 系統日誌，那麼您來錯了地方。在此處顯示的是 EdXposed 的日誌資訊；如果您想抓取系統日誌，可嘗試我們的 Logcat Magisk 模組。</string>
     <string name="force_english">強制顯示為英語</string>
     <string name="warning_language">語言設定將在應用程式重新啟動後生效。</string>
-    <string name="not_now">稍後</string>
-    <string name="countdown">%1$s (%2$d)</string>
-    <string name="flash_error_timeout">逾時</string>
-    <string name="flash_error_shell_died">執行意外中止</string>
-    <string name="flash_error_invalid_zip">不是一個可刷入的 ZIP 檔案</string>
-    <string name="flash_error_not_flashable_in_app">此檔案僅能通過復原模式刷入</string>
-    <string name="flash_error_default">%d 個錯誤</string>
-	<string name="installation_error">安裝錯誤</string>
+    <string name="installation_error">安裝錯誤</string>
     <string name="installation_successful">安裝成功</string>
     <string name="installation_successful_message">成功安裝 %s</string>
     <string name="installation_error_message">%1$s 安裝失敗 (%2$s)</string>
@@ -283,8 +266,7 @@
     
 	<string name="known_issue_wrong_base_directory">錯誤的配置資料夾: %1$s</string>
     <string name="known_issue_missing_base_directory">未知配置的資料夾</string>
-    <string name="installer_needs_update">%1$s 需要更新</string>
-	
+
     <string name="dexopt_now">以 Dexopt 模式最佳化全部應用程式</string>
     <string name="speed_now">以 Speed 模式最佳化全部應用程式</string>
     <string name="this_may_take_a_while">請稍候，這將需要一段時間…</string>
@@ -329,7 +311,6 @@
     <string name="pref_enable_boot_image_deopt_summary">啟用能使所有 Framework 框架都可以被 hook 到，但是會降低系統流暢度。\n主要用於對比測試某個方法無法 hook 到是否為系統最佳化所導致。</string>		
 	
     <string name="pref_title_disable_verbose_log">停用 Verbose 日誌</string>
-    <string name="pref_disable_verbose_log_summary">模組將不再記錄 Verbose 日誌。</string>
     <string name="logs_verbose_disabled">Verbose 日誌已停用。</string>
     <string name="logs_too_long">日誌太長！</string>
     <string name="logs_cannot_read">無法讀取日誌：\n</string>	
@@ -352,5 +333,5 @@
     <string name="app_no_ui">應用程式未提供使用者介面</string>
     <string name="show_modules">顯示模組</string>
     <string name="show_modules_summary">在應用程式清單內顯示模組。\n此選項並不會移除已勾選的應用標識。</string>
-	<string name="compile_failed">最佳化失敗，請檢查您的 Root 權限。</string>
+	<string name="compile_failed">最佳化失敗</string>
 </resources>

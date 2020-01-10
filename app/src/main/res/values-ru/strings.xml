@@ -30,7 +30,6 @@
     <string name="areyousure">Вы уверены?</string>
     <string name="phone_not_compatible">EdXposed (пока) не совместим с версией Android SDK %1$d или архитектурой процессора (%2$s)</string>
     <string name="reboot_failed">Сбой перезагрузки. Используйте встроенную функцию перезагрузки на устройстве</string>
-    <string name="auto_flash_note">%s будет прошита автоматически при нажатии \"OK\"</string>
     <string name="install_warning_title">Будьте осторожны!</string>
     <string name="install_warning">В некоторых случаях устройство может не загрузиться после установки EdXposed.\n\nЕсли вы не знаете, что означают слова «soft brick» и «bootloop» (кирпич и бутлуп), и не знаете, как восстановить систему, <b>НЕ</b> устанавливайте и не используйте EdXposed!\n\nИ даже если уверены в себе, не забудьте сделать резервную копию системы."</string>
     <string name="dont_show_again">Больше не показывать это сообщение</string>
@@ -41,13 +40,6 @@
 
     <!-- File operations -->
     <string name="root_failed">"Сбой получения прав рут-доступа\n\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются"</string>
-    <string name="file_copying">Копирование %s…</string>
-    <string name="file_copy_failed">Невозможно копировать %1$s в %2$s</string>
-    <string name="file_creating_directory">Создание каталога %s…</string>
-    <string name="file_create_directory_failed">Невозможно создать каталог %s</string>
-    <string name="file_writing_recovery_command">Запись команды восстановления…</string>
-    <string name="file_writing_recovery_command_failed">Запись команды восстановления не удалась\nИспользуйте другой метод установки</string>
-    <string name="file_done">Готово. Изменения станут активными после перезагрузки</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">EdXposed модуль еще не активирован</string>
@@ -267,13 +259,6 @@
     <string name="not_logcat">Это логи EdXposed Framework и модулей\nЕсли вам нужны логи Android, вы можете попробовать модуль Log Catcher для Magisk</string>
     <string name="force_english">Английский язык</string>
     <string name="warning_language">Игнорировать язык системы и использовать английский. Нужен перезапуск приложения!</string>
-    <string name="not_now">Не сейчас</string>
-    <string name="countdown">%1$s (%2$d)</string>
-    <string name="flash_error_timeout">Время ожидания истекло</string>
-    <string name="flash_error_shell_died">Выполнение неожиданно прервалось</string>
-    <string name="flash_error_invalid_zip">Zip-файл не для прошивки</string>
-    <string name="flash_error_not_flashable_in_app">Этот файл можно прошить только через Рекавери</string>
-    <string name="flash_error_default">Произошла %d ошибка</string>
     <string name="installation_error">Ошибка установки</string>
     <string name="installation_successful">Установка завершена</string>
     <string name="installation_successful_message">%s успешно установлен</string>
@@ -291,7 +276,6 @@
 
     <string name="known_issue_wrong_base_directory">Основной каталог ошибочный: %1$s</string>
     <string name="known_issue_missing_base_directory">Основной каталог отсутсвует</string>
-    <string name="installer_needs_update">%1$s необходимо обновить</string>
 
     <string name="dexopt_now">Оптимизация в режиме Dexopt</string>
     <string name="speed_now">Оптимизация в режиме Speed</string>
@@ -336,7 +320,6 @@
     <string name="pref_enable_boot_image_deopt_summary">Включите, чтобы сделать все методы Framework подключаемыми, система может работать медленнее\nВ основном используется для проверки методов подключения к Framework, когда нельзя подключить</string>
 
     <string name="pref_title_disable_verbose_log">Отключить подробные логи</string>
-    <string name="pref_disable_verbose_log_summary">Подробные логи перестанут записываться после перезагрузки. Так же влияет на создаваемый размер LogCat.txt</string>
     <string name="logs_verbose_disabled">Подробные логи отключены</string>
     <string name="logs_too_long">Логи слишком большые</string>
     <string name="logs_cannot_read">Невозможно прочитать логи: \n</string>
