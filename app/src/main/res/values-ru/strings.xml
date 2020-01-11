@@ -179,7 +179,7 @@
 
     <string name="share">Поделиться</string>
     <string name="back">Назад</string>
-    <string name="loadingError">Ошибка при получении списка\nНет доступа к Интернету, или проблемы на сервере</string>
+    <string name="loadingError">Ошибка при получении списка\nНет доступа к Интернету, заблокированные адреса или проблемы на сервере (пробуйте VPN)</string>
     <string name="info">Информация</string>
     <string name="infoInstaller">
         Имя: %1$s
@@ -342,7 +342,7 @@
     <string name="app_no_ui">Это приложение не имеет пользовательский интерфейс</string>
     <string name="show_modules">Отображение модулей</string>
     <string name="show_modules_summary">Показывать модули в «Список приложений» и «Список совместимости»\nЭтот параметр не может удалять отмеченный флаг приложения</string>
-    <string name="compile_failed">Не удалось оптимизировать, проверьте ваш root-доступ</string>
+    <string name="compile_failed">Оптимизация не удалась или возврат значения пусто</string>
     <string name="hook_modules">Принудительное добавление модулей</string>
     <string name="hook_modules_summary">Принудительно добавить модули в белый список и удалить модули из черного списка\nВыключение этой настройки не удаляет модули из белого списка\nНеобходимо включение «Режим списка приложений»</string>
     <string name="not_installed">Не установлен</string>
@@ -352,4 +352,12 @@
     <string name="support_group_telegram_channel">Канал Telegram: @EdXposed</string>
     <string name="old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
     <string name="warning_list_not_enabled">«Режим списка приложений» не включен, вы можете включить в настройках</string>
+    <string name="empty_param">Пустые параметры</string>
+    <string name="reboot_system">Нормальная перезагрузка</string>
+    <string name="stop_verbose_log">Остановить отлов подробных логов</string>
+    <string name="stop_verbose_log_summary">Подробные логи перестанут отлавливаться после перезагрузки</string>
+    <string name="stop_log_summary">Логи модулей перестанут отлавливаться после перезагрузки</string>
+    <string name="stop_log">Остановить отлов логов модулей</string>
+    <string name="pref_title_disable_modules_log">Отключить логи модулей</string>
+    <string name="pref_disable_modules_log_summary">Некоторые исключения от модулей по прежнему могут нормально отлавливаться</string>
 </resources>
