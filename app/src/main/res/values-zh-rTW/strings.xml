@@ -154,7 +154,6 @@
     <string name="download_no_valid_apk">下載的檔案並非有效的 APK （或存在相容性問題）</string>
     <string name="download_incorrect_package_name">檔案包名不正確（下載：%1$s，預期：%2$s）</string>
     <string name="download_running">正在下載中</string>
-    <string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">下載 %1$s 失敗：%2$d（%3$s）</string>
@@ -247,7 +246,6 @@
     <string name="notice">通知</string>
     <string name="details">詳細情形</string>
     <string name="support_xda">取得說明</string>
-    <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
     <string name="later">稍後</string>
     <string name="save">儲存</string>
     <string name="download_location">下載位置</string>
@@ -308,20 +306,7 @@
     <string name="pref_black_white_list_summary">啟用本選項之後，您可以在「應用程式」設定清單\n黑名單模式：被選取的應用程式不會載入 EdXposed 的模組\n注意：使用應用程式清單模式可能會導致某些系統全域性模組不能正常運作。</string>
 	<string name="white_list_mode_summary">白名單模式：僅被選取的應用程式會載入 EdXposed 的模組\n應用程式清單模式需要被啟用</string>
 
-    <string name="app_name" translatable="false">EdXposed Manager</string>
-    <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
-    <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
-    <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
-    <string name="about_source" translatable="false">https://github.com/ElderDrivers/EdXposedManager/</string>
-    <string name="about_support" translatable="false">http://edxp.meowcat.org/faq</string>
-
-    <string name="solohsu" translatable="false">givein2u</string>
-    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
     <string name="meowcat">小喵工作室</string>
-    <string name="elderdrivers" translatable="false">Elder Drivers</string>
-    
-    <string name="github" translatable="false">GitHub</string>
-    <string name="xda" translatable="false">XDA</string>
 	<string name="coolapk">酷安</string>
     <string name="website">官網</string>
 
@@ -329,19 +314,6 @@
 	<string name="mlgmxyysd_summary">EdXposed Manager 的主要開發者</string>
 	<string name="elderdrivers_summary">EdXposed 的開發團隊</string>
 	<string name="meowcat_summary">MlgmXyysd 所屬團隊</string>
-    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
-    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
-    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
-    <string name="mlgmxyysd_coolapk" translatable="false">http://www.coolapk.com/u/814297</string>
-    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
-    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
-    <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
-    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
-    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
-    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
-    <string name="group_qq_link" translatable="false">https://jq.qq.com/?k=57IiX8R</string>
-    <string name="group_telegram_link" translatable="false">http://t.me/Code_of_MeowCat</string>
-    <string name="group_telegram_channel_link" translatable="false">http://t.me/EdXposed</string>
     <string name="notinstalled">EdXposed 框架未安裝！</string>
 	<string name="pref_title_enable_boot_image_deopt">不要最佳化開機鏡像</string>
     <string name="pref_enable_boot_image_deopt_summary">啟用能使所有框架都可以被掛鉤到，但是會降低系統流暢度。\n主要用於檢查某個框架連線無法被掛鉤時</string>		
