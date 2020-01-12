@@ -3,7 +3,6 @@ package org.meowcat.edxposed.manager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -46,12 +45,9 @@ import java.util.Objects;
 
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 
-import static de.robv.android.xposed.installer.XposedApp.getActiveXposedVersion;
-import static de.robv.android.xposed.installer.XposedApp.reloadXposedProp;
-
 @SuppressWarnings({"ResultOfMethodCallIgnored", "OctalInteger"})
 @SuppressLint("Registered")
-public class XposedApp extends Application implements ActivityLifecycleCallbacks {
+public class XposedApp extends de.robv.android.xposed.installer.XposedApp implements ActivityLifecycleCallbacks {
     public static final String TAG = "EdXposedManager";
     @SuppressLint("SdCardPath")
     private static final String BASE_DIR_LEGACY = "/data/data/" + BuildConfig.APPLICATION_ID + "/";
@@ -73,7 +69,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     public static InstallZipUtil.XposedProp getXposedProp() {
-        return de.robv.android.xposed.installer.XposedApp.mXposedProp;
+        return de.robv.android.xposed.installer.XposedApp.getInstance().mXposedProp;
     }
 
     public static void runOnUiThread(Runnable action) {
@@ -184,7 +180,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        reloadXposedProp();
+        de.robv.android.xposed.installer.XposedApp.getInstance().reloadXposedProp();
         createDirectories();
         delete(new File(Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/.temp"));
         NotificationUtil.init();

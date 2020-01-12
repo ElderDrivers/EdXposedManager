@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import android.annotation.SuppressLint;
+import android.app.Application;
 import android.util.Log;
 
 import org.meowcat.bugcatcher.MeowCatApplication;
@@ -12,9 +14,20 @@ import de.robv.android.xposed.installer.util.InstallZipUtil;
 
 import static de.robv.android.xposed.installer.util.InstallZipUtil.parseXposedProp;
 
-public class XposedApp {
-    public static InstallZipUtil.XposedProp mXposedProp;
+@SuppressLint("Registered")
+public class XposedApp extends Application {
+    private static XposedApp mInstance = null;
+    public InstallZipUtil.XposedProp mXposedProp;
     private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.jar");
+
+    public static XposedApp getInstance() {
+        return mInstance;
+    }
+
+    public void onCreate() {
+        super.onCreate();
+        mInstance = this;
+    }
 
     // This method is hooked by XposedBridge to return the current version
     public static Integer getActiveXposedVersion() {
@@ -22,7 +35,7 @@ public class XposedApp {
         return -1;
     }
 
-    public static void reloadXposedProp() {
+    public void reloadXposedProp() {
         InstallZipUtil.XposedProp prop = null;
         File file = null;
 
@@ -37,7 +50,8 @@ public class XposedApp {
                 Log.e(org.meowcat.edxposed.manager.XposedApp.TAG, "Could not read " + file.getPath(), e);
             }
         }
-
-        mXposedProp = prop;
+        synchronized (this) {
+            mXposedProp = prop;
+        }
     }
 }
