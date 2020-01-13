@@ -11,11 +11,6 @@ import android.text.TextUtils;
 import android.util.Pair;
 
 import org.meowcat.edxposed.manager.BuildConfig;
-
-import java.io.File;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import org.meowcat.edxposed.manager.XposedApp;
 import org.meowcat.edxposed.manager.repo.RepoDbDefinitions.InstalledModulesColumns;
 import org.meowcat.edxposed.manager.repo.RepoDbDefinitions.InstalledModulesUpdatesColumns;
@@ -28,6 +23,10 @@ import org.meowcat.edxposed.manager.repo.RepoDbDefinitions.RepositoriesColumns;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.RepoLoader;
+
+import java.io.File;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 

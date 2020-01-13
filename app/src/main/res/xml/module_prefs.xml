@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <org.meowcat.edxposed.manager.widget.ListPreferenceSummaryFix
+    <SimpleMenuPreference
         android:defaultValue=""
         android:entries="@array/module_release_type_texts"
         android:entryValues="@array/module_release_type_values"
         android:key="release_type"
         android:summary="%s"
-        android:title="@string/settings_release_type"
-        app:useStockLayout="true" />
+        android:title="@string/settings_release_type" />
 
 </PreferenceScreen>

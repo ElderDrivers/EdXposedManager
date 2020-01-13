@@ -3,27 +3,22 @@
     <!-- base colors-->
     <color name="colorPrimary">#2196f3</color>
     <color name="colorPrimaryDark">#1976d2</color>
-    <color name="colorPrimaryLight">#727272</color>
     <color name="colorAccent">#448aff</color>
     <color name="red_500">#F44336</color>
     <color name="warning">@color/red_500</color>
     <color name="download_status_update_available">#4CAF50</color>
     <color name="status_success">#59B4FB</color>
     <color name="amber_500">#FFC107</color>
-    <color name="navigationBarColor">@color/colorPrimary</color>
+    <color name="navigationBarColor">@color/background_material</color>
 
 
-    <!-- light theme-->
-    <color name="background_material" tools:ignore="PrivateResource">#ffffff</color>
-    <color name="list_download_item_color">#fff</color>
-    <color name="card_background">#fff</color>
-    <color name="card_background_pressed">#dfdfdf</color>
-    <color name="card_shadow">#dbdbdb</color>
+    <color name="background_material" tools:ignore="PrivateResource">#ff303030</color>
+    <color name="list_download_item_color">#363636</color>
+    <color name="card_background">#363636</color>
+    <color name="card_background_pressed">#505050</color>
+    <color name="card_shadow">#161616</color>
     <color name="pager_tab_strip_bg">#222</color>
-    <color name="sticky_header_background">#e5e5e5</color>
-
-    <!-- dark theme -->
-
+    <color name="sticky_header_background">#505050</color>
 
     <!-- black theme -->
     <color name="app_background_black">#000000</color>

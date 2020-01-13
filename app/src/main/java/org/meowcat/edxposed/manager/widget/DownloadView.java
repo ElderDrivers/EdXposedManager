@@ -18,12 +18,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import org.meowcat.edxposed.manager.R;
-
-import java.util.Objects;
-
 import org.meowcat.edxposed.manager.util.DownloadsUtil;
 import org.meowcat.edxposed.manager.util.DownloadsUtil.DownloadFinishedCallback;
 import org.meowcat.edxposed.manager.util.DownloadsUtil.DownloadInfo;
+
+import java.util.Objects;
 
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 

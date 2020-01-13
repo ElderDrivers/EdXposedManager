@@ -20,7 +20,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/circle_ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.XposedInstaller.Light"
+        android:theme="@style/Theme.XposedInstaller"
         tools:ignore="UnusedAttribute">
 
         <activity
@@ -160,7 +160,7 @@
             android:name=".DownloadDetailsActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
-            android:theme="@style/Theme.XposedInstaller.Transparent">
+            android:theme="@style/Theme.XposedInstaller">
             <intent-filter>
                 <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS" />
                 <action android:name="org.meowcat.edxposed.manager.DOWNLOAD_DETAILS" />
@@ -193,7 +193,7 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent">
+            android:theme="@style/Theme.XposedInstaller">
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
 
@@ -203,11 +203,11 @@
 
         <activity
             android:name=".AboutActivity"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller" />
 
         <activity
             android:name=".ModulesBookmark"
-            android:theme="@style/Theme.XposedInstaller.Transparent" />
+            android:theme="@style/Theme.XposedInstaller" />
 
         <receiver
             android:name=".receivers.PackageChangeReceiver"

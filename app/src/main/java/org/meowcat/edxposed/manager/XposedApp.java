@@ -2,7 +2,6 @@ package org.meowcat.edxposed.manager;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -15,7 +14,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,11 +24,9 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.meowcat.edxposed.manager.receivers.PackageChangeReceiver;
-import org.meowcat.edxposed.manager.util.AssetUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.NotificationUtil;
 import org.meowcat.edxposed.manager.util.RepoLoader;
@@ -93,7 +89,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 //    }
 
     public static Integer getXposedVersion() {
-            return getActiveXposedVersion();
+        return getActiveXposedVersion();
     }
 
     public static SharedPreferences getPreferences() {
@@ -105,27 +101,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         int defaultColor = context.getResources().getColor(R.color.colorPrimary);
 
         return prefs.getInt("colors", defaultColor);
-    }
-
-    public static void setColors(ActionBar actionBar, Integer value, Activity activity) {
-        int color = value;
-        SharedPreferences prefs = activity.getSharedPreferences(activity.getPackageName() + "_preferences", MODE_PRIVATE);
-
-        int drawable = iconsValues[Integer.parseInt(Objects.requireNonNull(prefs.getString("custom_icon", "0")))];
-
-        if (actionBar != null)
-            actionBar.setBackgroundDrawable(new ColorDrawable(color));
-
-        ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(activity.getString(R.string.app_name),
-                drawableToBitmap(activity.getDrawable(drawable)), color);
-        activity.setTaskDescription(tDesc);
-
-        if (getPreferences().getBoolean("nav_bar", false)) {
-            activity.getWindow().setNavigationBarColor(darkenColor(color, 0.85f));
-        } else {
-            int black = activity.getResources().getColor(android.R.color.black);
-            activity.getWindow().setNavigationBarColor(black);
-        }
     }
 
     public static Bitmap drawableToBitmap(Drawable drawable) {
@@ -184,7 +159,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         createDirectories();
         delete(new File(Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/.temp"));
         NotificationUtil.init();
-        AssetUtil.removeBusybox();
         registerReceivers();
 
         registerActivityLifecycleCallbacks(this);

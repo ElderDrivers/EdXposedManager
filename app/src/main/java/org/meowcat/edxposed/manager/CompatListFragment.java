@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -68,6 +69,9 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
 
         mAppAdapter = new CompatListAdapter(requireActivity());
         mRecyclerView.setAdapter(mAppAdapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
         mAppAdapter.setCallback(this);
 
         mSwipeRefreshLayout.setRefreshing(true);

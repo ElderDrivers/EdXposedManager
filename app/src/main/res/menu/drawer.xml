@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/drawer_main" android:checkableBehavior="single">
+    <group
+        android:id="@+id/drawer_main"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/drawer_item_1"
             android:icon="@drawable/ic_nav_install"
@@ -22,7 +24,9 @@
             android:icon="@drawable/ic_local_hospital"
             android:title="@string/nav_title_compat_list" />
     </group>
-    <group android:id="@+id/drawer_logs" android:checkableBehavior="single">
+    <group
+        android:id="@+id/drawer_logs"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/drawer_item_4"
             android:icon="@drawable/ic_nav_logs"
@@ -32,7 +36,9 @@
             android:icon="@drawable/ic_nav_logs"
             android:title="@string/nav_item_logs_err" />
     </group>
-    <group android:id="@+id/drawer_settings" android:checkableBehavior="all">
+    <group
+        android:id="@+id/drawer_settings"
+        android:checkableBehavior="all">
         <item
             android:id="@+id/drawer_item_5"
             android:icon="@drawable/ic_nav_settings"

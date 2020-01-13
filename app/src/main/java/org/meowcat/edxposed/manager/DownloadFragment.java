@@ -41,7 +41,6 @@ import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.ModuleUtil.ModuleListener;
 import org.meowcat.edxposed.manager.util.RepoLoader;
 import org.meowcat.edxposed.manager.util.RepoLoader.RepoListener;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -423,7 +422,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
             } else if (isInstalled) {
                 txtStatus.setText(mContext.getString(
                         R.string.download_status_installed, installedVersion));
-                txtStatus.setTextColor(ThemeUtil.getThemeColor(mContext, R.attr.download_status_installed));
+                //txtStatus.setTextColor(ThemeUtil.getThemeColor(mContext, R.attr.download_status_installed));
                 txtStatus.setVisibility(View.VISIBLE);
             } else {
                 txtStatus.setVisibility(View.GONE);

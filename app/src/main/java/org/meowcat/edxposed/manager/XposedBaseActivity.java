@@ -1,36 +1,64 @@
 package org.meowcat.edxposed.manager;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Locale;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import org.meowcat.edxposed.manager.util.LocaleUtil;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
+
+import java.util.Locale;
+import java.util.Objects;
 
 public abstract class XposedBaseActivity extends AppCompatActivity {
-    public int mTheme = -1;
+
+    private static final String THEME_DEFAULT = "DEFAULT";
+    private static final String THEME_BLACK = "BLACK";
+    private String mTheme;
+
+    public static boolean isBlackNightTheme() {
+        return XposedApp.getPreferences().getBoolean("black_dark_theme", false);
+    }
+
+    public static String getTheme(Context context) {
+        if (isBlackNightTheme()
+                && isNightMode(context.getResources().getConfiguration()))
+            return THEME_BLACK;
+
+        return THEME_DEFAULT;
+    }
+
+    @StyleRes
+    public static int getThemeStyleRes(Context context) {
+        switch (getTheme(context)) {
+            case THEME_BLACK:
+                return R.style.ThemeOverlay_Black;
+            case THEME_DEFAULT:
+            default:
+                return R.style.ThemeOverlay;
+        }
+    }
+
+    public static boolean isNightMode(Configuration configuration) {
+        return (configuration.uiMode & Configuration.UI_MODE_NIGHT_YES) > 0;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
-        ThemeUtil.setTheme(this);
+        AppCompatDelegate.setDefaultNightMode(XposedApp.getPreferences().getInt("theme", 0));
+        mTheme = getTheme(this);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         checkForceEnglish(prefs);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        XposedApp.setColors(getSupportActionBar(), XposedApp.getColor(this), this);
-        ThemeUtil.reloadTheme(this);
     }
 
     @Override
@@ -63,8 +91,35 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
     private void checkForceEnglish(SharedPreferences prefs) {
         if (prefs.getBoolean("force_english", false)) {
             LocaleUtil.setLocale(this.getBaseContext(), Locale.ENGLISH);
-        }else {
+        } else {
             LocaleUtil.setLocale(this.getBaseContext(), Locale.getDefault());
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!Objects.equals(mTheme, getTheme(this))) {
+            recreate();
+        }
+    }
+
+    @Override
+    protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) {
+        // apply real style and our custom style
+        if (getParent() == null) {
+            theme.applyStyle(resid, true);
+        } else {
+            try {
+                theme.setTo(getParent().getTheme());
+            } catch (Exception e) {
+                // Empty
+            }
+            theme.applyStyle(resid, false);
+        }
+        theme.applyStyle(getThemeStyleRes(this), true);
+        // only pass theme style to super, so styled theme will not be overwritten
+        super.onApplyThemeResource(theme, R.style.ThemeOverlay, first);
+    }
+
 }

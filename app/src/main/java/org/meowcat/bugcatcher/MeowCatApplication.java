@@ -22,7 +22,7 @@ public class MeowCatApplication extends XposedApp {
         disableAPIDialog();
     }
 
-    private void disableAPIDialog(){
+    private void disableAPIDialog() {
         if (Build.VERSION.SDK_INT < 28) {
             return;
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.XposedInstaller.Transparent" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.XposedInstaller.Transparent" parent="Theme.XposedInstaller">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@android:color/transparent</item>

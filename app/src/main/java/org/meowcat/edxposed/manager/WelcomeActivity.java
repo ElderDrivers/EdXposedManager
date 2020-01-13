@@ -28,7 +28,6 @@ import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.ModuleUtil.ModuleListener;
 import org.meowcat.edxposed.manager.util.RepoLoader;
 import org.meowcat.edxposed.manager.util.RepoLoader.RepoListener;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
@@ -48,7 +47,6 @@ public class WelcomeActivity extends XposedBaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_welcome);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -130,7 +128,7 @@ public class WelcomeActivity extends XposedBaseActivity
     }
 
     private void navigate(final int itemId) {
-        final View elevation = findViewById(R.id.elevation);
+        final View elevation = null;
         Fragment navFragment = null;
         switch (itemId) {
             case R.id.drawer_item_1:
@@ -251,7 +249,7 @@ public class WelcomeActivity extends XposedBaseActivity
                 .findFragmentById(R.id.content_frame);
         if (currentFragment instanceof DownloadDetailsFragment) {
             if (frameworkUpdateVersion != null) {
-                Snackbar.make(parentLayout, R.string.welcome_framework_update_available + " " + String.valueOf(frameworkUpdateVersion), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(parentLayout, R.string.welcome_framework_update_available + " " + frameworkUpdateVersion, Snackbar.LENGTH_LONG).show();
             }
         }
 

@@ -15,8 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import org.meowcat.edxposed.manager.util.ToastUtil;
 import com.topjohnwu.superuser.Shell;
+
+import org.meowcat.edxposed.manager.util.ToastUtil;
 
 import java.lang.ref.WeakReference;
 
@@ -28,7 +29,8 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
     private ApplicationInfo appInfo;
 
 
-    public CompileDialogFragment() {}
+    public CompileDialogFragment() {
+    }
 
     public static CompileDialogFragment newInstance(ApplicationInfo appInfo,
                                                     String msg, String[] commands) {

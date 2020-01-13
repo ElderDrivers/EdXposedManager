@@ -14,27 +14,19 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/Theme.XposedInstaller.Toolbar" />
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents"
+            app:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:tabIndicatorColor="@android:color/white"
-            app:tabMode="scrollable"
-            app:tabTextAppearance="@style/TextAppearance.Design.Tab" />
+            app:tabMode="fixed"
+            app:tabTextColor="@android:color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <View
-        android:id="@+id/fake_elevation"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_elevation"
-        android:layout_marginTop="104dp"
-        android:background="@drawable/toolbar_shadow" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/download_pager"

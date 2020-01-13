@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -65,12 +66,13 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         View view = inflater.inflate(R.layout.fragment_app_list, container, false);
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
-
         final boolean isWhiteListMode = isWhiteListMode();
         mAppAdapter = new BlackListAdapter(requireActivity(), isWhiteListMode);
         mRecyclerView.setAdapter(mAppAdapter);
         mAppAdapter.setCallback(this);
-
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
         mSwipeRefreshLayout.setRefreshing(true);
         mSwipeRefreshLayout.setOnRefreshListener(mAppAdapter::refresh);
 

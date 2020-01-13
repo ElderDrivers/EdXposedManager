@@ -20,7 +20,6 @@ import androidx.fragment.app.Fragment;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.meowcat.edxposed.manager.util.NavUtil;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.util.Objects;
 
@@ -39,7 +38,6 @@ public class AboutActivity extends XposedBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

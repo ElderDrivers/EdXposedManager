@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.ListFragment;
-
-import java.io.File;
-import java.text.DateFormat;
-import java.util.Date;
 
 import org.meowcat.edxposed.manager.repo.Module;
 import org.meowcat.edxposed.manager.repo.ModuleVersion;
@@ -30,9 +27,12 @@ import org.meowcat.edxposed.manager.util.HashUtil;
 import org.meowcat.edxposed.manager.util.InstallApkUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.RepoLoader;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
 import org.meowcat.edxposed.manager.util.chrome.LinkTransformationMethod;
 import org.meowcat.edxposed.manager.widget.DownloadView;
+
+import java.io.File;
+import java.text.DateFormat;
+import java.util.Date;
 
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
@@ -81,12 +81,6 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
             setListAdapter(sAdapter);
         }
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
-        int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
-        getListView().setDivider(null);
-        getListView().setDividerHeight(sixDp);
-        getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
         getListView().setClipToPadding(false);
     }
 
@@ -179,9 +173,13 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 
         public VersionsAdapter(Context context, InstalledModule installed) {
             super(context, R.layout.list_item_version);
-            mColorRelTypeStable = ThemeUtil.getThemeColor(context, android.R.attr.textColorTertiary);
+            TypedValue typedValue = new TypedValue();
+            Resources.Theme theme = context.getTheme();
+            theme.resolveAttribute(android.R.attr.textColorPrimary, typedValue, true);
+            int color = ContextCompat.getColor(context, typedValue.resourceId);
+            mColorRelTypeStable = color;
             mColorRelTypeOthers = getResources().getColor(R.color.warning);
-            mColorInstalled = ThemeUtil.getThemeColor(context, R.attr.download_status_installed);
+            mColorInstalled = color;
             mColorUpdateAvailable = getResources().getColor(R.color.download_status_update_available);
             mTextInstalled = getString(R.string.download_section_installed) + ":";
             mTextUpdateAvailable = getString(R.string.download_section_update_available) + ":";

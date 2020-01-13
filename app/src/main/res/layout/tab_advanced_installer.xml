@@ -11,11 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:tabIndicatorColor="@android:color/white"
         app:tabMode="scrollable"
-        app:tabTextAppearance="@style/TextAppearance.Design.Tab" />
+        app:tabTextColor="@android:color/white" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"

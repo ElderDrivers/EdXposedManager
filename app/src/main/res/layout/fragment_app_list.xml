@@ -10,16 +10,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp">
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:dividerHeight="@dimen/card_divider_space"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 

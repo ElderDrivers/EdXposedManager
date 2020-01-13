@@ -7,11 +7,11 @@ import android.os.Bundle;
 
 import androidx.preference.PreferenceManager;
 
-import java.util.Map;
-
 import org.meowcat.edxposed.manager.repo.Module;
 import org.meowcat.edxposed.manager.util.PrefixedSharedPreferences;
 import org.meowcat.edxposed.manager.util.RepoLoader;
+
+import java.util.Map;
 
 public class DownloadDetailsSettingsFragment extends BasePreferenceFragment {
     private DownloadDetailsActivity mActivity;
@@ -23,7 +23,7 @@ public class DownloadDetailsSettingsFragment extends BasePreferenceFragment {
     }
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferencesFix(Bundle savedInstanceState, String rootKey) {
         final Module module = mActivity.getModule();
         if (module == null)
             return;

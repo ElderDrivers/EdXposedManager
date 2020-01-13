@@ -15,9 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +38,6 @@ import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -49,7 +46,6 @@ import org.meowcat.edxposed.manager.repo.ModuleVersion;
 import org.meowcat.edxposed.manager.repo.ReleaseType;
 import org.meowcat.edxposed.manager.repo.RepoDb;
 import org.meowcat.edxposed.manager.repo.RepoDb.RowNotFoundException;
-import org.meowcat.edxposed.manager.util.AssetUtil;
 import org.meowcat.edxposed.manager.util.DownloadsUtil;
 import org.meowcat.edxposed.manager.util.InstallApkUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
@@ -57,8 +53,6 @@ import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.ModuleUtil.ModuleListener;
 import org.meowcat.edxposed.manager.util.NavUtil;
 import org.meowcat.edxposed.manager.util.RepoLoader;
-import org.meowcat.edxposed.manager.util.RootUtil;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -78,7 +72,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -89,7 +82,7 @@ import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.createFolder;
 
-public class ModulesFragment extends Fragment implements ModuleListener, AdapterView.OnItemClickListener {
+public class ModulesFragment extends BaseFragment implements ModuleListener, AdapterView.OnItemClickListener {
     public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
     static final String XPOSED_REPO_LINK = "http://repo.xposed.info/module/%s";
     static final String PLAY_STORE_PACKAGE = "com.android.vending";
@@ -104,7 +97,6 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     private ApplicationInfo.DisplayNameComparator displayNameComparator;
     private DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     private ModuleUtil mModuleUtil;
-    private RootUtil mRootUtil = new RootUtil();
     private ModuleAdapter mAdapter = null;
     private Runnable reloadModules = new Runnable() {
         public void run() {
@@ -241,15 +233,10 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         mModuleUtil.addListener(this);
         ActionBar actionBar = ((WelcomeActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
-        int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
         assert actionBar != null;
         int toolBarDp = actionBar.getHeight() == 0 ? 196 : actionBar.getHeight();
 
-        getListView().setDivider(null);
-        getListView().setDividerHeight(sixDp);
-        getListView().setPadding(eightDp, toolBarDp + eightDp, eightDp, eightDp);
+        getListView().setPadding(0, toolBarDp, 0, 0);
         getListView().setClipToPadding(false);
         getListView().setOnItemClickListener(this);
         getListView().setEmptyView(mBackgroundList);
@@ -309,56 +296,6 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-        new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
-                .content(contentTextId)
-                .iconAttr(android.R.attr.alertDialogIcon)
-                .positiveText(android.R.string.yes)
-                .negativeText(android.R.string.no).callback(yesHandler).show();
-    }
-
-    private boolean startShell() {
-        if (mRootUtil.startShell())
-            return false;
-
-        showAlert(getString(R.string.root_failed));
-        return true;
-    }
-
-    private void softReboot() {
-        if (startShell())
-            return;
-
-        List<String> messages = new LinkedList<>();
-        if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
-            messages.add("");
-            messages.add(getString(R.string.reboot_failed));
-            showAlert(TextUtils.join("\n", messages).trim());
-        }
-    }
-
-    private void reboot(String mode) {
-        if (startShell())
-            return;
-
-        List<String> messages = new LinkedList<>();
-
-        String command = "/system/bin/svc power reboot";
-        if (mode != null) {
-            command += " " + mode;
-            if (mode.equals("recovery"))
-                // create a flag used by some kernels to boot into recovery
-                mRootUtil.executeWithBusybox("touch /cache/recovery/boot", messages);
-        }
-
-        if (mRootUtil.execute(command, messages) != 0) {
-            messages.add("");
-            messages.add(getString(R.string.reboot_failed));
-            showAlert(TextUtils.join("\n", messages).trim());
-        }
-        AssetUtil.removeBusybox();
     }
 
     @Override
@@ -602,18 +539,6 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         return true;
     }
 
-    private void showAlert(final String result) {
-        MaterialDialog dialog = new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).content(result).positiveText(R.string.ok).build();
-        dialog.show();
-
-        TextView txtMessage = (TextView) dialog
-                .findViewById(android.R.id.message);
-        try {
-            txtMessage.setTextSize(14);
-        } catch (NullPointerException ignored) {
-        }
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -771,6 +696,10 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         }
     }
 
+    private boolean lowercaseContains(String s, CharSequence filter) {
+        return !TextUtils.isEmpty(s) && s.toLowerCase().contains(filter);
+    }
+
     private class ModuleAdapter extends ArrayAdapter<InstalledModule> {
         ModuleAdapter(Context context) {
             super(context, R.layout.list_item_module, R.id.title);
@@ -822,7 +751,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
             TextView descriptionText = view.findViewById(R.id.description);
             if (!item.getDescription().isEmpty()) {
                 descriptionText.setText(item.getDescription());
-                descriptionText.setTextColor(ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorSecondary));
+                //descriptionText.setTextColor(ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorSecondary));
             } else {
                 descriptionText.setText(getString(R.string.module_empty_description));
                 descriptionText.setTextColor(getResources().getColor(R.color.warning));
@@ -868,10 +797,6 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
             }
             return view;
         }
-    }
-
-    private boolean lowercaseContains(String s, CharSequence filter) {
-        return !TextUtils.isEmpty(s) && s.toLowerCase().contains(filter);
     }
 
     class ApplicationFilter extends Filter {

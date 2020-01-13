@@ -16,23 +16,23 @@ import static de.robv.android.xposed.installer.util.InstallZipUtil.parseXposedPr
 
 @SuppressLint("Registered")
 public class XposedApp extends Application {
+    private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.jar");
     private static XposedApp mInstance = null;
     public InstallZipUtil.XposedProp mXposedProp;
-    private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.jar");
 
     public static XposedApp getInstance() {
         return mInstance;
-    }
-
-    public void onCreate() {
-        super.onCreate();
-        mInstance = this;
     }
 
     // This method is hooked by XposedBridge to return the current version
     public static Integer getActiveXposedVersion() {
         Log.d(MeowCatApplication.TAG, "EdXposed is not active");
         return -1;
+    }
+
+    public void onCreate() {
+        super.onCreate();
+        mInstance = this;
     }
 
     public void reloadXposedProp() {

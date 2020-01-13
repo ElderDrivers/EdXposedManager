@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.XposedApp;
 import org.meowcat.edxposed.manager.util.InstallApkUtil;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,12 +34,12 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
 
     protected final Context context;
     private final ApplicationInfo.DisplayNameComparator displayNameComparator;
+    public Callback callback;
     private List<ApplicationInfo> fullList, showList;
     private DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     private List<String> checkedList;
     private PackageManager pm;
     private ApplicationFilter filter;
-    public Callback callback;
     private Comparator<ApplicationInfo> cmp;
 
     AppAdapter(Context context) {
@@ -181,7 +180,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
             e.printStackTrace();
         }
         holder.appPackage.setText(info.packageName);
-        holder.appPackage.setTextColor(ThemeUtil.getThemeColor(context, android.R.attr.textColorSecondary));
+        //holder.appPackage.setTextColor(ThemeUtil.getThemeColor(context, android.R.attr.textColorSecondary));
 
         holder.mSwitch.setOnCheckedChangeListener(null);
         holder.mSwitch.setChecked(checkedList.contains(info.packageName));

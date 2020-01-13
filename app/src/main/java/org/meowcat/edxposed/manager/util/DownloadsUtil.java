@@ -647,12 +647,12 @@ public class DownloadsUtil {
         public final long id;
         public final String url;
         public final String title;
-        final long lastModification;
         public final String localFilename;
         public final int status;
         public final int totalSize;
         public final int bytesDownloaded;
         public final int reason;
+        final long lastModification;
 
         private DownloadInfo(long id, String url, String title, long lastModification, String localFilename, int status, int totalSize, int bytesDownloaded, int reason) {
             this.id = id;

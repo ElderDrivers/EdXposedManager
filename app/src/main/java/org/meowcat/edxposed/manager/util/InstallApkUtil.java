@@ -14,14 +14,15 @@ import android.os.Build;
 
 import androidx.core.content.FileProvider;
 
+import com.topjohnwu.superuser.Shell;
+
 import org.meowcat.edxposed.manager.R;
+import org.meowcat.edxposed.manager.XposedApp;
 
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-
-import org.meowcat.edxposed.manager.XposedApp;
 
 public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
 
@@ -30,9 +31,13 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
     private final DownloadsUtil.DownloadInfo info;
     @SuppressLint("StaticFieldLeak")
     private final Context context;
-    private RootUtil mRootUtil;
     private boolean isApkRootInstallOn;
     private List<String> output = new LinkedList<>();
+
+    public InstallApkUtil(Context context, DownloadsUtil.DownloadInfo info) {
+        this.context = context;
+        this.info = info;
+    }
 
     public static String getAppLabel(ApplicationInfo info, PackageManager pm) {
         try {
@@ -46,13 +51,6 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         } catch (Exception ignored) {
         }
         return info.loadLabel(pm).toString();
-    }
-
-    public InstallApkUtil(Context context, DownloadsUtil.DownloadInfo info) {
-        this.context = context;
-        this.info = info;
-
-        mRootUtil = new RootUtil();
     }
 
     static void installApkNormally(Context context, String localFilename) {
@@ -79,7 +77,6 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
 
         if (isApkRootInstallOn) {
             NotificationUtil.showModuleInstallingNotification(info.title);
-            mRootUtil.startShell();
         }
     }
 
@@ -90,8 +87,8 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
             try {
                 String path = "/data/local/tmp/";
                 String fileName = new File(info.localFilename).getName();
-                mRootUtil.execute("cat \"" + info.localFilename + "\">" + path + fileName, output);
-                returnCode = mRootUtil.execute("pm install -r -f \"" + path + fileName + "\"", output);
+                Shell.su("cat \"" + info.localFilename + "\">" + path + fileName).exec();
+                returnCode = Shell.su("pm install -r -f \"" + path + fileName + "\"").exec().getCode();
                 //noinspection ResultOfMethodCallIgnored
                 new File(path + fileName).delete();
             } catch (IllegalStateException e) {

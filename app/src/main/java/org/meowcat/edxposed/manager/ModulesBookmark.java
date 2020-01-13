@@ -33,18 +33,17 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-
 import org.meowcat.edxposed.manager.repo.Module;
 import org.meowcat.edxposed.manager.repo.ModuleVersion;
 import org.meowcat.edxposed.manager.util.DownloadsUtil;
 import org.meowcat.edxposed.manager.util.InstallApkUtil;
 import org.meowcat.edxposed.manager.util.RepoLoader;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
@@ -58,7 +57,6 @@ public class ModulesBookmark extends XposedBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
         mRepoLoader = RepoLoader.getInstance();

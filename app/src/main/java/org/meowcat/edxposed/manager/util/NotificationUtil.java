@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 
+import com.topjohnwu.superuser.Shell;
+
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.WelcomeActivity;
 import org.meowcat.edxposed.manager.XposedApp;
@@ -269,8 +271,7 @@ public final class NotificationUtil {
                 if (intent.hasExtra(EXTRA_ACTIVATE_MODULE_AND_RETURN)) return;
             }
 
-            RootUtil rootUtil = new RootUtil();
-            if (!rootUtil.startShell()) {
+            if (!Shell.rootAccess()) {
                 Log.e(XposedApp.TAG, "NotificationUtil -> Could not start root shell");
                 return;
             }
@@ -279,18 +280,12 @@ public final class NotificationUtil {
             boolean isSoftReboot = intent.getBooleanExtra(EXTRA_SOFT_REBOOT,
                     false);
             int returnCode = isSoftReboot
-                    ? rootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages)
-                    : rootUtil.executeWithBusybox("reboot", messages);
+                    ? Shell.su("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote").exec().getCode()
+                    : Shell.su("reboot").exec().getCode();
 
             if (returnCode != 0) {
-                Log.e(XposedApp.TAG, "NotificationUtil -> Could not reboot:");
-                for (String line : messages) {
-                    Log.e(XposedApp.TAG, line);
-                }
+                Log.e(XposedApp.TAG, "NotificationUtil -> Could not reboot");
             }
-
-            rootUtil.dispose();
-            AssetUtil.removeBusybox();
         }
     }
 

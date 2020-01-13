@@ -20,18 +20,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.meowcat.edxposed.manager.util.NavUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -211,9 +207,6 @@ public class StatusInstallerFragment extends Fragment {
             installedXposedVersion = null;
         }
 
-        View disableView = v.findViewById(R.id.disableView);
-        final SwitchCompat xposedDisable = v.findViewById(R.id.disableSwitch);
-
         TextView api = v.findViewById(R.id.api);
         TextView framework = v.findViewById(R.id.framework);
         TextView manager = v.findViewById(R.id.manager);
@@ -250,43 +243,7 @@ public class StatusInstallerFragment extends Fragment {
             txtInstallError.setTextColor(sActivity.getResources().getColor(R.color.warning));
             txtInstallContainer.setBackgroundColor(sActivity.getResources().getColor(R.color.warning));
             txtInstallIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_error));
-            xposedDisable.setVisibility(View.GONE);
-            disableView.setVisibility(View.GONE);
         }
-
-        xposedDisable.setChecked(!DISABLE_FILE.exists());
-
-        xposedDisable.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (DISABLE_FILE.exists()) {
-                DISABLE_FILE.delete();
-                Snackbar.make(xposedDisable, R.string.xposed_on_next_reboot, Snackbar.LENGTH_LONG).show();
-            } else {
-                if (!DISABLE_FILE.exists()) {
-                    FileOutputStream fos = null;
-                    try {
-                        fos = new FileOutputStream(DISABLE_FILE.getPath());
-                        setFilePermissionsFromMode(DISABLE_FILE.getPath(), Context.MODE_WORLD_READABLE);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } finally {
-                        if (fos != null) {
-                            try {
-                                fos.close();
-                                Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                                try {
-                                    DISABLE_FILE.createNewFile();
-                                    Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
-                                } catch (IOException e1) {
-                                    Log.e(XposedApp.TAG, "StatusInstallerFragment -> " + e.getMessage());
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        });
 
         androidSdk.setText(getString(R.string.android_sdk, getAndroidVersion(), Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
         manufacturer.setText(getUIFramework());

@@ -25,7 +25,6 @@ import androidx.fragment.app.Fragment;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.meowcat.edxposed.manager.util.NavUtil;
-import org.meowcat.edxposed.manager.util.RootUtil;
 import org.meowcat.edxposed.manager.util.json.XposedTab;
 import org.meowcat.edxposed.manager.util.json.XposedZip;
 
@@ -36,12 +35,11 @@ import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class BaseAdvancedInstaller extends Fragment {
 
-//    private static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
+    //    private static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
 //    private static final int INSTALL_MODE_NORMAL = 0;
 //    private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
 //    private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
 //    private static String APP_PROCESS_NAME = null;
-    private static RootUtil mRootUtil = new RootUtil();
     //private List<String> messages = new ArrayList<>();
     private View mClickedButton;
 
@@ -118,7 +116,6 @@ public class BaseAdvancedInstaller extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mRootUtil.dispose();
     }
 
     @Nullable

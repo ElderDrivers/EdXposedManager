@@ -3,11 +3,12 @@ package org.meowcat.edxposed.manager;
 import android.annotation.SuppressLint;
 
 import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceGroupAdapter;
 import androidx.preference.PreferenceScreen;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 /**
  * Remove extra reserved space when preference icon is not set, this workaround is from

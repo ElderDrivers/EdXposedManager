@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.AttributeSet;
 
-import androidx.preference.ListPreference;
-
-public class IntegerListPreference extends ListPreference {
+public class IntegerListPreference extends com.takisoft.preferencex.SimpleMenuPreference {
     public IntegerListPreference(Context context) {
         super(context);
     }

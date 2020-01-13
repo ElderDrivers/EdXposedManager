@@ -14,20 +14,6 @@
             android:title="@string/custom_icon"
             app:icons="@array/iconsDrawables" />
 
-        <Preference
-            android:key="colors"
-            android:title="@string/choose_color" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="old_success_color"
-            android:title="@string/old_success_color" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="nav_bar"
-            android:title="@string/nav_bar_coloration" />
-
         <SwitchPreference
             android:defaultValue="false"
             android:key="colored_notification"
@@ -39,8 +25,10 @@
             android:entryValues="@array/theme_values"
             android:key="theme"
             android:summary="%s"
-            android:title="@string/settings_theme"
-            app:useStockLayout="true" />
+            android:title="@string/settings_theme" />
+        <SwitchPreference
+            android:key="black_dark_theme"
+            android:title="@string/pure_black_dark_theme" />
 
         <org.meowcat.edxposed.manager.widget.IntegerListPreference
             android:defaultValue="0"
@@ -48,8 +36,7 @@
             android:entryValues="@array/default_view_values"
             android:key="default_view"
             android:summary="%s"
-            android:title="@string/settings_default_view"
-            app:useStockLayout="true" />
+            android:title="@string/settings_default_view" />
 
         <SwitchPreference
             android:defaultValue="true"
@@ -77,8 +64,7 @@
             android:entryValues="@array/list_sort_values"
             android:key="list_sort"
             android:summary="%s"
-            android:title="@string/list_sort"
-            app:useStockLayout="true" />
+            android:title="@string/list_sort" />
 
         <SwitchPreference
             android:defaultValue="false"
@@ -114,14 +100,13 @@
             android:summary="@string/install_with_su_summ"
             android:title="@string/install_with_su" />
 
-        <org.meowcat.edxposed.manager.widget.ListPreferenceSummaryFix
+        <SimpleMenuPreference
             android:defaultValue="stable"
             android:entries="@array/release_type_texts"
             android:entryValues="@array/release_type_values"
             android:key="release_type_global"
             android:summary="%s"
-            android:title="@string/settings_release_type"
-            app:useStockLayout="true" />
+            android:title="@string/settings_release_type" />
 
         <SwitchPreference
             android:defaultValue="false"
@@ -217,17 +202,17 @@
             android:summary="@string/pref_disable_modules_log_summary"
             android:title="@string/pref_title_disable_modules_log" />
 
-<!--        <Preference-->
-<!--            android:key="stop_verbose_log"-->
-<!--            android:summary="@string/stop_verbose_log_summary"-->
-<!--            android:title="@string/stop_verbose_log"-->
-<!--            android:shouldDisableView="true" />-->
+        <!--        <Preference-->
+        <!--            android:key="stop_verbose_log"-->
+        <!--            android:summary="@string/stop_verbose_log_summary"-->
+        <!--            android:title="@string/stop_verbose_log"-->
+        <!--            android:shouldDisableView="true" />-->
 
-<!--        <Preference-->
-<!--            android:key="stop_log"-->
-<!--            android:summary="@string/stop_log_summary"-->
-<!--            android:title="@string/stop_log"-->
-<!--            android:shouldDisableView="true" />-->
+        <!--        <Preference-->
+        <!--            android:key="stop_log"-->
+        <!--            android:summary="@string/stop_log_summary"-->
+        <!--            android:title="@string/stop_log"-->
+        <!--            android:shouldDisableView="true" />-->
 
     </PreferenceCategory>
 

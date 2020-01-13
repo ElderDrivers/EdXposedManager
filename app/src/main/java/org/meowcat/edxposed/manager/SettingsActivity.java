@@ -9,7 +9,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.FileUtils;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.ListPreference;
@@ -30,7 +30,6 @@ import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.topjohnwu.superuser.Shell;
 
 import org.meowcat.edxposed.manager.util.RepoLoader;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
 import org.meowcat.edxposed.manager.widget.IconListPreference;
 
 import java.io.File;
@@ -51,7 +50,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
         toolbar = findViewById(R.id.toolbar);
@@ -113,29 +111,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
     @SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
     public static class SettingsFragment extends BasePreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
-
-        final static int[] PRIMARY_COLORS = new int[]{
-                Color.parseColor("#F44336"),
-                Color.parseColor("#E91E63"),
-                Color.parseColor("#9C27B0"),
-                Color.parseColor("#673AB7"),
-                Color.parseColor("#3F51B5"),
-                Color.parseColor("#2196F3"),
-                Color.parseColor("#03A9F4"),
-                Color.parseColor("#00BCD4"),
-                Color.parseColor("#009688"),
-                Color.parseColor("#4CAF50"),
-                Color.parseColor("#8BC34A"),
-                Color.parseColor("#CDDC39"),
-                Color.parseColor("#FFEB3B"),
-                Color.parseColor("#FFC107"),
-                Color.parseColor("#FF9800"),
-                Color.parseColor("#FF5722"),
-                Color.parseColor("#795548"),
-                Color.parseColor("#9E9E9E"),
-                Color.parseColor("#607D8B"),
-                Color.parseColor("#FA7298")
-        };
         static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
         static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
         static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
@@ -200,7 +175,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
         @SuppressLint({"ObsoleteSdkInt", "WorldReadableFiles"})
         @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        public void onCreatePreferencesFix(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.prefs);
 
 //            PreferenceGroup groupApp = findPreference("group_app");
@@ -443,7 +418,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 return (enabled == mDisableResourcesFlag.exists());
             });
 
-            Objects.requireNonNull(colors).setOnPreferenceClickListener(this);
             Objects.requireNonNull(customIcon).setOnPreferenceChangeListener(iconChange);
             downloadLocation.setOnPreferenceClickListener(this);
 
@@ -456,7 +430,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
             //if (Build.VERSION.SDK_INT >= 21)
-                Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+            Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
         }
 
         @Override
@@ -468,9 +442,10 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals("theme") || key.equals("nav_bar") || key.equals("ignore_chinese"))
+            if (key.equals("theme") || key.equals("nav_bar") || key.equals("ignore_chinese")) {
+                AppCompatDelegate.setDefaultNightMode(XposedApp.getPreferences().getInt("theme", 0));
                 Objects.requireNonNull(getActivity()).recreate();
-
+            }
             if (key.equals("force_english"))
                 Toast.makeText(getActivity(), getString(R.string.warning_language), Toast.LENGTH_SHORT).show();
         }
@@ -481,14 +456,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             if (act == null)
                 return false;
 
-            if (preference.getKey().equals("colors")) {
-                new ColorChooserDialog.Builder(act, R.string.choose_color)
-                        .backButton(R.string.back)
-                        .allowUserColorInput(false)
-                        .customColors(PRIMARY_COLORS, null)
-                        .doneButton(R.string.ok)
-                        .preselect(XposedApp.getColor(act)).show();
-            } else if (preference.getKey().equals(downloadLocation.getKey())) {
+            if (preference.getKey().equals(downloadLocation.getKey())) {
                 if (checkPermissions()) {
                     mClickedPreference = downloadLocation;
                     return false;
@@ -498,7 +466,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                         .cancelButton(android.R.string.cancel)
                         .initialPath(XposedApp.getDownloadPath())
                         .show();
-            }else if (preference.getKey().equals(stopVerboseLog.getKey())) {
+            } else if (preference.getKey().equals(stopVerboseLog.getKey())) {
                 new Runnable() {
                     @Override
                     public void run() {

@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,16 +25,15 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.List;
-import java.util.Objects;
-
 import org.meowcat.edxposed.manager.repo.Module;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.ModuleUtil.ModuleListener;
 import org.meowcat.edxposed.manager.util.RepoLoader;
 import org.meowcat.edxposed.manager.util.RepoLoader.RepoListener;
-import org.meowcat.edxposed.manager.util.ThemeUtil;
+
+import java.util.List;
+import java.util.Objects;
 
 import static org.meowcat.edxposed.manager.XposedApp.TAG;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
@@ -56,7 +54,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        ThemeUtil.setTheme(this);
 
         mPackageName = getModulePackageName();
         try {
@@ -100,9 +97,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
             // Updates available => start on the versions page
             if (mInstalledModule != null && mInstalledModule.isUpdate(sRepoLoader.getLatestVersion(mModule)) || directDownload)
                 mPager.setCurrentItem(DOWNLOAD_VERSIONS);
-
-            if (Build.VERSION.SDK_INT >= 21)
-                findViewById(R.id.fake_elevation).setVisibility(View.GONE);
 
         } else {
             setContentView(R.layout.activity_download_details_not_found);

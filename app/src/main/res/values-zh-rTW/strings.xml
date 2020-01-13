@@ -118,7 +118,7 @@
     <string name="support_faq_label">常見/已知問題</string>
     <string name="support_group_qq">QQ 群組：855219808</string>
     <string name="support_group_telegram">Telegram 群組：@Code_of_MeowCat</string>
-    <string name="support_donate_label">捐贈</string>  
+    <string name="support_donate_label">捐贈</string>
     <string name="support_donate_description">如果您想對 EdXposed 表達感謝，可以在此向我們捐贈</string>
 
     <!-- Logs tab  -->
@@ -261,10 +261,10 @@
     <string name="installation_successful">安裝成功</string>
     <string name="installation_successful_message">成功安裝 %s</string>
     <string name="installation_error_message">%1$s 安裝失敗 (%2$s)</string>
-	<string name="installation_apk_normal">使用普通的方式安裝 APK</string>
+    <string name="installation_apk_normal">使用普通的方式安裝 APK</string>
     <string name="install_load">安裝中……</string>
     <string name="install_load_apk">正在安裝 %s</string>
-	
+
     <string name="unstable_build">這是一個不穩定的組建。自行承擔安裝後的風險。</string>
     <string name="unofficial_build">這是一個非官方的組建。自行承擔安裝後的風險。</string>
     <string name="alt_download_method">備用下載方法</string>
@@ -272,7 +272,7 @@
     <string name="custom_list">使用已鏡像的模組清單</string>
     <string name="custom_list_summ">已鏡像的模組清單可以讓清單載入更快速\n但是新傳送到線上模組庫的模組將會被延遲（約 24 小時）</string>
 
-	<string name="known_issue_wrong_base_directory">配置資料夾錯誤：%1$s</string>
+    <string name="known_issue_wrong_base_directory">配置資料夾錯誤：%1$s</string>
     <string name="known_issue_missing_base_directory">遺失配置的資料夾</string>
 
     <string name="dexopt_now">以 Dexopt 模式最佳化全部的應用程式</string>
@@ -280,11 +280,11 @@
     <string name="this_may_take_a_while">請稍候，這將需要一段時間……</string>
     <string name="take_while_cannot_resore">您確定要最佳化全部的應用程式嗎？\n這將需要花費一段時間並且無法恢復操作。\n提示：你可以在應用程式清單中最佳化單個應用程式。</string>
     <string name="done">完成！</string>
-	<string name="verified_boot_deactivated">開機驗證已停用</string>
-	<string name="verified_boot_none">無法取得開機驗證的狀態</string>
+    <string name="verified_boot_deactivated">開機驗證已停用</string>
+    <string name="verified_boot_none">無法取得開機驗證的狀態</string>
     <string name="verified_boot_active">開機驗證已啟動</string>
-	<string name="verified_boot_explanation">開機驗證（DM-Verity） 防止裝置在開機時修改系統分割區</string>						 
-	<string name="ignore_chinese">忽略中文字元</string>
+    <string name="verified_boot_explanation">開機驗證（DM-Verity） 防止裝置在開機時修改系統分割區</string>
+    <string name="ignore_chinese">忽略中文字元</string>
     <string name="ignore_chinese_summary">從模組清單中隱藏中文模組。模組仍然可以被搜尋。啟用此選項可能會降低效能。</string>
 
     <!-- EdXp related -->
@@ -304,24 +304,24 @@
     <string name="title_compat_list">相容模式</string>
     <string name="pref_title_black_white_list">應用程式清單模式</string>
     <string name="pref_black_white_list_summary">啟用本選項之後，您可以在「應用程式」設定清單\n黑名單模式：被選取的應用程式不會載入 EdXposed 的模組\n注意：使用應用程式清單模式可能會導致某些系統全域性模組不能正常運作。</string>
-	<string name="white_list_mode_summary">白名單模式：僅被選取的應用程式會載入 EdXposed 的模組\n應用程式清單模式需要被啟用</string>
+    <string name="white_list_mode_summary">白名單模式：僅被選取的應用程式會載入 EdXposed 的模組\n應用程式清單模式需要被啟用</string>
 
     <string name="meowcat">小喵工作室</string>
-	<string name="coolapk">酷安</string>
+    <string name="coolapk">酷安</string>
     <string name="website">官網</string>
 
-    <string name="solohsu_summary">EdXposed 的主要開發者</string>	
-	<string name="mlgmxyysd_summary">EdXposed Manager 的主要開發者</string>
-	<string name="elderdrivers_summary">EdXposed 的開發團隊</string>
-	<string name="meowcat_summary">MlgmXyysd 所屬團隊</string>
+    <string name="solohsu_summary">EdXposed 的主要開發者</string>
+    <string name="mlgmxyysd_summary">EdXposed Manager 的主要開發者</string>
+    <string name="elderdrivers_summary">EdXposed 的開發團隊</string>
+    <string name="meowcat_summary">MlgmXyysd 所屬團隊</string>
     <string name="notinstalled">EdXposed 框架未安裝！</string>
-	<string name="pref_title_enable_boot_image_deopt">不要最佳化開機鏡像</string>
-    <string name="pref_enable_boot_image_deopt_summary">啟用能使所有框架都可以被掛鉤到，但是會降低系統流暢度。\n主要用於檢查某個框架連線無法被掛鉤時</string>		
-	
+    <string name="pref_title_enable_boot_image_deopt">不要最佳化開機鏡像</string>
+    <string name="pref_enable_boot_image_deopt_summary">啟用能使所有框架都可以被掛鉤到，但是會降低系統流暢度。\n主要用於檢查某個框架連線無法被掛鉤時</string>
+
     <string name="pref_title_disable_verbose_log">停用詳細的日誌紀錄</string>
     <string name="logs_verbose_disabled">詳細的日誌紀錄已停用</string>
     <string name="logs_too_long">日誌太長！</string>
-    <string name="logs_cannot_read">無法讀取日誌：\n</string>	
+    <string name="logs_cannot_read">無法讀取日誌：\n</string>
     <string name="app_launch">啟動</string>
     <string name="app_stop">停止</string>
     <string name="update_description">更新日誌</string>
@@ -341,7 +341,7 @@
     <string name="app_no_ui">應用程式未提供使用者介面</string>
     <string name="show_modules">顯示模組</string>
     <string name="show_modules_summary">在應用程式清單內顯示模組。\n此選項並不會移除已勾選的應用標識。</string>
-	<string name="compile_failed">最佳化失敗</string>
+    <string name="compile_failed">最佳化失敗</string>
     <string name="hook_modules">強制掛鉤模組</string>
     <string name="hook_modules_summary">強制新增模組到白名單並從黑名單移除\n關閉本選項不會把模組從白名單移除\n應用程式清單模式需要被啟用</string>
     <string name="not_installed">未安裝</string>

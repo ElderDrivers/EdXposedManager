@@ -153,7 +153,7 @@
     <string name="download_could_not_read_file">Не удалось прочитать загруженный файл: %s</string>
     <string name="download_no_valid_apk">Загруженный файл не является APK (или несовместим)</string>
     <string name="download_incorrect_package_name">Некорректное название пакета (загружено: %1$s, ожидалось: %2$s)</string>
-	<string name="download_running">Выполняется загрузка</string>
+    <string name="download_running">Выполняется загрузка</string>
     <string name="download_progress">%1$,d / %2$,d кб</string>
 
     <!-- RepoLoader -->
