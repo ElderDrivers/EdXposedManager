@@ -27,7 +27,7 @@
         tools:targetApi="n_mr1">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass=".WelcomeActivity"
+            android:targetClass="org.meowcat.edxposed.manager.WelcomeActivity"
             android:targetPackage="org.meowcat.edxposed.manager">
             <extra
                 android:name="fragment"
@@ -44,7 +44,7 @@
         tools:targetApi="n_mr1">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass=".WelcomeActivity"
+            android:targetClass="org.meowcat.edxposed.manager.WelcomeActivity"
             android:targetPackage="org.meowcat.edxposed.manager">
             <extra
                 android:name="fragment"
