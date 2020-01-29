@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EdXposed Manager</string>
+    <string name="btn_no">取消</string>
+    <string name="btn_ok">好</string>
+    <string name="upgrade_msg">需要升级到完整的 EdXposed Manager 来完成安装。 现在下载？</string>
+</resources>
