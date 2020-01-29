@@ -9,6 +9,8 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "stub"
+        //noinspection GroovyAccessibility
+        project.ext.set("archivesBaseName", "EdXposed")
     }
 
     buildTypes {
