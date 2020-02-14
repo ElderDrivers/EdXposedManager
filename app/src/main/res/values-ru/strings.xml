@@ -114,7 +114,7 @@
     <!-- Support tab -->
     <string name="support_modules_label">Поддержка модулей</string>
     <string name="support_modules_description">Нажатие на модуле, в меню \"Установленные модули\" и выберите \"%1$s\"</string>
-    <string name="support_framework_label">Поддержка EdXposed Framework | EdXposed</string>
+    <string name="support_framework_label">Поддержка EdXposed Framework | EdXposed Manager</string>
     <string name="support_faq_label">Справка | Известные проблемы</string>
     <string name="support_group_qq">Группа QQ: 855219808</string>
     <string name="support_group_telegram">Группа Telegram: @Code_of_MeowCat</string>
@@ -191,7 +191,7 @@
     </string>
     <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя</string>
     <string name="warningArchitecture">После загрузки zip архива, установите через Magisk Manager или прошейте в Recovery</string>
-    <string name="newVersion">Доступна новая версия EdXposed!</string>
+    <string name="newVersion">Доступна новая версия EdXposed Manager!</string>
     <string name="update">Установить обновление</string>
     <string name="choose_icon">Изменить иконку приложения</string>
     <string name="custom_icon">Выбрать иконку</string>
@@ -218,7 +218,7 @@
     <string name="notification_coloration">Цветная иконка уведомлений</string>
     <string name="file_is_empty">Файлов нет</string>
     <string name="install_with_su">Автоустановка модуля (root)</string>
-    <string name="install_with_su_summ">Если выбрано, EdXposed будет устанавливать модули без запроса на установку</string>
+    <string name="install_with_su_summ">Если выбрано, EdXposed Manager будет устанавливать модули без запроса на установку</string>
     <string name="install_remove">Установить и удалить</string>
     <string name="download_remove">Скачать и удалить</string>
     <string name="module_saved">Модуль сохранен в %1$s</string>
@@ -235,7 +235,7 @@
     <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
     <string name="open_drawer">Боковое меню</string>
     <string name="share_app">Поделиться</string>
-    <string name="share_app_text">Попробуйте: Xposed Framework с открытым исходным кодом для последней версии EdXposed! %s</string>
+    <string name="share_app_text">Попробуйте: Xposed Framework с открытым исходным кодом для последней версии EdXposed Manager! %s</string>
     <string name="status">Статус EdXposed</string>
     <string name="xposed_on_next_reboot">EdXposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">EdXposed Framework будет выключен после перезагрузки</string>
@@ -308,11 +308,11 @@
     <string name="pref_black_white_list_summary">Примечание: После открытия вкладки «Список приложений» вы увидите черный или белый список.\nВ режиме черного списка: Выбранные приложения не будут использовать модули EdXposed.\nИспользование режима списка приложений может нарушить функции общесистемных модулей</string>
     <string name="white_list_mode_summary">В режиме белого списка: Выбранные приложения будут использовать модули EdXposed.\nНеобходимо включение режима «Режим списка приложений»</string>
 
-    <string name="app_name" translatable="false">EdXposed</string>
+    <string name="app_name" translatable="false">EdXposed Manager</string>
     <string name="website">Веб-сайт</string>
 
     <string name="solohsu_summary">Разработчик EdXposed</string>
-    <string name="mlgmxyysd_summary">Разработчик EdXposed</string>
+    <string name="mlgmxyysd_summary">Разработчик EdXposed Manager</string>
     <string name="elderdrivers_summary">Организация EdXposed</string>
     <string name="meowcat_summary">Организация MlgmXyysd</string>
     <string name="notinstalled">Платформа EdXposed Framework не установлена</string>
@@ -326,7 +326,7 @@
     <string name="app_launch">Запустить</string>
     <string name="app_stop">Остановить</string>
     <string name="update_description">Список изменений</string>
-    <string name="edxp_installer_installed">Вы должны удалить EdXposed Установщик, чтобы использовать EdXposed</string>
+    <string name="edxp_installer_installed">Вы должны удалить EdXposed Installer, чтобы использовать EdXposed Manager</string>
     <string name="install_time">Установлен: </string>
     <string name="update_time">Обновлен: </string>
     <string name="enabled_top">Показывать включенные модули или приложения в начале списка</string>
