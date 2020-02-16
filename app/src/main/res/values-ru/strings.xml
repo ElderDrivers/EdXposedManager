@@ -35,7 +35,7 @@
     <string name="dont_show_again">Больше не показывать это сообщение</string>
     <string name="install_known_issue">Похоже, присутствует известная проблема (\"%s\").\nНажмите здесь для дополнительной информации</string>
     <string name="installed_lollipop">EdXposed Framework активирован!</string>
-    <string name="installed_lollipop_inactive">EdXposed Framework установлен, но не активирован.\nПроверьте логи для подробностей</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework установлен, но не активирован. Проверьте логи для подробностей</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
 
     <!-- File operations -->
