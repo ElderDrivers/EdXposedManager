@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">Отправить</string>
     <string name="menuSaveToSd">Сохранить на SD-карту</string>
-    <string name="xposed_not_active">EdXposed Framework в настоящее время не установлен или не активен\nВы можете закрыть проверку статуса в настройках</string>
+    <string name="xposed_not_active">EdXposed Framework в настоящее время не установлен или не активен.\nВы можете закрыть проверку статуса в настройках</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">Устройство</string>
@@ -31,15 +31,15 @@
     <string name="phone_not_compatible">EdXposed (пока) не совместим с версией Android SDK %1$d или архитектурой процессора (%2$s)</string>
     <string name="reboot_failed">Сбой перезагрузки. Используйте встроенную функцию перезагрузки на устройстве</string>
     <string name="install_warning_title">Будьте осторожны!</string>
-    <string name="install_warning">В некоторых случаях устройство может не загрузиться после установки EdXposed.\n\nЕсли вы не знаете, что означают слова «soft brick» и «bootloop» (кирпич и бутлуп), и не знаете, как восстановить систему, <b>НЕ</b> устанавливайте и не используйте EdXposed!\n\nИ даже если уверены в себе, не забудьте сделать резервную копию системы."</string>
+    <string name="install_warning">В некоторых случаях устройство может не загрузиться после установки EdXposed.\nЕсли вы не знаете, что означают слова «soft brick» и «bootloop» (кирпич и бутлуп), и не знаете, как восстановить систему, <b>НЕ</b> устанавливайте и не используйте EdXposed!\nИ даже если уверены в себе, не забудьте сделать резервную копию системы."</string>
     <string name="dont_show_again">Больше не показывать это сообщение</string>
-    <string name="install_known_issue">Похоже, присутствует известная проблема (\"%s\")\nНажмите здесь для дополнительной информации</string>
+    <string name="install_known_issue">Похоже, присутствует известная проблема (\"%s\").\nНажмите здесь для дополнительной информации</string>
     <string name="installed_lollipop">EdXposed Framework активирован!</string>
-    <string name="installed_lollipop_inactive">EdXposed Framework установлен, но не активирован\Проверьте логи для подробностей</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework установлен, но не активирован. Проверьте логи для подробностей</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
 
     <!-- File operations -->
-    <string name="root_failed">"Сбой получения прав рут-доступа\n\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются"</string>
+    <string name="root_failed">"Сбой получения прав рут-доступа.\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются"</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">EdXposed модуль еще не активирован</string>
@@ -50,7 +50,7 @@
     <string name="module_empty_description">(описание отсутствует)</string>
     <string name="module_no_ui">Этот модуль не содержит пользовательского интерфейса</string>
     <string name="no_xposed_modules_found">Модули EdXposed не найдены!</string>
-    <string name="xposed_module_list_updated">Список EdXposed модулей обновлен\nИзменения вступят в силу после перезагрузки</string>
+    <string name="xposed_module_list_updated">Список EdXposed модулей обновлен.\nИзменения вступят в силу после перезагрузки</string>
     <string name="xposed_module_updated_notification_title">Модуль EdXposed обновлен</string>
     <string name="xposed_module_updated_notification">Перезагрузите устройство</string>
     <string name="warning_xposed_min_version">Этот модуль требует более новой версии EdXposedBridge (%d) и не может быть активирован</string>
@@ -103,7 +103,7 @@
     <string name="settings_release_type">Отображение версий модуля</string>
     <string name="settings_group_framework">Framework</string>
     <string name="settings_disable_resources">Не изменять ресурсы</string>
-    <string name="settings_disable_resources_summary">Временное решение для конфликтов с темами системы\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
+    <string name="settings_disable_resources_summary">Временное решение для конфликтов с темами системы.\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
     <string name="settings_group_app">Приложение</string>
     <string name="settings_theme">Тема</string>
     <string name="settings_theme_light">Светлая</string>
@@ -114,7 +114,7 @@
     <!-- Support tab -->
     <string name="support_modules_label">Поддержка модулей</string>
     <string name="support_modules_description">Нажатие на модуле, в меню \"Установленные модули\" и выберите \"%1$s\"</string>
-    <string name="support_framework_label">Поддержка EdXposed Framework | EdXposed Менеджер</string>
+    <string name="support_framework_label">Поддержка EdXposed Framework | EdXposed Manager</string>
     <string name="support_faq_label">Справка | Известные проблемы</string>
     <string name="support_group_qq">Группа QQ: 855219808</string>
     <string name="support_group_telegram">Группа Telegram: @Code_of_MeowCat</string>
@@ -179,7 +179,7 @@
 
     <string name="share">Поделиться</string>
     <string name="back">Назад</string>
-    <string name="loadingError">Ошибка при получении списка\nНет доступа к Интернету, заблокированные адреса или проблемы на сервере (пробуйте VPN)</string>
+    <string name="loadingError">Ошибка при получении списка.\nНет доступа к Интернету, заблокированные адреса или проблемы на сервере (пробуйте VPN)</string>
     <string name="info">Информация</string>
     <string name="infoInstaller">
         Имя: %1$s
@@ -190,8 +190,8 @@
         \nДата: %2$s
     </string>
     <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя</string>
-    <string name="warningArchitecture">После загрузки zip архива, установите через Magisk Manager или прошейте в Рекавери</string>
-    <string name="newVersion">Доступна новая версия EdXposed Менеджер!</string>
+    <string name="warningArchitecture">После загрузки zip архива, установите через Magisk Manager или прошейте в Recovery</string>
+    <string name="newVersion">Доступна новая версия EdXposed Manager!</string>
     <string name="update">Установить обновление</string>
     <string name="choose_icon">Изменить иконку приложения</string>
     <string name="custom_icon">Выбрать иконку</string>
@@ -207,7 +207,7 @@
     <string name="md_custom_label">Пользовательские</string>
     <string name="md_presets_label">Пресеты</string>
     <string name="changelog">Список изменений</string>
-    <string name="scroll_top">Прокрутка вверх</string>
+    <string name="scroll_top">Прокрутить вверх</string>
     <string name="add_bookmark">Добавить закладку</string>
     <string name="remove_bookmark">Удалить закладку</string>
     <string name="bookmarks">Закладки</string>
@@ -224,25 +224,25 @@
     <string name="module_saved">Модуль сохранен в %1$s</string>
     <string name="ignore_updates">Игнорировать обновление</string>
     <string name="ignore_updates_summ">Игнорировать обновления для определенного модуля</string>
-    <string name="reboot_recovery">Перезагрузка в Рекавери</string>
-    <string name="reboot_bootloader">Перезагрузка в Фастбут</string>
-    <string name="reboot_download">Перезагрузка в Загрузчик</string>
+    <string name="reboot_recovery">Перезагрузка в Recovery</string>
+    <string name="reboot_bootloader">Перезагрузка в Bootloader</string>
+    <string name="reboot_download">Перезагрузка в Download</string>
     <string name="reboot_edl">Перезагрузка в EDL</string>
     <string name="loading">Загрузка…</string>
     <string name="chrome_custom_tabs">Пользовательские вкладки Chrome</string>
     <string name="chrome_custom_tabs_summ">Открытие ссылок внутри приложения</string>
-    <string name="scroll_bottom">Прокрутка вниз</string>
+    <string name="scroll_bottom">Прокрутить вниз</string>
     <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
     <string name="open_drawer">Боковое меню</string>
     <string name="share_app">Поделиться</string>
-    <string name="share_app_text">Попробуйте: Xposed Framework с открытым исходным кодом для последней версии EdXposed Менеджер! %s</string>
+    <string name="share_app_text">Попробуйте: Xposed Framework с открытым исходным кодом для последней версии EdXposed Manager! %s</string>
     <string name="status">Статус EdXposed</string>
     <string name="xposed_on_next_reboot">EdXposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">EdXposed Framework будет выключен после перезагрузки</string>
     <string name="rovo_89_old_icon">rovo89 (старая)</string>
     <string name="confirm_reboots">Подтверждать перезагрузку</string>
     <string name="skip_xposedminversion_check">Проверка статуса</string>
-    <string name="skip_xposedminversion_check_summ">Пропускать проверку \"Статуса EdXposed\" для модулей</string>
+    <string name="skip_xposedminversion_check_summ">Пропускать проверку «Статус EdXposed» для модулей</string>
 
     <string name="notice">Предупреждение</string>
     <string name="details">Детали</string>
@@ -256,8 +256,8 @@
     <string name="cache_cleaned">Кеш приложения(й) очищен. Требуется перезагрузка</string>
     <string name="update_download_list">Потяните вниз, чтобы обновить список модулей</string>
     <string name="no_connection_available">Нет подключения</string>
-    <string name="not_logcat">Это логи EdXposed Framework и модулей\nЕсли вам нужны логи Android, вы можете попробовать модуль Log Catcher для Magisk</string>
-    <string name="force_english">Английский язык</string>
+    <string name="not_logcat">Это логи EdXposed Framework и модулей.\nЕсли вам нужны логи Android, вы можете попробовать модуль Log Catcher для Magisk</string>
+    <string name="force_english">Включить английский язык в приложении</string>
     <string name="warning_language">Игнорировать язык системы и использовать английский. Нужен перезапуск приложения!</string>
     <string name="installation_error">Ошибка установки</string>
     <string name="installation_successful">Установка завершена</string>
@@ -267,27 +267,27 @@
     <string name="install_load">Установка…</string>
     <string name="install_load_apk">Установка %s</string>
 
-    <string name="unstable_build">Это нестабильная сборка\nУстановка на свой страх и риск</string>
-    <string name="unofficial_build">Это неофициальная сборка\nУстановка на свой страх и риск</string>
+    <string name="unstable_build">Это нестабильная сборка.\nУстановка на свой страх и риск</string>
+    <string name="unofficial_build">Это неофициальная сборка.\nУстановка на свой страх и риск</string>
     <string name="alt_download_method">Альтернативный способ загрузки</string>
     <string name="alt_download_method_summ">Включите этот параметр, если у вас есть проблемы при загрузке модуля</string>
     <string name="custom_list">Альтернативный список модулей</string>
-    <string name="custom_list_summ">Использование зеркала для списка модулей может увеличить загрузку\nНо отображение новых модулей будет отложено (примерно до 24 часов)</string>
+    <string name="custom_list_summ">Использование зеркала для списка модулей может увеличить загрузку.\nНо отображение новых модулей будет отложено (примерно до 24 часов)</string>
 
     <string name="known_issue_wrong_base_directory">Основной каталог ошибочный: %1$s</string>
     <string name="known_issue_missing_base_directory">Основной каталог отсутсвует</string>
 
-    <string name="dexopt_now">Оптимизация в режиме Dexopt</string>
+    <string name="dexopt_now">Оптимизация в режиме DexOpt</string>
     <string name="speed_now">Оптимизация в режиме Speed</string>
     <string name="this_may_take_a_while">Пожалуйста подождите, это займет немного времи…</string>
-    <string name="take_while_cannot_resore">Вы уверены, что хотите оптимизировать все приложения?\n\nЭто займет немного времи, и НЕ МОЖЕТ быть восстановлено\n\nСовет: Вы можете оптимизировать выборочные приложения в «Черный | Белый список»</string>
+    <string name="take_while_cannot_resore">Вы уверены, что хотите оптимизировать все приложения?\nЭто займет немного времи, и НЕ МОЖЕТ быть восстановлено.\nСовет: Вы можете оптимизировать выборочные приложения в «Список приложений»</string>
     <string name="done">Готово!</string>
     <string name="verified_boot_deactivated">Проверка загрузки отключена</string>
     <string name="verified_boot_none">Не удалось проверить состояние загрузки</string>
     <string name="verified_boot_active">Проверка загрузки включена</string>
     <string name="verified_boot_explanation">Проверка загрузки (dm-verity) запрещает загрузку устройства, если системный раздел изменен</string>
     <string name="ignore_chinese">Фильтровать иероглифы</string>
-    <string name="ignore_chinese_summary">В «Поиске модулей» не показывать модули на китайском языке\nМодули останутся доступны через иконку поиска\nВключение этой настройки может привести к низкой производительности</string>
+    <string name="ignore_chinese_summary">В «Поиске модулей» не показывать модули на китайском языке.\nМодули останутся доступны через иконку поиска.\nВключение этой настройки может привести к низкой производительности</string>
 
     <!-- EdXp related -->
     <string name="nav_title_black_list">Список приложений</string>
@@ -298,26 +298,26 @@
     <string name="add_package_failed">Не удалось отредактировать, некоторые настройки не позволяют редактировать</string>
     <string name="menu_title_compile_reset">Деоптимизация</string>
     <string name="menu_title_compile_speed">Оптимизировать в режиме Speed</string>
-    <string name="menu_title_compile_dexopt">Оптимизировать в режиме Dexopt</string>
+    <string name="menu_title_compile_dexopt">Оптимизировать в режиме DexOpt</string>
     <string name="compile_reset_msg">Сброс…</string>
     <string name="compile_speed_msg">Оптимизация…</string>
     <string name="pref_title_dynamic_modules">Мгновенный список модулей</string>
     <string name="pref_dynamic_modules_summary">При включении загружать список последних активированных модулей для каждого запущенного процесса приложения</string>
     <string name="title_compat_list">Список совместимости</string>
     <string name="pref_title_black_white_list">Режим списка приложений</string>
-    <string name="pref_black_white_list_summary">Примечание: После открытия вкладки «Список приложений» вы увидите черный или белый список\nВ режиме черного списка выбранное приложение не будет использовать модули EdXposed\nИспользование режима списка приложений может нарушить функции общесистемных модулей</string>
-    <string name="white_list_mode_summary">В режиме белого списка выбранное приложение будет использовать модули EdXposed\nНеобходимо включение режима «Режим списка приложений»</string>
+    <string name="pref_black_white_list_summary">Примечание: После открытия вкладки «Список приложений» вы увидите черный или белый список.\nВ режиме черного списка: Выбранные приложения не будут использовать модули EdXposed.\nИспользование режима списка приложений может нарушить функции общесистемных модулей</string>
+    <string name="white_list_mode_summary">В режиме белого списка: Выбранные приложения будут использовать модули EdXposed.\nНеобходимо включение режима «Режим списка приложений»</string>
 
-    <string name="app_name" translatable="false">EdXposed Менеджер</string>
+    <string name="app_name" translatable="false">EdXposed Manager</string>
     <string name="website">Веб-сайт</string>
 
     <string name="solohsu_summary">Разработчик EdXposed</string>
-    <string name="mlgmxyysd_summary">Разработчик EdXposed Менеджер</string>
+    <string name="mlgmxyysd_summary">Разработчик EdXposed Manager</string>
     <string name="elderdrivers_summary">Организация EdXposed</string>
     <string name="meowcat_summary">Организация MlgmXyysd</string>
     <string name="notinstalled">Платформа EdXposed Framework не установлена</string>
     <string name="pref_title_enable_boot_image_deopt">Деоптимизировать загрузочный образ</string>
-    <string name="pref_enable_boot_image_deopt_summary">Включите, чтобы сделать все методы Framework подключаемыми, система может работать медленнее\nВ основном используется для проверки методов подключения к Framework, когда нельзя подключить</string>
+    <string name="pref_enable_boot_image_deopt_summary">Включите, чтобы сделать все методы Framework подключаемыми, система может работать медленнее.\nВ основном используется для проверки методов подключения к Framework, когда нельзя подключить</string>
 
     <string name="pref_title_disable_verbose_log">Отключить подробные логи</string>
     <string name="logs_verbose_disabled">Подробные логи отключены</string>
@@ -326,7 +326,7 @@
     <string name="app_launch">Запустить</string>
     <string name="app_stop">Остановить</string>
     <string name="update_description">Список изменений</string>
-    <string name="edxp_installer_installed">Вы должны удалить EdXposed Установщик, чтобы использовать EdXposed Менеджер</string>
+    <string name="edxp_installer_installed">Вы должны удалить EdXposed Installer, чтобы использовать EdXposed Manager</string>
     <string name="install_time">Установлен: </string>
     <string name="update_time">Обновлен: </string>
     <string name="enabled_top">Показывать включенные модули или приложения в начале списка</string>
@@ -341,17 +341,17 @@
     <string name="sort_by_update_time_reverse">Сортировать по времени обновления (обратный)</string>
     <string name="app_no_ui">Это приложение не имеет пользовательский интерфейс</string>
     <string name="show_modules">Отображение модулей</string>
-    <string name="show_modules_summary">Показывать модули в «Список приложений» и «Список совместимости»\nЭтот параметр не может удалять отмеченный флаг приложения</string>
+    <string name="show_modules_summary">Показывать модули в «Список приложений» и «Список совместимости».\nЭтот параметр не может удалять отмеченный флаг приложения</string>
     <string name="compile_failed">Оптимизация не удалась или возврат значения пусто</string>
     <string name="hook_modules">Принудительное добавление модулей</string>
-    <string name="hook_modules_summary">Принудительно добавить модули в белый список и удалить модули из черного списка\nВыключение этой настройки не удаляет модули из белого списка\nНеобходимо включение «Режим списка приложений»</string>
+    <string name="hook_modules_summary">Принудительно добавить модули в белый список и удалить модули из черного списка.\nВыключение этой настройки не удаляет модули из белого списка.\nНеобходимо включение «Режим списка приложений»</string>
     <string name="not_installed">Не установлен</string>
     <string name="ok">OK</string>
     <string name="pass_safetynet">Проверка SafetyNet</string>
-    <string name="pass_safetynet_summary">Принудительно добавить GMS и GSF в черный список и удалить из белого списка\nВыключение этой настройки не удаляет модули из черного списка\nНеобходимо включение «Режим списка приложений»</string>
+    <string name="pass_safetynet_summary">Принудительно добавить GMS и GSF в черный список и удалить из белого списка.\nВыключение этой настройки не удаляет модули из черного списка.\nНеобходимо включение «Режим списка приложений»</string>
     <string name="support_group_telegram_channel">Канал Telegram: @EdXposed</string>
     <string name="old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
-    <string name="warning_list_not_enabled">«Режим списка приложений» не включен, вы можете включить в настройках</string>
+    <string name="warning_list_not_enabled">«Режим списка приложений» не включен, вы можете включить его в настройках</string>
     <string name="empty_param">Пустые параметры</string>
     <string name="reboot_system">Нормальная перезагрузка</string>
     <string name="stop_verbose_log">Остановить отлов подробных логов</string>
