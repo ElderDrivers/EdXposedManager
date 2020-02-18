@@ -370,11 +370,11 @@
     <string name="show_modules_summary">Vis moduler og behandleren i applisten\nDenne innstillingen fjerner ikke app-avhukingsflagg</string>
     <string name="compile_failed">Optimalisering mislyktes, eller så er tilbakemeldingsverdien tom</string>
     <string name="hook_modules">Fremtving hekting av moduler</string>
-    <string name="hook_modules_summary">Fremtving tillegging av moduler i hvitelisten og fjern dem fra svartelisten\nÅ lukke denne innstillingene fjerner ikke moduler fra hvitelisten\nApplistemodusen er påkrevd for å skru på dette</string>
+    <string name="hook_modules_summary">Fremtving tillegging av moduler i hvitelisten og fjern dem fra svartelisten\nÅ lukke denne innstillingen fjerner ikke moduler fra hvitelisten\nApplistemodusen er påkrevd for å skru på dette</string>
     <string name="not_installed">Ikke installert</string>
     <string name="ok">OK</string>
     <string name="pass_safetynet">Bestå SafetyNet</string>
-    <string name="pass_safetynet_summary">Fremtving tillegging av GMS og GSF i svartelisten og fjern dem fra hvitelisten\nÅ lukke denne innstillingene fjerner ikke moduler fra svartelisten\nApplistemodusen er påkrevd for å skru på dette</string>
+    <string name="pass_safetynet_summary">Fremtving tillegging av GMS og GSF i svartelisten og fjern dem fra hvitelisten\nÅ lukke denne innstillingen fjerner ikke moduler fra svartelisten\nApplistemodusen er påkrevd for å skru på dette</string>
     <string name="support_group_telegram_channel">Telegram-kanal: @EdXposed</string>
     <string name="old_success_color">Bruk den gamle fargen for aktiv-status (grønn)</string>
     <string name="warning_list_not_enabled">Applistemodusen er ikke skrudd på, det kan gjøres i innstillingene</string>
