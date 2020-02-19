@@ -1,5 +1,6 @@
 package org.meowcat.edxposed.manager;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,9 +11,7 @@ import android.text.SpannableString;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
