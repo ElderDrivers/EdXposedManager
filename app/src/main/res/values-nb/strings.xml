@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- General/various strings -->
+    <string name="menuSend">Send</string>
+    <string name="menuSaveToSd">Lagre til SD-kort</string>
+    <string name="xposed_not_active">EdXposed Framework er for øyeblikket enten ikke installert eller aktiv\nDu kan lukke statussjekken i innstillingene</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="tabInstall">Enhet</string>
+    <string name="tabDownload">Last ned</string>
+    <string name="welcome_framework_update_available">En oppdatering for EdXposed Framework er tilgjengelig (%s)</string>
+
+    <!-- navigation view items -->
+    <string name="nav_item_install">Framework</string>
+    <string name="nav_item_modules">Moduler</string>
+    <string name="nav_item_download">Last ned</string>
+    <string name="nav_item_logs">Detaljerte loggføringer</string>
+    <string name="nav_item_logs_err">Loggføring over moduler</string>
+    <string name="nav_item_settings">Innstillinger</string>
+    <string name="nav_item_about">Om</string>
+    <string name="navigation_drawer_open">Åpne navigasjonsskuffen</string>
+    <string name="navigation_drawer_close">Lukk navigasjonsskuffen</string>
+
+    <!-- Installer tab -->
+    <string name="install">Installer/Oppdater</string>
+    <string name="uninstall">Avinstaller</string>
+    <string name="soft_reboot">Myk omstart</string>
+    <string name="reboot">Omstart</string>
+    <string name="areyousure">Er du sikker?</string>
+    <string name="phone_not_compatible">EdXposed er ikke kompatibel (enda) med 'Android SDK'-versjonen %1$d eller din prosessorarkitektur (%2$s)</string>
+    <string name="reboot_failed">Omstart mislyktes. Vennligst bruk enhetens vanlige omstartsfunksjon</string>
+    <string name="install_warning_title">Vær forsiktig!</string>
+    <string name="install_warning">I noen tilfeller kan enheten din kanskje ikke starte opp etter å ha installert EdXposed.\n\nHvis du aldri har hørt om \"soft brick\" og \"bootloop\" før, eller at du ikke vet hvordan man henter seg inn fra en slik situasjon, <b>IKKE</b> installer eller bruk EdXposed!\n\nUansett er det høyst anbefalt å ha en nylig sikkerhetskopi klar.</string>
+    <string name="dont_show_again">Ikke vis dette igjen</string>
+    <string name="install_known_issue">Det ser ut til å være et kjent problem (\"%s\")\nKlikk her for detaljer om problemet</string>
+    <string name="installed_lollipop">EdXposed Framework er aktiv</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework er installert, men er ikke aktiv\nSjekk loggføringen for detaljer</string>
+    <string name="modules_updates_available">Moduloppdatering(er) er tilgjengelig(e)</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Klarte ikke å få root-tilgang\n\nSørg for at enheten din er rootet ordentlig, og at du ikke har blokkert for skallkommandoer</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">EdXposed-modulen er ikke aktivert enda</string>
+    <string name="module_is_not_activated_yet_detailed">%s har blitt installert, men er ikke aktiv enda</string>
+    <string name="activate_and_reboot">Aktiver og start på nytt</string>
+    <string name="activate_only">Kun aktiver</string>
+    <string name="module_activated">EdXposed-modulen har blitt aktivert</string>
+    <string name="module_empty_description">(ingen beskrivelse oppgitt)</string>
+    <string name="module_no_ui">Denne modulen tilbyr ikke et brukergrensesnitt</string>
+    <string name="no_xposed_modules_found">Ingen EdXposed-moduler ble funnet!</string>
+    <string name="xposed_module_list_updated">EdXposed-modullisten ble oppdatert\nEndringer vil bli aktive ved omstart</string>
+    <string name="xposed_module_updated_notification_title">EdXposed-modulen ble oppdatert</string>
+    <string name="xposed_module_updated_notification">Start på nytt for å aktivere endringene</string>
+    <string name="warning_xposed_min_version">Denne modulen krever en nyere EdXposed-versjon (%d)  og kan derfor ikke bli aktivert</string>
+    <string name="no_min_version_specified">Denne modulen spesifiserer ikke EdXposed-versjonen som den trenger.</string>
+    <string name="warning_min_version_too_low">Denne modulen ble laget for EdXposed versjon %1$d, men på grunn av inkompatibilitetsproblemer i versjon %2$d, har den blitt skrudd av</string>
+    <string name="module_launch">Start grensesnitt</string>
+    <string name="module_download_updates">Last ned / Oppdateringer</string>
+    <string name="module_support">Støtte</string>
+    <string name="modules_app_store">Vis i App Store</string>
+    <string name="module_app_info">App-info</string>
+    <string name="module_uninstall">Avinstaller</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Søk</string>
+    <string name="menuReload">Oppfrisk</string>
+    <string name="changes">Endringslogg:</string>
+    <string name="download_details_page_description">Beskrivelse</string>
+    <string name="download_details_page_versions">Versjoner</string>
+    <string name="download_details_page_settings">Innstillinger</string>
+    <string name="reltype_stable">Stabil</string>
+    <string name="reltype_stable_summary">Stable (lav sjanse for feil)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (noen feil kan forventes)</string>
+    <string name="reltype_experimental">Eksperimentell</string>
+    <string name="reltype_experimental_summary">Eksperimentell (høy sjanse for feil)</string>
+    <string name="reltype_use_global_summary">Bruk hovedinnstillingen</string>
+    <string name="download_author">av %s</string>
+    <string name="download_unknown_author">ukjent skaper</string>
+    <string name="download_status_installed">Installert (versjon %s)</string>
+    <string name="download_status_update_available">Oppdatering tilgjengelig (versjon %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Lagt til den %1$s \u00b7 Oppdatert den %2$s</string>
+    <string name="download_sorting_title">Sorter etter</string>
+    <string name="download_sorting_status">Sorter etter status</string>
+    <string name="download_sorting_updated">Sorter etter seneste oppdatering</string>
+    <string name="download_sorting_created">Sorter etter skapelsesdato</string>
+    <string name="download_section_framework">EdXposed Framework</string>
+    <string name="download_section_update_available">Oppdatering er tilgjengelig</string>
+    <string name="download_section_installed">Installert</string>
+    <string name="download_section_not_installed">Ikke installert</string>
+    <string name="download_section_24h">Seneste 24 timer</string>
+    <string name="download_section_7d">Seneste 7 dager</string>
+    <string name="download_section_30d">Seneste 30 dager</string>
+    <string name="download_section_older">Mer enn 30 days siden</string>
+    <string name="download_details_not_found">Det er ingen moduler med pakkenavnet «%s» inne på pakkelageret</string>
+    <string name="download_no_versions">Skaperen har ikke lastet opp noe enda</string>
+    <string name="download_test_version_not_shown">En testversjon er tilgjengelig, men den vises ikke på grunn av dine hoved- eller modulspesifikke innstillinger</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Last ned og installer</string>
+    <string name="settings_release_type">Versjoner som skal vises to be shown</string>
+    <string name="settings_group_framework">Framework</string>
+    <string name="settings_disable_resources">Skrudde av ressurshektinger</string>
+    <string name="settings_disable_resources_summary">Nødløsning for konflikter mellom temadrivere\n<b>ADVARSEL:</b> Moduler som prøver å endre på ressurser, vil ikke fungere når dette er skrudd på</string>
+    <string name="settings_group_app">App</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Lyst</string>
+    <string name="settings_theme_dark">Mørkt</string>
+    <string name="settings_theme_black">Svart (nyttig for AMOLED-skjermer)</string>
+    <string name="settings_default_view">Standardvisning</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">Støtte for moduler</string>
+    <string name="support_modules_description">Klikk på enhver modul i modullisten og velg «%1$s».</string>
+    <string name="support_framework_label">Framework/Manager-støtte</string>
+    <string name="support_faq_label">FAQ / kjente problemer/string>
+    <string name="support_group_qq">QQ-gruppe: 855219808</string>
+    <string name="support_group_telegram">Telegram-gruppe: @Code_of_MeowCat</string>
+    <string name="support_donate_label">Donér</string>
+    <string name="support_donate_description">Hvis du vil takke EdXposed, kan du donere til oss her</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Kunne ikke lagre loggen til SD-kortet:</string>
+    <string name="sdcard_not_writable">SD-kortet ble ikke funnet eller kan ikke lagres til</string>
+    <string name="menuClearLog">Tøm loggen nå</string>
+    <string name="logs_cleared">Loggen ble vellykket tømt.</string>
+    <string name="logs_clear_failed">Klarte ikke å tømme loggen:</string>
+    <string name="log_is_empty">Loggen er tom.</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Hovedutviklere</string>
+    <string name="about_translator_label">Oversetter</string>
+    <string name="translator">Imre Kristoffer Eilertsen</string>
+    <string name="about_version_label">Versjon</string>
+    <string name="about_source_label">Kildekode</string>
+    <string name="about_libraries_label">Benyttede biblioteker</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Last ned og installer</string>
+    <string name="download_view_install">Installer</string>
+    <string name="download_view_remove">Fjern</string>
+    <string name="download_view_cancel">Avbryt</string>
+    <string name="download_view_no_url">Ingen nedlastings-URL er tilgjengelig</string>
+    <string name="download_view_running">Nedlastingen pågår (%1$,d av %2$,d kB)</string>
+    <string name="download_view_waiting">Nedlastingen venter</string>
+    <string name="download_view_successful">Nedlastingen var vellykket</string>
+    <string name="download_view_failed">Nedlastingen mislyktes (feilkode %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5-sjekksummen er feil (lastet ned: %1$s, forventet: %2$s)</string>
+    <string name="download_could_not_read_file">Klarte ikke å lese inn den nedlastede filen: %s</string>
+    <string name="download_no_valid_apk">Den nedlastede filen er ikke en gyldig APK (eller er inkompatibel)</string>
+    <string name="download_incorrect_package_name">Pakkenavnet er feil (lastet ned: %1$s, forventet: %2$s)</string>
+    <string name="download_running">Nedlastingen pågår</string>
+    <string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Nedlastingen av %1$s mislyktes: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Nedlastingen av %1$s mislyktes: %2$s</string>
+    <string name="repo_load_failed">Kan ikke laste inn pakkelageret hos %1$s:\n%2$s</string>
+    <string name="choose_color">Sekundærfarge</string>
+
+    <string name="warning_installed_on_external_storage">Denne modulen kan ikke lastes inn fordi den er installert på SD-kortet, vennligst flytt den til den interne lagringen</string>
+    <string name="view">VIS</string>
+    <string name="export_">Eksporter …</string>
+    <string name="import_">Importer …</string>
+    <string name="export_enabled_modules">Eksporter listen over påskrudde moduler</string>
+    <string name="import_enabled_modules">Importer listen over påskrudde moduler</string>
+    <string name="export_installed_modules">Eksporter listen over installerte moduler</string>
+    <string name="import_installed_modules">Importer listen over installerte moduler</string>
+    <string name="no_installed_modules">Det er ingen moduler installert!</string>
+    <string name="enable_heads_up">Skru på oppmerksomhetsvarlser</string>
+    <string name="enable_heads_up_summary">Denne innstillingen skrur på varsler når det er nye/oppdaterte moduler</string>
+    <string name="nav_bar_coloration">Farge for navigasjonsfelt</string>
+    <string name="no_backup_found">Ingen sikkerhetskopier ble funnet</string>
+    <string name="no_enabled_modules">Ingen moduler er skrudd på</string>
+
+    <string name="share">Del med …</string>
+    <string name="back">Tilbake</string>
+    <string name="loadingError">Feil ved innhenting av listen\nHar ikke internettilgang, eller så har tjeneren en feil</string>
+    <string name="info">Info</string>
+    <string name="infoInstaller">
+        Navn: %1$s
+        \nVersjon: %2$s
+    </string>
+    <string name="infoUninstaller">
+        Navn: %1$s
+        \nDato: %2$s
+    </string>
+    <string name="permissionNotGranted">Denne funksjonen fungerer ikke uten tillatelse til å skrive til ekstern lagring</string>
+    <string name="warningArchitecture">Den vil lastes ned som en ZIP-fil; flash den i Magisk Manager eller TWRP manuelt</string>
+    <string name="newVersion">En ny versjon av EdXposed Manager er tilgjengelig! Oppdater den!</string>
+    <string name="update">Oppdater</string>
+    <string name="choose_icon">Velg et ikon</string>
+    <string name="custom_icon">Tilpasset ikon</string>
+    <string name="not_installed_no_lollipop">EdXposed Framework er ikke installert</string>
+    <string name="notify_module_update">Skru på moduloppdateringsvarsler</string>
+
+    <string name="md_back_label">Tilbake</string>
+    <string name="md_done_label">Ferdig</string>
+    <string name="md_cancel_label">Avbryt</string>
+    <string name="md_choose_label">Velg</string>
+    <string name="md_error_label">Feil</string>
+    <string name="md_storage_perm_error">Appen din har ikke blitt tildelt READ_EXTERNAL_STORAGE-tillatelsen.</string>
+    <string name="md_custom_label">Tilpasset</string>
+    <string name="md_presets_label">Forhåndsvalg</string>
+    <string name="changelog">Endringslogg</string>
+    <string name="scroll_top">Hopp til toppen</string>
+    <string name="add_bookmark">Legg til bokmerke</string>
+    <string name="remove_bookmark">Fjern bokmerke</string>
+    <string name="bookmarks">Bokmerker</string>
+    <string name="no_bookmark_added">Ingen bokmerker er lagt til</string>
+    <string name="bookmark_added">Bokmerke er lagt til</string>
+    <string name="bookmark_removed">Bokmerket er fjernet</string>
+    <string name="undo">Angre</string>
+    <string name="notification_coloration">Fargen til varselsikonet</string>
+    <string name="file_is_empty">Filen er tom</string>
+    <string name="install_with_su">Stille installasjon (root)</string>
+    <string name="install_with_su_summ">Hvis dette er valgt, vil EdXposed Manager installere moduler uten et varsel</string>
+    <string name="install_remove">Installer og fjern</string>
+    <string name="download_remove">Last ned og fjern</string>
+    <string name="module_saved">Modulen ble lagret i %1$s</string>
+    <string name="ignore_updates">Ignorer oppdateringer</string>
+    <string name="ignore_updates_summ">Ignorer oppdateringer for en spesifikk modul</string>
+    <string name="reboot_recovery">Omstart til gjenoppretting</string>
+    <string name="reboot_bootloader">Omstart til bootloader</string>
+    <string name="reboot_download">Omstart til nedlastingsmodus</string>
+    <string name="reboot_edl">Omstart til nødmodus</string>
+    <string name="loading">Laster inn …</string>
+    <string name="chrome_custom_tabs">Tilpassede Chrome-faner</string>
+    <string name="chrome_custom_tabs_summ">Åpne lenker i en intern nettleser</string>
+    <string name="scroll_bottom">Hopp til bunnen</string>
+    <string name="open_drawer_summ">Åpne navigasjonsskuffen automatisk ved oppstart</string>
+    <string name="open_drawer">Åpne navigasjonsskuffen automatisk</string>
+    <string name="share_app">Del appen</string>
+    <string name="share_app_text">Her er det: Åpen-kildet Xposed Framework for de nyeste Android-versjonene: EdXposed! %s</string>
+    <string name="status">EdXposed-status</string>
+    <string name="xposed_on_next_reboot">EdXposed Framework vil bli skrudd på etter omstart</string>
+    <string name="xposed_off_next_reboot">EdXposed Framework vil bli skrudd av etter omstart</string>
+    <string name="rovo_89_old_icon">rovo89 (gammel)</string>
+    <string name="confirm_reboots">Bekreft omstarter</string>
+    <string name="skip_xposedminversion_check">Hopp over statussjekken</string>
+    <string name="skip_xposedminversion_check_summ">Hopp over «EdXposed-status»-sjekken for moduler</string>
+
+    <string name="notice">Varsel</string>
+    <string name="details">Detaljer</string>
+    <string name="support_xda">Få støtte</string>
+    <string name="later">Senere</string>
+    <string name="save">Kun lagre</string>
+    <string name="download_location">Nedlastingsmappe</string>
+    <string name="download_location_summ">Nedlastingsmappen for APK-filer (kun moduler)</string>
+    <string name="restart_needed">Omstart er påkrevd</string>
+    <string name="cache_cleaned">Appens mellomlager har blitt tømt. Omstart er påkrevd</string>
+    <string name="update_download_list">Nedlastingens modulliste vil bli lastet inn om noen sekunder</string>
+    <string name="no_connection_available">Ingen tilkobling er tilgjengelig</string>
+    <string name="not_logcat">Dette er loggen til EdXposed Framework og dens moduler\nHvis du trenger en Android-logcat, kan du prøve vår «Log Catcher Magisk»-modul</string>
+    <string name="force_english">Fremtving bruk av engelsk</string>
+    <string name="warning_language">Språkskiftet vil bli benyttet etter app-omstart</string>
+    <string name="installation_error">Installasjonsfeil</string>
+    <string name="installation_successful">Installasjonen var vellykket</string>
+    <string name="installation_successful_message">%s ble vellykket installert</string>
+    <string name="installation_error_message">%1$s-installasjonen mislyktes failed (%2$s)</string>
+    <string name="installation_apk_normal">Installer APK-en normalt</string>
+    <string name="install_load">Installerer …</string>
+    <string name="install_load_apk">Installerer %s</string>
+
+    <string name="unstable_build">Dette er en ustabil byggversjon\nInstaller den på din egen risiko</string>
+    <string name="unofficial_build">Dette er en uoffisiell byggversjon\nInstaller den på din egen risiko</string>
+    <string name="alt_download_method">Alternativ nedlastingsmetode</string>
+    <string name="alt_download_method_summ">Velg denne innstillingen hvis du har problemer når du laster ned moduler</string>
+    <string name="custom_list">Bruk en speillagret modulliste</string>
+    <string name="custom_list_summ">Speillagrede modullister kan hjelpe til med å laste ned fortere\nMen de nyligst innsendte modulene vil bli forsinket (Omkring 24 timer)</string>
+
+    <string name="known_issue_wrong_base_directory">Feil basismappe: %1$s</string>
+    <string name="known_issue_missing_base_directory">Manglende basismappe</string>
+
+    <string name="dexopt_now">Optimaliser alle appene med Dexopt</string>
+    <string name="speed_now">Optimaliser alle apper med Speed-modus</string>
+    <string name="this_may_take_a_while">Vennligst vent, dette kan ta en stund …</string>
+    <string name="take_while_cannot_resore">Er du sikker på at du vil optimalisere alle apper?\n\nDette kan ta en stund, og KAN IKKE bli gjenopprettet\n\nTips: Du kan optimalisere bestemte apper i applisten</string>
+    <string name="done">Ferdig!</string>
+    <string name="verified_boot_deactivated">Verifisert Oppstart er skrudd av</string>
+    <string name="verified_boot_none">Klarte ikke å finne 'Verifisert Oppstart'-statusen</string>
+    <string name="verified_boot_active">Verifisert Oppstart er aktiv</string>
+    <string name="verified_boot_explanation">Verifisert Oppstart (dm-verity) hindrer enheten fra å starte opp dersom systempartisjonen har blitt endret på</string>
+    <string name="ignore_chinese">Ignorer kinesiske tegn</string>
+    <string name="ignore_chinese_summary">Skjul FR-kinesiske moduler fra listen\nModuler er fortsatt tilgjengelige i søkevinduet\nÅ skru på denne innstillingene kan føre til treg ytelse</string>
+
+    <!-- EdXp related -->
+    <string name="nav_title_black_list">Apper</string>
+    <string name="nav_title_compat_list">Kompatibilitetsliste</string>
+    <string name="white_list_mode_title">Hvitelistingsmodus</string>
+    <string name="title_white_list">Hviteliste</string>
+    <string name="title_black_list">Svarteliste</string>
+    <string name="add_package_failed">Klarte ikke å endre; én eller flere innstillinger hindrer deg fra å endre.</string>
+    <string name="menu_title_compile_reset">Avoptimaliser</string>
+    <string name="menu_title_compile_speed">Optimaliser med Speed-modus</string>
+    <string name="menu_title_compile_dexopt">Optimaliser med Dexopt-modus</string>
+    <string name="compile_reset_msg">Tilbakestiller …</string>
+    <string name="compile_speed_msg">Optimaliserer …</string>
+    <string name="pref_title_dynamic_modules">Umiddelbar modulliste</string>
+    <string name="pref_dynamic_modules_summary">Hvis det er skrudd på, lastes listen over de nyligst aktiverte modulene inn ved hver app-prosess som startes opp</string>
+    <string name="title_compat_list">Kompatibilitetsmodus</string>
+    <string name="pref_title_black_white_list">Applistemodus</string>
+    <string name="pref_black_white_list_summary">Etter åpning, kan du bestemme listen i «App»\nSvartelistemodus: De valgte appene skal IKKE laste inn EdXposed-moduler\nBemerk: Å bruke applistemodus kan knekke systemdekkende modulers funksjonaliteter</string>
+    <string name="white_list_mode_summary">Hvitelistemodus: Kun de valgte appene kan laste inn EdXposed-moduler\nApplistemodus er påkrevd for å aktivere</string>
+
+    <string name="app_name" translatable="false">EdXposed Manager</string>
+    <string name="support_material_xda" translatable="false">https://edxp.meowcat.org/</string>
+    <string name="support_faq_url" translatable="false">https://github.com/ElderDrivers/EdXposed/wiki</string>
+    <string name="support_donate_url" translatable="false">https://edxp.meowcat.org/donate</string>
+    <string name="about_source" translatable="false">https://github.com/ElderDrivers/EdXposedManager/</string>
+    <string name="about_support" translatable="false">https://edxp.meowcat.org/faq</string>
+
+    <string name="solohsu" translatable="false">givein2u</string>
+    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
+    <string name="meowcat">MeowCat Studio</string>
+    <string name="elderdrivers" translatable="false">Elder Drivers</string>
+
+    <string name="github" translatable="false">GitHub</string>
+    <string name="xda" translatable="false">XDA</string>
+    <string name="coolapk">CoolApk</string>
+    <string name="website">Nettsted</string>
+
+    <string name="solohsu_summary">Hovedskaperen av EdXposed</string>
+    <string name="mlgmxyysd_summary">Hovedskaperen av EdXposed Manager</string>
+    <string name="elderdrivers_summary">Organisasjonen til EdXposed</string>
+    <string name="meowcat_summary">Organisasjonen til MlgmXyysd</string>
+    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
+    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
+    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
+    <string name="mlgmxyysd_coolapk" translatable="false">https://www.coolapk.com/u/814297</string>
+    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
+    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
+    <string name="meowcat_website" translatable="false">https://www.meowcat.org/</string>
+    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
+    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
+    <string name="elderdrivers_website" translatable="false">https://edxp.meowcat.org/</string>
+    <string name="group_qq_link" translatable="false">https://jq.qq.com/?k=57IiX8R</string>
+    <string name="group_telegram_link" translatable="false">https://t.me/Code_of_MeowCat</string>
+    <string name="group_telegram_channel_link" translatable="false">https://t.me/EdXposed</string>
+    <string name="notinstalled">EdXposed Framework er ikke installert.</string>
+    <string name="pref_title_enable_boot_image_deopt">Avoptimaliser oppstartsavbildningen</string>
+    <string name="pref_enable_boot_image_deopt_summary">Skru på for å gjøre alle Framework-metoder hektbare, men hele system vil bli tregere\nBrukes hovedsaklig dersom én Framework-metode blir benyttet selv om den ikke kan bli hektet på</string>
+
+    <string name="pref_title_disable_verbose_log">Skru av detaljete loggføringer</string>
+    <string name="logs_verbose_disabled">Detaljerte loggføringer er skrudd av</string>
+    <string name="logs_too_long">Loggen er for lang, så den vises ikke i sin helhet</string>
+    <string name="logs_cannot_read">Kan ikke laste inn loggen: \n</string>
+    <string name="app_launch">Start den</string>
+    <string name="app_stop">Stopp den</string>
+    <string name="update_description">Oppdater endringsloggen</string>
+    <string name="edxp_installer_installed">Du må avinstallere EdXposed Installer for å bruke EdXposed Manager</string>
+    <string name="install_time">Installasjonstidpunkt: </string>
+    <string name="update_time">Oppdateringstidpunkt: </string>
+    <string name="enabled_top">Vis de valgte gjenstandene øverst</string>
+    <string name="list_sort">Listesortering</string>
+    <string name="sort_by_name">Sorter etter appnavn</string>
+    <string name="sort_by_name_reverse">Sorter etter appnavn (reversert)</string>
+    <string name="sort_by_package_name">Sorter etter pakkenavn</string>
+    <string name="sort_by_package_name_reverse">Sorter etter pakkenavn (reversert)</string>
+    <string name="sort_by_install_time">Sorter etter installasjonstidspunkt</string>
+    <string name="sort_by_install_time_reverse">Sorter etter installasjonstidspunkt (reversert)</string>
+    <string name="sort_by_update_time">Sorter etter oppdateringstidspunkt</string>
+    <string name="sort_by_update_time_reverse">Sorter etter oppdateringstidspunkt (reversert)</string>
+    <string name="app_no_ui">Denne appen tilbyr ikke et brukergrensesnitt</string>
+    <string name="show_modules">Vis moduler og behandleren</string>
+    <string name="show_modules_summary">Vis moduler og behandleren i applisten\nDenne innstillingen fjerner ikke app-avhukingsflagg</string>
+    <string name="compile_failed">Optimalisering mislyktes, eller så er tilbakemeldingsverdien tom</string>
+    <string name="hook_modules">Fremtving hekting av moduler</string>
+    <string name="hook_modules_summary">Fremtving tillegging av moduler i hvitelisten og fjern dem fra svartelisten\nÅ lukke denne innstillingen fjerner ikke moduler fra hvitelisten\nApplistemodusen er påkrevd for å skru på dette</string>
+    <string name="not_installed">Ikke installert</string>
+    <string name="ok">OK</string>
+    <string name="pass_safetynet">Bestå SafetyNet</string>
+    <string name="pass_safetynet_summary">Fremtving tillegging av GMS og GSF i svartelisten og fjern dem fra hvitelisten\nÅ lukke denne innstillingen fjerner ikke moduler fra svartelisten\nApplistemodusen er påkrevd for å skru på dette</string>
+    <string name="support_group_telegram_channel">Telegram-kanal: @EdXposed</string>
+    <string name="old_success_color">Bruk den gamle fargen for aktiv-status (grønn)</string>
+    <string name="warning_list_not_enabled">Applistemodusen er ikke skrudd på, det kan gjøres i innstillingene</string>
+    <string name="empty_param">Parameterene er tomme</string>
+    <string name="reboot_system">Omstart til systemmodus</string>
+    <string name="stop_verbose_log">Stopp den detaljerte logginnhenteren</string>
+    <string name="stop_verbose_log_summary">Den detaljerte loggføringen vil stoppe innhentingen før den neste omstarten</string>
+    <string name="stop_log_summary">Modulloggen vil stoppe innhentingen før den neste omstarten</string>
+    <string name="stop_log">Stopp modullogginnhenteren</string>
+    <string name="pref_title_disable_modules_log">Skru av modulloggføringer</string>
+    <string name="pref_disable_modules_log_summary">Unntaksmeldinger som blir slengt ut av modulen, vil fortsatt bli innhentet normalt</string>
+</resources>
