@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">EdXposed Manager</string>
     <string name="upgrade_msg">Upgrade to full EdXposed Manager to finish the setup. Download and install?</string>
+    <string name="status_text">EdXposed status</string>
+    <string name="status_0">Not Installed</string>
+    <string name="status_1">Inactive</string>
+    <string name="status_2">Activated</string>
     <string name="btn_ok">OK</string>
     <string name="btn_no">Cancel</string>
 </resources>

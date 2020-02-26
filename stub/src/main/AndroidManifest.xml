@@ -3,6 +3,7 @@
     package="org.meowcat.edxposed.manager">
 
     <application
+        android:name="org.meowcat.bugcatcher.MeowCatApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
