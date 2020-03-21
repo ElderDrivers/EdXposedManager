@@ -33,7 +33,8 @@
     <string name="install_warning_title">Be careful!</string>
     <string name="install_warning">In some cases, your device might no longer boot after installing EdXposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install or use EdXposed!\n\nIn any case, having a recent backup is highly recommended.</string>
     <string name="dont_show_again">Don\'t show this again</string>
-    <string name="install_known_issue">There seems to be a known issue (\"%s\")\nClick here for details about the issue</string>
+    <string name="install_known_issue">There seems to be a known issue:\n\"%s\"\n\nThis may render EdXposed malfunction or unusable.</string>
+    <string name="install_known_issue_details">Details…</string>
     <string name="installed_lollipop">EdXposed Framework is active</string>
     <string name="installed_lollipop_inactive">EdXposed Framework is installed, but not active\nPlease check the logs for details</string>
     <string name="modules_updates_available">Module update(s) are available</string>
