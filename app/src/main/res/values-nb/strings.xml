@@ -28,7 +28,7 @@
     <string name="soft_reboot">Myk omstart</string>
     <string name="reboot">Omstart</string>
     <string name="areyousure">Er du sikker?</string>
-    <string name="phone_not_compatible">EdXposed er ikke kompatibel (enda) med 'Android SDK'-versjonen %1$d eller din prosessorarkitektur (%2$s)</string>
+    <string name="phone_not_compatible">EdXposed er ikke kompatibel (enda) med \'Android SDK\'-versjonen %1$d eller din prosessorarkitektur (%2$s)</string>
     <string name="reboot_failed">Omstart mislyktes. Vennligst bruk enhetens vanlige omstartsfunksjon</string>
     <string name="install_warning_title">Vær forsiktig!</string>
     <string name="install_warning">I noen tilfeller kan enheten din kanskje ikke starte opp etter å ha installert EdXposed.\n\nHvis du aldri har hørt om \"soft brick\" og \"bootloop\" før, eller at du ikke vet hvordan man henter seg inn fra en slik situasjon, <b>IKKE</b> installer eller bruk EdXposed!\n\nUansett er det høyst anbefalt å ha en nylig sikkerhetskopi klar.</string>
@@ -114,7 +114,7 @@
     <string name="support_modules_label">Støtte for moduler</string>
     <string name="support_modules_description">Klikk på enhver modul i modullisten og velg «%1$s».</string>
     <string name="support_framework_label">Framework/Manager-støtte</string>
-    <string name="support_faq_label">FAQ / kjente problemer/string>
+    <string name="support_faq_label">FAQ / kjente problemer</string>
     <string name="support_group_qq">QQ-gruppe: 855219808</string>
     <string name="support_group_telegram">Telegram-gruppe: @Code_of_MeowCat</string>
     <string name="support_donate_label">Donér</string>
@@ -281,7 +281,7 @@
     <string name="take_while_cannot_resore">Er du sikker på at du vil optimalisere alle apper?\n\nDette kan ta en stund, og KAN IKKE bli gjenopprettet\n\nTips: Du kan optimalisere bestemte apper i applisten</string>
     <string name="done">Ferdig!</string>
     <string name="verified_boot_deactivated">Verifisert Oppstart er skrudd av</string>
-    <string name="verified_boot_none">Klarte ikke å finne 'Verifisert Oppstart'-statusen</string>
+    <string name="verified_boot_none">Klarte ikke å finne \'Verifisert Oppstart\'-statusen</string>
     <string name="verified_boot_active">Verifisert Oppstart er aktiv</string>
     <string name="verified_boot_explanation">Verifisert Oppstart (dm-verity) hindrer enheten fra å starte opp dersom systempartisjonen har blitt endret på</string>
     <string name="ignore_chinese">Ignorer kinesiske tegn</string>
