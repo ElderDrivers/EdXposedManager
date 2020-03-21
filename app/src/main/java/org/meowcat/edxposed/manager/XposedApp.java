@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -49,11 +50,9 @@ import de.robv.android.xposed.installer.util.InstallZipUtil;
 @SuppressLint("Registered")
 public class XposedApp extends de.robv.android.xposed.installer.XposedApp implements ActivityLifecycleCallbacks {
     public static final String TAG = "EdXposedManager";
-    @SuppressLint("SdCardPath")
-    private static final String BASE_DIR_LEGACY = "/data/data/" + BuildConfig.APPLICATION_ID + "/";
-    public static final String BASE_DIR = Build.VERSION.SDK_INT >= 24
-            ? "/data/user_de/0/" + BuildConfig.APPLICATION_ID + "/" : BASE_DIR_LEGACY;
-    public static final String ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
+    private static String BASE_DIR_LEGACY = null;
+    public static String BASE_DIR = null;
+    public static String ENABLED_MODULES_LIST_FILE = null;
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_dvdandroid, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_cornie, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
     @SuppressLint("StaticFieldLeak")
@@ -93,7 +92,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 //    }
 
     public static Integer getXposedVersion() {
-            return getActiveXposedVersion();
+        return getActiveXposedVersion();
     }
 
     public static SharedPreferences getPreferences() {
@@ -174,6 +173,12 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
     public void onCreate() {
         super.onCreate();
+
+        final ApplicationInfo appInfo = getApplicationInfo();
+        BASE_DIR_LEGACY = appInfo.dataDir;
+        BASE_DIR = Build.VERSION.SDK_INT >= 24 ? appInfo.deviceProtectedDataDir + "/" : appInfo.dataDir + "/";
+        ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
+
         mInstance = this;
         mUiThread = Thread.currentThread();
         mMainHandler = new Handler();
