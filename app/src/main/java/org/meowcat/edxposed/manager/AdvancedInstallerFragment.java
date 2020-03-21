@@ -61,7 +61,6 @@ public class AdvancedInstallerFragment extends Fragment {
         mTabLayout = view.findViewById(R.id.tab_layout);
 
         tabsAdapter = new TabsAdapter(getChildFragmentManager());
-        tabsAdapter.notifyDataSetChanged();
         mPager.setAdapter(tabsAdapter);
         mTabLayout.setupWithViewPager(mPager);
 
@@ -324,6 +323,7 @@ public class AdvancedInstallerFragment extends Fragment {
         private String newApkVersion = null;
         private String newApkLink = null;
         private String newApkChangelog = null;
+        private List<XposedTab> tabs = null;
         private boolean noZips = false;
 
         @Override
@@ -333,15 +333,10 @@ public class AdvancedInstallerFragment extends Fragment {
 
                 final JSONUtils.XposedJson xposedJson = new Gson().fromJson(originalJson, JSONUtils.XposedJson.class);
 
-                List<XposedTab> tabs = Stream.of(xposedJson.tabs)
+                tabs = Stream.of(xposedJson.tabs)
                         .filter(value -> value.sdks.contains(Build.VERSION.SDK_INT)).toList();
 
                 noZips = tabs.isEmpty();
-
-                for (XposedTab tab : tabs) {
-                    tabsAdapter.addFragment(tab.name, BaseAdvancedInstaller.newInstance(tab));
-                }
-
                 newApkVersion = xposedJson.apk.version;
                 newApkLink = xposedJson.apk.link;
                 newApkChangelog = xposedJson.apk.changelog;
@@ -359,6 +354,9 @@ public class AdvancedInstallerFragment extends Fragment {
             super.onPostExecute(result);
 
             try {
+                for (XposedTab tab : tabs) {
+                    tabsAdapter.addFragment(tab.name, BaseAdvancedInstaller.newInstance(tab));
+                }
                 tabsAdapter.notifyDataSetChanged();
 
                 if (!result) {
@@ -401,7 +399,7 @@ public class AdvancedInstallerFragment extends Fragment {
             addFragment(getString(R.string.status), new StatusInstallerFragment());
         }
 
-        void addFragment(String title, Fragment fragment) {
+        void addFragment(final String title, final Fragment fragment) {
             titles.add(title);
             listFragment.add(fragment);
         }
