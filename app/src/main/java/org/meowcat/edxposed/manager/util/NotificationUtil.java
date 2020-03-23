@@ -1,5 +1,6 @@
 package org.meowcat.edxposed.manager.util;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,17 +15,16 @@ import android.widget.Toast;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 
+import com.topjohnwu.superuser.Shell;
+
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.WelcomeActivity;
 import org.meowcat.edxposed.manager.XposedApp;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public final class NotificationUtil {
 
     public static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
-    public static final int NOTIFICATION_MODULE_INSTALLING = 4;
+    static final int NOTIFICATION_MODULE_INSTALLING = 4;
     private static final int NOTIFICATION_MODULES_UPDATED = 1;
     private static final int NOTIFICATION_INSTALLER_UPDATE = 2;
     private static final int NOTIFICATION_MODULE_INSTALLATION = 3;
@@ -43,6 +43,7 @@ public final class NotificationUtil {
     private static final String NOTIFICATION_UPDATE_CHANNEL = "app_update_channel";
     private static final String NOTIFICATION_MODULES_CHANNEL = "modules_channel";
 
+    @SuppressLint("StaticFieldLeak")
     private static Context sContext = null;
     private static NotificationManager sNotificationManager;
     private static SharedPreferences prefs;
@@ -62,7 +63,7 @@ public final class NotificationUtil {
         }
     }
 
-    public static void cancel(int id) {
+    static void cancel(int id) {
         sNotificationManager.cancel(id);
     }
 
@@ -70,7 +71,7 @@ public final class NotificationUtil {
         sNotificationManager.cancel(tag, id);
     }
 
-    public static void cancelAll() {
+    private static void cancelAll() {
         sNotificationManager.cancelAll();
     }
 
@@ -187,15 +188,10 @@ public final class NotificationUtil {
 
         sNotificationManager.notify(null, NOTIFICATION_MODULE_INSTALLATION, builder.build());
 
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                cancel(NOTIFICATION_MODULE_INSTALLATION);
-            }
-        }, 10 * 1000);
+        new android.os.Handler().postDelayed(() -> cancel(NOTIFICATION_MODULE_INSTALLATION), 10 * 1000);
     }
 
-    public static void showModuleInstallingNotification(String appName) {
+    static void showModuleInstallingNotification(String appName) {
         String title = sContext.getString(R.string.install_load);
         String message = sContext.getString(R.string.install_load_apk, appName);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(message)
@@ -269,28 +265,22 @@ public final class NotificationUtil {
                 if (intent.hasExtra(EXTRA_ACTIVATE_MODULE_AND_RETURN)) return;
             }
 
-            RootUtil rootUtil = new RootUtil();
-            if (!rootUtil.startShell()) {
+            if (!Shell.rootAccess()) {
                 Log.e(XposedApp.TAG, "NotificationUtil -> Could not start root shell");
                 return;
             }
 
-            List<String> messages = new LinkedList<>();
             boolean isSoftReboot = intent.getBooleanExtra(EXTRA_SOFT_REBOOT,
                     false);
-            int returnCode = isSoftReboot
-                    ? rootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages)
-                    : rootUtil.executeWithBusybox("reboot", messages);
+            Shell.Result result = isSoftReboot ? Shell.su("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote").exec() : Shell.su("svc power reboot").exec();
+            int returnCode = result.getCode();
 
             if (returnCode != 0) {
                 Log.e(XposedApp.TAG, "NotificationUtil -> Could not reboot:");
-                for (String line : messages) {
+                for (String line : result.getOut()) {
                     Log.e(XposedApp.TAG, line);
                 }
             }
-
-            rootUtil.dispose();
-            AssetUtil.removeBusybox();
         }
     }
 
