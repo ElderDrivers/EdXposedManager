@@ -254,7 +254,7 @@ public class WelcomeActivity extends XposedBaseActivity
                 getPackageName() + "_preferences", MODE_PRIVATE).getBoolean("snack_bar", true);
 
         if (moduleUpdateAvailable && snackBar) {
-            Snackbar.make(parentLayout, R.string.modules_updates_available, Snackbar.LENGTH_LONG).setAction(getString(R.string.view), view -> switchFragment(2)).show();
+            Snackbar.make(parentLayout, R.string.modules_updates_available, Snackbar.LENGTH_LONG).setAction(getString(R.string.view), view -> switchFragment(4)).show();
         }
     }
 
