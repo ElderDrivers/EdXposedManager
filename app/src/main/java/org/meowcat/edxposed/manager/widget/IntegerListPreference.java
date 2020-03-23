@@ -2,17 +2,19 @@ package org.meowcat.edxposed.manager.widget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.AttributeSet;
 
 import androidx.preference.ListPreference;
 
+@SuppressWarnings("unused")
 public class IntegerListPreference extends ListPreference {
     public IntegerListPreference(Context context) {
         super(context);
     }
 
-//    public IntegerListPreference(Context context, AttributeSet attrs) {
-//        super(context, attrs);
-//    }
+    public IntegerListPreference(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
     private static int getIntValue(String value) {
         if (value == null)
