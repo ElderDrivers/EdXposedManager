@@ -47,8 +47,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardBackgroundColor="?attr/list_download_item_color"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -76,6 +76,7 @@
                         android:id="@+id/framework_install_errors"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:padding="6dp"
@@ -105,8 +106,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardBackgroundColor="?attr/list_download_item_color"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="@dimen/card_elevation"
                 app:cardUseCompatPadding="true">
 
@@ -145,62 +146,65 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="start|center_vertical"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:padding="6dp"
                         android:text="@string/tabInstall"
                         android:textAllCaps="true"
-                        android:textStyle="bold" /><LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_modules"
-                        tools:ignore="ContentDescription" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        tools:ignore="RtlHardcoded">
-
-                        <TextView
-                            android:id="@+id/api"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/not_installed"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
-                        android:minHeight="48dp"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:orientation="horizontal"
                         android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:focusable="true">
+                        android:paddingRight="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_modules"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            tools:ignore="RtlHardcoded">
+
+                            <TextView
+                                android:id="@+id/api"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/not_installed"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
+                        android:orientation="horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp">
 
                         <ImageView
                             android:layout_width="24dp"
@@ -234,12 +238,12 @@
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
-                        android:minHeight="48dp"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:orientation="horizontal"
                         android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:focusable="true">
+                        android:paddingRight="16dp">
 
                         <ImageView
                             android:layout_width="24dp"
@@ -272,12 +276,12 @@
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
-                        android:minHeight="48dp"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:focusable="true">
+                        android:paddingEnd="16dp">
 
                         <ImageView
                             android:layout_width="24dp"
@@ -309,12 +313,12 @@
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
-                        android:minHeight="48dp"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:focusable="true">
+                        android:paddingEnd="16dp">
 
                         <ImageView
                             android:layout_width="24dp"
@@ -345,12 +349,12 @@
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
-                        android:minHeight="48dp"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:focusable="true">
+                        android:paddingEnd="16dp">
 
                         <ImageView
                             android:layout_width="24dp"
@@ -381,11 +385,12 @@
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:focusable="true">
+                        android:paddingEnd="16dp">
 
                         <ImageView
                             android:layout_width="24dp"
@@ -430,10 +435,11 @@
                 android:layout_marginBottom="4dp"
                 android:paddingTop="20dp"
                 android:visibility="gone"
-                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardBackgroundColor="?attr/list_download_item_color"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="@dimen/card_elevation"
-                app:cardUseCompatPadding="true">
+                app:cardUseCompatPadding="true"
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -444,6 +450,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="6dp"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
+                        android:gravity="start|center_vertical"
                         android:text="@string/update"
                         android:textAllCaps="true"
                         android:textStyle="bold" />
@@ -454,12 +462,12 @@
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
-                        android:minHeight="48dp"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:orientation="horizontal"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:focusable="true">
+                        android:paddingEnd="16dp">
 
                         <ImageView
                             android:layout_width="24dp"
