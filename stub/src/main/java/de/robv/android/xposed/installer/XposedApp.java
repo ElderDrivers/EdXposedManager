@@ -1,4 +1,4 @@
-package installer;
+package de.robv.android.xposed.installer;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -10,9 +10,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import installer.util.InstallZipUtil;
+import de.robv.android.xposed.installer.util.InstallZipUtil;
 
-import static installer.util.InstallZipUtil.parseXposedProp;
+import static de.robv.android.xposed.installer.util.InstallZipUtil.parseXposedProp;
 
 @SuppressLint("Registered")
 public class XposedApp extends Application {

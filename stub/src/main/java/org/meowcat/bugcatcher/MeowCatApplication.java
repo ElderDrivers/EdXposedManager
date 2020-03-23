@@ -10,7 +10,7 @@ import android.os.Build;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import installer.XposedApp;
+import de.robv.android.xposed.installer.XposedApp;
 
 public class MeowCatApplication extends XposedApp {
     public static final String TAG = "EdXposedManager";

@@ -1,4 +1,4 @@
-package installer.util;
+package de.robv.android.xposed.installer.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;

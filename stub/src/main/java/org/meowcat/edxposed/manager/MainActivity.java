@@ -11,8 +11,8 @@ import android.text.SpannableString;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 
-import installer.XposedApp;
-import installer.util.InstallZipUtil;
+import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.util.InstallZipUtil;
 
 public class MainActivity extends Activity {
 
