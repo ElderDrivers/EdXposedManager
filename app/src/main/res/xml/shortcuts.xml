@@ -18,40 +18,6 @@
     <!--</intent>-->
     <!--</shortcut>-->
 
-    <shortcut
-        android:enabled="true"
-        android:icon="@drawable/shortcut_ic_modules"
-        android:shortcutId="modules"
-        android:shortcutLongLabel="@string/nav_item_modules"
-        android:shortcutShortLabel="@string/nav_item_modules"
-        tools:targetApi="n_mr1">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetClass="org.meowcat.edxposed.manager.WelcomeActivity"
-            android:targetPackage="org.meowcat.edxposed.manager">
-            <extra
-                android:name="fragment"
-                android:value="1" />
-        </intent>
-    </shortcut>
-
-    <shortcut
-        android:enabled="true"
-        android:icon="@drawable/shortcut_ic_downloads"
-        android:shortcutId="downloads"
-        android:shortcutLongLabel="@string/nav_item_download"
-        android:shortcutShortLabel="@string/nav_item_download"
-        tools:targetApi="n_mr1">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetClass="org.meowcat.edxposed.manager.WelcomeActivity"
-            android:targetPackage="org.meowcat.edxposed.manager">
-            <extra
-                android:name="fragment"
-                android:value="2" />
-        </intent>
-    </shortcut>
-
     <!--<shortcut-->
     <!--android:enabled="true"-->
     <!--android:icon="@drawable/shortcut_ic_application"-->
@@ -65,7 +31,7 @@
     <!--android:targetPackage="org.meowcat.edxposed.manager">-->
     <!--<extra-->
     <!--android:name="fragment"-->
-    <!--android:value="3"/>-->
+    <!--android:value="1"/>-->
     <!--</intent>-->
     <!--</shortcut>-->
 
@@ -82,9 +48,43 @@
     <!--android:targetPackage="org.meowcat.edxposed.manager">-->
     <!--<extra-->
     <!--android:name="fragment"-->
-    <!--android:value="4"/>-->
+    <!--android:value="2"/>-->
     <!--</intent>-->
     <!--</shortcut>-->
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/shortcut_ic_modules"
+        android:shortcutId="modules"
+        android:shortcutLongLabel="@string/nav_item_modules"
+        android:shortcutShortLabel="@string/nav_item_modules"
+        tools:targetApi="n_mr1">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="org.meowcat.edxposed.manager.WelcomeActivity"
+            android:targetPackage="org.meowcat.edxposed.manager">
+            <extra
+                android:name="fragment"
+                android:value="3" />
+        </intent>
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/shortcut_ic_downloads"
+        android:shortcutId="downloads"
+        android:shortcutLongLabel="@string/nav_item_download"
+        android:shortcutShortLabel="@string/nav_item_download"
+        tools:targetApi="n_mr1">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="org.meowcat.edxposed.manager.WelcomeActivity"
+            android:targetPackage="org.meowcat.edxposed.manager">
+            <extra
+                android:name="fragment"
+                android:value="4" />
+        </intent>
+    </shortcut>
 
     <!--<shortcut-->
     <!--android:enabled="true"-->
