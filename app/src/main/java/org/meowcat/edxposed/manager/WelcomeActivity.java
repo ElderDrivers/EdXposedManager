@@ -217,12 +217,7 @@ public class WelcomeActivity extends XposedBaseActivity
         menuItem.setChecked(true);
         mSelectedId = menuItem.getItemId();
         mDrawerHandler.removeCallbacksAndMessages(null);
-        mDrawerHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                navigate(mSelectedId);
-            }
-        }, 250);
+        mDrawerHandler.postDelayed(() -> navigate(mSelectedId), 250);
         mDrawerLayout.closeDrawers();
         return true;
     }
@@ -251,7 +246,7 @@ public class WelcomeActivity extends XposedBaseActivity
                 .findFragmentById(R.id.content_frame);
         if (currentFragment instanceof DownloadDetailsFragment) {
             if (frameworkUpdateVersion != null) {
-                Snackbar.make(parentLayout, R.string.welcome_framework_update_available + " " + String.valueOf(frameworkUpdateVersion), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(parentLayout, R.string.welcome_framework_update_available + " " + frameworkUpdateVersion, Snackbar.LENGTH_LONG).show();
             }
         }
 
@@ -259,12 +254,7 @@ public class WelcomeActivity extends XposedBaseActivity
                 getPackageName() + "_preferences", MODE_PRIVATE).getBoolean("snack_bar", true);
 
         if (moduleUpdateAvailable && snackBar) {
-            Snackbar.make(parentLayout, R.string.modules_updates_available, Snackbar.LENGTH_LONG).setAction(getString(R.string.view), new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    switchFragment(2);
-                }
-            }).show();
+            Snackbar.make(parentLayout, R.string.modules_updates_available, Snackbar.LENGTH_LONG).setAction(getString(R.string.view), view -> switchFragment(2)).show();
         }
     }
 
