@@ -278,8 +278,8 @@
     <string name="known_issue_wrong_base_directory">Wrong base directory: %1$s</string>
     <string name="known_issue_missing_base_directory">Missing base directory</string>
 
-    <string name="dexopt_now">Dexopt</string>
-    <string name="speed_now">Dex2oat(Speed mode)</string>
+    <string name="dexopt_now">Optimize all apps with Dexopt</string>
+    <string name="speed_now">Optimize all apps with Dex2oat(Speed mode)</string>
     <string name="this_may_take_a_while">Please wait, this may take a while…</string>
     <string name="take_while_cannot_resore">Are you sure to optimize all apps?\n\nThis may take a while, and CANNOT be restored\n\nTip: You can optimize selected app in Application List</string>
     <string name="done">Done!</string>

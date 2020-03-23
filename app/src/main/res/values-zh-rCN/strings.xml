@@ -302,8 +302,8 @@
     <string name="alt_download_method_summ">如果下载模块时出现问题, 请开启此选项</string>
     <string name="known_issue_wrong_base_directory">错误的配置文件夹: %1$s</string>
     <string name="known_issue_missing_base_directory">未知配置文件夹</string>
-    <string name="dexopt_now">Dexopt 模式</string>
-    <string name="speed_now">Dex2oat(Speed 模式)</string>
+    <string name="dexopt_now">以 Dexopt  模式优化全部应用</string>
+    <string name="speed_now">以 Dex2oat(Speed) 模式优化全部应用</string>
     <string name="this_may_take_a_while">请稍后, 这将需要一段时间…</string>
     <string name="take_while_cannot_resore">你确定要优化全部应用吗?\n\n这将需要一段时间, 并且无法恢复\n\n提示: 你可以在应用名单中优化单个应用</string>
     <string name="settings_title_enable_boot_image_deopt">禁用系统代码优化</string>
