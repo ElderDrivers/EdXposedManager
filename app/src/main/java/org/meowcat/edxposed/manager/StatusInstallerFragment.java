@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,6 +52,7 @@ public class StatusInstallerFragment extends Fragment {
     private static TextView mErrorTv;
     private static boolean isXposedInstalled = false;
     private TextView txtKnownIssue;
+    private Button btnKnownIssue;
 
     static void setError(boolean connectionFailed, boolean noSdks) {
         if (!connectionFailed && !noSdks) {
@@ -199,6 +201,7 @@ public class StatusInstallerFragment extends Fragment {
         mUpdateButton = v.findViewById(R.id.click_to_update);
 
         txtKnownIssue = v.findViewById(R.id.framework_known_issue);
+        btnKnownIssue = v.findViewById(R.id.framework_know_issue_detail);
 
         TextView txtInstallError = v.findViewById(R.id.framework_install_errors);
         View txtInstallContainer = v.findViewById(R.id.status_container);
@@ -381,9 +384,15 @@ public class StatusInstallerFragment extends Fragment {
             final String issueLinkFinal = issueLink;
             txtKnownIssue.setText(getString(R.string.install_known_issue, issueName));
             txtKnownIssue.setVisibility(View.VISIBLE);
-            txtKnownIssue.setOnClickListener(v -> NavUtil.startURL(getActivity(), issueLinkFinal));
+            if (issueLinkFinal != null) {
+                btnKnownIssue.setOnClickListener(v -> NavUtil.startURL(getActivity(), issueLinkFinal));
+                btnKnownIssue.setVisibility(View.VISIBLE);
+            } else {
+                btnKnownIssue.setVisibility(View.GONE);
+            }
         } else {
             txtKnownIssue.setVisibility(View.GONE);
+            btnKnownIssue.setVisibility(View.GONE);
         }
     }
 

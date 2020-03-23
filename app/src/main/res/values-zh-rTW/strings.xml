@@ -33,7 +33,8 @@
     <string name="install_warning_title">請小心！</string>
     <string name="install_warning">某些情況下，您的裝置可能會在安裝 EdXposed 過後無法正常啟動。\n\n如果您先前從未聽說過「軟變磚(Soft Brick)」或「無限重新啟動(Bootloop)」，又或者您不知道如何從這些情況中恢復手機，那麼請"<b>不要</b>"安裝 EdXposed！\n\n無論如何，我們都強烈建議您做好近期的資料備份。</string>
     <string name="dont_show_again">不再提示</string>
-    <string name="install_known_issue">EdXposed 與您的裝置之間似乎存在已知的問題（「%s」）。這可能將導致 EdXposed 無法被安裝或是更為嚴重的問題。點選這裡來了解詳細情形。</string>
+    <string name="install_known_issue">發現已知的問題：\n「%s」\n\n這可能將導致 EdXposed 動作錯誤或無法使用。</string>
+    <string name="install_known_issue_details">詳細資訊…</string>
     <string name="installed_lollipop">EdXposed 框架已啟用</string>
     <string name="installed_lollipop_inactive">EdXposed 框架已安裝，但尚未啟用\n請檢視日誌以瞭解詳細情形。</string>
     <string name="modules_updates_available">有模組更新可用</string>

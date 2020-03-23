@@ -33,7 +33,6 @@
     <string name="install_warning_title">Dbej opatrnosti!</string>
     <string name="install_warning">V některých případech nemusí tvé zařízení po instalaci EdXposed již naběhnout.\n\nPokud ti nic neříkají pojmy \"soft brick\" či \"bootloop\" a pokud nevíš, jak se v podobné situaci zachovat, <b>NEINSTALUJ</b> EdXposed!\n\nV každém případě je vřele doporučeno mít aktuální zálohu zařízení.</string>
     <string name="dont_show_again">Již nezobrazovat</string>
-    <string name="install_known_issue">Zdá se, že existuje známý problém (\"%s\") s tvojí ROM. Instalace EdXposed nemusí fungovat, nebo může vést k závažným problémům. Pro podrobnosti o tomto problému stiskni zde.</string>
     <string name="installed_lollipop">EdXposed Framework je aktivní</string>
     <string name="installed_lollipop_inactive">EdXposed Framework je nainstalován, ale není aktivní\nProsím, zkontroluj log pro podrobnosti.</string>
     <string name="modules_updates_available">Aktualizace modulu k dispozici</string>

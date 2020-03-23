@@ -89,6 +89,13 @@
                         android:textColor="@color/warning"
                         android:visibility="gone" />
 
+                    <Button
+                        android:id="@+id/framework_know_issue_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/install_known_issue_details"
+                        android:visibility="gone" />
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
