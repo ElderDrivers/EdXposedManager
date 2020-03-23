@@ -15,10 +15,10 @@
 
     <string-array name="default_view_texts" translatable="false">
         <item>@string/nav_item_install</item>
-        <item>@string/nav_item_modules</item>
-        <item>@string/nav_item_download</item>
         <item>@string/nav_title_black_list</item>
         <item>@string/nav_title_compat_list</item>
+        <item>@string/nav_item_modules</item>
+        <item>@string/nav_item_download</item>
         <item>@string/nav_item_logs</item>
         <item>@string/nav_item_logs_err</item>
     </string-array>
