@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -70,7 +71,8 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         mAppAdapter = new BlackListAdapter(requireActivity(), isWhiteListMode);
         mRecyclerView.setAdapter(mAppAdapter);
         mAppAdapter.setCallback(this);
-
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
         mSwipeRefreshLayout.setRefreshing(true);
         mSwipeRefreshLayout.setOnRefreshListener(mAppAdapter::refresh);
 
@@ -123,11 +125,11 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
             if (packageName == null)
                 return;
 
-            Intent launchIntent = Objects.requireNonNull(getContext()).getPackageManager().getLaunchIntentForPackage(packageName);
+            Intent launchIntent = requireContext().getPackageManager().getLaunchIntentForPackage(packageName);
             if (launchIntent != null) {
                 startActivity(launchIntent);
             } else {
-                Toast.makeText(getActivity(), Objects.requireNonNull(getActivity()).getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), requireActivity().getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
             }
         }
     }

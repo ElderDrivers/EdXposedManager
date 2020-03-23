@@ -103,7 +103,7 @@
     <string name="settings_disable_resources">Zakázat ovlivňování prostředků</string>
     <string name="settings_disable_resources_summary">(Resource hooks)\nŘeší konflikty s tématy (theme engines)\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat</string>
     <string name="settings_group_app">Aplikace</string>
-    <string name="settings_theme">Motiv</string>
+    <string name="settings_title_theme">Motiv</string>
     <string name="settings_theme_light">Světlý</string>
     <string name="settings_theme_dark">Tmavý</string>
     <string name="settings_theme_black">Černý (užitečné pro AMOLED displeje)</string>
@@ -223,8 +223,8 @@
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Otevírat webové odkazy v interním prohlížeči</string>
     <string name="scroll_bottom">Přejít na konec</string>
-    <string name="open_drawer_summ">Automaticky otevřít navigační panel při spuštění</string>
-    <string name="open_drawer">Otevřít navigační panel automaticky</string>
+    <string name="settings_summary_open_drawer">Automaticky otevřít navigační panel při spuštění</string>
+    <string name="settings_title_open_drawer">Otevřít navigační panel automaticky</string>
     <string name="share_app">Sdílet aplikaci</string>
     <string name="share_app_text">Mrkni na tohle: Xposed správce v material designu! %s</string>
     <string name="status">Stav Xposed</string>
@@ -232,8 +232,8 @@
     <string name="xposed_off_next_reboot">Xposed Framework bude zakázán při příštím restartu</string>
     <string name="rovo_89_old_icon">rovo89 (původní)</string>
     <string name="confirm_reboots">Potvrzovat restarty</string>
-    <string name="skip_xposedminversion_check">Přeskočit kontrolu modulů</string>
-    <string name="skip_xposedminversion_check_summ">Vypne kontrolu minimální verze a stavu pro moduly</string>
+    <string name="settings_title_skip_status_check">Přeskočit kontrolu modulů</string>
+    <string name="settings_summary_skip_status_check">Vypne kontrolu minimální verze a stavu pro moduly</string>
 
     <string name="details">Podrobnosti</string>
     <string name="support_xda">Získat podporu</string>
@@ -283,11 +283,11 @@
     <string name="menu_title_compile_speed">Vynutit kompilaci v režimu rychlosti</string>
     <string name="compile_reset_msg">Resetuji …</string>
     <string name="compile_speed_msg">Kompiluji …</string>
-    <string name="pref_title_dynamic_modules">Okamžitý seznam modulů</string>
-    <string name="pref_dynamic_modules_summary">Pokud zapnuto, nahrát seznam naposledy aktivovaných modulů při každém spuštění procesu aplikace</string>
+    <string name="settings_title_dynamic_modules">Okamžitý seznam modulů</string>
+    <string name="settings_summary_dynamic_modules">Pokud zapnuto, nahrát seznam naposledy aktivovaných modulů při každém spuštění procesu aplikace</string>
     <string name="title_compat_list">Režim kompatibility</string>
-    <string name="pref_title_black_white_list">Režim seznamu aplikací</string>
-    <string name="pref_black_white_list_summary">Poznámka: používání režimu seznamu aplikací může rozbít funkce modulů operujících v rámci systému.</string>
+    <string name="settings_title_black_white_list">Režim seznamu aplikací</string>
+    <string name="settings_summary_black_white_list">Poznámka: používání režimu seznamu aplikací může rozbít funkce modulů operujících v rámci systému.</string>
     <string name="white_list_mode_summary">Režim bílé listiny: Pouze vybraná aplikace načte EdXposed Framework.\nRežim černé listiny: Vybraná aplikace nenačte EdXposed Framework.</string>
 
     <string name="meowcat">MeowCat Studio</string>
@@ -299,9 +299,9 @@
     <string name="elderdrivers_summary">Organizování EdXposed</string>
     <string name="meowcat_summary">Organizování MlgmXyysd</string>
     <string name="notinstalled">EdXposed framework není nainstalován.</string>
-    <string name="pref_title_enable_boot_image_deopt">Deoptimalizovat spouštěcí obraz</string>
-    <string name="pref_enable_boot_image_deopt_summary">Turn on to make all framework methods hookable, but the whole system will be slowed down.\nMainly used to check if one framework method is inlined when it can\'t be hooked into.</string>
+    <string name="settings_title_enable_boot_image_deopt">Deoptimalizovat spouštěcí obraz</string>
+    <string name="settings_summary_enable_boot_image_deopt">Turn on to make all framework methods hookable, but the whole system will be slowed down.\nMainly used to check if one framework method is inlined when it can\'t be hooked into.</string>
 
-    <string name="pref_title_disable_verbose_log">Zakázat podrobné záznamy</string>
+    <string name="settings_title_disable_verbose_log">Zakázat podrobné záznamy</string>
     <string name="logs_verbose_disabled">Podrobné záznamy vypnuty.</string>
 </resources>

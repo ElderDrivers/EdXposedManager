@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class MeowCatApplication extends XposedApp {
-    public static final String TAG = XposedApp.TAG;
+    public static final String TAG = "EdXposedManager";
 
     @Override
     public void onCreate() {
@@ -22,7 +22,7 @@ public class MeowCatApplication extends XposedApp {
         disableAPIDialog();
     }
 
-    private void disableAPIDialog(){
+    private void disableAPIDialog() {
         if (Build.VERSION.SDK_INT < 28) {
             return;
         }

@@ -47,7 +47,7 @@ public class XposedApp extends Application {
             try (FileInputStream is = new FileInputStream(file)) {
                 prop = parseXposedProp(is);
             } catch (IOException e) {
-                Log.e(org.meowcat.edxposed.manager.XposedApp.TAG, "Could not read " + file.getPath(), e);
+                Log.e(MeowCatApplication.TAG, "Could not read " + file.getPath(), e);
             }
         }
         synchronized (this) {

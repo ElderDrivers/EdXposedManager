@@ -105,7 +105,7 @@
     <string name="settings_disable_resources">Disabled resource hooks</string>
     <string name="settings_disable_resources_summary">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules which try to change resources will not work when this is enabled</string>
     <string name="settings_group_app">Application</string>
-    <string name="settings_theme">Theme</string>
+    <string name="settings_title_theme">Theme</string>
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_black">Black (useful for AMOLED screens)</string>
@@ -116,8 +116,8 @@
     <string name="support_modules_description">Click any module in the modules list and select \"%1$s\".</string>
     <string name="support_framework_label">Framework/Manager support</string>
     <string name="support_faq_label">FAQ/known issues</string>
-    <string name="support_group_qq">QQ Group: 855219808</string>
-    <string name="support_group_telegram">Telegram Group: @Code_of_MeowCat</string>
+    <string name="support_group_qq_label">QQ Group: 855219808</string>
+    <string name="support_group_telegram_label">Telegram Group: @Code_of_MeowCat</string>
     <string name="support_donate_label">Donate</string>
     <string name="support_donate_description">If you would like to say thanks for EdXposed, you can donate to our here</string>
 
@@ -232,8 +232,8 @@
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
     <string name="scroll_bottom">Scroll to bottom</string>
-    <string name="open_drawer_summ">Open the navigation drawer automatically at startup</string>
-    <string name="open_drawer">Open navigation drawer automatically</string>
+    <string name="settings_summary_open_drawer">Open the navigation drawer automatically at startup</string>
+    <string name="settings_title_open_drawer">Open navigation drawer automatically</string>
     <string name="share_app">Share app</string>
     <string name="share_app_text">Check this out: Open-sources Xposed Framework for latest Android: EdXposed! %s</string>
     <string name="status">EdXposed Status</string>
@@ -241,8 +241,8 @@
     <string name="xposed_off_next_reboot">EdXXposed Framework will be disabled on next reboot</string>
     <string name="rovo_89_old_icon">rovo89 (old)</string>
     <string name="confirm_reboots">Confirm reboots</string>
-    <string name="skip_xposedminversion_check">Skip status check</string>
-    <string name="skip_xposedminversion_check_summ">Skip \"EdXposed Status\" check for modules</string>
+    <string name="settings_title_skip_status_check">Skip status check</string>
+    <string name="settings_summary_skip_status_check">Skip \"EdXposed Status\" check for modules</string>
 
     <string name="notice">Notice</string>
     <string name="details">Details</string>
@@ -277,8 +277,8 @@
     <string name="known_issue_wrong_base_directory">Wrong base directory: %1$s</string>
     <string name="known_issue_missing_base_directory">Missing base directory</string>
 
-    <string name="dexopt_now">Optimize all apps with Dexopt</string>
-    <string name="speed_now">Optimize all apps with Speed mode</string>
+    <string name="dexopt_now">Dexopt</string>
+    <string name="speed_now">Dex2oat(Speed mode)</string>
     <string name="this_may_take_a_while">Please wait, this may take a while…</string>
     <string name="take_while_cannot_resore">Are you sure to optimize all apps?\n\nThis may take a while, and CANNOT be restored\n\nTip: You can optimize selected app in Application List</string>
     <string name="done">Done!</string>
@@ -301,11 +301,11 @@
     <string name="menu_title_compile_dexopt">Optimize with Dexopt mode</string>
     <string name="compile_reset_msg">Resetting …</string>
     <string name="compile_speed_msg">Optimizing …</string>
-    <string name="pref_title_dynamic_modules">Instant module list</string>
-    <string name="pref_dynamic_modules_summary">When turned on, load latest activated module list on each app process started</string>
+    <string name="settings_title_dynamic_modules">Instant module list</string>
+    <string name="settings_summary_dynamic_modules">When turned on, load latest activated module list on each app process started</string>
     <string name="title_compat_list">Compat mode</string>
-    <string name="pref_title_black_white_list">App List mode</string>
-    <string name="pref_black_white_list_summary">After opening, you can set the list in \"Application\"\nBlack List mode: Selected app NOT to load EdXposed modules\nNote: using app list mode might break system-wide modules\' functions</string>
+    <string name="settings_title_black_white_list">App List mode</string>
+    <string name="settings_summary_black_white_list">After opening, you can set the list in \"Application\"\nBlack List mode: Selected app NOT to load EdXposed modules\nNote: using app list mode might break system-wide modules\' functions</string>
     <string name="white_list_mode_summary">White List mode: Only selected app load EdXposed modules\nApp list mode is required to enable</string>
 
     <string name="app_name" translatable="false">EdXposed Manager</string>
@@ -343,10 +343,10 @@
     <string name="group_telegram_link" translatable="false">http://t.me/Code_of_MeowCat</string>
     <string name="group_telegram_channel_link" translatable="false">http://t.me/EdXposed</string>
     <string name="notinstalled">The EdXposed framework is not installed.</string>
-    <string name="pref_title_enable_boot_image_deopt">De-optimize boot image</string>
-    <string name="pref_enable_boot_image_deopt_summary">Turn on to make all framework methods hookable, but the whole system will be slowed down\nMainly used to check if one framework method is inlined when it can\'t be hooked into</string>
+    <string name="settings_title_enable_boot_image_deopt">De-optimize boot image</string>
+    <string name="settings_summary_enable_boot_image_deopt">Turn on to make all framework methods hookable, but the whole system will be slowed down\nMainly used to check if one framework method is inlined when it can\'t be hooked into</string>
 
-    <string name="pref_title_disable_verbose_log">Disable verbose logs</string>
+    <string name="settings_title_disable_verbose_log">Disable verbose logs</string>
     <string name="logs_verbose_disabled">Verbose logs is disabled</string>
     <string name="logs_too_long">Log is too long, not fully displayed</string>
     <string name="logs_cannot_read">Cannot read log: \n</string>
@@ -358,33 +358,36 @@
     <string name="update_time">Update time: </string>
     <string name="enabled_top">Top the checked items</string>
     <string name="list_sort">List sorting</string>
-    <string name="sort_by_name">Sort by application name</string>
-    <string name="sort_by_name_reverse">Sort by application name (reverse)</string>
-    <string name="sort_by_package_name">Sort by package name</string>
-    <string name="sort_by_package_name_reverse">Sort by package name (reverse)</string>
-    <string name="sort_by_install_time">Sort by install time</string>
-    <string name="sort_by_install_time_reverse">Sort by install time (reverse)</string>
-    <string name="sort_by_update_time">Sort by update time</string>
-    <string name="sort_by_update_time_reverse">Sort by update time (reverse)</string>
+    <string name="settings_sort_by_name">Sort by application name</string>
+    <string name="settings_sort_by_name_reverse">Sort by application name (reverse)</string>
+    <string name="settings_sort_by_package_name">Sort by package name</string>
+    <string name="settings_sort_by_package_name_reverse">Sort by package name (reverse)</string>
+    <string name="settings_sort_by_install_time">Sort by install time</string>
+    <string name="settings_sort_by_install_time_reverse">Sort by install time (reverse)</string>
+    <string name="settings_sort_by_update_time">Sort by update time</string>
+    <string name="settings_sort_by_update_time_reverse">Sort by update time (reverse)</string>
     <string name="app_no_ui">This application does not provide a user interface</string>
-    <string name="show_modules">Show modules and manager</string>
-    <string name="show_modules_summary">Show modules and manager in application list\nThis option does not remove checked application flag</string>
+    <string name="settings_title_show_modules">Show modules and manager</string>
+    <string name="settings_summary_show_modules">Show modules and manager in applications\nThis option does not remove checked application flag</string>
     <string name="compile_failed">Optimization failed or return value is empty</string>
     <string name="hook_modules">Force hook modules</string>
     <string name="hook_modules_summary">Force add modules to white-list and remove from black list\nClosing this option does not remove modules from white list\nApp list mode is required to enable</string>
     <string name="not_installed">Not installed</string>
     <string name="ok">OK</string>
-    <string name="pass_safetynet">Pass SafetyNet</string>
-    <string name="pass_safetynet_summary">Force add GMS and GSF to black list and remove from white list\nClosing this option does not remove modules from black list\nApp list mode is required to enable</string>
-    <string name="support_group_telegram_channel">Telegram Channel: @EdXposed</string>
-    <string name="old_success_color">Use old status active color (green)</string>
+    <string name="settings_title_pass_safetynet">Pass SafetyNet</string>
+    <string name="settings_summary_pass_safetynet">Force add GMS and GSF to black list and remove from white list\nClosing this option does not remove modules from black list\nApp list mode is required to enable</string>
+    <string name="support_group_telegram_channel_label">Telegram Channel: @EdXposed</string>
+    <string name="settings_title_old_success_color">Use old status active color (green)</string>
     <string name="warning_list_not_enabled">Application list mode is not enabled, you can enable in settings</string>
     <string name="empty_param">Params empty</string>
     <string name="reboot_system">Reboot to System</string>
-    <string name="stop_verbose_log">Stop verbose log catcher</string>
-    <string name="stop_verbose_log_summary">Verbose log will stop catch before the next boot</string>
-    <string name="stop_log_summary">Modules log will stop catch before the next boot</string>
-    <string name="stop_log">Stop modules log catcher</string>
-    <string name="pref_title_disable_modules_log">Disable modules logs</string>
-    <string name="pref_disable_modules_log_summary">Exception stack thrown by the module will still be catched normally</string>
+    <string name="settings_title_stop_verbose_log">Stop verbose log catcher</string>
+    <string name="settings_summary_stop_verbose_log">Verbose log will stop catch before the next boot</string>
+    <string name="settings_summary_stop_log">Modules log will stop catch before the next boot</string>
+    <string name="settings_title_stop_log">Stop modules log catcher</string>
+    <string name="settings_title_disable_modules_log">Disable modules logs</string>
+    <string name="settings_summary_disable_modules_log">Exception stack thrown by the module will still be catched normally</string>
+    <string name="optimize">Optimize</string>
+    <string name="settings_title_use_legacy_installer">Use legacy Xposed Installer</string>
+    <string name="settings_summary_use_legacy_installer">Switch to the legacy Xposed Installer (if installed) to use some obsolete but useful modules</string>
 </resources>

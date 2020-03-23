@@ -37,5 +37,6 @@
     <color name="card_background_pressed_black">#303030</color>
     <color name="card_shadow_black">#121212</color>
 
+    <color name="ic_launcher_background">#35C0CA</color>
 
 </resources>

@@ -108,9 +108,9 @@ public class ModulesBookmark extends XposedBaseActivity {
             if (changed)
                 getModules();
 
-            if (Build.VERSION.SDK_INT >= 21) {
-                getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
-            }
+//            if (Build.VERSION.SDK_INT >= 21) {
+            getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+//            }
         }
 
         @Override

@@ -101,8 +101,8 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
             if (mInstalledModule != null && mInstalledModule.isUpdate(sRepoLoader.getLatestVersion(mModule)) || directDownload)
                 mPager.setCurrentItem(DOWNLOAD_VERSIONS);
 
-            if (Build.VERSION.SDK_INT >= 21)
-                findViewById(R.id.fake_elevation).setVisibility(View.GONE);
+//            if (Build.VERSION.SDK_INT >= 21)
+            findViewById(R.id.fake_elevation).setVisibility(View.GONE);
 
         } else {
             setContentView(R.layout.activity_download_details_not_found);
@@ -121,8 +121,8 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
     protected void onResume() {
         super.onResume();
 
-        if (Build.VERSION.SDK_INT >= 21)
-            getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
+//        if (Build.VERSION.SDK_INT >= 21)
+        getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
 
     }
 

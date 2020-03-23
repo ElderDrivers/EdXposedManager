@@ -60,7 +60,7 @@ public class LogsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tab_logs, container, false);
+        View v = inflater.inflate(R.layout.tab_logs_modules, container, false);
         mTxtLog = v.findViewById(R.id.txtLog);
         mTxtLog.setTextIsSelectable(true);
         mSVLog = v.findViewById(R.id.svLog);

@@ -40,7 +40,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
     private CrashHandler() {
     }
 
-    public static CrashHandler getInstance() {
+    static CrashHandler getInstance() {
         return INSTANCE;
     }
 

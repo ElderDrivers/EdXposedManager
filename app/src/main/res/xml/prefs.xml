@@ -21,7 +21,7 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="old_success_color"
-            android:title="@string/old_success_color" />
+            android:title="@string/settings_title_old_success_color" />
 
         <SwitchPreference
             android:defaultValue="false"
@@ -39,7 +39,7 @@
             android:entryValues="@array/theme_values"
             android:key="theme"
             android:summary="%s"
-            android:title="@string/settings_theme"
+            android:title="@string/settings_title_theme"
             app:useStockLayout="true" />
 
         <org.meowcat.edxposed.manager.widget.IntegerListPreference
@@ -59,8 +59,8 @@
 
         <SwitchPreference
             android:key="open_drawer"
-            android:summary="@string/open_drawer_summ"
-            android:title="@string/open_drawer" />
+            android:summary="@string/settings_summary_open_drawer"
+            android:title="@string/settings_title_open_drawer" />
 
         <SwitchPreference
             android:key="force_english"
@@ -83,8 +83,8 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="skip_xposedminversion_check"
-            android:summary="@string/skip_xposedminversion_check_summ"
-            android:title="@string/skip_xposedminversion_check" />
+            android:summary="@string/settings_summary_skip_status_check"
+            android:title="@string/settings_title_skip_status_check" />
 
         <SwitchPreference
             android:defaultValue="true"
@@ -94,8 +94,8 @@
         <SwitchPreference
             android:defaultValue="true"
             android:key="show_modules"
-            android:summary="@string/show_modules_summary"
-            android:title="@string/show_modules" />
+            android:summary="@string/settings_summary_show_modules"
+            android:title="@string/settings_title_show_modules" />
 
     </PreferenceCategory>
 
@@ -165,9 +165,15 @@
 
         <SwitchPreference
             android:defaultValue="false"
+            android:key="use_legacy_installer"
+            android:summary="@string/settings_summary_use_legacy_installer"
+            android:title="@string/settings_title_use_legacy_installer" />
+
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="black_white_list_switch"
-            android:summary="@string/pref_black_white_list_summary"
-            android:title="@string/pref_title_black_white_list" />
+            android:summary="@string/settings_summary_black_white_list"
+            android:title="@string/settings_title_black_white_list" />
 
         <SwitchPreference
             android:defaultValue="false"
@@ -178,14 +184,14 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="is_dynamic_modules"
-            android:summary="@string/pref_dynamic_modules_summary"
-            android:title="@string/pref_title_dynamic_modules" />
+            android:summary="@string/settings_summary_dynamic_modules"
+            android:title="@string/settings_title_dynamic_modules" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="enable_boot_image_deopt"
-            android:summary="@string/pref_enable_boot_image_deopt_summary"
-            android:title="@string/pref_title_enable_boot_image_deopt" />
+            android:summary="@string/settings_summary_enable_boot_image_deopt"
+            android:title="@string/settings_title_enable_boot_image_deopt" />
 
         <SwitchPreference
             android:defaultValue="false"
@@ -203,19 +209,19 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="pass_safetynet"
-            android:summary="@string/pass_safetynet_summary"
-            android:title="@string/pass_safetynet" />
+            android:summary="@string/settings_summary_pass_safetynet"
+            android:title="@string/settings_title_pass_safetynet" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="disable_verbose_log"
-            android:title="@string/pref_title_disable_verbose_log" />
+            android:title="@string/settings_title_disable_verbose_log" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="disable_modules_log"
-            android:summary="@string/pref_disable_modules_log_summary"
-            android:title="@string/pref_title_disable_modules_log" />
+            android:summary="@string/settings_summary_disable_modules_log"
+            android:title="@string/settings_title_disable_modules_log" />
 
 <!--        <Preference-->
 <!--            android:key="stop_verbose_log"-->
