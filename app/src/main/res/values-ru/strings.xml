@@ -104,7 +104,7 @@
     <string name="settings_disable_resources">Не изменять ресурсы</string>
     <string name="settings_disable_resources_summary">Временное решение для конфликтов с темами системы.\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
     <string name="settings_group_app">Приложение</string>
-    <string name="settings_theme">Тема</string>
+    <string name="settings_title_theme">Тема</string>
     <string name="settings_theme_light">Светлая</string>
     <string name="settings_theme_dark">Темная</string>
     <string name="settings_theme_black">Черная (полезно для AMOLED экранов)</string>
@@ -115,8 +115,8 @@
     <string name="support_modules_description">Нажатие на модуле, в меню \"Установленные модули\" и выберите \"%1$s\"</string>
     <string name="support_framework_label">Поддержка EdXposed Framework | EdXposed Manager</string>
     <string name="support_faq_label">Справка | Известные проблемы</string>
-    <string name="support_group_qq">Группа QQ: 855219808</string>
-    <string name="support_group_telegram">Группа Telegram: @Code_of_MeowCat</string>
+    <string name="support_group_qq_label">Группа QQ: 855219808</string>
+    <string name="support_group_telegram_label">Группа Telegram: @Code_of_MeowCat</string>
     <string name="support_donate_label">Пожертвовать</string>
     <string name="support_donate_description">Если вы хотите отблагодарить за EdXposed, вы можете сделать пожертвование для rovo89 здесь:</string>
 
@@ -153,7 +153,6 @@
     <string name="download_no_valid_apk">Загруженный файл не является APK (или несовместим)</string>
     <string name="download_incorrect_package_name">Некорректное название пакета (загружено: %1$s, ожидалось: %2$s)</string>
 	<string name="download_running">Выполняется загрузка</string>
-    <string name="download_progress">%1$,d / %2$,d кб</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Загрузка %1$s прервана: %2$d (%3$s)</string>
@@ -231,8 +230,8 @@
     <string name="chrome_custom_tabs">Пользовательские вкладки Chrome</string>
     <string name="chrome_custom_tabs_summ">Открытие ссылок внутри приложения</string>
     <string name="scroll_bottom">Прокрутить вниз</string>
-    <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
-    <string name="open_drawer">Боковое меню</string>
+    <string name="settings_summary_open_drawer">Автоматически открывать боковое меню при запуске</string>
+    <string name="settings_title_open_drawer">Боковое меню</string>
     <string name="share_app">Поделиться</string>
     <string name="share_app_text">Попробуйте: Xposed Framework с открытым исходным кодом для последней версии EdXposed Manager! %s</string>
     <string name="status">Статус EdXposed</string>
@@ -240,13 +239,12 @@
     <string name="xposed_off_next_reboot">EdXposed Framework будет выключен после перезагрузки</string>
     <string name="rovo_89_old_icon">rovo89 (старая)</string>
     <string name="confirm_reboots">Подтверждать перезагрузку</string>
-    <string name="skip_xposedminversion_check">Проверка статуса</string>
-    <string name="skip_xposedminversion_check_summ">Пропускать проверку «Статус EdXposed» для модулей</string>
+    <string name="settings_title_skip_status_check">Проверка статуса</string>
+    <string name="settings_summary_skip_status_check">Пропускать проверку «Статус EdXposed» для модулей</string>
 
     <string name="notice">Предупреждение</string>
     <string name="details">Детали</string>
     <string name="support_xda">Поддержка на форуме XDA</string>
-    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Позже</string>
     <string name="save">Только сохранить</string>
     <string name="download_location">Папка для загрузок</string>
@@ -300,14 +298,13 @@
     <string name="menu_title_compile_dexopt">Оптимизировать в режиме DexOpt</string>
     <string name="compile_reset_msg">Сброс…</string>
     <string name="compile_speed_msg">Оптимизация…</string>
-    <string name="pref_title_dynamic_modules">Мгновенный список модулей</string>
-    <string name="pref_dynamic_modules_summary">При включении загружать список последних активированных модулей для каждого запущенного процесса приложения</string>
+    <string name="settings_title_dynamic_modules">Мгновенный список модулей</string>
+    <string name="settings_summary_dynamic_modules">При включении загружать список последних активированных модулей для каждого запущенного процесса приложения</string>
     <string name="title_compat_list">Список совместимости</string>
-    <string name="pref_title_black_white_list">Режим списка приложений</string>
-    <string name="pref_black_white_list_summary">Примечание: После открытия вкладки «Список приложений» вы увидите черный или белый список.\nВ режиме черного списка: Выбранные приложения не будут использовать модули EdXposed.\nИспользование режима списка приложений может нарушить функции общесистемных модулей</string>
+    <string name="settings_title_black_white_list">Режим списка приложений</string>
+    <string name="settings_summary_black_white_list">Примечание: После открытия вкладки «Список приложений» вы увидите черный или белый список.\nВ режиме черного списка: Выбранные приложения не будут использовать модули EdXposed.\nИспользование режима списка приложений может нарушить функции общесистемных модулей</string>
     <string name="white_list_mode_summary">В режиме белого списка: Выбранные приложения будут использовать модули EdXposed.\nНеобходимо включение режима «Режим списка приложений»</string>
 
-    <string name="app_name" translatable="false">EdXposed Manager</string>
     <string name="website">Веб-сайт</string>
 
     <string name="solohsu_summary">Разработчик EdXposed</string>
@@ -315,10 +312,10 @@
     <string name="elderdrivers_summary">Организация EdXposed</string>
     <string name="meowcat_summary">Организация MlgmXyysd</string>
     <string name="notinstalled">Платформа EdXposed Framework не установлена</string>
-    <string name="pref_title_enable_boot_image_deopt">Деоптимизировать загрузочный образ</string>
-    <string name="pref_enable_boot_image_deopt_summary">Включите, чтобы сделать все методы Framework подключаемыми, система может работать медленнее.\nВ основном используется для проверки методов подключения к Framework, когда нельзя подключить</string>
+    <string name="settings_title_enable_boot_image_deopt">Деоптимизировать загрузочный образ</string>
+    <string name="settings_summary_enable_boot_image_deopt">Включите, чтобы сделать все методы Framework подключаемыми, система может работать медленнее.\nВ основном используется для проверки методов подключения к Framework, когда нельзя подключить</string>
 
-    <string name="pref_title_disable_verbose_log">Отключить подробные логи</string>
+    <string name="settings_title_disable_verbose_log">Отключить подробные логи</string>
     <string name="logs_verbose_disabled">Подробные логи отключены</string>
     <string name="logs_too_long">Логи слишком большые</string>
     <string name="logs_cannot_read">Невозможно прочитать логи: \n</string>
@@ -330,33 +327,33 @@
     <string name="update_time">Обновлен: </string>
     <string name="enabled_top">Показывать включенные модули или приложения в начале списка</string>
     <string name="list_sort">Сортировка списков</string>
-    <string name="sort_by_name">Сортировать по названию приложения</string>
-    <string name="sort_by_name_reverse">Сортировать по названию приложения (обратный)</string>
-    <string name="sort_by_package_name">Сортировать по названию пакета</string>
-    <string name="sort_by_package_name_reverse">Сортировать по названию пакета (обратный)</string>
-    <string name="sort_by_install_time">Сортировать по времени установки</string>
-    <string name="sort_by_install_time_reverse">Сортировать по времени установки (обратный)</string>
-    <string name="sort_by_update_time">Сортировать по времени обновления</string>
-    <string name="sort_by_update_time_reverse">Сортировать по времени обновления (обратный)</string>
+    <string name="settings_sort_by_name">Сортировать по названию приложения</string>
+    <string name="settings_sort_by_name_reverse">Сортировать по названию приложения (обратный)</string>
+    <string name="settings_sort_by_package_name">Сортировать по названию пакета</string>
+    <string name="settings_sort_by_package_name_reverse">Сортировать по названию пакета (обратный)</string>
+    <string name="settings_sort_by_install_time">Сортировать по времени установки</string>
+    <string name="settings_sort_by_install_time_reverse">Сортировать по времени установки (обратный)</string>
+    <string name="settings_sort_by_update_time">Сортировать по времени обновления</string>
+    <string name="settings_sort_by_update_time_reverse">Сортировать по времени обновления (обратный)</string>
     <string name="app_no_ui">Это приложение не имеет пользовательский интерфейс</string>
-    <string name="show_modules">Отображение модулей</string>
-    <string name="show_modules_summary">Показывать модули в «Список приложений» и «Список совместимости».\nЭтот параметр не может удалять отмеченный флаг приложения</string>
+    <string name="settings_title_show_modules">Отображение модулей</string>
+    <string name="settings_summary_show_modules">Показывать модули в «Список приложений» и «Список совместимости».\nЭтот параметр не может удалять отмеченный флаг приложения</string>
     <string name="compile_failed">Оптимизация не удалась или возврат значения пусто</string>
     <string name="hook_modules">Принудительное добавление модулей</string>
     <string name="hook_modules_summary">Принудительно добавить модули в белый список и удалить модули из черного списка.\nВыключение этой настройки не удаляет модули из белого списка.\nНеобходимо включение «Режим списка приложений»</string>
     <string name="not_installed">Не установлен</string>
     <string name="ok">OK</string>
-    <string name="pass_safetynet">Проверка SafetyNet</string>
-    <string name="pass_safetynet_summary">Принудительно добавить GMS и GSF в черный список и удалить из белого списка.\nВыключение этой настройки не удаляет модули из черного списка.\nНеобходимо включение «Режим списка приложений»</string>
-    <string name="support_group_telegram_channel">Канал Telegram: @EdXposed</string>
-    <string name="old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
+    <string name="settings_title_pass_safetynet">Проверка SafetyNet</string>
+    <string name="settings_summary_pass_safetynet">Принудительно добавить GMS и GSF в черный список и удалить из белого списка.\nВыключение этой настройки не удаляет модули из черного списка.\nНеобходимо включение «Режим списка приложений»</string>
+    <string name="support_group_telegram_channel_label">Канал Telegram: @EdXposed</string>
+    <string name="settings_title_old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
     <string name="warning_list_not_enabled">«Режим списка приложений» не включен, вы можете включить его в настройках</string>
     <string name="empty_param">Пустые параметры</string>
     <string name="reboot_system">Нормальная перезагрузка</string>
-    <string name="stop_verbose_log">Остановить отлов подробных логов</string>
-    <string name="stop_verbose_log_summary">Подробные логи перестанут отлавливаться после перезагрузки</string>
-    <string name="stop_log_summary">Логи модулей перестанут отлавливаться после перезагрузки</string>
-    <string name="stop_log">Остановить отлов логов модулей</string>
-    <string name="pref_title_disable_modules_log">Отключить логи модулей</string>
-    <string name="pref_disable_modules_log_summary">Некоторые исключения от модулей по прежнему могут нормально отлавливаться</string>
+    <string name="settings_title_stop_verbose_log">Остановить отлов подробных логов</string>
+    <string name="settings_summary_stop_verbose_log">Подробные логи перестанут отлавливаться после перезагрузки</string>
+    <string name="settings_summary_stop_log">Логи модулей перестанут отлавливаться после перезагрузки</string>
+    <string name="settings_title_stop_log">Остановить отлов логов модулей</string>
+    <string name="settings_title_disable_modules_log">Отключить логи модулей</string>
+    <string name="settings_summary_disable_modules_log">Некоторые исключения от модулей по прежнему могут нормально отлавливаться</string>
 </resources>

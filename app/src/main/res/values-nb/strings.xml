@@ -104,7 +104,7 @@
     <string name="settings_disable_resources">Skrudde av ressurshektinger</string>
     <string name="settings_disable_resources_summary">Nødløsning for konflikter mellom temadrivere\n<b>ADVARSEL:</b> Moduler som prøver å endre på ressurser, vil ikke fungere når dette er skrudd på</string>
     <string name="settings_group_app">App</string>
-    <string name="settings_theme">Tema</string>
+    <string name="settings_title_theme">Tema</string>
     <string name="settings_theme_light">Lyst</string>
     <string name="settings_theme_dark">Mørkt</string>
     <string name="settings_theme_black">Svart (nyttig for AMOLED-skjermer)</string>
@@ -115,8 +115,8 @@
     <string name="support_modules_description">Klikk på enhver modul i modullisten og velg «%1$s».</string>
     <string name="support_framework_label">Framework/Manager-støtte</string>
     <string name="support_faq_label">FAQ / kjente problemer</string>
-    <string name="support_group_qq">QQ-gruppe: 855219808</string>
-    <string name="support_group_telegram">Telegram-gruppe: @Code_of_MeowCat</string>
+    <string name="support_group_qq_label">QQ-gruppe: 855219808</string>
+    <string name="support_group_telegram_label">Telegram-gruppe: @Code_of_MeowCat</string>
     <string name="support_donate_label">Donér</string>
     <string name="support_donate_description">Hvis du vil takke EdXposed, kan du donere til oss her</string>
 
@@ -153,7 +153,6 @@
     <string name="download_no_valid_apk">Den nedlastede filen er ikke en gyldig APK (eller er inkompatibel)</string>
     <string name="download_incorrect_package_name">Pakkenavnet er feil (lastet ned: %1$s, forventet: %2$s)</string>
     <string name="download_running">Nedlastingen pågår</string>
-    <string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Nedlastingen av %1$s mislyktes: %2$d (%3$s)</string>
@@ -231,8 +230,8 @@
     <string name="chrome_custom_tabs">Tilpassede Chrome-faner</string>
     <string name="chrome_custom_tabs_summ">Åpne lenker i en intern nettleser</string>
     <string name="scroll_bottom">Hopp til bunnen</string>
-    <string name="open_drawer_summ">Åpne navigasjonsskuffen automatisk ved oppstart</string>
-    <string name="open_drawer">Åpne navigasjonsskuffen automatisk</string>
+    <string name="settings_summary_open_drawer">Åpne navigasjonsskuffen automatisk ved oppstart</string>
+    <string name="settings_title_open_drawer">Åpne navigasjonsskuffen automatisk</string>
     <string name="share_app">Del appen</string>
     <string name="share_app_text">Her er det: Åpen-kildet Xposed Framework for de nyeste Android-versjonene: EdXposed! %s</string>
     <string name="status">EdXposed-status</string>
@@ -240,8 +239,8 @@
     <string name="xposed_off_next_reboot">EdXposed Framework vil bli skrudd av etter omstart</string>
     <string name="rovo_89_old_icon">rovo89 (gammel)</string>
     <string name="confirm_reboots">Bekreft omstarter</string>
-    <string name="skip_xposedminversion_check">Hopp over statussjekken</string>
-    <string name="skip_xposedminversion_check_summ">Hopp over «EdXposed-status»-sjekken for moduler</string>
+    <string name="settings_title_skip_status_check">Hopp over statussjekken</string>
+    <string name="settings_summary_skip_status_check">Hopp over «EdXposed-status»-sjekken for moduler</string>
 
     <string name="notice">Varsel</string>
     <string name="details">Detaljer</string>
@@ -299,27 +298,15 @@
     <string name="menu_title_compile_dexopt">Optimaliser med Dexopt-modus</string>
     <string name="compile_reset_msg">Tilbakestiller …</string>
     <string name="compile_speed_msg">Optimaliserer …</string>
-    <string name="pref_title_dynamic_modules">Umiddelbar modulliste</string>
-    <string name="pref_dynamic_modules_summary">Hvis det er skrudd på, lastes listen over de nyligst aktiverte modulene inn ved hver app-prosess som startes opp</string>
+    <string name="settings_title_dynamic_modules">Umiddelbar modulliste</string>
+    <string name="settings_summary_dynamic_modules">Hvis det er skrudd på, lastes listen over de nyligst aktiverte modulene inn ved hver app-prosess som startes opp</string>
     <string name="title_compat_list">Kompatibilitetsmodus</string>
-    <string name="pref_title_black_white_list">Applistemodus</string>
-    <string name="pref_black_white_list_summary">Etter åpning, kan du bestemme listen i «App»\nSvartelistemodus: De valgte appene skal IKKE laste inn EdXposed-moduler\nBemerk: Å bruke applistemodus kan knekke systemdekkende modulers funksjonaliteter</string>
+    <string name="settings_title_black_white_list">Applistemodus</string>
+    <string name="settings_summary_black_white_list">Etter åpning, kan du bestemme listen i «App»\nSvartelistemodus: De valgte appene skal IKKE laste inn EdXposed-moduler\nBemerk: Å bruke applistemodus kan knekke systemdekkende modulers funksjonaliteter</string>
     <string name="white_list_mode_summary">Hvitelistemodus: Kun de valgte appene kan laste inn EdXposed-moduler\nApplistemodus er påkrevd for å aktivere</string>
 
-    <string name="app_name" translatable="false">EdXposed Manager</string>
-    <string name="support_material_xda" translatable="false">https://edxp.meowcat.org/</string>
-    <string name="support_faq_url" translatable="false">https://github.com/ElderDrivers/EdXposed/wiki</string>
-    <string name="support_donate_url" translatable="false">https://edxp.meowcat.org/donate</string>
-    <string name="about_source" translatable="false">https://github.com/ElderDrivers/EdXposedManager/</string>
-    <string name="about_support" translatable="false">https://edxp.meowcat.org/faq</string>
-
-    <string name="solohsu" translatable="false">givein2u</string>
-    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
     <string name="meowcat">MeowCat Studio</string>
-    <string name="elderdrivers" translatable="false">Elder Drivers</string>
 
-    <string name="github" translatable="false">GitHub</string>
-    <string name="xda" translatable="false">XDA</string>
     <string name="coolapk">CoolApk</string>
     <string name="website">Nettsted</string>
 
@@ -327,24 +314,11 @@
     <string name="mlgmxyysd_summary">Hovedskaperen av EdXposed Manager</string>
     <string name="elderdrivers_summary">Organisasjonen til EdXposed</string>
     <string name="meowcat_summary">Organisasjonen til MlgmXyysd</string>
-    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
-    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
-    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
-    <string name="mlgmxyysd_coolapk" translatable="false">https://www.coolapk.com/u/814297</string>
-    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
-    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
-    <string name="meowcat_website" translatable="false">https://www.meowcat.org/</string>
-    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
-    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
-    <string name="elderdrivers_website" translatable="false">https://edxp.meowcat.org/</string>
-    <string name="group_qq_link" translatable="false">https://jq.qq.com/?k=57IiX8R</string>
-    <string name="group_telegram_link" translatable="false">https://t.me/Code_of_MeowCat</string>
-    <string name="group_telegram_channel_link" translatable="false">https://t.me/EdXposed</string>
     <string name="notinstalled">EdXposed Framework er ikke installert.</string>
-    <string name="pref_title_enable_boot_image_deopt">Avoptimaliser oppstartsavbildningen</string>
-    <string name="pref_enable_boot_image_deopt_summary">Skru på for å gjøre alle Framework-metoder hektbare, men hele system vil bli tregere\nBrukes hovedsaklig dersom én Framework-metode blir benyttet selv om den ikke kan bli hektet på</string>
+    <string name="settings_title_enable_boot_image_deopt">Avoptimaliser oppstartsavbildningen</string>
+    <string name="settings_summary_enable_boot_image_deopt">Skru på for å gjøre alle Framework-metoder hektbare, men hele system vil bli tregere\nBrukes hovedsakelig dersom én Framework-metode blir benyttet selv om den ikke kan bli hektet på</string>
 
-    <string name="pref_title_disable_verbose_log">Skru av detaljete loggføringer</string>
+    <string name="settings_title_disable_verbose_log">Skru av detaljete loggføringer</string>
     <string name="logs_verbose_disabled">Detaljerte loggføringer er skrudd av</string>
     <string name="logs_too_long">Loggen er for lang, så den vises ikke i sin helhet</string>
     <string name="logs_cannot_read">Kan ikke laste inn loggen: \n</string>
@@ -356,33 +330,33 @@
     <string name="update_time">Oppdateringstidpunkt: </string>
     <string name="enabled_top">Vis de valgte gjenstandene øverst</string>
     <string name="list_sort">Listesortering</string>
-    <string name="sort_by_name">Sorter etter appnavn</string>
-    <string name="sort_by_name_reverse">Sorter etter appnavn (reversert)</string>
-    <string name="sort_by_package_name">Sorter etter pakkenavn</string>
-    <string name="sort_by_package_name_reverse">Sorter etter pakkenavn (reversert)</string>
-    <string name="sort_by_install_time">Sorter etter installasjonstidspunkt</string>
-    <string name="sort_by_install_time_reverse">Sorter etter installasjonstidspunkt (reversert)</string>
-    <string name="sort_by_update_time">Sorter etter oppdateringstidspunkt</string>
-    <string name="sort_by_update_time_reverse">Sorter etter oppdateringstidspunkt (reversert)</string>
+    <string name="settings_sort_by_name">Sorter etter appnavn</string>
+    <string name="settings_sort_by_name_reverse">Sorter etter appnavn (reversert)</string>
+    <string name="settings_sort_by_package_name">Sorter etter pakkenavn</string>
+    <string name="settings_sort_by_package_name_reverse">Sorter etter pakkenavn (reversert)</string>
+    <string name="settings_sort_by_install_time">Sorter etter installasjonstidspunkt</string>
+    <string name="settings_sort_by_install_time_reverse">Sorter etter installasjonstidspunkt (reversert)</string>
+    <string name="settings_sort_by_update_time">Sorter etter oppdateringstidspunkt</string>
+    <string name="settings_sort_by_update_time_reverse">Sorter etter oppdateringstidspunkt (reversert)</string>
     <string name="app_no_ui">Denne appen tilbyr ikke et brukergrensesnitt</string>
-    <string name="show_modules">Vis moduler og behandleren</string>
-    <string name="show_modules_summary">Vis moduler og behandleren i applisten\nDenne innstillingen fjerner ikke app-avhukingsflagg</string>
+    <string name="settings_title_show_modules">Vis moduler og behandleren</string>
+    <string name="settings_summary_show_modules">Vis moduler og behandleren i applisten\nDenne innstillingen fjerner ikke app-avhukingsflagg</string>
     <string name="compile_failed">Optimalisering mislyktes, eller så er tilbakemeldingsverdien tom</string>
     <string name="hook_modules">Fremtving hekting av moduler</string>
     <string name="hook_modules_summary">Fremtving tillegging av moduler i hvitelisten og fjern dem fra svartelisten\nÅ lukke denne innstillingen fjerner ikke moduler fra hvitelisten\nApplistemodusen er påkrevd for å skru på dette</string>
     <string name="not_installed">Ikke installert</string>
     <string name="ok">OK</string>
-    <string name="pass_safetynet">Bestå SafetyNet</string>
-    <string name="pass_safetynet_summary">Fremtving tillegging av GMS og GSF i svartelisten og fjern dem fra hvitelisten\nÅ lukke denne innstillingen fjerner ikke moduler fra svartelisten\nApplistemodusen er påkrevd for å skru på dette</string>
-    <string name="support_group_telegram_channel">Telegram-kanal: @EdXposed</string>
-    <string name="old_success_color">Bruk den gamle fargen for aktiv-status (grønn)</string>
+    <string name="settings_title_pass_safetynet">Bestå SafetyNet</string>
+    <string name="settings_summary_pass_safetynet">Fremtving tillegging av GMS og GSF i svartelisten og fjern dem fra hvitelisten\nÅ lukke denne innstillingen fjerner ikke moduler fra svartelisten\nApplistemodusen er påkrevd for å skru på dette</string>
+    <string name="support_group_telegram_channel_label">Telegram-kanal: @EdXposed</string>
+    <string name="settings_title_old_success_color">Bruk den gamle fargen for aktiv-status (grønn)</string>
     <string name="warning_list_not_enabled">Applistemodusen er ikke skrudd på, det kan gjøres i innstillingene</string>
     <string name="empty_param">Parameterene er tomme</string>
     <string name="reboot_system">Omstart til systemmodus</string>
-    <string name="stop_verbose_log">Stopp den detaljerte logginnhenteren</string>
-    <string name="stop_verbose_log_summary">Den detaljerte loggføringen vil stoppe innhentingen før den neste omstarten</string>
-    <string name="stop_log_summary">Modulloggen vil stoppe innhentingen før den neste omstarten</string>
-    <string name="stop_log">Stopp modullogginnhenteren</string>
-    <string name="pref_title_disable_modules_log">Skru av modulloggføringer</string>
-    <string name="pref_disable_modules_log_summary">Unntaksmeldinger som blir slengt ut av modulen, vil fortsatt bli innhentet normalt</string>
+    <string name="settings_title_stop_verbose_log">Stopp den detaljerte logginnhenteren</string>
+    <string name="settings_summary_stop_verbose_log">Den detaljerte loggføringen vil stoppe innhentingen før den neste omstarten</string>
+    <string name="settings_summary_stop_log">Modulloggen vil stoppe innhentingen før den neste omstarten</string>
+    <string name="settings_title_stop_log">Stopp modullogginnhenteren</string>
+    <string name="settings_title_disable_modules_log">Skru av modulloggføringer</string>
+    <string name="settings_summary_disable_modules_log">Unntaksmeldinger som blir slengt ut av modulen, vil fortsatt bli innhentet normalt</string>
 </resources>
