@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
-import android.os.FileUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -33,7 +32,6 @@ import java.util.Objects;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 
-@SuppressWarnings("deprecation")
 public class AppHelper {
 
     public static final String TAG = XposedApp.TAG;
@@ -155,6 +153,7 @@ public class AppHelper {
         return result;
     }
 
+    @SuppressWarnings("deprecation")
     @SuppressLint("WorldReadableFiles")
     private static Boolean whiteListFileName(String packageName, boolean isAdd) {
         boolean returns = true;
@@ -164,7 +163,7 @@ public class AppHelper {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file.getPath());
-                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                    XposedApp.setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {
@@ -190,20 +189,7 @@ public class AppHelper {
         return returns;
     }
 
-    @SuppressWarnings("SameParameterValue")
-    @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
-    private static void setFilePermissionsFromMode(String name, int mode) {
-        int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
-                | FileUtils.S_IRGRP | FileUtils.S_IWGRP;
-        if ((mode & Context.MODE_WORLD_READABLE) != 0) {
-            perms |= FileUtils.S_IROTH;
-        }
-        if ((mode & Context.MODE_WORLD_WRITEABLE) != 0) {
-            perms |= FileUtils.S_IWOTH;
-        }
-        FileUtils.setPermissions(name, perms, -1, -1);
-    }
-
+    @SuppressWarnings("deprecation")
     @SuppressLint("WorldReadableFiles")
     private static Boolean blackListFileName(String packageName, boolean isAdd) {
         boolean returns = true;
@@ -213,7 +199,7 @@ public class AppHelper {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file.getPath());
-                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                    XposedApp.setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {
@@ -239,6 +225,7 @@ public class AppHelper {
         return returns;
     }
 
+    @SuppressWarnings("deprecation")
     @SuppressLint("WorldReadableFiles")
     private static Boolean compatListFileName(String packageName, boolean isAdd) {
         boolean returns = true;
@@ -248,7 +235,7 @@ public class AppHelper {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file.getPath());
-                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                    XposedApp.setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {

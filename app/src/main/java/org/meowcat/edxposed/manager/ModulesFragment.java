@@ -40,16 +40,12 @@ import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-
-import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.meowcat.edxposed.manager.repo.Module;
 import org.meowcat.edxposed.manager.repo.ModuleVersion;
 import org.meowcat.edxposed.manager.repo.ReleaseType;
 import org.meowcat.edxposed.manager.repo.RepoDb;
 import org.meowcat.edxposed.manager.repo.RepoDb.RowNotFoundException;
-import org.meowcat.edxposed.manager.util.AssetUtil;
 import org.meowcat.edxposed.manager.util.DownloadsUtil;
 import org.meowcat.edxposed.manager.util.InstallApkUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
@@ -57,7 +53,6 @@ import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.ModuleUtil.ModuleListener;
 import org.meowcat.edxposed.manager.util.NavUtil;
 import org.meowcat.edxposed.manager.util.RepoLoader;
-import org.meowcat.edxposed.manager.util.RootUtil;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.io.BufferedReader;
@@ -78,7 +73,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -89,7 +83,7 @@ import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.createFolder;
 
-public class ModulesFragment extends Fragment implements ModuleListener, AdapterView.OnItemClickListener {
+public class ModulesFragment extends BaseFragment implements ModuleListener, AdapterView.OnItemClickListener {
     public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
     static final String XPOSED_REPO_LINK = "http://repo.xposed.info/module/%s";
     static final String PLAY_STORE_PACKAGE = "com.android.vending";
@@ -104,7 +98,6 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     private ApplicationInfo.DisplayNameComparator displayNameComparator;
     private DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     private ModuleUtil mModuleUtil;
-    private RootUtil mRootUtil = new RootUtil();
     private ModuleAdapter mAdapter = null;
     private Runnable reloadModules = new Runnable() {
         public void run() {
@@ -212,7 +205,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         super.onCreate(savedInstanceState);
         filter = new ApplicationFilter();
         mModuleUtil = ModuleUtil.getInstance();
-        mPm = Objects.requireNonNull(getActivity()).getPackageManager();
+        mPm = requireActivity().getPackageManager();
         displayNameComparator = new ApplicationInfo.DisplayNameComparator(mPm);
         cmp = displayNameComparator;
     }
@@ -239,7 +232,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         reloadModules.run();
         getListView().setAdapter(mAdapter);
         mModuleUtil.addListener(this);
-        ActionBar actionBar = ((WelcomeActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
+        ActionBar actionBar = ((WelcomeActivity) requireActivity()).getSupportActionBar();
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
@@ -284,7 +277,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     }
 
     private void addHeader() {
-        View notActiveNote = Objects.requireNonNull(getActivity()).getLayoutInflater().inflate(R.layout.xposed_not_active_note, getListView(), false);
+        View notActiveNote = requireActivity().getLayoutInflater().inflate(R.layout.xposed_not_active_note, getListView(), false);
         notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);
         getListView().addHeaderView(notActiveNote);
     }
@@ -311,138 +304,8 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         }
     }
 
-    private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-        new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
-                .content(contentTextId)
-                .iconAttr(android.R.attr.alertDialogIcon)
-                .positiveText(android.R.string.yes)
-                .negativeText(android.R.string.no).callback(yesHandler).show();
-    }
-
-    private boolean startShell() {
-        if (mRootUtil.startShell())
-            return false;
-
-        showAlert(getString(R.string.root_failed));
-        return true;
-    }
-
-    private void softReboot() {
-        if (startShell())
-            return;
-
-        List<String> messages = new LinkedList<>();
-        if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
-            messages.add("");
-            messages.add(getString(R.string.reboot_failed));
-            showAlert(TextUtils.join("\n", messages).trim());
-        }
-    }
-
-    private void reboot(String mode) {
-        if (startShell())
-            return;
-
-        List<String> messages = new LinkedList<>();
-
-        String command = "/system/bin/svc power reboot";
-        if (mode != null) {
-            command += " " + mode;
-            if (mode.equals("recovery"))
-                // create a flag used by some kernels to boot into recovery
-                mRootUtil.executeWithBusybox("touch /cache/recovery/boot", messages);
-        }
-
-        if (mRootUtil.execute(command, messages) != 0) {
-            messages.add("");
-            messages.add(getString(R.string.reboot_failed));
-            showAlert(TextUtils.join("\n", messages).trim());
-        }
-        AssetUtil.removeBusybox();
-    }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.reboot:
-                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot(null);
-                        }
-                    });
-                } else {
-                    reboot(null);
-                }
-                break;
-            case R.id.soft_reboot:
-                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.soft_reboot, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            softReboot();
-                        }
-                    });
-                } else {
-                    softReboot();
-                }
-                break;
-            case R.id.reboot_recovery:
-                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot("recovery");
-                        }
-                    });
-                } else {
-                    reboot("recovery");
-                }
-                break;
-            case R.id.reboot_bootloader:
-                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_bootloader, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot("bootloader");
-                        }
-                    });
-                } else {
-                    reboot("bootloader");
-                }
-                break;
-            case R.id.reboot_download:
-                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_download, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot("download");
-                        }
-                    });
-                } else {
-                    reboot("download");
-                }
-                break;
-            case R.id.reboot_edl:
-                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_download, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot("edl");
-                        }
-                    });
-                } else {
-                    reboot("edl");
-                }
-                break;
-        }
         if (item.getItemId() == R.id.bookmarks) {
             startActivity(new Intent(getActivity(), ModulesBookmark.class));
             return true;
@@ -529,7 +392,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     }
 
     private boolean checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return true;
         }
@@ -602,18 +465,6 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         return true;
     }
 
-    private void showAlert(final String result) {
-        MaterialDialog dialog = new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).content(result).positiveText(R.string.ok).build();
-        dialog.show();
-
-        TextView txtMessage = (TextView) dialog
-                .findViewById(android.R.id.message);
-        try {
-            txtMessage.setTextSize(14);
-        } catch (NullPointerException ignored) {
-        }
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -625,13 +476,13 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     @Override
     public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
         mModuleUtil.updateModulesList(false);
-        Objects.requireNonNull(getActivity()).runOnUiThread(reloadModules);
+        requireActivity().runOnUiThread(reloadModules);
     }
 
     @Override
     public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
         mModuleUtil.updateModulesList(false);
-        Objects.requireNonNull(getActivity()).runOnUiThread(reloadModules);
+        requireActivity().runOnUiThread(reloadModules);
     }
 
     @SuppressLint("RestrictedApi")
@@ -668,7 +519,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                     if (launchIntent != null) {
                         startActivity(launchIntent);
                     } else {
-                        Toast.makeText(getActivity(), Objects.requireNonNull(getActivity()).getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), requireActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
                     }
                     return true;
 
@@ -718,7 +569,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
         // ApplicationPackageManager.getLaunchIntentForPackage(String)
         // first looks for an Xposed-specific category, falls back to
         // getLaunchIntentForPackage
-        PackageManager pm = Objects.requireNonNull(getActivity()).getPackageManager();
+        PackageManager pm = requireActivity().getPackageManager();
 
         Intent intentToResolve = new Intent(Intent.ACTION_MAIN);
         intentToResolve.addCategory(SETTINGS_CATEGORY);
@@ -743,7 +594,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (getFragmentManager() != null) {
             try {
-                showMenu(requireActivity(), view, Objects.requireNonNull(getContext()).getPackageManager().getApplicationInfo((String) view.getTag(), 0));
+                showMenu(requireActivity(), view, requireContext().getPackageManager().getApplicationInfo((String) view.getTag(), 0));
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
                 String packageName = (String) view.getTag();
@@ -754,7 +605,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 if (launchIntent != null) {
                     startActivity(launchIntent);
                 } else {
-                    Toast.makeText(getActivity(), Objects.requireNonNull(getActivity()).getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), requireActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
                 }
             }
         } else {
@@ -766,7 +617,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
             if (launchIntent != null) {
                 startActivity(launchIntent);
             } else {
-                Toast.makeText(getActivity(), Objects.requireNonNull(getActivity()).getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), requireActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -878,13 +729,13 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            Objects.requireNonNull(getActivity()).runOnUiThread(reloadModules);
+            requireActivity().runOnUiThread(reloadModules);
             return null;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            Objects.requireNonNull(getActivity()).runOnUiThread(reloadModules);
+            requireActivity().runOnUiThread(reloadModules);
         }
     }
 }

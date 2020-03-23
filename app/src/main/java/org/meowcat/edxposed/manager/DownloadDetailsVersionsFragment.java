@@ -1,5 +1,6 @@
 package org.meowcat.edxposed.manager;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -17,10 +18,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.ListFragment;
 
-import java.io.File;
-import java.text.DateFormat;
-import java.util.Date;
-
 import org.meowcat.edxposed.manager.repo.Module;
 import org.meowcat.edxposed.manager.repo.ModuleVersion;
 import org.meowcat.edxposed.manager.repo.ReleaseType;
@@ -34,13 +31,17 @@ import org.meowcat.edxposed.manager.util.ThemeUtil;
 import org.meowcat.edxposed.manager.util.chrome.LinkTransformationMethod;
 import org.meowcat.edxposed.manager.widget.DownloadView;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Objects;
+
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class DownloadDetailsVersionsFragment extends ListFragment {
-    private static VersionsAdapter sAdapter;
     private DownloadDetailsActivity mActivity;
-    private Module module;
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -51,7 +52,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        module = mActivity.getModule();
+        Module module = mActivity.getModule();
         if (module == null)
             return;
 
@@ -64,16 +65,11 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
                 TextView txtHeader = new TextView(getActivity());
                 txtHeader.setText(R.string.download_test_version_not_shown);
                 txtHeader.setTextColor(getResources().getColor(R.color.warning));
-                txtHeader.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mActivity.gotoPage(DownloadDetailsActivity.DOWNLOAD_SETTINGS);
-                    }
-                });
+                txtHeader.setOnClickListener(v -> mActivity.gotoPage(DownloadDetailsActivity.DOWNLOAD_SETTINGS));
                 getListView().addHeaderView(txtHeader);
             }
 
-            sAdapter = new VersionsAdapter(mActivity, mActivity.getInstalledModule());
+            VersionsAdapter sAdapter = new VersionsAdapter(mActivity, mActivity.getInstalledModule());
             for (ModuleVersion version : module.versions) {
                 if (repoLoader.isVersionShown(version))
                     sAdapter.add(version);
@@ -96,6 +92,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
         setListAdapter(null);
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -177,7 +174,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
         private final String mTextUpdateAvailable;
         private final long mInstalledVersionCode;
 
-        public VersionsAdapter(Context context, InstalledModule installed) {
+        VersionsAdapter(Context context, InstalledModule installed) {
             super(context, R.layout.list_item_version);
             mColorRelTypeStable = ThemeUtil.getThemeColor(context, android.R.attr.textColorTertiary);
             mColorRelTypeOthers = getResources().getColor(R.color.warning);
@@ -188,6 +185,8 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
             mInstalledVersionCode = (installed != null) ? installed.versionCode : -1;
         }
 
+        @SuppressLint("InflateParams")
+        @SuppressWarnings("NullableProblems")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = convertView;
@@ -209,7 +208,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
             ViewHolder holder = (ViewHolder) view.getTag();
             ModuleVersion item = getItem(position);
 
-            holder.txtVersion.setText(item.name);
+            holder.txtVersion.setText(Objects.requireNonNull(item).name);
             holder.txtRelType.setText(item.relType.getTitleId());
             holder.txtRelType.setTextColor(item.relType == ReleaseType.STABLE
                     ? mColorRelTypeStable : mColorRelTypeOthers);

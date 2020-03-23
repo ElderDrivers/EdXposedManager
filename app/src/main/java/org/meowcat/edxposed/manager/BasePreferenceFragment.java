@@ -32,10 +32,10 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
         super.setPreferenceScreen(preferenceScreen);
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected RecyclerView.Adapter onCreateAdapter(PreferenceScreen preferenceScreen) {
         return new PreferenceGroupAdapter(preferenceScreen) {
-            @SuppressLint("RestrictedApi")
             @Override
             public void onPreferenceHierarchyChange(Preference preference) {
                 if (preference != null)

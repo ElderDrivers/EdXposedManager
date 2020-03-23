@@ -15,7 +15,7 @@ public class PrefixedSharedPreferences implements SharedPreferences {
     private final SharedPreferences mBase;
     private final String mPrefix;
 
-    public PrefixedSharedPreferences(SharedPreferences base, String prefix) {
+    private PrefixedSharedPreferences(SharedPreferences base, String prefix) {
         mBase = base;
         mPrefix = prefix + "_";
     }
@@ -35,7 +35,7 @@ public class PrefixedSharedPreferences implements SharedPreferences {
     @Override
     public Map<String, ?> getAll() {
         Map<String, ?> baseResult = mBase.getAll();
-        Map<String, Object> prefixedResult = new HashMap<String, Object>(baseResult);
+        Map<String, Object> prefixedResult = new HashMap<>(baseResult);
         for (Entry<String, ?> entry : baseResult.entrySet()) {
             prefixedResult.put(mPrefix + entry.getKey(), entry.getValue());
         }
@@ -96,7 +96,7 @@ public class PrefixedSharedPreferences implements SharedPreferences {
     private class EditorImpl implements Editor {
         private final Editor mEditorBase;
 
-        public EditorImpl(Editor base) {
+        EditorImpl(Editor base) {
             mEditorBase = base;
         }
 

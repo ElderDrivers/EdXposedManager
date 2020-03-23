@@ -21,8 +21,6 @@ import org.meowcat.edxposed.manager.adapter.AppAdapter;
 import org.meowcat.edxposed.manager.adapter.AppHelper;
 import org.meowcat.edxposed.manager.adapter.CompatListAdapter;
 
-import java.util.Objects;
-
 public class CompatListFragment extends Fragment implements AppAdapter.Callback {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -105,11 +103,11 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
             if (packageName == null)
                 return;
 
-            Intent launchIntent = Objects.requireNonNull(getContext()).getPackageManager().getLaunchIntentForPackage(packageName);
+            Intent launchIntent = requireContext().getPackageManager().getLaunchIntentForPackage(packageName);
             if (launchIntent != null) {
                 startActivity(launchIntent);
             } else {
-                Toast.makeText(getActivity(), Objects.requireNonNull(getActivity()).getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), requireActivity().getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
             }
         }
     }

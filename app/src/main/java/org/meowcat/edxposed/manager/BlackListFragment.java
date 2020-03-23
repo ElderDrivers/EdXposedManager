@@ -22,8 +22,6 @@ import org.meowcat.edxposed.manager.adapter.AppAdapter;
 import org.meowcat.edxposed.manager.adapter.AppHelper;
 import org.meowcat.edxposed.manager.adapter.BlackListAdapter;
 
-import java.util.Objects;
-
 public class BlackListFragment extends Fragment implements AppAdapter.Callback {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;

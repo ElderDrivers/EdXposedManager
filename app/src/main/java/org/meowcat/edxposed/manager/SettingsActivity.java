@@ -12,7 +12,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.FileUtils;
 import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
@@ -153,9 +152,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             String act = ".WelcomeActivity";
             String[] iconsValues = new String[]{"MlgmXyysd", "DVDAndroid", "Hjmodi", "Rovo", "Cornie", "RovoOld", "Staol"};
 
-            Context context = getActivity();
-            PackageManager pm = Objects.requireNonNull(getActivity()).getPackageManager();
-            String packName = getActivity().getPackageName();
+            PackageManager pm = requireActivity().getPackageManager();
+            String packName = requireActivity().getPackageName();
 
             for (String s : iconsValues) {
                 pm.setComponentEnabledSetting(new ComponentName(packName, packName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
@@ -165,15 +163,12 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             int drawable = XposedApp.iconsValues[Integer.parseInt((String) newValue)];
 
-//            if (Build.VERSION.SDK_INT >= 21) {
-
             ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
-                    XposedApp.drawableToBitmap(Objects.requireNonNull(context).getDrawable(drawable)),
-                    XposedApp.getColor(context));
-            getActivity().setTaskDescription(tDesc);
-//            }
+                    XposedApp.drawableToBitmap(requireContext().getDrawable(drawable)),
+                    XposedApp.getColor(requireContext()));
+            requireActivity().setTaskDescription(tDesc);
 
-            pm.setComponentEnabledSetting(new ComponentName(Objects.requireNonNull(context), packName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(new ComponentName(requireContext(), packName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
             return true;
         };
 
@@ -182,20 +177,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         private Preference stopLog;
 
         public SettingsFragment() {
-        }
-
-        @SuppressWarnings("SameParameterValue")
-        @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
-        static void setFilePermissionsFromMode(String name, int mode) {
-            int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
-                    | FileUtils.S_IRGRP | FileUtils.S_IWGRP;
-            if ((mode & Context.MODE_WORLD_READABLE) != 0) {
-                perms |= FileUtils.S_IROTH;
-            }
-            if ((mode & Context.MODE_WORLD_WRITEABLE) != 0) {
-                perms |= FileUtils.S_IWOTH;
-            }
-            FileUtils.setPermissions(name, perms, -1, -1);
         }
 
         @SuppressLint({"ObsoleteSdkInt", "WorldReadableFiles"})
@@ -234,7 +215,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(mWhiteListModeFlag.getPath());
-                        setFilePermissionsFromMode(mWhiteListModeFlag.getPath(), Context.MODE_WORLD_READABLE);
+                        XposedApp.setFilePermissionsFromMode(mWhiteListModeFlag.getPath(), Context.MODE_WORLD_READABLE);
                     } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     } finally {
@@ -265,7 +246,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(mDisableVerboseLogsFlag.getPath());
-                        setFilePermissionsFromMode(mDisableVerboseLogsFlag.getPath(), Context.MODE_WORLD_READABLE);
+                        XposedApp.setFilePermissionsFromMode(mDisableVerboseLogsFlag.getPath(), Context.MODE_WORLD_READABLE);
                     } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     } finally {
@@ -296,7 +277,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(mDisableModulesLogsFlag.getPath());
-                        setFilePermissionsFromMode(mDisableModulesLogsFlag.getPath(), Context.MODE_WORLD_READABLE);
+                        XposedApp.setFilePermissionsFromMode(mDisableModulesLogsFlag.getPath(), Context.MODE_WORLD_READABLE);
                     } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     } finally {
@@ -327,7 +308,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(mBlackWhiteListModeFlag.getPath());
-                        setFilePermissionsFromMode(mBlackWhiteListModeFlag.getPath(), Context.MODE_WORLD_READABLE);
+                        XposedApp.setFilePermissionsFromMode(mBlackWhiteListModeFlag.getPath(), Context.MODE_WORLD_READABLE);
                     } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     } finally {
@@ -358,7 +339,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(mDeoptBootFlag.getPath());
-                        setFilePermissionsFromMode(mDeoptBootFlag.getPath(), Context.MODE_WORLD_READABLE);
+                        XposedApp.setFilePermissionsFromMode(mDeoptBootFlag.getPath(), Context.MODE_WORLD_READABLE);
                     } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     } finally {
@@ -389,7 +370,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(mDynamicModulesFlag.getPath());
-                        setFilePermissionsFromMode(mDynamicModulesFlag.getPath(), Context.MODE_WORLD_READABLE);
+                        XposedApp.setFilePermissionsFromMode(mDynamicModulesFlag.getPath(), Context.MODE_WORLD_READABLE);
                     } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     } finally {
@@ -420,7 +401,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(mDisableResourcesFlag.getPath());
-                        setFilePermissionsFromMode(mDisableResourcesFlag.getPath(), Context.MODE_WORLD_READABLE);
+                        XposedApp.setFilePermissionsFromMode(mDisableResourcesFlag.getPath(), Context.MODE_WORLD_READABLE);
                     } catch (FileNotFoundException e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     } finally {
@@ -456,7 +437,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
             //if (Build.VERSION.SDK_INT >= 21)
-                Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), 0.85f));
         }
 
         @Override
@@ -469,7 +450,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             if (key.equals("theme") || key.equals("nav_bar") || key.equals("ignore_chinese"))
-                Objects.requireNonNull(getActivity()).recreate();
+                requireActivity().recreate();
 
             if (key.equals("force_english"))
                 Toast.makeText(getActivity(), getString(R.string.warning_language), Toast.LENGTH_SHORT).show();
@@ -502,7 +483,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 new Runnable() {
                     @Override
                     public void run() {
-                        areYouSure(R.string.stop_verbose_log_summary, new MaterialDialog.ButtonCallback() {
+                        areYouSure(R.string.settings_summary_stop_verbose_log, new MaterialDialog.ButtonCallback() {
                             @Override
                             public void onPositive(MaterialDialog dialog) {
                                 super.onPositive(dialog);
@@ -515,7 +496,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 new Runnable() {
                     @Override
                     public void run() {
-                        areYouSure(R.string.stop_log_summary, new MaterialDialog.ButtonCallback() {
+                        areYouSure(R.string.settings_summary_stop_log, new MaterialDialog.ButtonCallback() {
                             @Override
                             public void onPositive(MaterialDialog dialog) {
                                 super.onPositive(dialog);
@@ -529,7 +510,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         }
 
         private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-            new MaterialDialog.Builder(Objects.requireNonNull(getActivity())).title(R.string.areyousure)
+            new MaterialDialog.Builder(requireActivity()).title(R.string.areyousure)
                     .content(contentTextId)
                     .iconAttr(android.R.attr.alertDialogIcon)
                     .positiveText(R.string.ok)
@@ -539,7 +520,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         private boolean checkPermissions() {
             if (Build.VERSION.SDK_INT < 23) return false;
 
-            if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()),
+            if (ActivityCompat.checkSelfPermission(requireContext(),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
                 return true;
@@ -566,7 +547,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 final IconListPreference.IconListPreferenceDialog f =
                         IconListPreference.IconListPreferenceDialog.newInstance(preference.getKey());
                 f.setTargetFragment(this, 0);
-                f.show(Objects.requireNonNull(getFragmentManager()), DIALOG_FRAGMENT_TAG);
+                f.show(requireFragmentManager(), DIALOG_FRAGMENT_TAG);
             } else {
                 super.onDisplayPreferenceDialog(preference);
             }

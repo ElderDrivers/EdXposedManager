@@ -30,7 +30,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.meowcat.edxposed.manager.receivers.PackageChangeReceiver;
-import org.meowcat.edxposed.manager.util.AssetUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.NotificationUtil;
 import org.meowcat.edxposed.manager.util.RepoLoader;
@@ -64,6 +63,20 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
     private SharedPreferences mPref;
     private Activity mCurrentActivity = null;
 
+    @SuppressWarnings({"SameParameterValue", "deprecation"})
+    @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
+    public static void setFilePermissionsFromMode(String name, int mode) {
+        int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
+                | FileUtils.S_IRGRP | FileUtils.S_IWGRP;
+        if ((mode & Context.MODE_WORLD_READABLE) != 0) {
+            perms |= FileUtils.S_IROTH;
+        }
+        if ((mode & Context.MODE_WORLD_WRITEABLE) != 0) {
+            perms |= FileUtils.S_IWOTH;
+        }
+        FileUtils.setPermissions(name, perms, -1, -1);
+    }
+
     public static XposedApp getInstance() {
         return mInstance;
     }
@@ -93,7 +106,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 //    }
 
     public static Integer getXposedVersion() {
-            return getActiveXposedVersion();
+        return getActiveXposedVersion();
     }
 
     public static SharedPreferences getPreferences() {
@@ -184,7 +197,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         createDirectories();
         delete(new File(Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/.temp"));
         NotificationUtil.init();
-        AssetUtil.removeBusybox();
         registerReceivers();
 
         registerActivityLifecycleCallbacks(this);

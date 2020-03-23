@@ -11,7 +11,6 @@ import android.util.Log;
 
 import org.json.JSONObject;
 import org.meowcat.edxposed.manager.BuildConfig;
-
 import org.meowcat.edxposed.manager.XposedApp;
 import org.meowcat.edxposed.manager.util.NotificationUtil;
 import org.meowcat.edxposed.manager.util.json.JSONUtils;
@@ -34,7 +33,7 @@ public class BootReceiver extends BroadcastReceiver {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private class CheckUpdates extends AsyncTask<Void, Void, Void> {
+    private static class CheckUpdates extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {

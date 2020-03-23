@@ -2,7 +2,6 @@ package org.meowcat.edxposed.manager.widget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.AttributeSet;
 
 import androidx.preference.ListPreference;
 
@@ -11,11 +10,11 @@ public class IntegerListPreference extends ListPreference {
         super(context);
     }
 
-    public IntegerListPreference(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+//    public IntegerListPreference(Context context, AttributeSet attrs) {
+//        super(context, attrs);
+//    }
 
-    public static int getIntValue(String value) {
+    private static int getIntValue(String value) {
         if (value == null)
             return 0;
 

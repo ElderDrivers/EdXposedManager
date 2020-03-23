@@ -10,10 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Locale;
-
 import org.meowcat.edxposed.manager.util.LocaleUtil;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
+
+import java.util.Locale;
 
 public abstract class XposedBaseActivity extends AppCompatActivity {
     public int mTheme = -1;
@@ -63,7 +63,7 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
     private void checkForceEnglish(SharedPreferences prefs) {
         if (prefs.getBoolean("force_english", false)) {
             LocaleUtil.setLocale(this.getBaseContext(), Locale.ENGLISH);
-        }else {
+        } else {
             LocaleUtil.setLocale(this.getBaseContext(), Locale.getDefault());
         }
     }

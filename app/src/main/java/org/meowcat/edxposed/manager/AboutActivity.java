@@ -22,8 +22,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import org.meowcat.edxposed.manager.util.NavUtil;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
 
-import java.util.Objects;
-
 import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
 import de.psdev.licensesdialog.licenses.MITLicense;
@@ -90,7 +88,7 @@ public class AboutActivity extends XposedBaseActivity {
         @Override
         public void onResume() {
             super.onResume();
-            Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), 0.85f));
         }
 
         @Override
@@ -109,24 +107,24 @@ public class AboutActivity extends XposedBaseActivity {
             View qqGroupView = v.findViewById(R.id.qqGroupView);
             View tgGroupView = v.findViewById(R.id.tgGroupView);
 
-            String packageName = Objects.requireNonNull(getActivity()).getPackageName();
+            String packageName = requireActivity().getPackageName();
             String translator = getResources().getString(R.string.translator);
 
-            SharedPreferences prefs = Objects.requireNonNull(getContext()).getSharedPreferences(packageName + "_preferences", MODE_PRIVATE);
+            SharedPreferences prefs = requireContext().getSharedPreferences(packageName + "_preferences", MODE_PRIVATE);
 
             final String changes = prefs.getString("changelog", null);
 
             if (changes == null) {
                 changelogView.setVisibility(View.GONE);
             } else {
-                changelogView.setOnClickListener(v1 -> new MaterialDialog.Builder(getContext())
+                changelogView.setOnClickListener(v1 -> new MaterialDialog.Builder(requireContext())
                         .title(R.string.changes)
                         .content(Html.fromHtml(changes))
                         .positiveText(R.string.ok).show());
             }
 
             try {
-                String version = getActivity().getPackageManager().getPackageInfo(packageName, 0).versionName;
+                String version = requireActivity().getPackageManager().getPackageInfo(packageName, 0).versionName;
                 ((TextView) v.findViewById(R.id.app_version)).setText(version);
             } catch (NameNotFoundException ignored) {
             }
@@ -163,7 +161,7 @@ public class AboutActivity extends XposedBaseActivity {
             notices.addNotice(new Notice("libsuperuser", "https://github.com/Chainfire/libsuperuser", "Copyright (C) 2012-2015 Jorrit \"Chainfire\" Jongma", new ApacheSoftwareLicense20()));
             notices.addNotice(new Notice("picasso", "https://github.com/square/picasso", "Copyright 2013 Square, Inc.", new ApacheSoftwareLicense20()));
 
-            new LicensesDialog.Builder(Objects.requireNonNull(getActivity()))
+            new LicensesDialog.Builder(requireActivity())
                     .setNotices(notices)
                     .setIncludeOwnLicense(true)
                     .build()

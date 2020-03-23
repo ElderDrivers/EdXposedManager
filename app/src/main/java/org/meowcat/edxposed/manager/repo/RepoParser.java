@@ -49,19 +49,15 @@ public class RepoParser {
     public static Spanned parseSimpleHtml(final Context c, String source, final TextView textView) {
         source = source.replaceAll("<li>", "\t\u0095 ");
         source = source.replaceAll("</li>", "<br>");
-        Spanned html = Html.fromHtml(source, new Html.ImageGetter() {
-            @Override
-            public Drawable getDrawable(String source) {
-                LevelListDrawable d = new LevelListDrawable();
-                @SuppressWarnings("deprecation")
-                Drawable empty = c.getResources().getDrawable(R.drawable.ic_no_image);
-                d.addLevel(0, 0, empty);
-                assert empty != null;
-                d.setBounds(0, 0, empty.getIntrinsicWidth(), empty.getIntrinsicHeight());
-                new ImageGetterAsyncTask(c, source, d).execute(textView);
+        Spanned html = Html.fromHtml(source, source1 -> {
+            LevelListDrawable d = new LevelListDrawable();
+            Drawable empty = c.getResources().getDrawable(R.drawable.ic_no_image);
+            d.addLevel(0, 0, empty);
+            assert empty != null;
+            d.setBounds(0, 0, empty.getIntrinsicWidth(), empty.getIntrinsicHeight());
+            new ImageGetterAsyncTask(c, source1, d).execute(textView);
 
-                return d;
-            }
+            return d;
         }, null);
 
         // trim trailing newlines

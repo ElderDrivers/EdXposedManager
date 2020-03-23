@@ -35,7 +35,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Objects;
 
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.createFolder;
@@ -78,7 +77,7 @@ public class LogsFragment extends Fragment {
             TextView message = dontShowAgainView.findViewById(android.R.id.message);
             message.setText(R.string.not_logcat);
 
-            new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
+            new MaterialDialog.Builder(requireActivity())
                     .title(R.string.install_warning_title)
                     .customView(dontShowAgainView, false)
                     .positiveText(R.string.ok)
@@ -165,7 +164,7 @@ public class LogsFragment extends Fragment {
     }
 
     private void send() {
-        Uri uri = FileProvider.getUriForFile(Objects.requireNonNull(getActivity()), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
+        Uri uri = FileProvider.getUriForFile(requireActivity(), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
@@ -192,7 +191,7 @@ public class LogsFragment extends Fragment {
 
     @SuppressLint("DefaultLocale")
     private void save() {
-        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return;
         }
@@ -260,7 +259,7 @@ public class LogsFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             mTxtLog.setText("");
-            mProgressDialog = new MaterialDialog.Builder(Objects.requireNonNull(getContext())).content(R.string.loading).progress(true, 0).show();
+            mProgressDialog = new MaterialDialog.Builder(requireContext()).content(R.string.loading).progress(true, 0).show();
         }
 
         @Override
@@ -271,7 +270,7 @@ public class LogsFragment extends Fragment {
 
             if (XposedApp.getPreferences().getBoolean(
                     "disable_verbose_log", false)) {
-                llog.append(Objects.requireNonNull(getContext()).getResources().getString(R.string.logs_verbose_disabled));
+                llog.append(requireContext().getResources().getString(R.string.logs_verbose_disabled));
                 return llog.toString();
             }
             try {
@@ -280,7 +279,7 @@ public class LogsFragment extends Fragment {
                 br = new BufferedReader(new FileReader(logfile));
                 long skipped = skipLargeFile(br, logfile.length());
                 if (skipped > 0) {
-                    llog.append(Objects.requireNonNull(getContext()).getResources().getString(R.string.logs_too_long));
+                    llog.append(requireContext().getResources().getString(R.string.logs_too_long));
                     llog.append("\n-----------------\n");
                 }
 
@@ -291,7 +290,7 @@ public class LogsFragment extends Fragment {
                 }
                 br.close();
             } catch (IOException e) {
-                llog.append(Objects.requireNonNull(getContext()).getResources().getString(R.string.logs_cannot_read));
+                llog.append(requireContext().getResources().getString(R.string.logs_cannot_read));
                 llog.append(e.getMessage());
             }
 

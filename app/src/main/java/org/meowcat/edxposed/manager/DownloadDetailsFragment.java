@@ -1,5 +1,6 @@
 package org.meowcat.edxposed.manager;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,12 +21,15 @@ import org.meowcat.edxposed.manager.util.chrome.LinkTransformationMethod;
 public class DownloadDetailsFragment extends Fragment {
     private DownloadDetailsActivity mActivity;
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mActivity = (DownloadDetailsActivity) activity;
     }
 
+    @SuppressLint("SetTextI18n")
+    @SuppressWarnings("NullableProblems")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Module module = mActivity.getModule();
@@ -70,12 +74,7 @@ public class DownloadDetailsFragment extends Fragment {
             final Uri link = NavUtil.parseURL(moreInfoEntry.second);
             if (link != null) {
                 txtValue.setTextColor(txtValue.getLinkTextColors());
-                moreInfoView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        NavUtil.startURL(getActivity(), link);
-                    }
-                });
+                moreInfoView.setOnClickListener(v -> NavUtil.startURL(getActivity(), link));
             }
 
             moreInfoContainer.addView(moreInfoView);

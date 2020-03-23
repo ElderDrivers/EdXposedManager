@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.FileUtils;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,7 +36,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Objects;
 
 @SuppressLint("StaticFieldLeak")
 public class StatusInstallerFragment extends Fragment {
@@ -132,6 +130,7 @@ public class StatusInstallerFragment extends Fragment {
         return info + " (" + getArch() + ")";
     }
 
+    // TODO: deprecated
     private static String getArch() {
         if (Build.CPU_ABI.equals("arm64-v8a")) {
             return "arm64";
@@ -149,37 +148,6 @@ public class StatusInstallerFragment extends Fragment {
             return "arm";
         }
     }
-
-    @SuppressWarnings("SameParameterValue")
-    @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
-    private static void setFilePermissionsFromMode(String name, int mode) {
-        int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
-                | FileUtils.S_IRGRP | FileUtils.S_IWGRP;
-        if ((mode & Context.MODE_WORLD_READABLE) != 0) {
-            perms |= FileUtils.S_IROTH;
-        }
-        if ((mode & Context.MODE_WORLD_WRITEABLE) != 0) {
-            perms |= FileUtils.S_IWOTH;
-        }
-        FileUtils.setPermissions(name, perms, -1, -1);
-    }
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == WRITE_EXTERNAL_PERMISSION) {
-//            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        update();
-//                    }
-//                }, 500);
-//            } else {
-//                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
-//            }
-//        }
-//    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -268,7 +236,8 @@ public class StatusInstallerFragment extends Fragment {
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(DISABLE_FILE.getPath());
-                        setFilePermissionsFromMode(DISABLE_FILE.getPath(), Context.MODE_WORLD_READABLE);
+                        //noinspection deprecation
+                        XposedApp.setFilePermissionsFromMode(DISABLE_FILE.getPath(), Context.MODE_WORLD_READABLE);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } finally {
@@ -353,7 +322,7 @@ public class StatusInstallerFragment extends Fragment {
     private void refreshKnownIssue() {
         String issueName = null;
         String issueLink = null;
-        final ApplicationInfo appInfo = Objects.requireNonNull(getActivity()).getApplicationInfo();
+        final ApplicationInfo appInfo = requireActivity().getApplicationInfo();
         final File baseDir = new File(XposedApp.BASE_DIR);
         final File baseDirCanonical = getCanonicalFile(baseDir);
         final File baseDirActual = new File(Build.VERSION.SDK_INT >= 24 ? appInfo.deviceProtectedDataDir : appInfo.dataDir);

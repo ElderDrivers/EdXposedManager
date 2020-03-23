@@ -5,7 +5,6 @@ import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 
 import org.meowcat.edxposed.manager.R;
-
 import org.meowcat.edxposed.manager.XposedApp;
 import org.meowcat.edxposed.manager.XposedBaseActivity;
 
@@ -18,7 +17,7 @@ public final class ThemeUtil {
     private ThemeUtil() {
     }
 
-    public static int getSelectTheme() {
+    private static int getSelectTheme() {
         int theme = XposedApp.getPreferences().getInt("theme", 0);
         return (theme >= 0 && theme < THEMES.length) ? theme : 0;
     }

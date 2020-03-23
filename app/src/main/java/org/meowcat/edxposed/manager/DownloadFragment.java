@@ -1,5 +1,6 @@
 package org.meowcat.edxposed.manager;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,10 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CursorAdapter;
-import android.widget.FilterQueryProvider;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.SearchView;
@@ -52,6 +50,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 import static android.content.Context.MODE_PRIVATE;
 
 public class DownloadFragment extends Fragment implements RepoListener, ModuleListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    @SuppressLint("StaticFieldLeak")
     public static Activity sActivity;
     private SharedPreferences mPref;
     private DownloadsAdapter mAdapter;
@@ -91,16 +90,11 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         mRepoLoader = RepoLoader.getInstance();
         mModuleUtil = ModuleUtil.getInstance();
         mAdapter = new DownloadsAdapter(getActivity());
-        mAdapter.setFilterQueryProvider(new FilterQueryProvider() {
-            @Override
-            public Cursor runQuery(CharSequence constraint) {
-                return RepoDb.queryModuleOverview(mSortingOrder, constraint);
-            }
-        });
+        mAdapter.setFilterQueryProvider(constraint -> RepoDb.queryModuleOverview(mSortingOrder, constraint));
         mSortingOrder = mPref.getInt("download_sorting_order",
                 RepoDb.SORT_STATUS);
 
-        mIgnoredUpdatesPref = getContext()
+        mIgnoredUpdatesPref = requireContext()
                 .getSharedPreferences("update_ignored", MODE_PRIVATE);
         setHasOptionsMenu(true);
     }
@@ -126,14 +120,14 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
             changed = !changed;
         }
 
-        getActivity().registerReceiver(connectionListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        requireActivity().registerReceiver(connectionListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
     public void onPause() {
         super.onPause();
 
-        getActivity().unregisterReceiver(connectionListener);
+        requireActivity().unregisterReceiver(connectionListener);
     }
 
     @Override
@@ -153,13 +147,10 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
             mListView.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
         }
         final SwipeRefreshLayout refreshLayout = v.findViewById(R.id.swiperefreshlayout);
-        refreshLayout.setColorSchemeColors(XposedApp.getColor(getContext()));
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mRepoLoader.setSwipeRefreshLayout(refreshLayout);
-                mRepoLoader.triggerReload(true);
-            }
+        refreshLayout.setColorSchemeColors(XposedApp.getColor(requireContext()));
+        refreshLayout.setOnRefreshListener(() -> {
+            mRepoLoader.setSwipeRefreshLayout(refreshLayout);
+            mRepoLoader.triggerReload(true);
         });
         mRepoLoader.addListener(this, true);
         mModuleUtil.addListener(this);
@@ -178,28 +169,22 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
             }
         });
 
-        mListView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cursor cursor = (Cursor) mAdapter.getItem(position);
-                String packageName = cursor.getString(OverviewColumnsIndexes.PKGNAME);
+        mListView.setOnItemClickListener((parent, view, position, id) -> {
+            Cursor cursor = (Cursor) mAdapter.getItem(position);
+            String packageName = cursor.getString(OverviewColumnsIndexes.PKGNAME);
 
-                Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
-                detailsIntent.setData(Uri.fromParts("package", packageName, null));
-                startActivity(detailsIntent);
-            }
+            Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
+            detailsIntent.setData(Uri.fromParts("package", packageName, null));
+            startActivity(detailsIntent);
         });
-        mListView.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // Expand the search view when the SEARCH key is triggered
-                if (keyCode == KeyEvent.KEYCODE_SEARCH && event.getAction() == KeyEvent.ACTION_UP && (event.getFlags() & KeyEvent.FLAG_CANCELED) == 0) {
-                    if (mSearchView != null)
-                        mSearchView.setIconified(false);
-                    return true;
-                }
-                return false;
+        mListView.setOnKeyListener((v1, keyCode, event) -> {
+            // Expand the search view when the SEARCH key is triggered
+            if (keyCode == KeyEvent.KEYCODE_SEARCH && event.getAction() == KeyEvent.ACTION_UP && (event.getFlags() & KeyEvent.FLAG_CANCELED) == 0) {
+                if (mSearchView != null)
+                    mSearchView.setIconified(false);
+                return true;
             }
+            return false;
         });
 
         setHasOptionsMenu(true);
@@ -214,6 +199,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         mModuleUtil.removeListener(this);
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_download, menu);
@@ -262,24 +248,20 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_sort:
-                new MaterialDialog.Builder(getActivity())
-                        .title(R.string.download_sorting_title)
-                        .items(R.array.download_sort_order)
-                        .itemsCallbackSingleChoice(mSortingOrder,
-                                new MaterialDialog.ListCallbackSingleChoice() {
-                                    @Override
-                                    public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
-                                        mSortingOrder = i;
-                                        mPref.edit().putInt("download_sorting_order", mSortingOrder).apply();
-                                        reloadItems();
-                                        materialDialog.dismiss();
-                                        return true;
-                                    }
-                                })
-                        .show();
-                return true;
+        if (item.getItemId() == R.id.menu_sort) {
+            new MaterialDialog.Builder(requireActivity())
+                    .title(R.string.download_sorting_title)
+                    .items(R.array.download_sort_order)
+                    .itemsCallbackSingleChoice(mSortingOrder,
+                            (materialDialog, view, i, charSequence) -> {
+                                mSortingOrder = i;
+                                mPref.edit().putInt("download_sorting_order", mSortingOrder).apply();
+                                reloadItems();
+                                materialDialog.dismiss();
+                                return true;
+                            })
+                    .show();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -312,7 +294,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         private String[] sectionHeadersStatus;
         private String[] sectionHeadersDate;
 
-        public DownloadsAdapter(Context context) {
+        DownloadsAdapter(Context context) {
             super(context, null, 0);
             mContext = context;
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

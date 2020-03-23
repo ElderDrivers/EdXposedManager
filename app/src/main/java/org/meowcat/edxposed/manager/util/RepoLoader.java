@@ -12,10 +12,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.meowcat.edxposed.manager.DownloadFragment;
@@ -41,6 +39,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -133,7 +132,7 @@ public class RepoLoader {
             return;
 
         synchronized (mLocalReleaseTypesCache) {
-            mLocalReleaseTypesCache.put(packageName, relType);
+            mLocalReleaseTypesCache.put(packageName, Objects.requireNonNull(relType));
         }
 
         RepoDb.updateModuleLatestVersion(packageName);
@@ -148,7 +147,7 @@ public class RepoLoader {
             String value = mModulePref.getString(packageName + "_release_type",
                     null);
             ReleaseType result = (!TextUtils.isEmpty(value)) ? ReleaseType.fromString(value) : null;
-            mLocalReleaseTypesCache.put(packageName, result);
+            mLocalReleaseTypesCache.put(packageName, Objects.requireNonNull(result));
             return result;
         }
     }
@@ -215,11 +214,9 @@ public class RepoLoader {
                 mPref.edit().putLong("last_update_check", System.currentTimeMillis()).apply();
 
                 if (!messages.isEmpty()) {
-                    XposedApp.runOnUiThread(new Runnable() {
-                        public void run() {
-                            for (String message : messages) {
-                                Toast.makeText(mApp, message, Toast.LENGTH_LONG).show();
-                            }
+                    XposedApp.runOnUiThread(() -> {
+                        for (String message : messages) {
+                            Toast.makeText(mApp, message, Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -244,7 +241,7 @@ public class RepoLoader {
             triggerReload(false);
     }
 
-    public void resetLastUpdateCheck() {
+    private void resetLastUpdateCheck() {
         mPref.edit().remove("last_update_check").apply();
     }
 
@@ -259,7 +256,7 @@ public class RepoLoader {
                 return;
 
             RepoDb.deleteRepositories();
-            mRepositories = new LinkedHashMap<Long, Repository>(0);
+            mRepositories = new LinkedHashMap<>(0);
             DownloadsUtil.clearCache(null);
             resetLastUpdateCheck();
         }
@@ -268,17 +265,17 @@ public class RepoLoader {
             notifyListeners();
     }
 
-    public void setRepositories(String... repos) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < repos.length; i++) {
-            if (i > 0)
-                sb.append("|");
-            sb.append(repos[i]);
-        }
-        mPref.edit().putString("repositories", sb.toString()).apply();
-        if (refreshRepositories())
-            triggerReload(true);
-    }
+//    public void setRepositories(String... repos) {
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < repos.length; i++) {
+//            if (i > 0)
+//                sb.append("|");
+//            sb.append(repos[i]);
+//        }
+//        mPref.edit().putString("repositories", sb.toString()).apply();
+//        if (refreshRepositories())
+//            triggerReload(true);
+//    }
 
     public boolean hasModuleUpdates() {
         return RepoDb.hasModuleUpdates();
@@ -295,6 +292,7 @@ public class RepoLoader {
         return new File(mApp.getCacheDir(), filename);
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private boolean downloadAndParseFiles(List<String> messages) {
         // These variables don't need to be atomic, just mutable
         final AtomicBoolean hasChanged = new AtomicBoolean(false);
@@ -372,30 +370,22 @@ public class RepoLoader {
 
                 RepoDb.setTransactionSuccessful();
             } catch (SQLiteException e) {
-                XposedApp.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        new MaterialDialog.Builder(DownloadFragment.sActivity)
-                                .title(R.string.restart_needed)
-                                .content(R.string.cache_cleaned)
-                                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                                    @Override
-                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                        Intent i = new Intent(DownloadFragment.sActivity, WelcomeActivity.class);
-                                        i.putExtra("fragment", 2);
+                XposedApp.runOnUiThread(() -> new MaterialDialog.Builder(DownloadFragment.sActivity)
+                        .title(R.string.restart_needed)
+                        .content(R.string.cache_cleaned)
+                        .onPositive((dialog, which) -> {
+                            Intent i = new Intent(DownloadFragment.sActivity, WelcomeActivity.class);
+                            i.putExtra("fragment", 2);
 
-                                        PendingIntent pi = PendingIntent.getActivity(DownloadFragment.sActivity, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+                            PendingIntent pi = PendingIntent.getActivity(DownloadFragment.sActivity, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
 
-                                        AlarmManager mgr = (AlarmManager) mApp.getSystemService(Context.ALARM_SERVICE);
-                                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pi);
-                                        System.exit(0);
-                                    }
-                                })
-                                .positiveText(R.string.ok)
-                                .canceledOnTouchOutside(false)
-                                .show();
-                    }
-                });
+                            AlarmManager mgr = (AlarmManager) mApp.getSystemService(Context.ALARM_SERVICE);
+                            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pi);
+                            System.exit(0);
+                        })
+                        .positiveText(R.string.ok)
+                        .canceledOnTouchOutside(false)
+                        .show());
 
                 DownloadsUtil.clearCache(url);
             } catch (Throwable t) {

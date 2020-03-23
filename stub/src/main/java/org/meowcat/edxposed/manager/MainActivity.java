@@ -29,6 +29,17 @@ public class MainActivity extends Activity {
         }
     }
 
+    public static Uri parseURL(String str) {
+        if (str == null || str.isEmpty())
+            return null;
+
+        Spannable spannable = new SpannableString(str);
+        Linkify.addLinks(spannable, Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES);
+
+        URLSpan[] spans = spannable.getSpans(0, spannable.length(), URLSpan.class);
+        return (spans.length > 0) ? Uri.parse(spans[0].getURL()) : null;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,16 +73,5 @@ public class MainActivity extends Activity {
                 })
                 .setNegativeButton(R.string.btn_no, (d, w) -> finish())
                 .show();
-    }
-
-    public static Uri parseURL(String str) {
-        if (str == null || str.isEmpty())
-            return null;
-
-        Spannable spannable = new SpannableString(str);
-        Linkify.addLinks(spannable, Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES);
-
-        URLSpan[] spans = spannable.getSpans(0, spannable.length(), URLSpan.class);
-        return (spans.length > 0) ? Uri.parse(spans[0].getURL()) : null;
     }
 }

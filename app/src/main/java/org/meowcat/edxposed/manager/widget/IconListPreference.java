@@ -102,11 +102,11 @@ public class IconListPreference extends ListPreference {
             return dialog;
         }
 
-        protected IconListPreference getCustomizablePreference() {
+        IconListPreference getCustomizablePreference() {
             return (IconListPreference) getPreference();
         }
 
-        protected ListAdapter createListAdapter() {
+        ListAdapter createListAdapter() {
             final String selectedValue = getCustomizablePreference().getValue();
             int selectedIndex = getCustomizablePreference().findIndexOfValue(selectedValue);
             return new AppArrayAdapter(getContext(), R.layout.icon_preference_item,
@@ -132,13 +132,14 @@ public class IconListPreference extends ListPreference {
             return dialog;
         }
 
+        @SuppressWarnings("NullableProblems")
         @Override
         public void onSaveInstanceState(Bundle outState) {
             super.onSaveInstanceState(outState);
             outState.putInt(KEY_CLICKED_ENTRY_INDEX, mClickedDialogEntryIndex);
         }
 
-        protected void setClickedDialogEntryIndex(int which) {
+        void setClickedDialogEntryIndex(int which) {
             mClickedDialogEntryIndex = which;
         }
 
@@ -170,17 +171,18 @@ public class IconListPreference extends ListPreference {
     }
 
     public static class AppArrayAdapter extends ArrayAdapter<CharSequence> {
-        private List<Drawable> mImageDrawables = null;
-        private int mSelectedIndex = 0;
+        private List<Drawable> mImageDrawables;
+        private int mSelectedIndex;
 
-        public AppArrayAdapter(Context context, int textViewResourceId,
-                               CharSequence[] objects, List<Drawable> imageDrawables,
-                               int selectedIndex) {
+        AppArrayAdapter(Context context, int textViewResourceId,
+                        CharSequence[] objects, List<Drawable> imageDrawables,
+                        int selectedIndex) {
             super(context, textViewResourceId, objects);
             mSelectedIndex = selectedIndex;
             mImageDrawables = imageDrawables;
         }
 
+        @SuppressWarnings("NullableProblems")
         @Override
         @SuppressLint("ViewHolder")
         public View getView(int position, View convertView, ViewGroup parent) {
