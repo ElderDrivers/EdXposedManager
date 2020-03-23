@@ -12,8 +12,8 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 27
-        versionCode 45401
-        versionName "4.5.4"
+        versionCode 45500
+        versionName "4.5.5"
         //noinspection GroovyAccessibility
         project.ext.set("archivesBaseName", "EdXposedManager-" + versionName + "-" + versionCode + "-" + applicationId)
     }
