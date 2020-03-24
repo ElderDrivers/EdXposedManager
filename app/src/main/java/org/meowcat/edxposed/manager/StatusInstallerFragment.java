@@ -403,19 +403,12 @@ public class StatusInstallerFragment extends Fragment {
         if (new File("/system/framework/twframework.jar").exists() || new File("/system/framework/samsung-services.jar").exists()) {
             manufacturer += "(TouchWiz)";
         } else if (new File("/system/framework/framework-miui-res.apk").exists() || new File("/system/app/miui/miui.apk").exists() || new File("/system/app/miuisystem/miuisystem.apk").exists()) {
-            manufacturer += "(Mi UI)";
+            manufacturer += "(MIUI)";
         } else if (new File("/system/priv-app/oneplus-framework-res/oneplus-framework-res.apk").exists()) {
             manufacturer += "(Oxygen/Hydrogen OS)";
         } else if (new File("/system/framework/com.samsung.device.jar").exists() || new File("/system/framework/sec_platform_library.jar").exists()) {
             manufacturer += "(One UI)";
         }
-        /*if (manufacturer.contains("Samsung")) {
-            manufacturer += new File("/system/framework/twframework.jar").exists() ||
-                    new File("/system/framework/samsung-services.jar").exists()
-                    ? "(TouchWiz)" : "(AOSP-based ROM)";
-        } else if (manufacturer.contains("Xiaomi")) {
-            manufacturer += new File("/system/framework/framework-miui-res.apk").exists() ? "(MIUI)" : "(AOSP-based ROM)";
-        }*/
         return manufacturer;
     }
 
