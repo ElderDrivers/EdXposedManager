@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">发送</string>
     <string name="menuSaveToSd">保存到 SD 卡</string>
-    <string name="xposed_not_active">EdXposed 框架未安装或未激活, 您可在设置中关闭状态检查</string>
+    <string name="xposed_not_active">EdXposed 框架未安装或未激活\n您是否已安装框架并重启？\n可在设置中关闭状态检查</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">我的设备</string>

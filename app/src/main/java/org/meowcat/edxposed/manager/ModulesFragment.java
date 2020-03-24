@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -270,6 +271,10 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
 
     private void addHeader() {
         View notActiveNote = requireActivity().getLayoutInflater().inflate(R.layout.xposed_not_active_note, getListView(), false);
+        Button mSettingsButton = notActiveNote.findViewById(R.id.btnSettings);
+        mSettingsButton.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), SettingsActivity.class));
+        });
         notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);
         getListView().addHeaderView(notActiveNote);
     }

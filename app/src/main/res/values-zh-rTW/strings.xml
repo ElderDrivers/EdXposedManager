@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">傳送</string>
     <string name="menuSaveToSd">儲存到裝置上</string>
-    <string name="xposed_not_active">最新版本的 EdXposed 尚未啟用。您是否已安裝過框架並重新啟動手機？</string>
+    <string name="xposed_not_active">最新版本的 EdXposed 尚未安裝或啟用\n您是否已安裝過框架並重新啟動手機？\n可在設定中關閉狀態檢查</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">裝置</string>

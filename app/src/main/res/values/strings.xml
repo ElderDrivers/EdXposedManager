@@ -91,7 +91,7 @@
     <string name="modules_app_store">View in App Store</string>
     <string name="module_app_info">App info</string>
     <string name="module_uninstall">Uninstall</string>
-    <string name="xposed_not_active">EdXposed Framework is not currently installed or active\nYou can close status check in settings</string>
+    <string name="xposed_not_active">EdXposed Framework is not currently installed or active\nDid you install the framework and reboot?\nYou can close status check in settings</string>
 
     <!-- Download -->
     <string name="menuSearch">Search</string>
