@@ -20,7 +20,7 @@ public class BlackListAdapter extends AppAdapter {
     private List<String> checkedList;
 
     public BlackListAdapter(Context context, boolean isWhiteListMode) {
-        super(context);
+        super(context, "Application");
         this.isWhiteListMode = isWhiteListMode;
     }
 

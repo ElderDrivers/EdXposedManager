@@ -14,7 +14,7 @@ public class CompatListAdapter extends AppAdapter {
     private List<String> checkedList;
 
     public CompatListAdapter(Context context) {
-        super(context);
+        super(context, "Compat");
     }
 
     @Override

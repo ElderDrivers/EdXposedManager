@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -21,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreference;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -92,14 +92,12 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             toolbar.setBackgroundColor(color1);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                int darkenColor = XposedApp.darkenColor(color1, 0.85f);
+            int darkenColor = XposedApp.darkenColor(color1, 0.85f);
 
-                getWindow().setStatusBarColor(darkenColor);
+            getWindow().setStatusBarColor(darkenColor);
 
-                if (navBar != null && navBar.isChecked()) {
-                    getWindow().setNavigationBarColor(darkenColor);
-                }
+            if (navBar != null && navBar.isChecked()) {
+                getWindow().setNavigationBarColor(darkenColor);
             }
         });
         colorAnimation.setDuration(750);
@@ -183,7 +181,15 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.prefs);
-
+            PreferenceGroup groupFramework = findPreference("group_framework");
+            Preference whiteListSwitch = Objects.requireNonNull(groupFramework).findPreference("white_list_switch");
+            Preference passSafetynet = Objects.requireNonNull(groupFramework).findPreference("pass_safetynet");
+            Preference hookModules = Objects.requireNonNull(groupFramework).findPreference("hook_modules");
+            if (!XposedApp.getPreferences().getBoolean("black_white_list_switch", false)) {
+                Objects.requireNonNull(whiteListSwitch).setEnabled(false);
+                Objects.requireNonNull(passSafetynet).setEnabled(false);
+                Objects.requireNonNull(hookModules).setEnabled(false);
+            }
 //            PreferenceGroup groupApp = findPreference("group_app");
 //            PreferenceGroup lookFeel = findPreference("look_and_feel");
 
@@ -325,8 +331,14 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                             }
                         }
                     }
+                    Objects.requireNonNull(whiteListSwitch).setEnabled(true);
+                    Objects.requireNonNull(passSafetynet).setEnabled(true);
+                    Objects.requireNonNull(hookModules).setEnabled(true);
                 } else {
                     mBlackWhiteListModeFlag.delete();
+                    Objects.requireNonNull(whiteListSwitch).setEnabled(false);
+                    Objects.requireNonNull(passSafetynet).setEnabled(false);
+                    Objects.requireNonNull(hookModules).setEnabled(false);
                 }
                 return (enabled == mBlackWhiteListModeFlag.exists());
             });
@@ -518,8 +530,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         }
 
         private boolean checkPermissions() {
-            if (Build.VERSION.SDK_INT < 23) return false;
-
             if (ActivityCompat.checkSelfPermission(requireContext(),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);

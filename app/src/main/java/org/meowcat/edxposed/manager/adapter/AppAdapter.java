@@ -42,8 +42,10 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     private ApplicationFilter filter;
     public Callback callback;
     private Comparator<ApplicationInfo> cmp;
+    private String type;
 
-    AppAdapter(Context context) {
+    AppAdapter(Context context, String type) {
+        this.type = type;
         this.context = context;
         fullList = showList = Collections.emptyList();
         checkedList = Collections.emptyList();
@@ -187,6 +189,9 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         holder.mSwitch.setChecked(checkedList.contains(info.packageName));
         holder.mSwitch.setOnCheckedChangeListener((v, isChecked) ->
                 onCheckedChange(v, isChecked, info));
+        if (!XposedApp.getPreferences().getBoolean("black_white_list_switch", false) && this.type.equals("Application")) {
+            holder.mSwitch.setVisibility(View.GONE);
+        }
         holder.infoLayout.setOnClickListener(v -> {
             if (callback != null) {
                 callback.onItemClick(v, info);
