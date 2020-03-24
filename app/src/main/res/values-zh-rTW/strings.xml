@@ -31,7 +31,7 @@
     <string name="phone_not_compatible">EdXposed 目前不相容您手機的 Android SDK %1$d 版本或處理器架構（%2$s）</string>
     <string name="reboot_failed">重新啟動失敗。請使用裝置內建的重新啟動功能。</string>
     <string name="install_warning_title">請小心！</string>
-    <string name="install_warning">某些情況下，您的裝置可能會在安裝 EdXposed 過後無法正常啟動。\n\n如果您先前從未聽說過「軟變磚(Soft Brick)」或「無限重新啟動(Bootloop)」，又或者您不知道如何從這些情況中恢復手機，那麼請"<b>不要</b>"安裝 EdXposed！\n\n無論如何，我們都強烈建議您做好近期的資料備份。</string>
+    <string name="install_warning">某些情況下，您的裝置可能會在安裝 EdXposed 過後無法正常啟動。\n\n如果您先前從未聽說過「軟變磚（Soft Brick）」或「無限重新啟動（Bootloop）」，又或者您不知道如何從這些情況中恢復手機，那麼請"<b>不要</b>"安裝 EdXposed！\n\n無論如何，我們都強烈建議您做好近期的資料備份。</string>
     <string name="dont_show_again">不再提示</string>
     <string name="install_known_issue">發現已知的問題：\n「%s」\n\n這可能將導致 EdXposed 動作錯誤或無法使用。</string>
     <string name="install_known_issue_details">詳細資訊…</string>
@@ -164,8 +164,8 @@
 
     <string name="warning_installed_on_external_storage">此模組因被安裝在記憶卡中而導致無法載入，請將其移動到內部儲存空間。</string>
     <string name="view">檢視</string>
-    <string name="export_">匯出……</string>
-    <string name="import_">匯入……</string>
+    <string name="export_">匯出…</string>
+    <string name="import_">匯入…</string>
     <string name="export_enabled_modules">匯出已啟用模組清單</string>
     <string name="import_enabled_modules">匯入已啟用模組清單</string>
     <string name="export_installed_modules">匯出已安裝模組清單</string>
@@ -177,7 +177,7 @@
     <string name="no_backup_found">找不到備份</string>
     <string name="no_enabled_modules">沒有任何已啟用的模組</string>
 
-    <string name="share">分享給……</string>
+    <string name="share">分享給…</string>
     <string name="back">返回</string>
     <string name="loadingError">擷取清單時發生錯誤\n網路無法連線或伺服器出現錯誤</string>
     <string name="info">資訊</string>
@@ -190,7 +190,7 @@
         \n日期：%2$s
     </string>
     <string name="permissionNotGranted">本功能無法在沒有寫入外部儲存空間權限的情況下運作</string>
-    <string name="warningArchitecture">你將會下載一個 ZIP 格式檔案，請手動在 Magisk Manager 或重新啟動到 Recovery 刷入。</string>
+    <string name="warningArchitecture">將會下載一個 ZIP 格式檔案，請手動在 Magisk Manager 或重新啟動到 Recovery 刷入。</string>
     <string name="newVersion">有新版本的 EdXposed Manager 可以使用！現在更新！</string>
     <string name="update">更新</string>
     <string name="choose_icon">選擇一個圖示</string>
@@ -200,10 +200,10 @@
 
     <string name="md_back_label">返回</string>
     <string name="md_done_label">完成</string>
-    <string name="md_cancel_label">取消</string>
+    <string name="md_cancel_label">@android:string/cancel</string>
     <string name="md_choose_label">選擇</string>
     <string name="md_error_label">錯誤</string>
-    <string name="md_storage_perm_error">您的應用程式未取得 讀取外部儲存空間(READ_EXTERNAL_STORAGE) 的權限！</string>
+    <string name="md_storage_perm_error">您的應用程式未取得「讀取外部儲存空間（READ_EXTERNAL_STORAGE）」的權限！</string>
     <string name="md_custom_label">自訂</string>
     <string name="md_presets_label">預設</string>
     <string name="changelog">更新日誌</string>
@@ -228,7 +228,7 @@
     <string name="reboot_bootloader">重新啟動至 Bootloader</string>
     <string name="reboot_download">重新啟動至 Download</string>
     <string name="reboot_edl">重新啟動至 EDL</string>
-    <string name="loading">正在載入……</string>
+    <string name="loading">正在載入…</string>
     <string name="chrome_custom_tabs">Chrome 自訂標籤頁</string>
     <string name="chrome_custom_tabs_summ">在內建瀏覽器中開啟連結</string>
     <string name="scroll_bottom">滾動到底部</string>
@@ -263,23 +263,23 @@
     <string name="installation_successful_message">成功安裝 %s</string>
     <string name="installation_error_message">%1$s 安裝失敗 (%2$s)</string>
 	<string name="installation_apk_normal">使用普通的方式安裝 APK</string>
-    <string name="install_load">安裝中……</string>
+    <string name="install_load">安裝中…</string>
     <string name="install_load_apk">正在安裝 %s</string>
 	
     <string name="unstable_build">這是一個不穩定的組建。自行承擔安裝後的風險。</string>
     <string name="unofficial_build">這是一個非官方的組建。自行承擔安裝後的風險。</string>
     <string name="alt_download_method">備用下載方法</string>
     <string name="alt_download_method_summ">如果下載模組時出現問題，請開啟此選項。</string>
-    <string name="custom_list">使用已鏡像的模組清單</string>
-    <string name="custom_list_summ">已鏡像的模組清單可以讓清單載入更快速\n但是新傳送到線上模組庫的模組將會被延遲（約 24 小時）</string>
+    <string name="custom_list">使用備用的模組清單</string>
+    <string name="custom_list_summ">備用的模組清單可能載入更快速\n但是它的更新可能會稍微延遲（約 24 小時）</string>
 
 	<string name="known_issue_wrong_base_directory">配置資料夾錯誤：%1$s</string>
     <string name="known_issue_missing_base_directory">遺失配置的資料夾</string>
 
-    <string name="dexopt_now">以 Dexopt 模式最佳化全部的應用程式</string>
-    <string name="speed_now">以 Speed 模式最佳化全部的應用程式</string>
-    <string name="this_may_take_a_while">請稍候，這將需要一段時間……</string>
-    <string name="take_while_cannot_resore">您確定要最佳化全部的應用程式嗎？\n這將需要花費一段時間並且無法恢復操作。\n提示：你可以在應用程式清單中最佳化單個應用程式。</string>
+    <string name="dexopt_now">以 Dexopt 模式最佳化所有應用程式</string>
+    <string name="speed_now">以 Speed 模式最佳化所有應用程式</string>
+    <string name="this_may_take_a_while">請稍候，這將需要一段時間…</string>
+    <string name="take_while_cannot_resore">您確定要最佳化全部的應用程式嗎？\n這將需要花費一段時間並且無法恢復操作。\n提示：您可以在應用程式清單中最佳化單個應用程式。</string>
     <string name="done">完成！</string>
 	<string name="verified_boot_deactivated">開機驗證已停用</string>
 	<string name="verified_boot_none">無法取得開機驗證的狀態</string>
@@ -298,8 +298,8 @@
     <string name="menu_title_compile_reset">重設最佳化</string>
     <string name="menu_title_compile_speed">以 Speed 模式最佳化應用程式</string>
     <string name="menu_title_compile_dexopt">以 Dexopt 模式最佳化應用程式</string>
-    <string name="compile_reset_msg">清除中……</string>
-    <string name="compile_speed_msg">最佳化中……</string>
+    <string name="compile_reset_msg">清除中…</string>
+    <string name="compile_speed_msg">最佳化中…</string>
     <string name="settings_title_dynamic_modules">即時模組清單</string>
     <string name="settings_summary_dynamic_modules">啟用後，每個應用程式啟動時重新載入最新的模組清單</string>
     <string name="title_compat_list">相容模式</string>
@@ -326,7 +326,7 @@
     <string name="app_launch">啟動</string>
     <string name="app_stop">停止</string>
     <string name="update_description">更新日誌</string>
-    <string name="edxp_installer_installed">你必須先解除安裝「EdXposed Installer」才能繼續使用「EdXposed Manager」！</string>
+    <string name="edxp_installer_installed">您必須先解除安裝「EdXposed Installer」才能繼續使用「EdXposed Manager」！</string>
     <string name="install_time">安裝日期: </string>
     <string name="update_time">更新日期: </string>
     <string name="enabled_top">最上層已勾選的專案</string>
@@ -346,7 +346,7 @@
     <string name="hook_modules">強制掛鉤模組</string>
     <string name="hook_modules_summary">強制新增模組到白名單並從黑名單移除\n關閉本選項不會把模組從白名單移除\n應用程式清單模式需要被啟用</string>
     <string name="not_installed">未安裝</string>
-    <string name="ok">確定</string>
+    <string name="ok">@android:string/ok</string>
     <string name="settings_title_pass_safetynet">使 SafetyNet 通過驗證</string>
     <string name="settings_summary_pass_safetynet">強制新增 GMS 和 GSF 到黑名單並從白名單當中移除\n關閉本選項不會把模組從黑名單移除\n應用程式清單模式需要被啟用</string>
     <string name="support_group_telegram_channel_label">Telegram 頻道：@EdXposed</string>
@@ -354,10 +354,13 @@
     <string name="warning_list_not_enabled">應用程式清單模式尚未被啟用\n您可以在設定當中啟用</string>
     <string name="empty_param">參數空白</string>
     <string name="reboot_system">完整重新啟動</string>
+    <string name="optimize">最佳化</string>
     <string name="settings_title_stop_verbose_log">停止詳細日誌抓取器</string>
     <string name="settings_summary_stop_verbose_log">在下次重新啟動前詳細日誌將不再被抓取</string>
     <string name="settings_summary_stop_log">在下次重新啟動前模組日誌將不再被抓取</string>
     <string name="settings_title_stop_log">停止模組日誌抓取器</string>
     <string name="settings_title_disable_modules_log">停用模組日誌</string>
     <string name="settings_summary_disable_modules_log">模組拋出的異常狀況仍將正常被抓取</string>
+    <string name="settings_summary_use_legacy_installer">切換到舊版的 Xposed Installer（如果有安裝）來使用一些過時但有用的模組</string>
+    <string name="settings_title_use_legacy_installer">使用舊版的 XPosed Installer</string>
 </resources>
