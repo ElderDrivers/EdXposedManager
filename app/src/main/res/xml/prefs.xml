@@ -163,11 +163,11 @@
         android:key="group_framework"
         android:title="@string/settings_group_framework">
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="use_legacy_installer"
-            android:summary="@string/settings_summary_use_legacy_installer"
-            android:title="@string/settings_title_use_legacy_installer" />
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="false"-->
+<!--            android:key="use_legacy_installer"-->
+<!--            android:summary="@string/settings_summary_use_legacy_installer"-->
+<!--            android:title="@string/settings_title_use_legacy_installer" />-->
 
         <SwitchPreference
             android:defaultValue="false"
