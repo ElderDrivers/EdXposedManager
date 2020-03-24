@@ -88,10 +88,11 @@ public class WelcomeActivity extends XposedBaseActivity
 
             boolean openDrawer = prefs.getBoolean("open_drawer", false);
 
-            if (openDrawer)
+            if (openDrawer) {
                 mDrawerLayout.openDrawer(GravityCompat.START);
-            else
+            } else {
                 mDrawerLayout.closeDrawers();
+            }
         }
 
         Bundle extras = getIntent().getExtras();

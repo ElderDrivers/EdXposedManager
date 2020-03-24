@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -218,15 +217,8 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         installedXposedVersion = XposedApp.getXposedVersion();
-        if (Build.VERSION.SDK_INT >= 21) {
-            if (installedXposedVersion <= 0) {
-                addHeader();
-            }
-        } else {
-            if (StatusInstallerFragment.DISABLE_FILE.exists()) installedXposedVersion = -1;
-            if (installedXposedVersion <= 0) {
-                addHeader();
-            }
+        if (installedXposedVersion <= 0) {
+            addHeader();
         }
         mAdapter = new ModuleAdapter(getActivity());
         reloadModules.run();
