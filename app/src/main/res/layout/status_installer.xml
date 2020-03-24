@@ -91,7 +91,7 @@
                         android:visibility="gone" />
 
                     <Button
-                        android:id="@+id/framework_know_issue_detail"
+                        android:id="@+id/framework_known_issue_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"

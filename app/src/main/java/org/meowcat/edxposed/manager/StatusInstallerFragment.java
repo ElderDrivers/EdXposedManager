@@ -173,7 +173,7 @@ public class StatusInstallerFragment extends Fragment {
         mUpdateButton = v.findViewById(R.id.click_to_update);
 
         txtKnownIssue = v.findViewById(R.id.framework_known_issue);
-        btnKnownIssue = v.findViewById(R.id.framework_know_issue_detail);
+        btnKnownIssue = v.findViewById(R.id.framework_known_issue_detail);
 
         TextView txtInstallError = v.findViewById(R.id.framework_install_errors);
         View txtInstallContainer = v.findViewById(R.id.status_container);
