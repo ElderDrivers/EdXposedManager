@@ -99,16 +99,16 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">Загрузка и установка</string>
-    <string name="settings_release_type">Отображение версий модуля</string>
+    <string name="settings_title_release_type">Отображение версий модуля</string>
     <string name="settings_group_framework">Framework</string>
-    <string name="settings_disable_resources">Не изменять ресурсы</string>
-    <string name="settings_disable_resources_summary">Временное решение для конфликтов с темами системы.\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
+    <string name="settings_title_disable_resources">Не изменять ресурсы</string>
+    <string name="settings_summary_disable_resources">Временное решение для конфликтов с темами системы.\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
     <string name="settings_group_app">Приложение</string>
     <string name="settings_title_theme">Тема</string>
     <string name="settings_theme_light">Светлая</string>
     <string name="settings_theme_dark">Темная</string>
     <string name="settings_theme_black">Черная (полезно для AMOLED экранов)</string>
-    <string name="settings_default_view">Какое меню открывать при запуске</string>
+    <string name="settings_title_default_view">Какое меню открывать при запуске</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Поддержка модулей</string>
@@ -194,7 +194,7 @@
     <string name="choose_icon">Изменить иконку приложения</string>
     <string name="custom_icon">Выбрать иконку</string>
     <string name="not_installed_no_lollipop">EdXposed Framework не установлен!</string>
-    <string name="notify_module_update">Уведомление об обновлении модуля</string>
+    <string name="settings_title_notify_module_update">Уведомление об обновлении модуля</string>
 
     <string name="md_back_label">Назад</string>
     <string name="md_done_label">Готово</string>
@@ -213,7 +213,7 @@
     <string name="bookmark_added">Закладка добавлена</string>
     <string name="bookmark_removed">Закладка удалена</string>
     <string name="undo">Отменить</string>
-    <string name="notification_coloration">Цветная иконка уведомлений</string>
+    <string name="settings_title_notification_coloration">Цветная иконка уведомлений</string>
     <string name="file_is_empty">Файлов нет</string>
     <string name="install_with_su">Автоустановка модуля (root)</string>
     <string name="install_with_su_summ">Если выбрано, EdXposed Manager будет устанавливать модули без запроса на установку</string>
@@ -347,7 +347,7 @@
     <string name="settings_summary_pass_safetynet">Принудительно добавить GMS и GSF в черный список и удалить из белого списка.\nВыключение этой настройки не удаляет модули из черного списка.\nНеобходимо включение «Режим списка приложений»</string>
     <string name="support_group_telegram_channel_label">Канал Telegram: @EdXposed</string>
     <string name="settings_title_old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
-    <string name="warning_list_not_enabled">«Режим списка приложений» не включен, вы можете включить его в настройках</string>
+    <string name="warning_list_not_enabled">«Режим списка приложений» не включен\nвы можете включить его в настройках</string>
     <string name="empty_param">Пустые параметры</string>
     <string name="reboot_system">Нормальная перезагрузка</string>
     <string name="settings_title_stop_verbose_log">Остановить отлов подробных логов</string>

@@ -101,16 +101,16 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">下載</string>
-    <string name="settings_release_type">要顯示的版本</string>
+    <string name="settings_title_release_type">要顯示的版本</string>
     <string name="settings_group_framework">框架</string>
-    <string name="settings_disable_resources">停用資源鉤子</string>
-    <string name="settings_disable_resources_summary">解決與主題引擎的衝突\n<b>警告：</b> 啟用該選項將導致修改資源的模組無法運作</string>
+    <string name="settings_title_disable_resources">停用資源鉤子</string>
+    <string name="settings_summary_disable_resources">解決與主題引擎的衝突\n<b>警告：</b> 啟用該選項將導致修改資源的模組無法運作</string>
     <string name="settings_group_app">應用程式</string>
     <string name="settings_title_theme">主題</string>
     <string name="settings_theme_light">亮色</string>
     <string name="settings_theme_dark">暗色</string>
     <string name="settings_theme_black">黑色（對 AMOLED 螢幕有幫助）</string>
-    <string name="settings_default_view">預設檢視</string>
+    <string name="settings_title_default_view">預設檢視</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">模組支援</string>
@@ -196,7 +196,7 @@
     <string name="choose_icon">選擇一個圖示</string>
     <string name="custom_icon">自訂圖示</string>
     <string name="not_installed_no_lollipop">EdXposed 框架未安裝。</string>
-    <string name="notify_module_update">啟用模組更新通知</string>
+    <string name="settings_title_notify_module_update">啟用模組更新通知</string>
 
     <string name="md_back_label">返回</string>
     <string name="md_done_label">完成</string>
@@ -215,7 +215,7 @@
     <string name="bookmark_added">已新增書籤</string>
     <string name="bookmark_removed">已移除書籤</string>
     <string name="undo">撤銷</string>
-    <string name="notification_coloration">通知圖示著色</string>
+    <string name="settings_title_notification_coloration">通知圖示著色</string>
     <string name="file_is_empty">檔案是空的</string>
     <string name="install_with_su">使用 Root 權限安裝模組</string>
     <string name="install_with_su_summ">勾選後在 EdXposed Manager 內安裝模組時將不再顯示安裝提示</string>
@@ -244,7 +244,7 @@
     <string name="settings_title_skip_status_check">跳過模組檢查</string>
     <string name="settings_summary_skip_status_check">跳過針對模組的「EdXposed 最低版本」和「EdXposed 安裝狀態」檢查</string>
 
-    <string name="notice">通知</string>
+    <string name="notice">注意事项</string>
     <string name="details">詳細情形</string>
     <string name="support_xda">取得說明</string>
     <string name="later">稍後</string>
@@ -351,7 +351,7 @@
     <string name="settings_summary_pass_safetynet">強制新增 GMS 和 GSF 到黑名單並從白名單當中移除\n關閉本選項不會把模組從黑名單移除\n應用程式清單模式需要被啟用</string>
     <string name="support_group_telegram_channel_label">Telegram 頻道：@EdXposed</string>
     <string name="settings_title_old_success_color">使用舊的狀態啟用顏色（綠色）</string>
-    <string name="warning_list_not_enabled">應用程式清單模式尚未被啟用，您可以在設定當中啟用</string>
+    <string name="warning_list_not_enabled">應用程式清單模式尚未被啟用\n您可以在設定當中啟用</string>
     <string name="empty_param">參數空白</string>
     <string name="reboot_system">完整重新啟動</string>
     <string name="settings_title_stop_verbose_log">停止詳細日誌抓取器</string>

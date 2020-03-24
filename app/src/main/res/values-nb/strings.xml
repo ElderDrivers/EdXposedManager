@@ -99,16 +99,16 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">Last ned og installer</string>
-    <string name="settings_release_type">Versjoner som skal vises to be shown</string>
+    <string name="settings_title_release_type">Versjoner som skal vises to be shown</string>
     <string name="settings_group_framework">Framework</string>
-    <string name="settings_disable_resources">Skrudde av ressurshektinger</string>
-    <string name="settings_disable_resources_summary">Nødløsning for konflikter mellom temadrivere\n<b>ADVARSEL:</b> Moduler som prøver å endre på ressurser, vil ikke fungere når dette er skrudd på</string>
+    <string name="settings_title_disable_resources">Skrudde av ressurshektinger</string>
+    <string name="settings_summary_disable_resources">Nødløsning for konflikter mellom temadrivere\n<b>ADVARSEL:</b> Moduler som prøver å endre på ressurser, vil ikke fungere når dette er skrudd på</string>
     <string name="settings_group_app">App</string>
     <string name="settings_title_theme">Tema</string>
     <string name="settings_theme_light">Lyst</string>
     <string name="settings_theme_dark">Mørkt</string>
     <string name="settings_theme_black">Svart (nyttig for AMOLED-skjermer)</string>
-    <string name="settings_default_view">Standardvisning</string>
+    <string name="settings_title_default_view">Standardvisning</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Støtte for moduler</string>
@@ -194,7 +194,7 @@
     <string name="choose_icon">Velg et ikon</string>
     <string name="custom_icon">Tilpasset ikon</string>
     <string name="not_installed_no_lollipop">EdXposed Framework er ikke installert</string>
-    <string name="notify_module_update">Skru på moduloppdateringsvarsler</string>
+    <string name="settings_title_notify_module_update">Skru på moduloppdateringsvarsler</string>
 
     <string name="md_back_label">Tilbake</string>
     <string name="md_done_label">Ferdig</string>
@@ -213,7 +213,7 @@
     <string name="bookmark_added">Bokmerke er lagt til</string>
     <string name="bookmark_removed">Bokmerket er fjernet</string>
     <string name="undo">Angre</string>
-    <string name="notification_coloration">Fargen til varselsikonet</string>
+    <string name="settings_title_notification_coloration">Fargen til varselsikonet</string>
     <string name="file_is_empty">Filen er tom</string>
     <string name="install_with_su">Stille installasjon (root)</string>
     <string name="install_with_su_summ">Hvis dette er valgt, vil EdXposed Manager installere moduler uten et varsel</string>
@@ -350,7 +350,7 @@
     <string name="settings_summary_pass_safetynet">Fremtving tillegging av GMS og GSF i svartelisten og fjern dem fra hvitelisten\nÅ lukke denne innstillingen fjerner ikke moduler fra svartelisten\nApplistemodusen er påkrevd for å skru på dette</string>
     <string name="support_group_telegram_channel_label">Telegram-kanal: @EdXposed</string>
     <string name="settings_title_old_success_color">Bruk den gamle fargen for aktiv-status (grønn)</string>
-    <string name="warning_list_not_enabled">Applistemodusen er ikke skrudd på, det kan gjøres i innstillingene</string>
+    <string name="warning_list_not_enabled">Applistemodusen er ikke skrudd på\ndet kan gjøres i innstillingene</string>
     <string name="empty_param">Parameterene er tomme</string>
     <string name="reboot_system">Omstart til systemmodus</string>
     <string name="settings_title_stop_verbose_log">Stopp den detaljerte logginnhenteren</string>

@@ -8,6 +8,10 @@
         android:id="@+id/app_menu_stop"
         android:icon="@drawable/ic_stop"
         android:title="@string/app_stop" />
+<!--    <item-->
+<!--        android:id="@+id/app_activation_scope"-->
+<!--        android:icon="@drawable/ic_flash"-->
+<!--        android:title="@string/app_activation_scope" />-->
     <item
         android:id="@+id/app_menu_compile_speed"
         android:icon="@drawable/ic_flash"

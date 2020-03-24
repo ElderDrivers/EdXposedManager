@@ -98,15 +98,15 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">Stahování</string>
-    <string name="settings_release_type">Zobrazované verze</string>
-    <string name="settings_disable_resources">Zakázat ovlivňování prostředků</string>
-    <string name="settings_disable_resources_summary">(Resource hooks)\nŘeší konflikty s tématy (theme engines)\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat</string>
+    <string name="settings_title_release_type">Zobrazované verze</string>
+    <string name="settings_title_disable_resources">Zakázat ovlivňování prostředků</string>
+    <string name="settings_summary_disable_resources">(Resource hooks)\nŘeší konflikty s tématy (theme engines)\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat</string>
     <string name="settings_group_app">Aplikace</string>
     <string name="settings_title_theme">Motiv</string>
     <string name="settings_theme_light">Světlý</string>
     <string name="settings_theme_dark">Tmavý</string>
     <string name="settings_theme_black">Černý (užitečné pro AMOLED displeje)</string>
-    <string name="settings_default_view">Výchozí zobrazení</string>
+    <string name="settings_title_default_view">Výchozí zobrazení</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Podpora pro jednotlivé moduly</string>
@@ -189,7 +189,7 @@
     <string name="choose_icon">Zvolit ikonu</string>
     <string name="custom_icon">Vlastní ikona</string>
     <string name="not_installed_no_lollipop">EdXposed Framework není nainstalován.</string>
-    <string name="notify_module_update">Povolit oznámení o aktualizaci modulu</string>
+    <string name="settings_title_notify_module_update">Povolit oznámení o aktualizaci modulu</string>
 
     <string name="md_back_label">Zpět</string>
     <string name="md_done_label">Hotovo</string>
@@ -208,7 +208,7 @@
     <string name="bookmark_added">Záložka přidána</string>
     <string name="bookmark_removed">Záložka odstraněna</string>
     <string name="undo">Vrátit zpět</string>
-    <string name="notification_coloration">Obarvit notifikační ikonu</string>
+    <string name="settings_title_notification_coloration">Obarvit notifikační ikonu</string>
     <string name="file_is_empty">Soubor je prázdný</string>
     <string name="install_with_su">Instalovat moduly s oprávněním root</string>
     <string name="install_with_su_summ">Po zaškrtnutí nebude při instalaci modulů vyžadováno potvrzení</string>

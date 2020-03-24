@@ -9,7 +9,7 @@
         android:entryValues="@array/module_release_type_values"
         android:key="release_type"
         android:summary="%s"
-        android:title="@string/settings_release_type"
+        android:title="@string/settings_title_release_type"
         app:useStockLayout="true" />
 
 </PreferenceScreen>

@@ -99,16 +99,16 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">下载和安装</string>
-    <string name="settings_release_type">要显示的版本</string>
+    <string name="settings_title_release_type">要显示的版本</string>
     <string name="settings_group_framework">框架</string>
-    <string name="settings_disable_resources">禁用资源钩子</string>
-    <string name="settings_disable_resources_summary">解决与主题引擎的冲突\n<b>警告: </b> 启用该选项将导致修改资源的模块无法工作</string>
+    <string name="settings_title_disable_resources">禁用资源钩子</string>
+    <string name="settings_summary_disable_resources">解决与主题引擎的冲突\n<b>警告: </b> 启用该选项将导致修改资源的模块无法工作</string>
     <string name="settings_group_app">应用</string>
     <string name="settings_title_theme">主题</string>
     <string name="settings_theme_light">亮色</string>
     <string name="settings_theme_dark">暗色</string>
     <string name="settings_theme_black">黑色(对 AMOLED 屏幕有帮助)</string>
-    <string name="settings_default_view">默认视图</string>
+    <string name="settings_title_default_view">默认视图</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">模块支持</string>
@@ -194,7 +194,7 @@
     <string name="choose_icon">选择一个图标</string>
     <string name="custom_icon">自定义图标</string>
     <string name="not_installed_no_lollipop">EdXposed 框架未安装</string>
-    <string name="notify_module_update">启用模块更新通知</string>
+    <string name="settings_title_notify_module_update">启用模块更新通知</string>
 
     <string name="md_back_label">返回</string>
     <string name="md_done_label">完成</string>
@@ -213,7 +213,7 @@
     <string name="bookmark_added">已添加书签</string>
     <string name="bookmark_removed">已移除书签</string>
     <string name="undo">撤销</string>
-    <string name="notification_coloration">通知图标着色</string>
+    <string name="settings_title_notification_coloration">通知图标着色</string>
     <string name="file_is_empty">文件为空</string>
     <string name="install_with_su">静默安装(root)</string>
     <string name="install_with_su_summ">勾选后在 EdXposed Manager 内安装模块时将不再显示安装提示</string>
@@ -343,7 +343,7 @@
     <string name="settings_summary_pass_safetynet">强制将 GMS 和 GSF 加入黑名单并移出白名单\n关闭此选项并不会移除已勾选的应用标识\n仅当启用应用名单模式时有效</string>
     <string name="support_group_telegram_channel_label">Telegram 频道: @EdXposed</string>
     <string name="settings_title_old_success_color">使用旧的激活状态颜色 (绿色)</string>
-    <string name="warning_list_not_enabled">应用名单模式未启用，您可以在设置中启用</string>
+    <string name="warning_list_not_enabled">应用名单模式未启用\n您可以在设置中启用</string>
     <string name="empty_param">参数为空</string>
     <string name="reboot_system">重启至系统</string>
     <string name="settings_title_stop_log">停止模块日志捕获程序</string>
@@ -355,4 +355,6 @@
     <string name="optimize">优化</string>
     <string name="settings_title_use_legacy_installer">使用旧版的 Xposed Installer</string>
     <string name="settings_summary_use_legacy_installer">切换到旧版的 Xposed Installer (如果有) 来使用一些过时但有用的模块</string>
+    <string name="logs_not_primary_user">日志仅可由主用户(0)读取</string>
+    <string name="app_activation_scope">作用域管理</string>
 </resources>

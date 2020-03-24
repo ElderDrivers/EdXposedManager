@@ -31,7 +31,7 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="colored_notification"
-            android:title="@string/notification_coloration" />
+            android:title="@string/settings_title_notification_coloration" />
 
         <org.meowcat.edxposed.manager.widget.IntegerListPreference
             android:defaultValue="0"
@@ -48,7 +48,7 @@
             android:entryValues="@array/default_view_values"
             android:key="default_view"
             android:summary="%s"
-            android:title="@string/settings_default_view"
+            android:title="@string/settings_title_default_view"
             app:useStockLayout="true" />
 
         <SwitchPreference
@@ -120,7 +120,7 @@
             android:entryValues="@array/release_type_values"
             android:key="release_type_global"
             android:summary="%s"
-            android:title="@string/settings_release_type"
+            android:title="@string/settings_title_release_type"
             app:useStockLayout="true" />
 
         <SwitchPreference
@@ -138,13 +138,13 @@
         <SwitchPreference
             android:defaultValue="true"
             android:key="snack_bar"
-            android:title="@string/notify_module_update" />
+            android:title="@string/settings_title_notify_module_update" />
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="alt_download"
-            android:summary="@string/alt_download_method_summ"
-            android:title="@string/alt_download_method" />
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="false"-->
+<!--            android:key="alt_download"-->
+<!--            android:summary="@string/alt_download_method_summ"-->
+<!--            android:title="@string/alt_download_method" />-->
 
         <SwitchPreference
             android:defaultValue="false"
@@ -197,8 +197,8 @@
             android:defaultValue="false"
             android:key="disable_resources"
             android:persistent="false"
-            android:summary="@string/settings_disable_resources_summary"
-            android:title="@string/settings_disable_resources" />
+            android:summary="@string/settings_summary_disable_resources"
+            android:title="@string/settings_title_disable_resources" />
 
         <SwitchPreference
             android:defaultValue="true"

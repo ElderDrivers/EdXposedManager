@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
+    <!-- Do NOT translate these -->
+    <string name="app_name" translatable="false">EdXposed Manager</string>
+    <string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
+    <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
+    <string name="solohsu" translatable="false">givein2u</string>
+    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
+    <string name="meowcat">MeowCat Studio</string>
+    <string name="elderdrivers" translatable="false">Elder Drivers</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="xda" translatable="false">XDA</string>
+    <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
+    <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
+    <string name="about_support" translatable="false">http://edxp.meowcat.org/faq</string>
+    <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
+    <string name="about_source" translatable="false">https://github.com/ElderDrivers/EdXposedManager/</string>
+    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
+    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
+    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
+    <string name="mlgmxyysd_coolapk" translatable="false">http://www.coolapk.com/u/814297</string>
+    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
+    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
+    <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
+    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
+    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
+    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
+    <string name="group_qq_link" translatable="false">https://jq.qq.com/?k=57IiX8R</string>
+    <string name="group_telegram_link" translatable="false">http://t.me/Code_of_MeowCat</string>
+    <string name="group_telegram_channel_link" translatable="false">http://t.me/EdXposed</string>
+
     <!-- General/various strings -->
     <string name="menuSend">Send</string>
     <string name="menuSaveToSd">Save to SD card</string>
-    <string name="xposed_not_active">EdXposed Framework is not currently installed or active\nYou can close status check in settings</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">Device</string>
@@ -42,7 +70,7 @@
     <!-- File operations -->
     <string name="root_failed">Failed to get root access\n\nMake sure your device is rooted properly and you have not blocked shell commands</string>
 
-    <!-- Modules tab -->
+    <!-- Modules -->
     <string name="module_is_not_activated_yet">EdXposed module is not activated yet</string>
     <string name="module_is_not_activated_yet_detailed">%s has been installed, but is not activated yet</string>
     <string name="activate_and_reboot">Activate and reboot</string>
@@ -63,8 +91,9 @@
     <string name="modules_app_store">View in App Store</string>
     <string name="module_app_info">App info</string>
     <string name="module_uninstall">Uninstall</string>
+    <string name="xposed_not_active">EdXposed Framework is not currently installed or active\nYou can close status check in settings</string>
 
-    <!-- Download tab -->
+    <!-- Download -->
     <string name="menuSearch">Search</string>
     <string name="menuReload">Reload</string>
     <string name="changes">Changelog:</string>
@@ -99,19 +128,54 @@
     <string name="download_no_versions">The author hasn\'t uploaded anything yet</string>
     <string name="download_test_version_not_shown">A test version is available, however it isn\'t shown due to your global or module-specific settings</string>
 
-    <!-- Settings tab -->
+    <!-- Settings -->
     <string name="settings_group_download">Download and install</string>
-    <string name="settings_release_type">Versions to be shown</string>
-    <string name="settings_group_framework">Framework</string>
-    <string name="settings_disable_resources">Disabled resource hooks</string>
-    <string name="settings_disable_resources_summary">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules which try to change resources will not work when this is enabled</string>
     <string name="settings_group_app">Application</string>
+    <string name="settings_group_framework">Framework</string>
+
+    <string name="settings_title_release_type">Versions to be shown</string>
+    <string name="settings_title_disable_resources">Disabled resource hooks</string>
     <string name="settings_title_theme">Theme</string>
+    <string name="settings_title_show_modules">Show modules and manager</string>
+    <string name="settings_title_pass_safetynet">Pass SafetyNet</string>
+    <string name="settings_title_old_success_color">Use old status active color (green)</string>
+    <string name="settings_title_stop_verbose_log">Stop verbose log catcher</string>
+    <string name="settings_title_stop_log">Stop modules log catcher</string>
+    <string name="settings_title_disable_modules_log">Disable modules logs</string>
+    <string name="settings_title_use_legacy_installer">Use legacy Xposed Installer</string>
+    <string name="settings_title_black_white_list">App List mode</string>
+    <string name="settings_title_open_drawer">Open navigation drawer automatically</string>
+    <string name="settings_title_default_view">Default view</string>
+    <string name="settings_title_skip_status_check">Skip status check</string>
+    <string name="settings_title_dynamic_modules">Instant module list</string>
+    <string name="settings_title_enable_boot_image_deopt">De-optimize boot image</string>
+    <string name="settings_title_disable_verbose_log">Disable verbose logs</string>
+
+    <string name="settings_summary_pass_safetynet">Force add GMS and GSF to black list and remove from white list\nClosing this option does not remove modules from black list\nApp list mode is required to enable</string>
+    <string name="settings_summary_show_modules">Show modules and manager in applications\nThis option does not remove checked application flag</string>
+    <string name="settings_summary_stop_verbose_log">Verbose log will stop catch before the next boot</string>
+    <string name="settings_summary_stop_log">Modules log will stop catch before the next boot</string>
+    <string name="settings_summary_disable_modules_log">Exception stack thrown by the module will still be catched normally</string>
+    <string name="settings_summary_use_legacy_installer">Switch to the legacy Xposed Installer (if installed) to use some obsolete but useful modules</string>
+    <string name="settings_summary_black_white_list">After opening, you can set the list in \"Application\"\nBlack List mode: Selected app NOT to load EdXposed modules\nNote: using app list mode might break system-wide modules\' functions</string>
+    <string name="settings_summary_open_drawer">Open the navigation drawer automatically at startup</string>
+    <string name="settings_summary_disable_resources">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules which try to change resources will not work when this is enabled</string>
+    <string name="settings_summary_skip_status_check">Skip \"EdXposed Status\" check for modules</string>
+    <string name="settings_summary_dynamic_modules">When turned on, load latest activated module list on each app process started</string>
+    <string name="settings_summary_enable_boot_image_deopt">Turn on to make all framework methods hookable, but the whole system will be slowed down\nMainly used to check if one framework method is inlined when it can\'t be hooked into</string>
+
+    <string name="settings_sort_by_name">Sort by application name</string>
+    <string name="settings_sort_by_name_reverse">Sort by application name (reverse)</string>
+    <string name="settings_sort_by_package_name">Sort by package name</string>
+    <string name="settings_sort_by_package_name_reverse">Sort by package name (reverse)</string>
+    <string name="settings_sort_by_install_time">Sort by install time</string>
+    <string name="settings_sort_by_install_time_reverse">Sort by install time (reverse)</string>
+    <string name="settings_sort_by_update_time">Sort by update time</string>
+    <string name="settings_sort_by_update_time_reverse">Sort by update time (reverse)</string>
+
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_black">Black (useful for AMOLED screens)</string>
-    <string name="settings_default_view">Default view</string>
-
     <!-- Support tab -->
     <string name="support_modules_label">Support for modules</string>
     <string name="support_modules_description">Click any module in the modules list and select \"%1$s\".</string>
@@ -155,7 +219,6 @@
     <string name="download_no_valid_apk">Downloaded file is not a valid APK (or incompatible)</string>
     <string name="download_incorrect_package_name">Package name is incorrect (downloaded: %1$s, expected: %2$s)</string>
     <string name="download_running">Download is running</string>
-    <string name="download_progress" translatable="false">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Downloading %1$s failed: %2$d (%3$s)</string>
@@ -197,7 +260,7 @@
     <string name="choose_icon">Choose an icon</string>
     <string name="custom_icon">Custom icon</string>
     <string name="not_installed_no_lollipop">EdXposed Framework is not installed</string>
-    <string name="notify_module_update">Enable module update notification</string>
+    <string name="settings_title_notify_module_update">Enable module update notification</string>
 
     <string name="md_back_label">Back</string>
     <string name="md_done_label">Done</string>
@@ -216,7 +279,7 @@
     <string name="bookmark_added">Bookmark added</string>
     <string name="bookmark_removed">Bookmark removed</string>
     <string name="undo">Undo</string>
-    <string name="notification_coloration">Color notification icon</string>
+    <string name="settings_title_notification_coloration">Color notification icon</string>
     <string name="file_is_empty">File is empty</string>
     <string name="install_with_su">Silent installation (root)</string>
     <string name="install_with_su_summ">If checked EdXposed Manager will install modules without a prompt</string>
@@ -233,8 +296,6 @@
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
     <string name="scroll_bottom">Scroll to bottom</string>
-    <string name="settings_summary_open_drawer">Open the navigation drawer automatically at startup</string>
-    <string name="settings_title_open_drawer">Open navigation drawer automatically</string>
     <string name="share_app">Share app</string>
     <string name="share_app_text">Check this out: Open-sources Xposed Framework for latest Android: EdXposed! %s</string>
     <string name="status">EdXposed Status</string>
@@ -242,13 +303,10 @@
     <string name="xposed_off_next_reboot">EdXXposed Framework will be disabled on next reboot</string>
     <string name="rovo_89_old_icon">rovo89 (old)</string>
     <string name="confirm_reboots">Confirm reboots</string>
-    <string name="settings_title_skip_status_check">Skip status check</string>
-    <string name="settings_summary_skip_status_check">Skip \"EdXposed Status\" check for modules</string>
 
     <string name="notice">Notice</string>
     <string name="details">Details</string>
     <string name="support_xda">Get support</string>
-    <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
     <string name="later">Later</string>
     <string name="save">Save only</string>
     <string name="download_location">Download location</string>
@@ -302,27 +360,10 @@
     <string name="menu_title_compile_dexopt">Optimize with Dexopt mode</string>
     <string name="compile_reset_msg">Resetting …</string>
     <string name="compile_speed_msg">Optimizing …</string>
-    <string name="settings_title_dynamic_modules">Instant module list</string>
-    <string name="settings_summary_dynamic_modules">When turned on, load latest activated module list on each app process started</string>
     <string name="title_compat_list">Compat mode</string>
-    <string name="settings_title_black_white_list">App List mode</string>
-    <string name="settings_summary_black_white_list">After opening, you can set the list in \"Application\"\nBlack List mode: Selected app NOT to load EdXposed modules\nNote: using app list mode might break system-wide modules\' functions</string>
     <string name="white_list_mode_summary">White List mode: Only selected app load EdXposed modules\nApp list mode is required to enable</string>
 
-    <string name="app_name" translatable="false">EdXposed Manager</string>
-    <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
-    <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
-    <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
-    <string name="about_source" translatable="false">https://github.com/ElderDrivers/EdXposedManager/</string>
-    <string name="about_support" translatable="false">http://edxp.meowcat.org/faq</string>
 
-    <string name="solohsu" translatable="false">givein2u</string>
-    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
-    <string name="meowcat">MeowCat Studio</string>
-    <string name="elderdrivers" translatable="false">Elder Drivers</string>
-
-    <string name="github" translatable="false">GitHub</string>
-    <string name="xda" translatable="false">XDA</string>
     <string name="coolapk">CoolApk</string>
     <string name="website">Website</string>
 
@@ -330,24 +371,6 @@
     <string name="mlgmxyysd_summary">Main creator of EdXposed Manager</string>
     <string name="elderdrivers_summary">Organization of EdXposed</string>
     <string name="meowcat_summary">Organization of MlgmXyysd</string>
-    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
-    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
-    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
-    <string name="mlgmxyysd_coolapk" translatable="false">http://www.coolapk.com/u/814297</string>
-    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
-    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
-    <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
-    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
-    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
-    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
-    <string name="group_qq_link" translatable="false">https://jq.qq.com/?k=57IiX8R</string>
-    <string name="group_telegram_link" translatable="false">http://t.me/Code_of_MeowCat</string>
-    <string name="group_telegram_channel_link" translatable="false">http://t.me/EdXposed</string>
-    <string name="notinstalled">The EdXposed framework is not installed.</string>
-    <string name="settings_title_enable_boot_image_deopt">De-optimize boot image</string>
-    <string name="settings_summary_enable_boot_image_deopt">Turn on to make all framework methods hookable, but the whole system will be slowed down\nMainly used to check if one framework method is inlined when it can\'t be hooked into</string>
-
-    <string name="settings_title_disable_verbose_log">Disable verbose logs</string>
     <string name="logs_verbose_disabled">Verbose logs is disabled</string>
     <string name="logs_too_long">Log is too long, not fully displayed</string>
     <string name="logs_cannot_read">Cannot read log: \n</string>
@@ -359,36 +382,18 @@
     <string name="update_time">Update time: </string>
     <string name="enabled_top">Top the checked items</string>
     <string name="list_sort">List sorting</string>
-    <string name="settings_sort_by_name">Sort by application name</string>
-    <string name="settings_sort_by_name_reverse">Sort by application name (reverse)</string>
-    <string name="settings_sort_by_package_name">Sort by package name</string>
-    <string name="settings_sort_by_package_name_reverse">Sort by package name (reverse)</string>
-    <string name="settings_sort_by_install_time">Sort by install time</string>
-    <string name="settings_sort_by_install_time_reverse">Sort by install time (reverse)</string>
-    <string name="settings_sort_by_update_time">Sort by update time</string>
-    <string name="settings_sort_by_update_time_reverse">Sort by update time (reverse)</string>
+    <string name="notinstalled">The EdXposed framework is not installed.</string>
     <string name="app_no_ui">This application does not provide a user interface</string>
-    <string name="settings_title_show_modules">Show modules and manager</string>
-    <string name="settings_summary_show_modules">Show modules and manager in applications\nThis option does not remove checked application flag</string>
     <string name="compile_failed">Optimization failed or return value is empty</string>
     <string name="hook_modules">Force hook modules</string>
     <string name="hook_modules_summary">Force add modules to white-list and remove from black list\nClosing this option does not remove modules from white list\nApp list mode is required to enable</string>
     <string name="not_installed">Not installed</string>
     <string name="ok">OK</string>
-    <string name="settings_title_pass_safetynet">Pass SafetyNet</string>
-    <string name="settings_summary_pass_safetynet">Force add GMS and GSF to black list and remove from white list\nClosing this option does not remove modules from black list\nApp list mode is required to enable</string>
+    <string name="warning_list_not_enabled">Application list mode is not enabled\nYou can enable in settings</string>
     <string name="support_group_telegram_channel_label">Telegram Channel: @EdXposed</string>
-    <string name="settings_title_old_success_color">Use old status active color (green)</string>
-    <string name="warning_list_not_enabled">Application list mode is not enabled, you can enable in settings</string>
     <string name="empty_param">Params empty</string>
     <string name="reboot_system">Reboot to System</string>
-    <string name="settings_title_stop_verbose_log">Stop verbose log catcher</string>
-    <string name="settings_summary_stop_verbose_log">Verbose log will stop catch before the next boot</string>
-    <string name="settings_summary_stop_log">Modules log will stop catch before the next boot</string>
-    <string name="settings_title_stop_log">Stop modules log catcher</string>
-    <string name="settings_title_disable_modules_log">Disable modules logs</string>
-    <string name="settings_summary_disable_modules_log">Exception stack thrown by the module will still be catched normally</string>
     <string name="optimize">Optimize</string>
-    <string name="settings_title_use_legacy_installer">Use legacy Xposed Installer</string>
-    <string name="settings_summary_use_legacy_installer">Switch to the legacy Xposed Installer (if installed) to use some obsolete but useful modules</string>
+    <string name="logs_not_primary_user">Logs can only be read by primary user(0).</string>
+    <string name="app_activation_scope">Manage activation scope</string>
 </resources>
