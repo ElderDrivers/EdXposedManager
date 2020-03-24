@@ -4,7 +4,6 @@
     <!-- General/various strings -->
     <string name="menuSend">Send</string>
     <string name="menuSaveToSd">Lagre til SD-kort</string>
-    <string name="xposed_not_active">EdXposed Framework er for øyeblikket enten ikke installert eller aktiv\nDu kan lukke statussjekken i innstillingene</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">Enhet</string>

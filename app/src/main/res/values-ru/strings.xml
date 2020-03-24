@@ -4,7 +4,6 @@
     <!-- General/various strings -->
     <string name="menuSend">Отправить</string>
     <string name="menuSaveToSd">Сохранить на SD-карту</string>
-    <string name="xposed_not_active">EdXposed Framework в настоящее время не установлен или не активен.\nВы можете закрыть проверку статуса в настройках</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">Устройство</string>

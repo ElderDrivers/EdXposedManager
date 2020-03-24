@@ -4,7 +4,6 @@
     <!-- General/various strings -->
     <string name="menuSend">Odeslat</string>
     <string name="menuSaveToSd">Uložit na SD kartu</string>
-    <string name="xposed_not_active">EdXposed Framework není aktivní. Bylo zařízení po instalaci frameworku restartováno?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">Framework</string>
