@@ -2,6 +2,8 @@ package org.meowcat.edxposed.manager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -9,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.UserHandle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -102,7 +105,9 @@ public class LogsFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_logs, menu);
+        if (isMainUser(requireContext())) {
+            inflater.inflate(R.menu.menu_logs, menu);
+        }
     }
 
     @Override
@@ -120,12 +125,12 @@ public class LogsFragment extends Fragment {
                 return true;
             case R.id.menu_send:
                 try {
-                    send();
+                    send(requireActivity(), mFileErrorLog);
                 } catch (NullPointerException ignored) {
                 }
                 return true;
             case R.id.menu_save:
-                save();
+                save(requireActivity(), "Verbose", mFileErrorLog);
                 return true;
             case R.id.menu_clear:
                 clear();
@@ -163,14 +168,18 @@ public class LogsFragment extends Fragment {
         }
     }
 
-    private void send() {
-        Uri uri = FileProvider.getUriForFile(requireActivity(), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
+    static void send(Activity activity, File target) {
+        Uri uri = FileProvider.getUriForFile(activity, "org.meowcat.edxposed.manager.fileprovider", target);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
         sendIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sendIntent.setType("application/html");
-        startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
+        activity.startActivity(Intent.createChooser(sendIntent, activity.getResources().getString(R.string.menuSend)));
+    }
+
+    static boolean isMainUser(Context context) {
+        return UserHandle.getUserHandleForUid(context.getApplicationInfo().uid).hashCode() == 0;
     }
 
     @Override
@@ -189,21 +198,20 @@ public class LogsFragment extends Fragment {
         }
     }
 
-    @SuppressLint("DefaultLocale")
-    private void save() {
-        if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+    static void save(Activity activity, String type, File target) {
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            activity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return;
         }
 
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
             return;
         }
 
         Calendar now = Calendar.getInstance();
         String filename = String.format(
-                "EdXposed_Verbose_%04d%02d%02d_%02d%02d%02d.log",
+                "EdXposed_" + type + "_%04d%02d%02d_%02d%02d%02d.txt",
                 now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1,
                 now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
@@ -211,7 +219,7 @@ public class LogsFragment extends Fragment {
         File targetFile = new File(createFolder(), filename);
 
         try {
-            FileInputStream in = new FileInputStream(mFileErrorLog);
+            FileInputStream in = new FileInputStream(target);
             FileOutputStream out = new FileOutputStream(targetFile);
             byte[] buffer = new byte[1024];
             int len;
@@ -221,10 +229,10 @@ public class LogsFragment extends Fragment {
             in.close();
             out.close();
 
-            Toast.makeText(getActivity(), targetFile.toString(),
+            Toast.makeText(activity, targetFile.toString(),
                     Toast.LENGTH_LONG).show();
         } catch (IOException e) {
-            Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, activity.getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -268,11 +276,17 @@ public class LogsFragment extends Fragment {
 
             StringBuilder llog = new StringBuilder(15 * 10 * 1024);
 
+            if (!isMainUser(requireContext())) {
+                llog.append(requireContext().getResources().getString(R.string.logs_not_primary_user));
+                return llog.toString();
+            }
+
             if (XposedApp.getPreferences().getBoolean(
                     "disable_verbose_log", false)) {
                 llog.append(requireContext().getResources().getString(R.string.logs_verbose_disabled));
                 return llog.toString();
             }
+
             try {
                 File logfile = log[0];
                 BufferedReader br;

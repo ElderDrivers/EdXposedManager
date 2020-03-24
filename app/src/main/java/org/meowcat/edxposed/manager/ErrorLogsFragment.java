@@ -1,13 +1,9 @@
 package org.meowcat.edxposed.manager;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,22 +18,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Calendar;
 
+import static org.meowcat.edxposed.manager.LogsFragment.isMainUser;
+import static org.meowcat.edxposed.manager.LogsFragment.save;
+import static org.meowcat.edxposed.manager.LogsFragment.send;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
-import static org.meowcat.edxposed.manager.XposedApp.createFolder;
 
 @SuppressWarnings({"ResultOfMethodCallIgnored"})
 public class ErrorLogsFragment extends Fragment {
@@ -101,7 +95,9 @@ public class ErrorLogsFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_logs, menu);
+        if (isMainUser(requireContext())) {
+            inflater.inflate(R.menu.menu_logs, menu);
+        }
     }
 
     @Override
@@ -119,12 +115,12 @@ public class ErrorLogsFragment extends Fragment {
                 return true;
             case R.id.menu_send:
                 try {
-                    send();
+                    send(requireActivity(), mFileErrorLog);
                 } catch (NullPointerException ignored) {
                 }
                 return true;
             case R.id.menu_save:
-                save();
+                save(requireActivity(), "Modules", mFileErrorLog);
                 return true;
             case R.id.menu_clear:
                 clear();
@@ -162,16 +158,6 @@ public class ErrorLogsFragment extends Fragment {
         }
     }
 
-    private void send() {
-        Uri uri = FileProvider.getUriForFile(requireActivity(), "org.meowcat.edxposed.manager.fileprovider", mFileErrorLog);
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        sendIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        sendIntent.setType("application/html");
-        startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -185,45 +171,6 @@ public class ErrorLogsFragment extends Fragment {
             } else {
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
             }
-        }
-    }
-
-    @SuppressLint("DefaultLocale")
-    private void save() {
-        if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
-            return;
-        }
-
-        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        Calendar now = Calendar.getInstance();
-        String filename = String.format(
-                "EdXposed_Module_%04d%02d%02d_%02d%02d%02d.log",
-                now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1,
-                now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
-                now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
-
-        File targetFile = new File(createFolder(), filename);
-
-        try {
-            FileInputStream in = new FileInputStream(mFileErrorLog);
-            FileOutputStream out = new FileOutputStream(targetFile);
-            byte[] buffer = new byte[1024];
-            int len;
-            while ((len = in.read(buffer)) > 0) {
-                out.write(buffer, 0, len);
-            }
-            in.close();
-            out.close();
-
-            Toast.makeText(getActivity(), targetFile.toString(),
-                    Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -266,6 +213,12 @@ public class ErrorLogsFragment extends Fragment {
             Thread.currentThread().setPriority(Thread.NORM_PRIORITY + 2);
 
             StringBuilder llog = new StringBuilder(15 * 10 * 1024);
+
+            if (!isMainUser(requireContext())) {
+                llog.append(requireContext().getResources().getString(R.string.logs_not_primary_user));
+                return llog.toString();
+            }
+
             try {
                 File logfile = log[0];
                 BufferedReader br;
