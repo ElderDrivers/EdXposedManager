@@ -30,12 +30,16 @@ import org.meowcat.edxposed.manager.util.NavUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.List;
+
+import static android.os.SELinux.isSELinuxEnabled;
+import static org.meowcat.edxposed.manager.XposedApp.TAG;
 
 @SuppressLint("StaticFieldLeak")
 public class StatusInstallerFragment extends Fragment {
@@ -191,6 +195,7 @@ public class StatusInstallerFragment extends Fragment {
         TextView androidSdk = v.findViewById(R.id.android_version);
         TextView manufacturer = v.findViewById(R.id.ic_manufacturer);
         TextView cpu = v.findViewById(R.id.cpu);
+        TextView selinux = v.findViewById(R.id.selinux);
 
         String mAppVer = "v" + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")";
         manager.setText(mAppVer);
@@ -251,7 +256,7 @@ public class StatusInstallerFragment extends Fragment {
                                     DISABLE_FILE.createNewFile();
                                     Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
                                 } catch (IOException e1) {
-                                    Log.e(XposedApp.TAG, "StatusInstallerFragment -> " + e.getMessage());
+                                    Log.e(TAG, "StatusInstallerFragment -> " + e.getMessage());
                                 }
                             }
                         }
@@ -263,6 +268,7 @@ public class StatusInstallerFragment extends Fragment {
         androidSdk.setText(getString(R.string.android_sdk, getAndroidVersion(), Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
         manufacturer.setText(getUIFramework());
         cpu.setText(getCompleteArch());
+        selinux.setText(String.format(getString(R.string.selinux_status), getSELinuxStatus()));
 
         determineVerifiedBootState(v);
 
@@ -296,8 +302,37 @@ public class StatusInstallerFragment extends Fragment {
                 v.findViewById(R.id.dmverity_explanation).setVisibility(View.GONE);
             }
         } catch (Exception e) {
-            Log.e(XposedApp.TAG, "Could not detect Verified Boot state", e);
+            Log.e(TAG, "Could not detect Verified Boot state", e);
         }
+    }
+
+    private String getSELinuxStatus() {
+        String result = "Enabled";
+        if (isSELinuxEnabled()) {
+            final File SELINUX_STATUS_FILE = new File("/sys/fs/selinux/enforce");
+            if (SELINUX_STATUS_FILE.exists()) {
+                try {
+                    FileInputStream fis = new FileInputStream(SELINUX_STATUS_FILE);
+                    int status = fis.read();
+                    switch (status) {
+                        case 49:
+                            result = "Enforcing";
+                            break;
+                        case 48:
+                            result = "Permissive";
+                            break;
+                        default:
+                            Log.e(TAG, "Unexpected byte " + status + " in /sys/fs/selinux/enforce");
+                    }
+                    fis.close();
+                } catch (IOException e) {
+                    result = "Enforcing";
+                }
+            }
+        } else {
+            result = "Disabled";
+        }
+        return result;
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -338,8 +373,8 @@ public class StatusInstallerFragment extends Fragment {
 //            issueName = "Samsung TouchWiz ROM";
 //            issueLink = "https://forum.xda-developers.com/showthread.php?t=3034811";
         } else if (!baseDirCanonical.equals(baseDirActualCanonical)) {
-            Log.e(XposedApp.TAG, "Base directory: " + getPathWithCanonicalPath(baseDir, baseDirCanonical));
-            Log.e(XposedApp.TAG, "Expected: " + getPathWithCanonicalPath(baseDirActual, baseDirActualCanonical));
+            Log.e(TAG, "Base directory: " + getPathWithCanonicalPath(baseDir, baseDirCanonical));
+            Log.e(TAG, "Expected: " + getPathWithCanonicalPath(baseDirActual, baseDirActualCanonical));
             issueName = getString(R.string.known_issue_wrong_base_directory, getPathWithCanonicalPath(baseDirActual, baseDirActualCanonical));
         } else if (!baseDir.exists()) {
             issueName = getString(R.string.known_issue_missing_base_directory);
@@ -416,7 +451,7 @@ public class StatusInstallerFragment extends Fragment {
         try {
             return file.getCanonicalFile();
         } catch (IOException e) {
-            Log.e(XposedApp.TAG, "Failed to get canonical file for " + file.getAbsolutePath(), e);
+            Log.e(TAG, "Failed to get canonical file for " + file.getAbsolutePath(), e);
             return file;
         }
     }

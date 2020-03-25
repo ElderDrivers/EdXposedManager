@@ -357,4 +357,5 @@
     <string name="settings_summary_use_legacy_installer">切换到旧版的 Xposed Installer (如果有) 来使用一些过时但有用的模块</string>
     <string name="logs_not_primary_user">日志仅可由主用户(0)读取</string>
     <string name="app_activation_scope">作用域管理</string>
+    <string name="selinux_status">SELinux 状态: %s</string>
 </resources>

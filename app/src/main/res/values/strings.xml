@@ -396,4 +396,5 @@
     <string name="optimize">Optimize</string>
     <string name="logs_not_primary_user">Logs can only be read by primary user(0).</string>
     <string name="app_activation_scope">Manage activation scope</string>
+    <string name="selinux_status">SELinux status: %s</string>
 </resources>
