@@ -464,7 +464,7 @@ public class StatusInstallerFragment extends Fragment {
         } else if (new File("/system/framework/flyme-framework.jar").exists() || new File("/system/framework/flyme-res").exists() || new File("/system/framework/flyme-telephony-common.jar").exists()) {
             manufacturer += "(Flyme)";
         } else if (new File("/system/framework/org.lineageos.platform-res.apk").exists() || new File("/system/framework/org.lineageos.platform.jar").exists()) {
-            manufacturer += "(Lineage OS)";
+            manufacturer += "(Lineage OS Based ROM)";
         }
         return manufacturer;
     }
