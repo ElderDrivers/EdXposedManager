@@ -307,7 +307,7 @@ public class StatusInstallerFragment extends Fragment {
     }
 
     private String getSELinuxStatus() {
-        String result = "Enabled";
+        String result = "Unknown";
         if (isSELinuxEnabled()) {
             final File SELINUX_STATUS_FILE = new File("/sys/fs/selinux/enforce");
             if (SELINUX_STATUS_FILE.exists()) {
@@ -326,7 +326,11 @@ public class StatusInstallerFragment extends Fragment {
                     }
                     fis.close();
                 } catch (IOException e) {
-                    result = "Enforcing";
+                    if (e.getMessage().contains("EACCES")) {
+                        result = "Enforcing";
+                    } else {
+                        Log.e(TAG, "Failed to read SELinux status", e);
+                    }
                 }
             }
         } else {
