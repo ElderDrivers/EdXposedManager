@@ -51,7 +51,7 @@
     </item>
 
     <item
-        android:title="@string/reboot"
+        android:title="@string/reboot_"
         app:showAsAction="never">
         <menu>
             <item

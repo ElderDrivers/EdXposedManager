@@ -5,6 +5,47 @@
     <group>
 
         <item
+            android:title="@string/reboot_"
+            android:icon="@drawable/ic_menu_refresh"
+            app:showAsAction="ifRoom">
+
+            <menu>
+
+                <item
+                    android:id="@+id/soft_reboot"
+                    android:title="@string/soft_reboot"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/reboot"
+                    android:title="@string/reboot_system"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/reboot_recovery"
+                    android:title="@string/reboot_recovery"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/reboot_bootloader"
+                    android:title="@string/reboot_bootloader"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/reboot_download"
+                    android:title="@string/reboot_download"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/reboot_edl"
+                    android:title="@string/reboot_edl"
+                    app:showAsAction="never" />
+
+            </menu>
+
+        </item>
+
+        <item
             android:id="@+id/dexopt_all"
             android:icon="@drawable/ic_optimize_white"
             android:title="@string/dexopt_now"
@@ -14,36 +55,6 @@
             android:id="@+id/speed_all"
             android:icon="@drawable/ic_optimize_white"
             android:title="@string/speed_now"
-            app:showAsAction="never" />
-
-        <item
-            android:id="@+id/soft_reboot"
-            android:title="@string/soft_reboot"
-            app:showAsAction="never" />
-
-        <item
-            android:id="@+id/reboot"
-            android:title="@string/reboot_system"
-            app:showAsAction="never" />
-
-        <item
-            android:id="@+id/reboot_recovery"
-            android:title="@string/reboot_recovery"
-            app:showAsAction="never" />
-
-        <item
-            android:id="@+id/reboot_bootloader"
-            android:title="@string/reboot_bootloader"
-            app:showAsAction="never" />
-
-        <item
-            android:id="@+id/reboot_download"
-            android:title="@string/reboot_download"
-            app:showAsAction="never" />
-
-        <item
-            android:id="@+id/reboot_edl"
-            android:title="@string/reboot_edl"
             app:showAsAction="never" />
 
     </group>
