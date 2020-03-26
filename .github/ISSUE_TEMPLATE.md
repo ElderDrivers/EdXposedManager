@@ -1,10 +1,9 @@
 ###### Include the following:
- - Xposed Version: `85` 
- - [ ] Xposed Systemless
- - Device OS version: `6.0.1`
- - Device Manufacturer: `LG`
- - Device Name: `Nexus 5`
- - Material Xposed Installer version: `14/09/2016`
+ - EdXposed Version: `0.4.6.2`
+ - Android Version: `10`
+ - Device Manufacturer: `OnePlus`
+ - Device Name: `7T Pro`
+ - EdXposed Manager Version: `4.5.6`
  
 ###### Reproduction Steps
 
