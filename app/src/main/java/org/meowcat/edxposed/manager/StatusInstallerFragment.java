@@ -45,7 +45,7 @@ import static org.meowcat.edxposed.manager.XposedApp.TAG;
 public class StatusInstallerFragment extends Fragment {
 
     public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
-    static String ARCH = getArch();
+    //static String ARCH = getArch();
     private static Activity sActivity;
     private static String mUpdateLink;
     private static ImageView mErrorIcon;
@@ -177,7 +177,17 @@ public class StatusInstallerFragment extends Fragment {
 
         TextView txtInstallError = v.findViewById(R.id.framework_install_errors);
         View txtInstallContainer = v.findViewById(R.id.status_container);
+        View noticeContainer = v.findViewById(R.id.noticeView);
         ImageView txtInstallIcon = v.findViewById(R.id.status_icon);
+
+        if (XposedApp.getPreferences().getBoolean("dismiss_manager_notice", false)) {
+            noticeContainer.setVisibility(View.GONE);
+        } else {
+            v.findViewById(R.id.btn_notice_dismiss).setOnClickListener(view -> {
+                noticeContainer.setVisibility(View.GONE);
+                XposedApp.getPreferences().edit().putBoolean("dismiss_manager_notice", true).apply();
+            });
+        }
 
         String installedXposedVersion;
         try {
@@ -329,7 +339,7 @@ public class StatusInstallerFragment extends Fragment {
                     if (e.getMessage().contains("EACCES")) {
                         result = "Enforcing";
                     } else {
-                        Log.e(TAG, "Failed to read SELinux status", e);
+                        Log.e(TAG, "Failed to read SELinux status: " + e.getMessage());
                     }
                 }
             }

@@ -55,6 +55,7 @@
     <string name="uninstall">Uninstall</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
+    <string name="reboot_">Reboot…</string>
     <string name="areyousure">Are you sure?</string>
     <string name="phone_not_compatible">EdXposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s)</string>
     <string name="reboot_failed">Reboot failed. Please use the device\'s normal reboot function</string>
@@ -398,4 +399,6 @@
     <string name="logs_not_primary_user">Logs can only be read by primary user(0).</string>
     <string name="app_activation_scope">Manage activation scope</string>
     <string name="selinux_status">SELinux status: %s</string>
+    <string name="notice_content">Always make sure you\'re using open-source EdXposed Manager, Manager of unknown source can perform malicious actions</string>
+    <string name="btn_dismiss">Dismiss</string>
 </resources>

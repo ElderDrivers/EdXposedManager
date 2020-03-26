@@ -222,7 +222,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
             Resources res = getResources();
             DisplayMetrics dm = res.getDisplayMetrics();
             android.content.res.Configuration conf = res.getConfiguration();
-            conf.locale = Locale.ENGLISH;
+            conf.setLocale(Locale.ENGLISH);
             res.updateConfiguration(conf, dm);
         }
     }

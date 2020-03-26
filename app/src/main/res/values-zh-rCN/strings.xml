@@ -359,4 +359,7 @@
     <string name="logs_not_primary_user">日志仅可由主用户(0)读取</string>
     <string name="app_activation_scope">作用域管理</string>
     <string name="selinux_status">SELinux 状态: %s</string>
+    <string name="notice_content">确保您使用的是开源的 EdXposed Manager，未知来源的 Manager 可能执行恶意操作</string>
+    <string name="btn_dismiss">忽略</string>
+    <string name="reboot_">重启…</string>
 </resources>
