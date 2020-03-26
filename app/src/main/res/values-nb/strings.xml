@@ -14,8 +14,8 @@
     <string name="nav_item_install">Framework</string>
     <string name="nav_item_modules">Moduler</string>
     <string name="nav_item_download">Last ned</string>
-    <string name="nav_item_logs">Detaljerte loggføringer</string>
-    <string name="nav_item_logs_err">Loggføring over moduler</string>
+    <string name="nav_item_logs_verbose">Detaljerte loggføringer</string>
+    <string name="nav_item_logs_modules">Loggføring over moduler</string>
     <string name="nav_item_settings">Innstillinger</string>
     <string name="nav_item_about">Om</string>
     <string name="navigation_drawer_open">Åpne navigasjonsskuffen</string>

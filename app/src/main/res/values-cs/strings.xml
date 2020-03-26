@@ -15,8 +15,8 @@
     <string name="nav_item_modules">Moduly</string>
     <string name="nav_item_download">Stáhnout</string>
     <string name="nav_item_settings">Nastavení</string>
-    <string name="nav_item_logs">Podrobné záznamy</string>
-    <string name="nav_item_logs_err">Záznamy modulů</string>
+    <string name="nav_item_logs_verbose">Podrobné záznamy</string>
+    <string name="nav_item_logs_modules">Záznamy modulů</string>
     <string name="nav_item_about">O aplikaci</string>
     <string name="navigation_drawer_open">Otevřít panel navigace</string>
     <string name="navigation_drawer_close">Zavřít panel navigace</string>

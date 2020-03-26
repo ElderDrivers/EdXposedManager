@@ -19,8 +19,8 @@
         <item>@string/nav_title_compat_list</item>
         <item>@string/nav_item_modules</item>
         <item>@string/nav_item_download</item>
-        <item>@string/nav_item_logs</item>
-        <item>@string/nav_item_logs_err</item>
+        <item>@string/nav_item_logs_verbose</item>
+        <item>@string/nav_item_logs_modules</item>
     </string-array>
 
     <string-array name="theme_values" translatable="false">

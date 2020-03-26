@@ -24,17 +24,11 @@
             android:icon="@drawable/ic_nav_downloads"
             android:title="@string/nav_item_download" />
     </group>
-    <group android:id="@+id/drawer_logs" android:checkableBehavior="single">
+    <group android:id="@+id/drawer_settings" android:checkableBehavior="all">
         <item
             android:id="@+id/drawer_item_4"
             android:icon="@drawable/ic_nav_logs"
             android:title="@string/nav_item_logs" />
-        <item
-            android:id="@+id/drawer_item_errlog"
-            android:icon="@drawable/ic_nav_logs"
-            android:title="@string/nav_item_logs_err" />
-    </group>
-    <group android:id="@+id/drawer_settings" android:checkableBehavior="all">
         <item
             android:id="@+id/drawer_item_5"
             android:icon="@drawable/ic_nav_settings"

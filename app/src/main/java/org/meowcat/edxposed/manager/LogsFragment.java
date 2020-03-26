@@ -30,6 +30,7 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.material.tabs.TabLayout;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -38,6 +39,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Objects;
 
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.createFolder;
@@ -45,11 +48,28 @@ import static org.meowcat.edxposed.manager.XposedApp.createFolder;
 @SuppressWarnings({"ResultOfMethodCallIgnored"})
 public class LogsFragment extends Fragment {
 
-    private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/all.log");
-    private File mFileErrorLogOld = new File(
-            XposedApp.BASE_DIR + "log/all.log.old");
+    private final HashMap mVerboseLogConfig = new HashMap<String, String>() {
+        {
+            put("name", "Verbose");
+            put("fileName", "all");
+        }
+    };
+    private final HashMap mModulesLogConfig = new HashMap<String, String>() {
+        {
+            put("name", "Modules");
+            put("fileName", "error");
+        }
+    };
+    private final String LOG_SUFFIX = ".log";
+    @SuppressWarnings("FieldCanBeLocal")
+    private final String LOG_OLD_SUFFIX = ".log.old";
+    //private final String PID_SUFFIX = ".pid";
+    private final String LOG_PATH = XposedApp.BASE_DIR + "log/";
+
+    private HashMap activatedConfig;
     private TextView mTxtLog;
     private ScrollView mSVLog;
+    private TabLayout mTabLayout;
     private HorizontalScrollView mHSVLog;
     private MenuItem mClickedMenuItem = null;
 
@@ -62,17 +82,44 @@ public class LogsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tab_logs_modules, container, false);
+        View v = inflater.inflate(R.layout.tab_logs, container, false);
+        mTabLayout = v.findViewById(R.id.sliding_tabs);
         mTxtLog = v.findViewById(R.id.txtLog);
         mTxtLog.setTextIsSelectable(true);
         mSVLog = v.findViewById(R.id.svLog);
         mHSVLog = v.findViewById(R.id.hsvLog);
+        mTabLayout.setBackgroundColor(XposedApp.getColor(requireContext()));
+        activatedConfig = mModulesLogConfig;
 
 //        View scrollTop = v.findViewById(R.id.scroll_top);
 //        View scrollDown = v.findViewById(R.id.scroll_down);
 //
 //        scrollTop.setOnClickListener(v1 -> scrollTop());
 //        scrollDown.setOnClickListener(v12 -> scrollDown());
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        activatedConfig = mModulesLogConfig;
+                        break;
+                    case 1:
+                        activatedConfig = mVerboseLogConfig;
+                        break;
+                    default:
+                        break;
+                }
+                reloadErrorLog();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
 
         if (!XposedApp.getPreferences().getBoolean("hide_logcat_warning", false)) {
             @SuppressLint("InflateParams") final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
@@ -100,6 +147,7 @@ public class LogsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        mTabLayout.setBackgroundColor(XposedApp.getColor(requireContext()));
         reloadErrorLog();
     }
 
@@ -125,12 +173,12 @@ public class LogsFragment extends Fragment {
                 return true;
             case R.id.menu_send:
                 try {
-                    send(requireActivity(), mFileErrorLog);
+                    send(requireActivity(), LOG_PATH + activatedConfig.get("fileName") + LOG_SUFFIX);
                 } catch (NullPointerException ignored) {
                 }
                 return true;
             case R.id.menu_save:
-                save(requireActivity(), "Verbose", mFileErrorLog);
+                save(requireActivity(), activatedConfig.get("name"), LOG_PATH + activatedConfig.get("fileName") + LOG_SUFFIX);
                 return true;
             case R.id.menu_clear:
                 clear();
@@ -150,15 +198,15 @@ public class LogsFragment extends Fragment {
     }
 
     private void reloadErrorLog() {
-        new LogsReader().execute(mFileErrorLog);
+        new LogsReader().execute(new File(LOG_PATH + activatedConfig.get("fileName") + LOG_SUFFIX));
         mSVLog.post(() -> mSVLog.scrollTo(0, mTxtLog.getHeight()));
         mHSVLog.post(() -> mHSVLog.scrollTo(0, 0));
     }
 
     private void clear() {
         try {
-            new FileOutputStream(mFileErrorLog).close();
-            mFileErrorLogOld.delete();
+            new FileOutputStream(LOG_PATH + activatedConfig.get("fileName") + LOG_SUFFIX).close();
+            new File(LOG_PATH + activatedConfig.get("fileName") + LOG_OLD_SUFFIX).delete();
             mTxtLog.setText(R.string.log_is_empty);
             Toast.makeText(getActivity(), R.string.logs_cleared,
                     Toast.LENGTH_SHORT).show();
@@ -168,8 +216,8 @@ public class LogsFragment extends Fragment {
         }
     }
 
-    static void send(Activity activity, File target) {
-        Uri uri = FileProvider.getUriForFile(activity, "org.meowcat.edxposed.manager.fileprovider", target);
+    private static void send(Activity activity, String target) {
+        Uri uri = FileProvider.getUriForFile(activity, "org.meowcat.edxposed.manager.fileprovider", new File(target));
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
@@ -178,7 +226,7 @@ public class LogsFragment extends Fragment {
         activity.startActivity(Intent.createChooser(sendIntent, activity.getResources().getString(R.string.menuSend)));
     }
 
-    static boolean isMainUser(Context context) {
+    private static boolean isMainUser(Context context) {
         return UserHandle.getUserHandleForUid(context.getApplicationInfo().uid).hashCode() == 0;
     }
 
@@ -198,7 +246,7 @@ public class LogsFragment extends Fragment {
         }
     }
 
-    static void save(Activity activity, String type, File target) {
+    private static void save(Activity activity, Object type, String target) {
         if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             activity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return;
@@ -282,7 +330,7 @@ public class LogsFragment extends Fragment {
             }
 
             if (XposedApp.getPreferences().getBoolean(
-                    "disable_verbose_log", false)) {
+                    "disable_verbose_log", false) && Objects.requireNonNull(activatedConfig.get("name")).toString().equalsIgnoreCase("Verbose")) {
                 llog.append(requireContext().getResources().getString(R.string.logs_verbose_disabled));
                 return llog.toString();
             }

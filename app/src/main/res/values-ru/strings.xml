@@ -14,8 +14,8 @@
     <string name="nav_item_install">EdXposed Framework</string>
     <string name="nav_item_modules">Установленные модули</string>
     <string name="nav_item_download">Поиск модулей</string>
-    <string name="nav_item_logs">Подробные логи</string>
-    <string name="nav_item_logs_err">Логи модулей</string>
+    <string name="nav_item_logs_verbose">Подробные логи</string>
+    <string name="nav_item_logs_modules">Логи модулей</string>
     <string name="nav_item_settings">Настройки</string>
     <string name="nav_item_about">О приложении</string>
     <string name="navigation_drawer_open">Открыть меню приложений</string>

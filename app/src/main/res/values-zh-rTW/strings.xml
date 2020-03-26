@@ -15,8 +15,8 @@
     <string name="nav_item_install">框架</string>
     <string name="nav_item_modules">模組</string>
     <string name="nav_item_download">線上模組庫</string>
-    <string name="nav_item_logs">詳細日誌</string>
-    <string name="nav_item_logs_err">模組日誌</string>
+    <string name="nav_item_logs_verbose">詳細日誌</string>
+    <string name="nav_item_logs_modules">模組日誌</string>
     <string name="nav_item_settings">設定</string>
     <string name="nav_item_about">關於</string>
     <string name="navigation_drawer_open">開啟導航抽屜欄</string>

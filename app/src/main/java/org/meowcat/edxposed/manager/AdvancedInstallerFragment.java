@@ -80,9 +80,7 @@ public class AdvancedInstallerFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-
         mTabLayout.setBackgroundColor(XposedApp.getColor(requireContext()));
-
     }
 
     @Override

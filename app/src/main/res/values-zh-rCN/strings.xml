@@ -16,8 +16,8 @@
     <string name="nav_item_modules">模块</string>
     <string name="nav_item_download">下载</string>
     <string name="nav_item_settings">设置</string>
-    <string name="nav_item_logs">详细日志</string>
-    <string name="nav_item_logs_err">模块日志</string>
+    <string name="nav_item_logs_verbose">详细日志</string>
+    <string name="nav_item_logs_modules">模块日志</string>
     <string name="nav_item_about">关于</string>
     <string name="navigation_drawer_open">开启导航抽屉栏</string>
     <string name="navigation_drawer_close">关闭导航抽屉栏</string>
@@ -362,4 +362,5 @@
     <string name="notice_content">确保您使用的是开源的 EdXposed Manager，未知来源的 Manager 可能执行恶意操作</string>
     <string name="btn_dismiss">忽略</string>
     <string name="reboot_">重启…</string>
+    <string name="nav_item_logs">日志</string>
 </resources>
