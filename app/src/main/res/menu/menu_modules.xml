@@ -9,6 +9,12 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/refresh"
+        android:icon="@drawable/ic_menu_refresh"
+        android:title="@string/menuRefresh"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/bookmarks"
         android:icon="@drawable/ic_bookmark"
         android:title="@string/bookmarks"

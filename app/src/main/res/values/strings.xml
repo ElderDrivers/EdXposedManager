@@ -96,6 +96,7 @@
     <!-- Download -->
     <string name="menuSearch">Search</string>
     <string name="menuReload">Reload</string>
+    <string name="menuRefresh">Refresh</string>
     <string name="changes">Changelog:</string>
     <string name="download_details_page_description">Description</string>
     <string name="download_details_page_versions">Versions</string>

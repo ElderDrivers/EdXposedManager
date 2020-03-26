@@ -65,6 +65,7 @@
     <!-- Download tab -->
     <string name="menuSearch">搜索</string>
     <string name="menuReload">重新加载</string>
+    <string name="menuRefresh">刷新</string>
     <string name="changes">"更新日志: "</string>
     <string name="download_details_page_description">介绍</string>
     <string name="download_details_page_versions">版本</string>

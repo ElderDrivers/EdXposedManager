@@ -318,6 +318,10 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
             return false;
 
         switch (item.getItemId()) {
+            case R.id.refresh:
+                mModuleUtil.updateModulesList(false);
+                requireActivity().runOnUiThread(reloadModules);
+                break;
             case R.id.export_enabled_modules:
                 if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     return false;
