@@ -339,9 +339,6 @@ public final class ModuleUtil {
             return (app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0;
         }
 
-        /**
-         * @hide
-         */
 //        public boolean isForwardLocked() {
 //            return (app.flags & FLAG_FORWARD_LOCK) != 0;
 //        }
