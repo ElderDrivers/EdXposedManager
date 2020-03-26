@@ -454,9 +454,17 @@ public class StatusInstallerFragment extends Fragment {
         } else if (new File("/system/framework/framework-miui-res.apk").exists() || new File("/system/app/miui/miui.apk").exists() || new File("/system/app/miuisystem/miuisystem.apk").exists()) {
             manufacturer += "(MIUI)";
         } else if (new File("/system/priv-app/oneplus-framework-res/oneplus-framework-res.apk").exists()) {
-            manufacturer += "(Oxygen/Hydrogen OS)";
+            manufacturer += "(Hydrogen/Oxygen OS)";
+        } else if (new File("/system/framework/hwEmui.jar").exists() || new File("/system/framework/hwcustEmui.jar").exists() || new File("/system/framework/hwframework.jar").exists() || new File("/system/framework/framework-res-hwext.apk").exists()) {
+            manufacturer += "(EMUI)";
         } else if (new File("/system/framework/com.samsung.device.jar").exists() || new File("/system/framework/sec_platform_library.jar").exists()) {
             manufacturer += "(One UI)";
+        } else if (new File("/system/priv-app/CarbonDelta/CarbonDelta.apk").exists()) {
+            manufacturer += "(Carbon OS)";
+        } else if (new File("/system/framework/flyme-framework.jar").exists() || new File("/system/framework/flyme-res").exists() || new File("/system/framework/flyme-telephony-common.jar").exists()) {
+            manufacturer += "(Flyme)";
+        } else if (new File("/system/framework/org.lineageos.platform-res.apk").exists() || new File("/system/framework/org.lineageos.platform.jar").exists()) {
+            manufacturer += "(Lineage OS)";
         }
         return manufacturer;
     }
