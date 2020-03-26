@@ -25,6 +25,7 @@
             app:cardElevation="@dimen/card_elevation"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            tools:visibility="visible"
             android:visibility="gone">
 
             <LinearLayout
@@ -56,8 +57,9 @@
                     android:id="@+id/btnSettings"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackground"
                     android:text="@string/nav_item_settings"
-                    android:textColor="?android:textColorSecondary" />
+                    android:textColor="?android:colorAccent" />
 
             </LinearLayout>
 
