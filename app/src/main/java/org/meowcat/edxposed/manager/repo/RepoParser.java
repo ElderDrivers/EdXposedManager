@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.meowcat.edxposed.manager.R;
-import org.meowcat.edxposed.manager.XposedApp;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -27,8 +26,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 public class RepoParser {
-    public final static String TAG = XposedApp.TAG;
     private final static String NS = null;
     private final XmlPullParser parser;
     private RepoParserCallback mCallback;
@@ -49,7 +49,7 @@ public class RepoParser {
     public static Spanned parseSimpleHtml(final Context c, String source, final TextView textView) {
         source = source.replaceAll("<li>", "\t\u0095 ");
         source = source.replaceAll("</li>", "<br>");
-        Spanned html = Html.fromHtml(source, source1 -> {
+        Spanned html = Html.fromHtml(source, Html.FROM_HTML_MODE_COMPACT, source1 -> {
             LevelListDrawable d = new LevelListDrawable();
             Drawable empty = c.getResources().getDrawable(R.drawable.ic_no_image);
             d.addLevel(0, 0, empty);

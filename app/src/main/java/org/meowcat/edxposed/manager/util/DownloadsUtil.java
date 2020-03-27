@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 public class DownloadsUtil {
     static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
     //private static final String MIME_TYPE_ZIP = "application/zip";
@@ -332,7 +334,7 @@ public class DownloadsUtil {
         try {
             filename = file.getCanonicalPath();
         } catch (IOException e) {
-            Log.w(XposedApp.TAG, "Could not resolve path for " + file.getAbsolutePath(), e);
+            Log.w(TAG, "Could not resolve path for " + file.getAbsolutePath(), e);
             return;
         }
 
@@ -647,12 +649,12 @@ public class DownloadsUtil {
         public final long id;
         public final String url;
         public final String title;
-        final long lastModification;
         public final String localFilename;
         public final int status;
         public final int totalSize;
         public final int bytesDownloaded;
         public final int reason;
+        final long lastModification;
 
         private DownloadInfo(long id, String url, String title, long lastModification, String localFilename, int status, int totalSize, int bytesDownloaded, int reason) {
             this.id = id;

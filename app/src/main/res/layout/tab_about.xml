@@ -48,6 +48,7 @@
                         android:paddingEnd="16dp"
                         android:text="@string/app_name"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
                 </LinearLayout>
 
                 <LinearLayout

@@ -36,7 +36,7 @@ import org.meowcat.edxposed.manager.util.ThemeUtil;
 import java.util.List;
 import java.util.Objects;
 
-import static org.meowcat.edxposed.manager.XposedApp.TAG;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener {

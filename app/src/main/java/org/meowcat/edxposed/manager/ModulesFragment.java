@@ -80,6 +80,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
+import static androidx.constraintlayout.widget.Constraints.TAG;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.createFolder;
 
@@ -416,7 +417,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
         try {
             ips = new FileInputStream(path);
         } catch (FileNotFoundException e) {
-            Log.e(XposedApp.TAG, "ModulesFragment -> " + e.getMessage());
+            Log.e(TAG, "ModulesFragment -> " + e.getMessage());
         }
 
         if (path.length() == 0) {
@@ -623,6 +624,10 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
         }
     }
 
+    private boolean lowercaseContains(String s, CharSequence filter) {
+        return !TextUtils.isEmpty(s) && s.toLowerCase().contains(filter);
+    }
+
     private class ModuleAdapter extends ArrayAdapter<InstalledModule> {
         ModuleAdapter(Context context) {
             super(context, R.layout.list_item_module, R.id.title);
@@ -720,10 +725,6 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
             }
             return view;
         }
-    }
-
-    private boolean lowercaseContains(String s, CharSequence filter) {
-        return !TextUtils.isEmpty(s) && s.toLowerCase().contains(filter);
     }
 
     class ApplicationFilter extends Filter {

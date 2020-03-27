@@ -45,15 +45,16 @@ import java.util.Objects;
 
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 @SuppressWarnings({"ResultOfMethodCallIgnored", "OctalInteger"})
 @SuppressLint("Registered")
 public class XposedApp extends de.robv.android.xposed.installer.XposedApp implements ActivityLifecycleCallbacks {
-    public static final String TAG = "EdXposedManager";
-    private static String BASE_DIR_LEGACY = null;
     public static String BASE_DIR = null;
     public static String ENABLED_MODULES_LIST_FILE = null;
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_dvdandroid, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_cornie, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
+    private static String BASE_DIR_LEGACY = null;
     @SuppressLint("StaticFieldLeak")
     private static XposedApp mInstance = null;
     private static Thread mUiThread;
@@ -263,7 +264,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "conf"));
                 deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "log"));
             } catch (ReflectiveOperationException e) {
-                Log.w(XposedApp.TAG, "Failed to delete obsolete directories", e);
+                Log.w(TAG, "Failed to delete obsolete directories", e);
             }
         }
     }

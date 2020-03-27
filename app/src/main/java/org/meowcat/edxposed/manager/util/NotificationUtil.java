@@ -21,6 +21,8 @@ import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.WelcomeActivity;
 import org.meowcat.edxposed.manager.XposedApp;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 public final class NotificationUtil {
 
     public static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
@@ -266,7 +268,7 @@ public final class NotificationUtil {
             }
 
             if (!Shell.rootAccess()) {
-                Log.e(XposedApp.TAG, "NotificationUtil -> Could not start root shell");
+                Log.e(TAG, "NotificationUtil -> Could not start root shell");
                 return;
             }
 
@@ -276,9 +278,9 @@ public final class NotificationUtil {
             int returnCode = result.getCode();
 
             if (returnCode != 0) {
-                Log.e(XposedApp.TAG, "NotificationUtil -> Could not reboot:");
+                Log.e(TAG, "NotificationUtil -> Could not reboot:");
                 for (String line : result.getOut()) {
-                    Log.e(XposedApp.TAG, line);
+                    Log.e(TAG, line);
                 }
             }
         }

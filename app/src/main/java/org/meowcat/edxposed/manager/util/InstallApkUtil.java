@@ -34,6 +34,11 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
     private boolean isApkRootInstallOn;
     private List<String> output = new LinkedList<>();
 
+    public InstallApkUtil(Context context, DownloadsUtil.DownloadInfo info) {
+        this.context = context;
+        this.info = info;
+    }
+
     public static String getAppLabel(ApplicationInfo info, PackageManager pm) {
         try {
             if (info.labelRes > 0) {
@@ -46,11 +51,6 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         } catch (Exception ignored) {
         }
         return info.loadLabel(pm).toString();
-    }
-
-    public InstallApkUtil(Context context, DownloadsUtil.DownloadInfo info) {
-        this.context = context;
-        this.info = info;
     }
 
     static void installApkNormally(Context context, String localFilename) {

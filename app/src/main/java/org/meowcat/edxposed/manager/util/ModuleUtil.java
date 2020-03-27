@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 @SuppressWarnings("OctalInteger")
 public final class ModuleUtil {
     // xposedminversion below this
@@ -212,7 +214,7 @@ public final class ModuleUtil {
 
     public synchronized void updateModulesList(boolean showToast) {
         try {
-            Log.i(XposedApp.TAG, "ModuleUtil -> updating modules.list");
+            Log.i(TAG, "ModuleUtil -> updating modules.list");
             int installedXposedVersion = XposedApp.getXposedVersion();
             boolean disabled = StatusInstallerFragment.DISABLE_FILE.exists();
             if (!XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false) && !disabled && installedXposedVersion <= 0 && showToast) {
@@ -249,7 +251,7 @@ public final class ModuleUtil {
                 showToast(R.string.xposed_module_list_updated);
             }
         } catch (IOException e) {
-            Log.e(XposedApp.TAG, "ModuleUtil -> cannot write " + MODULES_LIST_FILE, e);
+            Log.e(TAG, "ModuleUtil -> cannot write " + MODULES_LIST_FILE, e);
             Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e, Toast.LENGTH_SHORT).show();
         }
     }

@@ -17,7 +17,6 @@ import androidx.browser.customtabs.CustomTabsIntent;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.meowcat.edxposed.manager.R;
-
 import org.meowcat.edxposed.manager.XposedApp;
 
 public final class NavUtil {

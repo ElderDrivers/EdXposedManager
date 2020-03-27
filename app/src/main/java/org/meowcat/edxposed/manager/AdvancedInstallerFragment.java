@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 public class AdvancedInstallerFragment extends BaseFragment {
 
@@ -119,7 +120,7 @@ public class AdvancedInstallerFragment extends BaseFragment {
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e(XposedApp.TAG, "AdvancedInstallerFragment -> " + e.getMessage());
+                Log.e(TAG, "AdvancedInstallerFragment -> " + e.getMessage());
                 return false;
             }
         }

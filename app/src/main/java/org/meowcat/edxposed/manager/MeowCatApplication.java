@@ -2,12 +2,10 @@
  * Copyright (c) 2013-2020 MeowCat Studio Powered by MlgmXyysd All Rights Reserved.
  */
 
-package org.meowcat.bugcatcher;
+package org.meowcat.edxposed.manager;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
-
-import org.meowcat.edxposed.manager.XposedApp;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

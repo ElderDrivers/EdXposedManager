@@ -491,7 +491,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                         .cancelButton(android.R.string.cancel)
                         .initialPath(XposedApp.getDownloadPath())
                         .show();
-            }else if (preference.getKey().equals(stopVerboseLog.getKey())) {
+            } else if (preference.getKey().equals(stopVerboseLog.getKey())) {
                 new Runnable() {
                     @Override
                     public void run() {

@@ -28,7 +28,8 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
     private static final String KEY_COMMANDS = "commands";
     private ApplicationInfo appInfo;
 
-    public CompileDialogFragment() {}
+    public CompileDialogFragment() {
+    }
 
     public static CompileDialogFragment newInstance(ApplicationInfo appInfo,
                                                     String msg, String[] commands) {

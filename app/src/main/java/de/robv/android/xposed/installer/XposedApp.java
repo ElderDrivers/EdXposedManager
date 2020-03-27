@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.util.Log;
 
-import org.meowcat.bugcatcher.MeowCatApplication;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,6 +11,7 @@ import java.io.IOException;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 
 import static de.robv.android.xposed.installer.util.InstallZipUtil.parseXposedProp;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 @SuppressLint("Registered")
 public class XposedApp extends Application {
@@ -26,7 +25,7 @@ public class XposedApp extends Application {
 
     // This method is hooked by XposedBridge to return the current version
     public static Integer getActiveXposedVersion() {
-        Log.d(MeowCatApplication.TAG, "EdXposed is not active");
+        Log.d(TAG, "EdXposed is not active");
         return -1;
     }
 
@@ -47,7 +46,7 @@ public class XposedApp extends Application {
             try (FileInputStream is = new FileInputStream(file)) {
                 prop = parseXposedProp(is);
             } catch (IOException e) {
-                Log.e(MeowCatApplication.TAG, "Could not read " + file.getPath(), e);
+                Log.e(TAG, "Could not read " + file.getPath(), e);
             }
         }
         synchronized (this) {

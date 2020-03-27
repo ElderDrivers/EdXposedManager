@@ -39,7 +39,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import static android.os.SELinux.isSELinuxEnabled;
-import static org.meowcat.edxposed.manager.XposedApp.TAG;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 @SuppressLint("StaticFieldLeak")
 public class StatusInstallerFragment extends Fragment {
@@ -336,7 +336,7 @@ public class StatusInstallerFragment extends Fragment {
                     }
                     fis.close();
                 } catch (IOException e) {
-                    if (e.getMessage().contains("EACCES")) {
+                    if (e.getMessage().contains("Permission denied")) {
                         result = "Enforcing";
                     } else {
                         Log.e(TAG, "Failed to read SELinux status: " + e.getMessage());

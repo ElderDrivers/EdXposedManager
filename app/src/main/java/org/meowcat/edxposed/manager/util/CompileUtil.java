@@ -5,9 +5,8 @@ import android.content.pm.ApplicationInfo;
 
 import androidx.fragment.app.FragmentManager;
 
-import org.meowcat.edxposed.manager.R;
-
 import org.meowcat.edxposed.manager.CompileDialogFragment;
+import org.meowcat.edxposed.manager.R;
 
 public class CompileUtil {
 
@@ -18,19 +17,19 @@ public class CompileUtil {
     private static final String TAG_COMPILE_DIALOG = "compile_dialog";
 
     public static void reset(Context context, FragmentManager fragmentManager,
-                      ApplicationInfo info) {
+                             ApplicationInfo info) {
         compilePackageInBg(fragmentManager, info,
                 context.getString(R.string.compile_reset_msg), COMPILE_RESET_COMMAND);
     }
 
     public static void compileSpeed(Context context, FragmentManager fragmentManager,
-                             ApplicationInfo info) {
+                                    ApplicationInfo info) {
         compilePackageInBg(fragmentManager, info,
                 context.getString(R.string.compile_speed_msg), COMPILE_SPEED_COMMAND);
     }
 
     public static void compileDexopt(Context context, FragmentManager fragmentManager,
-                              ApplicationInfo info) {
+                                     ApplicationInfo info) {
         compilePackageInBg(fragmentManager, info,
                 context.getString(R.string.compile_speed_msg), COMPILE_DEXOPT_COMMAND);
     }

@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import java.util.Objects;
-
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.NotificationUtil;
+
+import java.util.Objects;
 
 public class PackageChangeReceiver extends BroadcastReceiver {
     private static ModuleUtil mModuleUtil = null;

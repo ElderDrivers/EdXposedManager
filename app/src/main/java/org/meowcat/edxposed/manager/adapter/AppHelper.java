@@ -34,8 +34,6 @@ import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 
 public class AppHelper {
 
-    public static final String TAG = XposedApp.TAG;
-
     private static final String BASE_PATH = XposedApp.BASE_DIR;
     private static final String WHITE_LIST_PATH = "conf/whitelist/";
     private static final String BLACK_LIST_PATH = "conf/blacklist/";
@@ -43,10 +41,9 @@ public class AppHelper {
     private static final String WHITE_LIST_MODE = "conf/usewhitelist";
     private static final String BLACK_LIST_MODE = "conf/blackwhitelist";
 
-    private static final List<String> FORCE_WHITE_LIST  = new ArrayList<>(Collections.singletonList(BuildConfig.APPLICATION_ID));
+    private static final List<String> FORCE_WHITE_LIST = new ArrayList<>(Collections.singletonList(BuildConfig.APPLICATION_ID));
+    private static final List<String> SAFETYNET_BLACK_LIST = new ArrayList<>(Arrays.asList("com.google.android.gms", "com.google.android.gsf"));
     static List<String> FORCE_WHITE_LIST_MODULE = new ArrayList<>(FORCE_WHITE_LIST);
-
-    private static final List<String> SAFETYNET_BLACK_LIST  = new ArrayList<>(Arrays.asList("com.google.android.gms", "com.google.android.gsf"));
 
     @SuppressWarnings("OctalInteger")
     static void makeSurePath() {
@@ -64,8 +61,8 @@ public class AppHelper {
     }
 
     private static boolean addWhiteList(String packageName) {
-            if (SAFETYNET_BLACK_LIST.contains(packageName)) {
-                if (XposedApp.getPreferences().getBoolean("pass_safetynet", false)) {
+        if (SAFETYNET_BLACK_LIST.contains(packageName)) {
+            if (XposedApp.getPreferences().getBoolean("pass_safetynet", false)) {
                 removeWhiteList(packageName);
                 return false;
             }
@@ -89,8 +86,8 @@ public class AppHelper {
     }
 
     private static boolean removeBlackList(String packageName) {
-            if (SAFETYNET_BLACK_LIST.contains(packageName)) {
-                if (XposedApp.getPreferences().getBoolean("pass_safetynet", false)) {
+        if (SAFETYNET_BLACK_LIST.contains(packageName)) {
+            if (XposedApp.getPreferences().getBoolean("pass_safetynet", false)) {
                 return false;
             }
         }
