@@ -32,15 +32,14 @@ import androidx.fragment.app.Fragment;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Scanner;
 
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.createFolder;
@@ -72,6 +71,58 @@ public class LogsFragment extends Fragment {
     private TabLayout mTabLayout;
     private HorizontalScrollView mHSVLog;
     private MenuItem mClickedMenuItem = null;
+
+    private static void send(Activity activity, String target) {
+        Uri uri = FileProvider.getUriForFile(activity, "org.meowcat.edxposed.manager.fileprovider", new File(target));
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        sendIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        sendIntent.setType("application/html");
+        activity.startActivity(Intent.createChooser(sendIntent, activity.getResources().getString(R.string.menuSend)));
+    }
+
+    private static boolean isMainUser(Context context) {
+        return UserHandle.getUserHandleForUid(context.getApplicationInfo().uid).hashCode() == 0;
+    }
+
+    private static void save(Activity activity, Object type, String target) {
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            activity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+            return;
+        }
+
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            Toast.makeText(activity, R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Calendar now = Calendar.getInstance();
+        String filename = String.format(
+                "EdXposed_" + type + "_%04d%02d%02d_%02d%02d%02d.txt",
+                now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1,
+                now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
+
+        File targetFile = new File(createFolder(), filename);
+
+        try {
+            FileInputStream in = new FileInputStream(target);
+            FileOutputStream out = new FileOutputStream(targetFile);
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = in.read(buffer)) > 0) {
+                out.write(buffer, 0, len);
+            }
+            in.close();
+            out.close();
+
+            Toast.makeText(activity, targetFile.toString(),
+                    Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            Toast.makeText(activity, activity.getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -216,20 +267,6 @@ public class LogsFragment extends Fragment {
         }
     }
 
-    private static void send(Activity activity, String target) {
-        Uri uri = FileProvider.getUriForFile(activity, "org.meowcat.edxposed.manager.fileprovider", new File(target));
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        sendIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        sendIntent.setType("application/html");
-        activity.startActivity(Intent.createChooser(sendIntent, activity.getResources().getString(R.string.menuSend)));
-    }
-
-    private static boolean isMainUser(Context context) {
-        return UserHandle.getUserHandleForUid(context.getApplicationInfo().uid).hashCode() == 0;
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -246,71 +283,33 @@ public class LogsFragment extends Fragment {
         }
     }
 
-    private static void save(Activity activity, Object type, String target) {
-        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            activity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
-            return;
-        }
-
-        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            Toast.makeText(activity, R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        Calendar now = Calendar.getInstance();
-        String filename = String.format(
-                "EdXposed_" + type + "_%04d%02d%02d_%02d%02d%02d.txt",
-                now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1,
-                now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
-                now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
-
-        File targetFile = new File(createFolder(), filename);
-
-        try {
-            FileInputStream in = new FileInputStream(target);
-            FileOutputStream out = new FileOutputStream(targetFile);
-            byte[] buffer = new byte[1024];
-            int len;
-            while ((len = in.read(buffer)) > 0) {
-                out.write(buffer, 0, len);
-            }
-            in.close();
-            out.close();
-
-            Toast.makeText(activity, targetFile.toString(),
-                    Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            Toast.makeText(activity, activity.getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
-
     @SuppressLint("StaticFieldLeak")
-    private class LogsReader extends AsyncTask<File, Integer, String> {
+    private class LogsReader extends AsyncTask<File, Integer, StringBuilder> {
 
-        private static final int MAX_LOG_SIZE = 1000 * 1024; // 1000 KB
+        //        private static final int MAX_LOG_SIZE = 1000 * 1024; // 1000 KB
         private MaterialDialog mProgressDialog;
 
-        private long skipLargeFile(BufferedReader is, long length) throws IOException {
-            if (length < MAX_LOG_SIZE)
-                return 0;
-
-            long skipped = length - MAX_LOG_SIZE;
-            long yetToSkip = skipped;
-            do {
-                yetToSkip -= is.skip(yetToSkip);
-            } while (yetToSkip > 0);
-
-            int c;
-            do {
-                c = is.read();
-                if (c == -1)
-                    break;
-                skipped++;
-            } while (c != '\n');
-
-            return skipped;
-
-        }
+//        private long skipLargeFile(BufferedReader is, long length) throws IOException {
+//            if (length < MAX_LOG_SIZE)
+//                return 0;
+//
+//            long skipped = length - MAX_LOG_SIZE;
+//            long yetToSkip = skipped;
+//            do {
+//                yetToSkip -= is.skip(yetToSkip);
+//            } while (yetToSkip > 0);
+//
+//            int c;
+//            do {
+//                c = is.read();
+//                if (c == -1)
+//                    break;
+//                skipped++;
+//            } while (c != '\n');
+//
+//            return skipped;
+//
+//        }
 
         @Override
         protected void onPreExecute() {
@@ -319,54 +318,49 @@ public class LogsFragment extends Fragment {
         }
 
         @Override
-        protected String doInBackground(File... log) {
+        protected StringBuilder doInBackground(File... log) {
             Thread.currentThread().setPriority(Thread.NORM_PRIORITY + 2);
 
-            StringBuilder llog = new StringBuilder(15 * 10 * 1024);
+            StringBuilder logs = new StringBuilder();
 
             if (!isMainUser(requireContext())) {
-                llog.append(requireContext().getResources().getString(R.string.logs_not_primary_user));
-                return llog.toString();
+                logs.append(requireContext().getResources().getString(R.string.logs_not_primary_user));
+                return logs;
             }
 
             if (XposedApp.getPreferences().getBoolean(
                     "disable_verbose_log", false) && Objects.requireNonNull(activatedConfig.get("name")).toString().equalsIgnoreCase("Verbose")) {
-                llog.append(requireContext().getResources().getString(R.string.logs_verbose_disabled));
-                return llog.toString();
+                logs.append(requireContext().getResources().getString(R.string.logs_verbose_disabled));
+                return logs;
             }
 
             try {
                 File logfile = log[0];
-                BufferedReader br;
-                br = new BufferedReader(new FileReader(logfile));
-                long skipped = skipLargeFile(br, logfile.length());
-                if (skipped > 0) {
-                    llog.append(requireContext().getResources().getString(R.string.logs_too_long));
-                    llog.append("\n-----------------\n");
+                try (Scanner scanner = new Scanner(logfile)) {
+                    while (scanner.hasNextLine()) {
+                        logs.append(scanner.nextLine());
+                        logs.append("\n");
+                    }
                 }
-
-                char[] temp = new char[1024];
-                int read;
-                while ((read = br.read(temp)) > 0) {
-                    llog.append(temp, 0, read);
-                }
-                br.close();
+                return logs;
             } catch (IOException e) {
-                llog.append(requireContext().getResources().getString(R.string.logs_cannot_read));
-                llog.append(e.getMessage());
+                logs.append(requireContext().getResources().getString(R.string.logs_cannot_read));
+                logs.append(e.getMessage());
             }
 
-            return llog.toString();
+            return logs;
         }
 
         @Override
-        protected void onPostExecute(String llog) {
-            mProgressDialog.dismiss();
-            mTxtLog.setText(llog);
-
-            if (llog.length() == 0)
+        protected void onPostExecute(StringBuilder logs) {
+            if (logs.length() == 0) {
                 mTxtLog.setText(R.string.log_is_empty);
+            } else {
+                mTxtLog.setText(logs.toString());
+            }
+            if (mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
         }
-
     }
 }
