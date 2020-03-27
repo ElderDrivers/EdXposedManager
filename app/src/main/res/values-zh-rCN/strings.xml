@@ -285,7 +285,7 @@
     <string name="settings_summary_black_white_list">开启后，可在\"应用\"中设置名单\n黑名单模式: 选中的应用不会加载 EdXposed 模块\n注意: 使用应用名单可能会导致某些系统全局模块不能正常工作\n</string>
     <string name="ignore_chinese_summary">从模块列表中隐藏中文模块\n模块仍然可以被搜索到\n启用此选项可能会降低性能</string>
     <string name="ignore_chinese">忽略中文字符</string>
-    <string name="verified_boot_explanation">引导验证(dm-verity)防止设备在修改系统分区时引导</string>
+    <string name="verified_boot_explanation">引导验证（dm-verity）防止设备在修改系统分区时引导</string>
     <string name="verified_boot_active">引导验证已启用</string>
     <string name="verified_boot_deactivated">引导验证已禁用</string>
     <string name="verified_boot_none">无法获取引导验证状态</string>
@@ -299,8 +299,6 @@
     <string name="install_load_apk">正在安装 %s</string>
     <string name="unstable_build">这是一个不稳定的构建\n安装风险由您自行承担</string>
     <string name="unofficial_build">这是一个非官方的构建\n安装风险由您自行承担</string>
-    <string name="alt_download_method">备用下载方法</string>
-    <string name="alt_download_method_summ">如果下载模块时出现问题, 请开启此选项</string>
     <string name="known_issue_wrong_base_directory">错误的配置文件夹: %1$s</string>
     <string name="known_issue_missing_base_directory">未知配置文件夹</string>
     <string name="dexopt_now">以 Dexopt  模式优化全部应用</string>
@@ -312,12 +310,11 @@
 
     <string name="settings_title_disable_verbose_log">禁用详细日志</string>
     <string name="logs_verbose_disabled">详细日志已禁用</string>
-    <string name="logs_too_long">日志过长, 未完全显示</string>
     <string name="logs_cannot_read">无法读取日志: \n</string>
     <string name="app_launch">运行</string>
     <string name="app_stop">停止</string>
     <string name="update_description">更新日志</string>
-    <string name="edxp_installer_installed">你必须先卸载 EdXposed Installer 才能继续使用 EdXposed Manager</string>
+    <string name="edxp_installer_installed">你必须先卸载「EdXposed Installer」才能继续使用「EdXposed Manager」</string>
     <string name="install_time">安装日期: </string>
     <string name="update_time">更新日期: </string>
     <string name="enabled_top">顶置已勾选项目</string>
@@ -336,8 +333,8 @@
     <string name="compile_failed">优化失败或返回值为空</string>
     <string name="hook_modules">强制添加模块</string>
     <string name="hook_modules_summary">强制将模块添加进白名单并移出黑名单\n关闭此选项并不会移除已勾选的应用标识\n仅当启用应用名单模式时有效</string>
-    <string name="custom_list">使用镜像化的模块列表</string>
-    <string name="custom_list_summ">镜像化的模块列表可以帮助加速加载\n但新提交的模块显示会有延迟(大约24小时)</string>
+    <string name="custom_list">使用备用模块下载列表</string>
+    <string name="custom_list_summ">镜像化的模块列表可以帮助加速加载\n但新提交的模块显示会有延迟(大约24小时)\n如果加载下载列表时出现问题, 请开启此选项</string>
     <string name="not_installed">未安装</string>
     <string name="ok">好</string>
     <string name="settings_title_pass_safetynet">通过 SafetyNet 校验</string>
@@ -347,20 +344,19 @@
     <string name="warning_list_not_enabled">应用名单模式未启用\n您可以在设置中启用</string>
     <string name="empty_param">参数为空</string>
     <string name="reboot_system">重启至系统</string>
-    <string name="settings_title_stop_log">停止模块日志捕获程序</string>
-    <string name="settings_summary_stop_log">在下次启动之前，模块日志将不再被记录</string>
-    <string name="settings_title_stop_verbose_log">停止详细日志捕获程序</string>
-    <string name="settings_summary_stop_verbose_log">在下次启动之前，详细日志将不再被记录</string>
+    <string name="settings_summary_stop_log">在下次重新启动之前，模块日志将不再被记录</string>
+    <string name="settings_summary_stop_verbose_log">在下次重新启动之前，详细日志将不再被记录</string>
     <string name="settings_title_disable_modules_log">禁用模块日志</string>
     <string name="settings_summary_disable_modules_log">模块抛出的的异常堆栈仍将正常抓取</string>
-    <string name="optimize">优化</string>
-    <string name="settings_title_use_legacy_installer">使用旧版的 Xposed Installer</string>
-    <string name="settings_summary_use_legacy_installer">切换到旧版的 Xposed Installer (如果有) 来使用一些过时但有用的模块</string>
-    <string name="logs_not_primary_user">日志仅可由主用户(0)读取</string>
-    <string name="app_activation_scope">作用域管理</string>
+    <string name="logs_not_primary_user">日志仅可由主用户（uid 0）读取</string>
     <string name="selinux_status">SELinux 状态: %s</string>
     <string name="notice_content">确保您使用的是开源的 EdXposed Manager，未知来源的 Manager 可能执行恶意操作</string>
     <string name="btn_dismiss">忽略</string>
     <string name="reboot_">重启…</string>
     <string name="nav_item_logs">日志</string>
+    <string name="download_progress">%1$,d / %2$,d kB</string>
+    <string name="install_known_issue">EdXposed 与您的设备间似乎存在已知的问题:\n“%s”\n\n这可能将导致 EdXposed 无法正常使用或是更为严重的问题</string>
+    <string name="install_known_issue_details">详细信息…</string>
+    <string name="about_libraries_title">开放源代码许可</string>
+    <string name="default_changes_log">&lt;b&gt;暂无更新日志&lt;/b&gt;&lt;br /&gt;美好的事物都值得等待</string>
 </resources>

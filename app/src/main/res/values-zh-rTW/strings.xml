@@ -133,7 +133,7 @@
     <!-- About tab -->
     <string name="about_developers_label">主要開發者</string>
     <string name="about_translator_label">正體中文（臺灣）翻譯</string>
-    <string name="translator">文藝青年、孟武.尼德霍格.龍</string>
+    <string name="translator">芭樂提斯、孟武.尼德霍格.龍、MlgmXyysd、文藝青年</string>
     <string name="about_version_label">版本</string>
     <string name="about_source_label">原始碼</string>
     <string name="about_libraries_label">使用的開源資料庫</string>
@@ -195,12 +195,12 @@
     <string name="update">更新</string>
     <string name="choose_icon">選擇一個圖示</string>
     <string name="custom_icon">自訂圖示</string>
-    <string name="not_installed_no_lollipop">EdXposed 框架未安裝。</string>
+    <string name="not_installed_no_lollipop">EdXposed 框架未安裝</string>
     <string name="settings_title_notify_module_update">啟用模組更新通知</string>
 
     <string name="md_back_label">返回</string>
     <string name="md_done_label">完成</string>
-    <string name="md_cancel_label">@android:string/cancel</string>
+    <string name="md_cancel_label">取消</string>
     <string name="md_choose_label">選擇</string>
     <string name="md_error_label">錯誤</string>
     <string name="md_storage_perm_error">您的應用程式未取得「讀取外部儲存空間（READ_EXTERNAL_STORAGE）」的權限！</string>
@@ -268,10 +268,8 @@
 	
     <string name="unstable_build">這是一個不穩定的組建。自行承擔安裝後的風險。</string>
     <string name="unofficial_build">這是一個非官方的組建。自行承擔安裝後的風險。</string>
-    <string name="alt_download_method">備用下載方法</string>
-    <string name="alt_download_method_summ">如果下載模組時出現問題，請開啟此選項。</string>
-    <string name="custom_list">使用備用的模組清單</string>
-    <string name="custom_list_summ">備用的模組清單可能載入更快速\n但是它的更新可能會稍微延遲（約 24 小時）</string>
+    <string name="custom_list">使用備用的模組下載清單</string>
+    <string name="custom_list_summ">備用的模組清單可能載入更快速\n但是它的更新可能會稍微延遲（約 24 小時）\n如果加载下載清單時出現問題，請開啟此選項</string>
 
 	<string name="known_issue_wrong_base_directory">配置資料夾錯誤：%1$s</string>
     <string name="known_issue_missing_base_directory">遺失配置的資料夾</string>
@@ -284,7 +282,7 @@
 	<string name="verified_boot_deactivated">開機驗證已停用</string>
 	<string name="verified_boot_none">無法取得開機驗證的狀態</string>
     <string name="verified_boot_active">開機驗證已啟動</string>
-	<string name="verified_boot_explanation">開機驗證（DM-Verity） 防止裝置在開機時修改系統分割區</string>						 
+	<string name="verified_boot_explanation">開機驗證（dm-verity） 防止裝置在開機時修改系統分割區</string>
 	<string name="ignore_chinese">忽略中文字元</string>
     <string name="ignore_chinese_summary">從模組清單中隱藏中文模組。模組仍然可以被搜尋。啟用此選項可能會降低效能。</string>
 
@@ -294,7 +292,7 @@
     <string name="white_list_mode_title">白名單模式</string>
     <string name="title_white_list">白名單</string>
     <string name="title_black_list">黑名單</string>
-    <string name="add_package_failed">修改失敗，請檢查 Root 權限</string>
+    <string name="add_package_failed">修改失敗，一個或多個設定封锁你繼續修改</string>
     <string name="menu_title_compile_reset">重設最佳化</string>
     <string name="menu_title_compile_speed">以 Speed 模式最佳化應用程式</string>
     <string name="menu_title_compile_dexopt">以 Dexopt 模式最佳化應用程式</string>
@@ -321,7 +319,6 @@
 	
     <string name="settings_title_disable_verbose_log">停用詳細記錄</string>
     <string name="logs_verbose_disabled">詳細記錄已停用</string>
-    <string name="logs_too_long">記錄太長！</string>
     <string name="logs_cannot_read">無法讀取記錄：\n</string>
     <string name="app_launch">啟動</string>
     <string name="app_stop">停止</string>
@@ -346,7 +343,7 @@
     <string name="hook_modules">強制掛鉤模組</string>
     <string name="hook_modules_summary">強制新增模組到白名單並從黑名單移除\n關閉本選項不會把模組從白名單移除\n應用程式清單模式需要被啟用</string>
     <string name="not_installed">未安裝</string>
-    <string name="ok">@android:string/ok</string>
+    <string name="ok">好</string>
     <string name="settings_title_pass_safetynet">使 SafetyNet 通過驗證</string>
     <string name="settings_summary_pass_safetynet">強制新增 GMS 和 GSF 到黑名單並從白名單當中移除\n關閉本選項不會把模組從黑名單移除\n應用程式清單模式需要被啟用</string>
     <string name="support_group_telegram_channel_label">Telegram 頻道：@EdXposed</string>
@@ -354,22 +351,18 @@
     <string name="warning_list_not_enabled">應用程式清單模式尚未被啟用\n您可以在設定當中啟用</string>
     <string name="empty_param">參數空白</string>
     <string name="reboot_system">完整重新啟動</string>
-    <string name="optimize">最佳化</string>
-    <string name="settings_title_stop_verbose_log">停止詳細記錄抓取器</string>
     <string name="settings_summary_stop_verbose_log">在下次重新啟動前詳細記錄將不再被抓取</string>
     <string name="settings_summary_stop_log">在下次重新啟動前模組記錄將不再被抓取</string>
-    <string name="settings_title_stop_log">停止模組記錄抓取器</string>
     <string name="settings_title_disable_modules_log">停用模組記錄</string>
     <string name="settings_summary_disable_modules_log">模組拋出的異常狀況仍將正常被抓取</string>
-    <string name="settings_summary_use_legacy_installer">切換到舊版的 Xposed Installer（如果有安裝）來使用一些過時但有用的模組</string>
-    <string name="settings_title_use_legacy_installer">使用舊版的 XPosed Installer</string>
     <string name="selinux_status">SELinux 狀態：%s</string>
     <string name="logs_not_primary_user">只有主要使用者（uid 0）能讀取記錄檔</string>
-    <string name="app_activation_scope">作用範疇管理</string>
     <string name="download_progress">%1$,d / %2$,d kB</string>
     <string name="reboot_">重新啟動…</string>
     <string name="menuRefresh">重整</string>
     <string name="nav_item_logs">記錄</string>
     <string name="btn_dismiss">朕知道了</string>
     <string name="notice_content">總是確保您使用開放原始碼的 EdXposed Manager，阿里不達的 Manager 可能執行有害的操作。</string>
+    <string name="about_libraries_title">開放原始程式碼許可</string>
+    <string name="default_changes_log">&lt;b&gt;暫無更新日誌&lt;/b&gt;&lt;br /&gt;美好的事物都值得等待</string>
 </resources>

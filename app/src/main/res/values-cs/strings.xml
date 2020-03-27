@@ -255,8 +255,6 @@
     <string name="install_load_apk">Instaluji %s</string>
 
     <string name="unstable_build">Toto není stabilní sestavení. Instaluj na vlastní nebezpečí.</string>
-    <string name="alt_download_method">Alternativní metoda stahování</string>
-    <string name="alt_download_method_summ">Zaškrtni tuto volbu pokud se objevují problémy při stahování modulů</string>
 
     <string name="known_issue_wrong_base_directory">Chybný základní adresář: %1$s</string>
     <string name="known_issue_missing_base_directory">Chybějící základní adresář</string>

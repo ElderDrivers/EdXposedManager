@@ -113,10 +113,7 @@
     <string name="settings_title_show_modules">Отображение модулей</string>
     <string name="settings_title_pass_safetynet">Проверка SafetyNet</string>
     <string name="settings_title_old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
-    <string name="settings_title_stop_verbose_log">Остановить отлов подробных логов</string>
-    <string name="settings_title_stop_log">Остановить отлов логов модулей</string>
     <string name="settings_title_disable_modules_log">Отключить логи модулей</string>
-    <string name="settings_title_use_legacy_installer">Использовать старый Xposed Installer</string>
     <string name="settings_title_black_white_list">Режим списка приложений</string>
     <string name="settings_title_open_drawer">Боковое меню</string>
     <string name="settings_title_default_view">Какое меню открывать при запуске</string>
@@ -130,7 +127,6 @@
     <string name="settings_summary_stop_verbose_log">Подробные логи перестанут отлавливаться после перезагрузки</string>
     <string name="settings_summary_stop_log">Логи модулей перестанут отлавливаться после перезагрузки</string>
     <string name="settings_summary_disable_modules_log">Некоторые исключения от модулей по прежнему могут нормально отлавливаться</string>
-    <string name="settings_summary_use_legacy_installer">Переключится на старый Xposed Installer (если установлен), чтобы использовать некоторые устаревшие, но полезные модули</string>
     <string name="settings_summary_black_white_list">Примечание: После открытия вкладки «Список приложений» вы увидите черный или белый список.\nВ режиме черного списка: Выбранные приложения не будут использовать модули EdXposed.\nИспользование режима списка приложений может нарушить функции общесистемных модулей</string>
     <string name="settings_summary_open_drawer">Автоматически открывать боковое меню при запуске</string>
     <string name="settings_summary_disable_resources">Временное решение для конфликтов с темами системы.\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
@@ -303,8 +299,6 @@
 
     <string name="unstable_build">Это нестабильная сборка.\nУстановка на свой страх и риск</string>
     <string name="unofficial_build">Это неофициальная сборка.\nУстановка на свой страх и риск</string>
-    <string name="alt_download_method">Альтернативный способ загрузки</string>
-    <string name="alt_download_method_summ">Включите этот параметр, если у вас есть проблемы при загрузке модуля</string>
     <string name="custom_list">Альтернативный список модулей</string>
     <string name="custom_list_summ">Использование зеркала для списка модулей может увеличить загрузку.\nНо отображение новых модулей будет отложено (примерно до 24 часов)</string>
 
@@ -345,7 +339,6 @@
     <string name="elderdrivers_summary">Организация EdXposed</string>
     <string name="meowcat_summary">Организация MlgmXyysd</string>
     <string name="logs_verbose_disabled">Подробные логи отключены</string>
-    <string name="logs_too_long">Логи слишком большые</string>
     <string name="logs_cannot_read">Невозможно прочитать логи: \n</string>
     <string name="app_launch">Запустить</string>
     <string name="app_stop">Остановить</string>
@@ -366,9 +359,7 @@
     <string name="support_group_telegram_channel_label">Канал Telegram: @EdXposed</string>
     <string name="empty_param">Пустые параметры</string>
     <string name="reboot_system">Нормальная перезагрузка</string>
-    <string name="optimize">Оптимизировать</string>
-    <string name="logs_not_primary_user">Логи могут быть прочитаны только основным пользователем (0)</string>
-    <string name="app_activation_scope">Управление областью активации</string>
+    <string name="logs_not_primary_user">Логи могут быть прочитаны только основным пользователем (uid 0)</string>
     <string name="selinux_status">Статус SELinux: %s</string>
     <string name="notice_content">Всегда проверяйте, что вы используете менеджер с открытым исходным кодом EdXposed Manager, менеджер неизвестного источника может выполнять вредоносные действия</string>
     <string name="btn_dismiss">Отклонить</string>

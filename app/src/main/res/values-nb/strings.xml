@@ -265,8 +265,6 @@
 
     <string name="unstable_build">Dette er en ustabil byggversjon\nInstaller den på din egen risiko</string>
     <string name="unofficial_build">Dette er en uoffisiell byggversjon\nInstaller den på din egen risiko</string>
-    <string name="alt_download_method">Alternativ nedlastingsmetode</string>
-    <string name="alt_download_method_summ">Velg denne innstillingen hvis du har problemer når du laster ned moduler</string>
     <string name="custom_list">Bruk en speillagret modulliste</string>
     <string name="custom_list_summ">Speillagrede modullister kan hjelpe til med å laste ned fortere\nMen de nyligst innsendte modulene vil bli forsinket (Omkring 24 timer)</string>
 
@@ -319,7 +317,6 @@
 
     <string name="settings_title_disable_verbose_log">Skru av detaljete loggføringer</string>
     <string name="logs_verbose_disabled">Detaljerte loggføringer er skrudd av</string>
-    <string name="logs_too_long">Loggen er for lang, så den vises ikke i sin helhet</string>
     <string name="logs_cannot_read">Kan ikke laste inn loggen: \n</string>
     <string name="app_launch">Start den</string>
     <string name="app_stop">Stopp den</string>
@@ -352,10 +349,8 @@
     <string name="warning_list_not_enabled">Applistemodusen er ikke skrudd på\ndet kan gjøres i innstillingene</string>
     <string name="empty_param">Parameterene er tomme</string>
     <string name="reboot_system">Omstart til systemmodus</string>
-    <string name="settings_title_stop_verbose_log">Stopp den detaljerte logginnhenteren</string>
     <string name="settings_summary_stop_verbose_log">Den detaljerte loggføringen vil stoppe innhentingen før den neste omstarten</string>
     <string name="settings_summary_stop_log">Modulloggen vil stoppe innhentingen før den neste omstarten</string>
-    <string name="settings_title_stop_log">Stopp modullogginnhenteren</string>
     <string name="settings_title_disable_modules_log">Skru av modulloggføringer</string>
     <string name="settings_summary_disable_modules_log">Unntaksmeldinger som blir slengt ut av modulen, vil fortsatt bli innhentet normalt</string>
 </resources>
