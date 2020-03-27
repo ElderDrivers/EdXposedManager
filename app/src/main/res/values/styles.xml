@@ -57,4 +57,8 @@
         <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 
+    <style name="Theme.XposedInstaller.Toolbar.Black" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
 </resources>
