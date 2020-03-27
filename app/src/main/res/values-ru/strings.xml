@@ -124,9 +124,9 @@
 
     <string name="settings_summary_pass_safetynet">Принудительно добавить GMS и GSF в черный список и удалить из белого списка.\nВыключение этой настройки не удаляет модули из черного списка.\nНеобходимо включение «Режим списка приложений»</string>
     <string name="settings_summary_show_modules">Показывать модули в «Список приложений» и «Список совместимости».\nЭтот параметр не может удалять отмеченный флаг приложения</string>
-    <string name="settings_summary_stop_verbose_log">Подробные логи перестанут отлавливаться после перезагрузки</string>
-    <string name="settings_summary_stop_log">Логи модулей перестанут отлавливаться после перезагрузки</string>
-    <string name="settings_summary_disable_modules_log">Некоторые исключения от модулей по прежнему могут нормально отлавливаться</string>
+    <string name="settings_summary_stop_verbose_log">Подробные логи перестанут отображаться после перезагрузки</string>
+    <string name="settings_summary_stop_log">Логи модулей перестанут отображаться после перезагрузки</string>
+    <string name="settings_summary_disable_modules_log">Некоторые исключения от модулей по прежнему могут нормально отображаться</string>
     <string name="settings_summary_black_white_list">Примечание: После открытия вкладки «Список приложений» вы увидите черный или белый список.\nВ режиме черного списка: Выбранные приложения не будут использовать модули EdXposed.\nИспользование режима списка приложений может нарушить функции общесистемных модулей</string>
     <string name="settings_summary_open_drawer">Автоматически открывать боковое меню при запуске</string>
     <string name="settings_summary_disable_resources">Временное решение для конфликтов с темами системы.\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
@@ -172,6 +172,7 @@
     <string name="about_version_label">Версия приложения:</string>
     <string name="about_source_label">Исходный код</string>
     <string name="about_libraries_label">Используемые библиотеки</string>
+    <string name="meowcat">Студия MeowCat</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Скачать и установить</string>
@@ -364,4 +365,6 @@
     <string name="notice_content">Всегда проверяйте, что вы используете менеджер с открытым исходным кодом EdXposed Manager, менеджер неизвестного источника может выполнять вредоносные действия</string>
     <string name="btn_dismiss">Отклонить</string>
     <string name="nav_item_logs">Логи</string>
+    <string name="about_libraries_title">Лицензии с открытым исходным кодом</string>
+    <string name="default_changes_log">&lt;b&gt;Обновлений пока нет&lt;/b&gt;&lt;br /&gt;Хорошие вещи стоит ждать</string>
 </resources>
