@@ -19,24 +19,19 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.meowcat.edxposed.manager.adapter.AppAdapter;
 import org.meowcat.edxposed.manager.adapter.AppHelper;
-import org.meowcat.edxposed.manager.adapter.BlackListAdapter;
+import org.meowcat.edxposed.manager.adapter.ApplicationListAdapter;
 
-public class BlackListFragment extends Fragment implements AppAdapter.Callback {
+public class ApplicationFragment extends Fragment implements AppAdapter.Callback {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    //private RecyclerView mRecyclerView;
     private SearchView mSearchView;
-    private BlackListAdapter mAppAdapter;
+    private ApplicationListAdapter mAppAdapter;
 
     private SearchView.OnQueryTextListener mSearchListener;
 
-    public BlackListFragment() {
+    public ApplicationFragment() {
         setRetainInstance(true);
     }
-
-    //public static BlackListFragment newInstance() {
-    //    return new BlackListFragment();
-    //}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,7 +65,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         }
 
         final boolean isWhiteListMode = isWhiteListMode();
-        mAppAdapter = new BlackListAdapter(requireActivity(), isWhiteListMode);
+        mAppAdapter = new ApplicationListAdapter(requireActivity(), isWhiteListMode);
         mRecyclerView.setAdapter(mAppAdapter);
         mAppAdapter.setCallback(this);
         mSwipeRefreshLayout.setRefreshing(true);
@@ -94,7 +89,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
 
     private void changeTitle(boolean isBlackListMode, boolean isWhiteListMode) {
         if (isBlackListMode) {
-            requireActivity().setTitle(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list);
+            requireActivity().setTitle(String.format("%s(%s)", getString(R.string.nav_title_black_list), getString(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list)));
         } else {
             requireActivity().setTitle(R.string.nav_title_black_list);
         }

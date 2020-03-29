@@ -15,12 +15,12 @@ import java.util.List;
 
 import static org.meowcat.edxposed.manager.adapter.AppHelper.FORCE_WHITE_LIST_MODULE;
 
-public class BlackListAdapter extends AppAdapter {
+public class ApplicationListAdapter extends AppAdapter {
 
     private volatile boolean isWhiteListMode;
     private List<String> checkedList;
 
-    public BlackListAdapter(Context context, boolean isWhiteListMode) {
+    public ApplicationListAdapter(Context context, boolean isWhiteListMode) {
         super(context, "Application");
         this.isWhiteListMode = isWhiteListMode;
     }

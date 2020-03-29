@@ -157,7 +157,7 @@ public class WelcomeActivity extends XposedBaseActivity
             case R.id.nav_black_list:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.nav_title_black_list);
-                navFragment = new BlackListFragment();
+                navFragment = new ApplicationFragment();
                 break;
             case R.id.nav_compat_list:
                 mPrevSelectedId = itemId;
