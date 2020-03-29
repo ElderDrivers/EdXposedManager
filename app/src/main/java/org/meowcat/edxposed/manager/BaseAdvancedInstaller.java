@@ -140,47 +140,33 @@ public class BaseAdvancedInstaller extends Fragment {
                     .content(s).positiveText(R.string.ok).show();
         });
 
-        btnInstall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mClickedButton = v;
-                if (checkPermissions()) return;
+        btnInstall.setOnClickListener(v -> {
+            mClickedButton = v;
+            if (checkPermissions()) return;
 
-                areYouSure(R.string.warningArchitecture,
-                        new MaterialDialog.ButtonCallback() {
-                            @Override
-                            public void onPositive(MaterialDialog dialog) {
-                                super.onPositive(dialog);
-                                XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
-                                Uri uri = Uri.parse(selectedInstaller.link);
-                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                startActivity(intent);
-                            }
-                        });
-            }
+            BaseFragment.areYouSure(requireActivity(), getString(R.string.warningArchitecture), (d, w) -> {
+                XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
+                Uri uri = Uri.parse(selectedInstaller.link);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }, (d, w) -> {
+            });
         });
 
-        btnUninstall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mClickedButton = v;
-                if (checkPermissions()) return;
+        btnUninstall.setOnClickListener(v -> {
+            mClickedButton = v;
+            if (checkPermissions()) return;
 
-                areYouSure(R.string.warningArchitecture,
-                        new MaterialDialog.ButtonCallback() {
-                            @Override
-                            public void onPositive(MaterialDialog dialog) {
-                                super.onPositive(dialog);
-                                XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
-                                Uri uri = Uri.parse(selectedUninstaller.link);
-                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                startActivity(intent);
-                            }
-                        });
-            }
+            BaseFragment.areYouSure(requireActivity(), getString(R.string.warningArchitecture), (d, w) -> {
+                XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
+                Uri uri = Uri.parse(selectedUninstaller.link);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }, (d, w) -> {
+            });
         });
 
-        noticeTv.setText(Html.fromHtml(notice()));
+        noticeTv.setText(Html.fromHtml(notice(), Html.FROM_HTML_MODE_COMPACT));
         author.setText(getString(R.string.download_author, author()));
 
         try {
@@ -203,14 +189,15 @@ public class BaseAdvancedInstaller extends Fragment {
         showOnXda.setOnClickListener(v -> NavUtil.startURL(getActivity(), supportUrl()));
         updateDescription.setOnClickListener(v -> new MaterialDialog.Builder(requireContext())
                 .title(R.string.changes)
-                .content(Html.fromHtml(description()))
+                .content(Html.fromHtml(description(), Html.FROM_HTML_MODE_COMPACT))
                 .positiveText(R.string.ok).show());
 
         return view;
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == WRITE_EXTERNAL_PERMISSION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -221,15 +208,6 @@ public class BaseAdvancedInstaller extends Fragment {
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-        new MaterialDialog.Builder(requireActivity()).title(R.string.areyousure)
-                .content(contentTextId)
-                .iconAttr(android.R.attr.alertDialogIcon)
-                .positiveText(android.R.string.yes)
-                .negativeText(android.R.string.no).callback(yesHandler).show();
     }
 
 }

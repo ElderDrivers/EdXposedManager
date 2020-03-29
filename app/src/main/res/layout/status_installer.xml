@@ -37,8 +37,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="5dip"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="5dip"
             android:orientation="vertical">
 
@@ -96,9 +96,9 @@
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
                         android:text="@string/install_known_issue_details"
-                        tools:visibility="visible"
                         android:textColor="?android:colorAccent"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        tools:visibility="visible" />
 
                 </LinearLayout>
 

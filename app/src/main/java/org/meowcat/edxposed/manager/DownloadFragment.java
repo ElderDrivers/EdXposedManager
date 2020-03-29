@@ -25,8 +25,8 @@ import android.widget.AbsListView;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -110,6 +110,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         sActivity = getActivity();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onResume() {
         super.onResume();
@@ -143,7 +144,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         backgroundList = v.findViewById(R.id.background_list);
 
         mListView = v.findViewById(R.id.listModules);
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             mListView.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
         }
         final SwipeRefreshLayout refreshLayout = v.findViewById(R.id.swiperefreshlayout);
@@ -199,9 +200,8 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         mModuleUtil.removeListener(this);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_download, menu);
 
         // Setup search button
@@ -222,16 +222,16 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
                 return true;
             }
         });
-        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 setFilter(null);
-                return true; // Return true to collapse action view
+                return true;
             }
 
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
-                return true; // Return true to expand action view
+                return true;
             }
         });
     }
@@ -400,7 +400,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
                 txtStatus.setText(mContext.getString(
                         R.string.download_status_update_available,
                         installedVersion, latestVersion));
-                txtStatus.setTextColor(getResources().getColor(R.color.download_status_update_available));
+                txtStatus.setTextColor(getResources().getColor(R.color.download_status_update_available, null));
                 txtStatus.setVisibility(View.VISIBLE);
             } else if (isInstalled) {
                 txtStatus.setText(mContext.getString(

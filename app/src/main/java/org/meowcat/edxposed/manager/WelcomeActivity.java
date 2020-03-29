@@ -73,7 +73,7 @@ public class WelcomeActivity extends XposedBaseActivity
                 super.onDrawerSlide(drawerView, 0); // this disables the animation
             }
         };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);

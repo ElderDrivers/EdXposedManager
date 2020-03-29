@@ -39,6 +39,8 @@ import static org.meowcat.edxposed.manager.adapter.LogsHelper.isMainUser;
 
 public class LogsFragment extends Fragment {
 
+    private final static int REQUEST_CODE = 233;
+    public static HashMap activatedConfig;
     private final HashMap mVerboseLogConfig = new HashMap<String, String>() {
         {
             put("name", "Verbose");
@@ -55,9 +57,6 @@ public class LogsFragment extends Fragment {
     @SuppressWarnings("FieldCanBeLocal")
     private final String LOG_OLD_SUFFIX = ".log.old";
     private final String LOG_PATH = XposedApp.BASE_DIR + "log/";
-    private final static int REQUEST_CODE = 233;
-
-    public static HashMap activatedConfig;
     private RecyclerView mRecyclerView;
     private TabLayout mTabLayout;
     private LogsAdapter adapter;

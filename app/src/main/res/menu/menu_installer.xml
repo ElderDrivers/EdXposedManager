@@ -5,8 +5,8 @@
     <group>
 
         <item
-            android:title="@string/reboot_"
             android:icon="@drawable/ic_menu_refresh"
+            android:title="@string/reboot_"
             app:showAsAction="ifRoom">
 
             <menu>

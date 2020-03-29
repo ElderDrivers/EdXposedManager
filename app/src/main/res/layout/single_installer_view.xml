@@ -199,12 +199,12 @@
                     android:layout_marginTop="4dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center_vertical"
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:focusable="true">
+                    android:paddingEnd="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -240,12 +240,12 @@
                     android:layout_below="@id/author_view"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center_vertical"
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:focusable="true">
+                    android:paddingEnd="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -280,12 +280,12 @@
                     android:layout_below="@id/show_on_xda"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center_vertical"
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:focusable="true">
+                    android:paddingEnd="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -366,86 +366,86 @@
 
                 </LinearLayout>
 
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/comp"-->
-<!--                    android:layout_width="fill_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/textView4"-->
-<!--                    android:background="?android:attr/selectableItemBackground"-->
-<!--                    android:clickable="true"-->
-<!--                    android:focusable="true"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:minHeight="48dp"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingStart="16dp"-->
-<!--                    android:paddingEnd="16dp"-->
-<!--                    android:visibility="gone">-->
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/comp"-->
+                <!--                    android:layout_width="fill_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_below="@id/textView4"-->
+                <!--                    android:background="?android:attr/selectableItemBackground"-->
+                <!--                    android:clickable="true"-->
+                <!--                    android:focusable="true"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:minHeight="48dp"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:paddingStart="16dp"-->
+                <!--                    android:paddingEnd="16dp"-->
+                <!--                    android:visibility="gone">-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="24dp"-->
-<!--                        android:layout_height="24dp"-->
-<!--                        android:src="@drawable/ic_action_thumb_up"-->
-<!--                        tools:ignore="ContentDescription" />-->
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="24dp"-->
+                <!--                        android:layout_height="24dp"-->
+                <!--                        android:src="@drawable/ic_action_thumb_up"-->
+                <!--                        tools:ignore="ContentDescription" />-->
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="fill_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="32dp"-->
-<!--                        android:layout_marginLeft="32dp"-->
-<!--                        android:orientation="vertical"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        tools:ignore="RtlHardcoded">-->
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="fill_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginStart="32dp"-->
+                <!--                        android:layout_marginLeft="32dp"-->
+                <!--                        android:orientation="vertical"-->
+                <!--                        android:paddingTop="8dp"-->
+                <!--                        android:paddingBottom="8dp"-->
+                <!--                        tools:ignore="RtlHardcoded">-->
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/compatibilityTv"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />-->
+                <!--                        <TextView-->
+                <!--                            android:id="@+id/compatibilityTv"-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />-->
 
-<!--                    </LinearLayout>-->
+                <!--                    </LinearLayout>-->
 
-<!--                </LinearLayout>-->
+                <!--                </LinearLayout>-->
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="fill_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/comp"-->
-<!--                    android:background="?android:attr/selectableItemBackground"-->
-<!--                    android:clickable="true"-->
-<!--                    android:focusable="true"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:minHeight="48dp"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingStart="16dp"-->
-<!--                    android:paddingEnd="16dp"-->
-<!--                    android:visibility="gone">-->
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="fill_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_below="@id/comp"-->
+                <!--                    android:background="?android:attr/selectableItemBackground"-->
+                <!--                    android:clickable="true"-->
+                <!--                    android:focusable="true"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:minHeight="48dp"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:paddingStart="16dp"-->
+                <!--                    android:paddingEnd="16dp"-->
+                <!--                    android:visibility="gone">-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="24dp"-->
-<!--                        android:layout_height="24dp"-->
-<!--                        android:src="@drawable/ic_action_thumb_down"-->
-<!--                        tools:ignore="ContentDescription" />-->
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="24dp"-->
+                <!--                        android:layout_height="24dp"-->
+                <!--                        android:src="@drawable/ic_action_thumb_down"-->
+                <!--                        tools:ignore="ContentDescription" />-->
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="fill_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="32dp"-->
-<!--                        android:layout_marginLeft="32dp"-->
-<!--                        android:orientation="vertical"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        tools:ignore="RtlHardcoded">-->
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="fill_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginStart="32dp"-->
+                <!--                        android:layout_marginLeft="32dp"-->
+                <!--                        android:orientation="vertical"-->
+                <!--                        android:paddingTop="8dp"-->
+                <!--                        android:paddingBottom="8dp"-->
+                <!--                        tools:ignore="RtlHardcoded">-->
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/incompatibilityTv"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />-->
+                <!--                        <TextView-->
+                <!--                            android:id="@+id/incompatibilityTv"-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />-->
 
-<!--                    </LinearLayout>-->
+                <!--                    </LinearLayout>-->
 
-<!--                </LinearLayout>-->
+                <!--                </LinearLayout>-->
 
             </RelativeLayout>
 

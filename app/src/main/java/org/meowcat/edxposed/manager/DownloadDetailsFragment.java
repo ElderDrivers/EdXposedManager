@@ -1,7 +1,6 @@
 package org.meowcat.edxposed.manager;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -11,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import org.meowcat.edxposed.manager.repo.Module;
@@ -21,17 +21,14 @@ import org.meowcat.edxposed.manager.util.chrome.LinkTransformationMethod;
 public class DownloadDetailsFragment extends Fragment {
     private DownloadDetailsActivity mActivity;
 
-    @SuppressWarnings("NullableProblems")
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mActivity = (DownloadDetailsActivity) activity;
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = (DownloadDetailsActivity) context;
     }
 
-    @SuppressLint("SetTextI18n")
-    @SuppressWarnings("NullableProblems")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Module module = mActivity.getModule();
         if (module == null)
             return null;
@@ -68,7 +65,7 @@ public class DownloadDetailsFragment extends Fragment {
             TextView txtTitle = moreInfoView.findViewById(android.R.id.title);
             TextView txtValue = moreInfoView.findViewById(android.R.id.message);
 
-            txtTitle.setText(moreInfoEntry.first + ":");
+            txtTitle.setText(String.format(moreInfoEntry.first + "%s", ":"));
             txtValue.setText(moreInfoEntry.second);
 
             final Uri link = NavUtil.parseURL(moreInfoEntry.second);

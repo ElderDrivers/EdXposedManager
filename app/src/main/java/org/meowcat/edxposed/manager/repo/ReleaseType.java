@@ -3,15 +3,13 @@ package org.meowcat.edxposed.manager.repo;
 import org.meowcat.edxposed.manager.R;
 
 public enum ReleaseType {
-    STABLE(R.string.reltype_stable, R.string.reltype_stable_summary), BETA(R.string.reltype_beta, R.string.reltype_beta_summary), EXPERIMENTAL(R.string.reltype_experimental, R.string.reltype_experimental_summary);
+    STABLE(R.string.reltype_stable), BETA(R.string.reltype_beta), EXPERIMENTAL(R.string.reltype_experimental);
 
     private static final ReleaseType[] sValuesCache = values();
     private final int mTitleId;
-    private final int mSummaryId;
 
-    ReleaseType(int titleId, int summaryId) {
+    ReleaseType(int titleId) {
         mTitleId = titleId;
-        mSummaryId = summaryId;
     }
 
     public static ReleaseType fromString(String value) {
@@ -33,7 +31,4 @@ public enum ReleaseType {
         return mTitleId;
     }
 
-    public int getSummaryId() {
-        return mSummaryId;
-    }
 }

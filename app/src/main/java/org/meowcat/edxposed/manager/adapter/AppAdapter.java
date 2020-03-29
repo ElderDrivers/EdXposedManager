@@ -35,7 +35,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
 
     protected final Context context;
     private final ApplicationInfo.DisplayNameComparator displayNameComparator;
-    public Callback callback;
+    private Callback callback;
     private List<ApplicationInfo> fullList, showList;
     private DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     private List<String> checkedList;

@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -65,9 +64,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
         Button mSettingsButton = view.findViewById(R.id.btnSettings);
-        mSettingsButton.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), SettingsActivity.class));
-        });
+        mSettingsButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), SettingsActivity.class)));
         if (!XposedApp.getPreferences().getBoolean("black_white_list_switch", false)) {
             view.findViewById(R.id.cardAppListWarning).setVisibility(View.VISIBLE);
         }
@@ -118,22 +115,8 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         mAppAdapter.filter(queryStr);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onItemClick(View v, ApplicationInfo info) {
-        if (getFragmentManager() != null) {
-            AppHelper.showMenu(requireActivity(), getFragmentManager(), v, info);
-        } else {
-            String packageName = (String) v.getTag();
-            if (packageName == null)
-                return;
-
-            Intent launchIntent = requireContext().getPackageManager().getLaunchIntentForPackage(packageName);
-            if (launchIntent != null) {
-                startActivity(launchIntent);
-            } else {
-                Toast.makeText(getActivity(), requireActivity().getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
-            }
-        }
+        AppHelper.showMenu(requireActivity(), getParentFragmentManager(), v, info);
     }
 }

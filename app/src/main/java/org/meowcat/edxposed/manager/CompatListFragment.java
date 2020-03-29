@@ -1,6 +1,5 @@
 package org.meowcat.edxposed.manager;
 
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -96,19 +94,6 @@ public class CompatListFragment extends Fragment implements AppAdapter.Callback 
 
     @Override
     public void onItemClick(View v, ApplicationInfo info) {
-        if (getFragmentManager() != null) {
-            AppHelper.showMenu(requireActivity(), getFragmentManager(), v, info);
-        } else {
-            String packageName = (String) v.getTag();
-            if (packageName == null)
-                return;
-
-            Intent launchIntent = requireContext().getPackageManager().getLaunchIntentForPackage(packageName);
-            if (launchIntent != null) {
-                startActivity(launchIntent);
-            } else {
-                Toast.makeText(getActivity(), requireActivity().getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
-            }
-        }
+        AppHelper.showMenu(requireActivity(), getParentFragmentManager(), v, info);
     }
 }

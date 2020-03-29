@@ -80,8 +80,7 @@ public class RepoLoader {
         return mInstance;
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    private boolean refreshRepositories() {
+    private void refreshRepositories() {
         mRepositories = RepoDb.getRepositories();
 
         // Unlikely case (usually only during initial load): DB state doesn't
@@ -101,14 +100,13 @@ public class RepoLoader {
         }
 
         if (!needReload)
-            return false;
+            return;
 
         clear(false);
         for (String url : config) {
             RepoDb.insertRepository(url);
         }
         mRepositories = RepoDb.getRepositories();
-        return true;
     }
 
     public void setReleaseTypeGlobal(String relTypeString) {
@@ -142,7 +140,6 @@ public class RepoLoader {
         notifyListeners();
     }
 
-    @SuppressWarnings("ConstantConditions")
     private ReleaseType getReleaseTypeLocal(String packageName) {
         synchronized (mLocalReleaseTypesCache) {
             if (mLocalReleaseTypesCache.containsKey(packageName))
@@ -150,14 +147,10 @@ public class RepoLoader {
 
             String value = mModulePref.getString(packageName + "_release_type",
                     null);
-            ReleaseType result = (!TextUtils.isEmpty(value)) ? ReleaseType.fromString(value) : null;
+            ReleaseType result = ReleaseType.fromString(value);
             mLocalReleaseTypesCache.put(packageName, result);
             return result;
         }
-    }
-
-    public Repository getRepository(long repoId) {
-        return mRepositories.get(repoId);
     }
 
     public Module getModule(String packageName) {
@@ -268,18 +261,6 @@ public class RepoLoader {
         if (notify)
             notifyListeners();
     }
-
-//    public void setRepositories(String... repos) {
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < repos.length; i++) {
-//            if (i > 0)
-//                sb.append("|");
-//            sb.append(repos[i]);
-//        }
-//        mPref.edit().putString("repositories", sb.toString()).apply();
-//        if (refreshRepositories())
-//            triggerReload(true);
-//    }
 
     public boolean hasModuleUpdates() {
         return RepoDb.hasModuleUpdates();

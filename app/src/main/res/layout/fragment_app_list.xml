@@ -17,16 +17,16 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardAppListWarning"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/card_horizontal_margin"
             android:layout_marginTop="@dimen/card_vertical_margin"
             android:layout_marginEnd="@dimen/card_horizontal_margin"
             android:layout_marginBottom="@dimen/card_vertical_margin"
+            android:visibility="gone"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="@dimen/card_elevation"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            tools:visibility="visible"
-            android:visibility="gone">
+            tools:visibility="visible">
 
             <LinearLayout
                 android:layout_width="fill_parent"

@@ -1,5 +1,6 @@
 package org.meowcat.edxposed.manager;
 
+import android.app.Activity;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -18,6 +19,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BaseFragment extends Fragment {
+
+    static void areYouSure(@NonNull Activity activity, String contentText, MaterialDialog.SingleButtonCallback positiveSingleButtonCallback, MaterialDialog.SingleButtonCallback negativeSingleButtonCallback) {
+        new MaterialDialog.Builder(activity).title(R.string.areyousure)
+                .content(contentText)
+                .iconAttr(android.R.attr.alertDialogIcon)
+                .positiveText(android.R.string.yes)
+                .negativeText(android.R.string.no)
+                .onPositive(positiveSingleButtonCallback)
+                .onNegative(negativeSingleButtonCallback)
+                .show();
+    }
 
     private void showAlert(final String result) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
@@ -80,50 +92,34 @@ public class BaseFragment extends Fragment {
         return true;
     }
 
-    private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-        new MaterialDialog.Builder(requireActivity()).title(R.string.areyousure)
-                .content(contentTextId)
-                .iconAttr(android.R.attr.alertDialogIcon)
-                .positiveText(android.R.string.yes)
-                .negativeText(android.R.string.no).callback(yesHandler).show();
-    }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.dexopt_all:
-                areYouSure(R.string.take_while_cannot_resore, new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog mDialog) {
-                        super.onPositive(mDialog);
-                        new MaterialDialog.Builder(requireActivity())
-                                .title(R.string.dexopt_now)
-                                .content(R.string.this_may_take_a_while)
-                                .progress(true, 0)
-                                .cancelable(false)
-                                .showListener(dialog -> new Thread("dexopt") {
-                                    @Override
-                                    public void run() {
-                                        if (!Shell.rootAccess()) {
-                                            dialog.dismiss();
-                                            NavUtil.showMessage(requireActivity(), getString(R.string.root_failed));
-                                            return;
-                                        }
+                areYouSure(requireActivity(), getString(R.string.dexopt_now) + "\n" + getString(R.string.take_while_cannot_resore), (d, w) -> new MaterialDialog.Builder(requireActivity())
+                        .title(R.string.dexopt_now)
+                        .content(R.string.this_may_take_a_while)
+                        .progress(true, 0)
+                        .cancelable(false)
+                        .showListener(dialog -> new Thread("dexopt") {
+                            @Override
+                            public void run() {
+                                if (!Shell.rootAccess()) {
+                                    dialog.dismiss();
+                                    NavUtil.showMessage(requireActivity(), getString(R.string.root_failed));
+                                    return;
+                                }
 
-                                        Shell.su("cmd package bg-dexopt-job").exec();
+                                Shell.su("cmd package bg-dexopt-job").exec();
 
-                                        dialog.dismiss();
-                                        XposedApp.runOnUiThread(() -> Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show());
-                                    }
-                                }.start()).show();
-                    }
+                                dialog.dismiss();
+                                XposedApp.runOnUiThread(() -> Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show());
+                            }
+                        }.start()).show(), (d, w) -> {
                 });
                 break;
             case R.id.speed_all:
-                areYouSure(R.string.take_while_cannot_resore, new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog mDialog) {
-                        super.onPositive(mDialog);
+                areYouSure(requireActivity(), getString(R.string.speed_now) + "\n" + getString(R.string.take_while_cannot_resore), (d, w) ->
                         new MaterialDialog.Builder(requireActivity())
                                 .title(R.string.speed_now)
                                 .content(R.string.this_may_take_a_while)
@@ -143,18 +139,12 @@ public class BaseFragment extends Fragment {
                                         dialog.dismiss();
                                         XposedApp.runOnUiThread(() -> Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show());
                                     }
-                                }.start()).show();
-                    }
+                                }.start()).show(), (d, w) -> {
                 });
                 break;
             case R.id.reboot:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot(null);
-                        }
+                    areYouSure(requireActivity(), getString(R.string.reboot), (d, w) -> reboot(null), (d, w) -> {
                     });
                 } else {
                     reboot(null);
@@ -162,12 +152,7 @@ public class BaseFragment extends Fragment {
                 break;
             case R.id.soft_reboot:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.soft_reboot, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            softReboot();
-                        }
+                    areYouSure(requireActivity(), getString(R.string.soft_reboot), (d, w) -> softReboot(), (d, w) -> {
                     });
                 } else {
                     softReboot();
@@ -175,12 +160,7 @@ public class BaseFragment extends Fragment {
                 break;
             case R.id.reboot_recovery:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot("recovery");
-                        }
+                    areYouSure(requireActivity(), getString(R.string.reboot_recovery), (d, w) -> reboot("recovery"), (d, w) -> {
                     });
                 } else {
                     reboot("recovery");
@@ -188,12 +168,7 @@ public class BaseFragment extends Fragment {
                 break;
             case R.id.reboot_bootloader:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_bootloader, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot("bootloader");
-                        }
+                    areYouSure(requireActivity(), getString(R.string.reboot_bootloader), (d, w) -> reboot("bootloader"), (d, w) -> {
                     });
                 } else {
                     reboot("bootloader");
@@ -201,12 +176,7 @@ public class BaseFragment extends Fragment {
                 break;
             case R.id.reboot_download:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_download, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot("download");
-                        }
+                    areYouSure(requireActivity(), getString(R.string.reboot_download), (d, w) -> reboot("download"), (d, w) -> {
                     });
                 } else {
                     reboot("download");
@@ -214,12 +184,7 @@ public class BaseFragment extends Fragment {
                 break;
             case R.id.reboot_edl:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_download, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot("edl");
-                        }
+                    areYouSure(requireActivity(), getString(R.string.reboot_edl), (d, w) -> reboot("edl"), (d, w) -> {
                     });
                 } else {
                     reboot("edl");

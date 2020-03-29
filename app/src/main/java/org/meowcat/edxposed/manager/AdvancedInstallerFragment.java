@@ -42,7 +42,6 @@ public class AdvancedInstallerFragment extends BaseFragment {
 
     //public static void gotoPage(int page) {mPager.setCurrentItem(page);}
 
-    @SuppressWarnings("deprecation")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class AdvancedInstallerFragment extends BaseFragment {
         ViewPager mPager = view.findViewById(R.id.pager);
         mTabLayout = view.findViewById(R.id.tab_layout);
 
-        tabsAdapter = new TabsAdapter(getChildFragmentManager());
+        tabsAdapter = new TabsAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mPager.setAdapter(tabsAdapter);
         mTabLayout.setupWithViewPager(mPager);
 
@@ -64,15 +63,12 @@ public class AdvancedInstallerFragment extends BaseFragment {
                     .title(R.string.install_warning_title)
                     .customView(dontShowAgainView, false)
                     .positiveText(R.string.ok)
-                    .callback(new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            CheckBox checkBox = dontShowAgainView.findViewById(android.R.id.checkbox);
-                            if (checkBox.isChecked())
-                                XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
-                        }
-                    }).cancelable(false).show();
+                    .onPositive((dialog, which) -> {
+                        CheckBox checkBox = dontShowAgainView.findViewById(android.R.id.checkbox);
+                        if (checkBox.isChecked())
+                            XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
+                    })
+                    .cancelable(false).show();
         }
 
         return view;
@@ -87,7 +83,7 @@ public class AdvancedInstallerFragment extends BaseFragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_installer, menu);
-        if (Build.VERSION.SDK_INT < 26) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             menu.findItem(R.id.dexopt_all).setVisible(false);
             menu.findItem(R.id.speed_all).setVisible(false);
         }
@@ -169,9 +165,8 @@ public class AdvancedInstallerFragment extends BaseFragment {
         private final ArrayList<String> titles = new ArrayList<>();
         private final ArrayList<Fragment> listFragment = new ArrayList<>();
 
-        @SuppressWarnings("deprecation")
-        TabsAdapter(FragmentManager mgr) {
-            super(mgr);
+        TabsAdapter(FragmentManager mgr, int behavior) {
+            super(mgr, behavior);
             addFragment(getString(R.string.status), new StatusInstallerFragment());
         }
 

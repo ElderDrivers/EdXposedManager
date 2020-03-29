@@ -5,17 +5,17 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false"
     android:layout_marginTop="?attr/actionBarSize"
+    android:clipChildren="false"
     android:clipToPadding="false">
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical|horizontal"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:scrollbars="vertical|horizontal"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -32,20 +32,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        tools:layout_marginBottom="64dp"
         android:layout_margin="16dp"
+        android:orientation="vertical"
         app:layout_behavior="org.meowcat.edxposed.manager.widget.MoveUpwardBehavior"
-        android:orientation="vertical" >
+        tools:layout_marginBottom="64dp">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/scroll_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:src="@drawable/ic_scroll_top"
+            app:backgroundTint="#fff"
             app:layout_constraintBottom_toTopOf="@id/scroll_down"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginBottom="8dp"
-            app:backgroundTint="#fff"
             app:tint="?colorPrimary" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -53,9 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_scroll_down"
+            app:backgroundTint="#fff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:backgroundTint="#fff"
             app:tint="?colorPrimary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

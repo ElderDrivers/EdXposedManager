@@ -31,7 +31,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -40,6 +39,8 @@ import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.meowcat.edxposed.manager.repo.Module;
 import org.meowcat.edxposed.manager.repo.ModuleVersion;
@@ -191,7 +192,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                 }
             });
             mAdapter.notifyDataSetChanged();
-            mModuleUtil.updateModulesList(false);
+            mModuleUtil.updateModulesList(false, null);
         }
     };
     private MenuItem mClickedMenuItem = null;
@@ -273,9 +274,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
     private void addHeader() {
         View notActiveNote = requireActivity().getLayoutInflater().inflate(R.layout.xposed_not_active_note, getListView(), false);
         Button mSettingsButton = notActiveNote.findViewById(R.id.btnSettings);
-        mSettingsButton.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), SettingsActivity.class));
-        });
+        mSettingsButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), SettingsActivity.class)));
         notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);
         getListView().addHeaderView(notActiveNote);
     }
@@ -297,7 +296,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                     new Handler().postDelayed(() -> onOptionsItemSelected(mClickedMenuItem), 500);
                 }
             } else {
-                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+                Snackbar.make(requireView(), R.string.permissionNotGranted, Snackbar.LENGTH_LONG).show();
             }
         }
     }
@@ -320,7 +319,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
 
         switch (item.getItemId()) {
             case R.id.refresh:
-                mModuleUtil.updateModulesList(false);
+                mModuleUtil.updateModulesList(false, null);
                 requireActivity().runOnUiThread(reloadModules);
                 break;
             case R.id.export_enabled_modules:
@@ -329,7 +328,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                 }
 
                 if (ModuleUtil.getInstance().getEnabledModules().isEmpty()) {
-                    Toast.makeText(getActivity(), getString(R.string.no_enabled_modules), Toast.LENGTH_SHORT).show();
+                    Snackbar.make(requireView(), R.string.no_enabled_modules, Snackbar.LENGTH_SHORT).show();
                     return false;
                 }
 
@@ -347,21 +346,22 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                     in.close();
                     out.close();
                 } catch (IOException e) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Snackbar.make(requireView(), getResources().getString(R.string.logs_save_failed) + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                    Log.e(TAG, "ModulesFragment: ", e);
                     return false;
                 }
 
-                Toast.makeText(getActivity(), enabledModulesPath.toString(), Toast.LENGTH_LONG).show();
+                Snackbar.make(requireView(), enabledModulesPath.toString(), Snackbar.LENGTH_LONG).show();
                 return true;
             case R.id.export_installed_modules:
                 if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                    Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
+                    Snackbar.make(requireView(), R.string.sdcard_not_writable, Snackbar.LENGTH_LONG).show();
                     return false;
                 }
                 Map<String, InstalledModule> installedModules = ModuleUtil.getInstance().getModules();
 
                 if (installedModules.isEmpty()) {
-                    Toast.makeText(getActivity(), getString(R.string.no_installed_modules), Toast.LENGTH_SHORT).show();
+                    Snackbar.make(requireView(), R.string.sdcard_not_writable, Snackbar.LENGTH_SHORT).show();
                     return false;
                 }
 
@@ -379,11 +379,12 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
 
                     fileOut.close();
                 } catch (IOException e) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Snackbar.make(requireView(), getResources().getString(R.string.logs_save_failed) + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                    Log.e(TAG, "ModulesFragment: ", e);
                     return false;
                 }
 
-                Toast.makeText(getActivity(), installedModulesPath.toString(), Toast.LENGTH_LONG).show();
+                Snackbar.make(requireView(), installedModulesPath.toString(), Snackbar.LENGTH_LONG).show();
                 return true;
             case R.id.import_installed_modules:
                 return importModules(installedModulesPath);
@@ -403,15 +404,14 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
 
     private boolean importModules(File path) {
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
+            Snackbar.make(requireView(), R.string.sdcard_not_writable, Snackbar.LENGTH_LONG).show();
             return false;
         }
         InputStream ips = null;
         RepoLoader repoLoader = RepoLoader.getInstance();
         List<Module> list = new ArrayList<>();
         if (!path.exists()) {
-            Toast.makeText(getActivity(), getString(R.string.no_backup_found),
-                    Toast.LENGTH_LONG).show();
+            Snackbar.make(requireView(), R.string.no_backup_found, Snackbar.LENGTH_LONG).show();
             return false;
         }
         try {
@@ -421,8 +421,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
         }
 
         if (path.length() == 0) {
-            Toast.makeText(getActivity(), R.string.file_is_empty,
-                    Toast.LENGTH_LONG).show();
+            Snackbar.make(requireView(), R.string.file_is_empty, Snackbar.LENGTH_LONG).show();
             return false;
         }
 
@@ -435,15 +434,14 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                 Module m = repoLoader.getModule(line);
 
                 if (m == null) {
-                    Toast.makeText(getActivity(), getString(R.string.download_details_not_found,
-                            line), Toast.LENGTH_SHORT).show();
+                    Snackbar.make(requireView(), R.string.download_details_not_found, Snackbar.LENGTH_LONG).show();
                 } else {
                     list.add(m);
                 }
             }
             br.close();
         } catch (ActivityNotFoundException | IOException e) {
-            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+            Snackbar.make(requireView(), e.toString(), Snackbar.LENGTH_LONG).show();
         }
 
         for (final Module m : list) {
@@ -477,13 +475,13 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
 
     @Override
     public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
-        mModuleUtil.updateModulesList(false);
+        mModuleUtil.updateModulesList(false, null);
         requireActivity().runOnUiThread(reloadModules);
     }
 
     @Override
     public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
-        mModuleUtil.updateModulesList(false);
+        mModuleUtil.updateModulesList(false, null);
         requireActivity().runOnUiThread(reloadModules);
     }
 
@@ -521,7 +519,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                     if (launchIntent != null) {
                         startActivity(launchIntent);
                     } else {
-                        Toast.makeText(getActivity(), requireActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), R.string.module_no_ui, Snackbar.LENGTH_LONG).show();
                     }
                     return true;
 
@@ -594,32 +592,19 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (getFragmentManager() != null) {
-            try {
-                showMenu(requireActivity(), view, requireContext().getPackageManager().getApplicationInfo((String) view.getTag(), 0));
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-                String packageName = (String) view.getTag();
-                if (packageName == null)
-                    return;
-
-                Intent launchIntent = getSettingsIntent(packageName);
-                if (launchIntent != null) {
-                    startActivity(launchIntent);
-                } else {
-                    Toast.makeText(getActivity(), requireActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
-                }
-            }
-        } else {
+        try {
+            showMenu(requireActivity(), view, requireContext().getPackageManager().getApplicationInfo((String) view.getTag(), 0));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
             String packageName = (String) view.getTag();
-            if (packageName == null) {
+            if (packageName == null)
                 return;
-            }
+
             Intent launchIntent = getSettingsIntent(packageName);
             if (launchIntent != null) {
                 startActivity(launchIntent);
             } else {
-                Toast.makeText(getActivity(), requireActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.module_no_ui, Snackbar.LENGTH_SHORT).show();
             }
         }
     }
@@ -646,7 +631,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                     boolean changed = mModuleUtil.isModuleEnabled(packageName) ^ isChecked;
                     if (changed) {
                         mModuleUtil.setModuleEnabled(packageName, isChecked);
-                        mModuleUtil.updateModulesList(true);
+                        mModuleUtil.updateModulesList(true, view);
                     }
                 });
             }
@@ -682,7 +667,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                 descriptionText.setTextColor(ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorSecondary));
             } else {
                 descriptionText.setText(getString(R.string.module_empty_description));
-                descriptionText.setTextColor(getResources().getColor(R.color.warning));
+                descriptionText.setTextColor(getResources().getColor(R.color.warning, null));
             }
 
             Switch mSwitch = view.findViewById(R.id.checkbox);

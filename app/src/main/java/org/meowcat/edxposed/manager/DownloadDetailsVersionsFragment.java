@@ -1,7 +1,6 @@
 package org.meowcat.edxposed.manager;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -16,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
 
 import org.meowcat.edxposed.manager.repo.Module;
@@ -41,11 +41,10 @@ import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 public class DownloadDetailsVersionsFragment extends ListFragment {
     private DownloadDetailsActivity mActivity;
 
-    @SuppressWarnings("NullableProblems")
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mActivity = (DownloadDetailsActivity) activity;
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = (DownloadDetailsActivity) context;
     }
 
     @Override
@@ -64,7 +63,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
             if (!repoLoader.isVersionShown(module.versions.get(0))) {
                 TextView txtHeader = new TextView(getActivity());
                 txtHeader.setText(R.string.download_test_version_not_shown);
-                txtHeader.setTextColor(getResources().getColor(R.color.warning));
+                txtHeader.setTextColor(getResources().getColor(R.color.warning, null));
                 txtHeader.setOnClickListener(v -> mActivity.gotoPage(DownloadDetailsActivity.DOWNLOAD_SETTINGS));
                 getListView().addHeaderView(txtHeader);
             }
@@ -92,9 +91,8 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
         setListAdapter(null);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == WRITE_EXTERNAL_PERMISSION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -177,18 +175,18 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
         VersionsAdapter(Context context, InstalledModule installed) {
             super(context, R.layout.list_item_version);
             mColorRelTypeStable = ThemeUtil.getThemeColor(context, android.R.attr.textColorTertiary);
-            mColorRelTypeOthers = getResources().getColor(R.color.warning);
+            mColorRelTypeOthers = getResources().getColor(R.color.warning, null);
             mColorInstalled = ThemeUtil.getThemeColor(context, R.attr.download_status_installed);
-            mColorUpdateAvailable = getResources().getColor(R.color.download_status_update_available);
+            mColorUpdateAvailable = getResources().getColor(R.color.download_status_update_available, null);
             mTextInstalled = getString(R.string.download_section_installed) + ":";
             mTextUpdateAvailable = getString(R.string.download_section_update_available) + ":";
             mInstalledVersionCode = (installed != null) ? installed.versionCode : -1;
         }
 
         @SuppressLint("InflateParams")
-        @SuppressWarnings("NullableProblems")
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             View view = convertView;
             if (view == null) {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

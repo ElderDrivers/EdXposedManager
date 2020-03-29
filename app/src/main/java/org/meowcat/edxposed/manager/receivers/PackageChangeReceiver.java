@@ -58,13 +58,13 @@ public class PackageChangeReceiver extends BroadcastReceiver {
             // Xposed mod
             if (mModuleUtil.isModuleEnabled(packageName)) {
                 mModuleUtil.setModuleEnabled(packageName, false);
-                mModuleUtil.updateModulesList(false);
+                mModuleUtil.updateModulesList(false, null);
             }
             return;
         }
 
         if (mModuleUtil.isModuleEnabled(packageName)) {
-            mModuleUtil.updateModulesList(false);
+            mModuleUtil.updateModulesList(false, null);
             NotificationUtil.showModulesUpdatedNotification();
         } else {
             NotificationUtil.showNotActivatedNotification(packageName, module.getAppName());

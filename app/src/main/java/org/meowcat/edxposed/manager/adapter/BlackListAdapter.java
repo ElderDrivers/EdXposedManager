@@ -4,10 +4,11 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.widget.CompoundButton;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.XposedApp;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
-import org.meowcat.edxposed.manager.util.ToastUtil;
 
 import java.util.Collection;
 import java.util.List;
@@ -57,7 +58,7 @@ public class BlackListAdapter extends AppAdapter {
                 checkedList.remove(info.packageName);
             }
         } else {
-            ToastUtil.showShortToast(context, R.string.add_package_failed);
+            Snackbar.make(view, R.string.add_package_failed, Snackbar.LENGTH_SHORT).show();
             view.setChecked(!isChecked);
         }
     }

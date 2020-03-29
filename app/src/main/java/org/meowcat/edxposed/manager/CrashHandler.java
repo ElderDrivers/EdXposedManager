@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -34,8 +35,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
     private Thread.UncaughtExceptionHandler mDefaultHandler;
     private Context Context;
     private Map<String, String> infos = new HashMap<>();
-    @SuppressLint("SimpleDateFormat")
-    private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+    private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault());
 
     private CrashHandler() {
     }
@@ -94,7 +94,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
                 Object object = field.get(null);
                 String result = object.toString();
                 if (object instanceof String[]) {
-                    result = Arrays.asList((String[])object).toString();
+                    result = Arrays.asList((String[]) object).toString();
                 }
                 infos.put(field.getName(), result);
                 Log.d(TAG, field.getName() + " : " + result);

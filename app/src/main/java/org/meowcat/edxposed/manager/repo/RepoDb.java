@@ -67,26 +67,25 @@ public final class RepoDb extends SQLiteOpenHelper {
         sDb.endTransaction();
     }
 
-    private static String getString(@SuppressWarnings("SameParameterValue") String table, @SuppressWarnings("SameParameterValue") String searchColumn, String searchValue, @SuppressWarnings("SameParameterValue") String resultColumn) {
-        String[] projection = new String[]{resultColumn};
-        String where = searchColumn + " = ?";
+    private static String getString(String searchValue) {
+        String[] projection = new String[]{ModulesColumns.SUPPORT};
+        String where = ModulesColumns.PKGNAME + " = ?";
         String[] whereArgs = new String[]{searchValue};
-        Cursor c = sDb.query(table, projection, where, whereArgs, null, null, null, "1");
+        Cursor c = sDb.query(ModulesColumns.TABLE_NAME, projection, where, whereArgs, null, null, null, "1");
         if (c.moveToFirst()) {
-            String result = c.getString(c.getColumnIndexOrThrow(resultColumn));
+            String result = c.getString(c.getColumnIndexOrThrow(ModulesColumns.SUPPORT));
             c.close();
             return result;
         } else {
             c.close();
-            throw new RowNotFoundException("Could not find " + table + "." + searchColumn + " with value '" + searchValue + "'");
+            throw new RowNotFoundException("Could not find " + ModulesColumns.TABLE_NAME + "." + ModulesColumns.PKGNAME + " with value '" + searchValue + "'");
         }
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public static long insertRepository(String url) {
+    public static void insertRepository(String url) {
         ContentValues values = new ContentValues();
         values.put(RepositoriesColumns.URL, url);
-        return sDb.insertOrThrow(RepositoriesColumns.TABLE_NAME, null, values);
+        sDb.insertOrThrow(RepositoriesColumns.TABLE_NAME, null, values);
     }
 
     public static void deleteRepositories() {
@@ -134,8 +133,7 @@ public final class RepoDb extends SQLiteOpenHelper {
         sDb.update(RepositoriesColumns.TABLE_NAME, values, RepositoriesColumns._ID + " = ?", new String[]{Long.toString(repoId)});
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public static long insertModule(long repoId, Module mod) {
+    public static void insertModule(long repoId, Module mod) {
         ContentValues values = new ContentValues();
         values.put(ModulesColumns.REPO_ID, repoId);
         values.put(ModulesColumns.PKGNAME, mod.packageName);
@@ -171,10 +169,7 @@ public final class RepoDb extends SQLiteOpenHelper {
                 insertMoreInfo(moduleId, moreInfoEntry.first, moreInfoEntry.second);
             }
 
-            // TODO Add mod.screenshots
-
             sDb.setTransactionSuccessful();
-            return moduleId;
 
         } finally {
             sDb.endTransaction();
@@ -196,13 +191,12 @@ public final class RepoDb extends SQLiteOpenHelper {
                 values);
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    private static long insertMoreInfo(long moduleId, String title, String value) {
+    private static void insertMoreInfo(long moduleId, String title, String value) {
         ContentValues values = new ContentValues();
         values.put(MoreInfoColumns.MODULE_ID, moduleId);
         values.put(MoreInfoColumns.LABEL, title);
         values.put(MoreInfoColumns.VALUE, value);
-        return sDb.insertOrThrow(MoreInfoColumns.TABLE_NAME, null, values);
+        sDb.insertOrThrow(MoreInfoColumns.TABLE_NAME, null, values);
     }
 
     public static void deleteAllModules(long repoId) {
@@ -239,9 +233,8 @@ public final class RepoDb extends SQLiteOpenHelper {
         }
 
         long moduleId = c.getLong(c.getColumnIndexOrThrow(ModulesColumns._ID));
-        long repoId = c.getLong(c.getColumnIndexOrThrow(ModulesColumns.REPO_ID));
 
-        Module mod = new Module(RepoLoader.getInstance().getRepository(repoId));
+        Module mod = new Module();
         mod.packageName = c.getString(c.getColumnIndexOrThrow(ModulesColumns.PKGNAME));
         mod.name = c.getString(c.getColumnIndexOrThrow(ModulesColumns.TITLE));
         mod.summary = c.getString(c.getColumnIndexOrThrow(ModulesColumns.SUMMARY));
@@ -303,7 +296,7 @@ public final class RepoDb extends SQLiteOpenHelper {
     }
 
     public static String getModuleSupport(String packageName) {
-        return getString(ModulesColumns.TABLE_NAME, ModulesColumns.PKGNAME, packageName, ModulesColumns.SUPPORT);
+        return getString(packageName);
     }
 
     public static void updateModuleLatestVersion(String packageName) {
@@ -333,13 +326,12 @@ public final class RepoDb extends SQLiteOpenHelper {
         }
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public static long insertInstalledModule(InstalledModule installed) {
+    public static void insertInstalledModule(InstalledModule installed) {
         ContentValues values = new ContentValues();
         values.put(InstalledModulesColumns.PKGNAME, installed.packageName);
         values.put(InstalledModulesColumns.VERSION_CODE, installed.versionCode);
         values.put(InstalledModulesColumns.VERSION_NAME, installed.versionName);
-        return sDb.insertOrThrow(InstalledModulesColumns.TABLE_NAME, null, values);
+        sDb.insertOrThrow(InstalledModulesColumns.TABLE_NAME, null, values);
     }
 
     public static void deleteInstalledModule(String packageName) {

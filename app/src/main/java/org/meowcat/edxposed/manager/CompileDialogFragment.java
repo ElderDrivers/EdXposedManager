@@ -1,6 +1,5 @@
 package org.meowcat.edxposed.manager;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -60,7 +59,7 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
                 .setIcon(appInfo.loadIcon(pm))
                 .setTitle(appInfo.loadLabel(pm))
                 .setCancelable(false);
-        @SuppressLint("InflateParams") View customView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_compile_dialog, null);
+        View customView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_compile_dialog, null);
         builder.setView(customView);
         TextView msgView = customView.findViewById(R.id.message);
         //ProgressBar progressView = customView.findViewById(R.id.progress);

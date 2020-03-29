@@ -23,7 +23,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreference;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.topjohnwu.superuser.Shell;
@@ -108,7 +107,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         }
     }
 
-    @SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
     public static class SettingsFragment extends BasePreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
         final static int[] PRIMARY_COLORS = new int[]{
@@ -159,10 +157,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             act += iconsValues[Integer.parseInt((String) newValue)];
 
-            int drawable = XposedApp.iconsValues[Integer.parseInt((String) newValue)];
-
             ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
-                    XposedApp.drawableToBitmap(requireContext().getDrawable(drawable)),
+                    XposedApp.iconsValues[Integer.parseInt((String) newValue)],
                     XposedApp.getColor(requireContext()));
             requireActivity().setTaskDescription(tDesc);
 
@@ -177,7 +173,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         public SettingsFragment() {
         }
 
-        @SuppressLint({"ObsoleteSdkInt", "WorldReadableFiles"})
+        @SuppressLint("WorldReadableFiles")
+        @SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.prefs);
@@ -190,10 +187,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 Objects.requireNonNull(passSafetynet).setEnabled(false);
                 Objects.requireNonNull(hookModules).setEnabled(false);
             }
-//            PreferenceGroup groupApp = findPreference("group_app");
-//            PreferenceGroup lookFeel = findPreference("look_and_feel");
 
-            //Preference headsUp = findPreference("heads_up");
             Preference colors = findPreference("colors");
             downloadLocation = findPreference("download_location");
             stopVerboseLog = findPreference("stop_verbose_log");
@@ -202,13 +196,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             ListPreference customIcon = findPreference("custom_icon");
             navBar = findPreference("nav_bar");
 
-//            if (Build.VERSION.SDK_INT < 21) {
-//                Objects.requireNonNull(groupApp).removePreference(Objects.requireNonNull(headsUp));
-//                Objects.requireNonNull(groupApp).removePreference(navBar);
-//            }
-
-            //noinspection ConstantConditions
-            findPreference("release_type_global").setOnPreferenceChangeListener((preference, newValue) -> {
+            Preference release_type_global = findPreference("release_type_global");
+            Objects.requireNonNull(release_type_global).setOnPreferenceChangeListener((preference, newValue) -> {
                 RepoLoader.getInstance().setReleaseTypeGlobal((String) newValue);
                 return true;
             });
@@ -448,7 +437,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
-            //if (Build.VERSION.SDK_INT >= 21)
             requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), 0.85f));
         }
 
@@ -495,12 +483,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 new Runnable() {
                     @Override
                     public void run() {
-                        areYouSure(R.string.settings_summary_stop_verbose_log, new MaterialDialog.ButtonCallback() {
-                            @Override
-                            public void onPositive(MaterialDialog dialog) {
-                                super.onPositive(dialog);
-                                Shell.su("kill $(cat " + mVerboseLogProcessID.getAbsolutePath() + ")").exec();
-                            }
+                        BaseFragment.areYouSure(requireActivity(), getString(R.string.settings_summary_stop_log), (d, w) -> Shell.su("kill $(cat " + mVerboseLogProcessID.getAbsolutePath() + ")").exec(), (d, w) -> {
                         });
                     }
                 };
@@ -508,25 +491,12 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 new Runnable() {
                     @Override
                     public void run() {
-                        areYouSure(R.string.settings_summary_stop_log, new MaterialDialog.ButtonCallback() {
-                            @Override
-                            public void onPositive(MaterialDialog dialog) {
-                                super.onPositive(dialog);
-                                Shell.su("kill $(cat " + mModulesLogProcessID.getAbsolutePath() + ")").exec();
-                            }
+                        BaseFragment.areYouSure(requireActivity(), getString(R.string.settings_summary_stop_log), (d, w) -> Shell.su("kill $(cat " + mModulesLogProcessID.getAbsolutePath() + ")").exec(), (d, w) -> {
                         });
                     }
                 };
             }
             return true;
-        }
-
-        private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-            new MaterialDialog.Builder(requireActivity()).title(R.string.areyousure)
-                    .content(contentTextId)
-                    .iconAttr(android.R.attr.alertDialogIcon)
-                    .positiveText(R.string.ok)
-                    .negativeText(android.R.string.no).callback(yesHandler).show();
         }
 
         private boolean checkPermissions() {
@@ -557,7 +527,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 final IconListPreference.IconListPreferenceDialog f =
                         IconListPreference.IconListPreferenceDialog.newInstance(preference.getKey());
                 f.setTargetFragment(this, 0);
-                f.show(requireFragmentManager(), DIALOG_FRAGMENT_TAG);
+                f.show(getParentFragmentManager(), DIALOG_FRAGMENT_TAG);
             } else {
                 super.onDisplayPreferenceDialog(preference);
             }

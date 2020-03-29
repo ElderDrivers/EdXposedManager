@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
 
-    private ArrayList<String> logs = new ArrayList<>();
     protected final Context context;
     private final RecyclerView recyclerView;
+    private ArrayList<String> logs = new ArrayList<>();
 
     public LogsAdapter(Context context, RecyclerView recyclerView) {
         this.context = context;
@@ -50,16 +50,6 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
         return logs.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView textView;
-
-        ViewHolder(View view) {
-            super(view);
-            textView = view.findViewById(R.id.log);
-        }
-    }
-
     void setLogs(ArrayList<String> log) {
         logs.clear();
         logs.addAll(log);
@@ -70,5 +60,15 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ViewHolder> {
         logs.clear();
         logs.add(context.getString(R.string.log_is_empty));
         notifyDataSetChanged();
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView textView;
+
+        ViewHolder(View view) {
+            super(view);
+            textView = view.findViewById(R.id.log);
+        }
     }
 }

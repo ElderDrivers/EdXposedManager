@@ -216,11 +216,6 @@ public class DownloadView extends LinearLayout {
         this.mTitle = title;
     }
 
-    @SuppressWarnings("unused")
-    public DownloadFinishedCallback getDownloadFinishedCallback() {
-        return mCallback;
-    }
-
     public void setDownloadFinishedCallback(DownloadFinishedCallback downloadFinishedCallback) {
         this.mCallback = downloadFinishedCallback;
     }

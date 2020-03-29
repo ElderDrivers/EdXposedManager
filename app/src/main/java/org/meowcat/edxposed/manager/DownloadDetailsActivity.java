@@ -36,6 +36,7 @@ import org.meowcat.edxposed.manager.util.ThemeUtil;
 import java.util.List;
 import java.util.Objects;
 
+import static androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
@@ -100,7 +101,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
             if (mInstalledModule != null && mInstalledModule.isUpdate(sRepoLoader.getLatestVersion(mModule)) || directDownload)
                 mPager.setCurrentItem(DOWNLOAD_VERSIONS);
 
-//            if (Build.VERSION.SDK_INT >= 21)
             findViewById(R.id.fake_elevation).setVisibility(View.GONE);
 
         } else {
@@ -120,14 +120,13 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
     protected void onResume() {
         super.onResume();
 
-//        if (Build.VERSION.SDK_INT >= 21)
         getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
 
     }
 
     private void setupTabs() {
         mPager = findViewById(R.id.download_pager);
-        mPager.setAdapter(new SwipeFragmentPagerAdapter(getSupportFragmentManager()));
+        mPager.setAdapter(new SwipeFragmentPagerAdapter(getSupportFragmentManager(), BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
         TabLayout mTabLayout = findViewById(R.id.sliding_tabs);
         mTabLayout.setupWithViewPager(mPager);
         mTabLayout.setBackgroundColor(XposedApp.getColor(this));
@@ -302,8 +301,8 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
         final int PAGE_COUNT = 3;
         private String[] tabTitles = new String[]{getString(R.string.download_details_page_description), getString(R.string.download_details_page_versions), getString(R.string.download_details_page_settings),};
 
-        SwipeFragmentPagerAdapter(FragmentManager fm) {
-            super(fm);
+        SwipeFragmentPagerAdapter(FragmentManager fm, int behaver) {
+            super(fm, behaver);
         }
 
         @Override
@@ -315,15 +314,13 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
         @Override
         public Fragment getItem(int position) {
             switch (position) {
+                default:
                 case DOWNLOAD_DESCRIPTION:
                     return new DownloadDetailsFragment();
                 case DOWNLOAD_VERSIONS:
                     return new DownloadDetailsVersionsFragment();
                 case DOWNLOAD_SETTINGS:
                     return new DownloadDetailsSettingsFragment();
-                default:
-                    //noinspection ConstantConditions
-                    return null;
             }
         }
 

@@ -19,14 +19,18 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class LogsHelper extends AsyncTask<File, Integer, ArrayList<String>> {
-    private MaterialDialog mProgressDialog;
     @SuppressLint("StaticFieldLeak")
     protected final Context context;
     protected final LogsAdapter adapter;
+    private MaterialDialog mProgressDialog;
 
     public LogsHelper(Context context, LogsAdapter adapter) {
         this.context = context;
         this.adapter = adapter;
+    }
+
+    public static boolean isMainUser(Context context) {
+        return UserHandle.getUserHandleForUid(context.getApplicationInfo().uid).hashCode() == 0;
     }
 
     @Override
@@ -80,9 +84,5 @@ public class LogsHelper extends AsyncTask<File, Integer, ArrayList<String>> {
         if (mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
-    }
-
-    public static boolean isMainUser(Context context) {
-        return UserHandle.getUserHandleForUid(context.getApplicationInfo().uid).hashCode() == 0;
     }
 }

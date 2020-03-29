@@ -51,7 +51,7 @@ public class RepoParser {
         source = source.replaceAll("</li>", "<br>");
         Spanned html = Html.fromHtml(source, Html.FROM_HTML_MODE_COMPACT, source1 -> {
             LevelListDrawable d = new LevelListDrawable();
-            Drawable empty = c.getResources().getDrawable(R.drawable.ic_no_image);
+            Drawable empty = c.getResources().getDrawable(R.drawable.ic_no_image, null);
             d.addLevel(0, 0, empty);
             assert empty != null;
             d.setBounds(0, 0, empty.getIntrinsicWidth(), empty.getIntrinsicHeight());
@@ -90,7 +90,7 @@ public class RepoParser {
                     break;
                 case "module":
                     triggerRepoEvent(repository);
-                    Module module = readModule(repository);
+                    Module module = readModule();
                     if (module != null)
                         mCallback.onNewModule(module);
                     break;
@@ -102,7 +102,7 @@ public class RepoParser {
                     break;
                 default:
                     //skip(true);
-                    skip(false);
+                    skip();
                     break;
             }
         }
@@ -118,11 +118,11 @@ public class RepoParser {
         mRepoEventTriggered = true;
     }
 
-    private Module readModule(Repository repository) throws XmlPullParserException, IOException {
+    private Module readModule() throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "module");
         final int startDepth = parser.getDepth();
 
-        Module module = new Module(repository);
+        Module module = new Module();
         module.packageName = parser.getAttributeValue(NS, "package");
         if (module.packageName == null) {
             logError("no package name defined");
@@ -170,7 +170,7 @@ public class RepoParser {
                     break;
                 default:
                     //skip(true);
-                    skip(false);
+                    skip();
                     break;
             }
         }
@@ -236,7 +236,7 @@ public class RepoParser {
 //                    skip(false);
 //                    break;
                 default:
-                    skip(false);
+                    skip();
                     //skip(true);
                     break;
             }
@@ -259,10 +259,9 @@ public class RepoParser {
         return packageName;
     }
 
-    private void skip(@SuppressWarnings("SameParameterValue") boolean showWarning) throws XmlPullParserException, IOException {
+    private void skip() throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, null, null);
-        if (showWarning)
-            Log.w(TAG, "skipping unknown/erronous tag: " + parser.getPositionDescription());
+        Log.d(TAG, "skipping unknown/erronous tag: " + parser.getPositionDescription());
         int level = 1;
         while (level > 0) {
             int eventType = parser.next();
@@ -274,14 +273,13 @@ public class RepoParser {
         }
     }
 
-    private void leave(int targetDepth) throws XmlPullParserException, IOException {
-        Log.w(TAG, "leaving up to level " + targetDepth + ": " + parser.getPositionDescription());
-        while (parser.getDepth() > targetDepth) {
-            //noinspection StatementWithEmptyBody
-            while (parser.next() != XmlPullParser.END_TAG) {
-                // do nothing
-            }
-        }
+    private void leave(int targetDepth) {
+        Log.d(TAG, "leaving up to level " + targetDepth + ": " + parser.getPositionDescription());
+//        while (parser.getDepth() > targetDepth) {
+//            while (parser.next() != XmlPullParser.END_TAG) {
+//                // do nothing
+//            }
+//        }
     }
 
     private void logError(String error) {
