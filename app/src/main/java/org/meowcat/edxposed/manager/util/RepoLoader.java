@@ -140,6 +140,7 @@ public class RepoLoader {
         notifyListeners();
     }
 
+    @SuppressWarnings("ConstantConditions")
     private ReleaseType getReleaseTypeLocal(String packageName) {
         synchronized (mLocalReleaseTypesCache) {
             if (mLocalReleaseTypesCache.containsKey(packageName))
@@ -147,7 +148,7 @@ public class RepoLoader {
 
             String value = mModulePref.getString(packageName + "_release_type",
                     null);
-            ReleaseType result = ReleaseType.fromString(value);
+            ReleaseType result = (!TextUtils.isEmpty(value)) ? ReleaseType.fromString(value) : null;
             mLocalReleaseTypesCache.put(packageName, result);
             return result;
         }
