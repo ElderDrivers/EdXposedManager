@@ -1,33 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:clipToPadding="false">
 
-    <ScrollView
-        android:id="@+id/svLog"
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical|horizontal"
         android:clipChildren="false"
         android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical" />
+
+    </HorizontalScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        tools:layout_marginBottom="64dp"
+        android:layout_margin="16dp"
+        app:layout_behavior="org.meowcat.edxposed.manager.widget.MoveUpwardBehavior"
+        android:orientation="vertical" >
 
-        <HorizontalScrollView
-            android:id="@+id/hsvLog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/scroll_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_scroll_top"
+            app:layout_constraintBottom_toTopOf="@id/scroll_down"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="8dp"
+            app:backgroundTint="#fff"
+            app:tint="?colorPrimary" />
 
-            <TextView
-                android:id="@+id/txtLog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:textIsSelectable="true" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/scroll_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_scroll_down"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:backgroundTint="#fff"
+            app:tint="?colorPrimary" />
 
-        </HorizontalScrollView>
-
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -38,13 +69,12 @@
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:tabIndicatorColor="@android:color/white"
-            app:tabTextAppearance="@style/TextAppearance.Design.Tab"
-            app:tabMode="fixed">
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/TextAppearance.Design.Tab">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -59,27 +89,5 @@
         </com.google.android.material.tabs.TabLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:layout_width="40dp"-->
-    <!--android:layout_height="40dp"-->
-    <!--app:backgroundTint="#fff"-->
-    <!--android:id="@+id/scroll_top"-->
-    <!--android:src="@drawable/ic_scroll_top"-->
-    <!--android:layout_marginBottom="72dp"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_alignLeft="@+id/scroll_down"-->
-    <!--android:layout_alignStart="@+id/scroll_down"/>-->
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:layout_width="40dp"-->
-    <!--android:layout_height="40dp"-->
-    <!--app:backgroundTint="#fff"-->
-    <!--android:id="@+id/scroll_down"-->
-    <!--android:layout_margin="16dp"-->
-    <!--android:src="@drawable/ic_scroll_down"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:layout_alignParentEnd="true"/>-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
