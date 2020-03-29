@@ -2,16 +2,18 @@
  * Copyright (c) 2013-2020 MeowCat Studio Powered by MlgmXyysd All Rights Reserved.
  */
 
-package org.meowcat.bugcatcher;
+package org.meowcat.edxposed.manager;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 import de.robv.android.xposed.installer.XposedApp;
 
+import static android.app.ActivityThread.currentActivityThread;
+
+@SuppressLint("Registered")
 public class MeowCatApplication extends XposedApp {
     public static final String TAG = "EdXposedManager";
 
@@ -23,15 +25,13 @@ public class MeowCatApplication extends XposedApp {
     }
 
     private void disableAPIDialog() {
-        if (Build.VERSION.SDK_INT < 28) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return;
         }
         try {
-            @SuppressLint({"PrivateApi", "DiscouragedPrivateApi"}) Method currentActivityThread = Class.forName("android.app.ActivityThread").getDeclaredMethod("currentActivityThread");
-            currentActivityThread.setAccessible(true);
-            @SuppressLint("PrivateApi") Field mHiddenApiWarningShown = Class.forName("android.app.ActivityThread").getDeclaredField("mHiddenApiWarningShown");
+            Field mHiddenApiWarningShown = Class.forName("android.app.ActivityThread").getDeclaredField("mHiddenApiWarningShown");
             mHiddenApiWarningShown.setAccessible(true);
-            mHiddenApiWarningShown.setBoolean(currentActivityThread.invoke(null), true);
+            mHiddenApiWarningShown.setBoolean(currentActivityThread(), true);
         } catch (Exception e) {
             e.printStackTrace();
         }
