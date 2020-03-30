@@ -23,6 +23,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.meowcat.edxposed.manager.adapter.AppHelper;
+import org.meowcat.edxposed.manager.adapter.ApplicationListAdapter;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.ModuleUtil.ModuleListener;
@@ -49,6 +51,7 @@ public class WelcomeActivity extends XposedBaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeUtil.setTheme(this);
+        new ApplicationListAdapter(getApplicationContext(), AppHelper.isWhiteListMode()).generateCheckedList();
         setContentView(R.layout.activity_welcome);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);

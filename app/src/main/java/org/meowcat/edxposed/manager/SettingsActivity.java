@@ -27,6 +27,8 @@ import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.topjohnwu.superuser.Shell;
 
+import org.meowcat.edxposed.manager.adapter.AppHelper;
+import org.meowcat.edxposed.manager.adapter.ApplicationListAdapter;
 import org.meowcat.edxposed.manager.util.RepoLoader;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
 import org.meowcat.edxposed.manager.widget.IconListPreference;
@@ -207,6 +209,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             prefWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
+                    new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(mWhiteListModeFlag.getPath());
@@ -300,6 +303,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             prefBlackWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
                 boolean enabled = (Boolean) newValue;
                 if (enabled) {
+                    new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
                     FileOutputStream fos = null;
                     try {
                         fos = new FileOutputStream(mBlackWhiteListModeFlag.getPath());
