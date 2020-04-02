@@ -9,13 +9,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.meowcat.edxposed.manager.MeowCatApplication;
 import org.meowcat.edxposed.manager.R;
-import org.meowcat.edxposed.manager.XposedApp;
-import org.meowcat.edxposed.manager.util.ModuleUtil;
 
-import java.util.Collection;
 import java.util.List;
-
-import static org.meowcat.edxposed.manager.adapter.AppHelper.FORCE_WHITE_LIST_MODULE;
 
 public class ApplicationListAdapter extends AppAdapter {
 
@@ -33,13 +28,6 @@ public class ApplicationListAdapter extends AppAdapter {
 
     @Override
     public List<String> generateCheckedList() {
-        if (XposedApp.getPreferences().getBoolean("hook_modules", true)) {
-            Collection<ModuleUtil.InstalledModule> installedModules = ModuleUtil.getInstance().getModules().values();
-            for (ModuleUtil.InstalledModule info : installedModules) {
-                FORCE_WHITE_LIST_MODULE.add(info.packageName);
-            }
-            Log.d(MeowCatApplication.TAG, "ApplicationList -> generateCheckedList: Force add modules to list");
-        }
         AppHelper.makeSurePath();
         if (isWhiteListMode) {
             checkedList = AppHelper.getWhiteList();

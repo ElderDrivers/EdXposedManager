@@ -13,8 +13,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
@@ -34,6 +38,7 @@ import org.meowcat.edxposed.manager.util.RepoLoader;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -42,6 +47,7 @@ import java.util.Objects;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+import static org.meowcat.edxposed.manager.adapter.AppHelper.FORCE_WHITE_LIST_MODULE;
 
 @SuppressLint("Registered")
 public class XposedApp extends de.robv.android.xposed.installer.XposedApp implements ActivityLifecycleCallbacks {
@@ -117,6 +123,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         return prefs.getInt("colors", defaultColor);
     }
 
+    @SuppressWarnings("deprecation")
     public static void setColors(ActionBar actionBar, Integer value, Activity activity) {
         int color = value;
         SharedPreferences prefs = activity.getSharedPreferences(activity.getPackageName() + "_preferences", MODE_PRIVATE);
@@ -127,7 +134,9 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
             actionBar.setBackgroundDrawable(new ColorDrawable(color));
 
         ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(activity.getString(R.string.app_name),
-                drawable, color);
+                drawableToBitmap(activity.getDrawable(drawable)), color);
+//        ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(activity.getString(R.string.app_name),
+//                drawable, color);
         activity.setTaskDescription(tDesc);
 
         if (getPreferences().getBoolean("nav_bar", false)) {
@@ -136,6 +145,28 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
             int black = activity.getResources().getColor(android.R.color.black, null);
             activity.getWindow().setNavigationBarColor(black);
         }
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        Bitmap bitmap;
+
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if (bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
     }
 
     /**
@@ -189,6 +220,16 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         mMainHandler = new Handler();
 
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (mPref.getBoolean("hook_modules", true)) {
+            Collection<ModuleUtil.InstalledModule> installedModules = ModuleUtil.getInstance().getModules().values();
+            for (ModuleUtil.InstalledModule info : installedModules) {
+                if (!FORCE_WHITE_LIST_MODULE.contains(info.packageName)) {
+                    FORCE_WHITE_LIST_MODULE.add(info.packageName);
+                }
+            }
+            Log.d(MeowCatApplication.TAG, "ApplicationList: Force add modules to list");
+        }
 
         de.robv.android.xposed.installer.XposedApp.getInstance().reloadXposedProp();
         createDirectories();

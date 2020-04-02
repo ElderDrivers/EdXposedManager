@@ -51,7 +51,6 @@ public class WelcomeActivity extends XposedBaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeUtil.setTheme(this);
-        new ApplicationListAdapter(getApplicationContext(), AppHelper.isWhiteListMode()).generateCheckedList();
         setContentView(R.layout.activity_welcome);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -109,6 +108,8 @@ public class WelcomeActivity extends XposedBaseActivity
         mRepoLoader.addListener(this, false);
 
         notifyDataSetChanged();
+
+        new Thread(() -> new ApplicationListAdapter(getApplicationContext(), AppHelper.isWhiteListMode()).generateCheckedList());
 
     }
 
