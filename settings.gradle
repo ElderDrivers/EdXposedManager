@@ -1,1 +1,2 @@
-include ':app', ':stub'
+include ':app'
+include ':stub'

@@ -144,7 +144,7 @@ public class BaseFragment extends Fragment {
                 break;
             case R.id.reboot:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(requireActivity(), getString(R.string.reboot), (d, w) -> reboot(null), (d, w) -> {
+                    areYouSure(requireActivity(), getString(R.string.reboot_system), (d, w) -> reboot(null), (d, w) -> {
                     });
                 } else {
                     reboot(null);
