@@ -221,16 +221,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (mPref.getBoolean("hook_modules", true)) {
-            Collection<ModuleUtil.InstalledModule> installedModules = ModuleUtil.getInstance().getModules().values();
-            for (ModuleUtil.InstalledModule info : installedModules) {
-                if (!FORCE_WHITE_LIST_MODULE.contains(info.packageName)) {
-                    FORCE_WHITE_LIST_MODULE.add(info.packageName);
-                }
-            }
-            Log.d(MeowCatApplication.TAG, "ApplicationList: Force add modules to list");
-        }
-
         de.robv.android.xposed.installer.XposedApp.getInstance().reloadXposedProp();
         createDirectories();
         delete(new File(Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/.temp"));
@@ -309,6 +299,16 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
         RepoLoader.getInstance().triggerFirstLoadIfNecessary();
         mIsUiLoaded = true;
+
+        if (mPref.getBoolean("hook_modules", true)) {
+            Collection<ModuleUtil.InstalledModule> installedModules = ModuleUtil.getInstance().getModules().values();
+            for (ModuleUtil.InstalledModule info : installedModules) {
+                if (!FORCE_WHITE_LIST_MODULE.contains(info.packageName)) {
+                    FORCE_WHITE_LIST_MODULE.add(info.packageName);
+                }
+            }
+            Log.d(MeowCatApplication.TAG, "ApplicationList: Force add modules to list");
+        }
     }
 
     @Override
