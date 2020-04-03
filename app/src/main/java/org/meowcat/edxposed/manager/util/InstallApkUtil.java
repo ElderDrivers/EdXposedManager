@@ -75,7 +75,6 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         }
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     protected Integer doInBackground(Void... params) {
         int returnCode = 0;
@@ -87,7 +86,7 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
                 Shell.Result result = Shell.su("pm install -r -f \"" + path + fileName + "\"").exec();
                 returnCode = result.getCode();
                 output = result.getOut();
-                new File(path + fileName).delete();
+                Shell.su("rm -f " + path + fileName).exec();
             } catch (IllegalStateException e) {
                 returnCode = ERROR_ROOT_NOT_GRANTED;
             }
