@@ -202,7 +202,13 @@ public class StatusInstallerFragment extends Fragment {
         TextView cpu = v.findViewById(R.id.cpu);
         TextView selinux = v.findViewById(R.id.selinux);
 
-        String mAppVer = "v" + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")";
+        String mAppVer;
+        if (isEnhancementEnabled()) {
+            mAppVer = String.format("v%s (%s) (%s)", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE, getString(R.string.status_enhancement));
+        } else {
+            mAppVer = String.format("v%s (%s)", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
+        }
+
         manager.setText(mAppVer);
         if (installedXposedVersion != null) {
             int installedXposedVersionInt = extractIntPart(installedXposedVersion);
@@ -374,6 +380,10 @@ public class StatusInstallerFragment extends Fragment {
             txtKnownIssue.setVisibility(View.GONE);
             btnKnownIssue.setVisibility(View.GONE);
         }
+    }
+
+    public static boolean isEnhancementEnabled() {
+        return false;
     }
 
     private String getAndroidVersion() {

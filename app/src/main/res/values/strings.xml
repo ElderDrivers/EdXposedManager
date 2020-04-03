@@ -395,4 +395,6 @@
     <string name="nav_item_logs">Logs</string>
     <string name="about_libraries_title">Open source licenses</string>
     <string name="default_changes_log">&lt;b&gt;No update changes yet&lt;/b&gt;&lt;br /&gt;Good things are worth waiting for</string>
+    <string name="xposed_description">Enable EdXposed enhancements:\nRemove background restrictions on EdXposed\nDetermine if Xposed is working properly\nPretend to have Xposed Installer installed</string>
+    <string name="status_enhancement">Enhancement mode</string>
 </resources>

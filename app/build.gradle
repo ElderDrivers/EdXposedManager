@@ -13,8 +13,8 @@ android {
         minSdkVersion 24
         //noinspection OldTargetApi
         targetSdkVersion 27
-        versionCode 45601
-        versionName "4.5.6"
+        versionCode 45700
+        versionName "4.5.7"
         //noinspection GroovyAccessibility
         project.ext.set("archivesBaseName", "EdXposedManager-" + versionName + "-" + versionCode + "-" + applicationId)
     }
@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
     implementation 'com.annimon:stream:1.2.0'
     implementation 'com.google.code.gson:gson:2.8.6'
+    compileOnly 'de.robv.android.xposed:api:82'
 }
