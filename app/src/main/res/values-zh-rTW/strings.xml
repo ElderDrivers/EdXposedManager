@@ -365,4 +365,6 @@
     <string name="notice_content">總是確保您使用開放原始碼的 EdXposed Manager，阿里不達的 Manager 可能執行有害的操作。</string>
     <string name="about_libraries_title">開放原始程式碼許可</string>
     <string name="default_changes_log">&lt;b&gt;暫無更新日誌&lt;/b&gt;&lt;br /&gt;美好的事物都值得等待</string>
+    <string name="xposed_description">啟用 EdXposed 的增強功能：\n\t- 判斷 Xposed 是否正常運作\n\t- 解除針對 EdXposed Manager 的後台限制</string>
+    <string name="status_enhancement">增強模式</string>
 </resources>
