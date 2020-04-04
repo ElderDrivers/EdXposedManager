@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EdXposed Manager - 偽古早</string>
+    <string name="xposed_description">假裝你安裝了古早的 Xposed Installer（有些模組會試圖檢測它）</string>
+</resources>

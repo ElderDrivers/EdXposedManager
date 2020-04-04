@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">EdXposed Manager - Legacy Override</string>
+    <string name="xposed_description">Pretend you have legacy Xposed Installer installed (some modules checks for it)</string>
+</resources>

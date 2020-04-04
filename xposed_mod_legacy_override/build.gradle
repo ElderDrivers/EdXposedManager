@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "org.meowcat.edxposed.manager.xposed.legacy_override"
+        minSdkVersion 24
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        project.ext.set("archivesBaseName", "EdXposedManager-Enhancement-LegacyOverride-" + versionName + "-" + versionCode + "-" + applicationId)
+    }
+
+    buildTypes {
+        release {
+            zipAlignEnabled true
+        }
+        debug {
+            zipAlignEnabled true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.1.0'
+    compileOnly 'de.robv.android.xposed:api:82'
+    compileOnly 'de.robv.android.xposed:api:82:sources'
+}
