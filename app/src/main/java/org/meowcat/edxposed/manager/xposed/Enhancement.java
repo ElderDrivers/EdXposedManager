@@ -15,8 +15,6 @@ import static org.meowcat.edxposed.manager.BuildConfig.APPLICATION_ID;
 @Keep
 public class Enhancement implements IXposedHookLoadPackage {
 
-    private static final String LEGACY_INSTALLER = "de.robv.android.xposed.installer";
-
     private static void hookAllMethods(String className, ClassLoader classLoader, String methodName, XC_MethodHook callback) {
         try {
             Class<?> hookClass = XposedHelpers.findClassIfExists(className, classLoader);
@@ -30,28 +28,6 @@ public class Enhancement implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
         if (lpparam.packageName.equals("android")) {
-            // Hook PM to pretend to have legacy Xposed Installer installed
-            hookAllMethods("com.android.server.pm.PackageManagerService", lpparam.classLoader, "getApplicationInfo", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) {
-                    if (param.args != null && param.args[0] != null) {
-                        if (param.args[0].equals(LEGACY_INSTALLER)) {
-                            param.args[0] = APPLICATION_ID;
-                        }
-                    }
-
-                }
-            });
-            hookAllMethods("com.android.server.pm.PackageManagerService", lpparam.classLoader, "getPackageInfo", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) {
-                    if (param.args != null && param.args[0] != null) {
-                        if (param.args[0].equals(LEGACY_INSTALLER)) {
-                            param.args[0] = APPLICATION_ID;
-                        }
-                    }
-                }
-            });
             // Hook AM to remove restrict of EdXposed Manager
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 hookAllMethods("com.android.server.am.ActivityManagerService", lpparam.classLoader, "appRestrictedInBackgroundLocked", new XC_MethodHook() {
