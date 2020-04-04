@@ -2,6 +2,7 @@ package org.meowcat.edxposed.manager.xposed;
 
 import android.os.Build;
 
+import androidx.annotation.Keep;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -11,6 +12,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 import static org.meowcat.edxposed.manager.BuildConfig.APPLICATION_ID;
 
+@Keep
 public class Enhancement implements IXposedHookLoadPackage {
 
     private static final String LEGACY_INSTALLER = "de.robv.android.xposed.installer";
