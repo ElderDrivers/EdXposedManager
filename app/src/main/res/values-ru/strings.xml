@@ -64,7 +64,7 @@
     <string name="modules_app_store">Магазин приложений</string>
     <string name="module_app_info">О приложении</string>
     <string name="module_uninstall">Удалить</string>
-    <string name="xposed_not_active">EdXposed Framework не установлен или не активирован.\nВы установили Framework и перезагрузились?\NВы можете отключить проверку статуса в настройках</string>
+    <string name="xposed_not_active">EdXposed Framework не установлен или не активирован.\nВы установили Framework и перезагрузились?\nВы можете отключить проверку статуса в настройках</string>
 
     <!-- Download -->
     <string name="menuSearch">Поиск</string>
@@ -363,8 +363,10 @@
     <string name="logs_not_primary_user">Логи могут быть прочитаны только основным пользователем (uid 0)</string>
     <string name="selinux_status">Статус SELinux: %s</string>
     <string name="notice_content">Всегда проверяйте, что вы используете менеджер с открытым исходным кодом EdXposed Manager, менеджер неизвестного источника может выполнять вредоносные действия</string>
-    <string name="btn_dismiss">Отклонить</string>
+    <string name="btn_dismiss">Прочитано</string>
     <string name="nav_item_logs">Логи</string>
     <string name="about_libraries_title">Лицензии с открытым исходным кодом</string>
     <string name="default_changes_log">&lt;b&gt;Обновлений пока нет&lt;/b&gt;&lt;br /&gt;Хорошие вещи стоит ждать</string>
+    <string name="xposed_description">Включить улучшения EdXposed:\nУбрать фоновые ограничения на EdXposed.\nОпределить, правильно ли работает Xposed.\nПритвориться, что Xposed Installer установлен</string>
+    <string name="status_enhancement">Режим улучшения</string>
 </resources>
