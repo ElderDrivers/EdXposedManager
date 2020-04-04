@@ -2,6 +2,8 @@ package org.meowcat.edxposed.manager.xposed;
 
 import android.os.Build;
 
+import org.meowcat.edxposed.manager.StatusInstallerFragment;
+
 import androidx.annotation.Keep;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -63,7 +65,7 @@ public class Enhancement implements IXposedHookLoadPackage {
             }
         } else if (lpparam.packageName.equals(APPLICATION_ID)) {
             // Make sure Xposed work
-            XposedHelpers.findAndHookMethod("org.meowcat.edxposed.manager.StatusInstallerFragment", lpparam.classLoader, "isEnhancementEnabled", XC_MethodReplacement.returnConstant(true));
+            XposedHelpers.findAndHookMethod(StatusInstallerFragment.class.getName(), lpparam.classLoader, "isEnhancementEnabled", XC_MethodReplacement.returnConstant(true));
         }
     }
 
