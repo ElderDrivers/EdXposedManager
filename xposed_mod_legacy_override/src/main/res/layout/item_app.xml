@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:minHeight="?attr/listPreferredItemHeightSmall">
+
+    <View
+        android:id="@+id/highlight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?colorControlHighlight"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/ic_launcher_background"
+        tools:src="@drawable/ic_launcher_foreground" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/application_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:textAppearance="?textAppearanceListItem"
+        app:layout_constraintBottom_toTopOf="@+id/package_name"
+        app:layout_constraintEnd_toStartOf="@+id/toggle"
+        app:layout_constraintStart_toEndOf="@+id/icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="App Debuggable" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/package_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:textAppearance="?textAppearanceListItemSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/toggle"
+        app:layout_constraintStart_toEndOf="@+id/icon"
+        app:layout_constraintTop_toBottomOf="@+id/application_label"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="tw.idv.palatis.appdebuggable" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/toggle"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="8dp"
+        android:tint="@color/design_default_color_on_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_toggle_normal" />
+
+    <!--    <com.rm.rmswitch.RMTristateSwitch-->
+    <!--        android:id="@+id/toggle"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="8dp"-->
+    <!--        app:forceAspectRatio="false"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:switchDesign="android"-->
+    <!--        app:switchToggleLeftColor="@color/design_default_color_secondary"-->
+    <!--        app:switchToggleLeftImage="@drawable/ic_toggle_hidden"-->
+    <!--        app:switchToggleMiddleColor="@color/design_default_color_primary"-->
+    <!--        app:switchToggleMiddleImage="@drawable/ic_toggle_normal"-->
+    <!--        app:switchToggleRightColor="@color/design_default_color_error"-->
+    <!--        app:switchToggleRightImage="@drawable/ic_toggle_incognito" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

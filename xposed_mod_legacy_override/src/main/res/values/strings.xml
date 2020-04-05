@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">EdXposed Manager - Legacy Override</string>
-    <string name="xposed_description">Pretend you have legacy Xposed Installer installed (some modules checks for it)</string>
+    <string name="xposed_description">Pretend you have legacy Xposed Installer installed (some modules checks for it), or hide Xposed Installer and EdXposed Manager from anything.</string>
+
+    <string name="action_search">Search</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_view_options">View Options</string>
+    <string name="action_title_sorting">Sorting</string>
+    <string name="action_sort_label">Application label</string>
+    <string name="action_sort_package_name">Package name</string>
+    <string name="action_sort_install_time">Install time</string>
+    <string name="action_sort_update_time">Update time</string>
+    <string name="action_title_options">Options</string>
+    <string name="action_show_non_normal_first">Show non-normal first</string>
+    <string name="action_show_system">Show System</string>
+    <string name="action_help">Help</string>
+
+    <string name="restart_required">Restart target app to take effect!</string>
+    <string name="dismiss">Dismiss!</string>
+
+    <string name="help_hidden">\"Xposed Installer\" and \"EdXposed Manager\" are hidden to the target package</string>
+    <string name="help_normal">Target package sees everything normally</string>
+    <string name="help_pretend">Redirect \"Xposed Installer\" to \"EdXposed Manager\"</string>
 </resources>

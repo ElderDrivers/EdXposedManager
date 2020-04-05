@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:minHeight="?listPreferredItemHeightSmall"
+        android:text="@string/help_hidden"
+        android:textAppearance="?textAppearanceListItem"
+        app:drawableStartCompat="@drawable/ic_toggle_hidden" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:minHeight="?listPreferredItemHeightSmall"
+        android:text="@string/help_normal"
+        android:textAppearance="?textAppearanceListItem"
+        app:drawableStartCompat="@drawable/ic_toggle_normal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:minHeight="?listPreferredItemHeightSmall"
+        android:text="@string/help_pretend"
+        android:textAppearance="?textAppearanceListItem"
+        app:drawableStartCompat="@drawable/ic_toggle_incognito" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

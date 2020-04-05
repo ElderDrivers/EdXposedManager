@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EdXposed Manager - 偽古早</string>
-    <string name="xposed_description">假裝你安裝了古早的 Xposed Installer（有些模組會試圖檢測它）</string>
+    <string name="xposed_description">假裝你安裝了古早的 Xposed Installer（有些模組會試圖檢測它），或是隱藏 Xposed Installer 與 EdXposed Manager。</string>
+
+    <string name="action_search">搜尋</string>
+    <string name="action_refresh">重新整理</string>
+    <string name="action_view_options">檢視選項</string>
+    <string name="action_title_sorting">排序</string>
+    <string name="action_sort_label">應用程式標題</string>
+    <string name="action_sort_package_name">套件名稱</string>
+    <string name="action_sort_install_time">安裝時間</string>
+    <string name="action_sort_update_time">最後更新時間</string>
+    <string name="action_title_options">選項</string>
+    <string name="action_show_non_normal_first">修改過的優先顯示</string>
+    <string name="action_show_system">顯示系統應用</string>
+    <string name="action_help">幫助</string>
+
+    <string name="restart_required">重啟該應用程式套用變更！</string>
+    <string name="dismiss">朕知道了！</string>
+
+    <string name="help_hidden">對目標套件隱藏 Xposed Installer 與 EdXposed Manager</string>
+    <string name="help_normal">目標套件正常看見所有其他套件</string>
+    <string name="help_pretend">假裝有安裝 Xposed Installer（重新導向至 EdXposed Manager）</string>
 </resources>

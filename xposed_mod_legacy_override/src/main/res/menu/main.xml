@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/action_search"
+        android:visible="false"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_menu_refresh"
+        android:title="@string/action_refresh"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_view_options"
+        android:checkable="true"
+        android:icon="@drawable/ic_menu_options"
+        android:title="@string/action_view_options"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:enabled="false"
+                android:title="@string/action_title_sorting" />
+
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_sort_label"
+                    android:title="@string/action_sort_label" />
+                <item
+                    android:id="@+id/action_sort_package_name"
+                    android:title="@string/action_sort_package_name" />
+                <item
+                    android:id="@+id/action_sort_install_time"
+                    android:title="@string/action_sort_install_time" />
+                <item
+                    android:id="@+id/action_sort_update_time"
+                    android:title="@string/action_sort_update_time" />
+            </group>
+
+            <item
+                android:enabled="false"
+                android:title="@string/action_title_options" />
+
+            <group android:checkableBehavior="all">
+                <item
+                    android:id="@+id/action_show_non_normal_first"
+                    android:title="@string/action_show_non_normal_first" />
+                <item
+                    android:id="@+id/action_show_system"
+                    android:title="@string/action_show_system" />
+            </group>
+
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/action_help"
+        android:icon="@drawable/ic_menu_help"
+        android:title="@string/action_help"
+        app:showAsAction="always" />
+
+</menu>
