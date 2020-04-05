@@ -79,7 +79,7 @@ public final class NotificationUtil {
     }
 
     public static void showNotActivatedNotification(String packageName, String appName) {
-        Intent intent = new Intent(sContext, WelcomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).putExtra(FRAGMENT_ID, 1);
+        Intent intent = new Intent(sContext, WelcomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).putExtra(FRAGMENT_ID, 3);
         PendingIntent pModulesTab = PendingIntent.getActivity(sContext, PENDING_INTENT_OPEN_MODULES, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         String title = sContext.getString(R.string.module_is_not_activated_yet);

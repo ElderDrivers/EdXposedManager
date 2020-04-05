@@ -312,32 +312,43 @@ public class StatusInstallerFragment extends Fragment {
         }
     }
 
-    private String getSELinuxStatus() {
-        String result = "Unknown";
-        if (isSELinuxEnabled()) {
-            final File SELINUX_STATUS_FILE = new File("/sys/fs/selinux/enforce");
-            if (SELINUX_STATUS_FILE.exists()) {
-                try {
-                    FileInputStream fis = new FileInputStream(SELINUX_STATUS_FILE);
-                    int status = fis.read();
-                    switch (status) {
-                        case 49:
-                            result = "Enforcing";
-                            break;
-                        case 48:
-                            result = "Permissive";
-                            break;
-                        default:
-                            Log.e(TAG, "Unexpected byte " + status + " in /sys/fs/selinux/enforce");
-                    }
-                    fis.close();
-                } catch (IOException e) {
-                    if (e.getMessage().contains("Permission denied")) {
-                        result = "Enforcing";
-                    } else {
-                        Log.e(TAG, "Failed to read SELinux status: " + e.getMessage());
-                    }
+    private boolean isSELinuxEnforced() {
+        boolean result = false;
+        final File SELINUX_STATUS_FILE = new File("/sys/fs/selinux/enforce");
+        if (SELINUX_STATUS_FILE.exists()) {
+            try {
+                FileInputStream fis = new FileInputStream(SELINUX_STATUS_FILE);
+                int status = fis.read();
+                switch (status) {
+                    case 49:
+                        result = true;
+                        break;
+                    case 48:
+                        result = false;
+                        break;
+                    default:
+                        Log.e(TAG, "Unexpected byte " + status + " in /sys/fs/selinux/enforce");
                 }
+                fis.close();
+            } catch (IOException e) {
+                if (e.getMessage().contains("Permission denied")) {
+                    result = true;
+                } else {
+                    Log.e(TAG, "Failed to read SELinux status: " + e.getMessage());
+                    result = false;
+                }
+            }
+        }
+        return result;
+    }
+
+    private String getSELinuxStatus() {
+        String result;
+        if (isSELinuxEnabled()) {
+            if (isSELinuxEnforced()) {
+                return "Enforcing";
+            } else {
+                return "Permissive";
             }
         } else {
             result = "Disabled";
