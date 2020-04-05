@@ -231,7 +231,7 @@
     <string name="update">Установить обновление</string>
     <string name="choose_icon">Изменить иконку приложения</string>
     <string name="custom_icon">Выбрать иконку</string>
-    <string name="not_installed_no_lollipop">EdXposed Framework не установлен!</string>
+    <string name="not_installed_no_lollipop">EdXposed Framework не установлен (правильно)!</string>
     <string name="settings_title_notify_module_update">Уведомление об обновлении модуля</string>
 
     <string name="md_back_label">Назад</string>
@@ -367,6 +367,14 @@
     <string name="nav_item_logs">Логи</string>
     <string name="about_libraries_title">Лицензии с открытым исходным кодом</string>
     <string name="default_changes_log">&lt;b&gt;Обновлений пока нет&lt;/b&gt;&lt;br /&gt;Хорошие вещи стоит ждать</string>
-    <string name="xposed_description">Включить улучшения EdXposed:\n    - Убрать фоновые ограничения на EdXposed\n    - Определить, правильно ли работает Xposed\n    - Притвориться, что Xposed Installer установлен</string>
+    <string name="xposed_description">Включить улучшения EdXposed:\n    - Убрать фоновые ограничения на EdXposed\n    - Определить, правильно ли работает Xposed\n    - Притвориться что установлен Xposed Installer\n    - Скрыть EdXposed Manager</string>
     <string name="status_enhancement">Режим улучшения</string>
+    <string name="settings_group_enhancement">Режим улучшения</string>
+    <string name="settings_title_enhancement">Статус режима улучшения</string>
+    <string name="settings_summary_enhancement">Выключен\nВы можете включить режим улучшения через модуль</string>
+    <string name="settings_summary_enhancement_enabled">Включен</string>
+    <string name="settings_title_pretend_xposed_installer">Притвориться что установлен Xposed Installer</string>
+    <string name="settings_summary_pretend_xposed_installer">Притвориться что установлен Xposed Installer, чтобы заставить работать некоторые устаревшие, но полезные модули\nВНИМАНИЕ: Некоторые приложения могут обнаружить установленный EdXposed при включении этой функции</string>
+    <string name="settings_title_hide_edxposed_manager">Скрыть EdXposed Manager</string>
+    <string name="settings_summary_hide_edxposed_manager">Запретить приложениям обнаруживать EdXposed Manager\nВНИМАНИЕ: Модули могут не правильно открывать интерфейс Manager</string>
 </resources>
