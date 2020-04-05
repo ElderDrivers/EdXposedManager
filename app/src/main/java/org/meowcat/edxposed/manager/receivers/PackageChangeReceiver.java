@@ -25,6 +25,8 @@ public class PackageChangeReceiver extends BroadcastReceiver {
             // Ignore existing packages being removed in order to be updated
             return;
 
+        mModuleUtil.updateModulesList(false, null);
+
         String packageName = getPackageName(intent);
         if (packageName == null)
             return;
@@ -58,13 +60,11 @@ public class PackageChangeReceiver extends BroadcastReceiver {
             // Xposed mod
             if (mModuleUtil.isModuleEnabled(packageName)) {
                 mModuleUtil.setModuleEnabled(packageName, false);
-                mModuleUtil.updateModulesList(false, null);
             }
             return;
         }
 
         if (mModuleUtil.isModuleEnabled(packageName)) {
-            mModuleUtil.updateModulesList(false, null);
             NotificationUtil.showModulesUpdatedNotification();
         } else {
             NotificationUtil.showNotActivatedNotification(packageName, module.getAppName());

@@ -559,11 +559,6 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
         menuHelper.show();
     }
 
-//    private InstalledModule getItemFromContextMenuInfo(ContextMenuInfo menuInfo) {
-//        AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-//        return (InstalledModule) getListView().getAdapter().getItem(info.position);
-//    }
-
     private Intent getSettingsIntent(String packageName) {
         // taken from
         // ApplicationPackageManager.getLaunchIntentForPackage(String)
