@@ -195,7 +195,7 @@
     <string name="update">更新</string>
     <string name="choose_icon">選擇一個圖示</string>
     <string name="custom_icon">自訂圖示</string>
-    <string name="not_installed_no_lollipop">EdXposed 框架未（正确）安裝</string>
+    <string name="not_installed_no_lollipop">EdXposed 框架未（正確）安裝</string>
     <string name="settings_title_notify_module_update">啟用模組更新通知</string>
 
     <string name="md_back_label">返回</string>
@@ -365,5 +365,14 @@
     <string name="notice_content">總是確保您使用開放原始碼的 EdXposed Manager，阿里不達的 Manager 可能執行有害的操作。</string>
     <string name="about_libraries_title">開放原始程式碼許可</string>
     <string name="default_changes_log">&lt;b&gt;暫無更新日誌&lt;/b&gt;&lt;br /&gt;美好的事物都值得等待</string>
-    <string name="xposed_description">啟用 EdXposed 的增強功能：\n    - 解除針對 EdXposed Manager 的後台限制\n    - 判斷 Xposed 是否正常運作</string>
+    <string name="xposed_description">啟用 EdXposed 的增強功能：\n    - 判斷 Xposed 是否正常運作\n    - 解除針對 EdXposed Manager 的後台限制    \n    - 假裝安裝了古早的 Xposed Installer\n    - 隱藏 EdXposed Manager</string>
+    <string name="status_enhancement">增強模式</string>
+    <string name="settings_group_enhancement">增強模式</string>
+    <string name="settings_title_enhancement">增強模式狀態</string>
+    <string name="settings_summary_enhancement">已停用\n您可以在「模組」中啟用增強模式</string>
+    <string name="settings_summary_enhancement_enabled">運作中</string>
+    <string name="settings_title_pretend_xposed_installer">偽裝 Xposed Installer</string>
+    <string name="settings_summary_pretend_xposed_installer">欺騙某些過時（但還是有點用）的模組，使其認為古早的 Xposed Installer 有安裝。\n警告：啟用此功能可能使某些軟體（如 RootBear）偵測到 EdXposed Manager。</string>
+    <string name="settings_title_hide_edxposed_manager">隱藏 EdXposed Manager</string>
+    <string name="settings_summary_hide_edxposed_manager">隱藏 EdXposed Manager\n警告：模組可能無法正常啟動 Manager 的介面</string>
 </resources>
