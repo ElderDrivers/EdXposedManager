@@ -395,6 +395,14 @@
     <string name="nav_item_logs">Logs</string>
     <string name="about_libraries_title">Open source licenses</string>
     <string name="default_changes_log">&lt;b&gt;No update changes yet&lt;/b&gt;&lt;br /&gt;Good things are worth waiting for</string>
-    <string name="xposed_description">Enable EdXposed enhancements:\nRemove background restrictions on EdXposed\nDetermine if Xposed is working properly\nPretend to have Xposed Installer installed</string>
+    <string name="xposed_description">Enable EdXposed enhancements:\nRemove background restrictions on EdXposed\nDetermine if Xposed is working properly\nPretend to have Xposed Installer installed\nHide EdXposed Manager</string>
     <string name="status_enhancement">Enhancement mode</string>
+    <string name="settings_group_enhancement">Enhancement mode</string>
+    <string name="settings_title_enhancement">Enhancement mode status</string>
+    <string name="settings_summary_enhancement">Disabled\nYou can enable enhancement mode in the module</string>
+    <string name="settings_summary_enhancement_enabled">Enabled</string>
+    <string name="settings_title_pretend_xposed_installer">Pretend to have Xposed Installer installed</string>
+    <string name="settings_summary_pretend_xposed_installer">Pretend that Xposed Installer is installed to make some outdated but useful modules work\nWARNING: Some software may detect that EdXposed is installed when this function is turned on</string>
+    <string name="settings_title_hide_edxposed_manager">Hide EdXposed Manager</string>
+    <string name="settings_summary_hide_edxposed_manager">Prevent the software from detecting EdXposed Manager\nWARNING: Modules may not open properly Manager interface</string>
 </resources>
