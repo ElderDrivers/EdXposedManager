@@ -194,7 +194,7 @@
     <string name="update">更新</string>
     <string name="choose_icon">选择一个图标</string>
     <string name="custom_icon">自定义图标</string>
-    <string name="not_installed_no_lollipop">EdXposed 框架未安装</string>
+    <string name="not_installed_no_lollipop">EdXposed 框架未（正确）安装</string>
     <string name="settings_title_notify_module_update">启用模块更新通知</string>
 
     <string name="md_back_label">返回</string>

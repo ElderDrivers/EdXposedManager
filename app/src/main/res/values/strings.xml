@@ -257,7 +257,7 @@
     <string name="update">Update</string>
     <string name="choose_icon">Choose an icon</string>
     <string name="custom_icon">Custom icon</string>
-    <string name="not_installed_no_lollipop">EdXposed Framework is not installed</string>
+    <string name="not_installed_no_lollipop">EdXposed Framework is not (properly) installed</string>
     <string name="settings_title_notify_module_update">Enable module update notification</string>
 
     <string name="md_back_label">Back</string>
