@@ -7,6 +7,8 @@ import android.os.Build;
 
 import androidx.annotation.Keep;
 
+import org.meowcat.edxposed.manager.StatusInstallerFragment;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -271,8 +273,8 @@ public class Enhancement implements IXposedHookLoadPackage {
             }
         } else if (lpparam.packageName.equals(APPLICATION_ID)) {
             // Make sure Xposed work
-            XposedHelpers.findAndHookMethod("org.meowcat.edxposed.manager.StatusInstallerFragment", lpparam.classLoader, "isEnhancementEnabled", XC_MethodReplacement.returnConstant(true));
-            // XposedHelpers.findAndHookMethod("org.meowcat.edxposed.manager.StatusInstallerFragment", lpparam.classLoader, "isSELinuxEnforced", XC_MethodReplacement.returnConstant(SELinuxHelper.isSELinuxEnforced()));
+            XposedHelpers.findAndHookMethod(StatusInstallerFragment.class.getName(), lpparam.classLoader, "isEnhancementEnabled", XC_MethodReplacement.returnConstant(true));
+            // XposedHelpers.findAndHookMethod(StatusInstallerFragment.class.getName(), lpparam.classLoader, "isSELinuxEnforced", XC_MethodReplacement.returnConstant(SELinuxHelper.isSELinuxEnforced()));
         }
     }
 
