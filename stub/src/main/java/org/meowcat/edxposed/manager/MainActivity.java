@@ -65,13 +65,13 @@ public class MainActivity extends Activity {
                 .setCancelable(false)
                 .setTitle(R.string.app_name)
                 .setMessage(getString(R.string.status_text) + ": " + xposedStatus + "\n\n" + getString(R.string.upgrade_msg))
-                .setPositiveButton(R.string.btn_ok, (d, w) -> {
+                .setPositiveButton(android.R.string.ok, (d, w) -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW, parseURL("https://github.com/ElderDrivers/EdXposedManager/releases/latest"));
                     intent.putExtra(Browser.EXTRA_APPLICATION_ID, getPackageName());
                     startActivity(intent);
                     finish();
                 })
-                .setNegativeButton(R.string.btn_no, (d, w) -> finish())
+                .setNegativeButton(android.R.string.cancel, (d, w) -> finish())
                 .show();
     }
 }
