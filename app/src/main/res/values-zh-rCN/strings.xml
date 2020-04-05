@@ -366,7 +366,7 @@
     <string name="settings_summary_enhancement">未激活\n你可以在「模块」中启用增强模块</string>
     <string name="settings_summary_enhancement_enabled">已激活</string>
     <string name="settings_title_pretend_xposed_installer">Xposed Installer 伪装</string>
-    <string name="settings_summary_pretend_xposed_installer">假装已安装 Xposed Installer 来使一些过时但有用的模块正常工作\n注：开启此功能可能会被某些软件（如 RootBear）检测到 EdXposed</string>
+    <string name="settings_summary_pretend_xposed_installer">假装已安装 Xposed Installer 来使一些过时但有用的模块正常工作\n注：开启此功能可能会被某些软件（如 RootBeer）检测到 EdXposed</string>
     <string name="settings_title_hide_edxposed_manager">隐藏 EdXposed Manager</string>
     <string name="settings_summary_hide_edxposed_manager">防止软件检测到 EdXposed Manager\n注：模块可能无法正常打开 Manager 界面</string>
 </resources>

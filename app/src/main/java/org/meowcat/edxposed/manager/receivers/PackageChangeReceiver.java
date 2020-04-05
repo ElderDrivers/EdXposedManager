@@ -25,8 +25,6 @@ public class PackageChangeReceiver extends BroadcastReceiver {
             // Ignore existing packages being removed in order to be updated
             return;
 
-        mModuleUtil.updateModulesList(false, null);
-
         String packageName = getPackageName(intent);
         if (packageName == null)
             return;
@@ -52,6 +50,8 @@ public class PackageChangeReceiver extends BroadcastReceiver {
         }
 
         mModuleUtil = getModuleUtilInstance();
+
+        mModuleUtil.updateModulesList(false, null);
 
         InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
         if (module == null

@@ -372,7 +372,7 @@
     <string name="settings_summary_enhancement">已停用\n您可以在「模組」中啟用增強模式</string>
     <string name="settings_summary_enhancement_enabled">運作中</string>
     <string name="settings_title_pretend_xposed_installer">偽裝 Xposed Installer</string>
-    <string name="settings_summary_pretend_xposed_installer">欺騙某些過時（但還是有點用）的模組，使其認為古早的 Xposed Installer 有安裝。\n警告：啟用此功能可能使某些軟體（如 RootBear）偵測到 EdXposed Manager。</string>
+    <string name="settings_summary_pretend_xposed_installer">欺騙某些過時（但還是有點用）的模組，使其認為古早的 Xposed Installer 有安裝。\n警告：啟用此功能可能使某些軟體（如 RootBeer）偵測到 EdXposed</string>
     <string name="settings_title_hide_edxposed_manager">隱藏 EdXposed Manager</string>
     <string name="settings_summary_hide_edxposed_manager">隱藏 EdXposed Manager\n警告：模組可能無法正常啟動 Manager 的介面</string>
 </resources>
