@@ -5,6 +5,8 @@ import android.content.pm.PackageInfo;
 import android.os.Binder;
 import android.os.Build;
 
+import androidx.annotation.Keep;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -22,6 +24,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static org.meowcat.edxposed.manager.BuildConfig.APPLICATION_ID;
 
+@Keep
 public class Enhancement implements IXposedHookLoadPackage {
 
     private static final String mPretendXposedInstallerFlag = "pretend_xposed_installer";
