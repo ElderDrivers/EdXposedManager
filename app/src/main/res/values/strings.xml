@@ -402,7 +402,7 @@
     <string name="settings_summary_enhancement">Disabled\nYou can enable enhancement mode in the module</string>
     <string name="settings_summary_enhancement_enabled">Enabled</string>
     <string name="settings_title_pretend_xposed_installer">Pretend to have Xposed Installer installed</string>
-    <string name="settings_summary_pretend_xposed_installer">Pretend that Xposed Installer is installed to make some outdated but useful modules work\nWARNING: Some software (eg. RootBeer) may detect that EdXposed when this function is turned on</string>
+    <string name="settings_summary_pretend_xposed_installer">Pretend that Xposed Installer is installed to make some outdated but useful modules work\nOnly work for the enabled modules in \"Modules\"\nWARNING: Some software (eg. RootBeer) may detect that EdXposed when this function is turned on</string>
     <string name="settings_title_hide_edxposed_manager">Hide EdXposed Manager</string>
-    <string name="settings_summary_hide_edxposed_manager">Prevent the software from detecting EdXposed Manager\nWARNING: Modules may not be able to start the Manager UI properly</string>
+    <string name="settings_summary_hide_edxposed_manager">Prevent the software from detecting EdXposed Manager\nWARNING: Modules may not be able to start the EdXposed Manager UI properly, some fratures of EdXposed Manager in the system may not work properly</string>
 </resources>
