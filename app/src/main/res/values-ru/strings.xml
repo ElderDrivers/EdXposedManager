@@ -44,27 +44,27 @@
     <string name="root_failed">Сбой получения прав рут-доступа\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются</string>
 
     <!-- Modules -->
-    <string name="module_is_not_activated_yet">EdXposed модуль еще не активирован</string>
-    <string name="module_is_not_activated_yet_detailed">%s был установлен но не активирован</string>
-    <string name="activate_and_reboot">Вкл. и перезагрузить</string>
+    <string name="module_is_not_activated_yet">Модуль еще не включен</string>
+    <string name="module_is_not_activated_yet_detailed">Модуль %s установлен но не включен</string>
+    <string name="activate_and_reboot">Включить и перезагрузить</string>
     <string name="activate_only">Включить</string>
-    <string name="module_activated">Модуль EdXposed был активирован</string>
+    <string name="module_activated">Модуль включен!</string>
     <string name="module_empty_description">(описание отсутствует)</string>
     <string name="module_no_ui">Этот модуль не содержит пользовательского интерфейса</string>
-    <string name="no_xposed_modules_found">Модули EdXposed не найдены!</string>
-    <string name="xposed_module_list_updated">Список EdXposed модулей обновлен\nИзменения вступят в силу после перезагрузки</string>
-    <string name="xposed_module_updated_notification_title">Модуль EdXposed обновлен</string>
+    <string name="no_xposed_modules_found">Модули не найдены!</string>
+    <string name="xposed_module_list_updated">Список модулей обновлен\nИзменения вступят в силу после перезагрузки</string>
+    <string name="xposed_module_updated_notification_title">Модуль обновлен</string>
     <string name="xposed_module_updated_notification">Перезагрузите устройство</string>
-    <string name="warning_xposed_min_version">Этот модуль требует более новой версии EdXposedBridge (%d) и не может быть активирован</string>
+    <string name="warning_xposed_min_version">Этот модуль требует более новой версии EdXposedBridge (%d) и не может быть включен</string>
     <string name="no_min_version_specified">Этот модуль не указал версию XposedBridge, в которой он нуждается</string>
-    <string name="warning_min_version_too_low">Этот модуль был создан для XposedBridge версии %1$d, но из-за несовместимых изменений в версии %2$d, он был отключен</string>
+    <string name="warning_min_version_too_low">Этот модуль был создан для XposedBridge версии %1$d, но из-за несовместимых изменений в версии %2$d, он был выключен</string>
     <string name="module_launch">Открыть настройки</string>
-    <string name="module_download_updates">Загрузить | Обновить</string>
+    <string name="module_download_updates">Скачать | Обновить</string>
     <string name="module_support">Поддержка</string>
     <string name="modules_app_store">Магазин приложений</string>
     <string name="module_app_info">О приложении</string>
     <string name="module_uninstall">Удалить</string>
-    <string name="xposed_not_active">EdXposed Framework не установлен или не активирован\nВы установили Framework и перезагрузились?\nВы можете отключить проверку статуса в настройках</string>
+    <string name="xposed_not_active">EdXposed Framework не установлен или не активирован\nВы точно установили Framework и перезагрузились?\nВы можете выключить проверку статуса в настройках</string>
 
     <!-- Download -->
     <string name="menuSearch">Поиск</string>
@@ -113,14 +113,14 @@
     <string name="settings_title_show_modules">Отображение модулей</string>
     <string name="settings_title_pass_safetynet">Проверка SafetyNet</string>
     <string name="settings_title_old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
-    <string name="settings_title_disable_modules_log">Отключить логи модулей</string>
+    <string name="settings_title_disable_modules_log">Выключить логи модулей</string>
     <string name="settings_title_black_white_list">Режим списка приложений</string>
     <string name="settings_title_open_drawer">Боковое меню</string>
     <string name="settings_title_default_view">Какое меню открывать при запуске</string>
     <string name="settings_title_skip_status_check">Проверка статуса</string>
     <string name="settings_title_dynamic_modules">Мгновенный список модулей</string>
     <string name="settings_title_enable_boot_image_deopt">Деоптимизировать загрузочный образ</string>
-    <string name="settings_title_disable_verbose_log">Отключить подробные логи</string>
+    <string name="settings_title_disable_verbose_log">Выключить подробные логи</string>
 
     <string name="settings_summary_pass_safetynet">Принудительно добавить GMS и GSF в черный список и удалить из белого списка\nВыключение этой настройки не удаляет модули из черного списка\nНеобходимо включение «Режим списка приложений»</string>
     <string name="settings_summary_show_modules">Показывать модули в «Список приложений» и «Список совместимости»\nЭтот параметр не может удалять отмеченный флаг приложения</string>
@@ -131,7 +131,7 @@
     <string name="settings_summary_open_drawer">Автоматически открывать боковое меню при запуске</string>
     <string name="settings_summary_disable_resources">Временное решение для конфликтов с темами системы\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
     <string name="settings_summary_skip_status_check">Пропускать проверку «Статус EdXposed» для модулей</string>
-    <string name="settings_summary_dynamic_modules">При включении загружать список последних активированных модулей для каждого запущенного процесса приложения</string>
+    <string name="settings_summary_dynamic_modules">Загружать список последних включенных модулей для каждого запущенного процесса приложения</string>
     <string name="settings_summary_enable_boot_image_deopt">Включите, чтобы сделать все методы Framework подключаемыми, система может работать медленнее\nВ основном используется для проверки методов подключения к Framework, когда нельзя подключить</string>
 
     <string name="settings_sort_by_name">Сортировать по названию приложения</string>
@@ -244,8 +244,8 @@
     <string name="md_presets_label">Пресеты</string>
     <string name="changelog">Список изменений</string>
     <string name="scroll_top">Прокрутить вверх</string>
-    <string name="add_bookmark">Добавить закладку</string>
-    <string name="remove_bookmark">Удалить закладку</string>
+    <string name="add_bookmark">Добавить в закладки</string>
+    <string name="remove_bookmark">Удалить из закладок</string>
     <string name="bookmarks">Закладки</string>
     <string name="no_bookmark_added">Нет добавленных закладок</string>
     <string name="bookmark_added">Закладка добавлена</string>
@@ -306,12 +306,12 @@
     <string name="known_issue_wrong_base_directory">Основной каталог ошибочный: %1$s</string>
     <string name="known_issue_missing_base_directory">Основной каталог отсутсвует</string>
 
-    <string name="dexopt_now">Оптимизация в режиме DexOpt</string>
-    <string name="speed_now">Оптимизация в режиме Dex2oat</string>
-    <string name="this_may_take_a_while">Пожалуйста подождите, это займет немного времи…</string>
-    <string name="take_while_cannot_resore">Вы уверены, что хотите оптимизировать все приложения?\nЭто займет немного времи, и НЕ МОЖЕТ быть восстановлено\nСовет: Вы можете оптимизировать выборочные приложения в «Список приложений»</string>
+    <string name="dexopt_now">Оптимизация приложений DexOpt</string>
+    <string name="speed_now">Оптимизация приложений Dex2oat</string>
+    <string name="this_may_take_a_while">Пожалуйста подождите, это займет некоторое время…</string>
+    <string name="take_while_cannot_resore">Вы уверены, что хотите оптимизировать все приложения?\nЭто займет некоторое время (зависит от количества установленных приложений), и НЕ МОЖЕТ быть восстановлено\nСовет: Вы можете оптимизировать выборочные приложения в «Список приложений»</string>
     <string name="done">Готово!</string>
-    <string name="verified_boot_deactivated">Проверка загрузки отключена</string>
+    <string name="verified_boot_deactivated">Проверка загрузки выключена</string>
     <string name="verified_boot_none">Не удалось проверить состояние загрузки</string>
     <string name="verified_boot_active">Проверка загрузки включена</string>
     <string name="verified_boot_explanation">Проверка загрузки (dm-verity) запрещает загрузку устройства, если системный раздел изменен</string>
@@ -326,8 +326,8 @@
     <string name="title_black_list">Черный список</string>
     <string name="add_package_failed">Не удалось отредактировать, некоторые настройки не позволяют редактировать</string>
     <string name="menu_title_compile_reset">Деоптимизация</string>
-    <string name="menu_title_compile_speed">Оптимизировать в режиме Dex2oat</string>
-    <string name="menu_title_compile_dexopt">Оптимизировать в режиме DexOpt</string>
+    <string name="menu_title_compile_speed">Оптимизировать через Dex2oat</string>
+    <string name="menu_title_compile_dexopt">Оптимизировать через DexOpt</string>
     <string name="compile_reset_msg">Сброс…</string>
     <string name="compile_speed_msg">Оптимизация…</string>
     <string name="title_compat_list">Список совместимости</string>
@@ -339,7 +339,7 @@
     <string name="mlgmxyysd_summary">Разработчик EdXposed Manager</string>
     <string name="elderdrivers_summary">Организация EdXposed</string>
     <string name="meowcat_summary">Организация MlgmXyysd</string>
-    <string name="logs_verbose_disabled">Подробные логи отключены</string>
+    <string name="logs_verbose_disabled">Подробные логи выключены</string>
     <string name="logs_cannot_read">Невозможно прочитать логи: \n</string>
     <string name="app_launch">Запустить</string>
     <string name="app_stop">Остановить</string>
@@ -377,4 +377,6 @@
     <string name="settings_summary_pretend_xposed_installer">Притвориться что установлен Xposed Installer, чтобы заставить работать некоторые устаревшие, но полезные модули\nРаботает только для включенных модулей на владке «Установленные модули»\nВНИМАНИЕ: Некоторые приложения (например RootBeer) могут обнаружить установленный EdXposed при включении этой функции</string>
     <string name="settings_title_hide_edxposed_manager">Скрыть EdXposed Manager</string>
     <string name="settings_summary_hide_edxposed_manager">Запретить приложениям обнаруживать EdXposed Manager\nВНИМАНИЕ: Некоторые модули могут не правильно запускать интерфейс EdXposed Manager, а также некоторые функции EdXposed Manager в системе могут работать неправильно</string>
+    <string name="settings_title_disable_hidden_api_bypass">Выключить скрытый обход ограничений API</string>
+    <string name="settings_summary_disable_hidden_api_bypass">Выключение скрытого обхода ограничений API способстувет некоторому обнаружению (например Snapchat), эти API выключены по умолчанию\n<b>ВНИМАНИЕ:</b> Включение этой настройки может привести к некорректной работе некоторых функций или другим проблемам</string>
 </resources>
