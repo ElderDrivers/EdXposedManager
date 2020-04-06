@@ -140,12 +140,6 @@
             android:key="snack_bar"
             android:title="@string/settings_title_notify_module_update" />
 
-<!--        <SwitchPreference-->
-<!--            android:defaultValue="false"-->
-<!--            android:key="alt_download"-->
-<!--            android:summary="@string/alt_download_method_summ"-->
-<!--            android:title="@string/alt_download_method" />-->
-
         <SwitchPreference
             android:defaultValue="false"
             android:key="custom_list"
@@ -162,12 +156,6 @@
     <PreferenceCategory
         android:key="group_framework"
         android:title="@string/settings_group_framework">
-
-<!--        <SwitchPreference-->
-<!--            android:defaultValue="false"-->
-<!--            android:key="use_legacy_installer"-->
-<!--            android:summary="@string/settings_summary_use_legacy_installer"-->
-<!--            android:title="@string/settings_title_use_legacy_installer" />-->
 
         <SwitchPreference
             android:defaultValue="false"
@@ -195,8 +183,13 @@
 
         <SwitchPreference
             android:defaultValue="false"
+            android:key="disable_hidden_api_bypass"
+            android:summary="@string/settings_summary_disable_hidden_api_bypass"
+            android:title="@string/settings_title_disable_hidden_api_bypass" />
+
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="disable_resources"
-            android:persistent="false"
             android:summary="@string/settings_summary_disable_resources"
             android:title="@string/settings_title_disable_resources" />
 

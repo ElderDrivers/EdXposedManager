@@ -35,6 +35,7 @@ import java.util.Objects;
 
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
+import static org.meowcat.edxposed.manager.XposedApp.getPreferences;
 
 public class SettingsFragment extends BasePreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -66,7 +67,8 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
     private static final File mPretendXposedInstallerFlag = new File(XposedApp.BASE_DIR + "conf/pretend_xposed_installer");
     private static final File mHideEdXposedManagerFlag = new File(XposedApp.BASE_DIR + "conf/hide_edxposed_manager");
     private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
-    public static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
+    private static final File mDisableHiddenAPIBypassFlag = new File(XposedApp.BASE_DIR + "conf/disable_hidden_api_bypass");
+    private static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
     private static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
     private static final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
     private static final File mDeoptBootFlag = new File(XposedApp.BASE_DIR + "conf/deoptbootimage");
@@ -91,8 +93,11 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
 
         act += iconsValues[Integer.parseInt((String) newValue)];
 
-        ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
-                XposedApp.iconsValues[Integer.parseInt((String) newValue)],
+//        ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
+//                requireContext().getDrawable(XposedApp.iconsValues[Integer.parseInt(Objects.requireNonNull(getPreferences().getString("custom_icon", "0")))]),
+//                XposedApp.getColor(requireContext()));
+        @SuppressWarnings("deprecation") ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
+                XposedApp.drawableToBitmap(requireContext().getDrawable(XposedApp.iconsValues[Integer.parseInt(Objects.requireNonNull(getPreferences().getString("custom_icon", "0")))])),
                 XposedApp.getColor(requireContext()));
         requireActivity().setTaskDescription(tDesc);
 
@@ -427,6 +432,37 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
                 mDisableResourcesFlag.delete();
             }
             return (enabled == mDisableResourcesFlag.exists());
+        });
+
+        SwitchPreference prefDisableHiddenAPIBypass = findPreference("disable_hidden_api_bypass");
+        Objects.requireNonNull(prefDisableHiddenAPIBypass).setChecked(mDisableHiddenAPIBypassFlag.exists());
+        prefDisableHiddenAPIBypass.setOnPreferenceChangeListener((preference, newValue) -> {
+            boolean enabled = (Boolean) newValue;
+            if (enabled) {
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(mDisableHiddenAPIBypassFlag.getPath());
+                    XposedApp.setFilePermissionsFromMode(mDisableHiddenAPIBypassFlag.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            try {
+                                mDisableHiddenAPIBypassFlag.createNewFile();
+                            } catch (IOException e1) {
+                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+            } else {
+                mDisableHiddenAPIBypassFlag.delete();
+            }
+            return (enabled == mDisableHiddenAPIBypassFlag.exists());
         });
 
         Objects.requireNonNull(colors).setOnPreferenceClickListener(this);

@@ -2,7 +2,6 @@ package org.meowcat.edxposed.manager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -110,11 +109,7 @@ public class AboutActivity extends XposedBaseActivity {
                     .content(Html.fromHtml(changes, Html.FROM_HTML_MODE_LEGACY))
                     .positiveText(R.string.ok).show());
 
-            try {
-                String version = requireActivity().getPackageManager().getPackageInfo(BuildConfig.APPLICATION_ID, 0).versionName;
-                ((TextView) v.findViewById(R.id.app_version)).setText(version);
-            } catch (NameNotFoundException ignored) {
-            }
+            ((TextView) v.findViewById(R.id.app_version)).setText(BuildConfig.VERSION_NAME);
 
             licensesView.setOnClickListener(v12 -> {
                 OssLicensesMenuActivity.setActivityTitle(getString(R.string.about_libraries_title));
