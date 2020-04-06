@@ -100,7 +100,7 @@
     <string name="download_section_older">Более 30 дней назад</string>
     <string name="download_details_not_found">Модуль с именем пакета \"%s\" отсутствует в репозитории</string>
     <string name="download_no_versions">Автор еще ничего не выложил</string>
-    <string name="download_test_version_not_shown">Доступны тестовые версии. Но они скрыты в настройках \"Отображение версий модуля\"</string>
+    <string name="download_test_version_not_shown">Доступны тестовые версии. Но они скрыты в настройках «Отображение версий модуля»</string>
 
     <!-- Settings -->
     <string name="settings_group_download">Загрузка и установка</string>
@@ -149,11 +149,11 @@
 
     <!-- Support -->
     <string name="support_modules_label">Поддержка модулей</string>
-    <string name="support_modules_description">Нажатие на модуле, в меню \"Установленные модули\" и выберите \"%1$s\"</string>
+    <string name="support_modules_description">Нажатие на модуле, в меню «Установленные модули» и выберите \"%1$s\"</string>
     <string name="support_framework_label">Поддержка EdXposed Framework | EdXposed Manager</string>
     <string name="support_faq_label">Справка | Известные проблемы</string>
-    <string name="support_group_qq_label">Группа QQ: 855219808</string>
-    <string name="support_group_telegram_label">Группа Telegram: @Code_of_MeowCat</string>
+    <string name="support_group_qq_label">Канал QQ: 855219808</string>
+    <string name="support_group_telegram_label">Канал Telegram: @Code_of_MeowCat</string>
     <string name="support_donate_label">Пожертвовать</string>
     <string name="support_donate_description">Если вы хотите отблагодарить за EdXposed, вы можете сделать пожертвование для rovo89 здесь:</string>
 
@@ -374,7 +374,7 @@
     <string name="settings_summary_enhancement">Выключен\nВы можете включить режим улучшения через модуль</string>
     <string name="settings_summary_enhancement_enabled">Включен</string>
     <string name="settings_title_pretend_xposed_installer">Притвориться что установлен Xposed Installer</string>
-    <string name="settings_summary_pretend_xposed_installer">Притвориться что установлен Xposed Installer, чтобы заставить работать некоторые устаревшие, но полезные модули\nВНИМАНИЕ: Некоторые приложения (например RootBeer) могут обнаружить установленный EdXposed при включении этой функции</string>
+    <string name="settings_summary_pretend_xposed_installer">Притвориться что установлен Xposed Installer, чтобы заставить работать некоторые устаревшие, но полезные модули\nРаботает только для включенных модулей на владке «Установленные модули»\nВНИМАНИЕ: Некоторые приложения (например RootBeer) могут обнаружить установленный EdXposed при включении этой функции</string>
     <string name="settings_title_hide_edxposed_manager">Скрыть EdXposed Manager</string>
-    <string name="settings_summary_hide_edxposed_manager">Запретить приложениям обнаруживать EdXposed Manager\nВНИМАНИЕ: Некоторые модули не смогут правильно запустить интерфейс Manager</string>
+    <string name="settings_summary_hide_edxposed_manager">Запретить приложениям обнаруживать EdXposed Manager\nВНИМАНИЕ: Некоторые модули могут не правильно запускать интерфейс EdXposed Manager, а также некоторые функции EdXposed Manager в системе могут работать неправильно</string>
 </resources>
