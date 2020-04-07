@@ -104,16 +104,16 @@ public class BaseAdvancedInstaller extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.single_installer_view, container, false);
 
-        final Spinner chooserInstallers = view.findViewById(R.id.chooserInstallers);
-        final Spinner chooserUninstallers = view.findViewById(R.id.chooserUninstallers);
-        final Button btnInstall = view.findViewById(R.id.btnInstall);
-        final Button btnUninstall = view.findViewById(R.id.btnUninstall);
-        ImageView infoInstaller = view.findViewById(R.id.infoInstaller);
-        ImageView infoUninstaller = view.findViewById(R.id.infoUninstaller);
-        TextView noticeTv = view.findViewById(R.id.noticeTv);
-        TextView author = view.findViewById(R.id.author);
-        View showOnXda = view.findViewById(R.id.show_on_xda);
-        View updateDescription = view.findViewById(R.id.updateDescription);
+        final Spinner chooserInstallers = view.findViewById(R.id.chooser_installers);
+        final Spinner chooserUninstallers = view.findViewById(R.id.chooser_uninstallers);
+        final Button btnInstall = view.findViewById(R.id.btn_install);
+        final Button btnUninstall = view.findViewById(R.id.btn_uninstall);
+        final ImageView infoInstaller = view.findViewById(R.id.info_installer);
+        final ImageView infoUninstaller = view.findViewById(R.id.info_uninstaller);
+        final TextView infoAuthor = view.findViewById(R.id.info_author);
+        final View infoHelp = view.findViewById(R.id.info_help);
+        final View infoUpdateDescription = view.findViewById(R.id.info_update_description);
+        final TextView notice = view.findViewById(R.id.notice);
 
         try {
             chooserInstallers.setAdapter(new XposedZip.MyAdapter(getContext(), installers()));
@@ -122,8 +122,8 @@ public class BaseAdvancedInstaller extends Fragment {
         }
 
         infoInstaller.setOnClickListener(v -> {
-            XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
-            String s = getString(R.string.infoInstaller,
+            final XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
+            final String s = getString(R.string.infoInstaller,
                     selectedInstaller.name,
                     selectedInstaller.version);
 
@@ -131,8 +131,8 @@ public class BaseAdvancedInstaller extends Fragment {
                     .content(s).positiveText(R.string.ok).show();
         });
         infoUninstaller.setOnClickListener(v -> {
-            XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
-            String s = getString(R.string.infoUninstaller,
+            final XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
+            final String s = getString(R.string.infoUninstaller,
                     selectedUninstaller.name,
                     selectedUninstaller.version);
 
@@ -166,8 +166,8 @@ public class BaseAdvancedInstaller extends Fragment {
             });
         });
 
-        noticeTv.setText(Html.fromHtml(notice(), Html.FROM_HTML_MODE_COMPACT));
-        author.setText(getString(R.string.download_author, author()));
+        notice.setText(Html.fromHtml(notice(), Html.FROM_HTML_MODE_COMPACT));
+        infoAuthor.setText(getString(R.string.download_author, author()));
 
         try {
             if (uninstallers().size() == 0) {
@@ -186,8 +186,8 @@ public class BaseAdvancedInstaller extends Fragment {
             view.findViewById(R.id.warning_unofficial).setVisibility(View.VISIBLE);
         }
 
-        showOnXda.setOnClickListener(v -> NavUtil.startURL(getActivity(), supportUrl()));
-        updateDescription.setOnClickListener(v -> new MaterialDialog.Builder(requireContext())
+        infoHelp.setOnClickListener(v -> NavUtil.startURL(getActivity(), supportUrl()));
+        infoUpdateDescription.setOnClickListener(v -> new MaterialDialog.Builder(requireContext())
                 .title(R.string.changes)
                 .content(Html.fromHtml(description(), Html.FROM_HTML_MODE_COMPACT))
                 .positiveText(R.string.ok).show());
