@@ -133,7 +133,7 @@
     <!-- About tab -->
     <string name="about_developers_label">主要開發者</string>
     <string name="about_translator_label">正體中文（臺灣）翻譯</string>
-    <string name="translator">芭樂提斯、孟武.尼德霍格.龍、MlgmXyysd、文藝青年</string>
+    <string name="translator">帕拉提斯、孟武.尼德霍格.龍、MlgmXyysd、文藝青年</string>
     <string name="about_version_label">版本</string>
     <string name="about_source_label">原始碼</string>
     <string name="about_libraries_label">使用的開源資料庫</string>
@@ -375,4 +375,7 @@
     <string name="settings_summary_pretend_xposed_installer">欺騙某些過時（但還是有點用）的模組，使其認為古早的 Xposed Installer 有安裝。\n警告：啟用此功能可能使某些軟體（如 RootBeer）偵測到 EdXposed</string>
     <string name="settings_title_hide_edxposed_manager">隱藏 EdXposed Manager</string>
     <string name="settings_summary_hide_edxposed_manager">隱藏 EdXposed Manager\n警告：模組可能無法正常啟動 Manager 的介面</string>
+    <string name="settings_title_disable_hidden_api_bypass">停用繞過隱藏 API 的限制</string>
+    <string name="settings_summary_disable_hidden_api_bypass">不要繞過隱藏 API 可以避免某些 app（如 SnapChat）檢測到 Xposed 框架，這些 API 預設停用。\n<b>警告：</b>啟用這個選項可能造成某些功能無法正常運作，或發生其他更糟糕的事。</string>
+    <string name="settings_title_dark_status_bar">深色狀態欄（遮罩）</string>
 </resources>
