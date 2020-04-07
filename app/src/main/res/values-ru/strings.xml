@@ -379,4 +379,5 @@
     <string name="settings_summary_hide_edxposed_manager">Запретить приложениям обнаруживать EdXposed Manager\nВНИМАНИЕ: Некоторые модули могут не правильно запускать интерфейс EdXposed Manager, а также некоторые функции EdXposed Manager в системе могут работать неправильно</string>
     <string name="settings_title_disable_hidden_api_bypass">Выключить скрытый обход ограничений API</string>
     <string name="settings_summary_disable_hidden_api_bypass">Выключение скрытого обхода ограничений API способстувет некоторому обнаружению (например Snapchat), эти API выключены по умолчанию\n<b>ВНИМАНИЕ:</b> Включение этой настройки может привести к некорректной работе некоторых функций или другим проблемам</string>
+    <string name="settings_title_dark_status_bar">Темная строка состояния (маскировка)</string>
 </resources>
