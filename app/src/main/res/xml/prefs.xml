@@ -33,6 +33,11 @@
             android:key="colored_notification"
             android:title="@string/settings_title_notification_coloration" />
 
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="dark_status_bar"
+            android:title="@string/settings_title_dark_status_bar" />
+
         <org.meowcat.edxposed.manager.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/theme_texts"

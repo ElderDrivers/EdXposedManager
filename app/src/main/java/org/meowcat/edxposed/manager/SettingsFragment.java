@@ -33,6 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 import static org.meowcat.edxposed.manager.XposedApp.getPreferences;
@@ -145,10 +146,16 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
 
         Preference enhancement_status = findPreference("enhancement_status");
         Objects.requireNonNull(enhancement_status).setSummary(StatusInstallerFragment.isEnhancementEnabled() ? R.string.settings_summary_enhancement_enabled : R.string.settings_summary_enhancement);
+        
+        SwitchPreference darkStatusBarPref = findPreference("dark_status_bar");
+        Objects.requireNonNull(darkStatusBarPref).setOnPreferenceChangeListener((preference, newValue) -> {
+            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), (boolean) newValue ? 0.85f : 1f));
+            return true;
+        });
 
         Objects.requireNonNull(prefPretendXposedInstaller).setChecked(mPretendXposedInstallerFlag.exists());
         prefPretendXposedInstaller.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
                 FileOutputStream fos = null;
@@ -180,7 +187,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         SwitchPreference prefHideEdXposedManager = findPreference("hide_edxposed_manager");
         Objects.requireNonNull(prefHideEdXposedManager).setChecked(mHideEdXposedManagerFlag.exists());
         prefHideEdXposedManager.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
                 FileOutputStream fos = null;
@@ -212,7 +219,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         SwitchPreference prefWhiteListMode = findPreference("white_list_switch");
         Objects.requireNonNull(prefWhiteListMode).setChecked(mWhiteListModeFlag.exists());
         prefWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
                 FileOutputStream fos = null;
@@ -244,7 +251,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         SwitchPreference prefVerboseLogs = findPreference("disable_verbose_log");
         Objects.requireNonNull(prefVerboseLogs).setChecked(mDisableVerboseLogsFlag.exists());
         prefVerboseLogs.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 FileOutputStream fos = null;
                 try {
@@ -275,7 +282,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         SwitchPreference prefModulesLogs = findPreference("disable_modules_log");
         Objects.requireNonNull(prefModulesLogs).setChecked(mDisableModulesLogsFlag.exists());
         prefModulesLogs.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 FileOutputStream fos = null;
                 try {
@@ -306,7 +313,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         SwitchPreference prefBlackWhiteListMode = findPreference("black_white_list_switch");
         Objects.requireNonNull(prefBlackWhiteListMode).setChecked(mBlackWhiteListModeFlag.exists());
         prefBlackWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
                 FileOutputStream fos = null;
@@ -344,7 +351,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         SwitchPreference prefEnableDeopt = findPreference("enable_boot_image_deopt");
         Objects.requireNonNull(prefEnableDeopt).setChecked(mDeoptBootFlag.exists());
         prefEnableDeopt.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 FileOutputStream fos = null;
                 try {
@@ -375,7 +382,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         SwitchPreference prefDynamicResources = findPreference("is_dynamic_modules");
         Objects.requireNonNull(prefDynamicResources).setChecked(mDynamicModulesFlag.exists());
         prefDynamicResources.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 FileOutputStream fos = null;
                 try {
@@ -406,7 +413,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         SwitchPreference prefDisableResources = findPreference("disable_resources");
         Objects.requireNonNull(prefDisableResources).setChecked(mDisableResourcesFlag.exists());
         prefDisableResources.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 FileOutputStream fos = null;
                 try {
@@ -437,7 +444,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         SwitchPreference prefDisableHiddenAPIBypass = findPreference("disable_hidden_api_bypass");
         Objects.requireNonNull(prefDisableHiddenAPIBypass).setChecked(mDisableHiddenAPIBypassFlag.exists());
         prefDisableHiddenAPIBypass.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (Boolean) newValue;
+            boolean enabled = (boolean) newValue;
             if (enabled) {
                 FileOutputStream fos = null;
                 try {
@@ -477,7 +484,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
 
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
-        requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), 0.85f));
+        requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), getDarkenFactor()));
     }
 
     @Override

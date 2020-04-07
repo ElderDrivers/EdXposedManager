@@ -49,6 +49,10 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
     }
 
+    public static float getDarkenFactor() {
+        return XposedApp.getPreferences().getBoolean("dark_status_bar", true) ? 0.85f : 1f;
+    }
+
     @Override
     public void onFolderSelection(@NonNull FolderChooserDialog dialog, @NonNull File folder) {
         if (folder.canWrite()) {
@@ -68,7 +72,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             toolbar.setBackgroundColor(color1);
 
-            int darkenColor = XposedApp.darkenColor(color1, 0.85f);
+            int darkenColor = XposedApp.darkenColor(color1, getDarkenFactor());
 
             getWindow().setStatusBarColor(darkenColor);
 

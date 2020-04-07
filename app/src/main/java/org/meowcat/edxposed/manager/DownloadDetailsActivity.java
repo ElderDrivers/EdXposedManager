@@ -38,6 +38,7 @@ import java.util.Objects;
 
 import static androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener {
@@ -120,7 +121,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
     protected void onResume() {
         super.onResume();
 
-        getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
+        getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), getDarkenFactor()));
 
     }
 

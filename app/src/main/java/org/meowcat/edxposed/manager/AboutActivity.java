@@ -24,6 +24,7 @@ import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import static android.content.Intent.ACTION_SEND;
 import static android.content.Intent.EXTRA_TEXT;
+import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public class AboutActivity extends XposedBaseActivity {
@@ -82,7 +83,7 @@ public class AboutActivity extends XposedBaseActivity {
         @Override
         public void onResume() {
             super.onResume();
-            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), 0.85f));
+            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), getDarkenFactor()));
         }
 
         @Override
