@@ -4,6 +4,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.os.Binder;
 import android.os.Build;
+import android.os.StrictMode;
 
 import androidx.annotation.Keep;
 
@@ -50,29 +51,40 @@ public class Enhancement implements IXposedHookLoadPackage {
     private static List modulesList = null;
 
     private static boolean getFlagState(int user, String flag) {
-        return new File(String.format("/data/user_de/%s/%s/conf/%s", user, APPLICATION_ID, flag)).exists();
+        final StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
+        try {
+            return new File(String.format("/data/user_de/%s/%s/conf/%s", user, APPLICATION_ID, flag)).exists();
+        } finally {
+            StrictMode.setThreadPolicy(oldPolicy);
+        }
     }
 
     private static List getModulesList(int user) {
         if (modulesList != null) {
             return modulesList;
         }
-        final File listFile = new File(String.format("/data/user_de/%s/%s/conf/enabled_modules.list", user, APPLICATION_ID));
-        List<String> list = new ArrayList<>();
+
+        final StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
         try {
-            FileReader fileReader = new FileReader(listFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String str;
-            while ((str = bufferedReader.readLine()) != null) {
-                list.add(str);
+            final File listFile = new File(String.format("/data/user_de/%s/%s/conf/enabled_modules.list", user, APPLICATION_ID));
+            List<String> list = new ArrayList<>();
+            try {
+                FileReader fileReader = new FileReader(listFile);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String str;
+                while ((str = bufferedReader.readLine()) != null) {
+                    list.add(str);
+                }
+                bufferedReader.close();
+                fileReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            bufferedReader.close();
-            fileReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            modulesList = list;
+            return list;
+        } finally {
+            StrictMode.setThreadPolicy(oldPolicy);
         }
-        modulesList = list;
-        return list;
     }
 
     private static void hookAllMethods(String className, ClassLoader classLoader, String methodName, XC_MethodHook callback) {
@@ -224,7 +236,6 @@ public class Enhancement implements IXposedHookLoadPackage {
                             }
                         }
                     }
-
                 }
             });
             // com.android.server.pm.PackageManagerService.getPackageInfo(String packageName, int flag, int userId)
