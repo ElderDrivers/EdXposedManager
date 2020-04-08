@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.os.Binder;
 import android.os.Build;
 import android.os.StrictMode;
+import android.os.UserHandle;
 
 import androidx.annotation.Keep;
 
@@ -46,7 +47,7 @@ public class Enhancement implements IXposedHookLoadPackage {
             "com.android.permissioncontroller", // For permissions grant
             "com.topjohnwu.magisk", // For superuser root grant
             "eu.chainfire.supersu"
-    ); // System server (uid <= 1000) will auto pass
+    ); // UserHandle.isCore(uid) will auto pass
 
     private static List modulesList = null;
 
@@ -111,7 +112,8 @@ public class Enhancement implements IXposedHookLoadPackage {
                         boolean isXposedModule = false;
                         final String[] packages =
                                 (String[]) XposedHelpers.callMethod(param.thisObject, "getPackagesForUid", packageUid);
-                        if (packages == null || packages.length == 0 || packageUid <= 1000) {
+                        if (packages == null || packages.length == 0 ||
+                                (boolean) XposedHelpers.callStaticMethod(UserHandle.class, "isCore", packageUid)) {
                             return;
                         }
                         for (String packageName : packages) {
@@ -160,7 +162,8 @@ public class Enhancement implements IXposedHookLoadPackage {
                         boolean isXposedModule = false;
                         final String[] packages =
                                 (String[]) XposedHelpers.callMethod(param.thisObject, "getPackagesForUid", packageUid);
-                        if (packages == null || packages.length == 0 || packageUid <= 1000) {
+                        if (packages == null || packages.length == 0 ||
+                                (boolean) XposedHelpers.callStaticMethod(UserHandle.class, "isCore", packageUid)) {
                             return;
                         }
                         for (String packageName : packages) {
@@ -209,7 +212,8 @@ public class Enhancement implements IXposedHookLoadPackage {
                         boolean isXposedModule = false;
                         final String[] packages =
                                 (String[]) XposedHelpers.callMethod(param.thisObject, "getPackagesForUid", packageUid);
-                        if (packages == null || packages.length == 0 || packageUid <= 1000) {
+                        if (packages == null || packages.length == 0 ||
+                                (boolean) XposedHelpers.callStaticMethod(UserHandle.class, "isCore", packageUid)) {
                             return;
                         }
                         for (String packageName : packages) {
@@ -249,7 +253,8 @@ public class Enhancement implements IXposedHookLoadPackage {
                         boolean isXposedModule = false;
                         final String[] packages =
                                 (String[]) XposedHelpers.callMethod(param.thisObject, "getPackagesForUid", packageUid);
-                        if (packages == null || packages.length == 0 || packageUid <= 1000) {
+                        if (packages == null || packages.length == 0 ||
+                                (boolean) XposedHelpers.callStaticMethod(UserHandle.class, "isCore", packageUid)) {
                             return;
                         }
                         for (String packageName : packages) {
