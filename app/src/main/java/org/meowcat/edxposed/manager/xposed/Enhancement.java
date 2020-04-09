@@ -37,7 +37,7 @@ public class Enhancement implements IXposedHookLoadPackage {
 
     private static final String LEGACY_INSTALLER = "de.robv.android.xposed.installer";
 
-    private static final List HIDE_WHITE_LIST = Arrays.asList( // TODO: more whitelist packages
+    private static final List<String> HIDE_WHITE_LIST = Arrays.asList( // TODO: more whitelist packages
             APPLICATION_ID, // Whitelist or crash
             "com.android.providers.downloads", // For download modules
             "com.android.providers.downloads.ui",
@@ -49,7 +49,7 @@ public class Enhancement implements IXposedHookLoadPackage {
             "eu.chainfire.supersu"
     ); // UserHandle.isCore(uid) will auto pass
 
-    private static List modulesList = null;
+    private static List<String> modulesList = null;
 
     private static boolean getFlagState(int user, String flag) {
         final StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
@@ -60,7 +60,7 @@ public class Enhancement implements IXposedHookLoadPackage {
         }
     }
 
-    private static List getModulesList(int user) {
+    private static List<String> getModulesList(int user) {
         if (modulesList != null) {
             return modulesList;
         }
