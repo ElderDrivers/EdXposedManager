@@ -79,7 +79,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                 bufferedReader.close();
                 fileReader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                XposedBridge.log(e);
             }
             modulesList = list;
             return list;
