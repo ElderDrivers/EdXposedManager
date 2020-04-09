@@ -17,6 +17,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -27,6 +28,7 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
+import static java.util.Collections.binarySearch;
 import static org.meowcat.edxposed.manager.BuildConfig.APPLICATION_ID;
 
 @Keep
@@ -50,6 +52,10 @@ public class Enhancement implements IXposedHookLoadPackage {
     ); // UserHandle.isCore(uid) will auto pass
 
     private static List<String> modulesList = null;
+
+    static {
+        Collections.sort(HIDE_WHITE_LIST);
+    }
 
     private static boolean getFlagState(int user, String flag) {
         final StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
@@ -81,6 +87,7 @@ public class Enhancement implements IXposedHookLoadPackage {
             } catch (IOException e) {
                 XposedBridge.log(e);
             }
+            Collections.sort(list);
             modulesList = list;
             return list;
         } finally {
@@ -117,10 +124,10 @@ public class Enhancement implements IXposedHookLoadPackage {
                             return;
                         }
                         for (String packageName : packages) {
-                            if (HIDE_WHITE_LIST.contains(packageName)) {
+                            if (binarySearch(HIDE_WHITE_LIST, packageName) >= 0) {
                                 return;
                             }
-                            if (getModulesList(userId).contains(packageName)) {
+                            if (binarySearch(getModulesList(userId), packageName) >= 0) {
                                 isXposedModule = true;
                                 break;
                             }
@@ -167,10 +174,10 @@ public class Enhancement implements IXposedHookLoadPackage {
                             return;
                         }
                         for (String packageName : packages) {
-                            if (HIDE_WHITE_LIST.contains(packageName)) {
+                            if (binarySearch(HIDE_WHITE_LIST, packageName) >= 0) {
                                 return;
                             }
-                            if (getModulesList(userId).contains(packageName)) {
+                            if (binarySearch(getModulesList(userId), packageName) >= 0) {
                                 isXposedModule = true;
                                 break;
                             }
@@ -217,10 +224,10 @@ public class Enhancement implements IXposedHookLoadPackage {
                             return;
                         }
                         for (String packageName : packages) {
-                            if (HIDE_WHITE_LIST.contains(packageName)) {
+                            if (binarySearch(HIDE_WHITE_LIST, packageName) >= 0) {
                                 return;
                             }
-                            if (getModulesList(userId).contains(packageName)) {
+                            if (binarySearch(getModulesList(userId), packageName) >= 0) {
                                 isXposedModule = true;
                                 break;
                             }
@@ -258,10 +265,10 @@ public class Enhancement implements IXposedHookLoadPackage {
                             return;
                         }
                         for (String packageName : packages) {
-                            if (HIDE_WHITE_LIST.contains(packageName)) {
+                            if (binarySearch(HIDE_WHITE_LIST, packageName) >= 0) {
                                 return;
                             }
-                            if (getModulesList(userId).contains(packageName)) {
+                            if (binarySearch(getModulesList(userId), packageName) >= 0) {
                                 isXposedModule = true;
                                 break;
                             }
