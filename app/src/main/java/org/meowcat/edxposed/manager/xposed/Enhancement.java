@@ -70,8 +70,8 @@ public class Enhancement implements IXposedHookLoadPackage {
             final File listFile = new File(String.format("/data/user_de/%s/%s/conf/enabled_modules.list", user, APPLICATION_ID));
             List<String> list = new ArrayList<>();
             try {
-                FileReader fileReader = new FileReader(listFile);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                final FileReader fileReader = new FileReader(listFile);
+                final BufferedReader bufferedReader = new BufferedReader(fileReader);
                 String str;
                 while ((str = bufferedReader.readLine()) != null) {
                     list.add(str);
