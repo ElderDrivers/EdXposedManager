@@ -79,7 +79,7 @@ public class Enhancement implements IXposedHookLoadPackage {
         final StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
         try {
             final File listFile = new File(String.format("/data/user_de/%s/%s/conf/enabled_modules.list", user, APPLICATION_ID));
-            List<String> list = new ArrayList<>();
+            final List<String> list = new ArrayList<>();
             try {
                 final FileReader fileReader = new FileReader(listFile);
                 final BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -102,7 +102,7 @@ public class Enhancement implements IXposedHookLoadPackage {
 
     private static void hookAllMethods(String className, ClassLoader classLoader, String methodName, XC_MethodHook callback) {
         try {
-            Class<?> hookClass = XposedHelpers.findClassIfExists(className, classLoader);
+            final Class<?> hookClass = XposedHelpers.findClassIfExists(className, classLoader);
             if (hookClass == null || XposedBridge.hookAllMethods(hookClass, methodName, callback).size() == 0)
                 XposedBridge.log("Failed to hook " + methodName + " method in " + className);
         } catch (Throwable t) {
@@ -139,7 +139,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                             }
                         }
 
-                        @SuppressWarnings("unchecked") List<ApplicationInfo> applicationInfoList = (List<ApplicationInfo>) param.getResult();
+                        @SuppressWarnings("unchecked") final List<ApplicationInfo> applicationInfoList = (List<ApplicationInfo>) param.getResult();
                         if (isXposedModule) {
                             if (getFlagState(userId, mPretendXposedInstallerFlag)) {
                                 for (ApplicationInfo applicationInfo : applicationInfoList) {
@@ -190,7 +190,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                             }
                         }
 
-                        @SuppressWarnings("unchecked") List<PackageInfo> packageInfoList = (List<PackageInfo>) param.getResult();
+                        @SuppressWarnings("unchecked") final List<PackageInfo> packageInfoList = (List<PackageInfo>) param.getResult();
                         if (isXposedModule) {
                             if (getFlagState(userId, mPretendXposedInstallerFlag)) {
                                 for (PackageInfo packageInfo : packageInfoList) {
