@@ -44,6 +44,7 @@ public class Enhancement implements IXposedHookLoadPackage {
 
     private static final List<String> HIDE_WHITE_LIST = Arrays.asList( // TODO: more whitelist packages
             APPLICATION_ID, // Whitelist or crash
+            LEGACY_INSTALLER, // for safety
             "com.android.providers.downloads", // For download modules
             "com.android.providers.downloads.ui",
             "com.android.packageinstaller", // For uninstall EdXposed Manager
