@@ -29,6 +29,10 @@ public class XposedApp extends Application {
         return -1;
     }
 
+    public static boolean isEnhancementEnabled() {
+        return false;
+    }
+
     public void onCreate() {
         super.onCreate();
         mInstance = this;

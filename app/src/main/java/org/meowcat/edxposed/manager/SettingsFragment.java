@@ -33,6 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import static de.robv.android.xposed.installer.XposedApp.isEnhancementEnabled;
 import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
@@ -145,7 +146,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         });
 
         Preference enhancement_status = findPreference("enhancement_status");
-        Objects.requireNonNull(enhancement_status).setSummary(StatusInstallerFragment.isEnhancementEnabled() ? R.string.settings_summary_enhancement_enabled : R.string.settings_summary_enhancement);
+        Objects.requireNonNull(enhancement_status).setSummary(isEnhancementEnabled() ? R.string.settings_summary_enhancement_enabled : R.string.settings_summary_enhancement);
         
         SwitchPreference darkStatusBarPref = findPreference("dark_status_bar");
         Objects.requireNonNull(darkStatusBarPref).setOnPreferenceChangeListener((preference, newValue) -> {

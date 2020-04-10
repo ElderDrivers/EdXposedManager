@@ -40,6 +40,7 @@ import dalvik.system.VMRuntime;
 import static android.os.Build.SUPPORTED_32_BIT_ABIS;
 import static android.os.Build.SUPPORTED_64_BIT_ABIS;
 import static android.os.SELinux.isSELinuxEnabled;
+import static de.robv.android.xposed.installer.XposedApp.isEnhancementEnabled;
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 @SuppressLint("StaticFieldLeak")
@@ -391,10 +392,6 @@ public class StatusInstallerFragment extends Fragment {
             txtKnownIssue.setVisibility(View.GONE);
             btnKnownIssue.setVisibility(View.GONE);
         }
-    }
-
-    public static boolean isEnhancementEnabled() {
-        return false;
     }
 
     private String getAndroidVersion() {

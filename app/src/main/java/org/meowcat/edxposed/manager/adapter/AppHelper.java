@@ -18,7 +18,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.R;
-import org.meowcat.edxposed.manager.StatusInstallerFragment;
 import org.meowcat.edxposed.manager.XposedApp;
 import org.meowcat.edxposed.manager.util.CompileUtil;
 
@@ -33,6 +32,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
+import static de.robv.android.xposed.installer.XposedApp.isEnhancementEnabled;
 import static org.meowcat.edxposed.manager.XposedApp.rwxrwxrwx;
 
 public class AppHelper {
@@ -44,7 +44,7 @@ public class AppHelper {
     private static final String WHITE_LIST_MODE = "conf/usewhitelist";
     private static final String BLACK_LIST_MODE = "conf/blackwhitelist";
 
-    private static final List<String> FORCE_WHITE_LIST = new ArrayList<>(StatusInstallerFragment.isEnhancementEnabled() ? Arrays.asList(BuildConfig.APPLICATION_ID, "android") : Collections.singletonList(BuildConfig.APPLICATION_ID));
+    private static final List<String> FORCE_WHITE_LIST = new ArrayList<>(isEnhancementEnabled() ? Arrays.asList(BuildConfig.APPLICATION_ID, "android") : Collections.singletonList(BuildConfig.APPLICATION_ID));
     private static final List<String> SAFETYNET_BLACK_LIST = new ArrayList<>(Arrays.asList("com.google.android.gms", "com.google.android.gsf"));
     public static List<String> FORCE_WHITE_LIST_MODULE = new ArrayList<>(FORCE_WHITE_LIST);
 
