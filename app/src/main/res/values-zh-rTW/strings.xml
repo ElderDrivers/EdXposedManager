@@ -340,6 +340,7 @@
     <string name="settings_title_show_modules">顯示模組</string>
     <string name="settings_summary_show_modules">在應用程式清單內顯示模組。\n此選項並不會移除已勾選的應用標識。</string>
     <string name="compile_failed">最佳化失敗</string>
+    <string name="compile_failed_with_info">最佳化失敗: </string>
     <string name="hook_modules">強制掛鉤模組</string>
     <string name="hook_modules_summary">強制新增模組到白名單並從黑名單移除\n關閉本選項不會把模組從白名單移除\n應用程式清單模式需要被啟用</string>
     <string name="not_installed">未安裝</string>
