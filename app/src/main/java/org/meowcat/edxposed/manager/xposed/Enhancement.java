@@ -6,6 +6,7 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.StrictMode;
 import android.os.UserHandle;
+import android.util.SparseArray;
 
 import androidx.annotation.Keep;
 
@@ -53,7 +54,7 @@ public class Enhancement implements IXposedHookLoadPackage {
             "eu.chainfire.supersu"
     ); // UserHandle.isCore(uid) will auto pass
 
-    private static List<String> modulesList = null;
+    private static final SparseArray<List<String>> modulesList = new SparseArray<>();
 
     static {
         Collections.sort(HIDE_WHITE_LIST);
@@ -69,8 +70,9 @@ public class Enhancement implements IXposedHookLoadPackage {
     }
 
     private static List<String> getModulesList(int user) {
-        if (modulesList != null) {
-            return modulesList;
+        final int index = modulesList.indexOfKey(user);
+        if (index >= 0) {
+            return modulesList.valueAt(index);
         }
 
         final StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
@@ -90,7 +92,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                 XposedBridge.log(e);
             }
             Collections.sort(list);
-            modulesList = list;
+            modulesList.put(user, list);
             return list;
         } finally {
             StrictMode.setThreadPolicy(oldPolicy);
