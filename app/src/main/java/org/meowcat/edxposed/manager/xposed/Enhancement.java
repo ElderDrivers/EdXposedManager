@@ -298,7 +298,7 @@ public class Enhancement implements IXposedHookLoadPackage {
             });
             // Hook AM to remove restrict of EdXposed Manager
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                hookAllMethods("com.android.server.am.ActivityManagerService", lpparam.classLoader, "appRestrictedInBackgroundLocked", new XC_MethodHook() {
+                final XC_MethodHook hook = new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) {
                         if (param.args != null && param.args[1] != null) {
@@ -307,27 +307,10 @@ public class Enhancement implements IXposedHookLoadPackage {
                             }
                         }
                     }
-                });
-                hookAllMethods("com.android.server.am.ActivityManagerService", lpparam.classLoader, "appServicesRestrictedInBackgroundLocked", new XC_MethodHook() {
-                    @Override
-                    protected void afterHookedMethod(MethodHookParam param) {
-                        if (param.args != null && param.args[1] != null) {
-                            if (param.args[1].equals(APPLICATION_ID)) {
-                                param.setResult(0);
-                            }
-                        }
-                    }
-                });
-                hookAllMethods("com.android.server.am.ActivityManagerService", lpparam.classLoader, "getAppStartModeLocked", new XC_MethodHook() {
-                    @Override
-                    protected void afterHookedMethod(MethodHookParam param) {
-                        if (param.args != null && param.args[1] != null) {
-                            if (param.args[1].equals(APPLICATION_ID)) {
-                                param.setResult(0);
-                            }
-                        }
-                    }
-                });
+                };
+                hookAllMethods("com.android.server.am.ActivityManagerService", lpparam.classLoader, "appRestrictedInBackgroundLocked", hook);
+                hookAllMethods("com.android.server.am.ActivityManagerService", lpparam.classLoader, "appServicesRestrictedInBackgroundLocked", hook);
+                hookAllMethods("com.android.server.am.ActivityManagerService", lpparam.classLoader, "getAppStartModeLocked", hook);
             }
         } else if (lpparam.packageName.equals(APPLICATION_ID)) {
             // Make sure Xposed work
