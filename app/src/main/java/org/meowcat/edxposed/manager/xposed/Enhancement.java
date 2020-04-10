@@ -27,6 +27,8 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import static de.robv.android.xposed.XposedHelpers.callMethod;
+import static de.robv.android.xposed.XposedHelpers.callStaticMethod;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static java.util.Collections.binarySearch;
 import static org.meowcat.edxposed.manager.BuildConfig.APPLICATION_ID;
@@ -113,14 +115,15 @@ public class Enhancement implements IXposedHookLoadPackage {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
-                        final int userId = (int) param.args[1];
                         final int packageUid = Binder.getCallingUid();
+                        if ((boolean) callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                            return;
+                        }
 
+                        final int userId = (int) param.args[1];
                         boolean isXposedModule = false;
-                        final String[] packages =
-                                (String[]) XposedHelpers.callMethod(param.thisObject, "getPackagesForUid", packageUid);
-                        if (packages == null || packages.length == 0 ||
-                                (boolean) XposedHelpers.callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                        final String[] packages = (String[]) callMethod(param.thisObject, "getPackagesForUid", packageUid);
+                        if (packages == null || packages.length == 0) {
                             return;
                         }
                         for (String packageName : packages) {
@@ -163,14 +166,15 @@ public class Enhancement implements IXposedHookLoadPackage {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
-                        final int userId = (int) param.args[1];
                         final int packageUid = Binder.getCallingUid();
+                        if ((boolean) callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                            return;
+                        }
 
+                        final int userId = (int) param.args[1];
                         boolean isXposedModule = false;
-                        final String[] packages =
-                                (String[]) XposedHelpers.callMethod(param.thisObject, "getPackagesForUid", packageUid);
-                        if (packages == null || packages.length == 0 ||
-                                (boolean) XposedHelpers.callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                        final String[] packages = (String[]) callMethod(param.thisObject, "getPackagesForUid", packageUid);
+                        if (packages == null || packages.length == 0) {
                             return;
                         }
                         for (String packageName : packages) {
@@ -213,14 +217,15 @@ public class Enhancement implements IXposedHookLoadPackage {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
-                        final int userId = (int) param.args[2];
                         final int packageUid = Binder.getCallingUid();
+                        if ((boolean) callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                            return;
+                        }
 
+                        final int userId = (int) param.args[2];
                         boolean isXposedModule = false;
-                        final String[] packages =
-                                (String[]) XposedHelpers.callMethod(param.thisObject, "getPackagesForUid", packageUid);
-                        if (packages == null || packages.length == 0 ||
-                                (boolean) XposedHelpers.callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                        final String[] packages = (String[]) callMethod(param.thisObject, "getPackagesForUid", packageUid);
+                        if (packages == null || packages.length == 0) {
                             return;
                         }
                         for (String packageName : packages) {
@@ -254,14 +259,15 @@ public class Enhancement implements IXposedHookLoadPackage {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
-                        final int userId = (int) param.args[2];
                         final int packageUid = Binder.getCallingUid();
+                        if ((boolean) callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                            return;
+                        }
 
+                        final int userId = (int) param.args[2];
                         boolean isXposedModule = false;
-                        final String[] packages =
-                                (String[]) XposedHelpers.callMethod(param.thisObject, "getPackagesForUid", packageUid);
-                        if (packages == null || packages.length == 0 ||
-                                (boolean) XposedHelpers.callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                        final String[] packages = (String[]) callMethod(param.thisObject, "getPackagesForUid", packageUid);
+                        if (packages == null || packages.length == 0) {
                             return;
                         }
                         for (String packageName : packages) {
