@@ -142,8 +142,8 @@ public class Enhancement implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
         if (lpparam.packageName.equals("android")) {
-            // android.app.ApplicationPackageManager.getInstalledApplicationsAsUser(int flag, int userId)
-            findAndHookMethod("android.app.ApplicationPackageManager", lpparam.classLoader, "getInstalledApplicationsAsUser", int.class, int.class, new XC_MethodHook() {
+            // com.android.server.pm.PackageManagerService.getInstalledApplications(int flag, int userId)
+            findAndHookMethod("com.android.server.pm.PackageManagerService", lpparam.classLoader, "getInstalledApplications", int.class, int.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
@@ -168,7 +168,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                             }
                         }
 
-                        @SuppressWarnings("unchecked") final List<ApplicationInfo> applicationInfoList = (List<ApplicationInfo>) param.getResult();
+                        @SuppressWarnings("unchecked") final List<ApplicationInfo> applicationInfoList = (List<ApplicationInfo>) callMethod(param.getResult(), "getList");
                         if (isXposedModule) {
                             if (getFlagState(userId, mPretendXposedInstallerFlag)) {
                                 for (ApplicationInfo applicationInfo : applicationInfoList) {
@@ -189,12 +189,12 @@ public class Enhancement implements IXposedHookLoadPackage {
                                 }
                             }
                         }
-                        param.setResult(applicationInfoList);
+                        param.setResult(param.getResult()); // "reset" the result to indicate that we handled it
                     }
                 }
             });
-            // android.app.ApplicationPackageManager.getInstalledPackagesAsUser(int flag, int userId)
-            findAndHookMethod("android.app.ApplicationPackageManager", lpparam.classLoader, "getInstalledPackagesAsUser", int.class, int.class, new XC_MethodHook() {
+            // com.android.server.pm.PackageManagerService.getInstalledPackages(int flag, int userId)
+            findAndHookMethod("com.android.server.pm.PackageManagerService", lpparam.classLoader, "getInstalledPackages", int.class, int.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
@@ -219,7 +219,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                             }
                         }
 
-                        @SuppressWarnings("unchecked") final List<PackageInfo> packageInfoList = (List<PackageInfo>) param.getResult();
+                        @SuppressWarnings("unchecked") final List<PackageInfo> packageInfoList = (List<PackageInfo>) callMethod(param.getResult(), "getList");
                         if (isXposedModule) {
                             if (getFlagState(userId, mPretendXposedInstallerFlag)) {
                                 for (PackageInfo packageInfo : packageInfoList) {
@@ -240,7 +240,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                                 }
                             }
                         }
-                        param.setResult(packageInfoList);
+                        param.setResult(param.getResult()); // "reset" the result to indicate that we handled it
                     }
                 }
             });
