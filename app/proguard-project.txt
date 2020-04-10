@@ -43,17 +43,9 @@
     public static de.robv.android.xposed.installer.util.InstallZipUtil$XposedProp reloadXposedProp(java.io.InputStream);
 }
 
--keep class android.app.ActivityThread {
-    *;
-}
-
--keep class android.os.* {
-    *;
-}
-
--keep class dalvik.system.VMRuntime {
-    *;
-}
+-keep class android.app.ActivityThread { *; }
+-keep class android.os.* { *; }
+-keep class dalvik.system.VMRuntime { *; }
 
 # Gson use these
 -keepclassmembers class org.meowcat.edxposed.manager.util.json.JSONUtils$XposedJson
