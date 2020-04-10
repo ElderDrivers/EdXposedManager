@@ -21,7 +21,11 @@ android {
 
     buildTypes {
         release {
+            aaptOptions.cruncherEnabled = true
             zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-project.txt'
         }
         debug {
             zipAlignEnabled true
