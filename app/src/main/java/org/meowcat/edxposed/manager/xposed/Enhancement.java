@@ -4,11 +4,10 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.os.Binder;
 import android.os.Build;
+import android.os.FileObserver;
 import android.os.StrictMode;
 import android.os.UserHandle;
 import android.util.SparseArray;
-
-import androidx.annotation.Keep;
 
 import org.meowcat.edxposed.manager.StatusInstallerFragment;
 
@@ -21,6 +20,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.Keep;
+import androidx.annotation.Nullable;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -56,6 +57,7 @@ public class Enhancement implements IXposedHookLoadPackage {
     ); // UserHandle.isCore(uid) will auto pass
 
     private static final SparseArray<List<String>> modulesList = new SparseArray<>();
+    private static final SparseArray<FileObserver> modulesListObservers = new SparseArray<>();
 
     static {
         Collections.sort(HIDE_WHITE_LIST);
@@ -70,15 +72,43 @@ public class Enhancement implements IXposedHookLoadPackage {
         }
     }
 
-    private static List<String> getModulesList(int user) {
+    private static List<String> getModulesList(final int user) {
         final int index = modulesList.indexOfKey(user);
         if (index >= 0) {
             return modulesList.valueAt(index);
         }
 
+        final String filename = String.format("/data/user_de/%s/%s/conf/enabled_modules.list", user, APPLICATION_ID);
+        final FileObserver observer = new FileObserver(filename) {
+            @Override
+            public void onEvent(int event, @Nullable String path) {
+                switch (event) {
+                    case FileObserver.MODIFY:
+                        modulesList.put(user, readModulesList(filename));
+                        break;
+                    case FileObserver.MOVED_FROM:
+                    case FileObserver.MOVED_TO:
+                    case FileObserver.MOVE_SELF:
+                    case FileObserver.DELETE:
+                    case FileObserver.DELETE_SELF:
+                        modulesList.remove(user);
+                        modulesListObservers.remove(user);
+                        break;
+                }
+            }
+        };
+        modulesListObservers.put(user, observer);
+        final List<String> list = readModulesList(filename);
+        modulesList.put(user, list);
+        observer.startWatching();
+        return list;
+    }
+
+    private static List<String> readModulesList(final String filename) {
+        XposedBridge.log("EdXpMgrEx: Reading modules list " + filename + "...");
         final StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
         try {
-            final File listFile = new File(String.format("/data/user_de/%s/%s/conf/enabled_modules.list", user, APPLICATION_ID));
+            final File listFile = new File(filename);
             final List<String> list = new ArrayList<>();
             try {
                 final FileReader fileReader = new FileReader(listFile);
@@ -93,7 +123,6 @@ public class Enhancement implements IXposedHookLoadPackage {
                 XposedBridge.log(e);
             }
             Collections.sort(list);
-            modulesList.put(user, list);
             return list;
         } finally {
             StrictMode.setThreadPolicy(oldPolicy);
