@@ -352,6 +352,7 @@
     <string name="notinstalled">Платформа EdXposed Framework не установлена</string>
     <string name="app_no_ui">Это приложение не имеет пользовательский интерфейс</string>
     <string name="compile_failed">Оптимизация не удалась или возврат значения пусто</string>
+    <string name="compile_failed_with_info">Ошибка оптимизации: </string>
     <string name="hook_modules">Принудительное добавление модулей</string>
     <string name="hook_modules_summary">Принудительно добавить модули в белый список и удалить модули из черного списка\nВыключение этой настройки не удаляет модули из белого списка\nНеобходимо включение «Режим списка приложений»</string>
     <string name="not_installed">Не установлен</string>
@@ -368,7 +369,7 @@
     <string name="about_libraries_title">Лицензии с открытым исходным кодом</string>
     <string name="default_changes_log">&lt;b&gt;Обновлений пока нет&lt;/b&gt;&lt;br /&gt;Хорошие вещи стоит ждать</string>
     <string name="xposed_description">Включить улучшения EdXposed:\n    - Убрать фоновые ограничения на EdXposed\n    - Определить, правильно ли работает Xposed\n    - Притвориться что установлен Xposed Installer\n    - Скрыть EdXposed Manager</string>
-    <string name="status_enhancement">Режим улучшения</string>
+    <string name="status_enhancement">Улучшения</string>
     <string name="settings_group_enhancement">Режим улучшения</string>
     <string name="settings_title_enhancement">Статус режима улучшения</string>
     <string name="settings_summary_enhancement">Выключен\nВы можете включить режим улучшения через модуль</string>
