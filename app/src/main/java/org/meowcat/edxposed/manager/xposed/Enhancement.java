@@ -9,6 +9,10 @@ import android.os.StrictMode;
 import android.os.UserHandle;
 import android.util.SparseArray;
 
+import androidx.annotation.Keep;
+import androidx.annotation.Nullable;
+
+import org.json.JSONObject;
 import org.meowcat.edxposed.manager.StatusInstallerFragment;
 
 import java.io.BufferedReader;
@@ -20,8 +24,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.annotation.Keep;
-import androidx.annotation.Nullable;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -105,7 +107,7 @@ public class Enhancement implements IXposedHookLoadPackage {
     }
 
     private static List<String> readModulesList(final String filename) {
-        XposedBridge.log("EdXpMgrEx: Reading modules list " + filename + "...");
+        XposedBridge.log("EdXposedManager: Reading modules list " + filename + "...");
         final StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
         try {
             final File listFile = new File(filename);
@@ -141,6 +143,16 @@ public class Enhancement implements IXposedHookLoadPackage {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
+
+        XposedHelpers.findAndHookMethod(JSONObject.class, "getBoolean", String.class, new XC_MethodHook() {
+            public void beforeHookedMethod(MethodHookParam param) {
+                String str = (String) param.args[0];
+                if ("ctsProfileMatch".equals(str) || "basicIntegrity".equals(str) || "isValidSignature".equals(str)) {
+                    param.setResult(true);
+                }
+            }
+        });
+
         if (lpparam.packageName.equals("android")) {
             // com.android.server.pm.PackageManagerService.getInstalledApplications(int flag, int userId)
             findAndHookMethod("com.android.server.pm.PackageManagerService", lpparam.classLoader, "getInstalledApplications", int.class, int.class, new XC_MethodHook() {

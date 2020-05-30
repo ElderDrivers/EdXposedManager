@@ -360,7 +360,7 @@
     <string name="install_known_issue_details">详细信息…</string>
     <string name="about_libraries_title">开放源代码许可</string>
     <string name="default_changes_log">&lt;b&gt;暂无更新日志&lt;/b&gt;&lt;br /&gt;美好的事物都值得等待</string>
-    <string name="xposed_description">启用 EdXposed 的增强功能:\n    - 判断 Xposed 是否正常工作\n    - 移除针对 EdXposed 的后台限制\n    - 假装安装了 Xposed Installer\n    - 隐藏 EdXposed Manager</string>
+    <string name="xposed_description">启用 EdXposed 的增强功能:\n    - 判断 Xposed 是否正常工作\n    - 移除针对 EdXposed 的后台限制\n    - 假装安装了 Xposed Installer\n    - 隐藏 EdXposed Manager\n    - 强制通过客户端的 SafetyNet</string>
     <string name="status_enhancement">增强模式已激活</string>
     <string name="settings_group_enhancement">增强模式</string>
     <string name="settings_title_enhancement">增强模式状态</string>

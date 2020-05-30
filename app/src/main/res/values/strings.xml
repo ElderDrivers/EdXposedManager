@@ -297,8 +297,8 @@
     <string name="share_app">Share app</string>
     <string name="share_app_text">Check this out: Open-sources Xposed Framework for latest Android: EdXposed! %s</string>
     <string name="status">EdXposed Status</string>
-    <string name="xposed_on_next_reboot">EdXXposed Framework will be enabled on next reboot</string>
-    <string name="xposed_off_next_reboot">EdXXposed Framework will be disabled on next reboot</string>
+    <string name="xposed_on_next_reboot">EdXposed Framework will be enabled on next reboot</string>
+    <string name="xposed_off_next_reboot">EdXposed Framework will be disabled on next reboot</string>
     <string name="rovo_89_old_icon">rovo89 (old)</string>
     <string name="confirm_reboots">Confirm reboots</string>
 
@@ -396,7 +396,7 @@
     <string name="nav_item_logs">Logs</string>
     <string name="about_libraries_title">Open source licenses</string>
     <string name="default_changes_log">&lt;b&gt;No update changes yet&lt;/b&gt;&lt;br /&gt;Good things are worth waiting for</string>
-    <string name="xposed_description">Enable EdXposed enhancements:\n    - Remove background restrictions on EdXposed\n    - Determine if Xposed is working properly\n    - Pretend to have Xposed Installer installed\n    - Hide EdXposed Manager</string>
+    <string name="xposed_description">Enable EdXposed enhancements:\n    - Remove background restrictions on EdXposed\n    - Determine if Xposed is working properly\n    - Pretend to have Xposed Installer installed\n    - Hide EdXposed Manager\n    - Force pass SafetyNet on the client side</string>
     <string name="status_enhancement">Enhancement</string>
     <string name="settings_group_enhancement">Enhancement mode</string>
     <string name="settings_title_enhancement">Enhancement mode status</string>

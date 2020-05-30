@@ -219,7 +219,7 @@
             android:theme="@style/Theme.XposedInstaller.Toolbar.Black" />
 
         <receiver
-            android:name=".receivers.PackageChangeReceiver"
+            android:name=".receiver.PackageChangeReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
@@ -231,7 +231,7 @@
         </receiver>
 
         <receiver
-            android:name=".receivers.DownloadReceiver"
+            android:name=".receiver.DownloadReceiver"
             android:exported="true"
             android:permission="android.permission.SEND_DOWNLOAD_COMPLETED_INTENTS">
             <intent-filter>
@@ -248,7 +248,7 @@
             android:exported="false" />
 
         <receiver
-            android:name=".receivers.BootReceiver"
+            android:name=".receiver.BootReceiver"
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedReceiver" />

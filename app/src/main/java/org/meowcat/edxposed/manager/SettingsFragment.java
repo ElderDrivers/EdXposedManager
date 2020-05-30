@@ -122,7 +122,6 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         Preference whiteListSwitch = Objects.requireNonNull(groupFramework).findPreference("white_list_switch");
         Preference passSafetynet = Objects.requireNonNull(groupFramework).findPreference("pass_safetynet");
         Preference hookModules = Objects.requireNonNull(groupFramework).findPreference("hook_modules");
-        SwitchPreference prefPretendXposedInstaller = findPreference("pretend_xposed_installer");
 
         if (!XposedApp.getPreferences().getBoolean("black_white_list_switch", false)) {
             Objects.requireNonNull(whiteListSwitch).setEnabled(false);
@@ -153,6 +152,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
             return true;
         });
 
+        SwitchPreference prefPretendXposedInstaller = findPreference("pretend_xposed_installer");
         Objects.requireNonNull(prefPretendXposedInstaller).setChecked(mPretendXposedInstallerFlag.exists());
         prefPretendXposedInstaller.setOnPreferenceChangeListener((preference, newValue) -> {
             boolean enabled = (boolean) newValue;

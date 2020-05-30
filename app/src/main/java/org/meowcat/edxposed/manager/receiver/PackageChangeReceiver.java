@@ -1,4 +1,4 @@
-package org.meowcat.edxposed.manager.receivers;
+package org.meowcat.edxposed.manager.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -51,9 +51,10 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 
         mModuleUtil = getModuleUtilInstance();
 
+        InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
+
         mModuleUtil.updateModulesList(false, null);
 
-        InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
         if (module == null
                 || intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)) {
             // Package being removed, disable it if it was a previously active

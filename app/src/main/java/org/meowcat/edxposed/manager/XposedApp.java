@@ -30,7 +30,7 @@ import android.util.Log;
 import androidx.appcompat.app.ActionBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import org.meowcat.edxposed.manager.receivers.PackageChangeReceiver;
+import org.meowcat.edxposed.manager.receiver.PackageChangeReceiver;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.NotificationUtil;
 import org.meowcat.edxposed.manager.util.RepoLoader;
@@ -108,7 +108,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 //        mMainHandler.post(action);
 //    }
 
-    public static Integer getXposedVersion() {
+    public static int getXposedVersion() {
         return getActiveXposedVersion();
     }
 
