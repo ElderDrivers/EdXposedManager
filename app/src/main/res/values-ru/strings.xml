@@ -356,7 +356,7 @@
     <string name="nav_item_logs">Логи</string>
     <string name="about_libraries_title">Лицензии с открытым исходным кодом</string>
     <string name="default_changes_log">&lt;b&gt;Обновлений пока нет&lt;/b&gt;&lt;br /&gt;Хорошие вещи стоит ждать</string>
-    <string name="xposed_description">Включить улучшения EdXposed:\n    - Убрать фоновые ограничения на EdXposed\n    - Определить, правильно ли работает Xposed\n    - Притвориться что установлен Xposed Installer\n    - Скрыть EdXposed Manager</string>
+    <string name="xposed_description">Включить улучшения EdXposed:\n    - Убрать фоновые ограничения на EdXposed\n    - Определить, правильно ли работает Xposed\n    - Притвориться что установлен Xposed Installer\n    - Скрыть EdXposed Manager\n    - Принудительно пройти SafetyNet на стороне клиента</string>
     <string name="status_enhancement">Улучшения</string>
     <string name="settings_group_enhancement">Режим улучшения</string>
     <string name="settings_title_enhancement">Статус режима улучшения</string>
