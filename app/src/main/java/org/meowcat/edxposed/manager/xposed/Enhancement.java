@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.os.Binder;
 import android.os.Build;
 import android.os.FileObserver;
+import android.os.Process;
 import android.os.StrictMode;
 import android.os.UserHandle;
 import android.util.SparseArray;
@@ -160,7 +161,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                 protected void afterHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
                         final int packageUid = Binder.getCallingUid();
-                        if ((boolean) callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                        if (isUidBelongSystemCoreComponent(packageUid)) {
                             return;
                         }
 
@@ -211,7 +212,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                 protected void afterHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
                         final int packageUid = Binder.getCallingUid();
-                        if ((boolean) callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                        if (isUidBelongSystemCoreComponent(packageUid)) {
                             return;
                         }
 
@@ -262,7 +263,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                 protected void beforeHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
                         final int packageUid = Binder.getCallingUid();
-                        if ((boolean) callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                        if (isUidBelongSystemCoreComponent(packageUid)) {
                             return;
                         }
 
@@ -304,7 +305,7 @@ public class Enhancement implements IXposedHookLoadPackage {
                 protected void beforeHookedMethod(MethodHookParam param) {
                     if (param.args != null && param.args[0] != null) {
                         final int packageUid = Binder.getCallingUid();
-                        if ((boolean) callStaticMethod(UserHandle.class, "isCore", packageUid)) {
+                        if (isUidBelongSystemCoreComponent(packageUid)) {
                             return;
                         }
 
@@ -363,4 +364,12 @@ public class Enhancement implements IXposedHookLoadPackage {
         }
     }
 
+    private boolean isUidBelongSystemCoreComponent(int uid){
+        if (uid >= 0) {
+            final int appId = (int)callStaticMethod(UserHandle.class, "getAppId", uid);
+            return appId < Process.FIRST_APPLICATION_UID;
+        } else {
+            return false;
+        }
+    }
 }
