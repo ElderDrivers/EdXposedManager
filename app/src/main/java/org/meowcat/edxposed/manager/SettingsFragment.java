@@ -530,7 +530,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
             new Runnable() {
                 @Override
                 public void run() {
-                    BaseFragment.areYouSure(requireActivity(), getString(R.string.settings_summary_stop_log), (d, w) -> Shell.su("kill $(cat " + mVerboseLogProcessID.getAbsolutePath() + ")").exec(), (d, w) -> {
+                    BaseFragment.areYouSure(requireActivity(), getString(R.string.settings_summary_stop_log), (d, w) -> Shell.su("pkill -P $(cat " + mVerboseLogProcessID.getAbsolutePath() + ")").exec(), (d, w) -> {
                     });
                 }
             };
@@ -538,7 +538,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
             new Runnable() {
                 @Override
                 public void run() {
-                    BaseFragment.areYouSure(requireActivity(), getString(R.string.settings_summary_stop_log), (d, w) -> Shell.su("kill $(cat " + mModulesLogProcessID.getAbsolutePath() + ")").exec(), (d, w) -> {
+                    BaseFragment.areYouSure(requireActivity(), getString(R.string.settings_summary_stop_log), (d, w) -> Shell.su("pkill -P $(cat " + mModulesLogProcessID.getAbsolutePath() + ")").exec(), (d, w) -> {
                     });
                 }
             };
