@@ -11,16 +11,20 @@ import java.io.IOException;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 
 import static de.robv.android.xposed.installer.util.InstallZipUtil.parseXposedProp;
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 @SuppressLint("Registered")
 public class XposedApp extends Application {
+    public static final String TAG = "XposedApp";
     private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.jar");
-    private static XposedApp mInstance = null;
+    private static XposedApp instance = null;
     public InstallZipUtil.XposedProp mXposedProp;
 
+    public static boolean isEnhancementEnabled() {
+        return false;
+    }
+
     public static XposedApp getInstance() {
-        return mInstance;
+        return instance;
     }
 
     // This method is hooked by XposedBridge to return the current version
@@ -31,7 +35,8 @@ public class XposedApp extends Application {
 
     public void onCreate() {
         super.onCreate();
-        mInstance = this;
+        instance = this;
+        reloadXposedProp();
     }
 
     public void reloadXposedProp() {

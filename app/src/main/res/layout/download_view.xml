@@ -13,48 +13,43 @@
             android:layout_weight="1"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDownload"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="30dip"
+            android:layout_marginEnd="4dp"
             android:text="@string/download_view_download"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:theme="@style/Widget.AppCompat.Button.Colored" />
 
-        <Button
-            android:id="@+id/save"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="30dip"
+            android:layout_marginEnd="4dp"
             android:text="@string/save"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:theme="@style/Widget.AppCompat.Button.Colored" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDownloadCancel"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="30dip"
+            android:layout_marginEnd="4dp"
             android:text="@string/download_view_cancel"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:theme="@style/Widget.AppCompat.Button.Colored"
             android:visibility="gone"
             tools:ignore="ButtonOrder" />
 
-        <Button
-            android:id="@+id/btnRemove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="30dip"
-            android:text="@string/download_view_remove"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:visibility="gone" />
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnInstall"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="30dip"
+            android:layout_marginEnd="4dp"
             android:text="@string/download_view_install"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:theme="@style/Widget.AppCompat.Button.Colored"
             android:visibility="gone" />
 
     </LinearLayout>

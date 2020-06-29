@@ -7,17 +7,16 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.topjohnwu.superuser.Shell;
 
+import org.meowcat.edxposed.manager.databinding.FragmentCompileDialogBinding;
 import org.meowcat.edxposed.manager.util.ToastUtil;
 
 import java.lang.ref.WeakReference;
@@ -30,6 +29,7 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
     private static final String KEY_MSG = "msg";
     private static final String KEY_COMMANDS = "commands";
     private ApplicationInfo appInfo;
+
 
     public CompileDialogFragment() {
     }
@@ -59,15 +59,13 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
         }
         String msg = arguments.getString(KEY_MSG, getString(R.string.compile_speed_msg));
         final PackageManager pm = requireContext().getPackageManager();
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
                 .setIcon(appInfo.loadIcon(pm))
                 .setTitle(appInfo.loadLabel(pm))
                 .setCancelable(false);
-        View customView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_compile_dialog, null);
-        builder.setView(customView);
-        TextView msgView = customView.findViewById(R.id.message);
-        //ProgressBar progressView = customView.findViewById(R.id.progress);
-        msgView.setText(msg);
+        FragmentCompileDialogBinding binding = FragmentCompileDialogBinding.inflate(LayoutInflater.from(requireContext()), null, false);
+        builder.setView(binding.getRoot());
+        binding.message.setText(msg);
         AlertDialog alertDialog = builder.create();
         alertDialog.setCanceledOnTouchOutside(false);
         return alertDialog;
@@ -113,9 +111,9 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
             List<String> stderr = new ArrayList<>();
             Shell.Result result = Shell.su(commands).to(stdout, stderr).exec();
             List<String> ret;
-            if(stderr.size() > 0) {
+            if (stderr.size() > 0) {
                 return "Error: " + TextUtils.join("\n", stderr);
-            } else if(!result.isSuccess()) { // they might don't write to stderr
+            } else if (!result.isSuccess()) { // they might don't write to stderr
                 return "Error: " + TextUtils.join("\n", stdout);
             } else {
                 return TextUtils.join("\n", stdout);

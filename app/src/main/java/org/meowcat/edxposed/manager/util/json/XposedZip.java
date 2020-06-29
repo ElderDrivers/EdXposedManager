@@ -1,6 +1,5 @@
 package org.meowcat.edxposed.manager.util.json;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class XposedZip {
         List<XposedZip> list;
 
         public MyAdapter(Context context, List<XposedZip> objects) {
-            super(context, android.R.layout.simple_dropdown_item_1line, objects);
+            super(context, android.R.layout.simple_spinner_dropdown_item, objects);
             this.context = context;
             this.list = objects;
         }
@@ -46,7 +46,7 @@ public class XposedZip {
             View row;
             ItemHolder holder = new ItemHolder();
 
-            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            LayoutInflater inflater = ((AppCompatActivity) context).getLayoutInflater();
             row = inflater.inflate(android.R.layout.simple_dropdown_item_1line, parent, false);
 
             holder.name = row.findViewById(android.R.id.text1);

@@ -4,31 +4,29 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
+
+import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 import org.meowcat.edxposed.manager.repo.Module;
 import org.meowcat.edxposed.manager.util.PrefixedSharedPreferences;
 import org.meowcat.edxposed.manager.util.RepoLoader;
 
 import java.util.Map;
-import java.util.Objects;
 
-public class DownloadDetailsSettingsFragment extends BasePreferenceFragment {
-    private DownloadDetailsActivity mActivity;
+public class DownloadDetailsSettingsFragment extends PreferenceFragmentCompat {
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mActivity = (DownloadDetailsActivity) context;
-    }
-
-    @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        final Module module = mActivity.getModule();
-        if (module == null)
+    public void onCreatePreferencesFix(Bundle savedInstanceState, String rootKey) {
+        DownloadDetailsActivity mActivity = (DownloadDetailsActivity) getActivity();
+        if (mActivity == null) {
             return;
+        }
+        final Module module = mActivity.getModule();
+        if (module == null) {
+            return;
+        }
 
         final String packageName = module.packageName;
 
@@ -37,12 +35,12 @@ public class DownloadDetailsSettingsFragment extends BasePreferenceFragment {
         PrefixedSharedPreferences.injectToPreferenceManager(prefManager, module.packageName);
         addPreferencesFromResource(R.xml.module_prefs);
 
-        SharedPreferences prefs = requireActivity().getSharedPreferences("module_settings", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getActivity().getSharedPreferences("module_settings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
         if (prefs.getBoolean("no_global", true)) {
             for (Map.Entry<String, ?> k : prefs.getAll().entrySet()) {
-                if (Objects.requireNonNull(prefs.getString(k.getKey(), "")).equals("global")) {
+                if (("global").equals(prefs.getString(k.getKey(), ""))) {
                     editor.putString(k.getKey(), "").apply();
                 }
             }
@@ -50,11 +48,13 @@ public class DownloadDetailsSettingsFragment extends BasePreferenceFragment {
             editor.putBoolean("no_global", false).apply();
         }
 
-        Preference pref = findPreference("release_type");
-        Objects.requireNonNull(pref).setOnPreferenceChangeListener(
-                (preference, newValue) -> {
-                    RepoLoader.getInstance().setReleaseTypeLocal(packageName, (String) newValue);
-                    return true;
-                });
+        Preference releaseType = findPreference("release_type");
+        if (releaseType != null) {
+            releaseType.setOnPreferenceChangeListener((preference, newValue) -> {
+                RepoLoader.getInstance().setReleaseTypeLocal(packageName, (String) newValue);
+                return true;
+            });
+        }
     }
+
 }

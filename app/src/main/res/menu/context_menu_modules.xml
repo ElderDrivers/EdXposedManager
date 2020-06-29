@@ -3,27 +3,21 @@
 
     <item
         android:id="@+id/menu_launch"
-        android:icon="@drawable/ic_launch"
         android:title="@string/module_launch" />
     <item
         android:id="@+id/menu_download_updates"
-        android:icon="@drawable/ic_cloud_download_grey"
         android:title="@string/module_download_updates" />
     <item
         android:id="@+id/menu_support"
-        android:icon="@drawable/ic_support"
         android:title="@string/module_support" />
     <item
         android:id="@+id/menu_app_store"
-        android:icon="@drawable/ic_appstore"
         android:title="@string/modules_app_store" />
     <item
         android:id="@+id/menu_app_info"
-        android:icon="@drawable/ic_appinfo"
         android:title="@string/module_app_info" />
     <item
         android:id="@+id/menu_uninstall"
-        android:icon="@drawable/ic_uninstall"
         android:title="@string/module_uninstall" />
 
 </menu>

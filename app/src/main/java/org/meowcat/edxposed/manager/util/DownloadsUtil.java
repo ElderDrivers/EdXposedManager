@@ -1,6 +1,5 @@
 package org.meowcat.edxposed.manager.util;
 
-import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
 import android.app.DownloadManager.Request;
@@ -8,24 +7,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
-import androidx.core.content.ContextCompat;
-import androidx.core.os.EnvironmentCompat;
-
-import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.XposedApp;
-import org.meowcat.edxposed.manager.repo.Module;
-import org.meowcat.edxposed.manager.repo.ModuleVersion;
-import org.meowcat.edxposed.manager.repo.ReleaseType;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,166 +30,53 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
-
 public class DownloadsUtil {
-    static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
-    private static final Map<String, DownloadFinishedCallback> mCallbacks = new HashMap<>();
-    @SuppressLint("StaticFieldLeak")
-    private static final XposedApp mApp = XposedApp.getInstance();
-    private static final SharedPreferences mPref = mApp
-            .getSharedPreferences("download_cache", Context.MODE_PRIVATE);
+    public static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
+    private static final Map<String, DownloadFinishedCallback> callbacks = new HashMap<>();
+    private static final SharedPreferences pref = XposedApp.getInstance().getSharedPreferences("download_cache", Context.MODE_PRIVATE);
 
-    private static String DOWNLOAD_MODULES = "modules";
-
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     private static DownloadInfo add(Builder b) {
-        Context context = b.mContext;
-        removeAllForUrl(context, b.mUrl);
+        Context context = b.context;
+        removeAllForUrl(context, b.url);
 
-        if (!b.mDialog) {
-            synchronized (mCallbacks) {
-                mCallbacks.put(b.mUrl, b.mCallback);
-            }
+        synchronized (callbacks) {
+            callbacks.put(b.url, b.callback);
         }
 
-        String savePath = "Download/EdXposedManager";
-        if (b.mModule) {
-            savePath += "/modules";
-        }
-
-        Request request = new Request(Uri.parse(b.mUrl));
-        request.setTitle(b.mTitle);
-        request.setMimeType(b.mMimeType.toString());
-        if (b.mSave) {
-            try {
-                request.setDestinationInExternalPublicDir(savePath, b.mTitle + b.mMimeType.getExtension());
-            } catch (IllegalStateException e) {
-                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        } else if (b.mDestination != null) {
-            b.mDestination.getParentFile().mkdirs();
-            removeAllForLocalFile(context, b.mDestination);
-            request.setDestinationUri(Uri.fromFile(b.mDestination));
-        }
-
+        Request request = new Request(Uri.parse(b.url));
+        request.setTitle(b.title);
+        request.setMimeType(b.mimeType.toString());
         request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
-
+        File destination = new File(context.getExternalCacheDir(), "/downloads/" + b.title + b.mimeType.getExtension());
+        removeAllForLocalFile(context, destination);
+        request.setDestinationUri(Uri.fromFile(destination));
         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         long id = dm.enqueue(request);
-
-        if (b.mDialog) {
-            showDownloadDialog(b, id);
-        }
-
         return getById(context, id);
     }
 
-    private static File[] getDownloadDirs(String subDir) {
-        Context context = XposedApp.getInstance();
-        ArrayList<File> dirs = new ArrayList<>(2);
-        for (File dir : ContextCompat.getExternalCacheDirs(context)) {
-            if (dir != null && EnvironmentCompat.getStorageState(dir).equals(Environment.MEDIA_MOUNTED)) {
-                dirs.add(new File(new File(dir, "downloads"), subDir));
-            }
-        }
-        dirs.add(new File(new File(context.getCacheDir(), "downloads"), subDir));
-        return dirs.toArray(new File[0]);
-    }
-
-    private static File getDownloadTarget(String subDir, String filename) {
-        return new File(getDownloadDirs(subDir)[0], filename);
-    }
-
-    private static File getDownloadTargetForUrl(String subDir, String url) {
-        return getDownloadTarget(subDir, Uri.parse(url).getLastPathSegment());
-    }
-
-    public static DownloadInfo addModule(Context context, String title, String url, boolean save, DownloadFinishedCallback callback) {
+    public static DownloadInfo addModule(Context context, String title, String url, DownloadFinishedCallback callback) {
         return new Builder(context)
                 .setTitle(title)
                 .setUrl(url)
-                .setDestinationFromUrl(DownloadsUtil.DOWNLOAD_MODULES)
                 .setCallback(callback)
-                .setSave(save)
                 .setModule(true)
-                .setMimeType()
+                .setMimeType(MIME_TYPES.APK)
                 .download();
     }
 
-    private static void showDownloadDialog(final Builder b, final long id) {
-        final Context context = b.mContext;
-        final DownloadDialog dialog = new DownloadDialog(new MaterialDialog.Builder(context)
-                .title(b.mTitle)
-                .content(R.string.download_view_waiting)
-                .progress(false, 0, true)
-                .progressNumberFormat(context.getString(R.string.download_progress))
-                .canceledOnTouchOutside(false)
-                .negativeText(R.string.download_view_cancel)
-                .onNegative((dialog1, which) -> dialog1.cancel())
-                .cancelListener(dialog12 -> removeById(context, id))
-        );
-        dialog.setShowProcess(false);
-        dialog.show();
+    /*
+        public static ModuleVersion getStableVersion(Module m) {
+            for (int i = 0; i < m.versions.size(); i++) {
+                ModuleVersion mvTemp = m.versions.get(i);
 
-        new Thread("DownloadDialog") {
-            @SuppressWarnings("ResultOfMethodCallIgnored")
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        return;
-                    }
-
-                    final DownloadInfo info = getById(context, id);
-                    if (info == null) {
-                        dialog.cancel();
-                        return;
-                    } else if (info.status == DownloadManager.STATUS_FAILED) {
-                        dialog.cancel();
-                        XposedApp.runOnUiThread(() -> Toast.makeText(context,
-                                context.getString(R.string.download_view_failed, info.reason),
-                                Toast.LENGTH_LONG).show());
-                        return;
-                    } else if (info.status == DownloadManager.STATUS_SUCCESSFUL) {
-                        dialog.dismiss();
-                        // Hack to reset stat information.
-                        new File(info.localFilename).setExecutable(false);
-                        if (b.mCallback != null) {
-                            b.mCallback.onDownloadFinished(context, info);
-                        }
-                        return;
-                    }
-
-                    XposedApp.runOnUiThread(() -> {
-                        if (info.totalSize <= 0 || info.status != DownloadManager.STATUS_RUNNING) {
-                            dialog.setContent(R.string.download_view_waiting);
-                            dialog.setShowProcess(false);
-                        } else {
-                            dialog.setContent(R.string.download_running);
-                            dialog.setProgress(info.bytesDownloaded / 1024);
-                            dialog.setMaxProgress(info.totalSize / 1024);
-                            dialog.setShowProcess(true);
-                        }
-                    });
+                if (mvTemp.relType == ReleaseType.STABLE) {
+                    return mvTemp;
                 }
             }
-        }.start();
-    }
-
-    public static ModuleVersion getStableVersion(Module m) {
-        for (int i = 0; i < m.versions.size(); i++) {
-            ModuleVersion mvTemp = m.versions.get(i);
-
-            if (mvTemp.relType == ReleaseType.STABLE) {
-                return mvTemp;
-            }
+            return null;
         }
-        return null;
-    }
-
+    */
     public static DownloadInfo getById(Context context, long id) {
         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         Cursor c = dm.query(new Query().setFilterById(id));
@@ -325,15 +201,15 @@ public class DownloadsUtil {
         dm.remove(ids);
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     private static void removeAllForLocalFile(Context context, File file) {
+        //noinspection ResultOfMethodCallIgnored
         file.delete();
 
         String filename;
         try {
             filename = file.getCanonicalPath();
         } catch (IOException e) {
-            Log.w(TAG, "Could not resolve path for " + file.getAbsolutePath(), e);
+            Log.w(XposedApp.TAG, "Could not resolve path for " + file.getAbsolutePath(), e);
             return;
         }
 
@@ -376,22 +252,45 @@ public class DownloadsUtil {
         dm.remove(ids);
     }
 
+//    public static void removeOutdated(Context context, long cutoff) {
+//        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+//        Cursor c = dm.query(new Query());
+//        int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
+//        int columnLastMod = c.getColumnIndexOrThrow(
+//                DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
+//
+//        List<Long> idsList = new ArrayList<>();
+//        while (c.moveToNext()) {
+//            if (c.getLong(columnLastMod) < cutoff)
+//                idsList.add(c.getLong(columnId));
+//        }
+//        c.close();
+//
+//        if (idsList.isEmpty())
+//            return;
+//
+//        long[] ids = new long[idsList.size()];
+//        for (int i = 0; i < ids.length; i++)
+//            ids[i] = idsList.get(0);
+//
+//        dm.remove(ids);
+//    }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void triggerDownloadFinishedCallback(Context context, long id) {
         DownloadInfo info = getById(context, id);
         if (info == null || info.status != DownloadManager.STATUS_SUCCESSFUL)
             return;
 
         DownloadFinishedCallback callback;
-        synchronized (mCallbacks) {
-            callback = mCallbacks.get(info.url);
+        synchronized (callbacks) {
+            callback = callbacks.get(info.url);
         }
 
         if (callback == null)
             return;
 
         // Hack to reset stat information.
+        //noinspection ResultOfMethodCallIgnored
         new File(info.localFilename).setExecutable(false);
         callback.onDownloadFinished(context, info);
     }
@@ -433,8 +332,8 @@ public class DownloadsUtil {
                 }
 
                 if (useNotModifiedTags) {
-                    String modified = mPref.getString("download_" + url + "_modified", null);
-                    String etag = mPref.getString("download_" + url + "_etag", null);
+                    String modified = pref.getString("download_" + url + "_modified", null);
+                    String etag = pref.getString("download_" + url + "_etag", null);
 
                     if (modified != null) {
                         connection.addRequestProperty("If-Modified-Since", modified);
@@ -454,7 +353,7 @@ public class DownloadsUtil {
                     return new SyncDownloadInfo(SyncDownloadInfo.STATUS_NOT_MODIFIED, null);
                 } else if (responseCode < 200 || responseCode >= 300) {
                     return new SyncDownloadInfo(SyncDownloadInfo.STATUS_FAILED,
-                            mApp.getString(R.string.repo_download_failed_http,
+                            XposedApp.getInstance().getString(R.string.repo_download_failed_http,
                                     url, responseCode,
                                     httpConnection.getResponseMessage()));
                 }
@@ -473,7 +372,7 @@ public class DownloadsUtil {
                 String modified = httpConnection.getHeaderField("Last-Modified");
                 String etag = httpConnection.getHeaderField("ETag");
 
-                mPref.edit()
+                pref.edit()
                         .putString("download_" + url + "_modified", modified)
                         .putString("download_" + url + "_etag", etag).apply();
             }
@@ -482,7 +381,7 @@ public class DownloadsUtil {
 
         } catch (Throwable t) {
             return new SyncDownloadInfo(SyncDownloadInfo.STATUS_FAILED,
-                    mApp.getString(R.string.repo_download_failed, url,
+                    XposedApp.getInstance().getString(R.string.repo_download_failed, url,
                             t.getMessage()));
 
         } finally {
@@ -503,10 +402,10 @@ public class DownloadsUtil {
 
     static void clearCache(String url) {
         if (url != null) {
-            mPref.edit().remove("download_" + url + "_modified")
+            pref.edit().remove("download_" + url + "_modified")
                     .remove("download_" + url + "_etag").apply();
         } else {
-            mPref.edit().clear().apply();
+            pref.edit().clear().apply();
         }
     }
 
@@ -541,78 +440,44 @@ public class DownloadsUtil {
     }
 
     public static class Builder {
-        private final Context mContext;
-        boolean mModule = false;
-        private String mTitle = null;
-        private String mUrl = null;
-        private DownloadFinishedCallback mCallback = null;
-        private MIME_TYPES mMimeType = MIME_TYPES.APK;
-        private File mDestination = null;
-        private boolean mDialog = false;
-        private boolean mSave = false;
+        private final Context context;
+        boolean module = false;
+        private String title = null;
+        private String url = null;
+        private DownloadFinishedCallback callback = null;
+        private MIME_TYPES mimeType = MIME_TYPES.APK;
 
         public Builder(Context context) {
-            mContext = context;
+            this.context = context;
         }
 
         public Builder setTitle(String title) {
-            mTitle = title;
+            this.title = title;
             return this;
         }
 
         public Builder setUrl(String url) {
-            mUrl = url;
+            this.url = url;
             return this;
         }
 
-        Builder setCallback(DownloadFinishedCallback callback) {
-            mCallback = callback;
+        public Builder setCallback(DownloadFinishedCallback callback) {
+            this.callback = callback;
             return this;
         }
 
-        Builder setMimeType() {
-            mMimeType = MIME_TYPES.APK;
-            return this;
-        }
-
-        Builder setDestination(File file) {
-            mDestination = file;
-            return this;
-        }
-
-        Builder setDestinationFromUrl(String subDir) {
-            if (mUrl == null) {
-                throw new IllegalStateException("URL must be set first");
-            }
-            return setDestination(getDownloadTargetForUrl(subDir, mUrl));
-        }
-
-        public Builder setSave(boolean save) {
-            this.mSave = save;
+        Builder setMimeType(MIME_TYPES mimeType) {
+            this.mimeType = mimeType;
             return this;
         }
 
         public Builder setModule(boolean module) {
-            this.mModule = module;
+            this.module = module;
             return this;
         }
 
         public DownloadInfo download() {
             return add(this);
-        }
-    }
-
-    private static class DownloadDialog extends MaterialDialog {
-        DownloadDialog(Builder builder) {
-            super(builder);
-        }
-
-        @UiThread
-        void setShowProcess(boolean show) {
-            int visibility = show ? View.VISIBLE : View.GONE;
-            mProgress.setVisibility(visibility);
-            mProgressLabel.setVisibility(visibility);
-            mProgressMinMax.setVisibility(visibility);
         }
     }
 

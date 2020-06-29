@@ -1,72 +1,15 @@
-<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <!--<shortcut-->
-    <!--android:enabled="true"-->
-    <!--android:icon="@drawable/shortcut_ic_framework"-->
-    <!--android:shortcutId="framework"-->
-    <!--android:shortcutLongLabel="@string/nav_item_install"-->
-    <!--android:shortcutShortLabel="@string/nav_item_install"-->
-    <!--tools:targetApi="n_mr1">-->
-    <!--<intent-->
-    <!--android:action="android.intent.action.MAIN"-->
-    <!--android:targetClass="de.robv.android.xposed.installer.WelcomeActivity"-->
-    <!--android:targetPackage="org.meowcat.edxposed.manager">-->
-    <!--<extra-->
-    <!--android:name="fragment"-->
-    <!--android:value="0"/>-->
-    <!--</intent>-->
-    <!--</shortcut>-->
-
-    <!--<shortcut-->
-    <!--android:enabled="true"-->
-    <!--android:icon="@drawable/shortcut_ic_application"-->
-    <!--android:shortcutId="application"-->
-    <!--android:shortcutLongLabel="@string/nav_title_black_list"-->
-    <!--android:shortcutShortLabel="@string/nav_title_black_list"-->
-    <!--tools:targetApi="n_mr1">-->
-    <!--<intent-->
-    <!--android:action="android.intent.action.MAIN"-->
-    <!--android:targetClass=".WelcomeActivity"-->
-    <!--android:targetPackage="org.meowcat.edxposed.manager">-->
-    <!--<extra-->
-    <!--android:name="fragment"-->
-    <!--android:value="1"/>-->
-    <!--</intent>-->
-    <!--</shortcut>-->
-
-    <!--<shortcut-->
-    <!--android:enabled="true"-->
-    <!--android:icon="@drawable/ic_local_hospital"-->
-    <!--android:shortcutId="compat"-->
-    <!--android:shortcutLongLabel="@string/nav_title_compat_list"-->
-    <!--android:shortcutShortLabel="@string/nav_title_compat_list"-->
-    <!--tools:targetApi="n_mr1">-->
-    <!--<intent-->
-    <!--android:action="android.intent.action.MAIN"-->
-    <!--android:targetClass=".WelcomeActivity"-->
-    <!--android:targetPackage="org.meowcat.edxposed.manager">-->
-    <!--<extra-->
-    <!--android:name="fragment"-->
-    <!--android:value="2"/>-->
-    <!--</intent>-->
-    <!--</shortcut>-->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
 
     <shortcut
         android:enabled="true"
         android:icon="@drawable/shortcut_ic_modules"
         android:shortcutId="modules"
         android:shortcutLongLabel="@string/nav_item_modules"
-        android:shortcutShortLabel="@string/nav_item_modules"
-        tools:targetApi="n_mr1">
+        android:shortcutShortLabel="@string/nav_item_modules">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="org.meowcat.edxposed.manager.WelcomeActivity"
-            android:targetPackage="org.meowcat.edxposed.manager">
-            <extra
-                android:name="fragment"
-                android:value="3" />
-        </intent>
+            android:targetClass="org.meowcat.edxposed.manager.ModulesActivity"
+            android:targetPackage="org.meowcat.edxposed.manager" />
     </shortcut>
 
     <shortcut
@@ -74,50 +17,11 @@
         android:icon="@drawable/shortcut_ic_downloads"
         android:shortcutId="downloads"
         android:shortcutLongLabel="@string/nav_item_download"
-        android:shortcutShortLabel="@string/nav_item_download"
-        tools:targetApi="n_mr1">
+        android:shortcutShortLabel="@string/nav_item_download">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="org.meowcat.edxposed.manager.WelcomeActivity"
-            android:targetPackage="org.meowcat.edxposed.manager">
-            <extra
-                android:name="fragment"
-                android:value="4" />
-        </intent>
+            android:targetClass="org.meowcat.edxposed.manager.DownloadActivity"
+            android:targetPackage="org.meowcat.edxposed.manager" />
     </shortcut>
-
-    <!--<shortcut-->
-    <!--android:enabled="true"-->
-    <!--android:icon="@drawable/ic_nav_logs"-->
-    <!--android:shortcutId="logs"-->
-    <!--android:shortcutLongLabel="@string/nav_item_log"-->
-    <!--android:shortcutShortLabel="@string/nav_item_log"-->
-    <!--tools:targetApi="n_mr1">-->
-    <!--<intent-->
-    <!--android:action="android.intent.action.MAIN"-->
-    <!--android:targetClass=".WelcomeActivity"-->
-    <!--android:targetPackage="org.meowcat.edxposed.manager">-->
-    <!--<extra-->
-    <!--android:name="fragment"-->
-    <!--android:value="5"/>-->
-    <!--</intent>-->
-    <!--</shortcut>-->
-
-    <!--<shortcut-->
-    <!--android:enabled="true"-->
-    <!--android:icon="@drawable/ic_nav_logs"-->
-    <!--android:shortcutId="errorlogs"-->
-    <!--android:shortcutLongLabel="@string/nav_item_logs_err"-->
-    <!--android:shortcutShortLabel="@string/nav_item_logs_err"-->
-    <!--tools:targetApi="n_mr1">-->
-    <!--<intent-->
-    <!--android:action="android.intent.action.MAIN"-->
-    <!--android:targetClass="de.robv.android.xposed.installer.WelcomeActivity"-->
-    <!--android:targetPackage="org.meowcat.edxposed.manager">-->
-    <!--<extra-->
-    <!--android:name="fragment"-->
-    <!--android:value="6"/>-->
-    <!--</intent>-->
-    <!--</shortcut>-->
 
 </shortcuts>

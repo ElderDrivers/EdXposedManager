@@ -1,10 +1,7 @@
 package org.meowcat.edxposed.manager.util;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.provider.Browser;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.URLSpan;
@@ -14,8 +11,9 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabsIntent;
 
-import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.meowcat.edxposed.manager.BaseActivity;
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.XposedApp;
 
@@ -32,29 +30,23 @@ public final class NavUtil {
         return (spans.length > 0) ? Uri.parse(spans[0].getURL()) : null;
     }
 
-    public static void startURL(Activity activity, Uri uri) {
-        if (!XposedApp.getPreferences().getBoolean("chrome_tabs", true)) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            intent.putExtra(Browser.EXTRA_APPLICATION_ID, activity.getPackageName());
-            activity.startActivity(intent);
-            return;
-        }
-
+    public static void startURL(BaseActivity activity, Uri uri) {
         CustomTabsIntent.Builder customTabsIntent = new CustomTabsIntent.Builder();
         customTabsIntent.setShowTitle(true);
-        customTabsIntent.setToolbarColor(XposedApp.getColor(activity));
+        customTabsIntent.setToolbarColor(activity.getThemedColor(R.attr.colorActionBar));
         customTabsIntent.build().launchUrl(activity, uri);
     }
 
-    public static void startURL(Activity activity, String url) {
+    public static void startURL(BaseActivity activity, String url) {
         startURL(activity, parseURL(url));
     }
 
     @AnyThread
     public static void showMessage(final @NonNull Context context, final CharSequence message) {
-        XposedApp.runOnUiThread(() -> new MaterialDialog.Builder(context)
-                .content(message)
-                .positiveText(R.string.ok)
+        XposedApp.runOnUiThread(() -> new MaterialAlertDialogBuilder(context)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, null)
                 .show());
     }
+
 }

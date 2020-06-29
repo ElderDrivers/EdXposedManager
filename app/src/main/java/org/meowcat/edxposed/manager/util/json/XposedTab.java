@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class XposedTab implements Parcelable {
 
     public static final Creator<XposedTab> CREATOR = new Creator<XposedTab>() {
@@ -31,6 +32,11 @@ public class XposedTab implements Parcelable {
     public boolean official;
     public List<XposedZip> installers = new ArrayList<>();
     public List<XposedZip> uninstallers = new ArrayList<>();
+//    private HashMap<String, String> compatibility = new HashMap<>();
+//    private HashMap<String, String> incompatibility = new HashMap<>();
+
+//    public XposedTab() {
+//    }
 
     private XposedTab(Parcel in) {
         name = in.readString();

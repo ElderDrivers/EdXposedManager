@@ -1,6 +1,6 @@
 package org.meowcat.edxposed.manager;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -8,75 +8,74 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
+import org.meowcat.edxposed.manager.databinding.DownloadDetailsBinding;
+import org.meowcat.edxposed.manager.databinding.DownloadMoreinfoBinding;
 import org.meowcat.edxposed.manager.repo.Module;
 import org.meowcat.edxposed.manager.repo.RepoParser;
 import org.meowcat.edxposed.manager.util.NavUtil;
 import org.meowcat.edxposed.manager.util.chrome.LinkTransformationMethod;
 
 public class DownloadDetailsFragment extends Fragment {
-    private DownloadDetailsActivity mActivity;
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        mActivity = (DownloadDetailsActivity) context;
-    }
-
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final Module module = mActivity.getModule();
-        if (module == null)
+        DownloadDetailsActivity mActivity = (DownloadDetailsActivity) getActivity();
+        if (mActivity == null) {
             return null;
+        }
+        final Module module = mActivity.getModule();
+        if (module == null) {
+            return null;
+        }
+        DownloadDetailsBinding binding = DownloadDetailsBinding.inflate(inflater, container, false);
+        ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (v, insets) -> {
+            if (insets.getTappableElementInsets().bottom != insets.getSystemWindowInsetBottom()) {
+                binding.getRoot().setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
+            }
+            return insets;
+        });
+        binding.downloadTitle.setText(module.name);
+        binding.downloadTitle.setTextIsSelectable(true);
 
-        final View view = inflater.inflate(R.layout.download_details, container, false);
-
-        TextView title = view.findViewById(R.id.download_title);
-        title.setText(module.name);
-        title.setTextIsSelectable(true);
-
-        TextView author = view.findViewById(R.id.download_author);
         if (module.author != null && !module.author.isEmpty())
-            author.setText(getString(R.string.download_author, module.author));
+            binding.downloadAuthor.setText(getString(R.string.download_author, module.author));
         else
-            author.setText(R.string.download_unknown_author);
+            binding.downloadAuthor.setText(R.string.download_unknown_author);
 
-        TextView description = view.findViewById(R.id.download_description);
         if (module.description != null) {
             if (module.descriptionIsHtml) {
-                description.setText(RepoParser.parseSimpleHtml(getActivity(), module.description, description));
-                description.setTransformationMethod(new LinkTransformationMethod(getActivity()));
-                description.setMovementMethod(LinkMovementMethod.getInstance());
+                binding.downloadDescription.setText(RepoParser.parseSimpleHtml(getActivity(), module.description, binding.downloadDescription));
+                binding.downloadDescription.setTransformationMethod(new LinkTransformationMethod((BaseActivity) getActivity()));
+                binding.downloadDescription.setMovementMethod(LinkMovementMethod.getInstance());
             } else {
-                description.setText(module.description);
+                binding.downloadDescription.setText(module.description);
             }
-            description.setTextIsSelectable(true);
+            binding.downloadDescription.setTextIsSelectable(true);
         } else {
-            description.setVisibility(View.GONE);
+            binding.downloadDescription.setVisibility(View.GONE);
         }
 
-        ViewGroup moreInfoContainer = view.findViewById(R.id.download_moreinfo_container);
         for (Pair<String, String> moreInfoEntry : module.moreInfo) {
-            View moreInfoView = inflater.inflate(R.layout.download_moreinfo, moreInfoContainer, false);
-            TextView txtTitle = moreInfoView.findViewById(android.R.id.title);
-            TextView txtValue = moreInfoView.findViewById(android.R.id.message);
+            DownloadMoreinfoBinding moreinfoBinding = DownloadMoreinfoBinding.inflate(inflater, binding.downloadMoreinfoContainer, false);
 
-            txtTitle.setText(String.format(moreInfoEntry.first + "%s", ":"));
-            txtValue.setText(moreInfoEntry.second);
+            moreinfoBinding.title.setText(moreInfoEntry.first + ":");
+            moreinfoBinding.message.setText(moreInfoEntry.second);
 
             final Uri link = NavUtil.parseURL(moreInfoEntry.second);
             if (link != null) {
-                txtValue.setTextColor(txtValue.getLinkTextColors());
-                moreInfoView.setOnClickListener(v -> NavUtil.startURL(getActivity(), link));
+                moreinfoBinding.message.setTextColor(moreinfoBinding.message.getLinkTextColors());
+                moreinfoBinding.getRoot().setOnClickListener(v -> NavUtil.startURL((BaseActivity) getActivity(), link));
             }
 
-            moreInfoContainer.addView(moreInfoView);
+            binding.downloadMoreinfoContainer.addView(moreinfoBinding.getRoot());
         }
 
-        return view;
+        return binding.getRoot();
     }
 }
