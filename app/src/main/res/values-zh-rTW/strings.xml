@@ -12,7 +12,6 @@
     <string name="welcome_framework_update_available">EdXposed 框架有新的更新可供使用（%s）</string>
 
     <!-- navigation view items -->
-    <string name="nav_item_install">框架</string>
     <string name="nav_item_modules">模組</string>
     <string name="nav_item_download">線上模組庫</string>
     <string name="nav_item_logs_verbose">詳細日誌</string>
@@ -105,7 +104,6 @@
     <string name="settings_group_framework">框架</string>
     <string name="settings_title_disable_resources">停用資源鉤子</string>
     <string name="settings_summary_disable_resources">解決與主題引擎的衝突\n<b>警告：</b> 啟用該選項將導致修改資源的模組無法運作</string>
-    <string name="settings_group_app">應用程式</string>
     <string name="settings_title_theme">主題</string>
     <string name="settings_theme_light">亮色</string>
     <string name="settings_theme_dark">暗色</string>
@@ -242,7 +240,7 @@
     <string name="rovo_89_old_icon">rovo89（舊風格）</string>
     <string name="confirm_reboots">重新啟動確認</string>
     <string name="settings_title_skip_status_check">跳過模組檢查</string>
-    <string name="settings_summary_skip_status_check">跳過針對模組的「EdXposed 最低版本」和「EdXposed 安裝狀態」檢查</string>
+    <string name="settings_summary_skip_status_check">跳過針對模組的「EdXposed 安裝狀態」檢查</string>
 
     <string name="notice">注意事項</string>
     <string name="details">詳細情形</string>
@@ -255,7 +253,7 @@
     <string name="cache_cleaned">應用快取已清除。需要重新開啟</string>
     <string name="update_download_list">模組清單將在幾秒鐘內載入</string>
     <string name="no_connection_available">沒有可用的連線</string>
-    <string name="not_logcat">如果有人要求您提供一份 Android 系統日誌，那麼您來錯了地方。在此處顯示的是 EdXposed 的日誌資訊；如果您想抓取系統日誌，可嘗試我們抓 Logcat 的 Magisk 模組。</string>
+    <string name="not_logcat">如果有人要求您提供一份 Android 系統日誌，那麼您來錯了地方。在此處顯示的是 EdXposed 的日誌資訊；如果您想抓取系統日誌，可嘗試我們的「Log Catcher」Magisk 模組。</string>
     <string name="force_english">強制顯示為英語</string>
     <string name="warning_language">語言設定將在應用程式重新啟動後生效。</string>
     <string name="installation_error">安裝錯誤</string>
@@ -275,7 +273,7 @@
     <string name="known_issue_missing_base_directory">遺失配置的資料夾</string>
 
     <string name="dexopt_now">以 Dexopt 模式最佳化所有應用程式</string>
-    <string name="speed_now">以 Speed 模式最佳化所有應用程式</string>
+    <string name="speed_now">以 Dex2oat(Speed) 模式最佳化所有應用程式</string>
     <string name="this_may_take_a_while">請稍候，這將需要一段時間…</string>
     <string name="take_while_cannot_resore">您確定要最佳化全部的應用程式嗎？\n這將需要花費一段時間並且無法恢復操作。\n提示：您可以在應用程式清單中最佳化單個應用程式。</string>
     <string name="done">完成！</string>
@@ -287,11 +285,10 @@
     <string name="ignore_chinese_summary">從模組清單中隱藏中文模組。模組仍然可以被搜尋。啟用此選項可能會降低效能。</string>
 
     <!-- EdXp related -->
-    <string name="nav_title_black_list">應用程式</string>
     <string name="nav_title_compat_list">相容模式</string>
-    <string name="white_list_mode_title">白名單模式</string>
-    <string name="title_white_list">白名單</string>
-    <string name="title_black_list">黑名單</string>
+    <string name="white_list_mode_title">Xposed Hide（白）</string>
+    <string name="title_white_list">白</string>
+    <string name="title_black_list">黑</string>
     <string name="add_package_failed">修改失敗，一個或多個設定封锁你繼續修改</string>
     <string name="menu_title_compile_reset">重設最佳化</string>
     <string name="menu_title_compile_speed">以 Speed 模式最佳化應用程式</string>
@@ -301,9 +298,8 @@
     <string name="settings_title_dynamic_modules">即時模組清單</string>
     <string name="settings_summary_dynamic_modules">啟用後，每個應用程式啟動時重新載入最新的模組清單</string>
     <string name="title_compat_list">相容模式</string>
-    <string name="settings_title_black_white_list">應用程式清單模式</string>
-    <string name="settings_summary_black_white_list">啟用本選項之後，您可以在「應用程式」設定清單\n黑名單模式：被選取的應用程式不會載入 EdXposed 的模組\n注意：使用應用程式清單模式可能會導致某些系統全域性模組不能正常運作。</string>
-    <string name="white_list_mode_summary">白名單模式：僅被選取的應用程式會載入 EdXposed 的模組\n應用程式清單模式需要被啟用</string>
+    <string name="settings_summary_black_white_list">啟用本選項之後，您可以在「Xposed Hide」設定清單\nXposed Hide（黑）：被選取的應用程式不會載入 EdXposed 的模組\n注意：使用 Xposed Hide 可能會導致某些系統全域性模組不能正常運作。</string>
+    <string name="white_list_mode_summary">Xposed Hide（白）：僅被選取的應用程式會載入 EdXposed 的模組\nXposed Hide 需要被啟用</string>
 
     <string name="meowcat">小喵工作室</string>
     <string name="coolapk">酷安</string>
@@ -342,14 +338,14 @@
     <string name="compile_failed">最佳化失敗</string>
     <string name="compile_failed_with_info">最佳化失敗: </string>
     <string name="hook_modules">強制掛鉤模組</string>
-    <string name="hook_modules_summary">強制新增模組到白名單並從黑名單移除\n關閉本選項不會把模組從白名單移除\n應用程式清單模式需要被啟用</string>
+    <string name="hook_modules_summary">強制新增模組到白名單並從黑名單移除\n關閉本選項不會把模組從白名單移除\nXposed Hide 需要被啟用</string>
     <string name="not_installed">未安裝</string>
     <string name="ok">好</string>
     <string name="settings_title_pass_safetynet">使 SafetyNet 通過驗證</string>
-    <string name="settings_summary_pass_safetynet">強制新增 GMS 和 GSF 到黑名單並從白名單當中移除\n關閉本選項不會把模組從黑名單移除\n應用程式清單模式需要被啟用</string>
+    <string name="settings_summary_pass_safetynet">強制新增 GMS 和 GSF 到黑名單並從白名單當中移除\n關閉本選項不會把模組從黑名單移除\nXposed Hide 需要被啟用</string>
     <string name="support_group_telegram_channel_label">Telegram 頻道：@EdXposed</string>
     <string name="settings_title_old_success_color">使用舊的狀態啟用顏色（綠色）</string>
-    <string name="warning_list_not_enabled">應用程式清單模式尚未被啟用\n您可以在設定當中啟用</string>
+    <string name="warning_list_not_enabled">Xposed Hide 尚未被啟用\n您可以在設定當中啟用</string>
     <string name="empty_param">參數空白</string>
     <string name="reboot_system">完整重新啟動</string>
     <string name="settings_summary_stop_verbose_log">在下次重新啟動前詳細記錄將不再被抓取</string>

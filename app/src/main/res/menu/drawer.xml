@@ -8,13 +8,13 @@
             android:icon="@drawable/ic_nav_install"
             android:title="@string/nav_item_install" />
         <item
-            android:id="@+id/nav_black_list"
-            android:icon="@drawable/ic_format_list_bulleted"
-            android:title="@string/nav_title_black_list" />
-        <item
             android:id="@+id/nav_compat_list"
             android:icon="@drawable/ic_local_hospital"
             android:title="@string/nav_title_compat_list" />
+        <item
+            android:id="@+id/nav_black_list"
+            android:icon="@drawable/ic_format_list_bulleted"
+            android:title="@string/nav_title_black_list" />
     </group>
     <group
         android:id="@+id/drawer_modules"
