@@ -45,13 +45,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPInputStream;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 public class RepoLoader {
     private static final int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000;
     private static String DEFAULT_REPOSITORIES;
     private static RepoLoader mInstance = null;
     private final List<RepoListener> mListeners = new CopyOnWriteArrayList<>();
     private final Map<String, ReleaseType> mLocalReleaseTypesCache = new HashMap<>();
-    private XposedApp mApp = null;
+    private XposedApp mApp;
     private SharedPreferences mPref;
     private SharedPreferences mModulePref;
     private ConnectivityManager mConMgr;
@@ -78,7 +80,7 @@ public class RepoLoader {
         return mInstance;
     }
 
-    private boolean refreshRepositories() {
+    private void refreshRepositories() {
         mRepositories = RepoDb.getRepositories();
 
         // Unlikely case (usually only during initial load): DB state doesn't
@@ -98,14 +100,13 @@ public class RepoLoader {
         }
 
         if (!needReload)
-            return false;
+            return;
 
         clear(false);
         for (String url : config) {
             RepoDb.insertRepository(url);
         }
         mRepositories = RepoDb.getRepositories();
-        return true;
     }
 
     public void setReleaseTypeGlobal(String relTypeString) {
@@ -151,10 +152,6 @@ public class RepoLoader {
             mLocalReleaseTypesCache.put(packageName, result);
             return result;
         }
-    }
-
-    public Repository getRepository(long repoId) {
-        return mRepositories.get(repoId);
     }
 
     public Module getModule(String packageName) {
@@ -266,18 +263,6 @@ public class RepoLoader {
             notifyListeners();
     }
 
-//    public void setRepositories(String... repos) {
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < repos.length; i++) {
-//            if (i > 0)
-//                sb.append("|");
-//            sb.append(repos[i]);
-//        }
-//        mPref.edit().putString("repositories", sb.toString()).apply();
-//        if (refreshRepositories())
-//            triggerReload(true);
-//    }
-
     public boolean hasModuleUpdates() {
         return RepoDb.hasModuleUpdates();
     }
@@ -310,7 +295,7 @@ public class RepoLoader {
             SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(url,
                     cacheFile);
 
-            Log.i(XposedApp.TAG, String.format(
+            Log.i(TAG, String.format(
                     "RepoLoader -> Downloaded %s with status %d (error: %s), size %d bytes",
                     url, info.status, info.errorMessage, cacheFile.length()));
 
@@ -362,7 +347,7 @@ public class RepoLoader {
                             repo.version = repository.version;
                         }
 
-                        Log.i(XposedApp.TAG, String.format(
+                        Log.i(TAG, String.format(
                                 "RepoLoader -> Updated repository %s to version %s (%d new / %d removed modules)",
                                 repo.url, repo.version, insertCounter.get(),
                                 deleteCounter.get()));
@@ -390,7 +375,7 @@ public class RepoLoader {
 
                 DownloadsUtil.clearCache(url);
             } catch (Throwable t) {
-                Log.e(XposedApp.TAG, "RepoLoader -> Cannot load repository from " + url, t);
+                Log.e(TAG, "RepoLoader -> Cannot load repository from " + url, t);
                 messages.add(mApp.getString(R.string.repo_load_failed, url, t.getMessage()));
                 DownloadsUtil.clearCache(url);
             } finally {

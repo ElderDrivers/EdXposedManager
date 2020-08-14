@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.util.Log;
 
-import org.meowcat.bugcatcher.MeowCatApplication;
+import org.meowcat.edxposed.manager.MeowCatApplication;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -10,7 +10,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 
 import androidx.core.content.FileProvider;
 
@@ -34,6 +33,11 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
     private boolean isApkRootInstallOn;
     private List<String> output = new LinkedList<>();
 
+    public InstallApkUtil(Context context, DownloadsUtil.DownloadInfo info) {
+        this.context = context;
+        this.info = info;
+    }
+
     public static String getAppLabel(ApplicationInfo info, PackageManager pm) {
         try {
             if (info.labelRes > 0) {
@@ -48,21 +52,12 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
         return info.loadLabel(pm).toString();
     }
 
-    public InstallApkUtil(Context context, DownloadsUtil.DownloadInfo info) {
-        this.context = context;
-        this.info = info;
-    }
-
     static void installApkNormally(Context context, String localFilename) {
         Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
         installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri uri;
-        if (Build.VERSION.SDK_INT >= 24) {
-            uri = FileProvider.getUriForFile(context, "org.meowcat.edxposed.manager.fileprovider", new File(localFilename));
-            installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        } else {
-            uri = Uri.fromFile(new File(localFilename));
-        }
+        uri = FileProvider.getUriForFile(context, "org.meowcat.edxposed.manager.fileprovider", new File(localFilename));
+        installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         installIntent.setDataAndType(uri, DownloadsUtil.MIME_TYPE_APK);
         installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
         context.startActivity(installIntent);
@@ -91,8 +86,7 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Integer> {
                 Shell.Result result = Shell.su("pm install -r -f \"" + path + fileName + "\"").exec();
                 returnCode = result.getCode();
                 output = result.getOut();
-                //noinspection ResultOfMethodCallIgnored
-                new File(path + fileName).delete();
+                Shell.su("rm -f " + path + fileName).exec();
             } catch (IllegalStateException e) {
                 returnCode = ERROR_ROOT_NOT_GRANTED;
             }

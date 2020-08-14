@@ -1,10 +1,7 @@
 <resources>
-    <string name="app_name">EdXposed Manager</string>
     <string name="upgrade_msg">Обновите до полной версии EdXposed Manager, чтобы закончить установку. Загрузить и установить?</string>
     <string name="status_text">Статус EdXposed</string>
-    <string name="status_0">Не установлен</string>
+    <string name="status_0">Не установлен (правильно)</string>
     <string name="status_1">Не активирован</string>
     <string name="status_2">Активирован</string>
-    <string name="btn_ok">ОК</string>
-    <string name="btn_no">Отмена</string>
 </resources>

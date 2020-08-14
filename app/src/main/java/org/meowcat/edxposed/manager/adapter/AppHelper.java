@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -15,8 +14,11 @@ import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.R;
+import org.meowcat.edxposed.manager.StatusInstallerFragment;
 import org.meowcat.edxposed.manager.XposedApp;
 import org.meowcat.edxposed.manager.util.CompileUtil;
 
@@ -31,10 +33,9 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
+import static org.meowcat.edxposed.manager.XposedApp.rwxrwxrwx;
 
 public class AppHelper {
-
-    public static final String TAG = XposedApp.TAG;
 
     private static final String BASE_PATH = XposedApp.BASE_DIR;
     private static final String WHITE_LIST_PATH = "conf/whitelist/";
@@ -43,16 +44,14 @@ public class AppHelper {
     private static final String WHITE_LIST_MODE = "conf/usewhitelist";
     private static final String BLACK_LIST_MODE = "conf/blackwhitelist";
 
-    private static final List<String> FORCE_WHITE_LIST  = new ArrayList<>(Collections.singletonList(BuildConfig.APPLICATION_ID));
-    static List<String> FORCE_WHITE_LIST_MODULE = new ArrayList<>(FORCE_WHITE_LIST);
+    private static final List<String> FORCE_WHITE_LIST = new ArrayList<>(StatusInstallerFragment.isEnhancementEnabled() ? Arrays.asList(BuildConfig.APPLICATION_ID, "android") : Collections.singletonList(BuildConfig.APPLICATION_ID));
+    private static final List<String> SAFETYNET_BLACK_LIST = new ArrayList<>(Arrays.asList("com.google.android.gms", "com.google.android.gsf"));
+    public static List<String> FORCE_WHITE_LIST_MODULE = new ArrayList<>(FORCE_WHITE_LIST);
 
-    private static final List<String> SAFETYNET_BLACK_LIST  = new ArrayList<>(Arrays.asList("com.google.android.gms", "com.google.android.gsf"));
-
-    @SuppressWarnings("OctalInteger")
     static void makeSurePath() {
-        XposedApp.mkdirAndChmod(WHITE_LIST_PATH, 00777);
-        XposedApp.mkdirAndChmod(BLACK_LIST_PATH, 00777);
-        XposedApp.mkdirAndChmod(COMPAT_LIST_PATH, 00777);
+        XposedApp.mkdirAndChmod(WHITE_LIST_PATH, rwxrwxrwx);
+        XposedApp.mkdirAndChmod(BLACK_LIST_PATH, rwxrwxrwx);
+        XposedApp.mkdirAndChmod(COMPAT_LIST_PATH, rwxrwxrwx);
     }
 
     public static boolean isWhiteListMode() {
@@ -64,8 +63,8 @@ public class AppHelper {
     }
 
     private static boolean addWhiteList(String packageName) {
-            if (SAFETYNET_BLACK_LIST.contains(packageName)) {
-                if (XposedApp.getPreferences().getBoolean("pass_safetynet", false)) {
+        if (SAFETYNET_BLACK_LIST.contains(packageName)) {
+            if (XposedApp.getPreferences().getBoolean("pass_safetynet", false)) {
                 removeWhiteList(packageName);
                 return false;
             }
@@ -89,8 +88,8 @@ public class AppHelper {
     }
 
     private static boolean removeBlackList(String packageName) {
-            if (SAFETYNET_BLACK_LIST.contains(packageName)) {
-                if (XposedApp.getPreferences().getBoolean("pass_safetynet", false)) {
+        if (SAFETYNET_BLACK_LIST.contains(packageName)) {
+            if (XposedApp.getPreferences().getBoolean("pass_safetynet", false)) {
                 return false;
             }
         }
@@ -272,9 +271,9 @@ public class AppHelper {
     @SuppressLint("RestrictedApi")
     public static void showMenu(@NonNull Context context,
                                 @NonNull FragmentManager fragmentManager,
-                                @NonNull View anchor,
+                                @NonNull View view,
                                 @NonNull ApplicationInfo info) {
-        PopupMenu appMenu = new PopupMenu(context, anchor);
+        PopupMenu appMenu = new PopupMenu(context, view);
         appMenu.inflate(R.menu.menu_app_item);
         appMenu.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
@@ -283,7 +282,7 @@ public class AppHelper {
                     if (launchIntent != null) {
                         context.startActivity(launchIntent);
                     } else {
-                        Toast.makeText(context, context.getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+                        Snackbar.make(view, R.string.app_no_ui, Snackbar.LENGTH_LONG).show();
                     }
                     break;
                 case R.id.app_menu_stop:
@@ -322,7 +321,7 @@ public class AppHelper {
             }
             return true;
         });
-        MenuPopupHelper menuHelper = new MenuPopupHelper(context, (MenuBuilder) appMenu.getMenu(), anchor);
+        MenuPopupHelper menuHelper = new MenuPopupHelper(context, (MenuBuilder) appMenu.getMenu(), view);
         menuHelper.setForceShowIcon(true);
         menuHelper.show();
     }

@@ -57,7 +57,7 @@ public class XposedZip {
             return row;
         }
 
-        private class ItemHolder {
+        private static class ItemHolder {
             TextView name;
         }
 

@@ -11,12 +11,11 @@
     <string name="welcome_framework_update_available">Aktualizace EdXposed frameworku je k dispozici (%s).</string>
 
     <!-- navigation view items -->
-    <string name="nav_item_install">Framework</string>
     <string name="nav_item_modules">Moduly</string>
     <string name="nav_item_download">Stáhnout</string>
     <string name="nav_item_settings">Nastavení</string>
-    <string name="nav_item_logs">Podrobné záznamy</string>
-    <string name="nav_item_logs_err">Záznamy modulů</string>
+    <string name="nav_item_logs_verbose">Podrobné záznamy</string>
+    <string name="nav_item_logs_modules">Záznamy modulů</string>
     <string name="nav_item_about">O aplikaci</string>
     <string name="navigation_drawer_open">Otevřít panel navigace</string>
     <string name="navigation_drawer_close">Zavřít panel navigace</string>
@@ -100,7 +99,6 @@
     <string name="settings_title_release_type">Zobrazované verze</string>
     <string name="settings_title_disable_resources">Zakázat ovlivňování prostředků</string>
     <string name="settings_summary_disable_resources">(Resource hooks)\nŘeší konflikty s tématy (theme engines)\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat</string>
-    <string name="settings_group_app">Aplikace</string>
     <string name="settings_title_theme">Motiv</string>
     <string name="settings_theme_light">Světlý</string>
     <string name="settings_theme_dark">Tmavý</string>
@@ -255,8 +253,6 @@
     <string name="install_load_apk">Instaluji %s</string>
 
     <string name="unstable_build">Toto není stabilní sestavení. Instaluj na vlastní nebezpečí.</string>
-    <string name="alt_download_method">Alternativní metoda stahování</string>
-    <string name="alt_download_method_summ">Zaškrtni tuto volbu pokud se objevují problémy při stahování modulů</string>
 
     <string name="known_issue_wrong_base_directory">Chybný základní adresář: %1$s</string>
     <string name="known_issue_missing_base_directory">Chybějící základní adresář</string>
@@ -271,11 +267,7 @@
     <string name="ignore_chinese_summary">Skrýt ze seznamu čínské moduly. Moduly jsou stále dostupné v okně vyhledávání. Povolení této volby může mít za následek omezení výkonu.</string>
 
     <!-- EdXp related -->
-    <string name="nav_title_black_list">Seznam aplikací</string>
-    <string name="nav_title_compat_list">Compat List</string>
-    <string name="white_list_mode_title">Režim bílé listiny</string>
-    <string name="title_white_list">Bílá listina</string>
-    <string name="title_black_list">Černá listina</string>
+    <string name="nav_title_compat_list">Režim kompatibility</string>
     <string name="add_package_failed">Úprava balíčku selhala, zkontroluj funkčnost oprávnění root.</string>
     <string name="menu_title_compile_reset">Resetuj zkompilovaný kód</string>
     <string name="menu_title_compile_speed">Vynutit kompilaci v režimu rychlosti</string>
@@ -284,9 +276,6 @@
     <string name="settings_title_dynamic_modules">Okamžitý seznam modulů</string>
     <string name="settings_summary_dynamic_modules">Pokud zapnuto, nahrát seznam naposledy aktivovaných modulů při každém spuštění procesu aplikace</string>
     <string name="title_compat_list">Režim kompatibility</string>
-    <string name="settings_title_black_white_list">Režim seznamu aplikací</string>
-    <string name="settings_summary_black_white_list">Poznámka: používání režimu seznamu aplikací může rozbít funkce modulů operujících v rámci systému.</string>
-    <string name="white_list_mode_summary">Režim bílé listiny: Pouze vybraná aplikace načte EdXposed Framework.\nRežim černé listiny: Vybraná aplikace nenačte EdXposed Framework.</string>
 
     <string name="meowcat">MeowCat Studio</string>
     <string name="coolapk">CoolApk</string>
@@ -302,4 +291,6 @@
 
     <string name="settings_title_disable_verbose_log">Zakázat podrobné záznamy</string>
     <string name="logs_verbose_disabled">Podrobné záznamy vypnuty.</string>
+    <string name="settings_group_framework">Framework</string>
+    <string name="settings_title_show_modules">Show modules and manager</string>
 </resources>

@@ -1,10 +1,10 @@
 package org.meowcat.edxposed.manager;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
@@ -18,11 +18,10 @@ import java.util.Objects;
 public class DownloadDetailsSettingsFragment extends BasePreferenceFragment {
     private DownloadDetailsActivity mActivity;
 
-    @SuppressWarnings("NullableProblems")
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mActivity = (DownloadDetailsActivity) activity;
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = (DownloadDetailsActivity) context;
     }
 
     @Override

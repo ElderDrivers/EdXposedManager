@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dip"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="5dip"
             android:orientation="vertical">
 
@@ -76,9 +76,9 @@
                         android:id="@+id/framework_install_errors"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:padding="6dp"
                         android:textColor="@color/warning"
                         android:textStyle="bold" />
@@ -91,11 +91,68 @@
                         android:visibility="gone" />
 
                     <Button
-                        android:id="@+id/framework_know_issue_detail"
+                        android:id="@+id/framework_known_issue_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
                         android:text="@string/install_known_issue_details"
-                        android:visibility="gone" />
+                        android:textColor="?android:colorAccent"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/noticeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="?attr/list_download_item_color"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardUseCompatPadding="true"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:minHeight="?android:listPreferredItemHeightSmall"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/card_horizontal_margin"
+                    android:paddingEnd="@dimen/card_horizontal_margin">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/notice_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                        <Button
+                            android:id="@+id/btn_notice_dismiss"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="@string/btn_dismiss"
+                            android:textColor="?android:colorAccent" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -395,6 +452,42 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
+                            android:src="@drawable/ic_pound_box"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp">
+
+                            <TextView
+                                android:id="@+id/selinux"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
+                        android:orientation="horizontal"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:src="@drawable/ic_verified"
                             tools:ignore="ContentDescription" />
 
@@ -449,9 +542,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
-                        android:minHeight="?android:listPreferredItemHeightSmall"
                         android:gravity="start|center_vertical"
+                        android:minHeight="?android:listPreferredItemHeightSmall"
+                        android:padding="6dp"
                         android:text="@string/update"
                         android:textAllCaps="true"
                         android:textStyle="bold" />

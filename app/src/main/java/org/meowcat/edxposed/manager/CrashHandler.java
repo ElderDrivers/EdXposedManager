@@ -2,7 +2,7 @@
  * Copyright (c) 2013-2020 MeowCat Studio Powered by MlgmXyysd All Rights Reserved.
  */
 
-package org.meowcat.bugcatcher;
+package org.meowcat.edxposed.manager;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,8 +10,6 @@ import android.os.Build;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
-
-import org.meowcat.edxposed.manager.BuildConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,20 +20,22 @@ import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 public class CrashHandler implements UncaughtExceptionHandler {
-    private static final String TAG = MeowCatApplication.TAG;
     @SuppressLint("StaticFieldLeak")
     private static CrashHandler INSTANCE = new CrashHandler();
-    private UncaughtExceptionHandler mDefaultHandler;
+    private Thread.UncaughtExceptionHandler mDefaultHandler;
     private Context Context;
     private Map<String, String> infos = new HashMap<>();
-    @SuppressLint("SimpleDateFormat")
-    private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+    private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault());
 
     private CrashHandler() {
     }
@@ -50,7 +50,6 @@ public class CrashHandler implements UncaughtExceptionHandler {
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
         if (!handleException(ex) && mDefaultHandler != null) {
@@ -92,8 +91,13 @@ public class CrashHandler implements UncaughtExceptionHandler {
         for (Field field : fields) {
             try {
                 field.setAccessible(true);
-                infos.put(field.getName(), field.get(null) + "");
-                Log.d(TAG, field.getName() + " : " + field.get(null));
+                Object object = field.get(null);
+                String result = object.toString();
+                if (object instanceof String[]) {
+                    result = Arrays.asList((String[]) object).toString();
+                }
+                infos.put(field.getName(), result);
+                Log.d(TAG, field.getName() + " : " + result);
             } catch (Exception e) {
                 Log.e(TAG, "An error occurred when collect crash info", e);
             }

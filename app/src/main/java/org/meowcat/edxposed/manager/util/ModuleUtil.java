@@ -12,9 +12,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.FileUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.meowcat.edxposed.manager.ModulesFragment;
 import org.meowcat.edxposed.manager.R;
@@ -31,7 +34,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@SuppressWarnings("OctalInteger")
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+import static org.meowcat.edxposed.manager.XposedApp.rw_rw_r__;
+
 public final class ModuleUtil {
     // xposedminversion below this
     private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/modules.list";
@@ -43,10 +48,8 @@ public final class ModuleUtil {
     private final String mFrameworkPackageName;
     private final List<ModuleListener> mListeners = new CopyOnWriteArrayList<>();
     private SharedPreferences mPref;
-    private InstalledModule mFramework = null;
     private Map<String, InstalledModule> mInstalledModules;
     private boolean mIsReloading = false;
-    private Toast mToast;
 
     private ModuleUtil() {
         mApp = XposedApp.getInstance();
@@ -75,7 +78,6 @@ public final class ModuleUtil {
         return result;
     }
 
-    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     public void reloadInstalledModules() {
         synchronized (this) {
             if (mIsReloading)
@@ -97,8 +99,6 @@ public final class ModuleUtil {
                 if (app.metaData != null && app.metaData.containsKey("xposedmodule")) {
                     installed = new InstalledModule(pkg, false);
                     modules.put(pkg.packageName, installed);
-                } else if (isFramework(pkg.packageName)) {
-                    mFramework = installed = new InstalledModule(pkg, true);
                 }
 
                 if (installed != null)
@@ -160,21 +160,9 @@ public final class ModuleUtil {
         return mIsReloading;
     }
 
-    public InstalledModule getFramework() {
-        return mFramework;
-    }
-
     public String getFrameworkPackageName() {
         return mFrameworkPackageName;
     }
-
-    private boolean isFramework(String packageName) {
-        return mFrameworkPackageName.equals(packageName);
-    }
-
-//    public boolean isInstalled(String packageName) {
-//        return mInstalledModules.containsKey(packageName) || isFramework(packageName);
-//    }
 
     public InstalledModule getModule(String packageName) {
         return mInstalledModules.get(packageName);
@@ -210,13 +198,13 @@ public final class ModuleUtil {
         return result;
     }
 
-    public synchronized void updateModulesList(boolean showToast) {
+    public synchronized void updateModulesList(boolean showToast, View view) {
         try {
-            Log.i(XposedApp.TAG, "ModuleUtil -> updating modules.list");
+            Log.i(TAG, "ModuleUtil -> updating modules.list");
             int installedXposedVersion = XposedApp.getXposedVersion();
             boolean disabled = StatusInstallerFragment.DISABLE_FILE.exists();
             if (!XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false) && !disabled && installedXposedVersion <= 0 && showToast) {
-                Toast.makeText(mApp, R.string.notinstalled, Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, R.string.notinstalled, Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
@@ -226,7 +214,7 @@ public final class ModuleUtil {
             for (InstalledModule module : enabledModules) {
 
                 if (!XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false) && (!disabled && (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)) && showToast) {
-                    Toast.makeText(mApp, R.string.notinstalled, Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, R.string.notinstalled, Snackbar.LENGTH_SHORT).show();
                     continue;
                 }
 
@@ -242,26 +230,16 @@ public final class ModuleUtil {
             modulesList.close();
             enabledModulesList.close();
 
-            FileUtils.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
-            FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, 00664, -1, -1);
+            FileUtils.setPermissions(MODULES_LIST_FILE, rw_rw_r__, -1, -1);
+            FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, rw_rw_r__, -1, -1);
 
             if (showToast) {
-                showToast(R.string.xposed_module_list_updated);
+                Snackbar.make(view, R.string.xposed_module_list_updated, Snackbar.LENGTH_SHORT).show();
             }
         } catch (IOException e) {
-            Log.e(XposedApp.TAG, "ModuleUtil -> cannot write " + MODULES_LIST_FILE, e);
+            Log.e(TAG, "ModuleUtil -> cannot write " + MODULES_LIST_FILE, e);
             Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e, Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void showToast(int message) {
-        if (mToast != null) {
-            mToast.cancel();
-            mToast = null;
-        }
-        mToast = Toast.makeText(mApp, mApp.getString(message), Toast.LENGTH_SHORT);
-        mToast.show();
     }
 
     public void addListener(ModuleListener listener) {
@@ -301,16 +279,16 @@ public final class ModuleUtil {
 
         private Drawable.ConstantState iconCache = null;
 
+        @SuppressWarnings("deprecation")
         private InstalledModule(PackageInfo pkg, boolean isFramework) {
             this.app = pkg.applicationInfo;
             this.packageName = pkg.packageName;
             this.isFramework = isFramework;
             this.versionName = pkg.versionName;
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-                //noinspection deprecation
-                this.versionCode = pkg.versionCode;
-            } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 this.versionCode = pkg.getLongVersionCode();
+            } else {
+                this.versionCode = pkg.versionCode;
             }
             this.installTime = pkg.firstInstallTime;
             this.updateTime = pkg.lastUpdateTime;
@@ -339,9 +317,6 @@ public final class ModuleUtil {
             return (app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0;
         }
 
-        /**
-         * @hide
-         */
 //        public boolean isForwardLocked() {
 //            return (app.flags & FLAG_FORWARD_LOCK) != 0;
 //        }

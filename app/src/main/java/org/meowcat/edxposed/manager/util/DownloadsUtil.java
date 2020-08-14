@@ -41,9 +41,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 public class DownloadsUtil {
     static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
-    //private static final String MIME_TYPE_ZIP = "application/zip";
     private static final Map<String, DownloadFinishedCallback> mCallbacks = new HashMap<>();
     @SuppressLint("StaticFieldLeak")
     private static final XposedApp mApp = XposedApp.getInstance();
@@ -52,6 +53,7 @@ public class DownloadsUtil {
 
     private static String DOWNLOAD_MODULES = "modules";
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private static DownloadInfo add(Builder b) {
         Context context = b.mContext;
         removeAllForUrl(context, b.mUrl);
@@ -77,7 +79,6 @@ public class DownloadsUtil {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         } else if (b.mDestination != null) {
-            //noinspection ResultOfMethodCallIgnored
             b.mDestination.getParentFile().mkdirs();
             removeAllForLocalFile(context, b.mDestination);
             request.setDestinationUri(Uri.fromFile(b.mDestination));
@@ -123,7 +124,7 @@ public class DownloadsUtil {
                 .setCallback(callback)
                 .setSave(save)
                 .setModule(true)
-                .setMimeType(MIME_TYPES.APK)
+                .setMimeType()
                 .download();
     }
 
@@ -143,6 +144,7 @@ public class DownloadsUtil {
         dialog.show();
 
         new Thread("DownloadDialog") {
+            @SuppressWarnings("ResultOfMethodCallIgnored")
             @Override
             public void run() {
                 while (true) {
@@ -165,7 +167,6 @@ public class DownloadsUtil {
                     } else if (info.status == DownloadManager.STATUS_SUCCESSFUL) {
                         dialog.dismiss();
                         // Hack to reset stat information.
-                        //noinspection ResultOfMethodCallIgnored
                         new File(info.localFilename).setExecutable(false);
                         if (b.mCallback != null) {
                             b.mCallback.onDownloadFinished(context, info);
@@ -324,15 +325,15 @@ public class DownloadsUtil {
         dm.remove(ids);
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private static void removeAllForLocalFile(Context context, File file) {
-        //noinspection ResultOfMethodCallIgnored
         file.delete();
 
         String filename;
         try {
             filename = file.getCanonicalPath();
         } catch (IOException e) {
-            Log.w(XposedApp.TAG, "Could not resolve path for " + file.getAbsolutePath(), e);
+            Log.w(TAG, "Could not resolve path for " + file.getAbsolutePath(), e);
             return;
         }
 
@@ -375,30 +376,8 @@ public class DownloadsUtil {
         dm.remove(ids);
     }
 
-//    public static void removeOutdated(Context context, long cutoff) {
-//        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-//        Cursor c = dm.query(new Query());
-//        int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
-//        int columnLastMod = c.getColumnIndexOrThrow(
-//                DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
-//
-//        List<Long> idsList = new ArrayList<>();
-//        while (c.moveToNext()) {
-//            if (c.getLong(columnLastMod) < cutoff)
-//                idsList.add(c.getLong(columnId));
-//        }
-//        c.close();
-//
-//        if (idsList.isEmpty())
-//            return;
-//
-//        long[] ids = new long[idsList.size()];
-//        for (int i = 0; i < ids.length; i++)
-//            ids[i] = idsList.get(0);
-//
-//        dm.remove(ids);
-//    }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void triggerDownloadFinishedCallback(Context context, long id) {
         DownloadInfo info = getById(context, id);
         if (info == null || info.status != DownloadManager.STATUS_SUCCESSFUL)
@@ -413,7 +392,6 @@ public class DownloadsUtil {
             return;
 
         // Hack to reset stat information.
-        //noinspection ResultOfMethodCallIgnored
         new File(info.localFilename).setExecutable(false);
         callback.onDownloadFinished(context, info);
     }
@@ -587,13 +565,13 @@ public class DownloadsUtil {
             return this;
         }
 
-        public Builder setCallback(DownloadFinishedCallback callback) {
+        Builder setCallback(DownloadFinishedCallback callback) {
             mCallback = callback;
             return this;
         }
 
-        Builder setMimeType(@SuppressWarnings("SameParameterValue") MIME_TYPES mimeType) {
-            mMimeType = mimeType;
+        Builder setMimeType() {
+            mMimeType = MIME_TYPES.APK;
             return this;
         }
 
@@ -616,11 +594,6 @@ public class DownloadsUtil {
 
         public Builder setModule(boolean module) {
             this.mModule = module;
-            return this;
-        }
-
-        public Builder setDialog(boolean dialog) {
-            mDialog = dialog;
             return this;
         }
 
@@ -647,12 +620,12 @@ public class DownloadsUtil {
         public final long id;
         public final String url;
         public final String title;
-        final long lastModification;
         public final String localFilename;
         public final int status;
         public final int totalSize;
         public final int bytesDownloaded;
         public final int reason;
+        final long lastModification;
 
         private DownloadInfo(long id, String url, String title, long lastModification, String localFilename, int status, int totalSize, int bytesDownloaded, int reason) {
             this.id = id;

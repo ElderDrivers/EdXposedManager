@@ -65,7 +65,7 @@ public class IconListPreference extends ListPreference {
         for (CharSequence drawable : drawables) {
             int resId = context.getResources().getIdentifier(drawable.toString(), "mipmap", context.getPackageName());
 
-            Drawable d = context.getResources().getDrawable(resId);
+            Drawable d = context.getResources().getDrawable(resId, null);
 
             mEntryDrawables.add(d);
         }
@@ -132,9 +132,8 @@ public class IconListPreference extends ListPreference {
             return dialog;
         }
 
-        @SuppressWarnings("NullableProblems")
         @Override
-        public void onSaveInstanceState(Bundle outState) {
+        public void onSaveInstanceState(@NonNull Bundle outState) {
             super.onSaveInstanceState(outState);
             outState.putInt(KEY_CLICKED_ENTRY_INDEX, mClickedDialogEntryIndex);
         }
@@ -182,12 +181,11 @@ public class IconListPreference extends ListPreference {
             mImageDrawables = imageDrawables;
         }
 
-        @SuppressWarnings("NullableProblems")
+        @NonNull
         @Override
-        @SuppressLint("ViewHolder")
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
-            View view = inflater.inflate(R.layout.icon_preference_item, parent, false);
+            @SuppressLint("ViewHolder") View view = inflater.inflate(R.layout.icon_preference_item, parent, false);
             CheckedTextView textView = view.findViewById(R.id.label);
             textView.setText(getItem(position));
             textView.setChecked(position == mSelectedIndex);

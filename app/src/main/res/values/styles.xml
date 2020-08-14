@@ -19,7 +19,9 @@
     <style name="Theme.XposedInstaller.Light" parent="Theme.XposedInstaller.Light.Base">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowBackground" tools:ignore="PrivateResource">@color/background_material_light</item>
+        <item name="android:windowBackground" tools:ignore="PrivateResource">
+            @color/background_material_light
+        </item>
         <item name="sticky_header_background">@color/sticky_header_background_light</item>
         <item name="list_download_item_color">@color/list_download_item_color_light</item>
         <item name="background_card">@drawable/background_card_light</item>
@@ -31,7 +33,9 @@
 
     <style name="Theme.XposedInstaller.Dark" parent="Theme.XposedInstaller.Dark.Base">
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowBackground" tools:ignore="PrivateResource">@color/background_material_dark</item>
+        <item name="android:windowBackground" tools:ignore="PrivateResource">
+            @color/background_material_dark
+        </item>
         <item name="sticky_header_background">@color/sticky_header_background_dark</item>
         <item name="list_download_item_color">@color/list_download_item_color_dark</item>
         <item name="background_card">@drawable/background_card_dark</item>
@@ -55,6 +59,10 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="actionMenuTextColor">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Toolbar.Black" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
     </style>
 
 </resources>

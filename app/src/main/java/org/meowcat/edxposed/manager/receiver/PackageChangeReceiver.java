@@ -1,15 +1,15 @@
-package org.meowcat.edxposed.manager.receivers;
+package org.meowcat.edxposed.manager.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import java.util.Objects;
-
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.NotificationUtil;
+
+import java.util.Objects;
 
 public class PackageChangeReceiver extends BroadcastReceiver {
     private static ModuleUtil mModuleUtil = null;
@@ -52,19 +52,20 @@ public class PackageChangeReceiver extends BroadcastReceiver {
         mModuleUtil = getModuleUtilInstance();
 
         InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
+
+        mModuleUtil.updateModulesList(false, null);
+
         if (module == null
                 || intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)) {
             // Package being removed, disable it if it was a previously active
             // Xposed mod
             if (mModuleUtil.isModuleEnabled(packageName)) {
                 mModuleUtil.setModuleEnabled(packageName, false);
-                mModuleUtil.updateModulesList(false);
             }
             return;
         }
 
         if (mModuleUtil.isModuleEnabled(packageName)) {
-            mModuleUtil.updateModulesList(false);
             NotificationUtil.showModulesUpdatedNotification();
         } else {
             NotificationUtil.showNotActivatedNotification(packageName, module.getAppName());

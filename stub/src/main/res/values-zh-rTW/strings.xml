@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="upgrade_msg">需要升級到完整版的 EdXposed Manager 才能完成安裝。\n\n現在下載？</string>
+    <string name="status_text">EdXposed 狀態</string>
+    <string name="status_0">未（正確）安裝</string>
+    <string name="status_1">未啟用</string>
+    <string name="status_2">已啟用</string>
+</resources>

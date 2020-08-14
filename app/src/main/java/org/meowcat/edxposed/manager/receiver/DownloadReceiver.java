@@ -1,4 +1,4 @@
-package org.meowcat.edxposed.manager.receivers;
+package org.meowcat.edxposed.manager.receiver;
 
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;

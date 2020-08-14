@@ -1,12 +1,13 @@
 package org.meowcat.edxposed.manager;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ import com.topjohnwu.superuser.Shell;
 import org.meowcat.edxposed.manager.util.ToastUtil;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CompileDialogFragment extends AppCompatDialogFragment {
 
@@ -28,7 +31,8 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
     private static final String KEY_COMMANDS = "commands";
     private ApplicationInfo appInfo;
 
-    public CompileDialogFragment() {}
+    public CompileDialogFragment() {
+    }
 
     public static CompileDialogFragment newInstance(ApplicationInfo appInfo,
                                                     String msg, String[] commands) {
@@ -59,7 +63,7 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
                 .setIcon(appInfo.loadIcon(pm))
                 .setTitle(appInfo.loadLabel(pm))
                 .setCancelable(false);
-        @SuppressLint("InflateParams") View customView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_compile_dialog, null);
+        View customView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_compile_dialog, null);
         builder.setView(customView);
         TextView msgView = customView.findViewById(R.id.message);
         //ProgressBar progressView = customView.findViewById(R.id.progress);
@@ -104,7 +108,18 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
             if (outerRef.get() == null) {
                 return outerRef.get().requireContext().getString(R.string.compile_failed);
             }
-            return Shell.su(commands).exec().getOut().toString();
+            // Also get STDERR
+            List<String> stdout = new ArrayList<>();
+            List<String> stderr = new ArrayList<>();
+            Shell.Result result = Shell.su(commands).to(stdout, stderr).exec();
+            List<String> ret;
+            if(stderr.size() > 0) {
+                return "Error: " + TextUtils.join("\n", stderr);
+            } else if(!result.isSuccess()) { // they might don't write to stderr
+                return "Error: " + TextUtils.join("\n", stdout);
+            } else {
+                return TextUtils.join("\n", stdout);
+            }
         }
 
         @Override
@@ -112,10 +127,13 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
             if (outerRef.get() == null || !outerRef.get().isAdded()) {
                 return;
             }
-            if ("".equals(result.substring(1, result.length() - 1))) {
-                ToastUtil.showLongToast(outerRef.get().requireContext(), R.string.compile_failed);
+            Context ctx = outerRef.get().requireContext();
+            if (result.length() == 0) {
+                ToastUtil.showLongToast(ctx, R.string.compile_failed);
+            } else if (result.length() >= 5 && "Error".equals(result.substring(0, 5))) {
+                ToastUtil.showLongToast(ctx, ctx.getString(R.string.compile_failed_with_info) + " " + result.substring(6));
             } else {
-                ToastUtil.showLongToast(outerRef.get().requireContext(), R.string.done);
+                ToastUtil.showLongToast(ctx, R.string.done);
             }
             outerRef.get().dismissAllowingStateLoss();
         }

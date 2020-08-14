@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -18,7 +19,6 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
@@ -30,26 +30,29 @@ import android.util.Log;
 import androidx.appcompat.app.ActionBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import org.meowcat.edxposed.manager.receivers.PackageChangeReceiver;
+import org.meowcat.edxposed.manager.receiver.PackageChangeReceiver;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.NotificationUtil;
 import org.meowcat.edxposed.manager.util.RepoLoader;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 
-@SuppressWarnings({"ResultOfMethodCallIgnored", "OctalInteger"})
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+import static org.meowcat.edxposed.manager.adapter.AppHelper.FORCE_WHITE_LIST_MODULE;
+
 @SuppressLint("Registered")
 public class XposedApp extends de.robv.android.xposed.installer.XposedApp implements ActivityLifecycleCallbacks {
-    public static final String TAG = "EdXposedManager";
-    private static String BASE_DIR_LEGACY = null;
+    public static final int rwxrwxrwx = 511;
+    public static final int rw_rw_r__ = 436;
     public static String BASE_DIR = null;
     public static String ENABLED_MODULES_LIST_FILE = null;
     public static int WRITE_EXTERNAL_PERMISSION = 69;
@@ -62,7 +65,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
     private SharedPreferences mPref;
     private Activity mCurrentActivity = null;
 
-    @SuppressWarnings({"SameParameterValue", "deprecation"})
+    @SuppressWarnings("deprecation")
     @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
     public static void setFilePermissionsFromMode(String name, int mode) {
         int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
@@ -92,6 +95,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         }
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static File createFolder() {
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/EdXposedManager/");
 
@@ -104,7 +108,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 //        mMainHandler.post(action);
 //    }
 
-    public static Integer getXposedVersion() {
+    public static int getXposedVersion() {
         return getActiveXposedVersion();
     }
 
@@ -114,11 +118,12 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
     public static int getColor(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(context.getPackageName() + "_preferences", MODE_PRIVATE);
-        int defaultColor = context.getResources().getColor(R.color.colorPrimary);
+        int defaultColor = context.getResources().getColor(R.color.colorPrimary, null);
 
         return prefs.getInt("colors", defaultColor);
     }
 
+    @SuppressWarnings("deprecation")
     public static void setColors(ActionBar actionBar, Integer value, Activity activity) {
         int color = value;
         SharedPreferences prefs = activity.getSharedPreferences(activity.getPackageName() + "_preferences", MODE_PRIVATE);
@@ -130,12 +135,14 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
         ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(activity.getString(R.string.app_name),
                 drawableToBitmap(activity.getDrawable(drawable)), color);
+//        ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(activity.getString(R.string.app_name),
+//                drawable, color);
         activity.setTaskDescription(tDesc);
 
         if (getPreferences().getBoolean("nav_bar", false)) {
             activity.getWindow().setNavigationBarColor(darkenColor(color, 0.85f));
         } else {
-            int black = activity.getResources().getColor(android.R.color.black);
+            int black = activity.getResources().getColor(android.R.color.black, null);
             activity.getWindow().setNavigationBarColor(black);
         }
     }
@@ -177,19 +184,35 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         return getPreferences().getString("download_location", Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/");
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void mkdirAndChmod(String dir, int permissions) {
         dir = BASE_DIR + dir;
-        //noinspection ResultOfMethodCallIgnored
         new File(dir).mkdir();
         FileUtils.setPermissions(dir, permissions, -1, -1);
+    }
+
+    public static boolean checkAppInstalled(Context context, String pkgName) {
+        if (pkgName == null || pkgName.isEmpty()) {
+            return false;
+        }
+        final PackageManager packageManager = context.getPackageManager();
+        List<PackageInfo> info = packageManager.getInstalledPackages(0);
+        if (info == null || info.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < info.size(); i++) {
+            if (pkgName.equals(info.get(i).packageName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void onCreate() {
         super.onCreate();
 
         final ApplicationInfo appInfo = getApplicationInfo();
-        BASE_DIR_LEGACY = appInfo.dataDir;
-        BASE_DIR = Build.VERSION.SDK_INT >= 24 ? appInfo.deviceProtectedDataDir + "/" : appInfo.dataDir + "/";
+        BASE_DIR = appInfo.deviceProtectedDataDir + "/";
         ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
 
         mInstance = this;
@@ -206,7 +229,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
         registerActivityLifecycleCallbacks(this);
 
-        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         Date date = new Date();
 
         if (!Objects.requireNonNull(mPref.getString("date", "")).equals(dateFormat.format(date))) {
@@ -222,7 +245,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
             Resources res = getResources();
             DisplayMetrics dm = res.getDisplayMetrics();
             android.content.res.Configuration conf = res.getConfiguration();
-            conf.locale = Locale.ENGLISH;
+            conf.setLocale(Locale.ENGLISH);
             res.updateConfiguration(conf, dm);
         }
     }
@@ -239,6 +262,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
                 new Intent(this, PackageChangeReceiver.class), 0);
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void delete(File file) {
         if (file != null) {
             if (file.isDirectory()) {
@@ -249,23 +273,10 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         }
     }
 
-    @SuppressWarnings("JavaReflectionMemberAccess")
-    @SuppressLint({"PrivateApi", "NewApi"})
     private void createDirectories() {
-        FileUtils.setPermissions(BASE_DIR, 00777, -1, -1);
-        mkdirAndChmod("conf", 00777);
-        mkdirAndChmod("log", 00777);
-
-        if (Build.VERSION.SDK_INT >= 24) {
-            try {
-                @SuppressLint("SoonBlockedPrivateApi") Method deleteDir = FileUtils.class.getDeclaredMethod("deleteContentsAndDir", File.class);
-                deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "bin"));
-                deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "conf"));
-                deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "log"));
-            } catch (ReflectiveOperationException e) {
-                Log.w(XposedApp.TAG, "Failed to delete obsolete directories", e);
-            }
-        }
+        FileUtils.setPermissions(BASE_DIR, rwxrwxrwx, -1, -1);
+        mkdirAndChmod("conf", rwxrwxrwx);
+        mkdirAndChmod("log", rwxrwxrwx);
     }
 
     public void updateProgressIndicator(final SwipeRefreshLayout refreshLayout) {
@@ -273,7 +284,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         runOnUiThread(() -> {
             synchronized (XposedApp.this) {
                 if (mCurrentActivity != null) {
-                    mCurrentActivity.setProgressBarIndeterminateVisibility(isLoading);
+                    //mCurrentActivity.setProgressBarIndeterminateVisibility(isLoading);
                     if (refreshLayout != null)
                         refreshLayout.setRefreshing(isLoading);
                 }
@@ -288,6 +299,16 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
         RepoLoader.getInstance().triggerFirstLoadIfNecessary();
         mIsUiLoaded = true;
+
+        if (mPref.getBoolean("hook_modules", true)) {
+            Collection<ModuleUtil.InstalledModule> installedModules = ModuleUtil.getInstance().getModules().values();
+            for (ModuleUtil.InstalledModule info : installedModules) {
+                if (!FORCE_WHITE_LIST_MODULE.contains(info.packageName)) {
+                    FORCE_WHITE_LIST_MODULE.add(info.packageName);
+                }
+            }
+            Log.d(MeowCatApplication.TAG, "ApplicationList: Force add modules to list");
+        }
     }
 
     @Override
@@ -298,7 +319,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
     @Override
     public synchronized void onActivityPaused(Activity activity) {
-        activity.setProgressBarIndeterminateVisibility(false);
+        //activity.setProgressBarIndeterminateVisibility(false);
         mCurrentActivity = null;
     }
 

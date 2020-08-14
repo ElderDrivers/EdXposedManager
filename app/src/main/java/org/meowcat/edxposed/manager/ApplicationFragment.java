@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,24 +19,19 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.meowcat.edxposed.manager.adapter.AppAdapter;
 import org.meowcat.edxposed.manager.adapter.AppHelper;
-import org.meowcat.edxposed.manager.adapter.BlackListAdapter;
+import org.meowcat.edxposed.manager.adapter.ApplicationListAdapter;
 
-public class BlackListFragment extends Fragment implements AppAdapter.Callback {
+public class ApplicationFragment extends Fragment implements AppAdapter.Callback {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    //private RecyclerView mRecyclerView;
     private SearchView mSearchView;
-    private BlackListAdapter mAppAdapter;
+    private ApplicationListAdapter mAppAdapter;
 
     private SearchView.OnQueryTextListener mSearchListener;
 
-    public BlackListFragment() {
+    public ApplicationFragment() {
         setRetainInstance(true);
     }
-
-    //public static BlackListFragment newInstance() {
-    //    return new BlackListFragment();
-    //}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,15 +59,13 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
         Button mSettingsButton = view.findViewById(R.id.btnSettings);
-        mSettingsButton.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), SettingsActivity.class));
-        });
+        mSettingsButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), SettingsActivity.class)));
         if (!XposedApp.getPreferences().getBoolean("black_white_list_switch", false)) {
             view.findViewById(R.id.cardAppListWarning).setVisibility(View.VISIBLE);
         }
 
         final boolean isWhiteListMode = isWhiteListMode();
-        mAppAdapter = new BlackListAdapter(requireActivity(), isWhiteListMode);
+        mAppAdapter = new ApplicationListAdapter(requireActivity(), isWhiteListMode);
         mRecyclerView.setAdapter(mAppAdapter);
         mAppAdapter.setCallback(this);
         mSwipeRefreshLayout.setRefreshing(true);
@@ -97,7 +89,7 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
 
     private void changeTitle(boolean isBlackListMode, boolean isWhiteListMode) {
         if (isBlackListMode) {
-            requireActivity().setTitle(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list);
+            requireActivity().setTitle(String.format("%s(%s)", getString(R.string.nav_title_black_list), getString(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list)));
         } else {
             requireActivity().setTitle(R.string.nav_title_black_list);
         }
@@ -118,22 +110,8 @@ public class BlackListFragment extends Fragment implements AppAdapter.Callback {
         mAppAdapter.filter(queryStr);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onItemClick(View v, ApplicationInfo info) {
-        if (getFragmentManager() != null) {
-            AppHelper.showMenu(requireActivity(), getFragmentManager(), v, info);
-        } else {
-            String packageName = (String) v.getTag();
-            if (packageName == null)
-                return;
-
-            Intent launchIntent = requireContext().getPackageManager().getLaunchIntentForPackage(packageName);
-            if (launchIntent != null) {
-                startActivity(launchIntent);
-            } else {
-                Toast.makeText(getActivity(), requireActivity().getString(R.string.app_no_ui), Toast.LENGTH_LONG).show();
-            }
-        }
+        AppHelper.showMenu(requireActivity(), getParentFragmentManager(), v, info);
     }
 }

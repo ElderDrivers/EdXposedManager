@@ -1,6 +1,5 @@
-package org.meowcat.edxposed.manager.receivers;
+package org.meowcat.edxposed.manager.receiver;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +10,10 @@ import android.util.Log;
 
 import org.json.JSONObject;
 import org.meowcat.edxposed.manager.BuildConfig;
-import org.meowcat.edxposed.manager.XposedApp;
 import org.meowcat.edxposed.manager.util.NotificationUtil;
 import org.meowcat.edxposed.manager.util.json.JSONUtils;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class BootReceiver extends BroadcastReceiver {
 
@@ -29,10 +29,9 @@ public class BootReceiver extends BroadcastReceiver {
     private boolean isOnline(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
+        return netInfo != null && netInfo.isConnected();
     }
 
-    @SuppressLint("StaticFieldLeak")
     private static class CheckUpdates extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -49,7 +48,7 @@ public class BootReceiver extends BroadcastReceiver {
                     NotificationUtil.showInstallerUpdateNotification();
                 }
             } catch (Exception e) {
-                Log.d(XposedApp.TAG, e.getMessage());
+                Log.d(TAG, e.getMessage());
             }
             return null;
         }

@@ -23,6 +23,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.meowcat.edxposed.manager.adapter.AppHelper;
+import org.meowcat.edxposed.manager.adapter.ApplicationListAdapter;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.ModuleUtil.InstalledModule;
 import org.meowcat.edxposed.manager.util.ModuleUtil.ModuleListener;
@@ -30,6 +32,7 @@ import org.meowcat.edxposed.manager.util.RepoLoader;
 import org.meowcat.edxposed.manager.util.RepoLoader.RepoListener;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
 
+import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public class WelcomeActivity extends XposedBaseActivity
@@ -73,7 +76,7 @@ public class WelcomeActivity extends XposedBaseActivity
                 super.onDrawerSlide(drawerView, 0); // this disables the animation
             }
         };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -107,12 +110,14 @@ public class WelcomeActivity extends XposedBaseActivity
 
         notifyDataSetChanged();
 
+        new Thread(() -> new ApplicationListAdapter(getApplicationContext(), AppHelper.isWhiteListMode()).generateCheckedList());
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mDrawerLayout.setStatusBarBackgroundColor(darkenColor(XposedApp.getColor(this), 0.85f));
+        mDrawerLayout.setStatusBarBackgroundColor(darkenColor(XposedApp.getColor(this), getDarkenFactor()));
         XposedApp.getPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -154,15 +159,10 @@ public class WelcomeActivity extends XposedBaseActivity
                 setTitle(R.string.nav_item_logs);
                 navFragment = new LogsFragment();
                 break;
-            case R.id.drawer_item_errlog:
-                mPrevSelectedId = itemId;
-                setTitle(R.string.nav_item_logs_err);
-                navFragment = new ErrorLogsFragment();
-                break;
             case R.id.nav_black_list:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.nav_title_black_list);
-                navFragment = new BlackListFragment();
+                navFragment = new ApplicationFragment();
                 break;
             case R.id.nav_compat_list:
                 mPrevSelectedId = itemId;

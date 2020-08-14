@@ -2,7 +2,6 @@ package org.meowcat.edxposed.manager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -18,18 +17,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 
 import org.meowcat.edxposed.manager.util.NavUtil;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
 
-import de.psdev.licensesdialog.LicensesDialog;
-import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
-import de.psdev.licensesdialog.licenses.MITLicense;
-import de.psdev.licensesdialog.model.Notice;
-import de.psdev.licensesdialog.model.Notices;
-
 import static android.content.Intent.ACTION_SEND;
 import static android.content.Intent.EXTRA_TEXT;
+import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public class AboutActivity extends XposedBaseActivity {
@@ -88,7 +83,7 @@ public class AboutActivity extends XposedBaseActivity {
         @Override
         public void onResume() {
             super.onResume();
-            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), 0.85f));
+            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), getDarkenFactor()));
         }
 
         @Override
@@ -97,7 +92,6 @@ public class AboutActivity extends XposedBaseActivity {
 
             View changelogView = v.findViewById(R.id.changelogView);
             View licensesView = v.findViewById(R.id.licensesView);
-            View translatorsView = v.findViewById(R.id.translatorsView);
             View sourceCodeView = v.findViewById(R.id.sourceCodeView);
             View tgChannelView = v.findViewById(R.id.tgChannelView);
             View installerSupportView = v.findViewById(R.id.installerSupportView);
@@ -107,29 +101,21 @@ public class AboutActivity extends XposedBaseActivity {
             View qqGroupView = v.findViewById(R.id.qqGroupView);
             View tgGroupView = v.findViewById(R.id.tgGroupView);
 
-            String packageName = requireActivity().getPackageName();
-            String translator = getResources().getString(R.string.translator);
+            SharedPreferences prefs = XposedApp.getPreferences();
 
-            SharedPreferences prefs = requireContext().getSharedPreferences(packageName + "_preferences", MODE_PRIVATE);
+            final String changes = prefs.getString("changelog", getString(R.string.default_changes_log));
 
-            final String changes = prefs.getString("changelog", null);
+            changelogView.setOnClickListener(v1 -> new MaterialDialog.Builder(requireContext())
+                    .title(R.string.changes)
+                    .content(Html.fromHtml(changes, Html.FROM_HTML_MODE_LEGACY))
+                    .positiveText(R.string.ok).show());
 
-            if (changes == null) {
-                changelogView.setVisibility(View.GONE);
-            } else {
-                changelogView.setOnClickListener(v1 -> new MaterialDialog.Builder(requireContext())
-                        .title(R.string.changes)
-                        .content(Html.fromHtml(changes))
-                        .positiveText(R.string.ok).show());
-            }
+            ((TextView) v.findViewById(R.id.app_version)).setText(BuildConfig.VERSION_NAME);
 
-            try {
-                String version = requireActivity().getPackageManager().getPackageInfo(packageName, 0).versionName;
-                ((TextView) v.findViewById(R.id.app_version)).setText(version);
-            } catch (NameNotFoundException ignored) {
-            }
-
-            licensesView.setOnClickListener(v12 -> createLicenseDialog());
+            licensesView.setOnClickListener(v12 -> {
+                OssLicensesMenuActivity.setActivityTitle(getString(R.string.about_libraries_title));
+                startActivity(new Intent(getContext(), OssLicensesMenuActivity.class));
+            });
 
             txtModuleSupport.setText(getString(R.string.support_modules_description,
                     getString(R.string.module_support)));
@@ -142,30 +128,11 @@ public class AboutActivity extends XposedBaseActivity {
             setupView(sourceCodeView, R.string.about_source);
             setupView(tgChannelView, R.string.group_telegram_channel_link);
 
-            if (translator.isEmpty()) {
-                translatorsView.setVisibility(View.GONE);
-            }
-
             return v;
         }
 
         void setupView(View v, final int url) {
             v.setOnClickListener(v1 -> NavUtil.startURL(getActivity(), getString(url)));
-        }
-
-        private void createLicenseDialog() {
-            Notices notices = new Notices();
-            notices.addNotice(new Notice("material-dialogs", "https://github.com/afollestad/material-dialogs", "Copyright (c) 2014-2016 Aidan Michael Follestad", new MITLicense()));
-            notices.addNotice(new Notice("StickyListHeaders", "https://github.com/emilsjolander/StickyListHeaders", "Emil Sjölander", new ApacheSoftwareLicense20()));
-            notices.addNotice(new Notice("PreferenceFragment-Compat", "https://github.com/Machinarius/PreferenceFragment-Compat", "machinarius", new ApacheSoftwareLicense20()));
-            notices.addNotice(new Notice("libsuperuser", "https://github.com/Chainfire/libsuperuser", "Copyright (C) 2012-2015 Jorrit \"Chainfire\" Jongma", new ApacheSoftwareLicense20()));
-            notices.addNotice(new Notice("picasso", "https://github.com/square/picasso", "Copyright 2013 Square, Inc.", new ApacheSoftwareLicense20()));
-
-            new LicensesDialog.Builder(requireActivity())
-                    .setNotices(notices)
-                    .setIncludeOwnLicense(true)
-                    .build()
-                    .show();
         }
     }
 }

@@ -11,6 +11,6 @@ public class LocaleUtil {
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
         configuration.setLocale(locale);
-        resources.updateConfiguration(configuration,resources.getDisplayMetrics());
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 }

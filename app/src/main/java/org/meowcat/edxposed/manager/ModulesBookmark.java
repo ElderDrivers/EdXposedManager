@@ -1,7 +1,6 @@
 package org.meowcat.edxposed.manager;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -44,13 +43,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public class ModulesBookmark extends XposedBaseActivity {
 
     private static RepoLoader mRepoLoader;
-    @SuppressLint("StaticFieldLeak")
     private static View container;
 
     @Override
@@ -106,7 +105,7 @@ public class ModulesBookmark extends XposedBaseActivity {
             if (changed)
                 getModules();
 
-            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), 0.85f));
+            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), getDarkenFactor()));
         }
 
         @Override
@@ -181,9 +180,8 @@ public class ModulesBookmark extends XposedBaseActivity {
             changed = true;
         }
 
-        @SuppressWarnings("NullableProblems")
         @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, ContextMenu.ContextMenuInfo menuInfo) {
             Module module = getItemFromContextMenuInfo(menuInfo);
             if (module == null)
                 return;
@@ -290,9 +288,9 @@ public class ModulesBookmark extends XposedBaseActivity {
             super(context, R.layout.list_item_module, R.id.title);
         }
 
-        @SuppressWarnings("NullableProblems")
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             View view = super.getView(position, convertView, parent);
 
             view.findViewById(R.id.checkbox).setVisibility(View.GONE);

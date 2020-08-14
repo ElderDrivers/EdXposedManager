@@ -17,9 +17,12 @@ import androidx.core.app.NotificationCompat;
 
 import com.topjohnwu.superuser.Shell;
 
+import org.meowcat.edxposed.manager.MeowCatApplication;
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.WelcomeActivity;
 import org.meowcat.edxposed.manager.XposedApp;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public final class NotificationUtil {
 
@@ -76,16 +79,16 @@ public final class NotificationUtil {
     }
 
     public static void showNotActivatedNotification(String packageName, String appName) {
-        Intent intent = new Intent(sContext, WelcomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).putExtra(FRAGMENT_ID, 1);
+        Intent intent = new Intent(sContext, WelcomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).putExtra(FRAGMENT_ID, 3);
         PendingIntent pModulesTab = PendingIntent.getActivity(sContext, PENDING_INTENT_OPEN_MODULES, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         String title = sContext.getString(R.string.module_is_not_activated_yet);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(appName)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext, MeowCatApplication.TAG).setContentTitle(title).setContentText(appName)
                 .setTicker(title).setContentIntent(pModulesTab)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_notification);
 
-        if (prefs.getBoolean(HEADS_UP, true) && Build.VERSION.SDK_INT >= 21)
+        if (prefs.getBoolean(HEADS_UP, true))
             builder.setPriority(2);
 
         if (prefs.getBoolean(COLORED_NOTIFICATION, false))
@@ -130,12 +133,12 @@ public final class NotificationUtil {
                 .getString(R.string.xposed_module_updated_notification_title);
         String message = sContext
                 .getString(R.string.xposed_module_updated_notification);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(message)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext, MeowCatApplication.TAG).setContentTitle(title).setContentText(message)
                 .setTicker(title).setContentIntent(pInstallTab)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_notification);
 
-        if (prefs.getBoolean(HEADS_UP, true) && Build.VERSION.SDK_INT >= 21)
+        if (prefs.getBoolean(HEADS_UP, true))
             builder.setPriority(2);
 
         if (prefs.getBoolean(COLORED_NOTIFICATION, false))
@@ -163,7 +166,7 @@ public final class NotificationUtil {
 
     private static void showModuleInstallNotification(String title, String message, String path, boolean error) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                sContext).setContentTitle(title).setContentText(message)
+                sContext, MeowCatApplication.TAG).setContentTitle(title).setContentText(message)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_notification);
 
@@ -175,7 +178,7 @@ public final class NotificationUtil {
             builder.addAction(new NotificationCompat.Action.Builder(0, sContext.getString(R.string.installation_apk_normal), pInstallApk).build());
         }
 
-        if (prefs.getBoolean(HEADS_UP, true) && Build.VERSION.SDK_INT >= 21)
+        if (prefs.getBoolean(HEADS_UP, true))
             builder.setPriority(2);
 
         if (prefs.getBoolean(COLORED_NOTIFICATION, false))
@@ -194,7 +197,7 @@ public final class NotificationUtil {
     static void showModuleInstallingNotification(String appName) {
         String title = sContext.getString(R.string.install_load);
         String message = sContext.getString(R.string.install_load_apk, appName);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(message)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext, MeowCatApplication.TAG).setContentTitle(title).setContentText(message)
                 .setVibrate(new long[]{0}).setProgress(0, 0, true)
                 .setSmallIcon(R.drawable.ic_notification).setOngoing(true);
 
@@ -219,12 +222,12 @@ public final class NotificationUtil {
 
         String title = sContext.getString(R.string.app_name);
         String message = sContext.getString(R.string.newVersion);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(message)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext, MeowCatApplication.TAG).setContentTitle(title).setContentText(message)
                 .setTicker(title).setContentIntent(pInstallTab)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_notification);
 
-        if (prefs.getBoolean(HEADS_UP, true) && Build.VERSION.SDK_INT >= 21)
+        if (prefs.getBoolean(HEADS_UP, true))
             builder.setPriority(2);
 
         if (prefs.getBoolean(COLORED_NOTIFICATION, false))
@@ -259,14 +262,14 @@ public final class NotificationUtil {
                 String packageName = intent.getStringExtra(EXTRA_ACTIVATE_MODULE);
                 ModuleUtil moduleUtil = ModuleUtil.getInstance();
                 moduleUtil.setModuleEnabled(packageName, true);
-                moduleUtil.updateModulesList(false);
+                moduleUtil.updateModulesList(false, null);
                 Toast.makeText(sContext, R.string.module_activated, Toast.LENGTH_SHORT).show();
 
                 if (intent.hasExtra(EXTRA_ACTIVATE_MODULE_AND_RETURN)) return;
             }
 
             if (!Shell.rootAccess()) {
-                Log.e(XposedApp.TAG, "NotificationUtil -> Could not start root shell");
+                Log.e(TAG, "NotificationUtil -> Could not start root shell");
                 return;
             }
 
@@ -276,9 +279,9 @@ public final class NotificationUtil {
             int returnCode = result.getCode();
 
             if (returnCode != 0) {
-                Log.e(XposedApp.TAG, "NotificationUtil -> Could not reboot:");
+                Log.e(TAG, "NotificationUtil -> Could not reboot:");
                 for (String line : result.getOut()) {
-                    Log.e(XposedApp.TAG, line);
+                    Log.e(TAG, line);
                 }
             }
         }

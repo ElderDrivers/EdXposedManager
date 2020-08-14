@@ -1,6 +1,5 @@
 package org.meowcat.edxposed.manager.util;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
@@ -77,7 +76,6 @@ public class PrefixedSharedPreferences implements SharedPreferences {
         return mBase.contains(mPrefix + key);
     }
 
-    @SuppressLint("CommitPrefEdits")
     @Override
     public Editor edit() {
         return new EditorImpl(mBase.edit());

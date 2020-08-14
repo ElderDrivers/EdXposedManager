@@ -5,456 +5,255 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="4dp"
+        android:fillViewport="true"
+        app:cardBackgroundColor="?attr/list_download_item_color"
+        app:cardElevation="@dimen/card_elevation">
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
-            android:fillViewport="true"
-            app:cardBackgroundColor="?attr/list_download_item_color"
-            app:cardElevation="@dimen/card_elevation"
-            app:cardUseCompatPadding="true">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <!-- framework title -->
+            <TextView
+                android:id="@+id/title_framework"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_marginHorizontal="?itemHorizontalPadding"
+                android:text="@string/nav_item_install"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <RelativeLayout
-                    android:id="@+id/container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="6dp">
+            <!-- installer -->
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/chooser_installers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toStartOf="@+id/info_installer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_framework" />
 
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/nav_item_install"
-                        android:textAllCaps="true"
-                        android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/info_installer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_info"
+                app:layout_constraintBottom_toBottomOf="@id/chooser_installers"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/chooser_installers" />
 
-                    <Spinner
-                        android:id="@+id/chooserInstallers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_toStartOf="@+id/infoInstaller"
-                        android:layout_toLeftOf="@+id/infoInstaller"
-                        android:spinnerMode="dropdown"
-                        tools:ignore="RtlHardcoded" />
-
-                    <ImageView
-                        android:id="@+id/infoInstaller"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/chooserInstallers"
-                        android:layout_alignBottom="@+id/chooserInstallers"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="center"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_info"
-                        tools:ignore="ContentDescription,RtlHardcoded" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/warning_unstable"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/chooserInstallers"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        app:cardBackgroundColor="@color/amber_500"
-                        app:cardCornerRadius="@dimen/card_corner_radius">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:orientation="horizontal"
-                            tools:ignore="UseCompoundDrawables">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:src="@drawable/ic_warning"
-                                tools:ignore="ContentDescription" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="8dp"
-                                android:text="@string/unstable_build"
-                                android:textAlignment="center"
-                                android:textAllCaps="true"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/warning_unofficial"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/warning_unstable"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        app:cardBackgroundColor="@color/amber_500"
-                        app:cardCornerRadius="@dimen/card_corner_radius">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:orientation="horizontal"
-                            tools:ignore="UseCompoundDrawables">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:src="@drawable/ic_warning"
-                                tools:ignore="ContentDescription" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="8dp"
-                                android:text="@string/unofficial_build"
-                                android:textAlignment="center"
-                                android:textAllCaps="true"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <Button
-                        android:id="@+id/btnInstall"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/warning_unofficial"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:text="@string/install"
-                        tools:ignore="RtlHardcoded" />
-
-                    <Spinner
-                        android:id="@+id/chooserUninstallers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/btnInstall"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="5dp"
-                        android:layout_toStartOf="@+id/infoUninstaller"
-                        android:layout_toLeftOf="@+id/infoUninstaller"
-                        android:spinnerMode="dropdown"
-                        tools:ignore="RtlHardcoded" />
-
-                    <ImageView
-                        android:id="@+id/infoUninstaller"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/btnInstall"
-                        android:layout_alignBottom="@+id/chooserUninstallers"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="center|end"
-                        android:layout_marginTop="5dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_info"
-                        tools:ignore="ContentDescription,RtlHardcoded" />
-
-                    <Button
-                        android:id="@+id/btnUninstall"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/chooserUninstallers"
-                        android:layout_alignEnd="@+id/infoUninstaller"
-                        android:layout_alignRight="@+id/infoUninstaller"
-                        android:text="@string/uninstall"
-                        tools:ignore="RtlHardcoded" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/author_view"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/container"
-                    android:layout_marginTop="4dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_person"
-                        tools:ignore="ContentDescription" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        tools:ignore="RtlHardcoded">
-
-                        <TextView
-                            android:id="@+id/author"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/download_author"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/show_on_xda"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/author_view"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_help"
-                        tools:ignore="ContentDescription" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        tools:ignore="RtlHardcoded">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/support_xda"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/updateDescription"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/show_on_xda"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_description"
-                        tools:ignore="ContentDescription" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        tools:ignore="RtlHardcoded">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/update_description"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/warning_unstable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/amber_500"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_installer"
+                tools:visibility="visible">
 
                 <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/updateDescription"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="5dp"
-                    android:padding="6dp"
-                    android:text="@string/notice"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:drawableStart="@drawable/ic_warning"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/unstable_build"
                     android:textAllCaps="true"
-                    android:textStyle="bold"
-                    tools:ignore="RtlHardcoded" />
+                    android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/warning_unofficial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/amber_500"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/warning_unstable"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView4"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:drawableStart="@drawable/ic_warning"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/unofficial_build"
+                    android:textAllCaps="true"
+                    android:textStyle="bold" />
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_info"
-                        tools:ignore="ContentDescription" />
+            </androidx.cardview.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:orientation="vertical"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        tools:ignore="RtlHardcoded">
+            <Button
+                android:id="@+id/btn_install"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/warning_unofficial"
+                android:layout_margin="4dp"
+                android:text="@string/install"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/warning_unofficial" />
 
-                        <TextView
-                            android:id="@+id/noticeTv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+            <!-- uninstaller -->
+            <Spinner
+                android:id="@+id/chooser_uninstallers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toStartOf="@+id/info_uninstaller"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_install" />
 
-                    </LinearLayout>
+            <ImageView
+                android:id="@+id/info_uninstaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_info"
+                app:layout_constraintBottom_toBottomOf="@id/chooser_uninstallers"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/chooser_uninstallers" />
 
-                </LinearLayout>
+            <Button
+                android:id="@+id/btn_uninstall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/uninstall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_uninstaller"
+                tools:ignore="RtlHardcoded" />
 
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/comp"-->
-<!--                    android:layout_width="fill_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/textView4"-->
-<!--                    android:background="?android:attr/selectableItemBackground"-->
-<!--                    android:clickable="true"-->
-<!--                    android:focusable="true"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:minHeight="48dp"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingStart="16dp"-->
-<!--                    android:paddingEnd="16dp"-->
-<!--                    android:visibility="gone">-->
+            <!-- notice -->
+            <TextView
+                android:id="@+id/title_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/info"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_uninstall"
+                tools:ignore="RtlHardcoded" />
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="24dp"-->
-<!--                        android:layout_height="24dp"-->
-<!--                        android:src="@drawable/ic_action_thumb_up"-->
-<!--                        tools:ignore="ContentDescription" />-->
+            <TextView
+                android:id="@+id/info_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="?selectableItemBackground"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:paddingHorizontal="16dp"
+                android:text="@string/download_author"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_info" />
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="fill_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="32dp"-->
-<!--                        android:layout_marginLeft="32dp"-->
-<!--                        android:orientation="vertical"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        tools:ignore="RtlHardcoded">-->
+            <TextView
+                android:id="@+id/info_help"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="?selectableItemBackground"
+                android:drawableStart="@drawable/ic_help"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:paddingHorizontal="16dp"
+                android:text="@string/support_xda"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_author" />
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/compatibilityTv"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />-->
+            <TextView
+                android:id="@+id/info_update_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="?selectableItemBackground"
+                android:drawableStart="@drawable/ic_description"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:paddingHorizontal="16dp"
+                android:text="@string/update_description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_help" />
 
-<!--                    </LinearLayout>-->
+            <!-- notice -->
+            <TextView
+                android:id="@+id/title_notice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/notice"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_update_description"
+                tools:ignore="RtlHardcoded" />
 
-<!--                </LinearLayout>-->
+            <TextView
+                android:id="@+id/notice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="?selectableItemBackground"
+                android:drawableStart="@drawable/ic_info"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:paddingHorizontal="16dp"
+                android:text="@string/update_description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_notice"
+                tools:text="@string/notice_content" />
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="fill_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/comp"-->
-<!--                    android:background="?android:attr/selectableItemBackground"-->
-<!--                    android:clickable="true"-->
-<!--                    android:focusable="true"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:minHeight="48dp"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingStart="16dp"-->
-<!--                    android:paddingEnd="16dp"-->
-<!--                    android:visibility="gone">-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="24dp"-->
-<!--                        android:layout_height="24dp"-->
-<!--                        android:src="@drawable/ic_action_thumb_down"-->
-<!--                        tools:ignore="ContentDescription" />-->
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="fill_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="32dp"-->
-<!--                        android:layout_marginLeft="32dp"-->
-<!--                        android:orientation="vertical"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        tools:ignore="RtlHardcoded">-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/incompatibilityTv"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />-->
-
-<!--                    </LinearLayout>-->
-
-<!--                </LinearLayout>-->
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="10dp" />
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </ScrollView>
