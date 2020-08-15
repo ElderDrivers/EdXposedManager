@@ -315,7 +315,7 @@ public class RepoParser {
         protected Bitmap doInBackground(TextView... params) {
             t = params[0];
             try {
-                return Picasso.with(context).load(source).get();
+                return Picasso.get().load(source).get();
             } catch (Exception e) {
                 return null;
             }
