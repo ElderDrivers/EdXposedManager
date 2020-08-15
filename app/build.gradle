@@ -46,7 +46,7 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:commons:0.9.0.2'
     implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
     implementation "com.github.topjohnwu.libsu:busybox:2.5.0"
-    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
     implementation 'com.annimon:stream:1.2.1'
     implementation 'com.google.code.gson:gson:2.8.6'
