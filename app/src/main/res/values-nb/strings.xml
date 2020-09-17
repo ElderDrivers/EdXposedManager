@@ -32,7 +32,7 @@
     <string name="install_warning">I noen tilfeller kan enheten din kanskje ikke starte opp etter å ha installert EdXposed.\n\nHvis du aldri har hørt om \"soft brick\" og \"bootloop\" før, eller at du ikke vet hvordan man henter seg inn fra en slik situasjon, <b>IKKE</b> installer eller bruk EdXposed!\n\nUansett er det høyst anbefalt å ha en nylig sikkerhetskopi klar.</string>
     <string name="dont_show_again">Ikke vis dette igjen</string>
     <string name="installed_lollipop">EdXposed Framework er aktiv</string>
-    <string name="installed_lollipop_inactive">EdXposed Framework er installert, men er ikke aktiv\nSjekk loggføringen for detaljer</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework er installert, men er ikke aktiv</string>
     <string name="modules_updates_available">Moduloppdatering(er) er tilgjengelig(e)</string>
 
     <!-- File operations -->

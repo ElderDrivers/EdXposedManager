@@ -36,7 +36,7 @@
     <string name="install_known_issue">Возможно у вас известная проблема:\n\"%s\"\n\nЭто может привести к сбою или невозможности использования EdXposed</string>
     <string name="install_known_issue_details">Детали…</string>
     <string name="installed_lollipop">EdXposed Framework активирован!</string>
-    <string name="installed_lollipop_inactive">EdXposed Framework установлен, но не активирован. Проверьте логи для подробностей</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework установлен, но не активирован</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
 
     <!-- File operations -->
