@@ -64,7 +64,7 @@
     <string name="install_known_issue">There seems to be a known issue:\n\"%s\"\n\nThis may render EdXposed malfunction or unusable.</string>
     <string name="install_known_issue_details">Details…</string>
     <string name="installed_lollipop">EdXposed Framework is active</string>
-    <string name="installed_lollipop_inactive">EdXposed Framework is installed, but not active\nPlease check the logs for details</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework is installed, but not active</string>
     <string name="modules_updates_available">Module update(s) are available</string>
 
     <!-- File operations -->
@@ -409,4 +409,5 @@
     <string name="settings_title_disable_hidden_api_bypass">Disable hidden API restrictions bypass</string>
     <string name="settings_summary_disable_hidden_api_bypass">Disable hidden API restrictions bypass will pass some detection (eg Snapchat), these APIs are disabled by default\n<b>WARNING:</b> Enable this option may cause some features do not work properly, or some other problems</string>
     <string name="settings_title_dark_status_bar">Dark status bar (mask)</string>
+    <string name="download_committer">Committer: %s</string>
 </resources>

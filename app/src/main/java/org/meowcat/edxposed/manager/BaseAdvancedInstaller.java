@@ -167,7 +167,7 @@ public class BaseAdvancedInstaller extends Fragment {
         });
 
         notice.setText(Html.fromHtml(notice(), Html.FROM_HTML_MODE_COMPACT));
-        infoAuthor.setText(getString(R.string.download_author, author()));
+        infoAuthor.setText(getString(R.string.download_committer, author()));
 
         try {
             if (uninstallers().size() == 0) {

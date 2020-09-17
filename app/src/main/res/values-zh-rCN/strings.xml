@@ -33,7 +33,7 @@
     <string name="install_warning">某些情况下, 您的设备可能会在安装 EdXposed 过后变得无法正常启动\n\n如果您先前从未听说过「软变砖」或「无限重启」, 又或者您不知道如何从这些情况中恢复手机, 那么请"<b>不要</b>"安装或使用 EdXposed！\n\n无论如何, 都强烈建议您做好近期的数据备份</string>
     <string name="dont_show_again">不再提示</string>
     <string name="installed_lollipop">EdXposed 框架已激活</string>
-    <string name="installed_lollipop_inactive">EdXposed 框架已安装, 但尚未激活\n请查看日志以了解详情</string>
+    <string name="installed_lollipop_inactive">EdXposed 框架已安装, 但尚未激活</string>
     <string name="modules_updates_available">有模块更新可用</string>
 
     <!-- File operations -->
@@ -369,4 +369,5 @@
     <string name="settings_title_disable_hidden_api_bypass">禁用绕过隐藏 API 的限制</string>
     <string name="settings_summary_disable_hidden_api_bypass">禁用绕过隐藏 API 的限制将会通过某些检测（如Snapchat）\n<b>警告:</b> 启用此选项可能会使某些功能无法正常工作，或出现一些其他问题</string>
     <string name="settings_title_dark_status_bar">深色状态栏（遮罩）</string>
+    <string name="download_committer">提交者: %s</string>
 </resources>
