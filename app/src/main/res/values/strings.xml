@@ -148,7 +148,9 @@
     <string name="settings_title_dynamic_modules">Instant module list</string>
     <string name="settings_title_enable_boot_image_deopt">De-optimize boot image</string>
     <string name="settings_title_disable_verbose_log">Disable verbose logs</string>
+    <string name="settings_title_pass_safetynet_fake">Fake Safetynet pass</string>
 
+    <string name="settings_summary_pass_safetynet_fake">Pass safetynet check by using fake result locally</string>
     <string name="settings_summary_pass_safetynet">Force add GMS and GSF to black list and remove from white list\nClosing this option does not remove modules from black list\nXposed Hide is required to enable</string>
     <string name="settings_summary_show_modules">Show modules and manager in applications\nThis option does not remove checked application flag</string>
     <string name="settings_summary_stop_verbose_log">Verbose log will stop catch before the next reboot</string>

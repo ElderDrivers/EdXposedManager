@@ -108,6 +108,8 @@
     <string name="settings_theme_dark">暗色</string>
     <string name="settings_theme_black">黑色（对 AMOLED 屏幕有帮助）</string>
     <string name="settings_title_default_view">默认视图</string>
+    <string name="settings_title_pass_safetynet_fake">Safetynet虚假成功结果</string>
+    <string name="settings_summary_pass_safetynet_fake">在本地将safetynet结果替换为成功</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">模块支持</string>

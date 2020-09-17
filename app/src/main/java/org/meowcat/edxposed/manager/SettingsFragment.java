@@ -75,6 +75,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
     private static final File mDeoptBootFlag = new File(XposedApp.BASE_DIR + "conf/deoptbootimage");
     private static final File mDisableVerboseLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_verbose_log");
     private static final File mDisableModulesLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_modules_log");
+    private static final File mDisableForceClientSafetyNetFlag = new File(XposedApp.BASE_DIR + "conf/disable_pass_client_safetynet");
     private static final File mVerboseLogProcessID = new File(XposedApp.BASE_DIR + "log/all.pid");
     private static final File mModulesLogProcessID = new File(XposedApp.BASE_DIR + "log/error.pid");
     private static final String DIALOG_FRAGMENT_TAG = "list_preference_dialog";
@@ -215,6 +216,22 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
             }
             return (enabled == mHideEdXposedManagerFlag.exists());
         });
+
+        SwitchPreference fakePassSafetynet = findPreference("pass_safetynet_fake");
+        Objects.requireNonNull(fakePassSafetynet).setChecked(!mDisableForceClientSafetyNetFlag.exists());
+        fakePassSafetynet.setOnPreferenceChangeListener((preference, newValue) -> {
+                    boolean enabled = (boolean) newValue;
+                    if(!enabled) {
+                        try{
+                            mDisableForceClientSafetyNetFlag.createNewFile();
+                        }catch (IOException e1){
+                            Toast.makeText(getActivity(),e1.getMessage(),Toast.LENGTH_SHORT);
+                        }
+                    }else{
+                        mDisableForceClientSafetyNetFlag.delete();
+                    }
+                    return (!enabled == mDisableForceClientSafetyNetFlag.exists());
+                });
 
         SwitchPreference prefWhiteListMode = findPreference("white_list_switch");
         Objects.requireNonNull(prefWhiteListMode).setChecked(mWhiteListModeFlag.exists());

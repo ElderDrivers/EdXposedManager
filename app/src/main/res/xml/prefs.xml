@@ -255,6 +255,11 @@
             android:key="hide_edxposed_manager"
             android:summary="@string/settings_summary_hide_edxposed_manager"
             android:title="@string/settings_title_hide_edxposed_manager" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="pass_safetynet_fake"
+            android:summary="@string/settings_summary_pass_safetynet_fake"
+            android:title="@string/settings_title_pass_safetynet_fake" />
 
     </PreferenceCategory>
 
