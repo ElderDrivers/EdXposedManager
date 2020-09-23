@@ -410,4 +410,6 @@
     <string name="settings_summary_disable_hidden_api_bypass">Disable hidden API restrictions bypass will pass some detection (eg Snapchat), these APIs are disabled by default\n<b>WARNING:</b> Enable this option may cause some features do not work properly, or some other problems</string>
     <string name="settings_title_dark_status_bar">Dark status bar (mask)</string>
     <string name="download_committer">Committer: %s</string>
+    <string name="settings_summary_pass_client_safetynet">Force pass client SafetyNet</string>
+    <string name="settings_title_pass_client_safetynet">Modify the return result to force the client SafetyNet.\nThis works for some programs with local or weak server verification, but not for programs with strong server verification.\nIt is not recommended to turn off this option.</string>
 </resources>

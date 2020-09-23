@@ -370,4 +370,6 @@
     <string name="settings_summary_disable_hidden_api_bypass">禁用绕过隐藏 API 的限制将会通过某些检测（如Snapchat）\n<b>警告:</b> 启用此选项可能会使某些功能无法正常工作，或出现一些其他问题</string>
     <string name="settings_title_dark_status_bar">深色状态栏（遮罩）</string>
     <string name="download_committer">提交者: %s</string>
+    <string name="settings_summary_pass_client_safetynet">强制通过本地 SafetyNet 验证</string>
+    <string name="settings_title_pass_client_safetynet">修改返回结果以强制通过本地 SafetyNet 验证\n这对于一些本地验证或弱服务器验证的程序起作用，对强服务器验证的程序不起作用\n不建议关闭该选项</string>
 </resources>

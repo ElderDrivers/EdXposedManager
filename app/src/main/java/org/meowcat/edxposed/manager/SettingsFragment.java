@@ -65,6 +65,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
             Color.parseColor("#607D8B"),
             Color.parseColor("#FA7298")
     };
+    private static final File mDisableForceClientSafetyNetFlag = new File(XposedApp.BASE_DIR + "conf/disable_force_client_safetynet");
     private static final File mPretendXposedInstallerFlag = new File(XposedApp.BASE_DIR + "conf/pretend_xposed_installer");
     private static final File mHideEdXposedManagerFlag = new File(XposedApp.BASE_DIR + "conf/hide_edxposed_manager");
     private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
@@ -150,6 +151,38 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         Objects.requireNonNull(darkStatusBarPref).setOnPreferenceChangeListener((preference, newValue) -> {
             requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), (boolean) newValue ? 0.85f : 1f));
             return true;
+        });
+
+        SwitchPreference prefPassClientSafetyNet = findPreference("pass_client_safetynet");
+        Objects.requireNonNull(prefPassClientSafetyNet).setChecked(!mDisableForceClientSafetyNetFlag.exists());
+        prefPassClientSafetyNet.setOnPreferenceChangeListener((preference, newValue) -> {
+            boolean enabled = (boolean) newValue;
+            if (!enabled) {
+                new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(mDisableForceClientSafetyNetFlag.getPath());
+                    XposedApp.setFilePermissionsFromMode(mDisableForceClientSafetyNetFlag.getPath(), Context.MODE_WORLD_READABLE);
+                } catch (FileNotFoundException e) {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            try {
+                                mDisableForceClientSafetyNetFlag.createNewFile();
+                            } catch (IOException e1) {
+                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+            } else {
+                mDisableForceClientSafetyNetFlag.delete();
+            }
+            return (enabled != mDisableForceClientSafetyNetFlag.exists());
         });
 
         SwitchPreference prefPretendXposedInstaller = findPreference("pretend_xposed_installer");

@@ -40,14 +40,14 @@ import static org.meowcat.edxposed.manager.adapter.LogsHelper.isMainUser;
 public class LogsFragment extends Fragment {
 
     private final static int REQUEST_CODE = 233;
-    public static HashMap activatedConfig;
-    private final HashMap mVerboseLogConfig = new HashMap<String, String>() {
+    public static HashMap<String, String> activatedConfig;
+    private final HashMap<String, String> mVerboseLogConfig = new HashMap<String, String>() {
         {
             put("name", "Verbose");
             put("fileName", "all");
         }
     };
-    private final HashMap mModulesLogConfig = new HashMap<String, String>() {
+    private final HashMap<String, String> mModulesLogConfig = new HashMap<String, String>() {
         {
             put("name", "Modules");
             put("fileName", "error");
@@ -62,8 +62,8 @@ public class LogsFragment extends Fragment {
     private LogsAdapter adapter;
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
     }
 

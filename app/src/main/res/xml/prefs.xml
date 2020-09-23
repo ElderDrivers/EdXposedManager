@@ -245,6 +245,12 @@
             android:summary="@string/settings_summary_enhancement" />
 
         <SwitchPreference
+            android:defaultValue="true"
+            android:key="pass_client_safetynet"
+            android:summary="@string/settings_summary_pass_client_safetynet"
+            android:title="@string/settings_title_pass_client_safetynet" />
+
+        <SwitchPreference
             android:defaultValue="false"
             android:key="pretend_xposed_installer"
             android:summary="@string/settings_summary_pretend_xposed_installer"

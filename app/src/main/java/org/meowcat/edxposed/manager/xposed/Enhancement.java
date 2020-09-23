@@ -47,7 +47,7 @@ public class Enhancement implements IXposedHookLoadPackage {
 
     private static final String mPretendXposedInstallerFlag = "pretend_xposed_installer";
     private static final String mHideEdXposedManagerFlag = "hide_edxposed_manager";
-    private static final String mDisableForceClientSafetyNetFlag = "disable_pass_client_safetynet";
+    private static final String mDisableForceClientSafetyNetFlag = "disable_force_client_safetynet";
 
     private static final String LEGACY_INSTALLER = "de.robv.android.xposed.installer";
 
