@@ -154,7 +154,7 @@
     <string name="settings_summary_stop_verbose_log">Verbose log will stop capturing until next reboot</string>
     <string name="settings_summary_stop_log">Modules log will stop capturing until next reboot</string>
     <string name="settings_summary_disable_modules_log">Exception stack thrown by modules will still be caught normally</string>
-    <string name="settings_summary_black_white_list">When enabled, you can apply a list in \"Xposed Hide\"\nXposed Hide(Blacklist): Selected apps will NOT load EdXposed modules\nNote: using Xposed Hide might break system-wide modules\' functions</string>
+    <string name="settings_summary_black_white_list">When enabled, you can apply a list in \"Xposed Hide\"\nXposed Hide(Black): Selected apps will NOT load EdXposed modules\nNote: using Xposed Hide might break system-wide modules\' functions</string>
     <string name="settings_summary_open_drawer">Open navigation drawer at launch</string>
     <string name="settings_summary_disable_resources">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules that modify resources will not work when this is enabled</string>
     <string name="settings_summary_skip_status_check">Skip \"EdXposed Status\" check for modules</string>
