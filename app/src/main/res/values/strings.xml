@@ -252,7 +252,7 @@
         \nDate: %2$s
     </string>
     <string name="permissionNotGranted">This function will not work without permission to write external storage</string>
-    <string name="warningArchitecture"> A ZIP archive will be downloaded, please flash in Magisk Manager or recovery mode manually</string>
+    <string name="warningArchitecture">A ZIP archive will be downloaded, please flash in Magisk Manager or recovery mode manually</string>
     <string name="newVersion">New version of EdXposed Manager is available! Update now!</string>
     <string name="update">Update</string>
     <string name="choose_icon">Choose an icon</string>
@@ -289,7 +289,7 @@
     <string name="reboot_recovery">Reboot to Recovery</string>
     <string name="reboot_bootloader">Reboot to Bootloader</string>
     <string name="reboot_download">Reboot to Download Mode</string>
-    <string name="reboot_edl">Reboot to EDL</string>
+    <string name="reboot_edl">Reboot to Emergency Mode</string>
     <string name="loading">Loading…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
