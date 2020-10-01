@@ -36,14 +36,14 @@
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">Device</string>
     <string name="tabDownload">Download</string>
-    <string name="welcome_framework_update_available">An update for the EdXposed Framework is available (%s)</string>
+    <string name="welcome_framework_update_available">An update for EdXposed Framework is available (%s)</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install" translatable="false">EdXposed</string>
     <string name="nav_item_modules">Modules</string>
     <string name="nav_item_download">Download</string>
     <string name="nav_item_logs_verbose">Verbose Logs</string>
-    <string name="nav_item_logs_modules">Modules Logs</string>
+    <string name="nav_item_logs_modules">Module Logs</string>
     <string name="nav_item_settings">Settings</string>
     <string name="nav_item_about">About</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -91,7 +91,7 @@
     <string name="modules_app_store">View in App Store</string>
     <string name="module_app_info">App info</string>
     <string name="module_uninstall">Uninstall</string>
-    <string name="xposed_not_active">EdXposed Framework is not currently installed or active\nDid you install the framework and reboot?\nYou can turn-off status check in settings</string>
+    <string name="xposed_not_active">EdXposed Framework is not currently installed or active\nDid you install the framework and reboot?\nYou can turn off status check in settings</string>
 
     <!-- Download -->
     <string name="menuSearch">Search</string>
@@ -149,39 +149,39 @@
     <string name="settings_title_enable_boot_image_deopt">De-optimize boot image</string>
     <string name="settings_title_disable_verbose_log">Disable verbose logs</string>
 
-    <string name="settings_summary_pass_safetynet">Force add GMS and GSF to black list and remove from white list\nClosing this option does not remove modules from black list\nXposed Hide is required to enable</string>
-    <string name="settings_summary_show_modules">Show modules and manager in applications\nThis option does not remove checked application flag</string>
-    <string name="settings_summary_stop_verbose_log">Verbose log will stop catch before the next reboot</string>
-    <string name="settings_summary_stop_log">Modules log will stop catch before the next reboot</string>
-    <string name="settings_summary_disable_modules_log">Exception stack thrown by the module will still be catched normally</string>
-    <string name="settings_summary_black_white_list">After opening, you can set the list in \"Xposed Hide\"\nXposed Hide(Black): Selected app NOT to load EdXposed modules\nNote: using Xposed Hide might break system-wide modules\' functions</string>
-    <string name="settings_summary_open_drawer">Open the navigation drawer automatically at startup</string>
-    <string name="settings_summary_disable_resources">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules which try to change resources will not work when this is enabled</string>
+    <string name="settings_summary_pass_safetynet">Force add GMS and GSF to blacklist and remove from whitelist\nDisabling this option does not remove modules from blacklist\nXposed Hide is required</string>
+    <string name="settings_summary_show_modules">Show modules and manager in the app\nThis does not uncheck enabled modules</string>
+    <string name="settings_summary_stop_verbose_log">Verbose log will stop capturing until next reboot</string>
+    <string name="settings_summary_stop_log">Modules log will stop capturing until next reboot</string>
+    <string name="settings_summary_disable_modules_log">Exception stack thrown by modules will still be caught normally</string>
+    <string name="settings_summary_black_white_list">When enabled, you can apply a list in \"Xposed Hide\"\nXposed Hide(Blacklist): Selected apps will NOT load EdXposed modules\nNote: using Xposed Hide might break system-wide modules\' functions</string>
+    <string name="settings_summary_open_drawer">Open navigation drawer at launch</string>
+    <string name="settings_summary_disable_resources">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules that modify resources will not work when this is enabled</string>
     <string name="settings_summary_skip_status_check">Skip \"EdXposed Status\" check for modules</string>
     <string name="settings_summary_dynamic_modules">When turned on, load latest activated module list on each app process started</string>
-    <string name="settings_summary_enable_boot_image_deopt">Turn on to make all framework methods hookable, but the whole system will be slowed down\nMainly used to check if one framework method is inlined when it can\'t be hooked into</string>
+    <string name="settings_summary_enable_boot_image_deopt">Turn on to make all framework methods hookable, but the whole system will be slowed down\nMainly used to check if one framework method is inlined when it can\'t be hooked on</string>
 
-    <string name="settings_sort_by_name">Sort by application name</string>
-    <string name="settings_sort_by_name_reverse">Sort by application name (reverse)</string>
+    <string name="settings_sort_by_name">Sort by app name</string>
+    <string name="settings_sort_by_name_reverse">Sort by app name (reversed)</string>
     <string name="settings_sort_by_package_name">Sort by package name</string>
-    <string name="settings_sort_by_package_name_reverse">Sort by package name (reverse)</string>
+    <string name="settings_sort_by_package_name_reverse">Sort by package name (reversed)</string>
     <string name="settings_sort_by_install_time">Sort by install time</string>
-    <string name="settings_sort_by_install_time_reverse">Sort by install time (reverse)</string>
+    <string name="settings_sort_by_install_time_reverse">Sort by install time (reversed)</string>
     <string name="settings_sort_by_update_time">Sort by update time</string>
-    <string name="settings_sort_by_update_time_reverse">Sort by update time (reverse)</string>
+    <string name="settings_sort_by_update_time_reverse">Sort by update time (reversed)</string>
 
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
-    <string name="settings_theme_black">Black (useful for AMOLED screens)</string>
+    <string name="settings_theme_black">Black (for AMOLED screens)</string>
     <!-- Support tab -->
     <string name="support_modules_label">Support for modules</string>
-    <string name="support_modules_description">Click any module in the modules list and select \"%1$s\".</string>
+    <string name="support_modules_description">Tap any module in the module list and tap \"%1$s\".</string>
     <string name="support_framework_label">Framework/Manager support</string>
     <string name="support_faq_label">FAQ/known issues</string>
     <string name="support_group_qq_label">QQ Group: 855219808</string>
     <string name="support_group_telegram_label">Telegram Group: @Code_of_MeowCat</string>
     <string name="support_donate_label">Donate</string>
-    <string name="support_donate_description">If you would like to say thanks for EdXposed, you can donate to our here</string>
+    <string name="support_donate_description">If you would like to say thanks to EdXposed, you can make a donation to us here</string>
 
     <!-- Logs tab  -->
     <string name="logs_save_failed">Could not write log to SD card:</string>
@@ -241,7 +241,7 @@
 
     <string name="share">Share with…</string>
     <string name="back">Back</string>
-    <string name="loadingError">Error getting the list\nCannot access Internet, or server has a bug</string>
+    <string name="loadingError">Error getting the list\nCannot access Internet, or there are some issues with our server</string>
     <string name="info">Info</string>
     <string name="infoInstaller">
         Name: %1$s
@@ -251,9 +251,9 @@
         Name: %1$s
         \nDate: %2$s
     </string>
-    <string name="permissionNotGranted">This feature will not work without permission to write external storage</string>
-    <string name="warningArchitecture">You will download a ZIP file, flash in Magisk Manager or Recovery manually</string>
-    <string name="newVersion">New version of EdXposed Manager is available! Update it!</string>
+    <string name="permissionNotGranted">This function will not work without permission to write external storage</string>
+    <string name="warningArchitecture"> A ZIP archive will be downloaded, please flash in Magisk Manager or recovery mode manually</string>
+    <string name="newVersion">New version of EdXposed Manager is available! Update now!</string>
     <string name="update">Update</string>
     <string name="choose_icon">Choose an icon</string>
     <string name="custom_icon">Custom icon</string>
@@ -265,7 +265,7 @@
     <string name="md_cancel_label">Cancel</string>
     <string name="md_choose_label">Choose</string>
     <string name="md_error_label">Error</string>
-    <string name="md_storage_perm_error">Your app has not been granted the READ_EXTERNAL_STORAGE permission.</string>
+    <string name="md_storage_perm_error">This app is not granted READ_EXTERNAL_STORAGE permission.</string>
     <string name="md_custom_label">Custom</string>
     <string name="md_presets_label">Presets</string>
     <string name="changelog">Changelog</string>
@@ -280,7 +280,7 @@
     <string name="settings_title_notification_coloration">Color notification icon</string>
     <string name="file_is_empty">File is empty</string>
     <string name="install_with_su">Silent installation (root)</string>
-    <string name="install_with_su_summ">If checked EdXposed Manager will install modules without a prompt</string>
+    <string name="install_with_su_summ">If checked, EdXposed Manager will install modules without any prompt</string>
     <string name="install_remove">Install and remove</string>
     <string name="download_remove">Download and remove</string>
     <string name="module_saved">Module saved at %1$s</string>
@@ -288,14 +288,14 @@
     <string name="ignore_updates_summ">Ignore updates for a specific module</string>
     <string name="reboot_recovery">Reboot to Recovery</string>
     <string name="reboot_bootloader">Reboot to Bootloader</string>
-    <string name="reboot_download">Reboot to Download</string>
-    <string name="reboot_edl">Reboot to Emergency</string>
+    <string name="reboot_download">Reboot to Download Mode</string>
+    <string name="reboot_edl">Reboot to EDL</string>
     <string name="loading">Loading…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
     <string name="scroll_bottom">Scroll to bottom</string>
     <string name="share_app">Share app</string>
-    <string name="share_app_text">Check this out: Open-sources Xposed Framework for latest Android: EdXposed! %s</string>
+    <string name="share_app_text">Check this out: Open-source Xposed Framework for latest Android: EdXposed! %s</string>
     <string name="status">EdXposed Status</string>
     <string name="xposed_on_next_reboot">EdXposed Framework will be enabled on next reboot</string>
     <string name="xposed_off_next_reboot">EdXposed Framework will be disabled on next reboot</string>
@@ -310,12 +310,12 @@
     <string name="download_location">Download location</string>
     <string name="download_location_summ">Download location for APK files (modules only)</string>
     <string name="restart_needed">Restart needed</string>
-    <string name="cache_cleaned">App\'s cache has been cleaned. Restart is needed</string>
+    <string name="cache_cleaned">App\'s cache has been cleared. Restart is needed</string>
     <string name="update_download_list">The download\'s module list will be loaded in few seconds</string>
     <string name="no_connection_available">No connection available</string>
     <string name="not_logcat">This is the EdXposed Framework and modules log\nif you need a Android logcat, you can try our Log Catcher Magisk module</string>
     <string name="force_english">Force English language</string>
-    <string name="warning_language">Language change will be applied after application restart</string>
+    <string name="warning_language">Language change will be applied after app restart</string>
     <string name="installation_error">Installation error</string>
     <string name="installation_successful">Installation successful</string>
     <string name="installation_successful_message">%s installed successfully</string>
@@ -327,7 +327,7 @@
     <string name="unstable_build">This is a unstable build\nInstall it at your own risk</string>
     <string name="unofficial_build">This is a unofficial build\nInstall it at your own risk</string>
     <string name="custom_list">Use alternative modules download list</string>
-    <string name="custom_list_summ">Mirrored modules list can help load faster\nBut the newly submitted module display will be delayed (about 24 hours)\nCheck this option if you get issues when loading download list</string>
+    <string name="custom_list_summ">Mirrored modules list can speed up loading\nBut newly submitted modules will appear later (about 24 hours)\nCheck this option if you get issues when loading download list</string>
 
     <string name="known_issue_wrong_base_directory">Wrong base directory: %1$s</string>
     <string name="known_issue_missing_base_directory">Missing base directory</string>
@@ -335,54 +335,54 @@
     <string name="dexopt_now">Optimize all apps with Dexopt</string>
     <string name="speed_now">Optimize all apps with Dex2oat(Speed mode)</string>
     <string name="this_may_take_a_while">Please wait, this may take a while…</string>
-    <string name="take_while_cannot_resore">Are you sure to optimize all apps?\n\nThis may take a while, and CANNOT be restored\n\nTip: You can optimize selected app in Xposed Hide list</string>
+    <string name="take_while_cannot_resore">Are you sure to optimize all apps?\n\nThis may take a while, and CANNOT be undone\n\nTip: You can optimize specific apps in Xposed Hide list</string>
     <string name="done">Done!</string>
     <string name="verified_boot_deactivated">Verified Boot is deactivated</string>
     <string name="verified_boot_none">Could not detect Verified Boot state</string>
     <string name="verified_boot_active">Verified Boot is active</string>
     <string name="verified_boot_explanation">Verified Boot (dm-verity) prevents the device from booting if the system partition is modified</string>
     <string name="ignore_chinese">Ignore Chinese characters</string>
-    <string name="ignore_chinese_summary">Hide Chinese modules from list\nModules are still available in search window\nEnabling this option may result in slow performance</string>
+    <string name="ignore_chinese_summary">Hide Chinese modules from the list\nModules are still available in search window\nEnabling this option may result in slow performance</string>
 
     <!-- EdXp related -->
     <string name="nav_title_black_list" translatable="false">Xposed Hide</string>
     <string name="nav_title_compat_list">Compat Mode</string>
     <string name="white_list_mode_title">Xposed Hide(White)</string>
-    <string name="title_white_list">White</string>
-    <string name="title_black_list">Black</string>
+    <string name="title_white_list">Whitelist</string>
+    <string name="title_black_list">Blacklist</string>
     <string name="add_package_failed">Failed to edit, one or more settings prevent you from editing.</string>
-    <string name="menu_title_compile_reset">De-optimize</string>
+    <string name="menu_title_compile_reset">Deoptimize</string>
     <string name="menu_title_compile_speed">Optimize with Speed mode</string>
     <string name="menu_title_compile_dexopt">Optimize with Dexopt mode</string>
     <string name="compile_reset_msg">Resetting …</string>
     <string name="compile_speed_msg">Optimizing …</string>
     <string name="title_compat_list">Compat Mode</string>
-    <string name="white_list_mode_summary">Xposed Hide(White): Only selected app load EdXposed modules\nXposed Hide is required to enable</string>
+    <string name="white_list_mode_summary">Xposed Hide(White): Only selected app load EdXposed modules\nXposed Hide is required</string>
 
 
     <string name="coolapk">CoolApk</string>
     <string name="website">Website</string>
 
-    <string name="solohsu_summary">Main creator of EdXposed</string>
-    <string name="mlgmxyysd_summary">Main creator of EdXposed Manager</string>
-    <string name="elderdrivers_summary">Organization of EdXposed</string>
-    <string name="meowcat_summary">Organization of MlgmXyysd</string>
+    <string name="solohsu_summary">Main dev of EdXposed</string>
+    <string name="mlgmxyysd_summary">Main dev of EdXposed Manager</string>
+    <string name="elderdrivers_summary">Dev team of EdXposed</string>
+    <string name="meowcat_summary">Dev team of MlgmXyysd</string>
     <string name="logs_verbose_disabled">Verbose logs is disabled</string>
     <string name="logs_cannot_read">Cannot read log: \n</string>
-    <string name="app_launch">Launch it</string>
-    <string name="app_stop">Stop it</string>
+    <string name="app_launch">Launch</string>
+    <string name="app_stop">Stop</string>
     <string name="update_description">Update Changelog</string>
-    <string name="edxp_installer_installed">You must to uninstall EdXposed Installer to use EdXposed Manager</string>
+    <string name="edxp_installer_installed">You must uninstall EdXposed Installer first to use EdXposed Manager</string>
     <string name="install_time">Install time: </string>
     <string name="update_time">Update time: </string>
-    <string name="enabled_top">Top the checked items</string>
+    <string name="enabled_top">Prioritize the checked items</string>
     <string name="list_sort">List sorting</string>
-    <string name="notinstalled">The EdXposed framework is not installed.</string>
-    <string name="app_no_ui">This application does not provide a user interface</string>
+    <string name="notinstalled">EdXposed framework is not installed.</string>
+    <string name="app_no_ui">This app does not provide a user interface</string>
     <string name="compile_failed">Optimization failed or return value is empty</string>
     <string name="compile_failed_with_info">Optimization failed: </string>
     <string name="hook_modules">Force hook modules</string>
-    <string name="hook_modules_summary">Force add modules to white-list and remove from black-list\nClosing this option does not remove modules from white-list\nXposed Hide is required to enable</string>
+    <string name="hook_modules_summary">Force add modules to whitelist and remove from blacklist\nDisabling this option does not remove modules from blacklist\nXposed Hide is required</string>
     <string name="not_installed">Not installed</string>
     <string name="ok">OK</string>
     <string name="warning_list_not_enabled">Xposed Hide is not enabled\nYou can enable in settings</string>
@@ -403,13 +403,13 @@
     <string name="settings_summary_enhancement">Disabled\nYou can enable enhancement mode in the module</string>
     <string name="settings_summary_enhancement_enabled">Enabled</string>
     <string name="settings_title_pretend_xposed_installer">Pretend to have Xposed Installer installed</string>
-    <string name="settings_summary_pretend_xposed_installer">Pretend that Xposed Installer is installed to make some outdated but useful modules work\nOnly work for the enabled modules in \"Modules\"\nWARNING: Some software (eg. RootBeer) may detect that EdXposed when this function is turned on</string>
+    <string name="settings_summary_pretend_xposed_installer">Pretend that Xposed Installer is installed to make some outdated but useful modules work\nOnly work for the enabled modules in \"Modules\"\nWARNING: Some software (eg. RootBeer) may be able to detect EdXposed when this function is turned on</string>
     <string name="settings_title_hide_edxposed_manager">Hide EdXposed Manager</string>
-    <string name="settings_summary_hide_edxposed_manager">Prevent the software from detecting EdXposed Manager\nWARNING: Modules may not be able to start the EdXposed Manager UI properly, some fratures of EdXposed Manager in the system may not work properly</string>
+    <string name="settings_summary_hide_edxposed_manager">Prevent other apps from detecting EdXposed Manager\nWARNING: Modules may not be able to start EdXposed Manager UI properly, some EdXposed Manager features may not work properly in the system </string>
     <string name="settings_title_disable_hidden_api_bypass">Disable hidden API restrictions bypass</string>
-    <string name="settings_summary_disable_hidden_api_bypass">Disable hidden API restrictions bypass will pass some detection (eg Snapchat), these APIs are disabled by default\n<b>WARNING:</b> Enable this option may cause some features do not work properly, or some other problems</string>
+    <string name="settings_summary_disable_hidden_api_bypass">Disable hidden API restrictions bypass will pass some detection (eg Snapchat), these APIs are disabled by default\n<b>WARNING:</b> Enabling this option may break some features or cause some other problems</string>
     <string name="settings_title_dark_status_bar">Dark status bar (mask)</string>
     <string name="download_committer">Committer: %s</string>
     <string name="settings_summary_pass_client_safetynet">Force pass client SafetyNet</string>
-    <string name="settings_title_pass_client_safetynet">Modify the return result to force the client SafetyNet.\nThis works for some programs with local or weak server verification, but not for programs with strong server verification.\nIt is not recommended to turn off this option.</string>
+    <string name="settings_title_pass_client_safetynet">Modify the return result to force the client to pass SafetyNet check.\nThis works for some programs with local or weak server verification, but not for programs with strong server verification.\nIt is not recommended to turn off this option.</string>
 </resources>
