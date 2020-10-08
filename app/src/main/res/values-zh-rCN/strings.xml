@@ -299,7 +299,7 @@
     <string name="known_issue_missing_base_directory">未知配置文件夹</string>
     <string name="dexopt_now">以 Dexopt 模式优化全部应用</string>
     <string name="speed_now">以 Dex2oat(Speed) 模式优化全部应用</string>
-    <string name="this_may_take_a_while">请稍后, 这将需要一段时间…</string>
+    <string name="this_may_take_a_while">请稍候, 这将需要一段时间…</string>
     <string name="take_while_cannot_resore">你确定要优化全部应用吗?\n\n这将需要一段时间, 并且无法恢复\n\n提示: 你可以在 Xposed Hide 中优化单个应用</string>
     <string name="settings_title_enable_boot_image_deopt">禁用系统代码优化</string>
     <string name="settings_summary_enable_boot_image_deopt">禁用系统代码的优化能使所有系统方法都可以被 hook 到, 但是会降低系统流畅度\n主要用于对比测试某个方法无法 hook 到是否为系统优化导致</string>
