@@ -369,4 +369,7 @@
     <string name="settings_title_disable_hidden_api_bypass">Выключить скрытый обход ограничений API</string>
     <string name="settings_summary_disable_hidden_api_bypass">Выключение скрытого обхода ограничений API способстувет некоторому обнаружению (например Snapchat), эти API выключены по умолчанию\n<b>ВНИМАНИЕ:</b> Включение этой настройки может привести к некорректной работе некоторых функций или другим проблемам</string>
     <string name="settings_title_dark_status_bar">Темная строка состояния (маскировка)</string>
+    <string name="download_committer">Загрузил: %s</string>
+    <string name="settings_summary_pass_client_safetynet">Принудительно пройти проверку SafetyNet</string>
+    <string name="settings_title_pass_client_safetynet">Изменить статус прохождения проверки для SafetyNet\nЭто работает для некоторых программ с локальной или простой проверкой сервера, но не для программ со строгой проверкой сервера\nНе рекомендуется отключать этот параметр</string>
 </resources>
