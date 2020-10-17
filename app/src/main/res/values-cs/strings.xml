@@ -102,7 +102,7 @@
     <string name="settings_title_theme">Motiv</string>
     <string name="settings_theme_light">Světlý</string>
     <string name="settings_theme_dark">Tmavý</string>
-    <string name="settings_theme_black">Černý (užitečné pro AMOLED displeje)</string>
+    <string name="settings_theme_black">Černý</string>
     <string name="settings_title_default_view">Výchozí zobrazení</string>
 
     <!-- Support tab -->

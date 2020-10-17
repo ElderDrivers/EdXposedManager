@@ -132,7 +132,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
         try {
             long timestamp = System.currentTimeMillis();
             String time = formatter.format(new Date());
-            String fileName = "BugCatcher-" + time + "-" + timestamp + ".log";
+            String fileName = "BugCatcher-" + time + "-" + timestamp + ".txt";
             String crashPath = Objects.requireNonNull(Context.getExternalFilesDir("crash")).getPath() + "/";
             if (isFolderExists(crashPath)) {
                 FileOutputStream fos = new FileOutputStream(crashPath + fileName);

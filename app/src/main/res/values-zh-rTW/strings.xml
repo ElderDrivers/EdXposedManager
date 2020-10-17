@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">傳送</string>
     <string name="menuSaveToSd">儲存到裝置上</string>
-    <string name="xposed_not_active">最新版本的 EdXposed 尚未安裝或啟用\n您是否已安裝過框架並重新啟動手機？\n可在設定中關閉狀態檢查</string>
+    <string name="xposed_not_active">最新版本的 EdXposed 尚未安裝或啟用\n可在設定中關閉狀態檢查</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">裝置</string>
@@ -107,7 +107,7 @@
     <string name="settings_title_theme">主題</string>
     <string name="settings_theme_light">亮色</string>
     <string name="settings_theme_dark">暗色</string>
-    <string name="settings_theme_black">黑色（對 AMOLED 螢幕有幫助）</string>
+    <string name="settings_theme_black">黑色</string>
     <string name="settings_title_default_view">預設檢視</string>
 
     <!-- Support tab -->
@@ -250,7 +250,7 @@
     <string name="download_location">下載位置</string>
     <string name="download_location_summ">選擇 APK 檔案的下載位置（僅限模組）</string>
     <string name="restart_needed">需要重新啟動</string>
-    <string name="cache_cleaned">應用快取已清除。需要重新開啟</string>
+    <string name="cache_cleaned">快取已清除。需要重新開啟</string>
     <string name="update_download_list">模組清單將在幾秒鐘內載入</string>
     <string name="no_connection_available">沒有可用的連線</string>
     <string name="not_logcat">如果有人要求您提供一份 Android 系統日誌，那麼您來錯了地方。在此處顯示的是 EdXposed 的日誌資訊；如果您想抓取系統日誌，可嘗試我們的「Log Catcher」Magisk 模組。</string>

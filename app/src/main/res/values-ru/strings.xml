@@ -63,7 +63,7 @@
     <string name="modules_app_store">Магазин приложений</string>
     <string name="module_app_info">О приложении</string>
     <string name="module_uninstall">Удалить</string>
-    <string name="xposed_not_active">EdXposed Framework не установлен или не активирован\nВы точно установили Framework и перезагрузились?\nВы можете выключить проверку статуса в настройках</string>
+    <string name="xposed_not_active">EdXposed Framework не установлен или не активирован\nВы можете выключить проверку статуса в настройках</string>
 
     <!-- Download -->
     <string name="menuSearch">Поиск</string>
@@ -140,7 +140,7 @@
 
     <string name="settings_theme_light">Светлая</string>
     <string name="settings_theme_dark">Темная</string>
-    <string name="settings_theme_black">Черная (полезно для AMOLED экранов)</string>
+    <string name="settings_theme_black">Черная</string>
 
     <!-- Support -->
     <string name="support_modules_label">Поддержка модулей</string>

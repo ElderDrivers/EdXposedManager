@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">发送</string>
     <string name="menuSaveToSd">保存到 SD 卡</string>
-    <string name="xposed_not_active">EdXposed 框架未安装或未激活\n您是否已安装框架并重启？\n可在设置中关闭状态检查</string>
+    <string name="xposed_not_active">EdXposed 框架未安装或未激活\n可在设置中关闭状态检查</string>
 
     <!-- Welcome screen / main sections -->
     <string name="tabInstall">我的设备</string>
@@ -106,7 +106,7 @@
     <string name="settings_title_theme">主题</string>
     <string name="settings_theme_light">亮色</string>
     <string name="settings_theme_dark">暗色</string>
-    <string name="settings_theme_black">黑色（对 AMOLED 屏幕有帮助）</string>
+    <string name="settings_theme_black">黑色</string>
     <string name="settings_title_default_view">默认视图</string>
 
     <!-- Support tab -->
@@ -248,7 +248,7 @@
     <string name="download_location">下载位置</string>
     <string name="download_location_summ">选择 APK 文件的下载位置（仅限模块）</string>
     <string name="restart_needed">需要重启</string>
-    <string name="cache_cleaned">应用缓存已清除, 需要重新启动</string>
+    <string name="cache_cleaned">缓存已清除, 需要重新启动</string>
     <string name="update_download_list">模块列表将在几秒钟内加载</string>
     <string name="no_connection_available">没有可用的连接</string>
     <string name="not_logcat">此处仅显示 EdXposed 及模块相关日志信息\n如果您想抓取系统日志, 可以尝试我们的「Log Catcher」Magisk 模块</string>
@@ -308,7 +308,7 @@
     <string name="logs_verbose_disabled">详细日志已禁用</string>
     <string name="logs_cannot_read">无法读取日志: \n</string>
     <string name="app_launch">运行</string>
-    <string name="app_stop">停止</string>
+    <string name="app_stop">" 停止"</string>
     <string name="update_description">更新日志</string>
     <string name="edxp_installer_installed">你必须先卸载「EdXposed Installer」才能继续使用「EdXposed Manager」</string>
     <string name="install_time">安装日期: </string>
@@ -370,6 +370,6 @@
     <string name="settings_summary_disable_hidden_api_bypass">禁用绕过隐藏 API 的限制将会通过某些检测（如Snapchat）\n<b>警告:</b> 启用此选项可能会使某些功能无法正常工作，或出现一些其他问题</string>
     <string name="settings_title_dark_status_bar">深色状态栏（遮罩）</string>
     <string name="download_committer">提交者: %s</string>
-    <string name="settings_summary_pass_client_safetynet">强制通过本地 SafetyNet 验证</string>
-    <string name="settings_title_pass_client_safetynet">修改返回结果以强制通过本地 SafetyNet 验证\n这对于一些本地验证或弱服务器验证的程序起作用，对强服务器验证的程序不起作用\n不建议关闭该选项</string>
+    <string name="settings_title_pass_client_safetynet">强制通过本地 SafetyNet 验证</string>
+    <string name="settings_summary_pass_client_safetynet">修改返回结果以强制通过本地 SafetyNet 验证\n这对于一些本地验证或弱服务器验证的程序起作用，对强服务器验证的程序不起作用\n不建议关闭该选项</string>
 </resources>
