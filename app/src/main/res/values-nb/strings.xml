@@ -104,7 +104,7 @@
     <string name="settings_title_theme">Tema</string>
     <string name="settings_theme_light">Lyst</string>
     <string name="settings_theme_dark">Mørkt</string>
-    <string name="settings_theme_black">Svart (nyttig for AMOLED-skjermer)</string>
+    <string name="settings_theme_black">Svart</string>
     <string name="settings_title_default_view">Standardvisning</string>
 
     <!-- Support tab -->
