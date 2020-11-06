@@ -341,4 +341,5 @@
     <string name="settings_summary_stop_log">Modulloggen vil stoppe innhentingen før den neste omstarten</string>
     <string name="settings_title_disable_modules_log">Skru av modulloggføringer</string>
     <string name="settings_summary_disable_modules_log">Unntaksmeldinger som blir slengt ut av modulen, vil fortsatt bli innhentet normalt</string>
+    <string name="settings_group_app">App</string>
 </resources>
