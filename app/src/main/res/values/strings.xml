@@ -131,7 +131,7 @@
 
     <!-- Settings -->
     <string name="settings_group_download">Download and install</string>
-    <string name="settings_group_app" translatable="false">Xposed Hide</string>
+    <string name="settings_group_app">Application</string>
     <string name="settings_group_framework">Framework</string>
 
     <string name="settings_title_release_type">Versions to be shown</string>

@@ -372,4 +372,5 @@
     <string name="download_committer">提交者: %s</string>
     <string name="settings_title_pass_client_safetynet">强制通过本地 SafetyNet 验证</string>
     <string name="settings_summary_pass_client_safetynet">修改返回结果以强制通过本地 SafetyNet 验证\n这对于一些本地验证或弱服务器验证的程序起作用，对强服务器验证的程序不起作用\n不建议关闭该选项</string>
+    <string name="settings_group_app">应用</string>
 </resources>

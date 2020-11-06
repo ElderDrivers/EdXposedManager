@@ -376,4 +376,5 @@
     <string name="settings_summary_disable_hidden_api_bypass">不要繞過隱藏 API 可以避免某些 app（如 SnapChat）檢測到 Xposed 框架，這些 API 預設停用。\n<b>警告：</b>啟用這個選項可能造成某些功能無法正常運作，或發生其他更糟糕的事。</string>
     <string name="settings_title_dark_status_bar">深色狀態欄（遮罩）</string>
     <string name="download_committer">提交者: %s</string>
+    <string name="settings_group_app">應用程式</string>
 </resources>
