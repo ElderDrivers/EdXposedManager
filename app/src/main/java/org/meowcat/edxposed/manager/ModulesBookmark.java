@@ -43,9 +43,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
-import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public class ModulesBookmark extends XposedBaseActivity {
 
@@ -104,8 +102,6 @@ public class ModulesBookmark extends XposedBaseActivity {
 
             if (changed)
                 getModules();
-
-            requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), getDarkenFactor()));
         }
 
         @Override

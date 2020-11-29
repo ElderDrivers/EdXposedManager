@@ -15,6 +15,9 @@ import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.util.Locale;
 
+import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
+import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
+
 public abstract class XposedBaseActivity extends AppCompatActivity {
     public int mTheme = -1;
 
@@ -30,6 +33,7 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         XposedApp.setColors(getSupportActionBar(), XposedApp.getColor(this), this);
+        getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), getDarkenFactor()));
         ThemeUtil.reloadTheme(this);
     }
 
