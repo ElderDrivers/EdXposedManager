@@ -10,7 +10,7 @@
     <!-- EdXp related -->
     <dimen name="card_horizontal_margin">8dip</dimen>
     <dimen name="card_vertical_margin">3dip</dimen>
-    <dimen name="card_corner_radius">10dp</dimen>
-    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="card_elevation">0dp</dimen>
     <dimen name="card_divider_space">5sp</dimen>
 </resources>
