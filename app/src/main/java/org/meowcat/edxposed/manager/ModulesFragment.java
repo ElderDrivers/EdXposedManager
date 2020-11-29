@@ -219,7 +219,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        installedXposedVersion = XposedApp.getXposedVersion();
+        installedXposedVersion = XposedApp.getActiveXposedVersion();
         if (installedXposedVersion <= 0) {
             addHeader();
         }
@@ -504,6 +504,9 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
             appMenu.getMenu().removeItem(R.id.menu_download_updates);
             appMenu.getMenu().removeItem(R.id.menu_support);
         }
+        if (getSettingsIntent(installedModule.packageName) == null) {
+            appMenu.getMenu().removeItem(R.id.menu_launch);
+        }
         appMenu.setOnMenuItemClickListener(menuItem -> {
             InstalledModule module = ModuleUtil.getInstance().getModule(info.packageName);
             if (module == null) {
@@ -521,17 +524,17 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                     } else {
                         Snackbar.make(requireView(), R.string.module_no_ui, Snackbar.LENGTH_LONG).show();
                     }
-                    return true;
+                    break;
 
                 case R.id.menu_download_updates:
                     Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
                     detailsIntent.setData(Uri.fromParts("package", module.packageName, null));
                     startActivity(detailsIntent);
-                    return true;
+                    break;
 
                 case R.id.menu_support:
                     NavUtil.startURL(getActivity(), Uri.parse(RepoDb.getModuleSupport(module.packageName)));
-                    return true;
+                    break;
 
                 case R.id.menu_app_store:
                     Uri uri = Uri.parse("market://details?id=" + module.packageName);
@@ -542,15 +545,22 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-                    return true;
+                    break;
 
                 case R.id.menu_app_info:
                     startActivity(new Intent(ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", module.packageName, null)));
-                    return true;
+                    break;
 
                 case R.id.menu_uninstall:
                     startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE, Uri.fromParts("package", module.packageName, null)));
-                    return true;
+                    break;
+
+                case R.id.menu_activation_scope:
+                    Intent scopeIntent = new Intent(context, ActivationScopeActivity.class);
+                    scopeIntent.putExtra("modulePackageName", module.packageName);
+                    scopeIntent.putExtra("moduleName", module.getAppName());
+                    startActivity(scopeIntent);
+                    break;
             }
             return true;
         });

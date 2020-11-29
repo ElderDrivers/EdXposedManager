@@ -34,10 +34,11 @@ import java.util.Objects;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 import static org.meowcat.edxposed.manager.XposedApp.rwxrwxrwx;
+import static org.meowcat.edxposed.manager.XposedApp.setFilePermissionsFromMode;
 
 public class AppHelper {
 
-    private static final String BASE_PATH = XposedApp.BASE_DIR;
+    static final String BASE_PATH = XposedApp.BASE_DIR;
     private static final String WHITE_LIST_PATH = "conf/whitelist/";
     private static final String BLACK_LIST_PATH = "conf/blacklist/";
     private static final String COMPAT_LIST_PATH = "conf/compatlist/";
@@ -56,10 +57,6 @@ public class AppHelper {
 
     public static boolean isWhiteListMode() {
         return new File(BASE_PATH + WHITE_LIST_MODE).exists();
-    }
-
-    public static boolean isBlackListMode() {
-        return new File(BASE_PATH + BLACK_LIST_MODE).exists();
     }
 
     private static boolean addWhiteList(String packageName) {
@@ -162,7 +159,7 @@ public class AppHelper {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file.getPath());
-                    XposedApp.setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {
@@ -198,7 +195,7 @@ public class AppHelper {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file.getPath());
-                    XposedApp.setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {
@@ -234,7 +231,7 @@ public class AppHelper {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file.getPath());
-                    XposedApp.setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
+                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {

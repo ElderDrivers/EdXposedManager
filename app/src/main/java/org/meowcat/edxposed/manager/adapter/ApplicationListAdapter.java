@@ -18,7 +18,7 @@ public class ApplicationListAdapter extends AppAdapter {
     private List<String> checkedList;
 
     public ApplicationListAdapter(Context context, boolean isWhiteListMode) {
-        super(context, "Application");
+        super(context);
         this.isWhiteListMode = isWhiteListMode;
     }
 

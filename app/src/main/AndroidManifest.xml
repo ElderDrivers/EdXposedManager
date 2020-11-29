@@ -218,6 +218,10 @@
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
             android:theme="@style/Theme.XposedInstaller.Toolbar.Black" />
 
+        <activity
+            android:name=".ActivationScopeActivity"
+            android:theme="@style/Theme.XposedInstaller.Transparent" />
+
         <receiver
             android:name=".receiver.PackageChangeReceiver"
             android:exported="false">

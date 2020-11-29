@@ -277,8 +277,7 @@
     <string name="website">官网</string>
     <string name="coolapk">酷安</string>
     <string name="meowcat">小喵工作室</string>
-    <string name="white_list_mode_summary">Xposed Hide（白）: 仅选中的应用加载 EdXposed 模块\n仅当启用 Xposed Hide 时有效</string>
-    <string name="settings_summary_black_white_list">开启后，可在\"Xposed Hide\"中设置名单\n Xposed Hide（黑）: 选中的应用不会加载 EdXposed 模块\n注意: 使用 Xposed Hide 可能会导致某些系统全局模块不能正常工作\n</string>
+    <string name="white_list_mode_summary">Xposed Hide（黑）: （默认）选中的应用不会加载 EdXposed 模块\nXposed Hide（白）: 仅选中的应用加载 EdXposed 模块\n注意: 使用 Xposed Hide 可能会导致某些系统全局模块不能正常工作</string>
     <string name="ignore_chinese_summary">从模块列表中隐藏中文模块\n模块仍然可以被搜索到\n启用此选项可能会降低性能</string>
     <string name="ignore_chinese">忽略中文字符</string>
     <string name="verified_boot_explanation">引导验证（dm-verity）防止设备在修改系统分区时引导</string>
@@ -324,21 +323,19 @@
     <string name="settings_sort_by_update_time">更新时间</string>
     <string name="settings_sort_by_update_time_reverse">更新时间（降序）</string>
     <string name="app_no_ui">该应用未提供用户界面</string>
-    <string name="settings_title_show_modules">显示模块和管理器</string>
-    <string name="settings_summary_show_modules">在应用内显示模块和管理器\n此选项并不会移除已勾选的应用标识</string>
+    <string name="menu_show_modules">显示模块和管理器</string>
     <string name="compile_failed">优化失败或返回值为空</string>
     <string name="compile_failed_with_info">优化失败: </string>
     <string name="hook_modules">强制添加模块</string>
-    <string name="hook_modules_summary">强制将模块添加进白名单并移出黑名单\n关闭此选项并不会移除已勾选的应用标识\n仅当启用 Xposed Hide 时有效</string>
+    <string name="hook_modules_summary">强制将模块添加进白名单并移出黑名单\n关闭此选项并不会移除已勾选的应用标识</string>
     <string name="custom_list">使用备用模块下载列表</string>
     <string name="custom_list_summ">镜像化的模块列表可以帮助加速加载\n但新提交的模块显示会有延迟（大约24小时）\n如果加载下载列表时出现问题, 请开启此选项</string>
     <string name="not_installed">未安装</string>
     <string name="ok">好</string>
     <string name="settings_title_pass_safetynet">通过 SafetyNet 校验</string>
-    <string name="settings_summary_pass_safetynet">强制将 GMS 和 GSF 加入黑名单并移出白名单\n关闭此选项并不会移除已勾选的应用标识\n仅当启用 Xposed Hide 时有效</string>
+    <string name="settings_summary_pass_safetynet">强制将 GMS 和 GSF 加入 Xposed Hide（黑）并移出 Xposed Hide（白）\n关闭此选项并不会移除已勾选的应用标识</string>
     <string name="support_group_telegram_channel_label">Telegram 频道: @EdXposed</string>
     <string name="settings_title_old_success_color">使用旧的激活状态颜色 （绿色）</string>
-    <string name="warning_list_not_enabled">Xposed Hide 未启用\n您可以在设置中启用</string>
     <string name="empty_param">参数为空</string>
     <string name="reboot_system">重启至系统</string>
     <string name="settings_summary_stop_log">在下次重新启动之前，模块日志将不再被记录</string>
@@ -373,4 +370,9 @@
     <string name="settings_title_pass_client_safetynet">强制通过本地 SafetyNet 验证</string>
     <string name="settings_summary_pass_client_safetynet">修改返回结果以强制通过本地 SafetyNet 验证\n这对于一些本地验证或弱服务器验证的程序起作用，对强服务器验证的程序不起作用\n不建议关闭该选项</string>
     <string name="settings_group_app">应用</string>
+    <string name="menu_show_system_apps">显示系统应用</string>
+    <string name="menu_optimize">优化应用</string>
+    <string name="module_activation_scope">设置作用域</string>
+    <string name="enable_scope">对该模块启用作用域</string>
+    <string name="scope_notice">要设置该模块的作用域，请先启用 作用域。</string>
 </resources>

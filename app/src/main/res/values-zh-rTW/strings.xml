@@ -298,8 +298,7 @@
     <string name="settings_title_dynamic_modules">即時模組清單</string>
     <string name="settings_summary_dynamic_modules">啟用後，每個應用程式啟動時重新載入最新的模組清單</string>
     <string name="title_compat_list">相容模式</string>
-    <string name="settings_summary_black_white_list">啟用本選項之後，您可以在「Xposed Hide」設定清單\nXposed Hide（黑）：被選取的應用程式不會載入 EdXposed 的模組\n注意：使用 Xposed Hide 可能會導致某些系統全域性模組不能正常運作。</string>
-    <string name="white_list_mode_summary">Xposed Hide（白）：僅被選取的應用程式會載入 EdXposed 的模組\nXposed Hide 需要被啟用</string>
+    <string name="white_list_mode_summary">Xposed Hide（黑）：（默认）被選取的應用程式不會載入 EdXposed 的模組\nXposed Hide（白）：僅被選取的應用程式會載入 EdXposed 的模組\n注意：使用 Xposed Hide 可能會導致某些系統全域性模組不能正常運作。</string>
 
     <string name="meowcat">小喵工作室</string>
     <string name="coolapk">酷安</string>
@@ -333,19 +332,17 @@
     <string name="settings_sort_by_update_time">更新時間</string>
     <string name="settings_sort_by_update_time_reverse">更新時間（降序）</string>
     <string name="app_no_ui">應用程式未提供使用者介面</string>
-    <string name="settings_title_show_modules">顯示模組</string>
-    <string name="settings_summary_show_modules">在應用程式清單內顯示模組。\n此選項並不會移除已勾選的應用標識。</string>
+    <string name="menu_show_modules">顯示模組</string>
     <string name="compile_failed">最佳化失敗</string>
     <string name="compile_failed_with_info">最佳化失敗: </string>
     <string name="hook_modules">強制掛鉤模組</string>
-    <string name="hook_modules_summary">強制新增模組到白名單並從黑名單移除\n關閉本選項不會把模組從白名單移除\nXposed Hide 需要被啟用</string>
+    <string name="hook_modules_summary">強制新增模組到白名單並從黑名單移除\n關閉本選項不會把模組從白名單移除</string>
     <string name="not_installed">未安裝</string>
     <string name="ok">好</string>
     <string name="settings_title_pass_safetynet">使 SafetyNet 通過驗證</string>
-    <string name="settings_summary_pass_safetynet">強制新增 GMS 和 GSF 到黑名單並從白名單當中移除\n關閉本選項不會把模組從黑名單移除\nXposed Hide 需要被啟用</string>
+    <string name="settings_summary_pass_safetynet">強制新增 GMS 和 GSF 到黑名單並從白名單當中移除\n關閉本選項不會把模組從黑名單移除</string>
     <string name="support_group_telegram_channel_label">Telegram 頻道：@EdXposed</string>
     <string name="settings_title_old_success_color">使用舊的狀態啟用顏色（綠色）</string>
-    <string name="warning_list_not_enabled">Xposed Hide 尚未被啟用\n您可以在設定當中啟用</string>
     <string name="empty_param">參數空白</string>
     <string name="reboot_system">完整重新啟動</string>
     <string name="settings_summary_stop_verbose_log">在下次重新啟動前詳細記錄將不再被抓取</string>
