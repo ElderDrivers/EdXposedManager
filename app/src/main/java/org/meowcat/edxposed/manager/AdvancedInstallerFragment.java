@@ -83,10 +83,6 @@ public class AdvancedInstallerFragment extends BaseFragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_installer, menu);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            menu.findItem(R.id.dexopt_all).setVisible(false);
-            menu.findItem(R.id.speed_all).setVisible(false);
-        }
     }
 
     @SuppressLint("StaticFieldLeak")

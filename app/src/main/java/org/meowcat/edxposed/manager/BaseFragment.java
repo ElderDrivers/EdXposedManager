@@ -5,7 +5,6 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,14 +12,12 @@ import androidx.fragment.app.Fragment;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.topjohnwu.superuser.Shell;
 
-import org.meowcat.edxposed.manager.util.NavUtil;
-
 import java.util.LinkedList;
 import java.util.List;
 
 public class BaseFragment extends Fragment {
 
-    static void areYouSure(@NonNull Activity activity, String contentText, MaterialDialog.SingleButtonCallback positiveSingleButtonCallback, MaterialDialog.SingleButtonCallback negativeSingleButtonCallback) {
+    public static void areYouSure(@NonNull Activity activity, String contentText, MaterialDialog.SingleButtonCallback positiveSingleButtonCallback, MaterialDialog.SingleButtonCallback negativeSingleButtonCallback) {
         new MaterialDialog.Builder(activity).title(R.string.areyousure)
                 .content(contentText)
                 .iconAttr(android.R.attr.alertDialogIcon)
@@ -95,53 +92,6 @@ public class BaseFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.dexopt_all:
-                areYouSure(requireActivity(), getString(R.string.dexopt_now) + "\n" + getString(R.string.take_while_cannot_resore), (d, w) -> new MaterialDialog.Builder(requireActivity())
-                        .title(R.string.dexopt_now)
-                        .content(R.string.this_may_take_a_while)
-                        .progress(true, 0)
-                        .cancelable(false)
-                        .showListener(dialog -> new Thread("dexopt") {
-                            @Override
-                            public void run() {
-                                if (!Shell.rootAccess()) {
-                                    dialog.dismiss();
-                                    NavUtil.showMessage(requireActivity(), getString(R.string.root_failed));
-                                    return;
-                                }
-
-                                Shell.su("cmd package bg-dexopt-job").exec();
-
-                                dialog.dismiss();
-                                XposedApp.runOnUiThread(() -> Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show());
-                            }
-                        }.start()).show(), (d, w) -> {
-                });
-                break;
-            case R.id.speed_all:
-                areYouSure(requireActivity(), getString(R.string.speed_now) + "\n" + getString(R.string.take_while_cannot_resore), (d, w) ->
-                        new MaterialDialog.Builder(requireActivity())
-                                .title(R.string.speed_now)
-                                .content(R.string.this_may_take_a_while)
-                                .progress(true, 0)
-                                .cancelable(false)
-                                .showListener(dialog -> new Thread("dex2oat") {
-                                    @Override
-                                    public void run() {
-                                        if (!Shell.rootAccess()) {
-                                            dialog.dismiss();
-                                            NavUtil.showMessage(requireActivity(), getString(R.string.root_failed));
-                                            return;
-                                        }
-
-                                        Shell.su("cmd package compile -m speed -a").exec();
-
-                                        dialog.dismiss();
-                                        XposedApp.runOnUiThread(() -> Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show());
-                                    }
-                                }.start()).show(), (d, w) -> {
-                });
-                break;
             case R.id.reboot:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
                     areYouSure(requireActivity(), getString(R.string.reboot_system), (d, w) -> reboot(null), (d, w) -> {

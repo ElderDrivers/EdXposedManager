@@ -108,7 +108,7 @@
     <string name="settings_title_release_type">Отображение версий модуля</string>
     <string name="settings_title_disable_resources">Не изменять ресурсы</string>
     <string name="settings_title_theme">Тема</string>
-    <string name="settings_title_show_modules">Отображение модулей</string>
+    <string name="menu_show_modules">Отображение модулей</string>
     <string name="settings_title_pass_safetynet">Проверка SafetyNet</string>
     <string name="settings_title_old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
     <string name="settings_title_disable_modules_log">Выключить логи модулей</string>
@@ -119,7 +119,6 @@
     <string name="settings_title_enable_boot_image_deopt">Деоптимизировать загрузочный образ</string>
     <string name="settings_title_disable_verbose_log">Выключить подробные логи</string>
 
-    <string name="settings_summary_show_modules">Показывать модули в «Список приложений» и «Список совместимости»\nЭтот параметр не может удалять отмеченный флаг приложения</string>
     <string name="settings_summary_stop_verbose_log">Подробные логи перестанут отображаться после перезагрузки</string>
     <string name="settings_summary_stop_log">Логи модулей перестанут отображаться после перезагрузки</string>
     <string name="settings_summary_disable_modules_log">Некоторые исключения от модулей по прежнему могут нормально отображаться</string>

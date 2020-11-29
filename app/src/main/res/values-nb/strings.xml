@@ -326,8 +326,7 @@
     <string name="settings_sort_by_update_time">Sorter etter oppdateringstidspunkt</string>
     <string name="settings_sort_by_update_time_reverse">Sorter etter oppdateringstidspunkt (reversert)</string>
     <string name="app_no_ui">Denne appen tilbyr ikke et brukergrensesnitt</string>
-    <string name="settings_title_show_modules">Vis moduler og behandleren</string>
-    <string name="settings_summary_show_modules">Vis moduler og behandleren i applisten\nDenne innstillingen fjerner ikke app-avhukingsflagg</string>
+    <string name="menu_show_modules">Vis moduler og behandleren</string>
     <string name="compile_failed">Optimalisering mislyktes, eller så er tilbakemeldingsverdien tom</string>
     <string name="hook_modules">Fremtving hekting av moduler</string>
     <string name="not_installed">Ikke installert</string>

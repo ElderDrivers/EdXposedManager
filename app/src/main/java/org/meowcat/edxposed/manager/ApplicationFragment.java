@@ -1,14 +1,13 @@
 package org.meowcat.edxposed.manager;
 
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,15 +40,20 @@ public class ApplicationFragment extends Fragment implements AppAdapter.Callback
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_app_list, menu);
+        AppAdapter.onCreateOptionsMenu(menu, inflater);
         mSearchView = (SearchView) menu.findItem(R.id.app_search).getActionView();
         mSearchView.setOnQueryTextListener(mSearchListener);
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return AppAdapter.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        changeTitle(isBlackListMode(), isWhiteListMode());
+        changeTitle(isWhiteListMode());
     }
 
     @Nullable
@@ -58,11 +62,6 @@ public class ApplicationFragment extends Fragment implements AppAdapter.Callback
         View view = inflater.inflate(R.layout.fragment_app_list, container, false);
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
-        Button mSettingsButton = view.findViewById(R.id.btnSettings);
-        mSettingsButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), SettingsActivity.class)));
-        if (!XposedApp.getPreferences().getBoolean("black_white_list_switch", false)) {
-            view.findViewById(R.id.cardAppListWarning).setVisibility(View.VISIBLE);
-        }
 
         final boolean isWhiteListMode = isWhiteListMode();
         mAppAdapter = new ApplicationListAdapter(requireActivity(), isWhiteListMode);
@@ -87,12 +86,8 @@ public class ApplicationFragment extends Fragment implements AppAdapter.Callback
         return view;
     }
 
-    private void changeTitle(boolean isBlackListMode, boolean isWhiteListMode) {
-        if (isBlackListMode) {
-            requireActivity().setTitle(String.format("%s(%s)", getString(R.string.nav_title_black_list), getString(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list)));
-        } else {
-            requireActivity().setTitle(R.string.nav_title_black_list);
-        }
+    private void changeTitle(boolean isWhiteListMode) {
+        requireActivity().setTitle(String.format("%s(%s)", getString(R.string.nav_title_black_list), getString(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list)));
     }
 
     private boolean isWhiteListMode() {
@@ -100,7 +95,7 @@ public class ApplicationFragment extends Fragment implements AppAdapter.Callback
     }
 
     private boolean isBlackListMode() {
-        return AppHelper.isBlackListMode();
+        return true;
     }
 
     @Override

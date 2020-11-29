@@ -292,6 +292,6 @@
     <string name="settings_title_disable_verbose_log">Zakázat podrobné záznamy</string>
     <string name="logs_verbose_disabled">Podrobné záznamy vypnuty.</string>
     <string name="settings_group_framework">Framework</string>
-    <string name="settings_title_show_modules">Show modules and manager</string>
+    <string name="menu_show_modules">Show modules and manager</string>
     <string name="settings_group_app">Aplikace</string>
 </resources>
