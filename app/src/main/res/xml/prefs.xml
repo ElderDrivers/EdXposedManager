@@ -76,31 +76,11 @@
             android:key="confirm_reboots"
             android:title="@string/confirm_reboots" />
 
-        <org.meowcat.edxposed.manager.widget.IntegerListPreference
-            android:defaultValue="0"
-            android:entries="@array/list_sort_texts"
-            android:entryValues="@array/list_sort_values"
-            android:key="list_sort"
-            android:summary="%s"
-            android:title="@string/list_sort"
-            app:useStockLayout="true" />
-
         <SwitchPreference
             android:defaultValue="false"
             android:key="skip_xposedminversion_check"
             android:summary="@string/settings_summary_skip_status_check"
             android:title="@string/settings_title_skip_status_check" />
-
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="enabled_top"
-            android:title="@string/enabled_top" />
-
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="show_modules"
-            android:summary="@string/settings_summary_show_modules"
-            android:title="@string/settings_title_show_modules" />
 
     </PreferenceCategory>
 
@@ -161,12 +141,6 @@
     <PreferenceCategory
         android:key="group_framework"
         android:title="@string/settings_group_framework">
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="black_white_list_switch"
-            android:summary="@string/settings_summary_black_white_list"
-            android:title="@string/settings_title_black_white_list" />
 
         <SwitchPreference
             android:defaultValue="false"

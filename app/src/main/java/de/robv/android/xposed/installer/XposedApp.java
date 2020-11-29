@@ -25,7 +25,6 @@ public class XposedApp extends Application {
 
     // This method is hooked by XposedBridge to return the current version
     public static Integer getActiveXposedVersion() {
-        Log.d(TAG, "EdXposed is not active");
         return -1;
     }
 

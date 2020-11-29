@@ -215,7 +215,7 @@ public class StatusInstallerFragment extends Fragment {
             String installedXposedVersionStr = installedXposedVersionInt + ".0";
             api.setText(installedXposedVersionStr);
             framework.setText(installedXposedVersion.replace(installedXposedVersionStr + "-", ""));
-            if (XposedApp.getXposedVersion() != -1) {
+            if (XposedApp.getActiveXposedVersion() != -1) {
                 txtInstallError.setText(R.string.installed_lollipop);
                 if (XposedApp.getPreferences().getBoolean("old_success_color", false)) {
                     txtInstallError.setTextColor(sActivity.getResources().getColor(R.color.download_status_update_available, null));
@@ -408,9 +408,9 @@ public class StatusInstallerFragment extends Fragment {
             case 28:
                 return "Pie";
             case 29:
-                return "Q";
+                return "Queen Cake";
             case 30:
-                return "R";
+                return "Red Velvet Cake";
         }
         return "Unknown";
     }

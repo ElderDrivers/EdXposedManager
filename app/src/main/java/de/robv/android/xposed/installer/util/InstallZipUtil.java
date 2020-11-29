@@ -38,7 +38,6 @@ public final class InstallZipUtil {
     public static class XposedProp {
         private String mVersion = null;
         private int mVersionInt = 0;
-        //private Set<String> mRequires = new HashSet<>();
 
         private boolean isComplete() {
             return mVersion != null
@@ -48,10 +47,5 @@ public final class InstallZipUtil {
         public String getVersion() {
             return mVersion;
         }
-
-//        public int getVersionInt() {
-//            return mVersionInt;
-//        }
-
     }
 }

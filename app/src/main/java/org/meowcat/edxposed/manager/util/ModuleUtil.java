@@ -201,7 +201,7 @@ public final class ModuleUtil {
     public synchronized void updateModulesList(boolean showToast, View view) {
         try {
             Log.i(TAG, "ModuleUtil -> updating modules.list");
-            int installedXposedVersion = XposedApp.getXposedVersion();
+            int installedXposedVersion = XposedApp.getActiveXposedVersion();
             boolean disabled = StatusInstallerFragment.DISABLE_FILE.exists();
             if (!XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false) && !disabled && installedXposedVersion <= 0 && showToast) {
                 Snackbar.make(view, R.string.notinstalled, Snackbar.LENGTH_SHORT).show();
@@ -297,7 +297,7 @@ public final class ModuleUtil {
                 this.minVersion = 0;
                 this.description = "";
             } else {
-                int version = XposedApp.getXposedVersion();
+                int version = XposedApp.getActiveXposedVersion();
                 if (version > 0 && XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false)) {
                     this.minVersion = version;
                 } else {

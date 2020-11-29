@@ -36,6 +36,7 @@ import org.meowcat.edxposed.manager.util.NotificationUtil;
 import org.meowcat.edxposed.manager.util.RepoLoader;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -102,14 +103,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         if (!dir.exists()) dir.mkdir();
 
         return dir;
-    }
-
-//    public static void postOnUiThread(Runnable action) {
-//        mMainHandler.post(action);
-//    }
-
-    public static int getXposedVersion() {
-        return getActiveXposedVersion();
     }
 
     public static SharedPreferences getPreferences() {
@@ -273,10 +266,18 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         }
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void createDirectories() {
         FileUtils.setPermissions(BASE_DIR, rwxrwxrwx, -1, -1);
         mkdirAndChmod("conf", rwxrwxrwx);
         mkdirAndChmod("log", rwxrwxrwx);
+        final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
+        if (!mBlackWhiteListModeFlag.exists()) {
+            try {
+                mBlackWhiteListModeFlag.createNewFile();
+            } catch (IOException ignored) {
+            }
+        }
     }
 
     public void updateProgressIndicator(final SwipeRefreshLayout refreshLayout) {

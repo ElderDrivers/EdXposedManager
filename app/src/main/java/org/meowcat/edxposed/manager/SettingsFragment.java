@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreference;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
@@ -72,7 +71,6 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
     private static final File mDisableHiddenAPIBypassFlag = new File(XposedApp.BASE_DIR + "conf/disable_hidden_api_bypass");
     private static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
     private static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
-    private static final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
     private static final File mDeoptBootFlag = new File(XposedApp.BASE_DIR + "conf/deoptbootimage");
     private static final File mDisableVerboseLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_verbose_log");
     private static final File mDisableModulesLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_modules_log");
@@ -82,7 +80,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
 
     private Preference mClickedPreference;
 
-    private Preference.OnPreferenceChangeListener iconChange = (preference, newValue) -> {
+    private final Preference.OnPreferenceChangeListener iconChange = (preference, newValue) -> {
         String act = ".WelcomeActivity";
         String[] iconsValues = new String[]{"MlgmXyysd", "DVDAndroid", "Hjmodi", "Rovo", "Cornie", "RovoOld", "Staol"};
 
@@ -119,16 +117,6 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.prefs);
-        PreferenceGroup groupFramework = findPreference("group_framework");
-        Preference whiteListSwitch = Objects.requireNonNull(groupFramework).findPreference("white_list_switch");
-        Preference passSafetynet = Objects.requireNonNull(groupFramework).findPreference("pass_safetynet");
-        Preference hookModules = Objects.requireNonNull(groupFramework).findPreference("hook_modules");
-
-        if (!XposedApp.getPreferences().getBoolean("black_white_list_switch", false)) {
-            Objects.requireNonNull(whiteListSwitch).setEnabled(false);
-            Objects.requireNonNull(passSafetynet).setEnabled(false);
-            Objects.requireNonNull(hookModules).setEnabled(false);
-        }
 
         Preference colors = findPreference("colors");
         downloadLocation = findPreference("download_location");
@@ -341,44 +329,6 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
                 mDisableModulesLogsFlag.delete();
             }
             return (enabled == mDisableModulesLogsFlag.exists());
-        });
-
-        SwitchPreference prefBlackWhiteListMode = findPreference("black_white_list_switch");
-        Objects.requireNonNull(prefBlackWhiteListMode).setChecked(mBlackWhiteListModeFlag.exists());
-        prefBlackWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mBlackWhiteListModeFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mBlackWhiteListModeFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mBlackWhiteListModeFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-                Objects.requireNonNull(whiteListSwitch).setEnabled(true);
-                Objects.requireNonNull(passSafetynet).setEnabled(true);
-                Objects.requireNonNull(hookModules).setEnabled(true);
-            } else {
-                mBlackWhiteListModeFlag.delete();
-                Objects.requireNonNull(whiteListSwitch).setEnabled(false);
-                Objects.requireNonNull(passSafetynet).setEnabled(false);
-                Objects.requireNonNull(hookModules).setEnabled(false);
-            }
-            return (enabled == mBlackWhiteListModeFlag.exists());
         });
 
         SwitchPreference prefEnableDeopt = findPreference("enable_boot_image_deopt");
