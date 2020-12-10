@@ -378,7 +378,6 @@
     <string name="item_list_filter">过滤应用列表</string>
     <string name="item_filter_by_name">过滤没有名称的应用</string>
     <string name="item_filter_by_icon">过滤没有图标的应用</string>
-    <string name="item_filter_by_is_overlay">过滤Overlay下的应用</string>
     <string name="item_filter_by_is_system">过滤系统应用</string>
     <string name="item_filter_by_is_user">过滤用户应用</string>
     <string name="item_filter_by_launcher">过滤没有出现在桌面的应用</string>

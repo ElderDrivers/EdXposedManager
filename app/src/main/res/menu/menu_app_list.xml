@@ -82,10 +82,6 @@
                     android:title="@string/item_filter_by_icon" />
 
                 <item
-                    android:id="@+id/item_filter_by_is_overlay"
-                    android:title="@string/item_filter_by_is_overlay" />
-
-                <item
                     android:id="@+id/item_filter_by_is_system"
                     android:title="@string/item_filter_by_is_system" />
 
