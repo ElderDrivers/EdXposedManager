@@ -88,6 +88,210 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
         return new ViewHolder(v);
     }
 
+    private void loadApps(List<String> removeList) {
+        PackageManager manager = context.getPackageManager();
+        fullList = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+        boolean hide_system = !XposedApp.getPreferences().getBoolean("show_system_apps", true);
+        List<ApplicationInfo> rmList = new ArrayList<>();
+        for (ApplicationInfo info : fullList) {
+            if (removeList.contains(info.packageName)) {
+                rmList.add(info);
+                continue;
+            }
+            if (!XposedApp.getPreferences().getBoolean("show_modules", true) || hide_system) {
+                if (info.metaData != null && info.metaData.containsKey("xposedmodule") || AppHelper.FORCE_WHITE_LIST_MODULE.contains(info.packageName) || hide_system && (info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+                    rmList.add(info);
+                    continue;
+                }
+            }
+
+            if (XposedApp.getPreferences().getBoolean("item_filter_by_name", false)) {
+                if (manager.getApplicationLabel(info).toString().equals(info.packageName)) {
+                    rmList.add(info);
+                    continue;
+                }
+            }
+
+            if (XposedApp.getPreferences().getBoolean("item_filter_by_icon", false)) {
+                if (info.icon == 0) {
+                    rmList.add(info);
+                    continue;
+                }
+            }
+            if (XposedApp.getPreferences().getBoolean("item_filter_by_is_overlay", true)) {
+                try {
+                    PackageInfo packageInfo = pm.getPackageInfo(info.packageName, PackageManager.GET_META_DATA);
+                    Class<?> clazz = Class.forName(PackageInfo.class.getName());
+                    Field field = clazz.getDeclaredField("overlayCategory");
+                    Object overlayCategory = field.get(packageInfo);
+                    if (overlayCategory != null) {
+                        rmList.add(info);
+                        continue;
+                    }
+                } catch (PackageManager.NameNotFoundException | NoSuchFieldException | ClassNotFoundException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (XposedApp.getPreferences().getBoolean("item_filter_by_is_system", false)) {
+                if ((info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+                    rmList.add(info);
+                    continue;
+                }
+            }
+
+            if (XposedApp.getPreferences().getBoolean("item_filter_by_is_user", false)) {
+                if ((info.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                    rmList.add(info);
+                    continue;
+                }
+            }
+
+            if (XposedApp.getPreferences().getBoolean("item_filter_by_launcher", true)) {
+                if (pm.getLaunchIntentForPackage(info.packageName) == null) {
+                    rmList.add(info);
+                    continue;
+                }
+            }
+
+            if (this instanceof ActivationScopeAdapter) {
+                if (AppHelper.isWhiteListMode()) {
+                    List<String> whiteList = AppHelper.getWhiteList();
+                    if (!whiteList.contains(info.packageName)) {
+                        rmList.add(info);
+                        continue;
+                    }
+                } else {
+                    List<String> blackList = AppHelper.getBlackList();
+                    if (blackList.contains(info.packageName)) {
+                        rmList.add(info);
+                        continue;
+                    }
+                }
+                if (info.packageName.equals(((ActivationScopeAdapter) this).modulePackageName)) {
+                    rmList.add(info);
+                }
+            }
+        }
+        if (rmList.size() > 0) {
+            fullList.removeAll(rmList);
+        }
+        AppHelper.makeSurePath();
+        checkedList = generateCheckedList();
+        sortApps();
+        if (callback != null) {
+            callback.onDataReady();
+        }
+    }
+
+    /**
+     * Called during {@link #loadApps(List<String>)} in non-UI thread.
+     *
+     * @return list of package names which should be checked when shown
+     */
+    protected List<String> generateCheckedList() {
+        return Collections.emptyList();
+    }
+
+    private void sortApps() {
+        switch (XposedApp.getPreferences().getInt("list_sort", 0)) {
+            case 7:
+                cmp = Collections.reverseOrder((ApplicationInfo a, ApplicationInfo b) -> {
+                    try {
+                        return Long.compare(pm.getPackageInfo(a.packageName, 0).lastUpdateTime, pm.getPackageInfo(b.packageName, 0).lastUpdateTime);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                        return displayNameComparator.compare(a, b);
+                    }
+                });
+                break;
+            case 6:
+                cmp = (ApplicationInfo a, ApplicationInfo b) -> {
+                    try {
+                        return Long.compare(pm.getPackageInfo(a.packageName, 0).lastUpdateTime, pm.getPackageInfo(b.packageName, 0).lastUpdateTime);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                        return displayNameComparator.compare(a, b);
+                    }
+                };
+                break;
+            case 5:
+                cmp = Collections.reverseOrder((ApplicationInfo a, ApplicationInfo b) -> {
+                    try {
+                        return Long.compare(pm.getPackageInfo(a.packageName, 0).firstInstallTime, pm.getPackageInfo(b.packageName, 0).firstInstallTime);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                        return displayNameComparator.compare(a, b);
+                    }
+                });
+                break;
+            case 4:
+                cmp = (ApplicationInfo a, ApplicationInfo b) -> {
+                    try {
+                        return Long.compare(pm.getPackageInfo(a.packageName, 0).firstInstallTime, pm.getPackageInfo(b.packageName, 0).firstInstallTime);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                        return displayNameComparator.compare(a, b);
+                    }
+                };
+                break;
+            case 3:
+                cmp = Collections.reverseOrder((a, b) -> a.packageName.compareTo(b.packageName));
+                break;
+            case 2:
+                cmp = (a, b) -> a.packageName.compareTo(b.packageName);
+                break;
+            case 1:
+                cmp = Collections.reverseOrder(displayNameComparator);
+                break;
+            case 0:
+            default:
+                cmp = displayNameComparator;
+                break;
+        }
+        fullList.sort((a, b) -> {
+            if (XposedApp.getPreferences().getBoolean("enabled_top", true)) {
+                boolean aChecked = checkedList.contains(a.packageName);
+                boolean bChecked = checkedList.contains(b.packageName);
+                if (aChecked == bChecked) {
+                    return cmp.compare(a, b);
+                } else if (aChecked) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            } else {
+                return cmp.compare(a, b);
+            }
+        });
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ApplicationInfo info = showList.get(position);
+        holder.appIcon.setImageDrawable(info.loadIcon(pm));
+        holder.appName.setText(InstallApkUtil.getAppLabel(info, pm));
+        try {
+            holder.appVersion.setText(pm.getPackageInfo(info.packageName, 0).versionName);
+            holder.appInstallTime.setText(dateformat.format(new Date(pm.getPackageInfo(info.packageName, 0).firstInstallTime)));
+            holder.appUpdateTime.setText(dateformat.format(new Date(pm.getPackageInfo(info.packageName, 0).lastUpdateTime)));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        holder.appPackage.setText(info.packageName);
+        holder.appPackage.setTextColor(ThemeUtil.getThemeColor(context, android.R.attr.textColorSecondary));
+
+        holder.mSwitch.setOnCheckedChangeListener(null);
+        holder.mSwitch.setChecked(checkedList.contains(info.packageName));
+        holder.mSwitch.setOnCheckedChangeListener((v, isChecked) ->
+                onCheckedChange(v, isChecked, info));
+        holder.infoLayout.setOnClickListener(v -> {
+            if (callback != null) {
+                callback.onItemClick(v, info);
+            }
+        });
+    }
+
     @SuppressLint("NonConstantResourceId")
     public static boolean onOptionsItemSelected(MenuItem item) {
         boolean refresh = false;
@@ -231,114 +435,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
         return true;
     }
 
-    /**
-     * Called during {@link #loadApps(List<String>)} in non-UI thread.
-     *
-     * @return list of package names which should be checked when shown
-     */
-    protected List<String> generateCheckedList() {
-        return Collections.emptyList();
-    }
-
-    private void sortApps() {
-        switch (XposedApp.getPreferences().getInt("list_sort", 0)) {
-            case 7:
-                cmp = Collections.reverseOrder((ApplicationInfo a, ApplicationInfo b) -> {
-                    try {
-                        return Long.compare(pm.getPackageInfo(a.packageName, 0).lastUpdateTime, pm.getPackageInfo(b.packageName, 0).lastUpdateTime);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        e.printStackTrace();
-                        return displayNameComparator.compare(a, b);
-                    }
-                });
-                break;
-            case 6:
-                cmp = (ApplicationInfo a, ApplicationInfo b) -> {
-                    try {
-                        return Long.compare(pm.getPackageInfo(a.packageName, 0).lastUpdateTime, pm.getPackageInfo(b.packageName, 0).lastUpdateTime);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        e.printStackTrace();
-                        return displayNameComparator.compare(a, b);
-                    }
-                };
-                break;
-            case 5:
-                cmp = Collections.reverseOrder((ApplicationInfo a, ApplicationInfo b) -> {
-                    try {
-                        return Long.compare(pm.getPackageInfo(a.packageName, 0).firstInstallTime, pm.getPackageInfo(b.packageName, 0).firstInstallTime);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        e.printStackTrace();
-                        return displayNameComparator.compare(a, b);
-                    }
-                });
-                break;
-            case 4:
-                cmp = (ApplicationInfo a, ApplicationInfo b) -> {
-                    try {
-                        return Long.compare(pm.getPackageInfo(a.packageName, 0).firstInstallTime, pm.getPackageInfo(b.packageName, 0).firstInstallTime);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        e.printStackTrace();
-                        return displayNameComparator.compare(a, b);
-                    }
-                };
-                break;
-            case 3:
-                cmp = Collections.reverseOrder((a, b) -> a.packageName.compareTo(b.packageName));
-                break;
-            case 2:
-                cmp = (a, b) -> a.packageName.compareTo(b.packageName);
-                break;
-            case 1:
-                cmp = Collections.reverseOrder(displayNameComparator);
-                break;
-            case 0:
-            default:
-                cmp = displayNameComparator;
-                break;
-        }
-        fullList.sort((a, b) -> {
-            if (XposedApp.getPreferences().getBoolean("enabled_top", true)) {
-                boolean aChecked = checkedList.contains(a.packageName);
-                boolean bChecked = checkedList.contains(b.packageName);
-                if (aChecked == bChecked) {
-                    return cmp.compare(a, b);
-                } else if (aChecked) {
-                    return -1;
-                } else {
-                    return 1;
-                }
-            } else {
-                return cmp.compare(a, b);
-            }
-        });
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ApplicationInfo info = showList.get(position);
-        holder.appIcon.setImageDrawable(info.loadIcon(pm));
-        holder.appName.setText(InstallApkUtil.getAppLabel(info, pm));
-        try {
-            holder.appVersion.setText(pm.getPackageInfo(info.packageName, 0).versionName);
-            holder.appInstallTime.setText(dateformat.format(new Date(pm.getPackageInfo(info.packageName, 0).firstInstallTime)));
-            holder.appUpdateTime.setText(dateformat.format(new Date(pm.getPackageInfo(info.packageName, 0).lastUpdateTime)));
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        holder.appPackage.setText(info.packageName);
-        holder.appPackage.setTextColor(ThemeUtil.getThemeColor(context, android.R.attr.textColorSecondary));
-
-        holder.mSwitch.setOnCheckedChangeListener(null);
-        holder.mSwitch.setChecked(checkedList.contains(info.packageName));
-        holder.mSwitch.setOnCheckedChangeListener((v, isChecked) ->
-                onCheckedChange(v, isChecked, info));
-        holder.infoLayout.setOnClickListener(v -> {
-            if (callback != null) {
-                callback.onItemClick(v, info);
-            }
-        });
-    }
-
     public static void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_app_list, menu);
         menu.findItem(R.id.item_enabled_top).setChecked(XposedApp.getPreferences().getBoolean("enabled_top", true));
@@ -378,102 +474,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             menu.findItem(R.id.menu_optimize).setVisible(false);
-        }
-    }
-
-    private void loadApps(List<String> removeList) {
-        PackageManager manager = context.getPackageManager();
-        fullList = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-        boolean hide_system = !XposedApp.getPreferences().getBoolean("show_system_apps", true);
-        List<ApplicationInfo> rmList = new ArrayList<>();
-        for (ApplicationInfo info : fullList) {
-            if (removeList.contains(info.packageName)) {
-                rmList.add(info);
-                continue;
-            }
-            if (!XposedApp.getPreferences().getBoolean("show_modules", true) || hide_system) {
-                if (info.metaData != null && info.metaData.containsKey("xposedmodule") || AppHelper.FORCE_WHITE_LIST_MODULE.contains(info.packageName) || hide_system && (info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
-                    rmList.add(info);
-                    continue;
-                }
-            }
-
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_name", false)) {
-                if (manager.getApplicationLabel(info).toString().equals(info.packageName)) {
-                    rmList.add(info);
-                    continue;
-                }
-            }
-
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_icon", false)) {
-                if (info.icon == 0) {
-                    rmList.add(info);
-                    continue;
-                }
-            }
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_is_overlay", true)) {
-                try {
-                    PackageInfo packageInfo = pm.getPackageInfo(info.packageName, PackageManager.GET_META_DATA);
-                    Class<?> clazz = Class.forName(PackageInfo.class.getName());
-                    Field field = clazz.getDeclaredField("overlayCategory");
-                    Object overlayCategory = field.get(packageInfo);
-                    if (overlayCategory != null) {
-                        rmList.add(info);
-                        continue;
-                    }
-                } catch (PackageManager.NameNotFoundException | NoSuchFieldException | ClassNotFoundException | IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_is_system", false)) {
-                if ((info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
-                    rmList.add(info);
-                    continue;
-                }
-            }
-
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_is_user", false)) {
-                if ((info.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
-                    rmList.add(info);
-                    continue;
-                }
-            }
-
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_launcher", true)) {
-                if (pm.getLaunchIntentForPackage(info.packageName) == null) {
-                    rmList.add(info);
-                    continue;
-                }
-            }
-
-            if (this instanceof ActivationScopeAdapter) {
-                if (AppHelper.isWhiteListMode()) {
-                    List<String> whiteList = AppHelper.getWhiteList();
-                    if (!whiteList.contains(info.packageName)) {
-                        rmList.add(info);
-                        continue;
-                    }
-                } else {
-                    List<String> blackList = AppHelper.getBlackList();
-                    if (blackList.contains(info.packageName)) {
-                        rmList.add(info);
-                        continue;
-                    }
-                }
-                if (info.packageName.equals(((ActivationScopeAdapter) this).modulePackageName)) {
-                    rmList.add(info);
-                }
-            }
-        }
-        if (rmList.size() > 0) {
-            fullList.removeAll(rmList);
-        }
-        AppHelper.makeSurePath();
-        checkedList = generateCheckedList();
-        sortApps();
-        if (callback != null) {
-            callback.onDataReady();
         }
     }
 
