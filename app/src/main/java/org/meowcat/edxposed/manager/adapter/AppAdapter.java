@@ -118,19 +118,18 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
                     continue;
                 }
             }
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_is_overlay", true)) {
-                try {
-                    PackageInfo packageInfo = pm.getPackageInfo(info.packageName, PackageManager.GET_META_DATA);
-                    Class<?> clazz = Class.forName(PackageInfo.class.getName());
-                    Field field = clazz.getDeclaredField("overlayCategory");
-                    Object overlayCategory = field.get(packageInfo);
-                    if (overlayCategory != null) {
-                        rmList.add(info);
-                        continue;
-                    }
-                } catch (PackageManager.NameNotFoundException | NoSuchFieldException | ClassNotFoundException | IllegalAccessException e) {
-                    e.printStackTrace();
+
+            try {
+                PackageInfo packageInfo = pm.getPackageInfo(info.packageName, PackageManager.GET_META_DATA);
+                Class<?> clazz = Class.forName(PackageInfo.class.getName());
+                Field field = clazz.getDeclaredField("overlayCategory");
+                Object overlayCategory = field.get(packageInfo);
+                if (overlayCategory != null) {
+                    rmList.add(info);
+                    continue;
                 }
+            } catch (PackageManager.NameNotFoundException | NoSuchFieldException | ClassNotFoundException | IllegalAccessException e) {
+                e.printStackTrace();
             }
 
             if (XposedApp.getPreferences().getBoolean("item_filter_by_is_system", false)) {
@@ -306,11 +305,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
                 XposedApp.getPreferences().edit().putBoolean("item_filter_by_icon", item.isChecked()).apply();
                 refresh = true;
                 break;
-            case R.id.item_filter_by_is_overlay:
-                item.setChecked(!item.isChecked());
-                XposedApp.getPreferences().edit().putBoolean("item_filter_by_is_overlay", item.isChecked()).apply();
-                refresh = true;
-                break;
             case R.id.item_filter_by_is_system:
                 item.setChecked(!item.isChecked());
                 XposedApp.getPreferences().edit().putBoolean("item_filter_by_is_system", item.isChecked()).apply();
@@ -442,7 +436,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
         menu.findItem(R.id.item_show_system).setChecked(XposedApp.getPreferences().getBoolean("show_system_apps", true));
         menu.findItem(R.id.item_filter_by_name).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_name", false));
         menu.findItem(R.id.item_filter_by_icon).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_icon", false));
-        menu.findItem(R.id.item_filter_by_is_overlay).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_is_overlay", true));
         menu.findItem(R.id.item_filter_by_is_system).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_is_system", false));
         menu.findItem(R.id.item_filter_by_is_user).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_is_user", false));
         menu.findItem(R.id.item_filter_by_launcher).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_launcher", true));
