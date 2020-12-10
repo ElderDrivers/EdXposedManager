@@ -68,6 +68,40 @@
     </item>
 
     <item
+        android:id="@+id/item_list_filter"
+        android:title="@string/item_list_filter"
+        app:showAsAction="never">
+        <menu>
+            <group android:checkableBehavior="all">
+                <item
+                    android:id="@+id/item_filter_by_name"
+                    android:title="@string/item_filter_by_name" />
+
+                <item
+                    android:id="@+id/item_filter_by_icon"
+                    android:title="@string/item_filter_by_icon" />
+
+                <item
+                    android:id="@+id/item_filter_by_is_overlay"
+                    android:title="@string/item_filter_by_is_overlay" />
+
+                <item
+                    android:id="@+id/item_filter_by_is_system"
+                    android:title="@string/item_filter_by_is_system" />
+
+                <item
+                    android:id="@+id/item_filter_by_is_user"
+                    android:title="@string/item_filter_by_is_user" />
+
+                <item
+                    android:id="@+id/item_filter_by_launcher"
+                    android:title="@string/item_filter_by_launcher" />
+
+            </group>
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/menu_optimize"
         android:title="@string/menu_optimize"
         app:showAsAction="never">
