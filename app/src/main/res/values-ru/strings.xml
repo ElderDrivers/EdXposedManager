@@ -12,6 +12,7 @@
     <string name="welcome_framework_update_available">Доступно обновление для EdXposed Framework (%s)</string>
 
     <!-- Navigation view items -->
+    <string name="nav_item_install">EdXposed Framework</string>
     <string name="nav_item_modules">Установленные модули</string>
     <string name="nav_item_download">Поиск модулей</string>
     <string name="nav_item_logs_verbose">Подробные логи</string>
@@ -103,6 +104,7 @@
 
     <!-- Settings -->
     <string name="settings_group_download">Загрузка и установка</string>
+    <string name="settings_group_app">Приложение</string>
     <string name="settings_group_framework">Framework</string>
 
     <string name="settings_title_release_type">Отображение версий модуля</string>
@@ -119,9 +121,10 @@
     <string name="settings_title_enable_boot_image_deopt">Деоптимизировать загрузочный образ</string>
     <string name="settings_title_disable_verbose_log">Выключить подробные логи</string>
 
-    <string name="settings_summary_stop_verbose_log">Подробные логи перестанут отображаться после перезагрузки</string>
-    <string name="settings_summary_stop_log">Логи модулей перестанут отображаться после перезагрузки</string>
-    <string name="settings_summary_disable_modules_log">Некоторые исключения от модулей по прежнему могут нормально отображаться</string>
+    <string name="settings_summary_pass_safetynet">Принудительно добавить GMS и GSF в «Скрыть EdXposed (Черный)» и удалить из «Скрыть EdXposed (Белый)»\nВыключение этой настройки не удаляет модули из «Скрыть EdXposed (Черный)»</string>
+    <string name="settings_summary_stop_verbose_log">Подробные логи перестанут записываться после перезагрузки</string>
+    <string name="settings_summary_stop_log">Логи модулей перестанут записываться после перезагрузки</string>
+    <string name="settings_summary_disable_modules_log">Некоторые исключения от модулей по прежнему могут нормально записываться</string>
     <string name="settings_summary_open_drawer">Автоматически открывать боковое меню при запуске</string>
     <string name="settings_summary_disable_resources">Временное решение для конфликтов с темами системы\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
     <string name="settings_summary_skip_status_check">Пропускать проверку «Статус EdXposed» для модулей</string>
@@ -149,7 +152,7 @@
     <string name="support_group_qq_label">Канал QQ: 855219808</string>
     <string name="support_group_telegram_label">Канал Telegram: @Code_of_MeowCat</string>
     <string name="support_donate_label">Пожертвовать</string>
-    <string name="support_donate_description">Если вы хотите отблагодарить за EdXposed, вы можете сделать пожертвование для rovo89 здесь:</string>
+    <string name="support_donate_description">Если вы хотите отблагодарить за EdXposed, вы можете сделать пожертвование здесь:</string>
 
     <!-- Logs -->
     <string name="logs_save_failed">Невозможно записать логи на SD-карту:</string>
@@ -233,7 +236,7 @@
     <string name="md_cancel_label">Отмена</string>
     <string name="md_choose_label">Выбрать</string>
     <string name="md_error_label">Ошибка</string>
-    <string name="md_storage_perm_error">Для вашего приложения не предоставлены права на чтение READ_EXTERNAL_STORAGE</string>
+    <string name="md_storage_perm_error">Для EdXposed не предоставлены права на чтение READ_EXTERNAL_STORAGE</string>
     <string name="md_custom_label">Пользовательские</string>
     <string name="md_presets_label">Пресеты</string>
     <string name="changelog">Список изменений</string>
@@ -278,7 +281,7 @@
     <string name="download_location">Папка для загрузок</string>
     <string name="download_location_summ">Расположение для скачанных APK файлов (только модули)</string>
     <string name="restart_needed">Требуется перезагрузка</string>
-    <string name="cache_cleaned">Кеш приложения(й) очищен. Требуется перезагрузка</string>
+    <string name="cache_cleaned">Кеш очищен. Требуется перезагрузка</string>
     <string name="update_download_list">Потяните вниз, чтобы обновить список модулей</string>
     <string name="no_connection_available">Нет подключения</string>
     <string name="not_logcat">Это логи EdXposed Framework и модулей\nЕсли вам нужны логи Android, вы можете попробовать модуль Log Catcher для Magisk</string>
@@ -303,24 +306,29 @@
     <string name="dexopt_now">Оптимизация приложений DexOpt</string>
     <string name="speed_now">Оптимизация приложений Dex2oat</string>
     <string name="this_may_take_a_while">Пожалуйста подождите, это займет некоторое время…</string>
-    <string name="take_while_cannot_resore">Вы уверены, что хотите оптимизировать все приложения?\nЭто займет некоторое время (зависит от количества установленных приложений), и НЕ МОЖЕТ быть восстановлено\nСовет: Вы можете оптимизировать выборочные приложения в «Список приложений»</string>
+    <string name="take_while_cannot_resore">Вы уверены, что хотите оптимизировать все приложения?\nЭто займет некоторое время (зависит от количества установленных приложений), и НЕ МОЖЕТ быть отменено\nСовет: Вы можете оптимизировать выборочные приложения в «Скрыть EdXposed (Черный)»</string>
     <string name="done">Готово!</string>
     <string name="verified_boot_deactivated">Проверка загрузки выключена</string>
     <string name="verified_boot_none">Не удалось проверить состояние загрузки</string>
     <string name="verified_boot_active">Проверка загрузки включена</string>
     <string name="verified_boot_explanation">Проверка загрузки (dm-verity) запрещает загрузку устройства, если системный раздел изменен</string>
     <string name="ignore_chinese">Фильтровать иероглифы</string>
-    <string name="ignore_chinese_summary">В «Поиске модулей» не показывать модули на китайском языке\nМодули останутся доступны через иконку поиска\nВключение этой настройки может привести к низкой производительности</string>
+    <string name="ignore_chinese_summary">В «Поиске модулей» не показывать модули на Китайском языке\nМодули останутся доступны через иконку поиска\nВключение этой настройки может привести к низкой производительности</string>
 
     <!-- EdXp related -->
-    <string name="nav_title_compat_list">Список совместимости</string>
+    <string name="nav_title_black_list">Скрыть EdXposed</string>
+    <string name="nav_title_compat_list">Режим совместимости</string>
+    <string name="white_list_mode_title">Скрыть EdXposed (Белый)</string>
+    <string name="title_white_list">Белый</string>
+    <string name="title_black_list">Черный</string>
     <string name="add_package_failed">Не удалось отредактировать, некоторые настройки не позволяют редактировать</string>
     <string name="menu_title_compile_reset">Деоптимизация</string>
     <string name="menu_title_compile_speed">Оптимизировать через Dex2oat</string>
     <string name="menu_title_compile_dexopt">Оптимизировать через DexOpt</string>
     <string name="compile_reset_msg">Сброс…</string>
     <string name="compile_speed_msg">Оптимизация…</string>
-    <string name="title_compat_list">Список совместимости</string>
+    <string name="title_compat_list">Режим совместимости</string>
+    <string name="white_list_mode_summary">Скрыть EdXposed (Черный): (По умолчанию) Выбранные приложения не будут использовать модули\nСкрыть EdXposed (Белый): Только выбранные приложения будут использовать модули\nПримечание: использование «Скрыть EdXposed» может нарушить работу общесистемных модулей</string>
 
     <string name="website">Веб-сайт</string>
 
@@ -338,11 +346,12 @@
     <string name="update_time">Обновлен: </string>
     <string name="enabled_top">Показывать включенные модули или приложения в начале списка</string>
     <string name="list_sort">Сортировка списков</string>
-    <string name="notinstalled">Платформа EdXposed Framework не установлена</string>
+    <string name="notinstalled">EdXposed Framework не установлен</string>
     <string name="app_no_ui">Это приложение не имеет пользовательский интерфейс</string>
     <string name="compile_failed">Оптимизация не удалась или возврат значения пусто</string>
     <string name="compile_failed_with_info">Ошибка оптимизации: </string>
     <string name="hook_modules">Принудительное добавление модулей</string>
+    <string name="hook_modules_summary">Принудительно добавить модули в «Скрыть EdXposed (Белый)» и удалить модули из «Скрыть EdXposed (Черный)»\nВыключение этой настройки не удаляет модули из «Скрыть EdXposed (Белый)»</string>
     <string name="not_installed">Не установлен</string>
     <string name="ok">OK</string>
     <string name="support_group_telegram_channel_label">Канал Telegram: @EdXposed</string>
@@ -368,5 +377,12 @@
     <string name="settings_title_disable_hidden_api_bypass">Выключить скрытый обход ограничений API</string>
     <string name="settings_summary_disable_hidden_api_bypass">Выключение скрытого обхода ограничений API способстувет некоторому обнаружению (например Snapchat), эти API выключены по умолчанию\n<b>ВНИМАНИЕ:</b> Включение этой настройки может привести к некорректной работе некоторых функций или другим проблемам</string>
     <string name="settings_title_dark_status_bar">Темная строка состояния (маскировка)</string>
-    <string name="settings_group_app">Приложение</string>
+    <string name="download_committer">Загрузил: %s</string>
+    <string name="settings_title_pass_client_safetynet">Принудительно пройти проверку SafetyNet</string>
+    <string name="settings_summary_pass_client_safetynet">Изменить статус прохождения проверки для SafetyNet\nЭто работает для некоторых программ с локальной или простой проверкой сервера, но не для программ со строгой проверкой сервера\nНе рекомендуется выключать эту настройку</string>
+    <string name="menu_show_system_apps">Показать системные приложения</string>
+    <string name="menu_optimize">Оптимизировать</string>
+    <string name="module_activation_scope">Область активации</string>
+    <string name="enable_scope">Включить для этого модуля</string>
+    <string name="scope_notice">Чтобы установить область активации для этого модуля, включите область активации.</string>
 </resources>
