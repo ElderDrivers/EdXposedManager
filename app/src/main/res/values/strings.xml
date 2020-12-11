@@ -39,7 +39,7 @@
     <string name="welcome_framework_update_available">An update for EdXposed Framework is available (%s)</string>
 
     <!-- navigation view items -->
-    <string name="nav_item_install" translatable="false">EdXposed</string>
+    <string name="nav_item_install">EdXposed</string>
     <string name="nav_item_modules">Modules</string>
     <string name="nav_item_download">Download</string>
     <string name="nav_item_logs_verbose">Verbose Logs</string>
@@ -342,7 +342,7 @@
     <string name="ignore_chinese_summary">Hide Chinese modules from the repository\nModules are still available in search window\nEnabling this option may result in slow performance</string>
 
     <!-- EdXp related -->
-    <string name="nav_title_black_list" translatable="false">Xposed Hide</string>
+    <string name="nav_title_black_list">Xposed Hide</string>
     <string name="nav_title_compat_list">Compat Mode</string>
     <string name="white_list_mode_title">Xposed Hide (White)</string>
     <string name="title_white_list">White</string>
