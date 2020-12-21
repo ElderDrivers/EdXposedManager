@@ -215,7 +215,7 @@ public class StatusInstallerFragment extends Fragment {
             String installedXposedVersionStr = installedXposedVersionInt + ".0";
             api.setText(installedXposedVersionStr);
             framework.setText(installedXposedVersion.replace(installedXposedVersionStr + "-", ""));
-            if (XposedApp.getActiveXposedVersion() != -1) {
+            if (installedXposedVersionInt == XposedApp.getActiveXposedVersion()) {
                 txtInstallError.setText(R.string.installed_lollipop);
                 if (XposedApp.getPreferences().getBoolean("old_success_color", false)) {
                     txtInstallError.setTextColor(sActivity.getResources().getColor(R.color.download_status_update_available, null));

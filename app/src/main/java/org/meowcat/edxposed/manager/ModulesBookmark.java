@@ -45,7 +45,7 @@ import java.util.Objects;
 
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
-public class ModulesBookmark extends XposedBaseActivity {
+public class ModulesBookmark extends BaseActivity {
 
     private static RepoLoader mRepoLoader;
     private static View container;

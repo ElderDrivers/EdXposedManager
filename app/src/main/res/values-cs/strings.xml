@@ -97,12 +97,6 @@
     <!-- Settings tab -->
     <string name="settings_group_download">Stahování</string>
     <string name="settings_title_release_type">Zobrazované verze</string>
-    <string name="settings_title_disable_resources">Zakázat ovlivňování prostředků</string>
-    <string name="settings_summary_disable_resources">(Resource hooks)\nŘeší konflikty s tématy (theme engines)\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat</string>
-    <string name="settings_title_theme">Motiv</string>
-    <string name="settings_theme_light">Světlý</string>
-    <string name="settings_theme_dark">Tmavý</string>
-    <string name="settings_theme_black">Černý</string>
     <string name="settings_title_default_view">Výchozí zobrazení</string>
 
     <!-- Support tab -->

@@ -19,7 +19,7 @@ import java.io.File;
 
 import static org.meowcat.edxposed.manager.SettingsFragment.navBar;
 
-public class SettingsActivity extends XposedBaseActivity implements ColorChooserDialog.ColorCallback, FolderChooserDialog.FolderCallback {
+public class SettingsActivity extends BaseActivity implements ColorChooserDialog.ColorCallback, FolderChooserDialog.FolderCallback {
 
     private Toolbar toolbar;
 

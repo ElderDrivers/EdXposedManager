@@ -1,15 +1,16 @@
 package org.meowcat.edxposed.manager.util;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.XposedApp;
-import org.meowcat.edxposed.manager.XposedBaseActivity;
+import org.meowcat.edxposed.manager.BaseActivity;
 
 public final class ThemeUtil {
-    private static int[] THEMES = new int[]{
+    private static final int[] THEMES = new int[]{
             R.style.Theme_XposedInstaller_Light,
             R.style.Theme_XposedInstaller_Dark,
             R.style.Theme_XposedInstaller_Dark_Black,};
@@ -17,18 +18,30 @@ public final class ThemeUtil {
     private ThemeUtil() {
     }
 
-    private static int getSelectTheme() {
+    private static boolean isNightTheme(Context context) {
         int theme = XposedApp.getPreferences().getInt("theme", 0);
-        return (theme >= 0 && theme < THEMES.length) ? theme : 0;
+        return (theme == 2 && (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_YES) > 0) || theme == 1;
     }
 
-    public static void setTheme(XposedBaseActivity activity) {
-        activity.mTheme = getSelectTheme();
+    private static int getSelectTheme(Context context) {
+        int theme = 0;
+        if (isNightTheme(context)) {
+            if (XposedApp.getPreferences().getBoolean("pure_black", false)) {
+                theme = 2;
+            } else {
+                theme = 1;
+            }
+        }
+        return theme;
+    }
+
+    public static void setTheme(BaseActivity activity) {
+        activity.mTheme = getSelectTheme(activity);
         activity.setTheme(THEMES[activity.mTheme]);
     }
 
-    public static void reloadTheme(XposedBaseActivity activity) {
-        int theme = getSelectTheme();
+    public static void reloadTheme(BaseActivity activity) {
+        int theme = getSelectTheme(activity);
         if (theme != activity.mTheme)
             activity.recreate();
     }

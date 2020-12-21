@@ -102,12 +102,6 @@
     <string name="settings_group_download">下載</string>
     <string name="settings_title_release_type">要顯示的版本</string>
     <string name="settings_group_framework">框架</string>
-    <string name="settings_title_disable_resources">停用資源鉤子</string>
-    <string name="settings_summary_disable_resources">解決與主題引擎的衝突\n<b>警告：</b> 啟用該選項將導致修改資源的模組無法運作</string>
-    <string name="settings_title_theme">主題</string>
-    <string name="settings_theme_light">亮色</string>
-    <string name="settings_theme_dark">暗色</string>
-    <string name="settings_theme_black">黑色</string>
     <string name="settings_title_default_view">預設檢視</string>
 
     <!-- Support tab -->

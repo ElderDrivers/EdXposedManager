@@ -99,12 +99,6 @@
     <string name="settings_group_download">Last ned og installer</string>
     <string name="settings_title_release_type">Versjoner som skal vises to be shown</string>
     <string name="settings_group_framework">Framework</string>
-    <string name="settings_title_disable_resources">Skrudde av ressurshektinger</string>
-    <string name="settings_summary_disable_resources">Nødløsning for konflikter mellom temadrivere\n<b>ADVARSEL:</b> Moduler som prøver å endre på ressurser, vil ikke fungere når dette er skrudd på</string>
-    <string name="settings_title_theme">Tema</string>
-    <string name="settings_theme_light">Lyst</string>
-    <string name="settings_theme_dark">Mørkt</string>
-    <string name="settings_theme_black">Svart</string>
     <string name="settings_title_default_view">Standardvisning</string>
 
     <!-- Support tab -->

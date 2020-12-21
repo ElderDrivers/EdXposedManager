@@ -8,9 +8,9 @@
     </string-array>
 
     <string-array name="theme_texts" translatable="false">
-        <item>@string/settings_theme_light</item>
-        <item>@string/settings_theme_dark</item>
-        <item>@string/settings_theme_black</item>
+        <item>@string/settings_theme_dark_disabled</item>
+        <item>@string/settings_theme_dark_enabled</item>
+        <item>@string/settings_theme_dark_auto</item>
     </string-array>
 
     <string-array name="default_view_texts" translatable="false">

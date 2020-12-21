@@ -135,8 +135,8 @@
     <string name="settings_group_framework">Framework</string>
 
     <string name="settings_title_release_type">Versions to be shown</string>
-    <string name="settings_title_disable_resources">Disabled resource hooks</string>
-    <string name="settings_title_theme">Theme</string>
+    <string name="settings_title_enable_resources">Enable resource hooks</string>
+    <string name="settings_title_dark_theme">Dark theme</string>
     <string name="menu_show_modules">Show modules and manager</string>
     <string name="settings_title_pass_safetynet">Pass SafetyNet</string>
     <string name="settings_title_old_success_color">Use old status active color (green)</string>
@@ -153,7 +153,7 @@
     <string name="settings_summary_stop_log">Modules log will stop capturing until next reboot</string>
     <string name="settings_summary_disable_modules_log">Exception stack thrown by modules will still be caught normally</string>
     <string name="settings_summary_open_drawer">Open navigation drawer at launch</string>
-    <string name="settings_summary_disable_resources">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules that modify resources will not work when this is enabled</string>
+    <string name="settings_summary_enable_resources">May cause conflicts with theming engines\n<b>WARNING:</b> Modules that modify resources will not work when this is disabled</string>
     <string name="settings_summary_skip_status_check">Skip \"EdXposed Status\" check for modules</string>
     <string name="settings_summary_dynamic_modules">When turned on, load latest activated module list on each app process started</string>
     <string name="settings_summary_enable_boot_image_deopt">Turn on to make all framework methods hookable, but the whole system will be slowed down\nMainly used to check if one framework method is inlined when it can\'t be hooked on</string>
@@ -167,9 +167,9 @@
     <string name="settings_sort_by_update_time">Sort by update time</string>
     <string name="settings_sort_by_update_time_reverse">Sort by update time (reversed)</string>
 
-    <string name="settings_theme_light">Light</string>
-    <string name="settings_theme_dark">Dark</string>
-    <string name="settings_theme_black">Black</string>
+    <string name="settings_theme_dark_disabled">Always off</string>
+    <string name="settings_theme_dark_enabled">Always on</string>
+    <string name="settings_title_pure_black">Pure black theme</string>
     <!-- Support tab -->
     <string name="support_modules_label">Support for modules</string>
     <string name="support_modules_description">Tap any module in the module list and tap \"%1$s\".</string>
@@ -418,4 +418,6 @@
     <string name="item_filter_by_is_system">System application</string>
     <string name="item_filter_by_is_user">User application</string>
     <string name="item_filter_by_launcher">Applications that do not appear on the desktop</string>
+    <string name="settings_theme_dark_auto">Follow system</string>
+    <string name="settings_summary_pure_black">Use the pure black theme if dark theme is enabled</string>
 </resources>

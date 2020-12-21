@@ -14,14 +14,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import org.meowcat.edxposed.manager.adapter.ActivationScopeAdapter;
 import org.meowcat.edxposed.manager.adapter.AppAdapter;
 import org.meowcat.edxposed.manager.adapter.AppHelper;
-import org.meowcat.edxposed.manager.adapter.ActivationScopeAdapter;
 import org.meowcat.edxposed.manager.widget.MasterSwitch;
 
 import java.util.Collections;
 
-public class ActivationScopeActivity extends XposedBaseActivity implements AppAdapter.Callback {
+public class ActivationScopeActivity extends BaseActivity implements AppAdapter.Callback {
     private SearchView mSearchView;
     private ActivationScopeAdapter mAppAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -86,7 +86,7 @@ public class ActivationScopeActivity extends XposedBaseActivity implements AppAd
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
         return AppAdapter.onOptionsItemSelected(item);
     }
 

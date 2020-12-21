@@ -44,8 +44,14 @@
             android:entryValues="@array/theme_values"
             android:key="theme"
             android:summary="%s"
-            android:title="@string/settings_title_theme"
+            android:title="@string/settings_title_dark_theme"
             app:useStockLayout="true" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="pure_black"
+            android:title="@string/settings_title_pure_black"
+            android:summary="@string/settings_summary_pure_black" />
 
         <org.meowcat.edxposed.manager.widget.IntegerListPreference
             android:defaultValue="0"
@@ -168,9 +174,9 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="disable_resources"
-            android:summary="@string/settings_summary_disable_resources"
-            android:title="@string/settings_title_disable_resources" />
+            android:key="enable_resources"
+            android:summary="@string/settings_summary_enable_resources"
+            android:title="@string/settings_title_enable_resources" />
 
         <SwitchPreference
             android:defaultValue="true"

@@ -39,7 +39,7 @@ import java.util.Objects;
 import static androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
-public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener {
+public class DownloadDetailsActivity extends BaseActivity implements RepoListener, ModuleListener {
 
     public static final int DOWNLOAD_DESCRIPTION = 0;
     public static final int DOWNLOAD_VERSIONS = 1;

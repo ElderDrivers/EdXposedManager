@@ -35,7 +35,7 @@ import org.meowcat.edxposed.manager.util.ThemeUtil;
 import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
-public class WelcomeActivity extends XposedBaseActivity
+public class WelcomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         SharedPreferences.OnSharedPreferenceChangeListener,
         ModuleListener, RepoListener {

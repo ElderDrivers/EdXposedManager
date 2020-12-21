@@ -106,8 +106,6 @@
     <string name="settings_group_framework">Framework</string>
 
     <string name="settings_title_release_type">Отображение версий модуля</string>
-    <string name="settings_title_disable_resources">Не изменять ресурсы</string>
-    <string name="settings_title_theme">Тема</string>
     <string name="menu_show_modules">Отображение модулей</string>
     <string name="settings_title_pass_safetynet">Проверка SafetyNet</string>
     <string name="settings_title_old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
@@ -123,7 +121,6 @@
     <string name="settings_summary_stop_log">Логи модулей перестанут отображаться после перезагрузки</string>
     <string name="settings_summary_disable_modules_log">Некоторые исключения от модулей по прежнему могут нормально отображаться</string>
     <string name="settings_summary_open_drawer">Автоматически открывать боковое меню при запуске</string>
-    <string name="settings_summary_disable_resources">Временное решение для конфликтов с темами системы\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта настройка включена</string>
     <string name="settings_summary_skip_status_check">Пропускать проверку «Статус EdXposed» для модулей</string>
     <string name="settings_summary_dynamic_modules">Загружать список последних включенных модулей для каждого запущенного процесса приложения</string>
     <string name="settings_summary_enable_boot_image_deopt">Включите, чтобы сделать все методы Framework подключаемыми, система может работать медленнее\nВ основном используется для проверки методов подключения к Framework, когда нельзя подключить</string>
@@ -136,10 +133,6 @@
     <string name="settings_sort_by_install_time_reverse">Сортировать по времени установки (обратный)</string>
     <string name="settings_sort_by_update_time">Сортировать по времени обновления</string>
     <string name="settings_sort_by_update_time_reverse">Сортировать по времени обновления (обратный)</string>
-
-    <string name="settings_theme_light">Светлая</string>
-    <string name="settings_theme_dark">Темная</string>
-    <string name="settings_theme_black">Черная</string>
 
     <!-- Support -->
     <string name="support_modules_label">Поддержка модулей</string>

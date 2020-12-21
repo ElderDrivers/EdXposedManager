@@ -101,12 +101,12 @@
     <string name="settings_group_download">下载和安装</string>
     <string name="settings_title_release_type">要显示的版本</string>
     <string name="settings_group_framework">框架</string>
-    <string name="settings_title_disable_resources">禁用资源钩子</string>
-    <string name="settings_summary_disable_resources">解决与主题引擎的冲突 <b>警告: </b> 启用该选项将导致修改资源的模块无法工作</string>
-    <string name="settings_title_theme">主题</string>
-    <string name="settings_theme_light">亮色</string>
-    <string name="settings_theme_dark">暗色</string>
-    <string name="settings_theme_black">黑色</string>
+    <string name="settings_title_enable_resources">启用资源钩子</string>
+    <string name="settings_summary_enable_resources">可能会引起与主题引擎的冲突\n<b>警告: </b> 禁用该选项将导致修改资源的模块无法工作</string>
+    <string name="settings_title_dark_theme">深色主题</string>
+    <string name="settings_theme_dark_disabled">总是关闭</string>
+    <string name="settings_theme_dark_enabled">总是开启</string>
+    <string name="settings_title_pure_black">纯黑色主题</string>
     <string name="settings_title_default_view">默认视图</string>
 
     <!-- Support tab -->
@@ -381,4 +381,6 @@
     <string name="item_filter_by_is_system">过滤系统应用</string>
     <string name="item_filter_by_is_user">过滤用户应用</string>
     <string name="item_filter_by_launcher">过滤没有出现在桌面的应用</string>
+    <string name="settings_theme_dark_auto">跟随系统</string>
+    <string name="settings_summary_pure_black">当深色模式启用时使用纯黑色主题</string>
 </resources>

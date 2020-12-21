@@ -18,8 +18,13 @@ import java.util.Locale;
 import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
-public abstract class XposedBaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     public int mTheme = -1;
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
