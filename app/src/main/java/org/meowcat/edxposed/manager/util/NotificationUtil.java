@@ -88,8 +88,11 @@ public final class NotificationUtil {
                 .setVibrate(new long[]{0}).setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_notification);
 
-        if (prefs.getBoolean(HEADS_UP, true))
+        if (prefs.getBoolean(HEADS_UP, true)) {
             builder.setPriority(2);
+        } else {
+            return;
+        }
 
         if (prefs.getBoolean(COLORED_NOTIFICATION, false))
             builder.setColor(XposedApp.getColor(sContext));
@@ -138,8 +141,11 @@ public final class NotificationUtil {
                 .setVibrate(new long[]{0}).setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_notification);
 
-        if (prefs.getBoolean(HEADS_UP, true))
+        if (prefs.getBoolean(HEADS_UP, true)) {
             builder.setPriority(2);
+        } else {
+            return;
+        }
 
         if (prefs.getBoolean(COLORED_NOTIFICATION, false))
             builder.setColor(XposedApp.getColor(sContext));
