@@ -86,4 +86,45 @@
         </menu>
     </item>
 
+    <item
+        android:id="@+id/item_list_sort"
+        android:title="@string/list_sort"
+        app:showAsAction="never">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/item_sort_by_name"
+                    android:checked="true"
+                    android:title="@string/settings_sort_by_name" />
+
+                <item
+                    android:id="@+id/item_sort_by_name_reverse"
+                    android:title="@string/settings_sort_by_name_reverse" />
+
+                <item
+                    android:id="@+id/item_sort_by_package_name"
+                    android:title="@string/settings_sort_by_package_name" />
+
+                <item
+                    android:id="@+id/item_sort_by_package_name_reverse"
+                    android:title="@string/settings_sort_by_package_name_reverse" />
+
+                <item
+                    android:id="@+id/item_sort_by_install_time"
+                    android:title="@string/settings_sort_by_install_time" />
+
+                <item
+                    android:id="@+id/item_sort_by_install_time_reverse"
+                    android:title="@string/settings_sort_by_install_time_reverse" />
+                <item
+                    android:id="@+id/item_sort_by_update_time"
+                    android:title="@string/settings_sort_by_update_time" />
+
+                <item
+                    android:id="@+id/item_sort_by_update_time_reverse"
+                    android:title="@string/settings_sort_by_update_time_reverse" />
+            </group>
+        </menu>
+    </item>
+
 </menu>

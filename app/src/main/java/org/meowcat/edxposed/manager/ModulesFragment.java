@@ -82,6 +82,7 @@ import java.util.Set;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 import static androidx.constraintlayout.widget.Constraints.TAG;
+import static de.robv.android.xposed.installer.XposedApp.getActiveXposedVersion;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.createFolder;
 
@@ -284,6 +285,33 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
         inflater.inflate(R.menu.menu_modules, menu);
         mSearchView = (SearchView) menu.findItem(R.id.app_search).getActionView();
         mSearchView.setOnQueryTextListener(mSearchListener);
+
+        switch (XposedApp.getPreferences().getInt("list_sort", 0)) {
+            case 7:
+                menu.findItem(R.id.item_sort_by_update_time_reverse).setChecked(true);
+                break;
+            case 6:
+                menu.findItem(R.id.item_sort_by_update_time).setChecked(true);
+                break;
+            case 5:
+                menu.findItem(R.id.item_sort_by_install_time_reverse).setChecked(true);
+                break;
+            case 4:
+                menu.findItem(R.id.item_sort_by_install_time).setChecked(true);
+                break;
+            case 3:
+                menu.findItem(R.id.item_sort_by_package_name_reverse).setChecked(true);
+                break;
+            case 2:
+                menu.findItem(R.id.item_sort_by_package_name).setChecked(true);
+                break;
+            case 1:
+                menu.findItem(R.id.item_sort_by_name_reverse).setChecked(true);
+                break;
+            case 0:
+                menu.findItem(R.id.item_sort_by_name).setChecked(true);
+                break;
+        }
     }
 
     @Override
@@ -308,6 +336,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
             return true;
         }
 
+        boolean refresh = false;
         File enabledModulesPath = new File(createFolder(), "enabled_modules.list");
         File installedModulesPath = new File(createFolder(), "installed_modules.list");
         File listModules = new File(XposedApp.ENABLED_MODULES_LIST_FILE);
@@ -319,8 +348,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
 
         switch (item.getItemId()) {
             case R.id.refresh:
-                mModuleUtil.updateModulesList(false, null);
-                requireActivity().runOnUiThread(reloadModules);
+                refresh = true;
                 break;
             case R.id.export_enabled_modules:
                 if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -390,6 +418,50 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                 return importModules(installedModulesPath);
             case R.id.import_enabled_modules:
                 return importModules(enabledModulesPath);
+            case R.id.item_sort_by_name:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 0).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_name_reverse:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 1).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_package_name:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 2).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_package_name_reverse:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 3).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_install_time:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 4).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_install_time_reverse:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 5).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_update_time:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 6).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_update_time_reverse:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 7).apply();
+                refresh = true;
+                break;
+        }
+        if (refresh) {
+            mModuleUtil.updateModulesList(false, null);
+            requireActivity().runOnUiThread(reloadModules);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -503,6 +575,9 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
         } catch (RowNotFoundException e) {
             appMenu.getMenu().removeItem(R.id.menu_download_updates);
             appMenu.getMenu().removeItem(R.id.menu_support);
+        }
+        if (getActiveXposedVersion() < 92 || installedModule.packageName.equals(BuildConfig.APPLICATION_ID)) {
+//            appMenu.getMenu().removeItem(R.id.menu_activation_scope);
         }
         if (getSettingsIntent(installedModule.packageName) == null) {
             appMenu.getMenu().removeItem(R.id.menu_launch);

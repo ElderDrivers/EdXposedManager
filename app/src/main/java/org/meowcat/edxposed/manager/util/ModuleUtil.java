@@ -303,7 +303,7 @@ public final class ModuleUtil {
                 } else {
                     Object minVersionRaw = app.metaData.get("xposedminversion");
                     if (minVersionRaw instanceof Integer) {
-                        this.minVersion = (Integer) minVersionRaw;
+                        this.minVersion = (int) minVersionRaw;
                     } else if (minVersionRaw instanceof String) {
                         this.minVersion = extractIntPart((String) minVersionRaw);
                     } else {

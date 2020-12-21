@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -36,7 +35,6 @@ import org.meowcat.edxposed.manager.util.InstallApkUtil;
 import org.meowcat.edxposed.manager.util.NavUtil;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
 
-import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -117,19 +115,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
                     rmList.add(info);
                     continue;
                 }
-            }
-
-            try {
-                PackageInfo packageInfo = pm.getPackageInfo(info.packageName, PackageManager.GET_META_DATA);
-                Class<?> clazz = Class.forName(PackageInfo.class.getName());
-                Field field = clazz.getDeclaredField("overlayCategory");
-                Object overlayCategory = field.get(packageInfo);
-                if (overlayCategory != null) {
-                    rmList.add(info);
-                    continue;
-                }
-            } catch (PackageManager.NameNotFoundException | NoSuchFieldException | ClassNotFoundException | IllegalAccessException e) {
-                e.printStackTrace();
             }
 
             if (XposedApp.getPreferences().getBoolean("item_filter_by_is_system", false)) {
