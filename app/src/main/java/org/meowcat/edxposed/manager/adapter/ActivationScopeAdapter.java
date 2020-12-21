@@ -44,6 +44,7 @@ public class ActivationScopeAdapter extends AppAdapter {
         this.swipeRefreshLayout = swipeRefreshLayout;
         scopeFile = new File(BASE_PATH + String.format(SCOPE_LIST_PATH, modulePackageName));
         masterSwitch.setTitle(context.getString(R.string.enable_scope));
+        enabled = scopeFile.exists();
         masterSwitch.setOnCheckedChangedListener(new MasterSwitch.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(boolean checked) {
