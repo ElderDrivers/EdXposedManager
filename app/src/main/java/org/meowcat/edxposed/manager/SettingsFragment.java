@@ -67,7 +67,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
     private static final File mDisableForceClientSafetyNetFlag = new File(XposedApp.BASE_DIR + "conf/disable_force_client_safetynet");
     private static final File mPretendXposedInstallerFlag = new File(XposedApp.BASE_DIR + "conf/pretend_xposed_installer");
     private static final File mHideEdXposedManagerFlag = new File(XposedApp.BASE_DIR + "conf/hide_edxposed_manager");
-    private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
+    private static final File mEnableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/enable_resources");
     private static final File mDisableHiddenAPIBypassFlag = new File(XposedApp.BASE_DIR + "conf/disable_hidden_api_bypass");
     private static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
     private static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
@@ -96,7 +96,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
 //        ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
 //                requireContext().getDrawable(XposedApp.iconsValues[Integer.parseInt(Objects.requireNonNull(getPreferences().getString("custom_icon", "0")))]),
 //                XposedApp.getColor(requireContext()));
-        @SuppressWarnings("deprecation") ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
+        ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
                 XposedApp.drawableToBitmap(requireContext().getDrawable(XposedApp.iconsValues[Integer.parseInt(Objects.requireNonNull(getPreferences().getString("custom_icon", "0")))])),
                 XposedApp.getColor(requireContext()));
         requireActivity().setTaskDescription(tDesc);
@@ -393,15 +393,15 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
             return (enabled == mDynamicModulesFlag.exists());
         });
 
-        SwitchPreference prefDisableResources = findPreference("disable_resources");
-        Objects.requireNonNull(prefDisableResources).setChecked(mDisableResourcesFlag.exists());
-        prefDisableResources.setOnPreferenceChangeListener((preference, newValue) -> {
+        SwitchPreference prefEnableResources = findPreference("enable_resources");
+        Objects.requireNonNull(prefEnableResources).setChecked(mEnableResourcesFlag.exists());
+        prefEnableResources.setOnPreferenceChangeListener((preference, newValue) -> {
             boolean enabled = (boolean) newValue;
             if (enabled) {
                 FileOutputStream fos = null;
                 try {
-                    fos = new FileOutputStream(mDisableResourcesFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mDisableResourcesFlag.getPath(), Context.MODE_WORLD_READABLE);
+                    fos = new FileOutputStream(mEnableResourcesFlag.getPath());
+                    XposedApp.setFilePermissionsFromMode(mEnableResourcesFlag.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 } finally {
@@ -411,7 +411,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
                         } catch (IOException e) {
                             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                             try {
-                                mDisableResourcesFlag.createNewFile();
+                                mEnableResourcesFlag.createNewFile();
                             } catch (IOException e1) {
                                 Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -419,9 +419,9 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
                     }
                 }
             } else {
-                mDisableResourcesFlag.delete();
+                mEnableResourcesFlag.delete();
             }
-            return (enabled == mDisableResourcesFlag.exists());
+            return (enabled == mEnableResourcesFlag.exists());
         });
 
         SwitchPreference prefDisableHiddenAPIBypass = findPreference("disable_hidden_api_bypass");
@@ -479,7 +479,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals("theme") || key.equals("nav_bar") || key.equals("ignore_chinese"))
+        if (key.equals("theme") || key.equals("nav_bar") || key.equals("ignore_chinese") || key.equals("pure_black"))
             requireActivity().recreate();
 
         if (key.equals("force_english"))
