@@ -1,6 +1,5 @@
 package org.meowcat.edxposed.manager;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -86,14 +84,6 @@ public class BaseAdvancedInstaller extends Fragment {
         return Objects.requireNonNull(tab).description;
     }
 
-    private boolean checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -142,7 +132,6 @@ public class BaseAdvancedInstaller extends Fragment {
 
         btnInstall.setOnClickListener(v -> {
             mClickedButton = v;
-            if (checkPermissions()) return;
 
             BaseFragment.areYouSure(requireActivity(), getString(R.string.warningArchitecture), (d, w) -> {
                 XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
@@ -155,7 +144,6 @@ public class BaseAdvancedInstaller extends Fragment {
 
         btnUninstall.setOnClickListener(v -> {
             mClickedButton = v;
-            if (checkPermissions()) return;
 
             BaseFragment.areYouSure(requireActivity(), getString(R.string.warningArchitecture), (d, w) -> {
                 XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
