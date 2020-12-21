@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     lintOptions {
         abortOnError false
@@ -12,7 +12,7 @@ android {
         applicationId "org.meowcat.edxposed.manager"
         minSdkVersion 24
         //noinspection OldTargetApi
-        targetSdkVersion 27
+        targetSdkVersion 30
         versionCode 45756
         versionName "4.6.0-pre"
     }
