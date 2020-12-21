@@ -1,7 +1,10 @@
 package org.meowcat.edxposed.manager;
 
 import android.app.Activity;
+import android.content.Context;
+import android.os.Build;
 import android.os.Looper;
+import android.os.PowerManager;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -28,6 +31,11 @@ public class BaseFragment extends Fragment {
                 .show();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     private void showAlert(final String result) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             requireActivity().runOnUiThread(() -> showAlert(result));
@@ -46,11 +54,18 @@ public class BaseFragment extends Fragment {
     }
 
     private void softReboot() {
+        String command = "setprop ctl.restart surfaceflinger; setprop ctl.restart zygote";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                ((PowerManager) requireContext().getSystemService(Context.POWER_SERVICE)).isRebootingUserspaceSupported()) {
+             command = "/system/bin/svc power reboot userspace";
+        }
+
         if (startShell())
             return;
 
         List<String> messages = new LinkedList<>();
-        Shell.Result result = Shell.su("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote").exec();
+        Shell.Result result = Shell.su(command).exec();
         if (result.getCode() != 0) {
             messages.add(result.getOut().toString());
             messages.add("");
