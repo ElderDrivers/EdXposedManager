@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -202,20 +203,22 @@ public class Enhancement implements IXposedHookLoadPackage {
                         @SuppressWarnings("unchecked") final List<ApplicationInfo> applicationInfoList = (List<ApplicationInfo>) callMethod(param.getResult(), "getList");
                         if (isXposedModule) {
                             if (getFlagState(userId, mPretendXposedInstallerFlag)) {
-                                for (ApplicationInfo applicationInfo : applicationInfoList) {
+                                ListIterator<ApplicationInfo> iterator = applicationInfoList.listIterator();
+                                while (iterator.hasNext()) {
+                                    ApplicationInfo applicationInfo = (iterator.next());
                                     if (applicationInfo.packageName.equals(APPLICATION_ID)) {
                                         applicationInfo.packageName = LEGACY_INSTALLER;
-                                        applicationInfoList.add(applicationInfo);
-                                        break;
+                                        iterator.add(applicationInfo);
                                     }
                                 }
                             }
                         } else {
                             if (getFlagState(userId, mHideEdXposedManagerFlag)) {
-                                for (ApplicationInfo applicationInfo : applicationInfoList) {
-                                    if (applicationInfo.packageName.equals(APPLICATION_ID) || applicationInfo.packageName.equals(LEGACY_INSTALLER)) {
-                                        applicationInfoList.remove(applicationInfo);
-                                        break;
+                                ListIterator<ApplicationInfo> iterator = applicationInfoList.listIterator();
+                                while (iterator.hasNext()) {
+                                    String packageName = (iterator.next()).packageName;
+                                    if (packageName.equals(APPLICATION_ID) || packageName.equals(LEGACY_INSTALLER)) {
+                                        iterator.remove();
                                     }
                                 }
                             }
@@ -253,20 +256,22 @@ public class Enhancement implements IXposedHookLoadPackage {
                         @SuppressWarnings("unchecked") final List<PackageInfo> packageInfoList = (List<PackageInfo>) callMethod(param.getResult(), "getList");
                         if (isXposedModule) {
                             if (getFlagState(userId, mPretendXposedInstallerFlag)) {
-                                for (PackageInfo packageInfo : packageInfoList) {
+                                ListIterator<PackageInfo> iterator = packageInfoList.listIterator();
+                                while (iterator.hasNext()) {
+                                    PackageInfo packageInfo = (iterator.next());
                                     if (packageInfo.packageName.equals(APPLICATION_ID)) {
                                         packageInfo.packageName = LEGACY_INSTALLER;
-                                        packageInfoList.add(packageInfo);
-                                        break;
+                                        iterator.add(packageInfo);
                                     }
                                 }
                             }
                         } else {
                             if (getFlagState(userId, mHideEdXposedManagerFlag)) {
-                                for (PackageInfo packageInfo : packageInfoList) {
-                                    if (packageInfo.packageName.equals(APPLICATION_ID) || packageInfo.packageName.equals(LEGACY_INSTALLER)) {
-                                        packageInfoList.remove(packageInfo);
-                                        break;
+                                ListIterator<PackageInfo> iterator = packageInfoList.listIterator();
+                                while (iterator.hasNext()) {
+                                    String packageName = (iterator.next()).packageName;
+                                    if (packageName.equals(APPLICATION_ID) || packageName.equals(LEGACY_INSTALLER)) {
+                                        iterator.remove();
                                     }
                                 }
                             }
