@@ -63,7 +63,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
     private SharedPreferences mIgnoredUpdatesPref;
     private boolean changed = false;
     private View backgroundList;
-    private BroadcastReceiver connectionListener = new BroadcastReceiver() {
+    private final BroadcastReceiver connectionListener = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

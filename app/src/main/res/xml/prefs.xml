@@ -50,8 +50,8 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="pure_black"
-            android:title="@string/settings_title_pure_black"
-            android:summary="@string/settings_summary_pure_black" />
+            android:summary="@string/settings_summary_pure_black"
+            android:title="@string/settings_title_pure_black" />
 
         <org.meowcat.edxposed.manager.widget.IntegerListPreference
             android:defaultValue="0"
@@ -201,17 +201,17 @@
             android:summary="@string/settings_summary_disable_modules_log"
             android:title="@string/settings_title_disable_modules_log" />
 
-<!--        <Preference-->
-<!--            android:key="stop_verbose_log"-->
-<!--            android:summary="@string/stop_verbose_log_summary"-->
-<!--            android:title="@string/stop_verbose_log"-->
-<!--            android:shouldDisableView="true" />-->
+        <!--        <Preference-->
+        <!--            android:key="stop_verbose_log"-->
+        <!--            android:summary="@string/stop_verbose_log_summary"-->
+        <!--            android:title="@string/stop_verbose_log"-->
+        <!--            android:shouldDisableView="true" />-->
 
-<!--        <Preference-->
-<!--            android:key="stop_log"-->
-<!--            android:summary="@string/stop_log_summary"-->
-<!--            android:title="@string/stop_log"-->
-<!--            android:shouldDisableView="true" />-->
+        <!--        <Preference-->
+        <!--            android:key="stop_log"-->
+        <!--            android:summary="@string/stop_log_summary"-->
+        <!--            android:title="@string/stop_log"-->
+        <!--            android:shouldDisableView="true" />-->
 
     </PreferenceCategory>
 
@@ -221,8 +221,8 @@
 
         <Preference
             android:key="enhancement_status"
-            android:title="@string/settings_title_enhancement"
-            android:summary="@string/settings_summary_enhancement" />
+            android:summary="@string/settings_summary_enhancement"
+            android:title="@string/settings_title_enhancement" />
 
         <SwitchPreference
             android:defaultValue="true"

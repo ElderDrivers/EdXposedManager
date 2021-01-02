@@ -261,7 +261,7 @@ public class RepoParser {
 
     private void skip() throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, null, null);
-        Log.d(TAG, "skipping unknown/erronous tag: " + parser.getPositionDescription());
+//        Log.d(TAG, "skipping unknown/erronous tag: " + parser.getPositionDescription());
         int level = 1;
         while (level > 0) {
             int eventType = parser.next();

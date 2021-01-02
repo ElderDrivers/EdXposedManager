@@ -39,9 +39,6 @@ import static org.meowcat.edxposed.manager.XposedApp.getPreferences;
 
 public class SettingsFragment extends BasePreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
-    @SuppressLint("StaticFieldLeak")
-    static SwitchPreference navBar;
-
     private final static int[] PRIMARY_COLORS = new int[]{
             Color.parseColor("#F44336"),
             Color.parseColor("#E91E63"),
@@ -77,9 +74,8 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
     private static final File mVerboseLogProcessID = new File(XposedApp.BASE_DIR + "log/all.pid");
     private static final File mModulesLogProcessID = new File(XposedApp.BASE_DIR + "log/error.pid");
     private static final String DIALOG_FRAGMENT_TAG = "list_preference_dialog";
-
-    private Preference mClickedPreference;
-
+    @SuppressLint("StaticFieldLeak")
+    static SwitchPreference navBar;
     private final Preference.OnPreferenceChangeListener iconChange = (preference, newValue) -> {
         String act = ".WelcomeActivity";
         String[] iconsValues = new String[]{"MlgmXyysd", "DVDAndroid", "Hjmodi", "Rovo", "Cornie", "RovoOld", "Staol"};
@@ -104,7 +100,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         pm.setComponentEnabledSetting(new ComponentName(requireContext(), packName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
         return true;
     };
-
+    private Preference mClickedPreference;
     private Preference downloadLocation;
     private Preference stopVerboseLog;
     private Preference stopLog;
@@ -134,7 +130,7 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
 
         Preference enhancement_status = findPreference("enhancement_status");
         Objects.requireNonNull(enhancement_status).setSummary(StatusInstallerFragment.isEnhancementEnabled() ? R.string.settings_summary_enhancement_enabled : R.string.settings_summary_enhancement);
-        
+
         SwitchPreference darkStatusBarPref = findPreference("dark_status_bar");
         Objects.requireNonNull(darkStatusBarPref).setOnPreferenceChangeListener((preference, newValue) -> {
             requireActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(requireActivity()), (boolean) newValue ? 0.85f : 1f));

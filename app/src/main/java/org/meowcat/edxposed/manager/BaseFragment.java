@@ -58,7 +58,7 @@ public class BaseFragment extends Fragment {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
                 ((PowerManager) requireContext().getSystemService(Context.POWER_SERVICE)).isRebootingUserspaceSupported()) {
-             command = "/system/bin/svc power reboot userspace";
+            command = "/system/bin/svc power reboot userspace";
         }
 
         if (startShell())

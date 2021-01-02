@@ -86,7 +86,7 @@ public class ActivationScopeActivity extends BaseActivity implements AppAdapter.
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return AppAdapter.onOptionsItemSelected(item);
     }
 

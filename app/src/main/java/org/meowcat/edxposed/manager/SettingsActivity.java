@@ -23,6 +23,10 @@ public class SettingsActivity extends BaseActivity implements ColorChooserDialog
 
     private Toolbar toolbar;
 
+    public static float getDarkenFactor() {
+        return XposedApp.getPreferences().getBoolean("dark_status_bar", true) ? 0.85f : 1f;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +51,6 @@ public class SettingsActivity extends BaseActivity implements ColorChooserDialog
                     .add(R.id.container, new SettingsFragment()).commit();
         }
 
-    }
-
-    public static float getDarkenFactor() {
-        return XposedApp.getPreferences().getBoolean("dark_status_bar", true) ? 0.85f : 1f;
     }
 
     @Override

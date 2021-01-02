@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public int mTheme = -1;
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
     }
 

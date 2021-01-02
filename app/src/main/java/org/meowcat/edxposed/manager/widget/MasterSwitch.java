@@ -81,11 +81,6 @@ public class MasterSwitch extends FrameLayout implements View.OnClickListener, C
     }
 
     @Override
-    public void toggle() {
-        setChecked(!isChecked);
-    }
-
-    @Override
     public void setChecked(boolean checked) {
         final boolean changed = isChecked != checked;
         if (changed) {
@@ -97,16 +92,21 @@ public class MasterSwitch extends FrameLayout implements View.OnClickListener, C
         }
     }
 
-    public void setOnCheckedChangedListener(OnCheckedChangeListener listener) {
-        this.listener = listener;
+    @Override
+    public void toggle() {
+        setChecked(!isChecked);
     }
 
-    public static abstract class OnCheckedChangeListener {
-        public abstract void onCheckedChanged(boolean checked);
+    public void setOnCheckedChangedListener(OnCheckedChangeListener listener) {
+        this.listener = listener;
     }
 
     @Override
     public void onClick(View v) {
         toggle();
+    }
+
+    public static abstract class OnCheckedChangeListener {
+        public abstract void onCheckedChanged(boolean checked);
     }
 }

@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -113,9 +112,9 @@ public class CompileDialogFragment extends AppCompatDialogFragment {
             List<String> stderr = new ArrayList<>();
             Shell.Result result = Shell.su(commands).to(stdout, stderr).exec();
             List<String> ret;
-            if(stderr.size() > 0) {
+            if (stderr.size() > 0) {
                 return "Error: " + TextUtils.join("\n", stderr);
-            } else if(!result.isSuccess()) { // they might don't write to stderr
+            } else if (!result.isSuccess()) { // they might don't write to stderr
                 return "Error: " + TextUtils.join("\n", stdout);
             } else {
                 return TextUtils.join("\n", stdout);
