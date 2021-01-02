@@ -52,7 +52,7 @@
     <!-- Installer tab -->
     <string name="install">Install/Update</string>
     <string name="uninstall">Uninstall</string>
-    <string name="soft_reboot">Soft reboot</string>
+    <string name="soft_reboot">Reboot to Userspace</string>
     <string name="reboot">Reboot</string>
     <string name="reboot_">Reboot…</string>
     <string name="areyousure">Are you sure?</string>
@@ -411,13 +411,11 @@
     <string name="menu_optimize">Optimize</string>
     <string name="module_activation_scope">Activation Scope</string>
     <string name="enable_scope">Enable for this module</string>
-    <string name="scope_notice">To set the activation scope for this module, turn Activation Scope on.</string>
+    <string name="scope_notice">To enable the activation scope of this module, turn Activation Scope on and select applications.</string>
     <string name="item_list_filter">Filter</string>
-    <string name="item_filter_by_name">Applications without names</string>
-    <string name="item_filter_by_icon">Applications without icon</string>
-    <string name="item_filter_by_is_system">System application</string>
-    <string name="item_filter_by_is_user">User application</string>
-    <string name="item_filter_by_launcher">Applications that do not appear on the desktop</string>
+    <string name="menu_show_no_name">Show apps without names</string>
+    <string name="menu_show_no_icon">Show apps without icon</string>
+    <string name="menu_show_user_apps">Show user apps</string>
     <string name="settings_theme_dark_auto">Follow system</string>
     <string name="settings_summary_pure_black">Use the pure black theme if dark theme is enabled</string>
 </resources>

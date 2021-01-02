@@ -315,9 +315,9 @@
     <string name="ignore_chinese_summary">В «Поиске модулей» не показывать модули на Китайском языке\nМодули останутся доступны через иконку поиска\nВключение этой настройки может привести к низкой производительности</string>
 
     <!-- EdXp related -->
-    <string name="nav_title_black_list">Скрыть EdXposed</string>
+    <string name="nav_title_black_list">Скрыть Xposed</string>
     <string name="nav_title_compat_list">Режим совместимости</string>
-    <string name="white_list_mode_title">Скрыть EdXposed (Белый)</string>
+    <string name="white_list_mode_title">Скрыть Xposed (Белый)</string>
     <string name="title_white_list">Белый</string>
     <string name="title_black_list">Черный</string>
     <string name="add_package_failed">Не удалось отредактировать, некоторые настройки не позволяют редактировать</string>
@@ -327,7 +327,7 @@
     <string name="compile_reset_msg">Сброс…</string>
     <string name="compile_speed_msg">Оптимизация…</string>
     <string name="title_compat_list">Режим совместимости</string>
-    <string name="white_list_mode_summary">Скрыть EdXposed (Черный): (По умолчанию) Выбранные приложения не будут использовать модули\nСкрыть EdXposed (Белый): Только выбранные приложения будут использовать модули\nПримечание: использование «Скрыть EdXposed» может нарушить работу общесистемных модулей</string>
+    <string name="white_list_mode_summary">Скрыть Xposed (Черный): (По умолчанию) Выбранные приложения не будут использовать модули\nСкрыть Xposed (Белый): Только выбранные приложения будут использовать модули\nПримечание: использование «Скрыть Xposed» может нарушить работу общесистемных модулей</string>
 
     <string name="website">Веб-сайт</string>
 
@@ -385,11 +385,7 @@
     <string name="enable_scope">Включить для этого модуля</string>
     <string name="scope_notice">Чтобы установить область активации для этого модуля, включите область активации.</string>
     <string name="item_list_filter">Фильтр</string>
-    <string name="item_filter_by_name">Приложения без названия</string>
-    <string name="item_filter_by_icon">Приложения без иконки</string>
-    <string name="item_filter_by_is_system">Системные приложения</string>
-    <string name="item_filter_by_is_user">Пользовательские приложения</string>
-    <string name="item_filter_by_launcher">Приложения, которые не отображаются на главном экране</string>
+    <string name="menu_show_user_apps">Пользовательские приложения</string>
     <string name="settings_theme_dark_auto">Как в системе</string>
     <string name="settings_summary_pure_black">Использовать черную тему, когда включена темная</string>
 </resources>

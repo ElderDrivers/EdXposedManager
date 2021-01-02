@@ -24,7 +24,7 @@
     <!-- Installer tab -->
     <string name="install">安装/更新</string>
     <string name="uninstall">卸载</string>
-    <string name="soft_reboot">软重启</string>
+    <string name="soft_reboot">重启至用户空间</string>
     <string name="reboot">重启</string>
     <string name="areyousure">您确定？</string>
     <string name="phone_not_compatible">EdXposed 尚不兼容您手机的 Android SDK 版本 %1$d 或处理器架构（%2$s）</string>
@@ -374,13 +374,11 @@
     <string name="menu_optimize">优化应用</string>
     <string name="module_activation_scope">设置作用域</string>
     <string name="enable_scope">对该模块启用作用域</string>
-    <string name="scope_notice">要设置该模块的作用域，请先启用 作用域。</string>
-    <string name="item_list_filter">过滤应用列表</string>
-    <string name="item_filter_by_name">过滤没有名称的应用</string>
-    <string name="item_filter_by_icon">过滤没有图标的应用</string>
-    <string name="item_filter_by_is_system">过滤系统应用</string>
-    <string name="item_filter_by_is_user">过滤用户应用</string>
-    <string name="item_filter_by_launcher">过滤没有出现在桌面的应用</string>
+    <string name="scope_notice">要使该模块的作用域生效，请先启用 作用域 并 选择应用。</string>
+    <string name="item_list_filter">过滤</string>
+    <string name="menu_show_no_name">显示没有名称的应用</string>
+    <string name="menu_show_no_icon">显示没有图标的应用</string>
+    <string name="menu_show_user_apps">显示用户应用</string>
     <string name="settings_theme_dark_auto">跟随系统</string>
     <string name="settings_summary_pure_black">当深色模式启用时使用纯黑色主题</string>
 </resources>
