@@ -343,14 +343,14 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
 
         mClickedMenuItem = item;
 
-        if (checkPermissions())
-            return false;
-
         switch (item.getItemId()) {
             case R.id.refresh:
                 refresh = true;
                 break;
             case R.id.export_enabled_modules:
+                if (checkPermissions())
+                    return false;
+
                 if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     return false;
                 }
@@ -382,6 +382,9 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                 Snackbar.make(requireView(), enabledModulesPath.toString(), Snackbar.LENGTH_LONG).show();
                 return true;
             case R.id.export_installed_modules:
+                if (checkPermissions())
+                    return false;
+
                 if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     Snackbar.make(requireView(), R.string.sdcard_not_writable, Snackbar.LENGTH_LONG).show();
                     return false;
@@ -415,8 +418,12 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
                 Snackbar.make(requireView(), installedModulesPath.toString(), Snackbar.LENGTH_LONG).show();
                 return true;
             case R.id.import_installed_modules:
+                if (checkPermissions())
+                    return false;
                 return importModules(installedModulesPath);
             case R.id.import_enabled_modules:
+                if (checkPermissions())
+                    return false;
                 return importModules(enabledModulesPath);
             case R.id.item_sort_by_name:
                 item.setChecked(true);
