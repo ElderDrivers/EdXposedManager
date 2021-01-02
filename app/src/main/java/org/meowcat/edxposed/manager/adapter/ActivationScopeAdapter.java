@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.meowcat.edxposed.manager.R;
+import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.ToastUtil;
 import org.meowcat.edxposed.manager.widget.MasterSwitch;
 
@@ -28,14 +29,14 @@ import static org.meowcat.edxposed.manager.adapter.AppHelper.BASE_PATH;
 
 public class ActivationScopeAdapter extends AppAdapter {
 
-    protected final String modulePackageName;
-    protected static boolean enabled = false;
-    private List<String> checkedList = new ArrayList<>();
-    private final MasterSwitch masterSwitch;
     private static final HashMap<String, List<String>> scopeList = new HashMap<>();
     private static final String SCOPE_LIST_PATH = "conf/%s.conf";
+    protected static boolean enabled = false;
     private static File scopeFile;
+    protected final String modulePackageName;
+    private final MasterSwitch masterSwitch;
     private final SwipeRefreshLayout swipeRefreshLayout;
+    private List<String> checkedList = new ArrayList<>();
 
     public ActivationScopeAdapter(Context context, String modulePackageName, MasterSwitch masterSwitch, SwipeRefreshLayout swipeRefreshLayout) {
         super(context);
@@ -48,6 +49,8 @@ public class ActivationScopeAdapter extends AppAdapter {
         masterSwitch.setOnCheckedChangedListener(new MasterSwitch.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(boolean checked) {
+                ModuleUtil moduleUtil = ModuleUtil.getInstance();
+                moduleUtil.updateModulesList(false, null);
                 enabled = checked;
                 saveScopeList(modulePackageName, enabled, checkedList);
                 notifyDataSetChanged();
@@ -58,45 +61,6 @@ public class ActivationScopeAdapter extends AppAdapter {
                 }
             }
         });
-    }
-
-    @Override
-    public List<String> generateCheckedList() {
-        AppHelper.makeSurePath();
-        List<String> scopeList = getScopeList(modulePackageName);
-        List<String> list = new ArrayList<>();
-        for (ApplicationInfo info : fullList) {
-            list.add(info.packageName);
-        }
-        scopeList.retainAll(list);
-        checkedList = scopeList;
-        ((Activity) context).runOnUiThread(() -> {
-            masterSwitch.setChecked(enabled);
-            if (enabled) {
-                swipeRefreshLayout.setVisibility(View.VISIBLE);
-            } else {
-                swipeRefreshLayout.setVisibility(View.GONE);
-            }
-        });
-        return checkedList;
-    }
-
-    @Override
-    protected void onCheckedChange(CompoundButton view, boolean isChecked, ApplicationInfo info) {
-        if (isChecked) {
-            checkedList.add(info.packageName);
-        } else {
-            checkedList.remove(info.packageName);
-        }
-        if (!saveScopeList(modulePackageName, enabled, checkedList)) {
-            ToastUtil.showShortToast(context, R.string.add_package_failed);
-            if (!isChecked) {
-                checkedList.add(info.packageName);
-            } else {
-                checkedList.remove(info.packageName);
-            }
-            view.setChecked(!isChecked);
-        }
     }
 
     static List<String> getScopeList(String modulePackageName) {
@@ -139,5 +103,47 @@ public class ActivationScopeAdapter extends AppAdapter {
         scopeList.put(modulePackageName, list);
         setFilePermissionsFromMode(scopeFile.getPath(), Context.MODE_WORLD_READABLE);
         return true;
+    }
+
+    @Override
+    public List<String> generateCheckedList() {
+        AppHelper.makeSurePath();
+        List<String> scopeList = getScopeList(modulePackageName);
+        List<String> list = new ArrayList<>();
+        for (ApplicationInfo info : fullList) {
+            list.add(info.packageName);
+        }
+        scopeList.retainAll(list);
+        checkedList = scopeList;
+        ((Activity) context).runOnUiThread(() -> {
+            masterSwitch.setChecked(enabled);
+            if (enabled) {
+                swipeRefreshLayout.setVisibility(View.VISIBLE);
+            } else {
+                swipeRefreshLayout.setVisibility(View.GONE);
+            }
+        });
+        return checkedList;
+    }
+
+    @Override
+    protected void onCheckedChange(CompoundButton view, boolean isChecked, ApplicationInfo info) {
+        ModuleUtil moduleUtil = ModuleUtil.getInstance();
+        moduleUtil.updateModulesList(false, null);
+
+        if (isChecked) {
+            checkedList.add(info.packageName);
+        } else {
+            checkedList.remove(info.packageName);
+        }
+        if (!saveScopeList(modulePackageName, enabled, checkedList)) {
+            ToastUtil.showShortToast(context, R.string.add_package_failed);
+            if (!isChecked) {
+                checkedList.add(info.packageName);
+            } else {
+                checkedList.remove(info.packageName);
+            }
+            view.setChecked(!isChecked);
+        }
     }
 }
