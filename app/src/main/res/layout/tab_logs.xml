@@ -9,16 +9,17 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <HorizontalScrollView
+    <ch.deletescape.lawnchair.views.SpringHorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:overScrollMode="always"
         android:scrollbars="vertical|horizontal"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ch.deletescape.lawnchair.views.SpringRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -26,7 +27,7 @@
             android:clipToPadding="false"
             android:orientation="vertical" />
 
-    </HorizontalScrollView>
+    </ch.deletescape.lawnchair.views.SpringHorizontalScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"

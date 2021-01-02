@@ -14,7 +14,7 @@
         android:paddingTop="2dp"
         android:paddingBottom="2dp">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ch.deletescape.lawnchair.views.SpringRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

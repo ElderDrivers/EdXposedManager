@@ -2,10 +2,12 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.1'
         classpath 'com.google.android.gms:oss-licenses-plugin:0.10.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
     }
 }
 
