@@ -48,17 +48,17 @@ import static org.meowcat.edxposed.manager.BaseFragment.areYouSure;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> implements Filterable {
 
+    private static AppAdapter app;
     protected final Context context;
     private final ApplicationInfo.DisplayNameComparator displayNameComparator;
-    private Callback callback;
-    protected List<ApplicationInfo> fullList, showList;
     private final DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-    private List<String> checkedList;
     private final PackageManager pm;
     private final ApplicationFilter filter;
-    private Comparator<ApplicationInfo> cmp;
-    private static AppAdapter app;
+    protected List<ApplicationInfo> fullList, showList;
     Intent intent = new Intent();
+    private Callback callback;
+    private List<String> checkedList;
+    private Comparator<ApplicationInfo> cmp;
 
     AppAdapter(Context context) {
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -75,6 +75,173 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
         refresh();
     }
 
+    @SuppressLint("NonConstantResourceId")
+    public static boolean onOptionsItemSelected(MenuItem item) {
+        boolean refresh = false;
+        switch (item.getItemId()) {
+            case R.id.item_show_no_name:
+                item.setChecked(!item.isChecked());
+                XposedApp.getPreferences().edit().putBoolean("show_no_name", item.isChecked()).apply();
+                refresh = true;
+                break;
+            case R.id.item_show_no_icon:
+                item.setChecked(!item.isChecked());
+                XposedApp.getPreferences().edit().putBoolean("show_no_icon", item.isChecked()).apply();
+                refresh = true;
+                break;
+            case R.id.item_show_user:
+                item.setChecked(!item.isChecked());
+                XposedApp.getPreferences().edit().putBoolean("show_user_apps", item.isChecked()).apply();
+                refresh = true;
+                break;
+            case R.id.item_enabled_top:
+                item.setChecked(!item.isChecked());
+                XposedApp.getPreferences().edit().putBoolean("enabled_top", item.isChecked()).apply();
+                refresh = true;
+                break;
+            case R.id.item_show_system:
+                item.setChecked(!item.isChecked());
+                XposedApp.getPreferences().edit().putBoolean("show_system_apps", item.isChecked()).apply();
+                refresh = true;
+                break;
+            case R.id.item_show_modules:
+                item.setChecked(!item.isChecked());
+                XposedApp.getPreferences().edit().putBoolean("show_modules", item.isChecked()).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_name:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 0).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_name_reverse:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 1).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_package_name:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 2).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_package_name_reverse:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 3).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_install_time:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 4).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_install_time_reverse:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 5).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_update_time:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 6).apply();
+                refresh = true;
+                break;
+            case R.id.item_sort_by_update_time_reverse:
+                item.setChecked(true);
+                XposedApp.getPreferences().edit().putInt("list_sort", 7).apply();
+                refresh = true;
+                break;
+            case R.id.dexopt_all:
+                areYouSure((Activity) app.context, app.context.getString(R.string.dexopt_now) + "\n" + app.context.getString(R.string.take_while_cannot_resore), (d, w) -> new MaterialDialog.Builder(app.context)
+                        .title(R.string.dexopt_now)
+                        .content(R.string.this_may_take_a_while)
+                        .progress(true, 0)
+                        .cancelable(false)
+                        .showListener(dialog -> new Thread("dexopt") {
+                            @Override
+                            public void run() {
+                                if (!Shell.rootAccess()) {
+                                    dialog.dismiss();
+                                    NavUtil.showMessage(app.context, app.context.getString(R.string.root_failed));
+                                    return;
+                                }
+
+                                Shell.su("cmd package bg-dexopt-job").exec();
+
+                                dialog.dismiss();
+                                XposedApp.runOnUiThread(() -> Toast.makeText(app.context, R.string.done, Toast.LENGTH_LONG).show());
+                            }
+                        }.start()).show(), (d, w) -> {
+                });
+                break;
+            case R.id.speed_all:
+                areYouSure((Activity) app.context, app.context.getString(R.string.speed_now) + "\n" + app.context.getString(R.string.take_while_cannot_resore), (d, w) ->
+                        new MaterialDialog.Builder(app.context)
+                                .title(R.string.speed_now)
+                                .content(R.string.this_may_take_a_while)
+                                .progress(true, 0)
+                                .cancelable(false)
+                                .showListener(dialog -> new Thread("dex2oat") {
+                                    @Override
+                                    public void run() {
+                                        if (!Shell.rootAccess()) {
+                                            dialog.dismiss();
+                                            NavUtil.showMessage(app.context, app.context.getString(R.string.root_failed));
+                                            return;
+                                        }
+
+                                        Shell.su("cmd package compile -m speed -a").exec();
+
+                                        dialog.dismiss();
+                                        XposedApp.runOnUiThread(() -> Toast.makeText(app.context, R.string.done, Toast.LENGTH_LONG).show());
+                                    }
+                                }.start()).show(), (d, w) -> {
+                });
+                break;
+        }
+        if (refresh) {
+            app.refresh();
+        }
+        return true;
+    }
+
+    public static void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_app_list, menu);
+        menu.findItem(R.id.item_enabled_top).setChecked(XposedApp.getPreferences().getBoolean("enabled_top", true));
+        menu.findItem(R.id.item_show_modules).setChecked(XposedApp.getPreferences().getBoolean("show_modules", true));
+        menu.findItem(R.id.item_show_system).setChecked(XposedApp.getPreferences().getBoolean("show_system_apps", true));
+        menu.findItem(R.id.item_show_no_name).setChecked(XposedApp.getPreferences().getBoolean("show_no_name", true));
+        menu.findItem(R.id.item_show_no_icon).setChecked(XposedApp.getPreferences().getBoolean("show_no_icon", true));
+        menu.findItem(R.id.item_show_user).setChecked(XposedApp.getPreferences().getBoolean("show_user_apps", true));
+        switch (XposedApp.getPreferences().getInt("list_sort", 0)) {
+            case 7:
+                menu.findItem(R.id.item_sort_by_update_time_reverse).setChecked(true);
+                break;
+            case 6:
+                menu.findItem(R.id.item_sort_by_update_time).setChecked(true);
+                break;
+            case 5:
+                menu.findItem(R.id.item_sort_by_install_time_reverse).setChecked(true);
+                break;
+            case 4:
+                menu.findItem(R.id.item_sort_by_install_time).setChecked(true);
+                break;
+            case 3:
+                menu.findItem(R.id.item_sort_by_package_name_reverse).setChecked(true);
+                break;
+            case 2:
+                menu.findItem(R.id.item_sort_by_package_name).setChecked(true);
+                break;
+            case 1:
+                menu.findItem(R.id.item_sort_by_name_reverse).setChecked(true);
+                break;
+            case 0:
+                menu.findItem(R.id.item_sort_by_name).setChecked(true);
+                break;
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            menu.findItem(R.id.menu_optimize).setVisible(false);
+        }
+    }
+
     public void setCallback(Callback callback) {
         this.callback = callback;
     }
@@ -89,50 +256,42 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
     private void loadApps(List<String> removeList) {
         PackageManager manager = context.getPackageManager();
         fullList = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-        boolean hide_system = !XposedApp.getPreferences().getBoolean("show_system_apps", true);
         List<ApplicationInfo> rmList = new ArrayList<>();
         for (ApplicationInfo info : fullList) {
             if (removeList.contains(info.packageName)) {
                 rmList.add(info);
                 continue;
             }
-            if (!XposedApp.getPreferences().getBoolean("show_modules", true) || hide_system) {
-                if (info.metaData != null && info.metaData.containsKey("xposedmodule") || AppHelper.FORCE_WHITE_LIST_MODULE.contains(info.packageName) || hide_system && (info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+            if (!XposedApp.getPreferences().getBoolean("show_modules", true)) {
+                if (info.metaData != null && info.metaData.containsKey("xposedmodule")) {
                     rmList.add(info);
                     continue;
                 }
             }
 
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_name", false)) {
-                if (manager.getApplicationLabel(info).toString().equals(info.packageName)) {
-                    rmList.add(info);
-                    continue;
-                }
-            }
-
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_icon", false)) {
-                if (info.icon == 0) {
-                    rmList.add(info);
-                    continue;
-                }
-            }
-
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_is_system", false)) {
+            if (!XposedApp.getPreferences().getBoolean("show_system_apps", true)) {
                 if ((info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
                     rmList.add(info);
                     continue;
                 }
             }
 
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_is_user", false)) {
-                if ((info.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+            if (!XposedApp.getPreferences().getBoolean("show_no_name", true)) {
+                if (manager.getApplicationLabel(info).toString().equals(info.packageName)) {
                     rmList.add(info);
                     continue;
                 }
             }
 
-            if (XposedApp.getPreferences().getBoolean("item_filter_by_launcher", true)) {
-                if (pm.getLaunchIntentForPackage(info.packageName) == null) {
+            if (!XposedApp.getPreferences().getBoolean("show_no_icon", true)) {
+                if (info.icon == 0) {
+                    rmList.add(info);
+                    continue;
+                }
+            }
+
+            if (!XposedApp.getPreferences().getBoolean("show_user_apps", true)) {
+                if ((info.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
                     rmList.add(info);
                     continue;
                 }
@@ -276,185 +435,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
         });
     }
 
-    @SuppressLint("NonConstantResourceId")
-    public static boolean onOptionsItemSelected(MenuItem item) {
-        boolean refresh = false;
-        switch (item.getItemId()) {
-            case R.id.item_filter_by_name:
-                item.setChecked(!item.isChecked());
-                XposedApp.getPreferences().edit().putBoolean("item_filter_by_name", item.isChecked()).apply();
-                refresh = true;
-                break;
-            case R.id.item_filter_by_icon:
-                item.setChecked(!item.isChecked());
-                XposedApp.getPreferences().edit().putBoolean("item_filter_by_icon", item.isChecked()).apply();
-                refresh = true;
-                break;
-            case R.id.item_filter_by_is_system:
-                item.setChecked(!item.isChecked());
-                XposedApp.getPreferences().edit().putBoolean("item_filter_by_is_system", item.isChecked()).apply();
-                refresh = true;
-                break;
-            case R.id.item_filter_by_is_user:
-                item.setChecked(!item.isChecked());
-                XposedApp.getPreferences().edit().putBoolean("item_filter_by_is_user", item.isChecked()).apply();
-                refresh = true;
-                break;
-            case R.id.item_filter_by_launcher:
-                item.setChecked(!item.isChecked());
-                XposedApp.getPreferences().edit().putBoolean("item_filter_by_launcher", item.isChecked()).apply();
-                refresh = true;
-                break;
-            case R.id.item_enabled_top:
-                item.setChecked(!item.isChecked());
-                XposedApp.getPreferences().edit().putBoolean("enabled_top", item.isChecked()).apply();
-                refresh = true;
-                break;
-            case R.id.item_show_system:
-                item.setChecked(!item.isChecked());
-                XposedApp.getPreferences().edit().putBoolean("show_system_apps", item.isChecked()).apply();
-                refresh = true;
-                break;
-            case R.id.item_show_modules:
-                item.setChecked(!item.isChecked());
-                XposedApp.getPreferences().edit().putBoolean("show_modules", item.isChecked()).apply();
-                refresh = true;
-                break;
-            case R.id.item_sort_by_name:
-                item.setChecked(true);
-                XposedApp.getPreferences().edit().putInt("list_sort", 0).apply();
-                refresh = true;
-                break;
-            case R.id.item_sort_by_name_reverse:
-                item.setChecked(true);
-                XposedApp.getPreferences().edit().putInt("list_sort", 1).apply();
-                refresh = true;
-                break;
-            case R.id.item_sort_by_package_name:
-                item.setChecked(true);
-                XposedApp.getPreferences().edit().putInt("list_sort", 2).apply();
-                refresh = true;
-                break;
-            case R.id.item_sort_by_package_name_reverse:
-                item.setChecked(true);
-                XposedApp.getPreferences().edit().putInt("list_sort", 3).apply();
-                refresh = true;
-                break;
-            case R.id.item_sort_by_install_time:
-                item.setChecked(true);
-                XposedApp.getPreferences().edit().putInt("list_sort", 4).apply();
-                refresh = true;
-                break;
-            case R.id.item_sort_by_install_time_reverse:
-                item.setChecked(true);
-                XposedApp.getPreferences().edit().putInt("list_sort", 5).apply();
-                refresh = true;
-                break;
-            case R.id.item_sort_by_update_time:
-                item.setChecked(true);
-                XposedApp.getPreferences().edit().putInt("list_sort", 6).apply();
-                refresh = true;
-                break;
-            case R.id.item_sort_by_update_time_reverse:
-                item.setChecked(true);
-                XposedApp.getPreferences().edit().putInt("list_sort", 7).apply();
-                refresh = true;
-                break;
-            case R.id.dexopt_all:
-                areYouSure((Activity) app.context, app.context.getString(R.string.dexopt_now) + "\n" + app.context.getString(R.string.take_while_cannot_resore), (d, w) -> new MaterialDialog.Builder(app.context)
-                        .title(R.string.dexopt_now)
-                        .content(R.string.this_may_take_a_while)
-                        .progress(true, 0)
-                        .cancelable(false)
-                        .showListener(dialog -> new Thread("dexopt") {
-                            @Override
-                            public void run() {
-                                if (!Shell.rootAccess()) {
-                                    dialog.dismiss();
-                                    NavUtil.showMessage(app.context, app.context.getString(R.string.root_failed));
-                                    return;
-                                }
-
-                                Shell.su("cmd package bg-dexopt-job").exec();
-
-                                dialog.dismiss();
-                                XposedApp.runOnUiThread(() -> Toast.makeText(app.context, R.string.done, Toast.LENGTH_LONG).show());
-                            }
-                        }.start()).show(), (d, w) -> {
-                });
-                break;
-            case R.id.speed_all:
-                areYouSure((Activity) app.context, app.context.getString(R.string.speed_now) + "\n" + app.context.getString(R.string.take_while_cannot_resore), (d, w) ->
-                        new MaterialDialog.Builder(app.context)
-                                .title(R.string.speed_now)
-                                .content(R.string.this_may_take_a_while)
-                                .progress(true, 0)
-                                .cancelable(false)
-                                .showListener(dialog -> new Thread("dex2oat") {
-                                    @Override
-                                    public void run() {
-                                        if (!Shell.rootAccess()) {
-                                            dialog.dismiss();
-                                            NavUtil.showMessage(app.context, app.context.getString(R.string.root_failed));
-                                            return;
-                                        }
-
-                                        Shell.su("cmd package compile -m speed -a").exec();
-
-                                        dialog.dismiss();
-                                        XposedApp.runOnUiThread(() -> Toast.makeText(app.context, R.string.done, Toast.LENGTH_LONG).show());
-                                    }
-                                }.start()).show(), (d, w) -> {
-                });
-                break;
-        }
-        if (refresh) {
-            app.refresh();
-        }
-        return true;
-    }
-
-    public static void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_app_list, menu);
-        menu.findItem(R.id.item_enabled_top).setChecked(XposedApp.getPreferences().getBoolean("enabled_top", true));
-        menu.findItem(R.id.item_show_modules).setChecked(XposedApp.getPreferences().getBoolean("show_modules", true));
-        menu.findItem(R.id.item_show_system).setChecked(XposedApp.getPreferences().getBoolean("show_system_apps", true));
-        menu.findItem(R.id.item_filter_by_name).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_name", false));
-        menu.findItem(R.id.item_filter_by_icon).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_icon", false));
-        menu.findItem(R.id.item_filter_by_is_system).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_is_system", false));
-        menu.findItem(R.id.item_filter_by_is_user).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_is_user", false));
-        menu.findItem(R.id.item_filter_by_launcher).setChecked(XposedApp.getPreferences().getBoolean("item_filter_by_launcher", true));
-        switch (XposedApp.getPreferences().getInt("list_sort", 0)) {
-            case 7:
-                menu.findItem(R.id.item_sort_by_update_time_reverse).setChecked(true);
-                break;
-            case 6:
-                menu.findItem(R.id.item_sort_by_update_time).setChecked(true);
-                break;
-            case 5:
-                menu.findItem(R.id.item_sort_by_install_time_reverse).setChecked(true);
-                break;
-            case 4:
-                menu.findItem(R.id.item_sort_by_install_time).setChecked(true);
-                break;
-            case 3:
-                menu.findItem(R.id.item_sort_by_package_name_reverse).setChecked(true);
-                break;
-            case 2:
-                menu.findItem(R.id.item_sort_by_package_name).setChecked(true);
-                break;
-            case 1:
-                menu.findItem(R.id.item_sort_by_name_reverse).setChecked(true);
-                break;
-            case 0:
-                menu.findItem(R.id.item_sort_by_name).setChecked(true);
-                break;
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            menu.findItem(R.id.menu_optimize).setVisible(false);
-        }
-    }
-
     @Override
     public int getItemCount() {
         return showList.size();
@@ -478,6 +458,11 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
 
     protected void onCheckedChange(CompoundButton buttonView, boolean isChecked, ApplicationInfo info) {
         // override this to implements your functions
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new ApplicationFilter();
     }
 
     public interface Callback {
@@ -537,11 +522,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
         protected void publishResults(CharSequence constraint, FilterResults results) {
             notifyDataSetChanged();
         }
-    }
-
-    @Override
-    public Filter getFilter() {
-        return new ApplicationFilter();
     }
 
 }
