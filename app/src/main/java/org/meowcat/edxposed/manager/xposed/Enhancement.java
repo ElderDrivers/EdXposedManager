@@ -17,6 +17,7 @@ import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 
 import org.json.JSONObject;
+import org.meowcat.annotation.NotProguard;
 import org.meowcat.edxposed.manager.MeowCatApplication;
 import org.meowcat.edxposed.manager.StatusInstallerFragment;
 
@@ -26,7 +27,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -40,10 +41,10 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import static de.robv.android.xposed.XposedHelpers.callMethod;
 import static de.robv.android.xposed.XposedHelpers.callStaticMethod;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static java.util.Collections.binarySearch;
 import static org.meowcat.edxposed.manager.BuildConfig.APPLICATION_ID;
 
 @Keep
+@NotProguard
 public class Enhancement implements IXposedHookLoadPackage {
 
     private static final String mPretendXposedInstallerFlag = "pretend_xposed_installer";
@@ -52,24 +53,24 @@ public class Enhancement implements IXposedHookLoadPackage {
 
     private static final String LEGACY_INSTALLER = "de.robv.android.xposed.installer";
 
-    private static final List<String> HIDE_WHITE_LIST = Arrays.asList( // TODO: more whitelist packages
-            APPLICATION_ID, // Whitelist or crash
-            LEGACY_INSTALLER, // for safety
-            "com.android.providers.downloads", // For download modules
-            "com.android.providers.downloads.ui",
-            "com.android.packageinstaller", // For uninstall EdXposed Manager
-            "com.google.android.packageinstaller",
-            "com.android.systemui", // For notifications
-            "com.android.permissioncontroller", // For permissions grant
-            "com.topjohnwu.magisk", // For superuser root grant
-            "eu.chainfire.supersu"
-    ); // isUidBelongSystemCoreComponent(uid) will auto pass
+    private static final HashSet<String> HIDE_WHITE_LIST = new HashSet<>();
 
     private static final SparseArray<List<String>> modulesList = new SparseArray<>();
     private static final SparseArray<FileObserver> modulesListObservers = new SparseArray<>();
 
     static {
-        Collections.sort(HIDE_WHITE_LIST);
+        HIDE_WHITE_LIST.addAll(Arrays.asList( // TODO: more whitelist packages
+                APPLICATION_ID, // Whitelist or crash
+                LEGACY_INSTALLER, // for safety
+                "com.android.providers.downloads", // For download modules
+                "com.android.providers.downloads.ui",
+                "com.android.packageinstaller", // For uninstall EdXposed Manager
+                "com.google.android.packageinstaller",
+                "com.android.systemui", // For notifications
+                "com.android.permissioncontroller", // For permissions grant
+                "com.topjohnwu.magisk", // For superuser root grant
+                "eu.chainfire.supersu"
+        )); // isUidBelongSystemCoreComponent(uid) will auto pass))
     }
 
     private static boolean getFlagState(int user, String flag) {
@@ -88,7 +89,7 @@ public class Enhancement implements IXposedHookLoadPackage {
         }
 
         final String filename = String.format("/data/user_de/%s/%s/conf/enabled_modules.list", user, APPLICATION_ID);
-        final FileObserver observer = new FileObserver(filename) {
+        final FileObserver observer = new FileObserver(new File(filename)) {
             @Override
             public void onEvent(int event, @Nullable String path) {
                 switch (event) {
@@ -131,7 +132,6 @@ public class Enhancement implements IXposedHookLoadPackage {
             } catch (IOException e) {
                 Log.e(MeowCatApplication.TAG, "Read modules list error:", e);
             }
-            Collections.sort(list);
             return list;
         } finally {
             StrictMode.setThreadPolicy(oldPolicy);
@@ -191,10 +191,10 @@ public class Enhancement implements IXposedHookLoadPackage {
                             return;
                         }
                         for (String packageName : packages) {
-                            if (binarySearch(HIDE_WHITE_LIST, packageName) >= 0) {
+                            if (HIDE_WHITE_LIST.contains(packageName)) {
                                 return;
                             }
-                            if (binarySearch(getModulesList(userId), packageName) >= 0) {
+                            if (new HashSet<>(getModulesList(userId)).contains(packageName)) {
                                 isXposedModule = true;
                                 break;
                             }
@@ -244,10 +244,10 @@ public class Enhancement implements IXposedHookLoadPackage {
                             return;
                         }
                         for (String packageName : packages) {
-                            if (binarySearch(HIDE_WHITE_LIST, packageName) >= 0) {
+                            if (HIDE_WHITE_LIST.contains(packageName)) {
                                 return;
                             }
-                            if (binarySearch(getModulesList(userId), packageName) >= 0) {
+                            if (new HashSet<>(getModulesList(userId)).contains(packageName)) {
                                 isXposedModule = true;
                                 break;
                             }
@@ -297,10 +297,10 @@ public class Enhancement implements IXposedHookLoadPackage {
                             return;
                         }
                         for (String packageName : packages) {
-                            if (binarySearch(HIDE_WHITE_LIST, packageName) >= 0) {
+                            if (HIDE_WHITE_LIST.contains(packageName)) {
                                 return;
                             }
-                            if (binarySearch(getModulesList(userId), packageName) >= 0) {
+                            if (new HashSet<>(getModulesList(userId)).contains(packageName)) {
                                 isXposedModule = true;
                                 break;
                             }
@@ -339,10 +339,10 @@ public class Enhancement implements IXposedHookLoadPackage {
                             return;
                         }
                         for (String packageName : packages) {
-                            if (binarySearch(HIDE_WHITE_LIST, packageName) >= 0) {
+                            if (HIDE_WHITE_LIST.contains(packageName)) {
                                 return;
                             }
-                            if (binarySearch(getModulesList(userId), packageName) >= 0) {
+                            if (new HashSet<>(getModulesList(userId)).contains(packageName)) {
                                 isXposedModule = true;
                                 break;
                             }
@@ -387,9 +387,9 @@ public class Enhancement implements IXposedHookLoadPackage {
         }
     }
 
-    private boolean isUidBelongSystemCoreComponent(int uid){
+    private boolean isUidBelongSystemCoreComponent(int uid) {
         if (uid >= 0) {
-            final int appId = (int)callStaticMethod(UserHandle.class, "getAppId", uid);
+            final int appId = (int) callStaticMethod(UserHandle.class, "getAppId", uid);
             return appId < Process.FIRST_APPLICATION_UID;
         } else {
             return false;
