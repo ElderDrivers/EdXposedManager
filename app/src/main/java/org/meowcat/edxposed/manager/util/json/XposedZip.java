@@ -11,8 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.meowcat.annotation.NotProguard;
+
 import java.util.List;
 
+@NotProguard
 public class XposedZip {
 
     public String name;

@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.meowcat.annotation.NotProguard;
 import org.meowcat.edxposed.manager.ModulesFragment;
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.StatusInstallerFragment;
@@ -198,6 +199,7 @@ public final class ModuleUtil {
         return result;
     }
 
+    @NotProguard
     public synchronized void updateModulesList(boolean showToast, View view) {
         try {
             Log.i(TAG, "ModuleUtil -> updating modules.list");

@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.meowcat.annotation.NotProguard;
 import org.meowcat.edxposed.manager.util.NavUtil;
 
 import java.io.BufferedReader;
@@ -134,6 +135,10 @@ public class StatusInstallerFragment extends Fragment {
         } else {
             return "arm";
         }
+    }
+
+    public static boolean isEnhancementEnabled() {
+        return false;
     }
 
     @Override
@@ -393,10 +398,6 @@ public class StatusInstallerFragment extends Fragment {
         }
     }
 
-    public static boolean isEnhancementEnabled() {
-        return false;
-    }
-
     private String getAndroidVersion() {
         switch (Build.VERSION.SDK_INT) {
             case 24:
@@ -445,6 +446,7 @@ public class StatusInstallerFragment extends Fragment {
         return manufacturer;
     }
 
+    @NotProguard
     private File getCanonicalFile(File file) {
         try {
             return file.getCanonicalFile();

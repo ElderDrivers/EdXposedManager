@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager.util.json;
 
+import org.meowcat.annotation.NotProguard;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,11 +31,13 @@ public class JSONUtils {
         return sb.toString();
     }
 
+    @NotProguard
     public static class XposedJson {
         public List<XposedTab> tabs;
         public ApkRelease apk;
     }
 
+    @NotProguard
     public static class ApkRelease {
         public String version;
         public String changelog;

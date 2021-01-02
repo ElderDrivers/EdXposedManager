@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.util.Log;
 
+import org.meowcat.annotation.NotProguard;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,6 +15,7 @@ import de.robv.android.xposed.installer.util.InstallZipUtil;
 import static de.robv.android.xposed.installer.util.InstallZipUtil.parseXposedProp;
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
+@NotProguard
 @SuppressLint("Registered")
 public class XposedApp extends Application {
     private static final File EDXPOSED_PROP_FILE = new File("/system/framework/edconfig.jar");

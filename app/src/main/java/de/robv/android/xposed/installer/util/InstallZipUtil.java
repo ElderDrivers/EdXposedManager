@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer.util;
 
+import org.meowcat.annotation.NotProguard;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 
 import java.io.BufferedReader;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+@NotProguard
 public final class InstallZipUtil {
 
     public static XposedProp parseXposedProp(InputStream is) throws IOException {

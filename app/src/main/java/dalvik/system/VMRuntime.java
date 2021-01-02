@@ -1,5 +1,12 @@
 package dalvik.system;
 
+import org.meowcat.annotation.NotProguard;
+
+/*
+ * Stub!
+ * Decompiled by MlgmXyysd.
+ */
+@NotProguard
 public class VMRuntime {
 
     public static VMRuntime getRuntime() {

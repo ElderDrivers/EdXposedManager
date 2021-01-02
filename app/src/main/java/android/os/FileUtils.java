@@ -1,9 +1,13 @@
 package android.os;
 
+import org.meowcat.annotation.NotProguard;
+
 /*
  * Stub!
  * Decompiled by MlgmXyysd.
  */
+@SuppressWarnings({"unused", "RedundantSuppression"})
+@NotProguard
 public class FileUtils {
     public static final int S_IRUSR = 256;
     public static final int S_IWUSR = 128;

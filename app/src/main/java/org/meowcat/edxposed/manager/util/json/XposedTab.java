@@ -4,9 +4,12 @@ package org.meowcat.edxposed.manager.util.json;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.meowcat.annotation.NotProguard;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@NotProguard
 public class XposedTab implements Parcelable {
 
     public static final Creator<XposedTab> CREATOR = new Creator<XposedTab>() {

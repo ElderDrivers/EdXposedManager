@@ -1,13 +1,13 @@
 package android.app;
 
+import org.meowcat.annotation.NotProguard;
+
 /*
  * Stub!
  * Decompiled by MlgmXyysd.
  */
+@NotProguard
 public class ActivityThread {
-    @SuppressWarnings("unused")
-    boolean mHiddenApiWarningShown = false;
-
     public static ActivityThread currentActivityThread() {
         throw new RuntimeException("Stub!");
     }
