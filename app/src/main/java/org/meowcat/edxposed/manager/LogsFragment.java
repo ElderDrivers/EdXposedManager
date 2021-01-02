@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,8 +34,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 import static org.meowcat.edxposed.manager.adapter.LogsHelper.isMainUser;
 
 public class LogsFragment extends Fragment {
@@ -211,7 +214,24 @@ public class LogsFragment extends Fragment {
     }
 
     private void send() {
-        Uri uri = FileProvider.getUriForFile(requireActivity(), BuildConfig.APPLICATION_ID + ".fileprovider", new File(LOG_PATH + activatedConfig.get("fileName") + LOG_SUFFIX));
+        File realFile = new File(LOG_PATH + activatedConfig.get("fileName") + LOG_SUFFIX);
+        File tempFile = new File(requireContext().getExternalCacheDir(), "tempLog");
+        try {
+            FileInputStream fis = new FileInputStream(realFile);
+            FileOutputStream fos = new FileOutputStream(tempFile);
+            byte[] data = new byte[8192];
+            int len;
+            while ((len = fis.read(data)) != -1) {
+                fos.write(data, 0, len);
+            }
+            fis.close();
+            fis.close();
+        } catch (Exception e) {
+            Log.e(TAG, Objects.requireNonNull(e.getMessage()));
+            Snackbar.make(requireView().findViewById(R.id.container), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Snackbar.LENGTH_LONG).show();
+            return;
+        }
+        Uri uri = FileProvider.getUriForFile(requireActivity(), BuildConfig.APPLICATION_ID + ".fileprovider", tempFile);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
@@ -257,12 +277,11 @@ public class LogsFragment extends Fragment {
                             os.close();
                         }
                     } catch (Exception e) {
+                        Log.e(TAG, Objects.requireNonNull(e.getMessage()));
                         Snackbar.make(requireView().findViewById(R.id.container), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Snackbar.LENGTH_LONG).show();
                     }
                 }
             }
         }
     }
-
-
 }
