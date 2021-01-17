@@ -418,4 +418,6 @@
     <string name="menu_show_user_apps">Show user apps</string>
     <string name="settings_theme_dark_auto">Follow system</string>
     <string name="settings_summary_pure_black">Use the pure black theme if dark theme is enabled</string>
+    <string name="settings_title_use_sandhook">Use SandHook variant backend</string>
+    <string name="settings_summary_use_sandhook">This configuration is only valid for primary user 0, and does not support x86 and x86_64 architectures\nReboot is needed</string>
 </resources>

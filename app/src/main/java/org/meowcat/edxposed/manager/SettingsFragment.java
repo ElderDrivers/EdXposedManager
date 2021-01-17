@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -21,8 +20,6 @@ import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.topjohnwu.superuser.Shell;
 
-import org.meowcat.edxposed.manager.adapter.AppHelper;
-import org.meowcat.edxposed.manager.adapter.ApplicationListAdapter;
 import org.meowcat.edxposed.manager.util.RepoLoader;
 import org.meowcat.edxposed.manager.widget.IconListPreference;
 
@@ -33,9 +30,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
+import static org.meowcat.edxposed.manager.StatusInstallerFragment.getArch;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 import static org.meowcat.edxposed.manager.XposedApp.getPreferences;
+import static org.meowcat.edxposed.manager.adapter.LogsHelper.isMainUser;
 
 public class SettingsFragment extends BasePreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -73,6 +72,8 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
     private static final File mDisableModulesLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_modules_log");
     private static final File mVerboseLogProcessID = new File(XposedApp.BASE_DIR + "log/all.pid");
     private static final File mModulesLogProcessID = new File(XposedApp.BASE_DIR + "log/error.pid");
+    private static final File mUseSandHookFlag = new File(XposedApp.BASE_DIR, "conf/use_sandhook");
+    private static final File mDisableSandHookFlag = new File(XposedApp.BASE_DIR, "conf/disable_sandhook");
     private static final String DIALOG_FRAGMENT_TAG = "list_preference_dialog";
     @SuppressLint("StaticFieldLeak")
     static SwitchPreference navBar;
@@ -137,324 +138,85 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
             return true;
         });
 
+        SwitchPreference prefUseSandHook = findPreference("use_sandhook");
+        if (!isMainUser(getContext()) || mDisableSandHookFlag.exists() || getArch().contains("x86")) {
+            Objects.requireNonNull(prefUseSandHook).setEnabled(false);
+        }
+
+        Objects.requireNonNull(prefUseSandHook).setChecked(mUseSandHookFlag.exists());
+        prefUseSandHook.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mUseSandHookFlag, (boolean) newValue));
+
         SwitchPreference prefPassClientSafetyNet = findPreference("pass_client_safetynet");
         Objects.requireNonNull(prefPassClientSafetyNet).setChecked(!mDisableForceClientSafetyNetFlag.exists());
-        prefPassClientSafetyNet.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (!enabled) {
-                new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mDisableForceClientSafetyNetFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mDisableForceClientSafetyNetFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mDisableForceClientSafetyNetFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mDisableForceClientSafetyNetFlag.delete();
-            }
-            return (enabled != mDisableForceClientSafetyNetFlag.exists());
-        });
+        prefPassClientSafetyNet.setOnPreferenceChangeListener((preference, newValue) -> !setFlag(mDisableHiddenAPIBypassFlag, !(boolean) newValue));
 
         SwitchPreference prefPretendXposedInstaller = findPreference("pretend_xposed_installer");
         Objects.requireNonNull(prefPretendXposedInstaller).setChecked(mPretendXposedInstallerFlag.exists());
-        prefPretendXposedInstaller.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mPretendXposedInstallerFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mPretendXposedInstallerFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mPretendXposedInstallerFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mPretendXposedInstallerFlag.delete();
-            }
-            return (enabled == mPretendXposedInstallerFlag.exists());
-        });
+        prefPretendXposedInstaller.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mPretendXposedInstallerFlag, (boolean) newValue));
 
         SwitchPreference prefHideEdXposedManager = findPreference("hide_edxposed_manager");
         Objects.requireNonNull(prefHideEdXposedManager).setChecked(mHideEdXposedManagerFlag.exists());
-        prefHideEdXposedManager.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mHideEdXposedManagerFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mHideEdXposedManagerFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mHideEdXposedManagerFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mHideEdXposedManagerFlag.delete();
-            }
-            return (enabled == mHideEdXposedManagerFlag.exists());
-        });
+        prefHideEdXposedManager.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mHideEdXposedManagerFlag, (boolean) newValue));
 
         SwitchPreference prefWhiteListMode = findPreference("white_list_switch");
         Objects.requireNonNull(prefWhiteListMode).setChecked(mWhiteListModeFlag.exists());
-        prefWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                new ApplicationListAdapter(getContext(), AppHelper.isWhiteListMode()).generateCheckedList();
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mWhiteListModeFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mWhiteListModeFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mWhiteListModeFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mWhiteListModeFlag.delete();
-            }
-            return (enabled == mWhiteListModeFlag.exists());
-        });
+        prefWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mWhiteListModeFlag, (boolean) newValue));
 
         SwitchPreference prefVerboseLogs = findPreference("disable_verbose_log");
         Objects.requireNonNull(prefVerboseLogs).setChecked(mDisableVerboseLogsFlag.exists());
-        prefVerboseLogs.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mDisableVerboseLogsFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mDisableVerboseLogsFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mDisableVerboseLogsFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mDisableVerboseLogsFlag.delete();
-            }
-            return (enabled == mDisableVerboseLogsFlag.exists());
-        });
+        prefVerboseLogs.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDisableVerboseLogsFlag, (boolean) newValue));
 
         SwitchPreference prefModulesLogs = findPreference("disable_modules_log");
         Objects.requireNonNull(prefModulesLogs).setChecked(mDisableModulesLogsFlag.exists());
-        prefModulesLogs.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mDisableModulesLogsFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mDisableModulesLogsFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mDisableModulesLogsFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mDisableModulesLogsFlag.delete();
-            }
-            return (enabled == mDisableModulesLogsFlag.exists());
-        });
+        prefModulesLogs.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDisableModulesLogsFlag, (boolean) newValue));
 
         SwitchPreference prefEnableDeopt = findPreference("enable_boot_image_deopt");
         Objects.requireNonNull(prefEnableDeopt).setChecked(mDeoptBootFlag.exists());
-        prefEnableDeopt.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mDeoptBootFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mDeoptBootFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mDeoptBootFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mDeoptBootFlag.delete();
-            }
-            return (enabled == mDeoptBootFlag.exists());
-        });
+        prefEnableDeopt.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDeoptBootFlag, (boolean) newValue));
 
         SwitchPreference prefDynamicResources = findPreference("is_dynamic_modules");
         Objects.requireNonNull(prefDynamicResources).setChecked(mDynamicModulesFlag.exists());
-        prefDynamicResources.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mDynamicModulesFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mDynamicModulesFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mDynamicModulesFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mDynamicModulesFlag.delete();
-            }
-            return (enabled == mDynamicModulesFlag.exists());
-        });
+        prefDynamicResources.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDynamicModulesFlag, (boolean) newValue));
 
         SwitchPreference prefEnableResources = findPreference("enable_resources");
         Objects.requireNonNull(prefEnableResources).setChecked(mEnableResourcesFlag.exists());
-        prefEnableResources.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mEnableResourcesFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mEnableResourcesFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mEnableResourcesFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mEnableResourcesFlag.delete();
-            }
-            return (enabled == mEnableResourcesFlag.exists());
-        });
+        prefEnableResources.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mEnableResourcesFlag, (boolean) newValue));
 
         SwitchPreference prefDisableHiddenAPIBypass = findPreference("disable_hidden_api_bypass");
         Objects.requireNonNull(prefDisableHiddenAPIBypass).setChecked(mDisableHiddenAPIBypassFlag.exists());
-        prefDisableHiddenAPIBypass.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean enabled = (boolean) newValue;
-            if (enabled) {
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(mDisableHiddenAPIBypassFlag.getPath());
-                    XposedApp.setFilePermissionsFromMode(mDisableHiddenAPIBypassFlag.getPath(), Context.MODE_WORLD_READABLE);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            try {
-                                mDisableHiddenAPIBypassFlag.createNewFile();
-                            } catch (IOException e1) {
-                                Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
-            } else {
-                mDisableHiddenAPIBypassFlag.delete();
-            }
-            return (enabled == mDisableHiddenAPIBypassFlag.exists());
-        });
+        prefDisableHiddenAPIBypass.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDisableHiddenAPIBypassFlag, (boolean) newValue));
 
         Objects.requireNonNull(colors).setOnPreferenceClickListener(this);
         Objects.requireNonNull(customIcon).setOnPreferenceChangeListener(iconChange);
         downloadLocation.setOnPreferenceClickListener(this);
 
+    }
+
+    private boolean setFlag(File flag, boolean enabled) {
+        if (enabled) {
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(flag.getPath());
+            } catch (FileNotFoundException e) {
+                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            } finally {
+                if (fos != null) {
+                    try {
+                        fos.close();
+                    } catch (IOException e) {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        try {
+                            flag.createNewFile();
+                        } catch (IOException e1) {
+                            Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+        } else {
+            flag.delete();
+        }
+        return (enabled == flag.exists());
     }
 
     @Override
