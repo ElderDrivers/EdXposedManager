@@ -181,8 +181,8 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="use_sandhook"
-            android:summary="@string/settings_title_use_sandhook"
-            android:title="@string/settings_summary_use_sandhook" />
+            android:summary="@string/settings_summary_use_sandhook"
+            android:title="@string/settings_title_use_sandhook" />
 
         <SwitchPreference
             android:defaultValue="true"
