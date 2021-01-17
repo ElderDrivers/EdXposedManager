@@ -1,6 +1,5 @@
 package org.meowcat.edxposed.manager.adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -24,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.meowcat.edxposed.manager.XposedApp.setFilePermissionsFromMode;
 import static org.meowcat.edxposed.manager.adapter.AppHelper.BASE_PATH;
 
 public class ActivationScopeAdapter extends AppAdapter {
@@ -83,8 +81,6 @@ public class ActivationScopeAdapter extends AppAdapter {
         return s;
     }
 
-    @SuppressWarnings("deprecation")
-    @SuppressLint("WorldReadableFiles")
     static boolean saveScopeList(String modulePackageName, boolean enabled, List<String> list) {
         if (!enabled) {
             scopeList.remove(modulePackageName);
@@ -101,7 +97,6 @@ public class ActivationScopeAdapter extends AppAdapter {
             return false;
         }
         scopeList.put(modulePackageName, list);
-        setFilePermissionsFromMode(scopeFile.getPath(), Context.MODE_WORLD_READABLE);
         return true;
     }
 

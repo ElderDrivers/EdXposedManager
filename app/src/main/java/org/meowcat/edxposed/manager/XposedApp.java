@@ -21,12 +21,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -52,8 +52,6 @@ import static org.meowcat.edxposed.manager.adapter.AppHelper.FORCE_WHITE_LIST_MO
 
 @SuppressLint("Registered")
 public class XposedApp extends de.robv.android.xposed.installer.XposedApp implements ActivityLifecycleCallbacks {
-    public static final int rwxrwxrwx = 511;
-    public static final int rw_rw_r__ = 436;
     public static String BASE_DIR = null;
     public static String ENABLED_MODULES_LIST_FILE = null;
     public static int WRITE_EXTERNAL_PERMISSION = 69;
@@ -65,20 +63,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
     private boolean mIsUiLoaded = false;
     private SharedPreferences mPref;
     private Activity mCurrentActivity = null;
-
-    @SuppressWarnings("deprecation")
-    @SuppressLint({"WorldReadableFiles", "WorldWriteableFiles"})
-    public static void setFilePermissionsFromMode(String name, int mode) {
-        int perms = FileUtils.S_IRUSR | FileUtils.S_IWUSR
-                | FileUtils.S_IRGRP | FileUtils.S_IWGRP;
-        if ((mode & Context.MODE_WORLD_READABLE) != 0) {
-            perms |= FileUtils.S_IROTH;
-        }
-        if ((mode & Context.MODE_WORLD_WRITEABLE) != 0) {
-            perms |= FileUtils.S_IWOTH;
-        }
-        FileUtils.setPermissions(name, perms, -1, -1);
-    }
 
     public static XposedApp getInstance() {
         return mInstance;
@@ -116,7 +100,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         return prefs.getInt("colors", defaultColor);
     }
 
-    @SuppressWarnings("deprecation")
     public static void setColors(ActionBar actionBar, Integer value, Activity activity) {
         int color = value;
         SharedPreferences prefs = activity.getSharedPreferences(activity.getPackageName() + "_preferences", MODE_PRIVATE);
@@ -178,10 +161,9 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static void mkdirAndChmod(String dir, int permissions) {
+    public static void mkdir(String dir) {
         dir = BASE_DIR + dir;
         new File(dir).mkdir();
-        FileUtils.setPermissions(dir, permissions, -1, -1);
     }
 
     public static boolean checkAppInstalled(Context context, String pkgName) {
@@ -268,9 +250,8 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private void createDirectories() {
-        FileUtils.setPermissions(BASE_DIR, rwxrwxrwx, -1, -1);
-        mkdirAndChmod("conf", rwxrwxrwx);
-        mkdirAndChmod("log", rwxrwxrwx);
+        mkdir("conf");
+        mkdir("log");
         final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
         if (!mBlackWhiteListModeFlag.exists()) {
             try {
@@ -294,7 +275,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
     }
 
     @Override
-    public synchronized void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+    public synchronized void onActivityCreated(@NonNull Activity activity, Bundle savedInstanceState) {
         if (mIsUiLoaded)
             return;
 
@@ -313,31 +294,31 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
     }
 
     @Override
-    public synchronized void onActivityResumed(Activity activity) {
+    public synchronized void onActivityResumed(@NonNull Activity activity) {
         mCurrentActivity = activity;
         updateProgressIndicator(null);
     }
 
     @Override
-    public synchronized void onActivityPaused(Activity activity) {
+    public synchronized void onActivityPaused(@NonNull Activity activity) {
         //activity.setProgressBarIndeterminateVisibility(false);
         mCurrentActivity = null;
     }
 
     @Override
-    public void onActivityStarted(Activity activity) {
+    public void onActivityStarted(@NonNull Activity activity) {
     }
 
     @Override
-    public void onActivityStopped(Activity activity) {
+    public void onActivityStopped(@NonNull Activity activity) {
     }
 
     @Override
-    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
     }
 
     @Override
-    public void onActivityDestroyed(Activity activity) {
+    public void onActivityDestroyed(@NonNull Activity activity) {
     }
 
 }

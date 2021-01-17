@@ -33,8 +33,6 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
-import static org.meowcat.edxposed.manager.XposedApp.rwxrwxrwx;
-import static org.meowcat.edxposed.manager.XposedApp.setFilePermissionsFromMode;
 
 public class AppHelper {
 
@@ -50,9 +48,9 @@ public class AppHelper {
     public static List<String> FORCE_WHITE_LIST_MODULE = new ArrayList<>(FORCE_WHITE_LIST);
 
     static void makeSurePath() {
-        XposedApp.mkdirAndChmod(WHITE_LIST_PATH, rwxrwxrwx);
-        XposedApp.mkdirAndChmod(BLACK_LIST_PATH, rwxrwxrwx);
-        XposedApp.mkdirAndChmod(COMPAT_LIST_PATH, rwxrwxrwx);
+        XposedApp.mkdir(WHITE_LIST_PATH);
+        XposedApp.mkdir(BLACK_LIST_PATH);
+        XposedApp.mkdir(COMPAT_LIST_PATH);
     }
 
     public static boolean isWhiteListMode() {
@@ -149,8 +147,6 @@ public class AppHelper {
         return result;
     }
 
-    @SuppressWarnings("deprecation")
-    @SuppressLint("WorldReadableFiles")
     private static Boolean whiteListFileName(String packageName, boolean isAdd) {
         boolean returns = true;
         File file = new File(BASE_PATH + WHITE_LIST_PATH + packageName);
@@ -159,7 +155,6 @@ public class AppHelper {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file.getPath());
-                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {
@@ -185,8 +180,6 @@ public class AppHelper {
         return returns;
     }
 
-    @SuppressWarnings("deprecation")
-    @SuppressLint("WorldReadableFiles")
     private static Boolean blackListFileName(String packageName, boolean isAdd) {
         boolean returns = true;
         File file = new File(BASE_PATH + BLACK_LIST_PATH + packageName);
@@ -195,7 +188,6 @@ public class AppHelper {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file.getPath());
-                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {
@@ -221,8 +213,6 @@ public class AppHelper {
         return returns;
     }
 
-    @SuppressWarnings("deprecation")
-    @SuppressLint("WorldReadableFiles")
     private static Boolean compatListFileName(String packageName, boolean isAdd) {
         boolean returns = true;
         File file = new File(BASE_PATH + COMPAT_LIST_PATH + packageName);
@@ -231,7 +221,6 @@ public class AppHelper {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(file.getPath());
-                    setFilePermissionsFromMode(file.getPath(), Context.MODE_WORLD_READABLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {

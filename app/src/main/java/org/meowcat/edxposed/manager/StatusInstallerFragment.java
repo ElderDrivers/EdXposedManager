@@ -161,8 +161,7 @@ public class StatusInstallerFragment extends Fragment {
         sActivity = getActivity();
     }
 
-    @SuppressLint("WorldReadableFiles")
-    @SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
+    @SuppressWarnings({"ResultOfMethodCallIgnored"})
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.status_installer, container, false);

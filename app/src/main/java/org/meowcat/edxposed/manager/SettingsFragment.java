@@ -109,8 +109,6 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
     public SettingsFragment() {
     }
 
-    @SuppressLint("WorldReadableFiles")
-    @SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.prefs);

@@ -10,7 +10,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.FileUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -36,7 +35,6 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
-import static org.meowcat.edxposed.manager.XposedApp.rw_rw_r__;
 
 public final class ModuleUtil {
     // xposedminversion below this
@@ -48,7 +46,7 @@ public final class ModuleUtil {
     private final PackageManager mPm;
     private final String mFrameworkPackageName;
     private final List<ModuleListener> mListeners = new CopyOnWriteArrayList<>();
-    private SharedPreferences mPref;
+    private final SharedPreferences mPref;
     private Map<String, InstalledModule> mInstalledModules;
     private boolean mIsReloading = false;
 
@@ -209,7 +207,6 @@ public final class ModuleUtil {
                 Snackbar.make(view, R.string.notinstalled, Snackbar.LENGTH_SHORT).show();
                 return;
             }
-
             PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
             PrintWriter enabledModulesList = new PrintWriter(XposedApp.ENABLED_MODULES_LIST_FILE);
             List<InstalledModule> enabledModules = getEnabledModules();
@@ -231,9 +228,6 @@ public final class ModuleUtil {
             }
             modulesList.close();
             enabledModulesList.close();
-
-            FileUtils.setPermissions(MODULES_LIST_FILE, rw_rw_r__, -1, -1);
-            FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, rw_rw_r__, -1, -1);
 
             if (showToast) {
                 Snackbar.make(view, R.string.xposed_module_list_updated, Snackbar.LENGTH_SHORT).show();
@@ -281,7 +275,6 @@ public final class ModuleUtil {
 
         private Drawable.ConstantState iconCache = null;
 
-        @SuppressWarnings("deprecation")
         private InstalledModule(PackageInfo pkg, boolean isFramework) {
             this.app = pkg.applicationInfo;
             this.packageName = pkg.packageName;

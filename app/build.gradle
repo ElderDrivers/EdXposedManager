@@ -14,7 +14,7 @@ android {
         minSdkVersion 24
         //noinspection OldTargetApi
         targetSdkVersion 27
-        versionCode 45759
+        versionCode 45760
         versionName "4.6.0-pre"
     }
 
@@ -23,6 +23,7 @@ android {
             outputFileName = "EdXposedManager-${defaultConfig.versionName}-${defaultConfig.versionCode}-${applicationId}-${buildType.name}.apk"
         }
     }
+
     buildTypes {
         release {
             zipAlignEnabled true
