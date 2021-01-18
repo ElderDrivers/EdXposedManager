@@ -36,7 +36,7 @@
     <string name="install_known_issue">Возможно у вас известная проблема:\n\"%s\"\n\nЭто может привести к сбою или невозможности использования EdXposed</string>
     <string name="install_known_issue_details">Детали…</string>
     <string name="installed_lollipop">EdXposed Framework активирован!</string>
-    <string name="installed_lollipop_inactive">EdXposed Framework установлен, но не активирован</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework установлен, но не активирован!</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
 
     <!-- File operations -->
@@ -109,7 +109,7 @@
     <string name="settings_title_release_type">Отображение версий модуля</string>
     <string name="settings_title_enable_resources">Включить изменение ресурсов</string>
     <string name="settings_title_dark_theme">Темная тема</string>
-    <string name="menu_show_modules">Показывать модули</string>
+    <string name="menu_show_modules">Модули</string>
     <string name="settings_title_pass_safetynet">Проверка SafetyNet</string>
     <string name="settings_title_old_success_color">Использовать старый цвет (зеленый) для активного статуса</string>
     <string name="settings_title_disable_modules_log">Выключить логи модулей</string>
@@ -227,7 +227,7 @@
     <string name="update">Установить обновление</string>
     <string name="choose_icon">Изменить иконку приложения</string>
     <string name="custom_icon">Выбрать иконку</string>
-    <string name="not_installed_no_lollipop">EdXposed Framework не установлен (правильно)!</string>
+    <string name="not_installed_no_lollipop">EdXposed Framework не установлен!</string>
     <string name="settings_title_notify_module_update">Уведомление об обновлении модуля</string>
 
     <string name="md_back_label">Назад</string>
@@ -265,7 +265,7 @@
     <string name="chrome_custom_tabs_summ">Открытие ссылок внутри приложения</string>
     <string name="scroll_bottom">Прокрутить вниз</string>
     <string name="share_app">Поделиться</string>
-    <string name="share_app_text">Попробуйте: Xposed Framework с открытым исходным кодом для последней версии EdXposed Manager! %s</string>
+    <string name="share_app_text">Попробуйте: EdXposed Framework с открытым исходным кодом для последней версии EdXposed Manager! %s</string>
     <string name="status">Статус EdXposed</string>
     <string name="xposed_on_next_reboot">EdXposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">EdXposed Framework будет выключен после перезагрузки</string>
@@ -297,7 +297,7 @@
     <string name="unstable_build">Это нестабильная сборка\nУстановка на свой страх и риск</string>
     <string name="unofficial_build">Это неофициальная сборка\nУстановка на свой страх и риск</string>
     <string name="custom_list">Альтернативный список модулей</string>
-    <string name="custom_list_summ">Использование зеркала для списка модулей может увеличить загрузку\nНо отображение новых модулей будет отложено (примерно до 24 часов)</string>
+    <string name="custom_list_summ">Использование зеркала для списка модулей может ускорить загрузку\nНо отображение новых модулей будет отложено (примерно до 24 часов)</string>
 
     <string name="known_issue_wrong_base_directory">Основной каталог ошибочный: %1$s</string>
     <string name="known_issue_missing_base_directory">Основной каталог отсутсвует</string>
@@ -307,9 +307,9 @@
     <string name="this_may_take_a_while">Пожалуйста подождите, это займет некоторое время…</string>
     <string name="take_while_cannot_resore">Вы уверены, что хотите оптимизировать все приложения?\nЭто займет некоторое время (зависит от количества установленных приложений), и НЕ МОЖЕТ быть отменено\nСовет: Вы можете оптимизировать выборочные приложения в «Скрыть EdXposed (Черный)»</string>
     <string name="done">Готово!</string>
-    <string name="verified_boot_deactivated">Проверка загрузки выключена</string>
+    <string name="verified_boot_deactivated">Проверка загрузки: Выключена</string>
     <string name="verified_boot_none">Не удалось проверить состояние загрузки</string>
-    <string name="verified_boot_active">Проверка загрузки включена</string>
+    <string name="verified_boot_active">Проверка загрузки: Включена</string>
     <string name="verified_boot_explanation">Проверка загрузки (dm-verity) запрещает загрузку устройства, если системный раздел изменен</string>
     <string name="ignore_chinese">Фильтровать иероглифы</string>
     <string name="ignore_chinese_summary">В «Поиске модулей» не показывать модули на Китайском языке\nМодули останутся доступны через иконку поиска\nВключение этой настройки может привести к низкой производительности</string>
@@ -345,7 +345,7 @@
     <string name="update_time">Обновлен: </string>
     <string name="enabled_top">Включенные модули|приложения в начале списка</string>
     <string name="list_sort">Сортировка списка</string>
-    <string name="notinstalled">EdXposed Framework не установлен</string>
+    <string name="notinstalled">EdXposed Framework не установлен!</string>
     <string name="app_no_ui">Это приложение не имеет пользовательский интерфейс</string>
     <string name="compile_failed">Оптимизация не удалась или возврат значения пусто</string>
     <string name="compile_failed_with_info">Ошибка оптимизации: </string>
@@ -363,8 +363,8 @@
     <string name="nav_item_logs">Логи</string>
     <string name="about_libraries_title">Лицензии с открытым исходным кодом</string>
     <string name="default_changes_log">&lt;b&gt;Обновлений пока нет&lt;/b&gt;&lt;br /&gt;Хорошие вещи стоит ждать</string>
-    <string name="xposed_description">Включить улучшения EdXposed:\n    - Убрать фоновые ограничения на EdXposed\n    - Определить, правильно ли работает Xposed\n    - Притвориться что установлен Xposed Installer\n    - Скрыть EdXposed Manager\n    - Принудительно пройти SafetyNet на стороне клиента</string>
-    <string name="status_enhancement">Улучшения</string>
+    <string name="xposed_description">Включить улучшения EdXposed:\n    - Убрать фоновые ограничения на EdXposed\n    - Определить, правильно ли работает EdXposed\n    - Притвориться что установлен Xposed Installer\n    - Скрыть EdXposed Manager\n    - Принудительно пройти SafetyNet на стороне клиента</string>
+    <string name="status_enhancement">Режим улучшения</string>
     <string name="settings_group_enhancement">Режим улучшения</string>
     <string name="settings_title_enhancement">Статус режима улучшения</string>
     <string name="settings_summary_enhancement">Выключен\nВы можете включить режим улучшения через модуль</string>
@@ -379,7 +379,7 @@
     <string name="download_committer">Загрузил: %s</string>
     <string name="settings_title_pass_client_safetynet">Принудительно пройти проверку SafetyNet</string>
     <string name="settings_summary_pass_client_safetynet">Изменить статус прохождения проверки для SafetyNet\nЭто работает для некоторых программ с локальной или простой проверкой сервера, но не для программ со строгой проверкой сервера\nНе рекомендуется выключать эту настройку</string>
-    <string name="menu_show_system_apps">Показать системные приложения</string>
+    <string name="menu_show_system_apps">Системные</string>
     <string name="menu_optimize">Оптимизировать</string>
     <string name="module_activation_scope">Область активации</string>
     <string name="enable_scope">Включить для этого модуля</string>
@@ -390,4 +390,6 @@
     <string name="menu_show_user_apps">Пользовательские</string>
     <string name="settings_theme_dark_auto">Как в системе</string>
     <string name="settings_summary_pure_black">Использовать черную тему, когда включена темная</string>
+    <string name="settings_title_use_sandhook">Использовать бэкенд SandHook</string>
+    <string name="settings_summary_use_sandhook">Эта конфигурация действительна только для основного пользователя 0 и не поддерживает архитектуры x86 и x86_64\nТребуется перезагрузка</string>
 </resources>
