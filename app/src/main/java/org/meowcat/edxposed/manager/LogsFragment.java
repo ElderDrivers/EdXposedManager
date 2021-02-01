@@ -225,7 +225,7 @@ public class LogsFragment extends Fragment {
                 fos.write(data, 0, len);
             }
             fis.close();
-            fis.close();
+            fos.close();
         } catch (Exception e) {
             Log.e(TAG, Objects.requireNonNull(e.getMessage()));
             Snackbar.make(requireView().findViewById(R.id.container), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Snackbar.LENGTH_LONG).show();
