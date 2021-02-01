@@ -35,6 +35,7 @@ public class ActivationScopeAdapter extends AppAdapter {
     private final MasterSwitch masterSwitch;
     private final SwipeRefreshLayout swipeRefreshLayout;
     private List<String> checkedList = new ArrayList<>();
+    public static List<String> recommendedScopeList;
 
     public ActivationScopeAdapter(Context context, String modulePackageName, MasterSwitch masterSwitch, SwipeRefreshLayout swipeRefreshLayout) {
         super(context);
@@ -59,6 +60,11 @@ public class ActivationScopeAdapter extends AppAdapter {
                 }
             }
         });
+        recommendedScopeList = ModuleUtil.getInstance().getModule(modulePackageName).getScopeList();
+    }
+
+    static List<String> getRecommendedScopeList() {
+        return recommendedScopeList;
     }
 
     static List<String> getScopeList(String modulePackageName) {

@@ -93,4 +93,8 @@
         <item>ic_launcher_staol</item>
     </string-array>
 
+    <string-array name="module_scope" translatable="false">
+        <item>android</item>
+    </string-array>
+
 </resources>

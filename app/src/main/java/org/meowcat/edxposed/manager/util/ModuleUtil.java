@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.Log;
@@ -28,6 +29,8 @@ import org.meowcat.edxposed.manager.repo.RepoDb;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -272,6 +275,7 @@ public final class ModuleUtil {
         public ApplicationInfo app;
         private String appName; // loaded lazyily
         private String description; // loaded lazyily
+        private List<String> scopeList = null;
 
         private Drawable.ConstantState iconCache = null;
 
@@ -306,6 +310,21 @@ public final class ModuleUtil {
                     }
                 }
             }
+
+            Object resIdRaw = this.app.metaData.get("xposedscope");
+            if (resIdRaw instanceof Integer) {
+                int resId = (int) resIdRaw;
+                if (resId != 0) {
+                    try {
+                        String[] array = XposedApp.getInstance().getPackageManager().getResourcesForApplication(this.app).getStringArray(resId);
+                        if (array.length != 0) {
+                            scopeList = Arrays.asList(array);
+                        }
+                    } catch (Resources.NotFoundException | NameNotFoundException e) {
+                        // xposedscope meta-data exist, but provide a wrong resId
+                    }
+                }
+            }
         }
 
         public boolean isInstalledOnExternalStorage() {
@@ -315,6 +334,10 @@ public final class ModuleUtil {
 //        public boolean isForwardLocked() {
 //            return (app.flags & FLAG_FORWARD_LOCK) != 0;
 //        }
+
+        public List<String> getScopeList() {
+            return scopeList == null ? Collections.emptyList() : scopeList;
+        }
 
         public String getAppName() {
             if (appName == null)

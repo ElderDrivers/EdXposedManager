@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -45,6 +46,8 @@ import java.util.List;
 import java.util.Locale;
 
 import static org.meowcat.edxposed.manager.BaseFragment.areYouSure;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+import static org.meowcat.edxposed.manager.adapter.ActivationScopeAdapter.getRecommendedScopeList;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> implements Filterable {
 
@@ -433,6 +436,13 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
                 callback.onItemClick(v, info);
             }
         });
+        Log.d(TAG, "Scope: load for app: " + info.packageName);
+        if (this instanceof ActivationScopeAdapter) {
+            if (getRecommendedScopeList().contains(info.packageName)) {
+                Log.d(TAG, "Scope: contains");
+                holder.appScopeTip.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override
@@ -480,6 +490,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
         TextView appVersion;
         TextView appInstallTime;
         TextView appUpdateTime;
+        TextView appScopeTip;
         Switch mSwitch;
 
         ViewHolder(View itemView) {
@@ -491,6 +502,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
             appVersion = itemView.findViewById(R.id.version_name);
             appInstallTime = itemView.findViewById(R.id.tvInstallTime);
             appUpdateTime = itemView.findViewById(R.id.tvUpdateTime);
+            appScopeTip = itemView.findViewById(R.id.scope_recommended_tip);
             mSwitch = itemView.findViewById(R.id.checkbox);
         }
     }

@@ -382,5 +382,6 @@
     <string name="settings_theme_dark_auto">跟随系统</string>
     <string name="settings_summary_pure_black">当深色模式启用时使用纯黑色主题</string>
     <string name="settings_title_use_sandhook">使用 SandHook 后端</string>
-    <string name="settings_summary_use_sandhook">该配置仅主用户 0 有效, 并且不支持 x86 和 x86_64 架构\n需要重启设备以生效</string>
+    <string name="settings_summary_use_sandhook">SandHook 不支持 x86 和 x86_64 架构\n需要重启设备以生效</string>
+    <string name="scope_recommended_tip">模块声明此应用在此模块的作用域内，建议启用</string>
 </resources>

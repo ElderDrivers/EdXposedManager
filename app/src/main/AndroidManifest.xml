@@ -279,5 +279,9 @@
             android:name="xposedminversion"
             android:value="82" />
 
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/module_scope" />
+
     </application>
 </manifest>
