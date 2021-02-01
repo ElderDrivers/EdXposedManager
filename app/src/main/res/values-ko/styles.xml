@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application light theme. -->
+    <style name="Theme.XposedInstaller.Light.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryLight</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Base application dark theme. -->
+    <style name="Theme.XposedInstaller.Dark.Base" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Light" parent="Theme.XposedInstaller.Light.Base">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground" tools:ignore="PrivateResource">
+            @color/background_material_light
+        </item>
+        <item name="sticky_header_background">@color/sticky_header_background_light</item>
+        <item name="list_download_item_color">@color/list_download_item_color_light</item>
+        <item name="background_card">@drawable/background_card_light</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_light</item>
+        <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_light</item>
+        <item name="text_important">@color/red_500</item>
+        <item name="download_status_installed">@android:color/holo_orange_dark</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Dark" parent="Theme.XposedInstaller.Dark.Base">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground" tools:ignore="PrivateResource">
+            @color/background_material_dark
+        </item>
+        <item name="sticky_header_background">@color/sticky_header_background_dark</item>
+        <item name="list_download_item_color">@color/list_download_item_color_dark</item>
+        <item name="background_card">@drawable/background_card_dark</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_dark</item>
+        <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_dark</item>
+        <item name="text_important">@android:color/holo_orange_light</item>
+        <item name="download_status_installed">@android:color/holo_orange_light</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Dark.Black" parent="Theme.XposedInstaller.Dark">
+        <item name="android:windowBackground">@color/app_background_black</item>
+        <item name="list_download_item_color">@color/list_download_item_color_black</item>
+        <item name="background_card">@drawable/background_card_black</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_black</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Transparent" parent="Theme.AppCompat.NoActionBar" />
+
+    <style name="Theme.XposedInstaller.Toolbar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Toolbar.Black" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
+    <style name="MasterSwitch" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="masterSwitchBackgroundOff">#80868b</item>
+        <item name="masterSwitchBackgroundOn">?colorAccent</item>
+        <item name="masterSwitchTextAppearance">@style/MasterSwitch.TextAppearance</item>
+        <item name="switchStyle">@style/MasterSwitch.Switch</item>
+    </style>
+
+    <style name="MasterSwitch.Switch" parent="@style/Widget.AppCompat.CompoundButton.Switch">
+        <item name="trackTint">#33ffffff</item>
+        <item name="thumbTint">@android:color/white</item>
+    </style>
+
+    <style name="MasterSwitch.TextAppearance" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>
