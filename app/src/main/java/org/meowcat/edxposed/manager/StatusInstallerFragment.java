@@ -36,12 +36,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-import dalvik.system.VMRuntime;
-
-import static android.os.Build.SUPPORTED_32_BIT_ABIS;
-import static android.os.Build.SUPPORTED_64_BIT_ABIS;
 import static android.os.SELinux.isSELinuxEnabled;
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+import static org.meowcat.edxposed.manager.XposedApp.CPU_ABI;
+import static org.meowcat.edxposed.manager.XposedApp.getArch;
 
 @SuppressLint("StaticFieldLeak")
 public class StatusInstallerFragment extends Fragment {
@@ -55,8 +53,6 @@ public class StatusInstallerFragment extends Fragment {
     private static View mUpdateButton;
     private static TextView mErrorTv;
     private static boolean isXposedInstalled = false;
-    private static String CPU_ABI;
-    private static String CPU_ABI2;
     private TextView txtKnownIssue;
     private Button btnKnownIssue;
 
@@ -119,24 +115,6 @@ public class StatusInstallerFragment extends Fragment {
         return info + " (" + getArch() + ")";
     }
 
-    public static String getArch() {
-        if (CPU_ABI.equals("arm64-v8a")) {
-            return "arm64";
-        } else if (CPU_ABI.equals("x86_64")) {
-            return "x86_64";
-        } else if (CPU_ABI.equals("mips64")) {
-            return "mips64";
-        } else if (CPU_ABI.startsWith("x86") || CPU_ABI2.startsWith("x86")) {
-            return "x86";
-        } else if (CPU_ABI.startsWith("mips")) {
-            return "mips";
-        } else if (CPU_ABI.startsWith("armeabi-v5") || CPU_ABI.startsWith("armeabi-v6")) {
-            return "armv5";
-        } else {
-            return "arm";
-        }
-    }
-
     public static boolean isEnhancementEnabled() {
         return false;
     }
@@ -144,19 +122,6 @@ public class StatusInstallerFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        final String[] abiList;
-        if (VMRuntime.getRuntime().is64Bit()) {
-            abiList = SUPPORTED_64_BIT_ABIS;
-        } else {
-            abiList = SUPPORTED_32_BIT_ABIS;
-        }
-        CPU_ABI = abiList[0];
-        if (abiList.length > 1) {
-            CPU_ABI2 = abiList[1];
-        } else {
-            CPU_ABI2 = "";
-        }
 
         sActivity = getActivity();
     }

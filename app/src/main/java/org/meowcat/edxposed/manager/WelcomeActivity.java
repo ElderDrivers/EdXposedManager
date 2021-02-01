@@ -111,7 +111,6 @@ public class WelcomeActivity extends BaseActivity
         notifyDataSetChanged();
 
         new Thread(() -> new ApplicationListAdapter(getApplicationContext(), AppHelper.isWhiteListMode()).generateCheckedList());
-
     }
 
     @Override
