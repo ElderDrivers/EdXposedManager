@@ -6,6 +6,7 @@
     <external-path
         name="download"
         path="Download" />
+    <external-cache-path name="name" path="." />
     <!--suppress AndroidElementNotAllowed -->
     <root-path
         name="log"

@@ -215,7 +215,13 @@ public class LogsFragment extends Fragment {
 
     private void send() {
         File realFile = new File(LOG_PATH + activatedConfig.get("fileName") + LOG_SUFFIX);
-        File tempFile = new File(requireContext().getExternalCacheDir(), "tempLog");
+        Calendar now = Calendar.getInstance();
+        String filename = String.format(
+                "EdXposed_" + activatedConfig.get("name") + "_%04d%02d%02d_%02d%02d%02d.txt",
+                now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1,
+                now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
+        File tempFile = new File(requireContext().getExternalCacheDir(), filename);
         try {
             FileInputStream fis = new FileInputStream(realFile);
             FileOutputStream fos = new FileOutputStream(tempFile);
