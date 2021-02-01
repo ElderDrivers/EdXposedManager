@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- General/various strings -->
+    <string name="menuSend">보내기</string>
+    <string name="menuSaveToSd">SD 카드에 저장</string>
+    <string name="download_progress">%1$,d / %2$,d kB</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="tabInstall">장치</string>
+    <string name="tabDownload">설치</string>
+    <string name="welcome_framework_update_available">EdXposed Framework 업데이트를 사용할 수 있습니다. (%s)</string>
+
+    <!-- navigation view items -->
+    <string name="nav_item_modules">모듈</string>
+    <string name="nav_item_download">설치</string>
+    <string name="nav_item_logs_verbose">상세 로그</string>
+    <string name="nav_item_logs_modules">모듈 로그</string>
+    <string name="nav_item_settings">설정</string>
+    <string name="nav_item_about">About</string>
+    <string name="navigation_drawer_open">navigation drawer 열기</string>
+    <string name="navigation_drawer_close">navigation drawer 닫기</string>
+
+    <!-- Installer tab -->
+    <string name="install">설치/업데이트</string>
+    <string name="uninstall">제거</string>
+    <string name="soft_reboot">Userspace로 재시작</string>
+    <string name="reboot">재시작</string>
+    <string name="reboot_">재시작…</string>
+    <string name="areyousure">확실한가요?</string>
+    <string name="phone_not_compatible">EdXposed는 Android SDK 버전 %1$d 혹은 프로세서 아키텍처 (%2$s)와 아직 호환되지 않습니다.</string>
+    <string name="reboot_failed">재시작 실패. 장치의 일반 재시작 기능을 사용하세요</string>
+    <string name="install_warning_title">조심하세요!</string>
+    <string name="install_warning">경우에 따라 EdXposed를 설치한 후 장치가 더 이상 부팅되지 않을 수 있습니다.\n\n이전에 \"소프트 브릭\" 또는 \"부트 루프\"에 대해 들어본 적이 없거나 이러한 상황에서 복구하는 방법을 모르는 경우 <b>EdExposed를 설치하거나 사용하지 마십시오!</b>\n\n어떤 경우에도 최신 백업을 사용하는 것이 좋습니다.</string>
+    <string name="dont_show_again">다시 표시하지 않기</string>
+    <string name="install_known_issue">알려진 문제가 있는 것 같습니다.\n\"%s\"\n\nEdExposed 오작동 또는 사용할 수 없게 될 수 있습니다.</string>
+    <string name="install_known_issue_details">세부 사항…</string>
+    <string name="installed_lollipop">EdXposed Framework가 활성화 됐습니다.</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework가 설치되었지만 활성화되지는 않았습니다.</string>
+    <string name="modules_updates_available">모듈 업데이트를 사용할 수 있습니다.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">루트 접근 권한을 얻지 못했습니다\n\n장치가 올바르게 루팅 되어 있고 셸 명령이 차단되지 않았는지 확인하십시오.</string>
+
+    <!-- Modules -->
+    <string name="module_is_not_activated_yet">EdExposed 모듈이 아직 활성화되지 않았습니다.</string>
+    <string name="module_is_not_activated_yet_detailed">%s이(가) 설치되었지만 아직 활성화되지 않았습니다.</string>
+    <string name="activate_and_reboot">활성화하고 재시작하기</string>
+    <string name="activate_only">활성화 하기</string>
+    <string name="module_activated">EdExposed 모듈이 활성화되었습니다.</string>
+    <string name="module_empty_description">(설명이 없습니다.)</string>
+    <string name="module_no_ui">이 모듈은 사용자 인터페이스를 제공하지 않습니다.</string>
+    <string name="no_xposed_modules_found">EdExposed 모듈을 찾을 수 없습니다!</string>
+    <string name="xposed_module_list_updated">EdExposed 모듈 목록이 업데이트되었습니다\n재시작 시 변경 내용이 적용됩니다.</string>
+    <string name="xposed_module_updated_notification_title">EdExposed 모듈이 업데이트되었습니다.</string>
+    <string name="xposed_module_updated_notification">재시작하여 변경 내용 활성화</string>
+    <string name="warning_xposed_min_version">이 모듈에는 최신 EdExposed 버전 (%d)이 필요하므로 활성화할 수 없습니다.</string>
+    <string name="no_min_version_specified">이 모듈에서는 필요한 EdExposed 버전을 지정하지 않았습니다.</string>
+    <string name="warning_min_version_too_low">이 모듈은 EdExposed 버전 %1$d용으로 제작되었지만 버전 %2$d의 변경 사항이 호환되지 않아 비활성화되었습니다.</string>
+    <string name="module_launch">UI 시작</string>
+    <string name="module_download_updates">다운로드/업데이트</string>
+    <string name="module_support">지원</string>
+    <string name="modules_app_store">앱 스토어에서 보기</string>
+    <string name="module_app_info">앱 정보</string>
+    <string name="module_uninstall">제거</string>
+    <string name="xposed_not_active">EdExposed Framework가 현재 설치되어 있지 않거나 비활성화 상태입니다.</string>
+
+    <!-- Download -->
+    <string name="menuSearch">검색</string>
+    <string name="menuReload">리로드</string>
+    <string name="menuRefresh">새로 고침</string>
+    <string name="changes">변경 사항:</string>
+    <string name="download_details_page_description">설명</string>
+    <string name="download_details_page_versions">버전</string>
+    <string name="download_details_page_settings">설정</string>
+    <string name="reltype_stable">안정</string>
+    <string name="reltype_stable_summary">안정 (버그 위험이 낮습니다.)</string>
+    <string name="reltype_beta">베타</string>
+    <string name="reltype_beta_summary">베타 (몇 가지 버그가 예상됩니다.)</string>
+    <string name="reltype_experimental">실험</string>
+    <string name="reltype_experimental_summary">실험 (버그의 위험이 높습니다.)</string>
+    <string name="reltype_use_global_summary">전역 설정 사용</string>
+    <string name="download_author">by %s</string>
+    <string name="download_unknown_author">알 수 없는 제작자</string>
+    <string name="download_status_installed">설치 됨 (버전 %s)</string>
+    <string name="download_status_update_available">업데이트 사용 가능 (버전 %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">%1$s에 추가됨 \u00b7 %2$s에 업데이트됨</string>
+    <string name="download_sorting_title">정렬 순서</string>
+    <string name="download_sorting_status">상태별 정렬</string>
+    <string name="download_sorting_updated">마지막 업데이트 기준으로 정렬</string>
+    <string name="download_sorting_created">생성일별 정렬</string>
+    <string name="download_section_framework">EdXposed Framework</string>
+    <string name="download_section_update_available">업데이트 사용 가능</string>
+    <string name="download_section_installed">설치됨</string>
+    <string name="download_section_not_installed">설치되지 않음</string>
+    <string name="download_section_24h">지난 24시간</string>
+    <string name="download_section_7d">지난 7일</string>
+    <string name="download_section_30d">지난 30일</string>
+    <string name="download_section_older">30일 이상 전에</string>
+    <string name="download_details_not_found">저장소에 패키지 이름이 \"%s\"인 모듈이 없습니다.</string>
+    <string name="download_no_versions">제작자는 아직 아무것도 업로드하지 않았습니다.</string>
+    <string name="download_test_version_not_shown">테스트 버전을 사용할 수 있지만 전역 설정 또는 모듈별 설정으로 인해 표시되지 않습니다.</string>
+
+    <!-- Settings -->
+    <string name="settings_group_download">다운로드 및 설치</string>
+    <string name="settings_group_app">응용 프로그램</string>
+    <string name="settings_group_framework">Framework</string>
+
+    <string name="settings_title_release_type">표시할 버전</string>
+    <string name="settings_title_enable_resources">리소스 후크 사용</string>
+    <string name="settings_title_dark_theme">다크 테마</string>
+    <string name="menu_show_modules">모듈 및 관리자 표시</string>
+    <string name="settings_title_pass_safetynet">SafetyNet 통과</string>
+    <string name="settings_title_old_success_color">이전 상태 활성 색상 사용 (녹색)</string>
+    <string name="settings_title_disable_modules_log">모듈 로그 비활성화</string>
+    <string name="settings_title_open_drawer">navigation drawer 자동으로 열기</string>
+    <string name="settings_title_default_view">기본 보기</string>
+    <string name="settings_title_skip_status_check">상태 확인 건너뛰기</string>
+    <string name="settings_title_dynamic_modules">인스턴트 모듈 목록</string>
+    <string name="settings_title_enable_boot_image_deopt">부트 이미지 최적화 해제</string>
+    <string name="settings_title_disable_verbose_log">상세 로그 사용 안 함</string>
+
+    <string name="settings_summary_pass_safetynet">Xposed 숨기기(블랙)에 GMS 및 GSF를 추가하고 Xposed 숨기기(화이트)에서 제거\n이 옵션을 사용하지 않도록 설정해도 노출 숨기기(블랙)에서 모듈이 제거되지 않습니다.</string>
+    <string name="settings_summary_stop_verbose_log">상세 로그는 다음에 재부팅할 때까지 캡처가 중지됩니다.</string>
+    <string name="settings_summary_stop_log">모듈 로그는 다음에 재부팅할 때까지 캡처가 중지됩니다.</string>
+    <string name="settings_summary_disable_modules_log">모듈이 던진 예외 스택은 여전히 정상적으로 잡힙니다.</string>
+    <string name="settings_summary_open_drawer">시작할 때 navigation drawer 열기</string>
+    <string name="settings_summary_enable_resources">theming engines과 충돌이 발생할 수 있습니다.\n<b>경고:</b> 이 기능을 사용하지 않도록 설정하면 리소스를 수정하는 모듈이 작동하지 않습니다.</string>
+    <string name="settings_summary_skip_status_check">모듈에 대한 \"EdExposed 상태\" 확인 건너뛰기</string>
+    <string name="settings_summary_dynamic_modules">켜지면 각 앱 프로세스가 시작될 때마다 최신 활성화된 모듈 목록을 로드합니다.</string>
+    <string name="settings_summary_enable_boot_image_deopt">활성화시 모든 프레임워크 메소드 후크가 가능하지만 전체 시스템의 속도가 느려집니다.\n연결할 수 없을 때 하나의 프레임워크 메소드가 인라인인지 확인하는 데 주로 사용됩니다.</string>
+
+    <string name="settings_sort_by_name">앱 이름별로 정렬</string>
+    <string name="settings_sort_by_name_reverse">앱 이름별로 정렬 (반대)</string>
+    <string name="settings_sort_by_package_name">패키지 이름별로 정렬</string>
+    <string name="settings_sort_by_package_name_reverse">패키지 이름별로 정렬 (반대)</string>
+    <string name="settings_sort_by_install_time">설치 시간별로 정렬</string>
+    <string name="settings_sort_by_install_time_reverse">설치 시간별로 정렬 (반대)</string>
+    <string name="settings_sort_by_update_time">업데이트 시간별로 정렬</string>
+    <string name="settings_sort_by_update_time_reverse">업데이트 시간별로 정렬 (반대)</string>
+
+    <string name="settings_theme_dark_disabled">항상 끄기</string>
+    <string name="settings_theme_dark_enabled">항상 켜기</string>
+    <string name="settings_title_pure_black">순수 검은색 테마</string>
+    <!-- Support tab -->
+    <string name="support_modules_label">모듈 지원</string>
+    <string name="support_modules_description">모듈 목록의 모듈을 누르고 \"%1$s\"를 누릅니다.</string>
+    <string name="support_framework_label">Framework/Manager 지원</string>
+    <string name="support_faq_label">FAQ/알려진 문제</string>
+    <string name="support_group_qq_label">QQ Group: 855219808</string>
+    <string name="support_group_telegram_label">Telegram Group: @Code_of_MeowCat</string>
+    <string name="support_donate_label">후원</string>
+    <string name="support_donate_description">EdXposed에게 고맙다고 말하고 싶다면, 여기서 우리에게 후원을 할 수 있습니다.</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">SD 카드에 로그를 쓸 수 없습니다.:</string>
+    <string name="sdcard_not_writable">SD 카드를 찾을 수 없거나 쓸 수 없습니다.</string>
+    <string name="menuClearLog">로그 지우기</string>
+    <string name="logs_cleared">로그를 성공적으로 지웠습니다.</string>
+    <string name="logs_clear_failed">로그를 지울 수 없습니다.:</string>
+    <string name="log_is_empty">로그가 비어 있습니다.</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">메인 개발자</string>
+    <string name="about_translator_label">번역자</string>
+    <string name="translator">green1052</string>
+    <string name="about_version_label">버전</string>
+    <string name="about_source_label">소스 코드</string>
+    <string name="about_libraries_label">사용된 라이브러리</string>
+    <string name="meowcat">MeowCat Studio</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">다운로드 및 설치</string>
+    <string name="download_view_install">설치</string>
+    <string name="download_view_remove">제거</string>
+    <string name="download_view_cancel">취소</string>
+    <string name="download_view_no_url">사용 가능한 다운로드 URL이 없습니다.</string>
+    <string name="download_view_running">다운로드 중 (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">다운로드 대기 중입니다.</string>
+    <string name="download_view_successful">다운로드 성공</string>
+    <string name="download_view_failed">다운로드 실패 (오류 %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 합계가 잘못되었습니다. (다운로드: %1$s, 예상: %2$s)</string>
+    <string name="download_could_not_read_file">다운로드한 파일을 읽을 수 없습니다.: %s</string>
+    <string name="download_no_valid_apk">다운로드한 파일이 올바른 APK가 아닙니다. (또는 호환되지 않음)</string>
+    <string name="download_incorrect_package_name">패키지 이름이 잘못되었습니다. (다운로드: %1$s, 예상: %2$s)</string>
+    <string name="download_running">다운로드 중</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">%1$s를 다운로드하지 못했습니다.: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Downloading %1$s failed: %2$s</string>
+    <string name="repo_load_failed">%1$s에서 저장소를 불러올 수 없습니다.:\n%2$s</string>
+    <string name="choose_color">강조 색상</string>
+
+    <string name="warning_installed_on_external_storage">이 모듈은 SD 카드에 설치되어 있으므로 로드할 수 없습니다. 내부 스토리지로 이동하십시오.</string>
+    <string name="view">보기</string>
+    <string name="export_">내보내기…</string>
+    <string name="import_">가져오기…</string>
+    <string name="export_enabled_modules">활성화된 모듈 목록 내보내기</string>
+    <string name="import_enabled_modules">활성화된 모듈 목록 가져오기</string>
+    <string name="export_installed_modules">설치된 모듈 목록 내보내기</string>
+    <string name="import_installed_modules">설치된 모듈 목록 가져오기</string>
+    <string name="no_installed_modules">설치된 모듈이 없습니다!</string>
+    <string name="enable_heads_up">상단 알림 사용</string>
+    <string name="enable_heads_up_summary">이 옵션은 새 모듈/업데이트 모듈에서 상단 알림을 활성화합니다.</string>
+    <string name="nav_bar_coloration">navigation bar 색상</string>
+    <string name="no_backup_found">백업을 찾을 수 없습니다.</string>
+    <string name="no_enabled_modules">활성화된 모듈이 없습니다.</string>
+
+    <string name="share">공유하기…</string>
+    <string name="back">뒤로가기</string>
+    <string name="loadingError">목록을 가져오는 중 오류가 발생했습니다.\n인터넷에 액세스할 수 없거나 서버에 문제가 있습니다.</string>
+    <string name="info">정보</string>
+    <string name="infoInstaller">
+        이름: %1$s
+        \n버전: %2$s
+    </string>
+    <string name="infoUninstaller">
+        이름: %1$s
+        \n날짜: %2$s
+    </string>
+    <string name="permissionNotGranted">이 기능은 외부 스토리지 쓰기 권한 없이 작동하지 않습니다.</string>
+    <string name="warningArchitecture">ZIP 아카이브가 다운로드됩니다. Magisk Manager 또는 복구에서 수동으로 플래시하십시오.</string>
+    <string name="newVersion">새 버전의 EdExposed Manager를 사용할 수 있습니다! 지금 업데이트하십시오!</string>
+    <string name="update">업데이트</string>
+    <string name="choose_icon">아이콘 선택</string>
+    <string name="custom_icon">커스텀 아이콘</string>
+    <string name="not_installed_no_lollipop">EdExposed Framework가 제대로 설치되지 않았습니다.</string>
+    <string name="settings_title_notify_module_update">모듈 업데이트 알림 활성화</string>
+
+    <string name="md_back_label">뒤로가기</string>
+    <string name="md_done_label">완료</string>
+    <string name="md_cancel_label">취소</string>
+    <string name="md_choose_label">선택</string>
+    <string name="md_error_label">오류</string>
+    <string name="md_storage_perm_error">EdExposed는 READ_EXTERNAL_STORE 사용 권한이 부여되지 않았습니다.</string>
+    <string name="md_custom_label">커스텀</string>
+    <string name="md_presets_label">사전 설정</string>
+    <string name="changelog">변경점</string>
+    <string name="scroll_top">맨 위로 스크롤</string>
+    <string name="add_bookmark">북마크 추가</string>
+    <string name="remove_bookmark">북마크 제거</string>
+    <string name="bookmarks">북마크</string>
+    <string name="no_bookmark_added">추가된 북마크가 없습니다.</string>
+    <string name="bookmark_added">북마크가 추가되었습니다.</string>
+    <string name="bookmark_removed">북마크가 제거되었습니다.</string>
+    <string name="undo">되돌리기</string>
+    <string name="settings_title_notification_coloration">색 알림 아이콘</string>
+    <string name="file_is_empty">파일이 비어 있습니다.</string>
+    <string name="install_with_su">조용한 설치 (root)</string>
+    <string name="install_with_su_summ">이 옵션을 선택하면 아무런 창 없이 모듈이 설치됩니다.</string>
+    <string name="install_remove">설치 및 제거</string>
+    <string name="download_remove">다운로드 및 제거</string>
+    <string name="module_saved">모듈이 %1$s에 저장됨</string>
+    <string name="ignore_updates">업데이트 무시</string>
+    <string name="ignore_updates_summ">특정 모듈에 대한 업데이트를 무시합니다.</string>
+    <string name="reboot_recovery">Recovery로 재시작</string>
+    <string name="reboot_bootloader">Bootloader로 재시작</string>
+    <string name="reboot_download">Download로 재시작</string>
+    <string name="reboot_edl">Emergency로 재시작</string>
+    <string name="loading">불러오는 중…</string>
+    <string name="chrome_custom_tabs">Chrome 커스텀 탭</string>
+    <string name="chrome_custom_tabs_summ">내부 브라우저에서 링크를 엽니다.</string>
+    <string name="scroll_bottom">아래로 스크롤</string>
+    <string name="share_app">앱 공유</string>
+    <string name="share_app_text">다음 사항을 확인하십시오: 최신 Android용 오픈 소스 Exposed Framework: EdXposed! %s</string>
+    <string name="status">EdXposed 상태</string>
+    <string name="xposed_on_next_reboot">EdExposed Framework는 재부팅 시 활성화됩니다.</string>
+    <string name="xposed_off_next_reboot">EdExposed Framework는 재부팅 시 비활성화됩니다.</string>
+    <string name="rovo_89_old_icon">rovo89 (old)</string>
+    <string name="confirm_reboots">재부팅 확인</string>
+
+    <string name="notice">공지</string>
+    <string name="details">세부 사항</string>
+    <string name="support_xda">지원 받기</string>
+    <string name="later">나중에</string>
+    <string name="save">저장만</string>
+    <string name="download_location">설치 위치</string>
+    <string name="download_location_summ">APK 파일 설치 위치 (모듈만)</string>
+    <string name="restart_needed">재시작 필요</string>
+    <string name="cache_cleaned">캐시가 지워졌습니다. 재시작해야 합니다.</string>
+    <string name="update_download_list">다운로드의 모듈 목록이 몇 초 후에 로드됩니다.</string>
+    <string name="no_connection_available">연결 없음</string>
+    <string name="not_logcat">EdExposed Framework 및 모듈 로그입니다.\nAndroid 로그캣이 필요하면 Log Catcher Magisk 모듈을 사용해 보십시오.</string>
+    <string name="force_english">강제 영어 설정</string>
+    <string name="warning_language">언어 변경은 앱 재시작 후 적용됩니다.</string>
+    <string name="installation_error">설치 오류</string>
+    <string name="installation_successful">설치 성공</string>
+    <string name="installation_successful_message">%s이 성공적으로 설치되었습니다.</string>
+    <string name="installation_error_message">%1$s을(를) 설치하지 못했습니다. (%2$s)</string>
+    <string name="installation_apk_normal">정상적으로 APK 설치</string>
+    <string name="install_load">설치 중…</string>
+    <string name="install_load_apk">%s 설치 중</string>
+
+    <string name="unstable_build">이것은 불안정한 빌드입니다.\n위험을 무릅쓰고 설치하세요.</string>
+    <string name="unofficial_build">이것은 비공식 빌드입니다.\n위험을 무릅쓰고 설치하세요.</string>
+    <string name="custom_list">대체 모듈 다운로드 목록 사용</string>
+    <string name="custom_list_summ">미러링된 모듈 목록은 로딩 속도를 높일 수 있습니다\n하지만 새로 제출된 모듈이 나중에 나타납니다(약 24시간).\n다운로드 목록을 로드할 때 문제가 발생하면 이 옵션을 선택하십시오.</string>
+
+    <string name="known_issue_wrong_base_directory">잘못된 기본 디렉터리: %1$s</string>
+    <string name="known_issue_missing_base_directory">기본 디렉터리가 없습니다.</string>
+
+    <string name="dexopt_now">Dexopt를 통해 모든 애플리케이션 최적화</string>
+    <string name="speed_now">Dex2oat로 모든 애플리케이션 최적화(속도 모드)</string>
+    <string name="this_may_take_a_while">잠시 기다려 주십시오. 시간이 좀 걸릴 수 있습니다...</string>
+    <string name="take_while_cannot_resore">모든 앱을 최적화하시겠습니까?\n\n이 작업은 시간이 걸릴 수 있으며 취소할 수 없습니다\n\n팁: Xposed 숨기기에서 특정 앱을 최적화할 수 있습니다.</string>
+    <string name="done">완료!</string>
+    <string name="verified_boot_deactivated">Verified 부팅이 비활성화됨</string>
+    <string name="verified_boot_none">Verified 부팅 상태를 감지할 수 없습니다.</string>
+    <string name="verified_boot_active">Verified 부팅이 활성화됨</string>
+    <string name="verified_boot_explanation">Verified 부팅(dm-verity)은 시스템 파티션이 수정된 경우 장치를 부팅하지 못하게 합니다.</string>
+    <string name="ignore_chinese">한자 무시</string>
+    <string name="ignore_chinese_summary">저장소에서 중국어 모듈 숨기기\n모듈은 여전히 검색 창에서 사용할 수 있습니다\n이 옵션을 활성화하면 성능이 저하될 수 있습니다.</string>
+
+    <!-- EdXp related -->
+    <string name="nav_title_black_list">Xposed 숨기기</string>
+    <string name="nav_title_compat_list">호환성 모드</string>
+    <string name="white_list_mode_title">Xposed 숨기기 (화이트)</string>
+    <string name="title_white_list">화이트</string>
+    <string name="title_black_list">블랙</string>
+    <string name="add_package_failed">편집하지 못했습니다. 하나 이상의 설정으로 인해 편집할 수 없습니다.</string>
+    <string name="menu_title_compile_reset">최적화 해제</string>
+    <string name="menu_title_compile_speed">속도 모드를 사용하여 최적화</string>
+    <string name="menu_title_compile_dexopt">Dexopt 모드를 사용하여 최적화</string>
+    <string name="compile_reset_msg">초기화 중 …</string>
+    <string name="compile_speed_msg">최적화 중 …</string>
+    <string name="title_compat_list">호환성 모드</string>
+    <string name="white_list_mode_summary">Xposed Hide(Black): (Default) Selected app will NOT load modules\nXposed Hide(White): Only selected app load modules\nNote: using Xposed Hide might break system-wide modules\' functions</string>
+
+    <string name="coolapk">CoolApk</string>
+    <string name="website">웹사이트</string>
+
+    <string name="solohsu_summary">EdExposed의 메인 크리에이터</string>
+    <string name="mlgmxyysd_summary">EdExposed Manager의 메인 크리에이터</string>
+    <string name="elderdrivers_summary">EdExposed 조직</string>
+    <string name="meowcat_summary">MlgmXyysd의 조직</string>
+    <string name="logs_verbose_disabled">상세 로그를 사용할 수 없습니다.</string>
+    <string name="logs_cannot_read">로그를 읽을 수 없음: \n</string>
+    <string name="app_launch">실행</string>
+    <string name="app_stop">강제 중지</string>
+    <string name="update_description">변경점 업데이트</string>
+    <string name="edxp_installer_installed">EdExposed Manager를 사용하려면 먼저 EdExposed Installer를 제거해야 합니다.</string>
+    <string name="install_time">설치 시간: </string>
+    <string name="update_time">업데이트 시간: </string>
+    <string name="enabled_top">선택한 항목의 우선 순위 지정</string>
+    <string name="list_sort">목록 정렬</string>
+    <string name="notinstalled">dExposed Framework가 설치되지 않았습니다.</string>
+    <string name="app_no_ui">이 앱은 사용자 인터페이스를 제공하지 않습니다.</string>
+    <string name="compile_failed">최적화에 실패했거나 반환 값이 비어 있습니다.</string>
+    <string name="compile_failed_with_info">최적화 실패: </string>
+    <string name="hook_modules">강제 후크 모듈</string>
+    <string name="hook_modules_summary">Force add modules to Xposed Hide(White) and remove from Xposed Hide(Black)\nDisabling this option does not remove modules from Xposed Hide(White)</string>
+    <string name="not_installed">설치되지 않음</string>
+    <string name="ok">확인</string>
+    <string name="support_group_telegram_channel_label">Telegram Channel: @EdXposed</string>
+    <string name="empty_param">매개 변수 비어 있음</string>
+    <string name="reboot_system">System으로 재시작</string>
+    <string name="logs_not_primary_user">로그는 기본 사용자만 읽을 수 있습니다. (uid 0)</string>
+    <string name="selinux_status">SELinux 상태: %s</string>
+    <string name="notice_content">항상 오픈 소스 EdExposed Manager를 사용하고 있는지 확인하십시오. 알 수 없는 소스의 관리자가 악의적인 작업을 수행할 수 있습니다.</string>
+    <string name="btn_dismiss">무시</string>
+    <string name="nav_item_logs">로그</string>
+    <string name="about_libraries_title">오픈소스 라이센스</string>
+    <string name="default_changes_log">&lt;b&gt;아직 업데이트 변경점 없음&lt;/b&gt;&lt;br /&gt;좋은 일은 기다릴 가치가 있다.</string>
+    <string name="xposed_description">EdExposed 향상 기능 사용:\n    - EdExposed에 대한 배경 제한 제거\n    - Xposed가 제대로 작동하는지 확인\n    - Exposed Installer가 설치된 것처럼 가장\n    - EdXposed Manager 숨기기\n    - 클라이언트 측에서 SafetyNet 강제 통과</string>
+    <string name="status_enhancement">향상</string>
+    <string name="settings_group_enhancement">향상 모드</string>
+    <string name="settings_title_enhancement">향상 모드 상태</string>
+    <string name="settings_summary_enhancement">사용할 수 없습니다\n모듈에서 향상 모드를 활성화할 수 있습니다.</string>
+    <string name="settings_summary_enhancement_enabled">활성화됨</string>
+    <string name="settings_title_pretend_xposed_installer">Exposed Installer가 설치된 것처럼 가장합니다.</string>
+    <string name="settings_summary_pretend_xposed_installer">오래된 일부 모듈이지만 유용한 모듈이 작동하도록 하려면 Exposed Installer가 설치되어 있어야 합니다.\n\"모듈\"의 활성화된 모듈에서만 작동합니다.\n경고: 일부 소프트웨어(예: RootBeer)는 이 기능이 켜져 있을 때 EdExposed를 감지할 수 있습니다.</string>
+    <string name="settings_title_hide_edxposed_manager">EdXposed Manager 숨기기</string>
+    <string name="settings_summary_hide_edxposed_manager">다른 앱이 EdExposed Manager를 탐지하지 못하도록 합니다.\n경고: 모듈이 EdExposed Manager UI를 제대로 시작하지 못할 수 있으며, 일부 EdExposed Manager 기능이 시스템에서 제대로 작동하지 않을 수 있습니다.</string>
+    <string name="settings_title_disable_hidden_api_bypass">숨겨진 API 제한 무시 사용 안 함</string>
+    <string name="settings_summary_disable_hidden_api_bypass">숨겨진 API 제한 기능 우회 사용 안 함이 일부 탐지(예: Snapchat)를 통과하며, 이러한 API는 기본적으로 사용할 수 없습니다.\n<b>경고:</b> 이 옵션을 활성화하면 일부 기능이 손상되거나 다른 문제가 발생할 수 있습니다.</string>
+    <string name="settings_title_dark_status_bar">어두운 상태 표시줄 (mask)</string>
+    <string name="download_committer">기여자: %s</string>
+    <string name="settings_title_pass_client_safetynet">클라이언트 SafetyNet을 강제로 통과합니다.</string>
+    <string name="settings_summary_pass_client_safetynet">반환 결과를 수정하여 클라이언트가 SafetyNet check를 통과하도록 합니다.\n이것은 로컬 또는 약한 서버 확인이 있는 일부 프로그램에는 적용되지만 강력한 서버 확인이 있는 프로그램에는 적용되지 않습니다\n이 옵션을 해제하지 않는 것이 좋습니다.</string>
+    <string name="menu_show_system_apps">Show system apps</string>
+    <string name="menu_optimize">최적화</string>
+    <string name="module_activation_scope">활성화 범위</string>
+    <string name="enable_scope">Enable for this module</string>
+    <string name="scope_notice">이 모듈의 활성화 범위를 활성화하려면 활성화 범위를 켜고 응용 프로그램을 선택하십시오.</string>
+    <string name="item_list_filter">필터</string>
+    <string name="menu_show_no_name">이름이 없는 앱 표시</string>
+    <string name="menu_show_no_icon">아이콘 없이 앱 표시</string>
+    <string name="menu_show_user_apps">사용자 앱 표시</string>
+    <string name="settings_theme_dark_auto">시스템 따르기</string>
+    <string name="settings_summary_pure_black">다크 테마가 활성화된 경우 순수 검은색 테마를 사용합니다.</string>
+    <string name="settings_title_use_sandhook">SandHook 변형 백엔드 사용</string>
+    <string name="settings_summary_use_sandhook">이 구성은 기본 사용자 user0에만 유효하며 x86 및 x86_64 아키텍처를 지원하지 않습니다\n재시작이 필요합니다.</string>
+</resources>
