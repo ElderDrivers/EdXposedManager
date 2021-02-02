@@ -120,7 +120,7 @@
     <string name="settings_title_enable_boot_image_deopt">부트 이미지 최적화 해제</string>
     <string name="settings_title_disable_verbose_log">상세 로그 사용 안 함</string>
 
-    <string name="settings_summary_pass_safetynet">Xposed 숨기기(블랙)에 GMS 및 GSF를 추가하고 Xposed 숨기기(화이트)에서 제거\n이 옵션을 사용하지 않도록 설정해도 노출 숨기기(블랙)에서 모듈이 제거되지 않습니다.</string>
+    <string name="settings_summary_pass_safetynet">Xposed 숨기기(블랙)에 GMS 및 GSF를 추가하고 Xposed 숨기기(화이트)에서 제거\n이 옵션을 사용하지 않도록 설정해도 Xposed 숨기기(블랙)에서 모듈이 제거되지 않습니다.</string>
     <string name="settings_summary_stop_verbose_log">상세 로그는 다음에 재부팅할 때까지 캡처가 중지됩니다.</string>
     <string name="settings_summary_stop_log">모듈 로그는 다음에 재부팅할 때까지 캡처가 중지됩니다.</string>
     <string name="settings_summary_disable_modules_log">모듈이 던진 예외 스택은 여전히 정상적으로 잡힙니다.</string>
@@ -326,7 +326,7 @@
     <string name="compile_reset_msg">초기화 중 …</string>
     <string name="compile_speed_msg">최적화 중 …</string>
     <string name="title_compat_list">호환성 모드</string>
-    <string name="white_list_mode_summary">Xposed Hide(Black): (Default) Selected app will NOT load modules\nXposed Hide(White): Only selected app load modules\nNote: using Xposed Hide might break system-wide modules\' functions</string>
+    <string name="white_list_mode_summary">Xposed 숨기기(블랙): (기본값) 선택한 앱은 모듈을 로드하지 않습니다\nXposed 숨기기(흰색): 선택한 앱만 모듈을 불러옵니다.\n참고: Xposed Hide를 사용하면 시스템 전체 모듈이 손상될 수 있습니다.</string>
 
     <string name="coolapk">CoolApk</string>
     <string name="website">웹사이트</string>
@@ -350,7 +350,7 @@
     <string name="compile_failed">최적화에 실패했거나 반환 값이 비어 있습니다.</string>
     <string name="compile_failed_with_info">최적화 실패: </string>
     <string name="hook_modules">강제 후크 모듈</string>
-    <string name="hook_modules_summary">Force add modules to Xposed Hide(White) and remove from Xposed Hide(Black)\nDisabling this option does not remove modules from Xposed Hide(White)</string>
+    <string name="hook_modules_summary">모듈을 강제로 Xposed 숨기기(흰색)에 추가하고 Xposed 숨기기(검은색)에서 제거합니다.\n이 옵션을 사용하지 않도록 설정하면 Xposed 숨기기(흰색)에서 모듈이 제거되지 않습니다.</string>
     <string name="not_installed">설치되지 않음</string>
     <string name="ok">확인</string>
     <string name="support_group_telegram_channel_label">Telegram Channel: @EdXposed</string>
