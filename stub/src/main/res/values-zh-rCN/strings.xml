@@ -2,7 +2,6 @@
 <resources>
     <string name="upgrade_msg">需要升级到完整的 EdXposed Manager 来完成安装。 现在下载？</string>
     <string name="status_0">未（正确）安装</string>
-    <string name="status_1">未激活</string>
     <string name="status_2">已激活</string>
     <string name="status_text">EdXposed 状态</string>
 </resources>

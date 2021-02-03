@@ -5,16 +5,15 @@
 package org.meowcat.edxposed.manager;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.os.Build;
 
 import java.lang.reflect.Field;
 
-import de.robv.android.xposed.installer.XposedApp;
-
 import static android.app.ActivityThread.currentActivityThread;
 
 @SuppressLint("Registered")
-public class MeowCatApplication extends XposedApp {
+public class MeowCatApplication extends Application {
     public static final String TAG = "EdXposedManager";
 
     @Override

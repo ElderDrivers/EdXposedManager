@@ -11,23 +11,10 @@ import android.text.SpannableString;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 
-import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.util.InstallZipUtil;
+import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
+import static org.meowcat.edxposed.manager.Constants.getInstalledXposedVersion;
 
 public class MainActivity extends Activity {
-
-    private static int getXposedStatus(String installedXposedVersion) {
-        if (installedXposedVersion != null) {
-            int installedXposedVersionInt = InstallZipUtil.extractIntPart(installedXposedVersion);
-            if (installedXposedVersionInt == XposedApp.getActiveXposedVersion()) {
-                return 2;
-            } else {
-                return 1;
-            }
-        } else {
-            return 0;
-        }
-    }
 
     public static Uri parseURL(String str) {
         if (str == null || str.isEmpty())
@@ -43,23 +30,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String installedXposedVersion;
-        try {
-            installedXposedVersion = XposedApp.getInstance().mXposedProp.getVersion();
-        } catch (NullPointerException e) {
-            installedXposedVersion = null;
-        }
+        String installedXposedVersion = getInstalledXposedVersion();
         String xposedStatus;
-        switch (getXposedStatus(installedXposedVersion)) {
-            case 2:
-                xposedStatus = getString(R.string.status_2) + " (" + installedXposedVersion + ")";
-                break;
-            case 1:
-                xposedStatus = getString(R.string.status_1) + " (" + installedXposedVersion + ")";
-                break;
-            case 0:
-            default:
-                xposedStatus = getString(R.string.status_0);
+        if (installedXposedVersion != null) {
+            xposedStatus = getString(R.string.status_2) + " (v" + getActiveXposedVersion() + ".0-" + installedXposedVersion + ")";
+        } else {
+            xposedStatus = getString(R.string.status_0);
         }
         new AlertDialog.Builder(this)
                 .setCancelable(false)
