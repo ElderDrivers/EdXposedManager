@@ -29,6 +29,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import static org.meowcat.edxposed.manager.Constants.getBaseDir;
 import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
@@ -60,20 +61,20 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
             Color.parseColor("#607D8B"),
             Color.parseColor("#FA7298")
     };
-    private static final File mDisableForceClientSafetyNetFlag = new File(XposedApp.BASE_DIR + "conf/disable_force_client_safetynet");
-    private static final File mPretendXposedInstallerFlag = new File(XposedApp.BASE_DIR + "conf/pretend_xposed_installer");
-    private static final File mHideEdXposedManagerFlag = new File(XposedApp.BASE_DIR + "conf/hide_edxposed_manager");
-    private static final File mEnableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/enable_resources");
-    private static final File mDisableHiddenAPIBypassFlag = new File(XposedApp.BASE_DIR + "conf/disable_hidden_api_bypass");
-    private static final File mDynamicModulesFlag = new File(XposedApp.BASE_DIR + "conf/dynamicmodules");
-    private static final File mWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/usewhitelist");
-    private static final File mDeoptBootFlag = new File(XposedApp.BASE_DIR + "conf/deoptbootimage");
-    private static final File mDisableVerboseLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_verbose_log");
-    private static final File mDisableModulesLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_modules_log");
-    private static final File mVerboseLogProcessID = new File(XposedApp.BASE_DIR + "log/all.pid");
-    private static final File mModulesLogProcessID = new File(XposedApp.BASE_DIR + "log/error.pid");
-    private static final File mUseSandHookFlag = new File(XposedApp.BASE_DIR, "conf/use_sandhook");
-    private static final File mDisableSandHookFlag = new File(XposedApp.BASE_DIR, "conf/disable_sandhook");
+//    private static final File mDisableForceClientSafetyNetFlag = new File(getBaseDir() + "conf/disable_force_client_safetynet");
+//    private static final File mPretendXposedInstallerFlag = new File(getBaseDir() + "conf/pretend_xposed_installer");
+//    private static final File mHideEdXposedManagerFlag = new File(getBaseDir() + "conf/hide_edxposed_manager");
+    private static final File mEnableResourcesFlag = new File(getBaseDir() + "conf/enable_resources");
+    private static final File mDisableHiddenAPIBypassFlag = new File(getBaseDir() + "conf/disable_hidden_api_bypass");
+    private static final File mDynamicModulesFlag = new File(getBaseDir() + "conf/dynamicmodules");
+    private static final File mWhiteListModeFlag = new File(getBaseDir() + "conf/usewhitelist");
+    private static final File mDeoptBootFlag = new File(getBaseDir() + "conf/deoptbootimage");
+    private static final File mDisableVerboseLogsFlag = new File(getBaseDir() + "conf/disable_verbose_log");
+    private static final File mDisableModulesLogsFlag = new File(getBaseDir() + "conf/disable_modules_log");
+    private static final File mVerboseLogProcessID = new File(getBaseDir() + "log/all.pid");
+    private static final File mModulesLogProcessID = new File(getBaseDir() + "log/error.pid");
+    private static final File mUseSandHookFlag = new File(getBaseDir(), "conf/use_sandhook");
+    private static final File mDisableSandHookFlag = new File(getBaseDir(), "conf/disable_sandhook");
     private static final String DIALOG_FRAGMENT_TAG = "list_preference_dialog";
     @SuppressLint("StaticFieldLeak")
     static SwitchPreference navBar;
@@ -127,8 +128,8 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
             return true;
         });
 
-        Preference enhancement_status = findPreference("enhancement_status");
-        Objects.requireNonNull(enhancement_status).setSummary(StatusInstallerFragment.isEnhancementEnabled() ? R.string.settings_summary_enhancement_enabled : R.string.settings_summary_enhancement);
+//        Preference enhancement_status = findPreference("enhancement_status");
+//        Objects.requireNonNull(enhancement_status).setSummary(StatusInstallerFragment.isEnhancementEnabled() ? R.string.settings_summary_enhancement_enabled : R.string.settings_summary_enhancement);
 
         SwitchPreference darkStatusBarPref = findPreference("dark_status_bar");
         Objects.requireNonNull(darkStatusBarPref).setOnPreferenceChangeListener((preference, newValue) -> {
@@ -144,17 +145,17 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         Objects.requireNonNull(prefUseSandHook).setChecked(mUseSandHookFlag.exists());
         prefUseSandHook.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mUseSandHookFlag, (boolean) newValue));
 
-        SwitchPreference prefPassClientSafetyNet = findPreference("pass_client_safetynet");
-        Objects.requireNonNull(prefPassClientSafetyNet).setChecked(!mDisableForceClientSafetyNetFlag.exists());
-        prefPassClientSafetyNet.setOnPreferenceChangeListener((preference, newValue) -> !setFlag(mDisableHiddenAPIBypassFlag, !(boolean) newValue));
-
-        SwitchPreference prefPretendXposedInstaller = findPreference("pretend_xposed_installer");
-        Objects.requireNonNull(prefPretendXposedInstaller).setChecked(mPretendXposedInstallerFlag.exists());
-        prefPretendXposedInstaller.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mPretendXposedInstallerFlag, (boolean) newValue));
-
-        SwitchPreference prefHideEdXposedManager = findPreference("hide_edxposed_manager");
-        Objects.requireNonNull(prefHideEdXposedManager).setChecked(mHideEdXposedManagerFlag.exists());
-        prefHideEdXposedManager.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mHideEdXposedManagerFlag, (boolean) newValue));
+//        SwitchPreference prefPassClientSafetyNet = findPreference("pass_client_safetynet");
+//        Objects.requireNonNull(prefPassClientSafetyNet).setChecked(!mDisableForceClientSafetyNetFlag.exists());
+//        prefPassClientSafetyNet.setOnPreferenceChangeListener((preference, newValue) -> !setFlag(mDisableHiddenAPIBypassFlag, !(boolean) newValue));
+//
+//        SwitchPreference prefPretendXposedInstaller = findPreference("pretend_xposed_installer");
+//        Objects.requireNonNull(prefPretendXposedInstaller).setChecked(mPretendXposedInstallerFlag.exists());
+//        prefPretendXposedInstaller.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mPretendXposedInstallerFlag, (boolean) newValue));
+//
+//        SwitchPreference prefHideEdXposedManager = findPreference("hide_edxposed_manager");
+//        Objects.requireNonNull(prefHideEdXposedManager).setChecked(mHideEdXposedManagerFlag.exists());
+//        prefHideEdXposedManager.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mHideEdXposedManagerFlag, (boolean) newValue));
 
         SwitchPreference prefWhiteListMode = findPreference("white_list_switch");
         Objects.requireNonNull(prefWhiteListMode).setChecked(mWhiteListModeFlag.exists());

@@ -221,33 +221,33 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:key="group_enhancement"
-        android:title="@string/settings_group_enhancement">
+<!--    <PreferenceCategory-->
+<!--        android:key="group_enhancement"-->
+<!--        android:title="@string/settings_group_enhancement">-->
 
-        <Preference
-            android:key="enhancement_status"
-            android:summary="@string/settings_summary_enhancement"
-            android:title="@string/settings_title_enhancement" />
+<!--        <Preference-->
+<!--            android:key="enhancement_status"-->
+<!--            android:summary="@string/settings_summary_enhancement"-->
+<!--            android:title="@string/settings_title_enhancement" />-->
 
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="pass_client_safetynet"
-            android:summary="@string/settings_summary_pass_client_safetynet"
-            android:title="@string/settings_title_pass_client_safetynet" />
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="true"-->
+<!--            android:key="pass_client_safetynet"-->
+<!--            android:summary="@string/settings_summary_pass_client_safetynet"-->
+<!--            android:title="@string/settings_title_pass_client_safetynet" />-->
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="pretend_xposed_installer"
-            android:summary="@string/settings_summary_pretend_xposed_installer"
-            android:title="@string/settings_title_pretend_xposed_installer" />
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="false"-->
+<!--            android:key="pretend_xposed_installer"-->
+<!--            android:summary="@string/settings_summary_pretend_xposed_installer"-->
+<!--            android:title="@string/settings_title_pretend_xposed_installer" />-->
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="hide_edxposed_manager"
-            android:summary="@string/settings_summary_hide_edxposed_manager"
-            android:title="@string/settings_title_hide_edxposed_manager" />
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="false"-->
+<!--            android:key="hide_edxposed_manager"-->
+<!--            android:summary="@string/settings_summary_hide_edxposed_manager"-->
+<!--            android:title="@string/settings_title_hide_edxposed_manager" />-->
 
-    </PreferenceCategory>
+<!--    </PreferenceCategory>-->
 
 </PreferenceScreen>
