@@ -33,15 +33,15 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
+import static org.meowcat.edxposed.manager.Constants.getBaseDir;
 
 public class AppHelper {
 
-    static final String BASE_PATH = XposedApp.BASE_DIR;
+    static final String BASE_PATH = getBaseDir();
     private static final String WHITE_LIST_PATH = "conf/whitelist/";
     private static final String BLACK_LIST_PATH = "conf/blacklist/";
     private static final String COMPAT_LIST_PATH = "conf/compatlist/";
     private static final String WHITE_LIST_MODE = "conf/usewhitelist";
-    private static final String BLACK_LIST_MODE = "conf/blackwhitelist";
 
     private static final List<String> FORCE_WHITE_LIST = new ArrayList<>(StatusInstallerFragment.isEnhancementEnabled() ? Arrays.asList(BuildConfig.APPLICATION_ID, "android") : Collections.singletonList(BuildConfig.APPLICATION_ID));
     private static final List<String> SAFETYNET_BLACK_LIST = new ArrayList<>(Arrays.asList("com.google.android.gms", "com.google.android.gsf"));

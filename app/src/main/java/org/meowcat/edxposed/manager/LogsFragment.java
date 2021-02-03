@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
+import static org.meowcat.edxposed.manager.Constants.getBaseDir;
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 import static org.meowcat.edxposed.manager.adapter.LogsHelper.isMainUser;
 
@@ -59,7 +60,7 @@ public class LogsFragment extends Fragment {
     private final String LOG_SUFFIX = ".log";
     @SuppressWarnings("FieldCanBeLocal")
     private final String LOG_OLD_SUFFIX = ".log.old";
-    private final String LOG_PATH = XposedApp.BASE_DIR + "log/";
+    private final String LOG_PATH = getBaseDir() + "log/";
     private RecyclerView mRecyclerView;
     private TabLayout mTabLayout;
     private LogsAdapter adapter;

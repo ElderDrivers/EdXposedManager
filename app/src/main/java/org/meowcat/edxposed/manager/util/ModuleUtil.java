@@ -37,11 +37,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
+import static org.meowcat.edxposed.manager.Constants.getEnabledModulesListFile;
+import static org.meowcat.edxposed.manager.Constants.getModulesListFile;
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 public final class ModuleUtil {
     // xposedminversion below this
-    private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/modules.list";
     private static final String PLAY_STORE_PACKAGE = "com.android.vending";
     public static int MIN_MODULE_VERSION = 2; // reject modules with
     private static ModuleUtil mInstance = null;
@@ -204,18 +206,17 @@ public final class ModuleUtil {
     public synchronized void updateModulesList(boolean showToast, View view) {
         try {
             Log.i(TAG, "ModuleUtil -> updating modules.list");
-            int installedXposedVersion = XposedApp.getActiveXposedVersion();
             boolean disabled = StatusInstallerFragment.DISABLE_FILE.exists();
-            if (!XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false) && !disabled && installedXposedVersion <= 0 && showToast) {
+            if (!XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false) && !disabled && getActiveXposedVersion() <= 0 && showToast) {
                 Snackbar.make(view, R.string.notinstalled, Snackbar.LENGTH_SHORT).show();
                 return;
             }
-            PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
-            PrintWriter enabledModulesList = new PrintWriter(XposedApp.ENABLED_MODULES_LIST_FILE);
+            PrintWriter modulesList = new PrintWriter(getModulesListFile());
+            PrintWriter enabledModulesList = new PrintWriter(getEnabledModulesListFile());
             List<InstalledModule> enabledModules = getEnabledModules();
             for (InstalledModule module : enabledModules) {
 
-                if (!XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false) && (!disabled && (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)) && showToast) {
+                if (!XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false) && (!disabled && (module.minVersion > getActiveXposedVersion() || module.minVersion < MIN_MODULE_VERSION)) && showToast) {
                     Snackbar.make(view, R.string.notinstalled, Snackbar.LENGTH_SHORT).show();
                     continue;
                 }
@@ -236,8 +237,8 @@ public final class ModuleUtil {
                 Snackbar.make(view, R.string.xposed_module_list_updated, Snackbar.LENGTH_SHORT).show();
             }
         } catch (IOException e) {
-            Log.e(TAG, "ModuleUtil -> cannot write " + MODULES_LIST_FILE, e);
-            Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e, Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "ModuleUtil -> cannot write " + getModulesListFile(), e);
+            Toast.makeText(mApp, "cannot write " + getModulesListFile() + e, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -296,7 +297,7 @@ public final class ModuleUtil {
                 this.minVersion = 0;
                 this.description = "";
             } else {
-                int version = XposedApp.getActiveXposedVersion();
+                int version = getActiveXposedVersion();
                 if (version > 0 && XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false)) {
                     this.minVersion = version;
                 } else {

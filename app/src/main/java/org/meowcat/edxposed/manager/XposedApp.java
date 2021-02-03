@@ -3,6 +3,7 @@ package org.meowcat.edxposed.manager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -46,17 +47,16 @@ import java.util.Locale;
 import java.util.Objects;
 
 import dalvik.system.VMRuntime;
-import de.robv.android.xposed.installer.util.InstallZipUtil;
 
 import static android.os.Build.SUPPORTED_32_BIT_ABIS;
 import static android.os.Build.SUPPORTED_64_BIT_ABIS;
+import static org.meowcat.edxposed.manager.Constants.getBaseDir;
 import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 import static org.meowcat.edxposed.manager.adapter.AppHelper.FORCE_WHITE_LIST_MODULE;
 
 @SuppressLint("Registered")
-public class XposedApp extends de.robv.android.xposed.installer.XposedApp implements ActivityLifecycleCallbacks {
-    public static String BASE_DIR = null;
-    public static String ENABLED_MODULES_LIST_FILE = null;
+public class XposedApp extends Application implements ActivityLifecycleCallbacks {
+
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_dvdandroid, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_cornie, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
     @SuppressLint("StaticFieldLeak")
@@ -89,10 +89,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
     public static XposedApp getInstance() {
         return mInstance;
-    }
-
-    public static InstallZipUtil.XposedProp getXposedProp() {
-        return de.robv.android.xposed.installer.XposedApp.getInstance().mXposedProp;
     }
 
     public static void runOnUiThread(Runnable action) {
@@ -185,7 +181,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void mkdir(String dir) {
-        dir = BASE_DIR + dir;
+        dir = getBaseDir() + dir;
         new File(dir).mkdir();
     }
 
@@ -223,8 +219,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
         }
 
         final ApplicationInfo appInfo = getApplicationInfo();
-        BASE_DIR = appInfo.deviceProtectedDataDir + "/";
-        ENABLED_MODULES_LIST_FILE = BASE_DIR + "conf/enabled_modules.list";
 
         mInstance = this;
         mUiThread = Thread.currentThread();
@@ -232,7 +226,6 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
 
         mPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        de.robv.android.xposed.installer.XposedApp.getInstance().reloadXposedProp();
         createDirectories();
         delete(new File(Environment.getExternalStorageDirectory() + "/Download/EdXposedManager/.temp"));
         NotificationUtil.init();
@@ -288,7 +281,7 @@ public class XposedApp extends de.robv.android.xposed.installer.XposedApp implem
     private void createDirectories() {
         mkdir("conf");
         mkdir("log");
-        final File mBlackWhiteListModeFlag = new File(XposedApp.BASE_DIR + "conf/blackwhitelist");
+        final File mBlackWhiteListModeFlag = new File(getBaseDir() + "conf/blackwhitelist");
         if (!mBlackWhiteListModeFlag.exists()) {
             try {
                 mBlackWhiteListModeFlag.createNewFile();

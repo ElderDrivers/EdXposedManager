@@ -436,10 +436,8 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
                 callback.onItemClick(v, info);
             }
         });
-        Log.d(TAG, "Scope: load for app: " + info.packageName);
         if (this instanceof ActivationScopeAdapter) {
             if (getRecommendedScopeList().contains(info.packageName)) {
-                Log.d(TAG, "Scope: contains");
                 holder.appScopeTip.setVisibility(View.VISIBLE);
             }
         }

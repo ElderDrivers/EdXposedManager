@@ -82,7 +82,8 @@ import java.util.Set;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 import static androidx.constraintlayout.widget.Constraints.TAG;
-import static de.robv.android.xposed.installer.XposedApp.getActiveXposedVersion;
+import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
+import static org.meowcat.edxposed.manager.Constants.getEnabledModulesListFile;
 import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static org.meowcat.edxposed.manager.XposedApp.createFolder;
 
@@ -220,7 +221,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        installedXposedVersion = XposedApp.getActiveXposedVersion();
+        installedXposedVersion = getActiveXposedVersion();
         if (installedXposedVersion <= 0) {
             addHeader();
         }
@@ -339,7 +340,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
         boolean refresh = false;
         File enabledModulesPath = new File(createFolder(), "enabled_modules.list");
         File installedModulesPath = new File(createFolder(), "installed_modules.list");
-        File listModules = new File(XposedApp.ENABLED_MODULES_LIST_FILE);
+        File listModules = new File(getEnabledModulesListFile());
 
         mClickedMenuItem = item;
 
@@ -584,7 +585,7 @@ public class ModulesFragment extends BaseFragment implements ModuleListener, Ada
             appMenu.getMenu().removeItem(R.id.menu_support);
         }
         if (getActiveXposedVersion() < 92 || installedModule.packageName.equals(BuildConfig.APPLICATION_ID)) {
-//            appMenu.getMenu().removeItem(R.id.menu_activation_scope);
+            appMenu.getMenu().removeItem(R.id.menu_activation_scope);
         }
         if (getSettingsIntent(installedModule.packageName) == null) {
             appMenu.getMenu().removeItem(R.id.menu_launch);
