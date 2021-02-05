@@ -4,10 +4,10 @@
         android:id="@+id/app_menu_launch"
         android:icon="@drawable/ic_launch"
         android:title="@string/app_launch" />
-    <item
-        android:id="@+id/app_menu_stop"
-        android:icon="@drawable/ic_stop"
-        android:title="@string/app_stop" />
+<!--    <item-->
+<!--        android:id="@+id/app_menu_stop"-->
+<!--        android:icon="@drawable/ic_stop"-->
+<!--        android:title="@string/app_stop" />-->
     <item
         android:id="@+id/app_menu_compile_speed"
         android:icon="@drawable/ic_flash"
