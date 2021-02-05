@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,7 +45,6 @@ import java.util.List;
 import java.util.Locale;
 
 import static org.meowcat.edxposed.manager.BaseFragment.areYouSure;
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 import static org.meowcat.edxposed.manager.adapter.ActivationScopeAdapter.getRecommendedScopeList;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> implements Filterable {
@@ -439,6 +437,8 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
         if (this instanceof ActivationScopeAdapter) {
             if (getRecommendedScopeList().contains(info.packageName)) {
                 holder.appScopeTip.setVisibility(View.VISIBLE);
+            } else {
+                holder.appScopeTip.setVisibility(View.GONE);
             }
         }
     }
