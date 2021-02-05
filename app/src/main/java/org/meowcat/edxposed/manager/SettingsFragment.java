@@ -65,10 +65,10 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
 //    private static final File mPretendXposedInstallerFlag = new File(getBaseDir() + "conf/pretend_xposed_installer");
 //    private static final File mHideEdXposedManagerFlag = new File(getBaseDir() + "conf/hide_edxposed_manager");
     private static final File mEnableResourcesFlag = new File(getBaseDir() + "conf/enable_resources");
-    private static final File mDisableHiddenAPIBypassFlag = new File(getBaseDir() + "conf/disable_hidden_api_bypass");
-    private static final File mDynamicModulesFlag = new File(getBaseDir() + "conf/dynamicmodules");
+//    private static final File mDisableHiddenAPIBypassFlag = new File(getBaseDir() + "conf/disable_hidden_api_bypass");
+//    private static final File mDynamicModulesFlag = new File(getBaseDir() + "conf/dynamicmodules");
     private static final File mWhiteListModeFlag = new File(getBaseDir() + "conf/usewhitelist");
-    private static final File mDeoptBootFlag = new File(getBaseDir() + "conf/deoptbootimage");
+//    private static final File mDeoptBootFlag = new File(getBaseDir() + "conf/deoptbootimage");
     private static final File mDisableVerboseLogsFlag = new File(getBaseDir() + "conf/disable_verbose_log");
     private static final File mDisableModulesLogsFlag = new File(getBaseDir() + "conf/disable_modules_log");
     private static final File mVerboseLogProcessID = new File(getBaseDir() + "log/all.pid");
@@ -169,21 +169,21 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
         Objects.requireNonNull(prefModulesLogs).setChecked(mDisableModulesLogsFlag.exists());
         prefModulesLogs.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDisableModulesLogsFlag, (boolean) newValue));
 
-        SwitchPreference prefEnableDeopt = findPreference("enable_boot_image_deopt");
-        Objects.requireNonNull(prefEnableDeopt).setChecked(mDeoptBootFlag.exists());
-        prefEnableDeopt.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDeoptBootFlag, (boolean) newValue));
-
-        SwitchPreference prefDynamicResources = findPreference("is_dynamic_modules");
-        Objects.requireNonNull(prefDynamicResources).setChecked(mDynamicModulesFlag.exists());
-        prefDynamicResources.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDynamicModulesFlag, (boolean) newValue));
+//        SwitchPreference prefEnableDeopt = findPreference("enable_boot_image_deopt");
+//        Objects.requireNonNull(prefEnableDeopt).setChecked(mDeoptBootFlag.exists());
+//        prefEnableDeopt.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDeoptBootFlag, (boolean) newValue));
+//
+//        SwitchPreference prefDynamicResources = findPreference("is_dynamic_modules");
+//        Objects.requireNonNull(prefDynamicResources).setChecked(mDynamicModulesFlag.exists());
+//        prefDynamicResources.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDynamicModulesFlag, (boolean) newValue));
 
         SwitchPreference prefEnableResources = findPreference("enable_resources");
         Objects.requireNonNull(prefEnableResources).setChecked(mEnableResourcesFlag.exists());
         prefEnableResources.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mEnableResourcesFlag, (boolean) newValue));
 
-        SwitchPreference prefDisableHiddenAPIBypass = findPreference("disable_hidden_api_bypass");
-        Objects.requireNonNull(prefDisableHiddenAPIBypass).setChecked(mDisableHiddenAPIBypassFlag.exists());
-        prefDisableHiddenAPIBypass.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDisableHiddenAPIBypassFlag, (boolean) newValue));
+//        SwitchPreference prefDisableHiddenAPIBypass = findPreference("disable_hidden_api_bypass");
+//        Objects.requireNonNull(prefDisableHiddenAPIBypass).setChecked(mDisableHiddenAPIBypassFlag.exists());
+//        prefDisableHiddenAPIBypass.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mDisableHiddenAPIBypassFlag, (boolean) newValue));
 
         Objects.requireNonNull(colors).setOnPreferenceClickListener(this);
         Objects.requireNonNull(customIcon).setOnPreferenceChangeListener(iconChange);

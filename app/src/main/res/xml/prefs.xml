@@ -154,23 +154,23 @@
             android:summary="@string/white_list_mode_summary"
             android:title="@string/white_list_mode_title" />
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="is_dynamic_modules"
-            android:summary="@string/settings_summary_dynamic_modules"
-            android:title="@string/settings_title_dynamic_modules" />
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="false"-->
+<!--            android:key="is_dynamic_modules"-->
+<!--            android:summary="@string/settings_summary_dynamic_modules"-->
+<!--            android:title="@string/settings_title_dynamic_modules" />-->
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="enable_boot_image_deopt"
-            android:summary="@string/settings_summary_enable_boot_image_deopt"
-            android:title="@string/settings_title_enable_boot_image_deopt" />
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="false"-->
+<!--            android:key="enable_boot_image_deopt"-->
+<!--            android:summary="@string/settings_summary_enable_boot_image_deopt"-->
+<!--            android:title="@string/settings_title_enable_boot_image_deopt" />-->
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="disable_hidden_api_bypass"
-            android:summary="@string/settings_summary_disable_hidden_api_bypass"
-            android:title="@string/settings_title_disable_hidden_api_bypass" />
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="false"-->
+<!--            android:key="disable_hidden_api_bypass"-->
+<!--            android:summary="@string/settings_summary_disable_hidden_api_bypass"-->
+<!--            android:title="@string/settings_title_disable_hidden_api_bypass" />-->
 
         <SwitchPreference
             android:defaultValue="false"
