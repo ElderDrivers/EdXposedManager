@@ -163,11 +163,6 @@ public class WelcomeActivity extends BaseActivity
                 setTitle(R.string.nav_title_black_list);
                 navFragment = new ApplicationFragment();
                 break;
-            case R.id.nav_compat_list:
-                mPrevSelectedId = itemId;
-                setTitle(R.string.title_compat_list);
-                navFragment = new CompatListFragment();
-                break;
             case R.id.drawer_item_5:
                 startActivity(new Intent(this, SettingsActivity.class));
                 mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
@@ -254,7 +249,7 @@ public class WelcomeActivity extends BaseActivity
                 getPackageName() + "_preferences", MODE_PRIVATE).getBoolean("snack_bar", true);
 
         if (moduleUpdateAvailable && snackBar) {
-            Snackbar.make(parentLayout, R.string.modules_updates_available, Snackbar.LENGTH_LONG).setAction(getString(R.string.view), view -> switchFragment(4)).show();
+            Snackbar.make(parentLayout, R.string.modules_updates_available, Snackbar.LENGTH_LONG).setAction(getString(R.string.view), view -> switchFragment(3)).show();
         }
     }
 

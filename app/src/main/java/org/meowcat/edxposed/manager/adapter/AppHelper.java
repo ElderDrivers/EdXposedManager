@@ -1,7 +1,6 @@
 package org.meowcat.edxposed.manager.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -30,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 import static org.meowcat.edxposed.manager.Constants.getBaseDir;
@@ -271,14 +269,14 @@ public class AppHelper {
                         Snackbar.make(view, R.string.app_no_ui, Snackbar.LENGTH_LONG).show();
                     }
                     break;
-                case R.id.app_menu_stop:
-                    try {
-                        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-                        Objects.requireNonNull(manager).killBackgroundProcesses(info.packageName);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                    break;
+//                case R.id.app_menu_stop:
+//                    try {
+//                        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+//                        Objects.requireNonNull(manager).killBackgroundProcesses(info.packageName);
+//                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+//                    }
+//                    break;
                 case R.id.app_menu_compile_speed:
                     CompileUtil.compileSpeed(context, fragmentManager, info);
                     break;

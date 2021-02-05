@@ -87,15 +87,11 @@ public class ApplicationFragment extends Fragment implements AppAdapter.Callback
     }
 
     private void changeTitle(boolean isWhiteListMode) {
-        requireActivity().setTitle(String.format("%s(%s)", getString(R.string.nav_title_black_list), getString(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list)));
+        requireActivity().setTitle(String.format("%s (%s)", getString(R.string.nav_title_black_list), getString(isWhiteListMode ? R.string.title_white_list : R.string.title_black_list)));
     }
 
     private boolean isWhiteListMode() {
         return AppHelper.isWhiteListMode();
-    }
-
-    private boolean isBlackListMode() {
-        return true;
     }
 
     @Override

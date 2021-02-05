@@ -14,8 +14,8 @@ android {
         minSdkVersion 24
         //noinspection OldTargetApi
         targetSdkVersion 27
-        versionCode 46000
-        versionName "4.6.0"
+        versionCode 46100
+        versionName "4.6.1"
     }
 
     applicationVariants.all { variant ->
