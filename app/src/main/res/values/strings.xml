@@ -355,6 +355,8 @@
     <string name="compile_speed_msg">Optimizing …</string>
     <string name="title_compat_list">Compat Mode</string>
     <string name="white_list_mode_summary">Xposed Hide(Black): (Default) Selected app will NOT load modules\nXposed Hide(White): Only selected app load modules\nNote: using Xposed Hide might break system-wide modules\' functions</string>
+    <string name="auto_add_whitelist_from_scope_title">automatically add whitelist from activation scope</string>
+    <string name="auto_add_whitelist_from_scope_summary">all application will be showed in activation scope, whitelist will be automatically added/removed from activation scope</string>
 
     <string name="coolapk">CoolApk</string>
     <string name="website">Website</string>

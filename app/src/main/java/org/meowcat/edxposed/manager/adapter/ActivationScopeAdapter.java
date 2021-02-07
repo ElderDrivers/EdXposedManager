@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.meowcat.edxposed.manager.R;
+import org.meowcat.edxposed.manager.XposedApp;
 import org.meowcat.edxposed.manager.util.ModuleUtil;
 import org.meowcat.edxposed.manager.util.ToastUtil;
 import org.meowcat.edxposed.manager.widget.MasterSwitch;
@@ -21,9 +22,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.meowcat.edxposed.manager.adapter.AppHelper.BASE_PATH;
+import static org.meowcat.edxposed.manager.adapter.AppHelper.addPackageName;
+import static org.meowcat.edxposed.manager.adapter.AppHelper.getWhiteList;
+import static org.meowcat.edxposed.manager.adapter.AppHelper.removePackageName;
 
 public class ActivationScopeAdapter extends AppAdapter {
 
@@ -127,6 +133,29 @@ public class ActivationScopeAdapter extends AppAdapter {
         return checkedList;
     }
 
+    private void addorremovewhitelist(Boolean addorremove, String pkgname) {
+        if (!XposedApp.getPreferences().getBoolean("auto_add_whitelist_from_scope", false)) return;
+        List<String> whiteList = getWhiteList();
+        Set<String> modulelist = new HashSet<>(ModuleUtil.getInstance().getModules().keySet());
+        modulelist.remove(modulePackageName);
+        Set<String> scopeofothermodule = new HashSet<>();
+        for (String othermodule : modulelist) {
+            scopeofothermodule.addAll(getScopeList(othermodule));
+        }
+
+        if (addorremove) {
+            if (!whiteList.contains(pkgname)) {
+                addPackageName(true, pkgname);
+            }
+        } else {
+            if (whiteList.contains(pkgname)) {
+                if (!scopeofothermodule.contains(pkgname)) {
+                    removePackageName(true,pkgname);
+                }
+            }
+        }
+    }
+
     @Override
     protected void onCheckedChange(CompoundButton view, boolean isChecked, ApplicationInfo info) {
         ModuleUtil moduleUtil = ModuleUtil.getInstance();
@@ -134,8 +163,10 @@ public class ActivationScopeAdapter extends AppAdapter {
 
         if (isChecked) {
             checkedList.add(info.packageName);
+            addorremovewhitelist(true, info.packageName);
         } else {
             checkedList.remove(info.packageName);
+            addorremovewhitelist(false, info.packageName);
         }
         if (!saveScopeList(modulePackageName, enabled, checkedList)) {
             ToastUtil.showShortToast(context, R.string.add_package_failed);
