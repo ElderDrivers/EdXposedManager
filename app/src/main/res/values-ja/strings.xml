@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- Do NOT translate these -->
+    <string name="app_name" translatable="false">EdXposed Manager</string>
+    <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
+    <string name="solohsu" translatable="false">givein2u</string>
+    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
+    <string name="elderdrivers" translatable="false">Elder Drivers</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="xda" translatable="false">XDA</string>
+    <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
+    <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
+    <string name="about_support" translatable="false">http://edxp.meowcat.org/faq</string>
+    <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
+    <string name="about_source" translatable="false">https://github.com/ElderDrivers/EdXposedManager/</string>
+    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
+    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
+    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
+    <string name="mlgmxyysd_coolapk" translatable="false">http://www.coolapk.com/u/814297</string>
+    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
+    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
+    <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
+    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
+    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
+    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
+    <string name="group_qq_link" translatable="false">https://jq.qq.com/?k=57IiX8R</string>
+    <string name="group_telegram_link" translatable="false">http://t.me/Code_of_MeowCat</string>
+    <string name="group_telegram_channel_link" translatable="false">http://t.me/EdXposed</string>
+
+    <!-- General/various strings -->
+    <string name="menuSend">共有</string>
+    <string name="menuSaveToSd">SDカードに保存</string>
+    <string name="download_progress">%1$,d / %2$,d kB</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="tabInstall">デバイス情報</string>
+    <string name="tabDownload">ダウンロード</string>
+    <string name="welcome_framework_update_available">EdXposedフレームワークのアップデートが見つかりました。(%s)</string>
+
+    <!-- navigation view items -->
+    <string name="nav_item_install" translatable="false">EdXposed</string>
+    <string name="nav_item_modules">モジュール</string>
+    <string name="nav_item_download">ダウンロード</string>
+    <string name="nav_item_logs_verbose">詳細なログ</string>
+    <string name="nav_item_logs_modules">モジュールのログ</string>
+    <string name="nav_item_settings">設定</string>
+    <string name="nav_item_about">このアプリについて</string>
+    <string name="navigation_drawer_open">ナビゲーションメニューを開く</string>
+    <string name="navigation_drawer_close">ナビゲーションメニューを閉じる</string>
+
+    <!-- Installer tab -->
+    <string name="install">インストール/アップデート</string>
+    <string name="uninstall">アンインストール</string>
+    <string name="soft_reboot">ソフトリブート</string>
+    <string name="reboot">再起動</string>
+    <string name="reboot_">再起動</string>
+    <string name="areyousure">宜しいですか？</string>
+    <string name="phone_not_compatible">EdXposedはまだAndroid SDKバージョン %1$d またはプロセッサのアーキテクチャ %2$s に対応していません。</string>
+    <string name="reboot_failed">再起動に失敗しました。デバイス標準の再起動オプションをご利用ください。</string>
+    <string name="install_warning_title">警告!</string>
+    <string name="install_warning">EdXposedをインストールした後、デバイスが正常に起動しなくなるなどの問題が発生する場合があります。\n\nあなたが \"ソフトブリック\" や \"ブートループ\" という言葉を知らない場合、もしくはそのような状況から復旧する方法を理解していない場合は、 EdXposedのインストールや使用を <b>しないで</b> ください。\n\nいかなる場合でも、なにかする前にバックアップすることを推奨します。</string>
+    <string name="dont_show_again">再度表示しない</string>
+    <string name="install_known_issue">インストール時に既知の問題:\n\"%s\" が発生しました。\n\nEdXposedが正常に機能していません。</string>
+    <string name="install_known_issue_details">詳細…</string>
+    <string name="installed_lollipop">EdXposedフレームワークは有効です。</string>
+    <string name="installed_lollipop_inactive">EdXposedはインストールされていますが、有効化されていません。</string>
+    <string name="modules_updates_available">モジュールのアップデートが見つかりました。</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Root権限にアクセスできませんでした。\n\nお使いの端末が正常にRoot化されており、権限を許可していることをご確認ください。</string>
+
+    <!-- Modules -->
+    <string name="module_is_not_activated_yet">EdXposedモジュールはまだ有効化されていません</string>
+    <string name="module_is_not_activated_yet_detailed">%s はインストールされましたが、まだ有効化されていません</string>
+    <string name="activate_and_reboot">有効化して再起動</string>
+    <string name="activate_only">有効化のみ</string>
+    <string name="module_activated">EdXposedモジュールは有効化されました。</string>
+    <string name="module_empty_description">(概要は設定されていません)</string>
+    <string name="module_no_ui">このモジュールはUIがありません</string>
+    <string name="no_xposed_modules_found">EdXposedモジュールが見つかりませんでした！</string>
+    <string name="xposed_module_list_updated">EdXposedモジュールのリストが更新されました\n再起動で変更が反映されます。</string>
+    <string name="xposed_module_updated_notification_title">EdXposedモジュールが更新されました。</string>
+    <string name="xposed_module_updated_notification">再起動して変更を反映</string>
+    <string name="warning_xposed_min_version">このモジュールはより新しいEdXposedバージョン(%d 以上)を要求しています。このモジュールを有効化できません</string>
+    <string name="no_min_version_specified">このモジュールは互換のあるEdXposedバージョンを指定していません</string>
+    <string name="warning_min_version_too_low">このモジュールはEdXposedバージョン %1$d 以上を要求していますが現在のバージョン%2$dとは互換性がありません。このモジュールは無効化されています。</string>
+    <string name="module_launch">UIを起動</string>
+    <string name="module_download_updates">ダウンロード/アップデート</string>
+    <string name="module_support">サポート</string>
+    <string name="modules_app_store">アプリストアで開く</string>
+    <string name="module_app_info">アプリ情報</string>
+    <string name="module_uninstall">アンインストール</string>
+    <string name="xposed_not_active">EdXposedフレームワークはインストールされていないか有効化されていません。\n設定からステータスの確認を無効化することができます</string>
+
+    <!-- Download -->
+    <string name="menuSearch">検索</string>
+    <string name="menuReload">リロード</string>
+    <string name="menuRefresh">再読込</string>
+    <string name="changes">更新履歴:</string>
+    <string name="download_details_page_description">概要</string>
+    <string name="download_details_page_versions">バージョン</string>
+    <string name="download_details_page_settings">設定</string>
+    <string name="reltype_stable">安定版</string>
+    <string name="reltype_stable_summary">安定版 (低いバグのリスク)</string>
+    <string name="reltype_beta">ベータ版</string>
+    <string name="reltype_beta_summary">ベータ版 (いくらかバグが発生する場合があります)</string>
+    <string name="reltype_experimental">実験的</string>
+    <string name="reltype_experimental_summary">実験的 (高いバグのリスク)</string>
+    <string name="reltype_use_global_summary">共通設定を利用する</string>
+    <string name="download_author">by %s</string>
+    <string name="download_unknown_author">未知の開発者</string>
+    <string name="download_status_installed">インストール済み (バージョン %s)</string>
+    <string name="download_status_update_available">アップデートあり (バージョン %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">%1$s に追加済み \u00b7 %2$s に更新</string>
+    <string name="download_sorting_title">順序の並び替え</string>
+    <string name="download_sorting_status">モジュールの状態</string>
+    <string name="download_sorting_updated">モジュールの更新日</string>
+    <string name="download_sorting_created">モジュールの作成日</string>
+    <string name="download_section_framework">EdXposedフレームワーク</string>
+    <string name="download_section_update_available">アップデートあり</string>
+    <string name="download_section_installed">インストール済み</string>
+    <string name="download_section_not_installed">未インストール</string>
+    <string name="download_section_24h">24時間以内</string>
+    <string name="download_section_7d">7日以内</string>
+    <string name="download_section_30d">30日以内</string>
+    <string name="download_section_older">30日以上前</string>
+    <string name="download_details_not_found">パッケージ名 \"%s\" のモジュールはリポジトリ内にありません</string>
+    <string name="download_no_versions">開発者はまだ何もアップロードしていません</string>
+    <string name="download_test_version_not_shown">テスト版が利用可能ですが表示バージョン設定により、表示されていません。</string>
+
+    <!-- Settings -->
+    <string name="settings_group_download">ダウンロードとインストール</string>
+    <string name="settings_group_app">アプリケーション</string>
+    <string name="settings_group_framework">フレームワーク</string>
+
+    <string name="settings_title_release_type">表示するバージョン</string>
+    <string name="settings_title_enable_resources">リソースフックを有効化/string>
+    <string name="settings_title_dark_theme">ダークテーマ</string>
+    <string name="menu_show_modules">モジュールとマネージャを表示する</string>
+    <string name="settings_title_pass_safetynet">Safetynetを通過する</string>
+    <string name="settings_title_old_success_color">有効ステータスの色に緑を使用する</string>
+    <string name="settings_title_disable_modules_log">モジュールのログを無効化</string>
+    <string name="settings_title_open_drawer">自動的にナビゲーションメニューを開く</string>
+    <string name="settings_title_default_view">標準の表示項目</string>
+    <string name="settings_title_skip_status_check">ステータスの確認を無効化</string>
+    <string name="settings_title_dynamic_modules">インスタントモジュールリスト</string>
+    <string name="settings_title_enable_boot_image_deopt">Bootイメージの最適化を無効化</string>
+    <string name="settings_title_disable_verbose_log">詳細なログの記録を無効化</string>
+
+    <string name="settings_summary_pass_safetynet">GMSとGSFをXposed Hideのブラックリストに追加し、ホワイトリストから解除します。\nこのオプションを無効にしてもアプリはXposed Hideのブラックリストから除外されません</string>
+    <string name="settings_summary_stop_verbose_log">詳細なログの記録は次回の再起動後から無効になります。</string>
+    <string name="settings_summary_stop_log">モジュールのログの記録は次回の再起動後から無効になります。</string>
+    <string name="settings_summary_disable_modules_log">モジュールの例外スタックはこの設定を有効にしても記録されます。</string>
+    <string name="settings_summary_open_drawer">起動時にナビゲーションメニューを開く</string>
+    <string name="settings_summary_enable_resources">テーマエンジンと強豪が発生する可能性があります。\n<b>注意:</b> この機能が無効の場合リソースを改変するモジュールはうまく機能しません。</string>
+    <string name="settings_summary_skip_status_check">モジュールの\"EdXposedステータス\" チェックを無効にします。</string>
+    <string name="settings_summary_dynamic_modules">有効にすると、各アプリのプロセス開始時に有効化されたモジュールを読み込みます。</string>
+    <string name="settings_summary_enable_boot_image_deopt">有効にすることで全てのフレームワーク方式でフックできるようになりますが、システムの動作速度が低下します。\nあるフレームワークのメソッドがフックできない場合にインライン化されているかどうかをチェックするのに役立ちます。</string>
+
+    <string name="settings_sort_by_name">アプリ名</string>
+    <string name="settings_sort_by_name_reverse">アプリ名(降順)</string>
+    <string name="settings_sort_by_package_name">パッケージ名</string>
+    <string name="settings_sort_by_package_name_reverse">パッケージ名(降順)</string>
+    <string name="settings_sort_by_install_time">インストール日時</string>
+    <string name="settings_sort_by_install_time_reverse">インストール日時(降順)</string>
+    <string name="settings_sort_by_update_time">アップデート日時</string>
+    <string name="settings_sort_by_update_time_reverse">アップデート日時(降順)</string>
+
+    <string name="settings_theme_dark_disabled">常にオフ</string>
+    <string name="settings_theme_dark_enabled">常にオン</string>
+    <string name="settings_title_pure_black">漆黒テーマを使用する</string>
+    <!-- Support tab -->
+    <string name="support_modules_label">モジュールのサポート</string>
+    <string name="support_modules_description">モジュールリスト内の \"%1$s\"ボタンを押してください</string>
+    <string name="support_framework_label">フレームワーク・マネージャのサポート</string>
+    <string name="support_faq_label">FAQ・既知の問題</string>
+    <string name="support_group_qq_label">QQグループ: 855219808</string>
+    <string name="support_group_telegram_label">Telegramグループ: @Code_of_MeowCat</string>
+    <string name="support_donate_label">寄付</string>
+    <string name="support_donate_description">EdXposedに対して感謝を伝えたい場合ここから私達に寄付を行うことができます。</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">SDカードにログを保存できませんでした:</string>
+    <string name="sdcard_not_writable">SDカードが見つからないか書き込み権限が見つかりません。</string>
+    <string name="menuClearLog">ログを消去</string>
+    <string name="logs_cleared">ログは消去されました。</string>
+    <string name="logs_clear_failed">ログを消去できませんでした:</string>
+    <string name="log_is_empty">ログは空です</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">主要な開発者</string>
+    <string name="about_translator_label">翻訳者</string>
+    <string name="translator">MlgmXyysd</string>
+    <string name="about_version_label">バージョン</string>
+    <string name="about_source_label">ソースコード</string>
+    <string name="about_libraries_label">使用したライブラリ</string>
+    <string name="meowcat">MeowCat Studio</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">ダウンロードしてインストール</string>
+    <string name="download_view_install">インストール</string>
+    <string name="download_view_remove">削除</string>
+    <string name="download_view_cancel">キャンセル</string>
+    <string name="download_view_no_url">ダウンロードURLにアクセスできません。</string>
+    <string name="download_view_running">ダウンロード中 (%1$,d 中 %2$,d kB)</string>
+    <string name="download_view_waiting">ダウンロードは待機中です</string>
+    <string name="download_view_successful">ダウンロード成功</string>
+    <string name="download_view_failed">ダウンロードに失敗しました (error %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5チェックサムに失敗しました(ダウンロード済み: %1$s, 例外: %2$s)</string>
+    <string name="download_could_not_read_file">ダウンロードされたファイルを読み込めませんでした: %s</string>
+    <string name="download_no_valid_apk">ダウンロードされたファイルは有効なAPKではないか破損しています。</string>
+    <string name="download_incorrect_package_name">パッケージ名が無効です・ (ダウンロード済み: %1$s, 例外: %2$s)</string>
+    <string name="download_running">ダウンロード中</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">ダウンロード中 %1$s 失敗: %2$d (%3$s)</string>
+    <string name="repo_download_failed">ダウンロード中 %1$s 失敗: %2$s</string>
+    <string name="repo_load_failed">次のリポジトリを読み込めませんでした %1$s:\n%2$s</string>
+    <string name="choose_color">アクセントカラー</string>
+
+    <string name="warning_installed_on_external_storage">このモジュールはSDカードにインストールされている為読み込めませんでした。内部ストレージに移動してください</string>
+    <string name="view">表示</string>
+    <string name="export_">エクスポート</string>
+    <string name="import_">インポート</string>
+    <string name="export_enabled_modules">有効なモジュールリストをエクスポート</string>
+    <string name="import_enabled_modules">有効なモジュールリストをインポート</string>
+    <string name="export_installed_modules">インストールされているモジュールリストをエクスポート</string>
+    <string name="import_installed_modules">インストールされているモジュールリストをインポート</string>
+    <string name="no_installed_modules">インストールされているモジュールがありません！</string>
+    <string name="enable_heads_up">ポップアップ通知を有効化</string>
+    <string name="enable_heads_up_summary">この設定を有効にするとモジュールの追加/アップデート時にポップアップ通知が使用されます。</string>
+    <string name="nav_bar_coloration">ナビゲーションバーの色</string>
+    <string name="no_backup_found">バックアップが見つかりませんでした</string>
+    <string name="no_enabled_modules">モジュールが何も有効化されていません</string>
+
+    <string name="share">共有</string>
+    <string name="back">戻る</string>
+    <string name="loadingError">リストの取得中にエラーが発生しました\nインターネットに接続できないかサーバーとの接続中に問題が発生しています。</string>
+    <string name="info">情報</string>
+    <string name="infoInstaller">
+        アプリ名: %1$s
+        \nバージョン: %2$s
+    </string>
+    <string name="infoUninstaller">
+        アプリ名: %1$s
+        \nインストール日: %2$s
+    </string>
+    <string name="permissionNotGranted">この機能を使用するには外部ストレージへの書き込み権限が必要です</string>
+    <string name="warningArchitecture">ZIPファイルがダウンロードされます。Magiskマネージャ内かリカバリから手動でフラッシュしてください</string>
+    <string name="newVersion">新しいバージョンのEdXposedマネージャが見つかりました。アップデートしてください！</string>
+    <string name="update">アップデート</string>
+    <string name="choose_icon">アイコンを選択</string>
+    <string name="custom_icon">カスタムアイコン</string>
+    <string name="not_installed_no_lollipop">EdXposedフレームワークは適切にインストールされていません</string>
+    <string name="settings_title_notify_module_update">モジュールのアップデート通知を有効化</string>
+
+    <string name="md_back_label">戻る</string>
+    <string name="md_done_label">完了</string>
+    <string name="md_cancel_label">キャンセル</string>
+    <string name="md_choose_label">選択</string>
+    <string name="md_error_label">エラー</string>
+    <string name="md_storage_perm_error">READ_EXTERNAL_STORAGE（外部ストレージの読み込み）の権限がEdXposedに許可されていません</string>
+    <string name="md_custom_label">カスタム</string>
+    <string name="md_presets_label">プリセット</string>
+    <string name="changelog">更新履歴</string>
+    <string name="scroll_top">一番上に戻る</string>
+    <string name="add_bookmark">ブックマークに追加</string>
+    <string name="remove_bookmark">ブックマークから削除</string>
+    <string name="bookmarks">ブックマーク</string>
+    <string name="no_bookmark_added">ブックマークに追加されていません</string>
+    <string name="bookmark_added">ブックマークに追加されました</string>
+    <string name="bookmark_removed">ブックマークから削除されました</string>
+    <string name="undo">元に戻す</string>
+    <string name="settings_title_notification_coloration">通知アイコンの色</string>
+    <string name="file_is_empty">ファイルは空です</string>
+    <string name="install_with_su">サイレントインストール(Root)</string>
+    <string name="install_with_su_summ">有効にした場合、確認画面無しでモジュールがインストールされます。</string>
+    <string name="install_remove">インストールと削除</string>
+    <string name="download_remove">ダウンロードと削除</string>
+    <string name="module_saved">モジュールは %1$s に保存されました</string>
+    <string name="ignore_updates">アップデートを無視</string>
+    <string name="ignore_updates_summ">特定のモジュールのアップデートを無視します</string>
+    <string name="reboot_recovery">リカバリモードに再起動</string>
+    <string name="reboot_bootloader">Bootloaderに再起動</string>
+    <string name="reboot_download">ダウンロードモードに再起動</string>
+    <string name="reboot_edl">EDLモードに再起動</string>
+    <string name="loading">読み込み中…</string>
+    <string name="chrome_custom_tabs">Chromeカスタムタブ</string>
+    <string name="chrome_custom_tabs_summ">リンクを既定のブラウザで開く</string>
+    <string name="scroll_bottom">一番下までスクロール</string>
+    <string name="share_app">このアプリを共有</string>
+    <string name="share_app_text">オープンソースで最新のAndroid用のXposedフレームワーク: EdXposed %s</string>
+    <string name="status">EdXposedステータス</string>
+    <string name="xposed_on_next_reboot">EdXposedフレームワークは次回の再起動で有効になります。</string>
+    <string name="xposed_off_next_reboot">EdXposedフレームワークは次回の再起動で無効になります。</string>
+    <string name="rovo_89_old_icon">rovo89 (old)</string>
+    <string name="confirm_reboots">再起動の確認</string>
+
+    <string name="notice">通知</string>
+    <string name="details">詳細</string>
+    <string name="support_xda">サポートを受ける</string>
+    <string name="later">後で</string>
+    <string name="save">保存のみ</string>
+    <string name="download_location">ダウンロード場所</string>
+    <string name="download_location_summ">APKファイルのダウンロード場所(モジュールのみ)</string>
+    <string name="restart_needed">再起動が必要</string>
+    <string name="cache_cleaned">キャッシュが消去されました。再起動が必要です。</string>
+    <string name="update_download_list">ダウンロード画面のモジュールリストの読み込みは数秒で完了します。</string>
+    <string name="no_connection_available">通信が利用できません</string>
+    <string name="not_logcat">これはEdXposedフレームワークとモジュールのログです。\nAndroidのlogcatが必要なら、私たちの MagiskモジュールLog Catcherをお試しください</string>
+    <string name="force_english">言語表示に英語を強制する</string>
+    <string name="warning_language">言語はアプリの再起動後に反映されます。</string>
+    <string name="installation_error">インストールエラー</string>
+    <string name="installation_successful">インストール成功</string>
+    <string name="installation_successful_message">%s は正常にインストールされました</string>
+    <string name="installation_error_message">%1$s のインストールに失敗しました (%2$s)</string>
+    <string name="installation_apk_normal">APKを通常インストール</string>
+    <string name="install_load">インストール中…</string>
+    <string name="install_load_apk">インストール中 %s</string>
+
+    <string name="unstable_build">このモジュールは安定版ではありません。\n自己責任で使用してください</string>
+    <string name="unofficial_build">このモジュールは非公式のビルドです。\n自己責任で使用してください</string>
+    <string name="custom_list">ミラーのリポジトリを使用する</string>
+    <string name="custom_list_summ">ミラーのモジュールリストは読み込みを高速化させる場合がありますが、\nアップロードされたモジュールの反映が遅れる場合があります (24時間程度)\nモジュールリストの取得で問題が発生する場合はこの設定を有効にしてください</string>
+
+    <string name="known_issue_wrong_base_directory">ベースディレクトリが無効です: %1$s</string>
+    <string name="known_issue_missing_base_directory">ベースディレクトリが指定されていません</string>
+
+    <string name="dexopt_now">全てのアプリをDexoptで最適化</string>
+    <string name="speed_now">全てのアプリをDex2oatで最適化(高速)</string>
+    <string name="this_may_take_a_while">お待ちください, これは暫く時間がかかります…</string>
+    <string name="take_while_cannot_resore">全てのアプリを最適化して宜しいですか？\n\n暫く時間がかかります。元に戻すことはできません。\n\nTip:Xposed Hideの項目から特定のアプリのみを最適化できます。</string>
+    <string name="done">完了！</string>
+    <string name="verified_boot_deactivated">Verified Bootは無効です</string>
+    <string name="verified_boot_none">Verified Bootの状態を検出できませんでした</string>
+    <string name="verified_boot_active">Verified Bootは有効です</string>
+    <string name="verified_boot_explanation">Verified Boot (dm-verity)はシステムパーティションが改変されているとき端末の起動をブロックします</string>
+    <string name="ignore_chinese">漢字を非表示</string>
+    <string name="ignore_chinese_summary">リポジトリ内のモジュールで漢字を表示しないようにすします。\nモジュールの検索は可能です。\n動作速度が低下する場合があります。</string>
+
+    <!-- EdXp related -->
+    <string name="nav_title_black_list">Xposed Hide</string>
+    <string name="nav_title_compat_list">互換モード</string>
+    <string name="white_list_mode_title">Xposed Hide (White)</string>
+    <string name="title_white_list">White</string>
+    <string name="title_black_list">Black</string>
+    <string name="add_package_failed">更新に失敗しました。1つ以上の設定が更新を妨げています。</string>
+    <string name="menu_title_compile_reset">最適化を解除</string>
+    <string name="menu_title_compile_speed">高速モードで最適化</string>
+    <string name="menu_title_compile_dexopt">Dexoptモードで最適化</string>
+    <string name="compile_reset_msg">リセット中 …</string>
+    <string name="compile_speed_msg">最適化中 …</string>
+    <string name="title_compat_list">互換モード</string>
+    <string name="white_list_mode_summary">Xposed Hide(Black): (標準) 選択されたアプリはモジュールを読み込み[ません]\nXposed Hide(White): 選択したアプリのみモジュールを読み込みます。\n注意: Xposed Hideを使用するとシステムレベルのモジュールが動作しなくなる可能性があります</string>
+
+    <string name="coolapk">CoolApk</string>
+    <string name="website">ウェブサイト</string>
+
+    <string name="solohsu_summary">EdXposedの主要な開発者</string>
+    <string name="mlgmxyysd_summary">EdXposedマネージャの主要な開発者</string>
+    <string name="elderdrivers_summary">EdXposedの監督</string>
+    <string name="meowcat_summary">MlgmXyysdの監督</string>
+    <string name="logs_verbose_disabled">詳細なログは無効です</string>
+    <string name="logs_cannot_read">ログを読み込めません: \n</string>
+    <string name="app_launch">起動</string>
+    <string name="app_stop">強制終了</string>
+    <string name="update_description">更新履歴を再読込</string>
+    <string name="edxp_installer_installed">EdXposedマネージャを使用するには最初にEdXposedインストーラをアンインストールする必要があります。</string>
+    <string name="install_time">インストール日時: </string>
+    <string name="update_time">アップデート日時: </string>
+    <string name="enabled_top">チェックした項目に優先順位をつける</string>
+    <string name="list_sort">並び替え</string>
+    <string name="notinstalled">EdXposedフレームワークはインストールされていません</string>
+    <string name="app_no_ui">このアプリはUIがありません</string>
+    <string name="compile_failed">最適化に失敗したか返り値が空白です。</string>
+    <string name="compile_failed_with_info">最適化失敗: </string>
+    <string name="hook_modules">強制的にモジュールにフックする</string>
+    <string name="hook_modules_summary">モジュールをXposed Hideのホワイトリストに追加し、Xposed Hideのブラックリストから解除します。\nこのオプションを無効にしてもモジュールはXposed Hideのホワイトリストから除外されません</string>
+    <string name="not_installed">インストールされていません</string>
+    <string name="ok">OK</string>
+    <string name="support_group_telegram_channel_label">Telegramチャンネル: @EdXposed</string>
+    <string name="empty_param">パラメータは空白です</string>
+    <string name="reboot_system">システムに再起動</string>
+    <string name="logs_not_primary_user">ログは標準ユーザー (uid 0)のみ読み込めます。</string>
+    <string name="selinux_status">SELinuxの状態: %s</string>
+    <string name="notice_content">必ずオープンソースのEdXposedマネージャを利用していることをご確認ください。未知のソースのマネージャは悪意のある動作をする可能性があります。</string>
+    <string name="btn_dismiss">もう表示しない</string>
+    <string name="nav_item_logs">ログ</string>
+    <string name="about_libraries_title">オープンソースライセンス</string>
+    <string name="default_changes_log">&lt;b&gt;まだアップデートがありません&lt;/b&gt;&lt;br /&gt;また後で確認してください</string>
+    <string name="xposed_description">次のEdXposedの拡張機能を有効にします:\n    - EdXposedのバックグラウンド制限を無効化\n    - Xposedが正常に動作しているか検証する\n    - Xposedインストーラの依存関係を解消する\n    - EdXposedマネージャを隠す\n    - クライアントサイドでSafetyNetを通過する</string>
+    <string name="status_enhancement">拡張</string>
+    <string name="settings_group_enhancement">拡張モード</string>
+    <string name="settings_title_enhancement">拡張モードの状態</string>
+    <string name="settings_summary_enhancement">無効\nモジュールから拡張モードを有効にできます</string>
+    <string name="settings_summary_enhancement_enabled">有効</string>
+    <string name="settings_title_pretend_xposed_installer">Xposedインストーラの依存関係を解消する</string>
+    <string name="settings_summary_pretend_xposed_installer">この機能は古いモジュールの仕様に役に立つことがあります。\n\"モジュール\"のセクションで有効化されたモジュールでのみ有効になります。\n注意: いくつかのモジュール (RootBeerなど)はこのオプションが有効でもEdXposedを検出することがあります。/string>
+    <string name="settings_title_hide_edxposed_manager">EdXposedマネージャを隠す</string>
+    <string name="settings_summary_hide_edxposed_manager">他のアプリからEdXposedマネージャが検出されるのを防ぎます。\n注意: モジュールはEdXposedマネージャのUIを開始できなくなります。いくつかのEdXposedマネージャの機能はシステムで動作しなくなる場合があります。</string>
+    <string name="settings_title_disable_hidden_api_bypass">hidden API検出を回避</string>
+    <string name="settings_summary_disable_hidden_api_bypass">この機能はSnapchatなどのいくつかの検出を回避します。これらのAPIは標準で無効です。\n<b>注意:</b> この機能の有効化はいくつかの機能が動作しなくなったり別の問題が発生する場合があります。</string>
+    <string name="settings_title_dark_status_bar">ステータスバーにダークテーマを使用</string>
+    <string name="download_committer">Committer: %s</string>
+    <string name="settings_title_pass_client_safetynet">クライアントのSafetyNetを通過</string>
+    <string name="settings_summary_pass_client_safetynet">クライアントがSafetyNetチェックを通過するように、強制的に返り値を改変します。\nこれは、ローカルまたは弱いサーバ検証を行う一部のプログラムでは動作しますが、強いサーバ検証を行うプログラムでは動作しません。\nこのオプションの無効化は非推奨です。</string>
+    <string name="menu_show_system_apps">システムアプリを表示</string>
+    <string name="menu_optimize">最適化</string>
+    <string name="module_activation_scope">アクティベーションスコープ</string>
+    <string name="enable_scope">このモジュールで有効化</string>
+    <string name="scope_notice">このモジュールのアクティベーションスコープを有効にするには、オンにしてアプリケーションを選択します。</string>
+    <string name="item_list_filter">フィルタ</string>
+    <string name="menu_show_no_name">アプリ名を表示しない</string>
+    <string name="menu_show_no_icon">アイコンを表示しない</string>
+    <string name="menu_show_user_apps">ユーザーアプリを表示する</string>
+    <string name="settings_theme_dark_auto">システムに従う</string>
+    <string name="settings_summary_pure_black">ダークテーマの有効時に漆黒テーマを利用します</string>
+    <string name="settings_title_use_sandhook">フックにSandHookバックエンドを使用する</string>
+    <string name="settings_summary_use_sandhook">SandHookはx86 と x86_64 アーキテクチャをサポートしていません。\n再起動が必要です。</string>
+    <string name="scope_recommended_tip">このモジュールはこのアプリケーションがスコープ内にあることを宣言しているため、有効にすることを推奨します。</string>
+</resources>
