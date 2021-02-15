@@ -14,7 +14,6 @@ import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 public class Constants {
 
     public static int getActiveXposedVersion() {
-        Log.d(TAG, "Not Active");
         return -1;
     }
 
