@@ -135,7 +135,7 @@
     <string name="settings_group_framework">フレームワーク</string>
 
     <string name="settings_title_release_type">表示するバージョン</string>
-    <string name="settings_title_enable_resources">リソースフックを有効化/string>
+    <string name="settings_title_enable_resources">リソースフックを有効化</string>
     <string name="settings_title_dark_theme">ダークテーマ</string>
     <string name="menu_show_modules">モジュールとマネージャを表示する</string>
     <string name="settings_title_pass_safetynet">Safetynetを通過する</string>
@@ -398,7 +398,7 @@
     <string name="settings_summary_enhancement">無効\nモジュールから拡張モードを有効にできます</string>
     <string name="settings_summary_enhancement_enabled">有効</string>
     <string name="settings_title_pretend_xposed_installer">Xposedインストーラの依存関係を解消する</string>
-    <string name="settings_summary_pretend_xposed_installer">この機能は古いモジュールの仕様に役に立つことがあります。\n\"モジュール\"のセクションで有効化されたモジュールでのみ有効になります。\n注意: いくつかのモジュール (RootBeerなど)はこのオプションが有効でもEdXposedを検出することがあります。/string>
+    <string name="settings_summary_pretend_xposed_installer">この機能は古いモジュールの仕様に役に立つことがあります。\n\"モジュール\"のセクションで有効化されたモジュールでのみ有効になります。\n注意: いくつかのモジュール (RootBeerなど)はこのオプションが有効でもEdXposedを検出することがあります。</string>
     <string name="settings_title_hide_edxposed_manager">EdXposedマネージャを隠す</string>
     <string name="settings_summary_hide_edxposed_manager">他のアプリからEdXposedマネージャが検出されるのを防ぎます。\n注意: モジュールはEdXposedマネージャのUIを開始できなくなります。いくつかのEdXposedマネージャの機能はシステムで動作しなくなる場合があります。</string>
     <string name="settings_title_disable_hidden_api_bypass">hidden API検出を回避</string>
