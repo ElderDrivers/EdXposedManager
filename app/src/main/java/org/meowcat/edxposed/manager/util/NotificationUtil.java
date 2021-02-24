@@ -150,7 +150,7 @@ public final class NotificationUtil {
         if (prefs.getBoolean(COLORED_NOTIFICATION, false))
             builder.setColor(XposedApp.getColor(sContext));
 
-        Intent iSoftReboot = new Intent(sContext, RebootReceiver.class);
+        /*Intent iSoftReboot = new Intent(sContext, RebootReceiver.class);
         iSoftReboot.putExtra(RebootReceiver.EXTRA_SOFT_REBOOT, true);
         PendingIntent pSoftReboot = PendingIntent.getBroadcast(sContext, PENDING_INTENT_SOFT_REBOOT,
                 iSoftReboot, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -160,7 +160,8 @@ public final class NotificationUtil {
                 iReboot, PendingIntent.FLAG_UPDATE_CURRENT);
 
         builder.addAction(new NotificationCompat.Action.Builder(0, sContext.getString(R.string.reboot), pReboot).build());
-        builder.addAction(new NotificationCompat.Action.Builder(0, sContext.getString(R.string.soft_reboot), pSoftReboot).build());
+        builder.addAction(new NotificationCompat.Action.Builder(0, sContext.getString(R.string.soft_reboot), pSoftReboot).build());*/
+
         builder.setChannelId(NOTIFICATION_MODULES_CHANNEL);
 
         sNotificationManager.notify(null, NOTIFICATION_MODULES_UPDATED, builder.build());

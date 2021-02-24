@@ -48,9 +48,9 @@
     <string name="module_empty_description">（未提供介绍）</string>
     <string name="module_no_ui">该模块未提供用户界面</string>
     <string name="no_xposed_modules_found">未找到 EdXposed 模块！</string>
-    <string name="xposed_module_list_updated">EdXposed 模块列表已更新\n变更将在重启后生效</string>
+    <string name="xposed_module_list_updated">EdXposed 模块列表已更新\n变更将在重启应用后生效</string>
     <string name="xposed_module_updated_notification_title">EdXposed 模块已更新</string>
-    <string name="xposed_module_updated_notification">重启以使变更生效</string>
+    <string name="xposed_module_updated_notification">重启应用以使变更生效</string>
     <string name="warning_xposed_min_version">该模块需要更新版本的 EdXposed（%d）, 因此无法被激活</string>
     <string name="no_min_version_specified">该模块未指定所需的 EdXposed 版本</string>
     <string name="warning_min_version_too_low">该模块针对 EdXposed %1$d 版本构建 , 由于不兼容 %2$d 版本中的变更, 现已被停用</string>
