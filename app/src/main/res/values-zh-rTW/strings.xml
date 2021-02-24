@@ -50,9 +50,9 @@
     <string name="module_empty_description">（模組未提供介紹）</string>
     <string name="module_no_ui">模組未提供使用者介面</string>
     <string name="no_xposed_modules_found">未發現 EdXposed 模組！</string>
-    <string name="xposed_module_list_updated">EdXposed 模組清單已更新\n變更將在重新啟動後生效</string>
+    <string name="xposed_module_list_updated">EdXposed 模組清單已更新 變更將在重新啟動應用程式後生效</string>
     <string name="xposed_module_updated_notification_title">EdXposed 模組已更新</string>
-    <string name="xposed_module_updated_notification">重新啟動以使變更生效。</string>
+    <string name="xposed_module_updated_notification">重啟應用程式以使變更生效。</string>
     <string name="warning_xposed_min_version">該模組需要更新版本的 EdXposed（%d），因此無法被啟用。</string>
     <string name="no_min_version_specified">該模組未指定所需的 EdXposed 版本。</string>
     <string name="warning_min_version_too_low">該模組針對 EdXposed %1$d 版本構建，由於不相容 %2$d 版本中的變更，現在已經被停用。</string>
