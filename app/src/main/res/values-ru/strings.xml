@@ -51,9 +51,9 @@
     <string name="module_empty_description">(описание отсутствует)</string>
     <string name="module_no_ui">Этот модуль не содержит пользовательского интерфейса</string>
     <string name="no_xposed_modules_found">Модули не найдены!</string>
-    <string name="xposed_module_list_updated">Список модулей обновлен\nИзменения вступят в силу после перезагрузки</string>
+    <string name="xposed_module_list_updated">Список модулей обновлен. Изменения вступят в силу после перезапуска приложения</string>
     <string name="xposed_module_updated_notification_title">Модуль обновлен</string>
-    <string name="xposed_module_updated_notification">Перезагрузите устройство</string>
+    <string name="xposed_module_updated_notification">Перезапустите приложение, для применения изменений</string>
     <string name="warning_xposed_min_version">Этот модуль требует более новой версии EdXposedBridge (%d) и не может быть включен</string>
     <string name="no_min_version_specified">Этот модуль не указал версию XposedBridge, в которой он нуждается</string>
     <string name="warning_min_version_too_low">Этот модуль был создан для XposedBridge версии %1$d, но из-за несовместимых изменений в версии %2$d, он был выключен</string>
@@ -391,5 +391,6 @@
     <string name="settings_theme_dark_auto">Как в системе</string>
     <string name="settings_summary_pure_black">Использовать черную тему, когда включена темная</string>
     <string name="settings_title_use_sandhook">Использовать бэкенд SandHook</string>
-    <string name="settings_summary_use_sandhook">Эта конфигурация действительна только для основного пользователя 0 и не поддерживает архитектуры x86 и x86_64\nТребуется перезагрузка</string>
+    <string name="settings_summary_use_sandhook">SandHook не поддерживает архитектуры x86 и x86_64\nТребуется перезагрузка</string>
+    <string name="scope_recommended_tip">Модуль уведомляет, что это приложение может работать с ним вместе, рекомендуется его включить</string>
 </resources>
