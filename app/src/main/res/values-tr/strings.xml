@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- Do NOT translate these -->
+    <string name="app_name" translatable="false">EdXposed Manager</string>
+    <string name="android_sdk" translatable="false">Android %2$s (%1$s, API %3$d)</string>
+    <string name="solohsu" translatable="false">givein2u</string>
+    <string name="mlgmxyysd" translatable="false">MlgmXyysd</string>
+    <string name="elderdrivers" translatable="false">Elder Drivers</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="xda" translatable="false">XDA</string>
+    <string name="support_material_xda" translatable="false">http://edxp.meowcat.org/</string>
+    <string name="support_donate_url" translatable="false">http://edxp.meowcat.org/donate</string>
+    <string name="about_support" translatable="false">http://edxp.meowcat.org/faq</string>
+    <string name="support_faq_url" translatable="false">http://github.com/ElderDrivers/EdXposed/wiki</string>
+    <string name="about_source" translatable="false">https://github.com/ElderDrivers/EdXposedManager/</string>
+    <string name="solohsu_xda" translatable="false">https://forum.xda-developers.com/member.php?u=5571846</string>
+    <string name="solohsu_github" translatable="false">https://github.com/solohsu</string>
+    <string name="solohsu_coolapk" translatable="false">http://www.coolapk.com/u/537470</string>
+    <string name="mlgmxyysd_coolapk" translatable="false">http://www.coolapk.com/u/814297</string>
+    <string name="mlgmxyysd_xda" translatable="false">https://forum.xda-developers.com/member.php?u=8430637</string>
+    <string name="mlgmxyysd_github" translatable="false">https://github.com/MlgmXyysd</string>
+    <string name="meowcat_website" translatable="false">http://www.meowcat.org/</string>
+    <string name="meowcat_github" translatable="false">https://github.com/MeowCat-Studio</string>
+    <string name="elderdrivers_github" translatable="false">https://github.com/ElderDrivers/</string>
+    <string name="elderdrivers_website" translatable="false">http://edxp.meowcat.org/</string>
+    <string name="group_qq_link" translatable="false">https://jq.qq.com/?k=57IiX8R</string>
+    <string name="group_telegram_link" translatable="false">http://t.me/Code_of_MeowCat</string>
+    <string name="group_telegram_channel_link" translatable="false">http://t.me/EdXposed</string>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Gönder</string>
+    <string name="menuSaveToSd">SD karta kaydet</string>
+    <string name="download_progress">%1$,d / %2$,d kB</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="tabInstall">Cihaz</string>
+    <string name="tabDownload">İndir</string>
+    <string name="welcome_framework_update_available">EdXposed Framework için (%s) güncellemesi mevcut</string>
+
+    <!-- navigation view items -->
+    <string name="nav_item_install" translatable="false">EdXposed</string>
+    <string name="nav_item_modules">Modüller</string>
+    <string name="nav_item_download">İndir</string>
+    <string name="nav_item_logs_verbose">Ayrıntılı Günlükler</string>
+    <string name="nav_item_logs_modules">Modül Günlükleri</string>
+    <string name="nav_item_settings">Ayarlar</string>
+    <string name="nav_item_about">Hakkında</string>
+    <string name="navigation_drawer_open">Gezinti çekmecesini aç</string>
+    <string name="navigation_drawer_close">Gezinti çekmecesini kapat</string>
+
+    <!-- Installer tab -->
+    <string name="install">Yükle/Güncelle</string>
+    <string name="uninstall">Kaldır</string>
+    <string name="soft_reboot">Hızlı yeniden başlat</string>
+    <string name="reboot">Yeniden başlat</string>
+    <string name="reboot_">Yeniden başlat…</string>
+    <string name="areyousure">Emin misiniz?</string>
+    <string name="phone_not_compatible">EdXposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s)</string>
+    <string name="reboot_failed">Yeniden başlatılamıyor. Lütfen cihazın normal yeniden başlatma işlevini kullanın</string>
+    <string name="install_warning_title">Dikkatli olun!</string>
+    <string name="install_warning">Bazı durumlarda, EdXposed yüklendikten sonra cihazınız artık açılmayabilir.\n\nDaha önce \"soft brick\" ve \"bootloop\" gibi terimleri duymadıysanız veya bunlar hakkında bilginiz yoksa, EdXposed\'ı <b>YÜKLEMEYİN!</b>\n\nHer durumda, yeni bir yedekleme yapılması şiddetle önerilir.</string>
+    <string name="dont_show_again">Bunu bir daha gösterme</string>
+    <string name="install_known_issue">Bilinen bir sorun var gibi görünüyor:\n\"%s\"\n\nBu, EdXposed\'ın arızalanmasına veya kullanılamaz hale gelmesine neden olabilir.</string>
+    <string name="install_known_issue_details">Ayrıntılar…</string>
+    <string name="installed_lollipop">EdXposed Framework etkin</string>
+    <string name="installed_lollipop_inactive">EdXposed Framework yüklü, ancak etkin değil</string>
+    <string name="modules_updates_available">Modül güncelleştirmeleri var</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Root erişimi alınamadı.\n\nCihazınızın doğru şekilde rootlandığından ve komut alabildiğinden emin olun</string>
+
+    <!-- Modules -->
+    <string name="module_is_not_activated_yet">EdXposed modülü henüz etkinleştirilmedi</string>
+    <string name="module_is_not_activated_yet_detailed">%s yüklendi, ancak henüz etkinleştirilmedi</string>
+    <string name="activate_and_reboot">Etkinleştir ve yeniden başlat</string>
+    <string name="activate_only">Sadece etkinleştir</string>
+    <string name="module_activated">EdXposed modulü etkinleştirildi</string>
+    <string name="module_empty_description">(açıklama yok)</string>
+    <string name="module_no_ui">Bu modül bir kullanıcı arabirimi sağlamaz</string>
+    <string name="no_xposed_modules_found">EdXposed modülleri bulunamadı!</string>
+    <string name="xposed_module_list_updated">EdXposed modül listesi güncellendi. Değişiklikler yeniden başlatıldığında etkinleşecektir</string>
+    <string name="xposed_module_updated_notification_title">EdXposed modülü güncellendi</string>
+    <string name="xposed_module_updated_notification">Değişiklikleri etkinleştirmek için yeniden başlatın</string>
+    <string name="warning_xposed_min_version">Bu modül yeni bir EdXposed sürümü (%d) gerektirir ve etkinleştirilemez</string>
+    <string name="no_min_version_specified">Bu modül ihtiyaç duyduğu EdXposed sürümünü belirtmemektedir.</string>
+    <string name="warning_min_version_too_low">Bu modül EdXposed %1$d sürümü için oluşturuldu, ancak %2$d sürümündeki uyumsuz değişiklikler nedeniyle devre dışı bırakıldı</string>
+    <string name="module_launch">Arayüzü başlat</string>
+    <string name="module_download_updates">İndir/Güncelle</string>
+    <string name="module_support">Destek</string>
+    <string name="modules_app_store">Uygulama Mağazasında Görüntüle</string>
+    <string name="module_app_info">Uygulama bilgileri</string>
+    <string name="module_uninstall">Kaldır</string>
+    <string name="xposed_not_active">EdXposed Framework şu anda yüklü veya etkin değil\nDurum kontrolünü ayarlardan kapatabilirsiniz</string>
+
+    <!-- Download -->
+    <string name="menuSearch">Ara</string>
+    <string name="menuReload">Yeniden yükle</string>
+    <string name="menuRefresh">Yenile</string>
+    <string name="changes">Değişiklikler:</string>
+    <string name="download_details_page_description">Açıklama</string>
+    <string name="download_details_page_versions">Sürümler</string>
+    <string name="download_details_page_settings">Ayarlar</string>
+    <string name="reltype_stable">Kararlı</string>
+    <string name="reltype_stable_summary">Kararlı (hata riski düşük)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (bazı hatalar beklenebilir)</string>
+    <string name="reltype_experimental">Deneysel</string>
+    <string name="reltype_experimental_summary">Deneysel (hata riski yüksek)</string>
+    <string name="reltype_use_global_summary">Genel ayarları kullan</string>
+    <string name="download_author">Yapımcı: %s</string>
+    <string name="download_unknown_author">bilinmeyen yapımcı</string>
+    <string name="download_status_installed">Yüklendi (sürüm %s)</string>
+    <string name="download_status_update_available">Güncelleme mevcut (sürüm %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Eklenme %1$s \u00b7 Güncelleme %2$s</string>
+    <string name="download_sorting_title">Sıralama düzeni</string>
+    <string name="download_sorting_status">Duruma göre</string>
+    <string name="download_sorting_updated">Son güncelleme tarihine göre</string>
+    <string name="download_sorting_created">Oluşturulma tarihine göre</string>
+    <string name="download_section_framework">EdXposed Framework</string>
+    <string name="download_section_update_available">Güncelleme mevcut</string>
+    <string name="download_section_installed">Yüklendi</string>
+    <string name="download_section_not_installed">Yüklenmedi</string>
+    <string name="download_section_24h">Son 24 saat</string>
+    <string name="download_section_7d">Son 7 gün</string>
+    <string name="download_section_30d">Son 30 gün</string>
+    <string name="download_section_older">30 günden önce</string>
+    <string name="download_details_not_found">Depoda paket adı \"%s\" olan hiçbir modül yok</string>
+    <string name="download_no_versions">Yapımcı henüz bir şey yüklemedi.</string>
+    <string name="download_test_version_not_shown">Bir test sürümü mevcut, ancak genel veya modüle özgü ayarlarınız nedeniyle gösterilmez</string>
+
+    <!-- Settings -->
+    <string name="settings_group_download">İndir ve yükle</string>
+    <string name="settings_group_app">Uygulama</string>
+    <string name="settings_group_framework">Framework</string>
+
+    <string name="settings_title_release_type">Gösterilecek sürümler</string>
+    <string name="settings_title_enable_resources">Kaynaklara erişimi etkinleştir</string>
+    <string name="settings_title_dark_theme">Koyu tema</string>
+    <string name="menu_show_modules">Modülleri ve yöneticiyi göster</string>
+    <string name="settings_title_pass_safetynet">SafetyNet\'i Geç</string>
+    <string name="settings_title_old_success_color">Eski durum etkin rengini (yeşil) kullan</string>
+    <string name="settings_title_disable_modules_log">Modül günlüklerini devre dışı bırak</string>
+    <string name="settings_title_open_drawer">Gezinti çekmecesini otomatik aç</string>
+    <string name="settings_title_default_view">Varsayılan görünüm</string>
+    <string name="settings_title_skip_status_check">Durum kontrolünü atla</string>
+    <string name="settings_title_dynamic_modules">Anında modül listesi</string>
+    <string name="settings_title_enable_boot_image_deopt">Boot imajının optimizasyonunu kaldır</string>
+    <string name="settings_title_disable_verbose_log">Ayrıntılı günlükleri devre dışı bırak</string>
+
+    <string name="settings_summary_pass_safetynet">"Xposed Hide (Siyah)'a GMS ve GSF eklemeye zorlar ve Xposed Hide (Beyaz)'dan kaldırır.\nBu seçeneğin devre dışı bırakılması, modülleri Xposed Hide (Siyah)'dan kaldırmaz"</string>
+    <string name="settings_summary_stop_verbose_log">Ayrıntılı günlük bir sonraki yeniden başlatmaya kadar yakalamayı durduracak</string>
+    <string name="settings_summary_stop_log">Modül günlüğü, bir sonraki yeniden başlatmaya kadar yakalamayı durduracak</string>
+    <string name="settings_summary_disable_modules_log">Modüller tarafından atılan istisna yığını yine normal şekilde yakalanacaktır</string>
+    <string name="settings_summary_open_drawer">Başlangıçta gezinti çekmecesini aç</string>
+    <string name="settings_summary_enable_resources">Tema motorları ile çakışmalara geçici çözüm\n<b>UYARI:</b> Bu etkinleştirildiğinde, kaynakları değiştirmeye çalışan modüller çalışmaz</string>
+    <string name="settings_summary_skip_status_check">Modüller için \"EdXposed Durumu\" kontrolünü atla</string>
+    <string name="settings_summary_dynamic_modules">Açıldığında, başlatılan her uygulama işlemine en son etkinleştirilen modül listesini yükle</string>
+    <string name="settings_summary_enable_boot_image_deopt">Tüm framework yöntemlerini bağlanabilir hale getirmek için açar, ancak tüm sistem yavaşlayacaktır\nEsas olarak, bağlanamadığında bir framework yönteminin satır içi olup olmadığını kontrol etmek için kullanılır</string>
+
+    <string name="settings_sort_by_name">Uygulama adına göre sırala</string>
+    <string name="settings_sort_by_name_reverse">Uygulama adına göre sırala (ters)</string>
+    <string name="settings_sort_by_package_name">Paket adına göre sırala</string>
+    <string name="settings_sort_by_package_name_reverse">Paket adına göre sırala (ters)</string>
+    <string name="settings_sort_by_install_time">Yükleme zamanına göre sırala</string>
+    <string name="settings_sort_by_install_time_reverse">Yükleme zamanına göre sırala (ters)</string>
+    <string name="settings_sort_by_update_time">Güncelleme zamanına göre sırala</string>
+    <string name="settings_sort_by_update_time_reverse">Güncelleme zamanına göre sırala (ters)</string>
+
+    <string name="settings_theme_dark_disabled">Her zaman kapalı</string>
+    <string name="settings_theme_dark_enabled">Her zaman açık</string>
+    <string name="settings_title_pure_black">Saf siyah tema</string>
+    <!-- Support tab -->
+    <string name="support_modules_label">Modül desteği</string>
+    <string name="support_modules_description">Modül listesinde herhangi bir modüle uzun basın ve \"%1$s\" seçeneğine tıklayın.</string>
+    <string name="support_framework_label">Framework/Yönetici desteği</string>
+    <string name="support_faq_label">SSS/Bilinen sorunlar</string>
+    <string name="support_group_qq_label">QQ Grubu: 855219808</string>
+    <string name="support_group_telegram_label">Telegram Grubu: @Code_of_MeowCat</string>
+    <string name="support_donate_label">Bağış yap</string>
+    <string name="support_donate_description">EdXposed için teşekkür etmek isterseniz buradan bize bağış yapabilirsiniz</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Günlük SD karta yazılamadı:</string>
+    <string name="sdcard_not_writable">SD kart yazılabilir değil veya bulunamadı</string>
+    <string name="menuClearLog">Günlüğü şimdi temizle</string>
+    <string name="logs_cleared">Günlük başarıyla temizlendi.</string>
+    <string name="logs_clear_failed">Günlük temizlenemedi:</string>
+    <string name="log_is_empty">Günlük boş.</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Ana geliştiriciler</string>
+    <string name="about_translator_label">Çevirmen</string>
+    <string name="translator">Fatih Fırıncı</string>
+    <string name="about_version_label">Sürüm</string>
+    <string name="about_source_label">Kaynak kodu</string>
+    <string name="about_libraries_label">Kullanılan kitaplıklar</string>
+    <string name="meowcat">MeowCat Stüdyo</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">İndir ve Yükle</string>
+    <string name="download_view_install">Yükle</string>
+    <string name="download_view_remove">Kaldır</string>
+    <string name="download_view_cancel">İptal</string>
+    <string name="download_view_no_url">İndirme adresi mevcut değil</string>
+    <string name="download_view_running">İndiriliyor (İnen: %1$,d Toplam: %2$,d kB)</string>
+    <string name="download_view_waiting">İndirme bekliyor</string>
+    <string name="download_view_successful">İndirme başarılı</string>
+    <string name="download_view_failed">İndirme başarısız (hata %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 toplamı yanlış (indirilen: %1$s, beklenen: %2$s)</string>
+    <string name="download_could_not_read_file">İndirilen dosya okunamadı: %s</string>
+    <string name="download_no_valid_apk">İndirilen dosya geçerli bir Apk dosyası değil (veya uyumsuz)</string>
+    <string name="download_incorrect_package_name">Paket adı yanlış (indirilen: %1$s, beklenen: %2$s)</string>
+    <string name="download_running">İndirme çalışıyor</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">%1$s indirmesi başarısız: %2$d (%3$s)</string>
+    <string name="repo_download_failed">%1$s indirmesi başarısız: %2$s</string>
+    <string name="repo_load_failed">%1$s içinden depo yüklenemiyor:\n%2$s</string>
+    <string name="choose_color">Vurgu rengi</string>
+
+    <string name="warning_installed_on_external_storage">Bu modül, SD karta yüklendiği için yüklenemiyor, lütfen dahili depolamaya taşıyın</string>
+    <string name="view">GÖRÜNTÜLE</string>
+    <string name="export_">Dışa aktar…</string>
+    <string name="import_">İçe aktar…</string>
+    <string name="export_enabled_modules">Etkin modül listesini dışa aktar</string>
+    <string name="import_enabled_modules">Etkin modül listesini içe aktar</string>
+    <string name="export_installed_modules">Yüklü modül listesini dışa aktar</string>
+    <string name="import_installed_modules">Yüklü modül listesini içe aktar</string>
+    <string name="no_installed_modules">Yüklü bir modül yok!</string>
+    <string name="enable_heads_up">Üst bildirimi etkinleştir</string>
+    <string name="enable_heads_up_summary">Bu seçenek, yeni/güncellenmiş modülde üst bildirim sağlar</string>
+    <string name="nav_bar_coloration">Renkli gezinti çubuğu</string>
+    <string name="no_backup_found">Yedek bulunamadı</string>
+    <string name="no_enabled_modules">Etkin modül yok</string>
+
+    <string name="share">Şununla paylaş…</string>
+    <string name="back">Geri</string>
+    <string name="loadingError">Liste alınırken hata oluştu\nİnternete erişilemiyor veya sunucuyla ilgili bazı sorunlar var</string>
+    <string name="info">Bilgi</string>
+    <string name="infoInstaller">
+        İsim: %1$s
+        \nSürüm: %2$s
+    </string>
+    <string name="infoUninstaller">
+        İsim: %1$s
+        \nTarih: %2$s
+    </string>
+    <string name="permissionNotGranted">Bu özellik, harici depolama alanına yazmak için izin almadan çalışmaz</string>
+    <string name="warningArchitecture">"Bir ZIP arşivi indirilecektir, lütfen Magisk Manager'dan veya Recovery'den manuel olarak flashlayın"</string>
+    <string name="newVersion">EdXposed Manager\'ın yeni sürümü mevcut! Şimdi güncelle!</string>
+    <string name="update">Güncelle</string>
+    <string name="choose_icon">Simge seç</string>
+    <string name="custom_icon">Özel simge</string>
+    <string name="not_installed_no_lollipop">EdXposed Framework (düzgün) yüklenmemiş</string>
+    <string name="settings_title_notify_module_update">Modül güncelleme bildirimini etkinleştir</string>
+
+    <string name="md_back_label">Geri</string>
+    <string name="md_done_label">Bitti</string>
+    <string name="md_cancel_label">İptal</string>
+    <string name="md_choose_label">Seç</string>
+    <string name="md_error_label">Hata</string>
+    <string name="md_storage_perm_error">"EdXposed'a READ_EXTERNAL_STORAGE izni verilmedi."</string>
+    <string name="md_custom_label">Özel</string>
+    <string name="md_presets_label">Hazır ayarlar</string>
+    <string name="changelog">Değişiklikler</string>
+    <string name="scroll_top">En üste kaydır</string>
+    <string name="add_bookmark">Favorilere ekle</string>
+    <string name="remove_bookmark">Favorilerden kaldır</string>
+    <string name="bookmarks">Favoriler</string>
+    <string name="no_bookmark_added">Favori eklenmedi</string>
+    <string name="bookmark_added">Favorilere eklendi</string>
+    <string name="bookmark_removed">Favorilerden kaldırıldı</string>
+    <string name="undo">Geri al</string>
+    <string name="settings_title_notification_coloration">Renkli bildirim simgesi</string>
+    <string name="file_is_empty">Dosya boş</string>
+    <string name="install_with_su">Sessiz yükleme (root)</string>
+    <string name="install_with_su_summ">İşaretlenirse, modüller herhangi bir istemde bulunulmadan yüklenecektir</string>
+    <string name="install_remove">Yükle ve kaldır</string>
+    <string name="download_remove">İndir ve kaldır</string>
+    <string name="module_saved">Modül kaydedildi %1$s</string>
+    <string name="ignore_updates">Güncellemeyi yoksay</string>
+    <string name="ignore_updates_summ">Belirli bir modül için güncellemeleri yoksay</string>
+    <string name="reboot_recovery">Kurtarma Modunda Yeniden Başlat</string>
+    <string name="reboot_bootloader">Bootloader Modunda Yeniden Başlat</string>
+    <string name="reboot_download">Download Modunda Yeniden Başlat</string>
+    <string name="reboot_edl">Acil Durum Modunda Yeniden Başlat</string>
+    <string name="loading">Yükleniyor…</string>
+    <string name="chrome_custom_tabs">Chrome Özel Sekmeler</string>
+    <string name="chrome_custom_tabs_summ">Bağlantıları dahili tarayıcıda aç</string>
+    <string name="scroll_bottom">En alta kaydır</string>
+    <string name="share_app">Uygulamayı paylaş</string>
+    <string name="share_app_text">Check this out: Open-source Xposed Framework for latest Android: EdXposed! %s</string>
+    <string name="status">EdXposed Durumu</string>
+    <string name="xposed_on_next_reboot">EdXposed Framework sonraki yeniden başlatmada etkinleştirilecek</string>
+    <string name="xposed_off_next_reboot">EdXposed Framework sonraki yeniden başlatmada devre dışı bırakılacak</string>
+    <string name="rovo_89_old_icon">rovo89 (eski)</string>
+    <string name="confirm_reboots">Yeniden başlatma onayı</string>
+
+    <string name="notice">Uyarı</string>
+    <string name="details">Ayrıntılar</string>
+    <string name="support_xda">Destek al</string>
+    <string name="later">Sonra</string>
+    <string name="save">Yalnızca kaydet</string>
+    <string name="download_location">İndirme konumu</string>
+    <string name="download_location_summ">APK dosyaları için indirme konumu (yalnızca modüller)</string>
+    <string name="restart_needed">Yeniden başlatma gerekli</string>
+    <string name="cache_cleaned">Önbellek temizlendi. Yeniden başlatma gerekli</string>
+    <string name="update_download_list">İndirilen modül listesi birkaç saniye içinde yüklenecek</string>
+    <string name="no_connection_available">Bağlantı yok</string>
+    <string name="not_logcat">"Bu, EdXposed Framework ve modüller günlüğüdür\nAndroid logcat'e ihtiyacınız varsa Log Catcher Magisk modülümüzü deneyebilirsiniz"</string>
+    <string name="force_english">İngilizce dilini zorla</string>
+    <string name="warning_language">Dil değişikliği, uygulama yeniden başlatıldıktan sonra uygulanacak</string>
+    <string name="installation_error">Yükleme hatası</string>
+    <string name="installation_successful">Yükleme başarılı</string>
+    <string name="installation_successful_message">%s başarıyla yüklendi</string>
+    <string name="installation_error_message">%1$s installation failed (%2$s)</string>
+    <string name="installation_apk_normal">APK\'yı normal şekilde yükle</string>
+    <string name="install_load">Yükleniyor…</string>
+    <string name="install_load_apk">%s yükleniyor</string>
+
+    <string name="unstable_build">Bu kararsız bir yapıdır\nRiski göze alarak yükleyin</string>
+    <string name="unofficial_build">Bu resmi olmayan bir yapıdır\nRiski göze alarak yükleyin</string>
+    <string name="custom_list">Alternatif modül indirme listesini kullan</string>
+    <string name="custom_list_summ">Yansıtılmış modüller listesi yüklemeyi hızlandırabilir\nAncak yeni gönderilen modüller daha sonra görünecektir (yaklaşık 24 saat)\nİndirme listesini yüklerken sorun yaşıyorsanız bu seçeneği işaretleyin</string>
+
+    <string name="known_issue_wrong_base_directory">Yanlış temel dizin: %1$s</string>
+    <string name="known_issue_missing_base_directory">Eksik temel dizin</string>
+
+    <string name="dexopt_now">Dexopt ile tüm uyglmlrı optimize et</string>
+    <string name="speed_now">Dex2oat ile tüm uyglmlrı optimize et (hızlı mod)</string>
+    <string name="this_may_take_a_while">Lütfen bekleyin, bu biraz zaman alabilir…</string>
+    <string name="take_while_cannot_resore">"Tüm uygulamaları optimize etmek istediğinizden emin misiniz?\n\nBu biraz zaman alabilir ve GERİ ALINAMAZ\n\nİpucu: Xposed Hide'da belirli uygulamaları optimize edebilirsiniz"</string>
+    <string name="done">Bitti!</string>
+    <string name="verified_boot_deactivated">Doğrulanmış Önyükleme devre dışı</string>
+    <string name="verified_boot_none">Doğrulanmış Önyükleme durumu tespit edilemedi</string>
+    <string name="verified_boot_active">Doğrulanmış Önyükleme etkin</string>
+    <string name="verified_boot_explanation">Doğrulanmış Önyükleme (dm-verity), sistem bölümü değiştirilirse aygıtın önyüklenmesini önler</string>
+    <string name="ignore_chinese">Çince karakterleri yoksay</string>
+    <string name="ignore_chinese_summary">Çince modülleri depodan gizler\nModüller yine de arayarak bulunabilir\nBu seçeneğin etkinleştirilmesi performansın düşmesine neden olabilir</string>
+
+    <!-- EdXp related -->
+    <string name="nav_title_black_list">Xposed Hide</string>
+    <string name="nav_title_compat_list">Uyum Modu</string>
+    <string name="white_list_mode_title">Xposed Hide (Beyaz)</string>
+    <string name="title_white_list">Beyaz</string>
+    <string name="title_black_list">Siyah</string>
+    <string name="add_package_failed">Düzenlenemedi, bir veya daha fazla ayar düzenlemenizi engelliyor.</string>
+    <string name="menu_title_compile_reset">Optimizeyi kaldır</string>
+    <string name="menu_title_compile_speed">Hızlı mod ile optimize et</string>
+    <string name="menu_title_compile_dexopt">Dexopt modu ile optimize et</string>
+    <string name="compile_reset_msg">Sıfırlanıyor …</string>
+    <string name="compile_speed_msg">Optimize ediliyor …</string>
+    <string name="title_compat_list">Uyum Modu</string>
+    <string name="white_list_mode_summary">Xposed Hide(Siyah): (Varsayılan) Seçili uygulama modülleri YÜKLEMEZ\nXposed Hide(Beyaz): Yalnızca seçili uygulama modülleri yükler\nNot: Xposed Hide kullanmak sistem genelindeki modüllerin işlevlerini bozabilir</string>
+
+    <string name="coolapk">CoolApk</string>
+    <string name="website">Web sitesi</string>
+
+    <string name="solohsu_summary">"EdXposed'ın ana geliştiricisi"</string>
+    <string name="mlgmxyysd_summary">"EdXposed Manager'ın ana geliştiricisi"</string>
+    <string name="elderdrivers_summary">EdXposed Kuruluşu</string>
+    <string name="meowcat_summary">MlgmXyysd Kuruluşu</string>
+    <string name="logs_verbose_disabled">Ayrıntılı günlükler devre dışı bırakıldı</string>
+    <string name="logs_cannot_read">Günlük okunamıyor: \n</string>
+    <string name="app_launch">Başlat</string>
+    <string name="app_stop">Durdurmaya zorla</string>
+    <string name="update_description">Güncelleme Değişiklikleri</string>
+    <string name="edxp_installer_installed">"EdXposed Manager'ı kullanmak için önce EdXposed Installer'ı kaldırmanız gerekir"</string>
+    <string name="install_time">Yükleme tarihi: </string>
+    <string name="update_time">Güncelleme tarihi: </string>
+    <string name="enabled_top">İşaretlenen öğelere öncelik ver</string>
+    <string name="list_sort">Liste sıralama</string>
+    <string name="notinstalled">EdXposed Framework yüklü değil</string>
+    <string name="app_no_ui">Bu uygulama bir kullanıcı arayüzü sağlamaz</string>
+    <string name="compile_failed">Optimizasyon başarısız veya dönüş değeri boş</string>
+    <string name="compile_failed_with_info">Optimizasyon başarısız: </string>
+    <string name="hook_modules">Kanca modüllerini zorla</string>
+    <string name="hook_modules_summary">"Xposed Hide (Beyaz)'a modüller eklemeye zorlar ve Xposed Hide (Siyah)'dan kaldırır\nBu seçeneğin devre dışı bırakılması modülleri Xposed Hide (Beyaz)'dan kaldırmaz"</string>
+    <string name="not_installed">Yüklü değil</string>
+    <string name="ok">Tamam</string>
+    <string name="support_group_telegram_channel_label">Telegram Kanalı: @EdXposed</string>
+    <string name="empty_param">Parametreler boş</string>
+    <string name="reboot_system">Sistemi Yeniden Başlat</string>
+    <string name="logs_not_primary_user">Günlükler yalnızca birincil kullanıcı (uid 0) tarafından okunabilir.</string>
+    <string name="selinux_status">SELinux durumu: %s</string>
+    <string name="notice_content">Her zaman açık kaynaklı EdXposed Manager kullandığınızdan emin olun, bilinmeyen kaynak yöneticisi kötü amaçlı eylemler gerçekleştirebilir</string>
+    <string name="btn_dismiss">Yok say</string>
+    <string name="nav_item_logs">Günlükler</string>
+    <string name="about_libraries_title">Açık kaynak lisansları</string>
+    <string name="default_changes_log">&lt;b&gt;Henüz güncelleme değişikliği yok&lt;/b&gt;&lt;br /&gt;İyi şeyler beklemeye değer</string>
+    <string name="xposed_description">"EdXposed geliştirmelerini etkinleştir:\n    - EdXposed üzerindeki arka plan kısıtlamalarını kaldır\n    - Xposed'ın düzgün çalışıp çalışmadığını belirle\n    - Xposed Installer yüklüymüş gibi davran\n    - EdXposed Manager'ı Gizle\n    - SafetyNet'i istemci tarafında geçirmeye zorla"</string>
+    <string name="status_enhancement">Geliştirme</string>
+    <string name="settings_group_enhancement">Geliştirme modu</string>
+    <string name="settings_title_enhancement">Geliştirme modu durumu</string>
+    <string name="settings_summary_enhancement">Devre dışı\nModülde geliştirme modunu etkinleştirebilirsiniz</string>
+    <string name="settings_summary_enhancement_enabled">Etkin</string>
+    <string name="settings_title_pretend_xposed_installer">Xposed Installer yüklüymüş gibi davran</string>
+    <string name="settings_summary_pretend_xposed_installer">"Bazı eski ama kullanışlı modüllerin çalışması için Xposed Installer'ın kurulu olduğunu varsayar\nYalnızca \"Modüller\" içindeki etkinleştirilmiş modüller için çalışır\nUYARI: Bazı yazılımlar (örn. RootBeer), bu işlev açıldığında EdXposed'ı algılayabilir"</string>
+    <string name="settings_title_hide_edxposed_manager">EdXposed Manager\'ı gizle</string>
+    <string name="settings_summary_hide_edxposed_manager">"Diğer uygulamaların EdXposed Manager'ı algılamasını önler\nUYARI: Modüller EdXposed Manager Arayüzünü düzgün şekilde başlatamayabilir, bazı EdXposed Manager özellikleri sistemde düzgün çalışmayabilir"</string>
+    <string name="settings_title_disable_hidden_api_bypass">Gizli API kısıtlamalarını atlamayı devre dışı bırak</string>
+    <string name="settings_summary_disable_hidden_api_bypass">"Gizli API kısıtlamalarını devre dışı bırakma, bazı algılamaları geçecek (ör. Snapchat), bu API'ler varsayılan olarak devre dışı bırakılmıştır\n<b>UYARI:</b> Bu seçeneğin etkinleştirilmesi bazı özellikleri bozabilir veya başka sorunlara neden olabilir"</string>
+    <string name="settings_title_dark_status_bar">Koyu durum çubuğu (maske)</string>
+    <string name="download_committer">İşleyen: %s</string>
+    <string name="settings_title_pass_client_safetynet">"SafetyNet'i geçirmeye zorla"</string>
+    <string name="settings_summary_pass_client_safetynet">İstemciyi SafetyNet kontrolünü geçmeye zorlamak için dönüş sonucunu değiştirir\nBu, yerel veya zayıf sunucu doğrulamasına sahip bazı programlar için işe yarar, ancak güçlü sunucu doğrulaması olan programlar için geçerli değildir\nBu seçeneği kapatmanız önerilmez</string>
+    <string name="menu_show_system_apps">Sistem uygulamalarını göster</string>
+    <string name="menu_optimize">Optimize et</string>
+    <string name="module_activation_scope">Aktivasyon Kapsamı</string>
+    <string name="enable_scope">Bu modül için etkinleştir</string>
+    <string name="scope_notice">Bu modülün aktivasyon kapsamını etkinleştirmek için Aktivasyon Kapsamını açın ve uygulamaları seçin.</string>
+    <string name="item_list_filter">Filtrele</string>
+    <string name="menu_show_no_name">Adsız uygulamaları göster</string>
+    <string name="menu_show_no_icon">Simgesiz uygulamaları göster</string>
+    <string name="menu_show_user_apps">Kullanıcı uygulamalarını göster</string>
+    <string name="settings_theme_dark_auto">Sisteme göre</string>
+    <string name="settings_summary_pure_black">Koyu tema etkinse saf siyah temayı kullan</string>
+    <string name="settings_title_use_sandhook">SandHook varyant arka ucunu kullan</string>
+    <string name="settings_summary_use_sandhook">SandHook, x86 ve x86_64 mimarilerini desteklemez\nYeniden başlatma gerekir</string>
+    <string name="scope_recommended_tip">Modül, bu uygulamanın bu modül kapsamında olduğunu bildirir ve etkinleştirilmesi önerilir.</string>
+</resources>
