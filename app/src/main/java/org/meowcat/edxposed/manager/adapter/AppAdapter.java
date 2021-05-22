@@ -299,7 +299,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> impl
             }
 
             if (this instanceof ActivationScopeAdapter) {
-                if (AppHelper.isWhiteListMode()) {
+                if (AppHelper.isWhiteListMode() & !XposedApp.getPreferences().getBoolean("auto_add_whitelist_from_scope", false)) {
                     List<String> whiteList = AppHelper.getWhiteList();
                     if (!whiteList.contains(info.packageName)) {
                         rmList.add(info);

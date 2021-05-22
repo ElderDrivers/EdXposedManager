@@ -159,7 +159,11 @@ public class SettingsFragment extends BasePreferenceFragment implements Preferen
 
         SwitchPreference prefWhiteListMode = findPreference("white_list_switch");
         Objects.requireNonNull(prefWhiteListMode).setChecked(mWhiteListModeFlag.exists());
-        prefWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> setFlag(mWhiteListModeFlag, (boolean) newValue));
+        prefWhiteListMode.setOnPreferenceChangeListener((preference, newValue) -> {
+            if (!((boolean) newValue))
+                Objects.requireNonNull((SwitchPreference)findPreference("auto_add_whitelist_from_scope")).setChecked(false);
+            return setFlag(mWhiteListModeFlag, (boolean) newValue);
+        });
 
         SwitchPreference prefVerboseLogs = findPreference("disable_verbose_log");
         Objects.requireNonNull(prefVerboseLogs).setChecked(mDisableVerboseLogsFlag.exists());

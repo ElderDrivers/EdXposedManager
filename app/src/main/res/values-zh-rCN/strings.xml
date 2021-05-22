@@ -302,6 +302,8 @@
     <string name="take_while_cannot_resore">你确定要优化全部应用吗?\n\n这将需要一段时间, 并且无法恢复\n\n提示: 你可以在 Xposed Hide 中优化单个应用</string>
     <string name="settings_title_enable_boot_image_deopt">禁用系统代码优化</string>
     <string name="settings_summary_enable_boot_image_deopt">禁用系统代码的优化能使所有系统方法都可以被 hook 到, 但是会降低系统流畅度\n主要用于对比测试某个方法无法 hook 到是否为系统优化导致</string>
+    <string name="auto_add_whitelist_from_scope_title">自动从作用域设置白名单</string>
+    <string name="auto_add_whitelist_from_scope_summary">在作用域显示所有应用，白名单将根据作用域自动添加/删除</string>
 
     <string name="settings_title_disable_verbose_log">禁用详细日志</string>
     <string name="logs_verbose_disabled">详细日志已禁用</string>
