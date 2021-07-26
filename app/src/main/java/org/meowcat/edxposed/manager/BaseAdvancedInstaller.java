@@ -113,7 +113,9 @@ public class BaseAdvancedInstaller extends Fragment {
 
         infoInstaller.setOnClickListener(v -> {
             final XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
-            final String s = getString(R.string.infoInstaller,
+            String s = this.getString(R.string.empty_param);
+            if(selectedInstaller != null)
+                s = getString(R.string.infoInstaller,
                     selectedInstaller.name,
                     selectedInstaller.version);
 
@@ -122,7 +124,9 @@ public class BaseAdvancedInstaller extends Fragment {
         });
         infoUninstaller.setOnClickListener(v -> {
             final XposedZip selectedUninstaller = (XposedZip) chooserUninstallers.getSelectedItem();
-            final String s = getString(R.string.infoUninstaller,
+            String s = this.getString(R.string.empty_param);
+            if(selectedUninstaller != null)
+                s= getString(R.string.infoUninstaller,
                     selectedUninstaller.name,
                     selectedUninstaller.version);
 
@@ -132,14 +136,19 @@ public class BaseAdvancedInstaller extends Fragment {
 
         btnInstall.setOnClickListener(v -> {
             mClickedButton = v;
+            XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
 
-            BaseFragment.areYouSure(requireActivity(), getString(R.string.warningArchitecture), (d, w) -> {
-                XposedZip selectedInstaller = (XposedZip) chooserInstallers.getSelectedItem();
-                Uri uri = Uri.parse(selectedInstaller.link);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }, (d, w) -> {
-            });
+            if(selectedInstaller != null) {
+                BaseFragment.areYouSure(requireActivity(), getString(R.string.warningArchitecture), (d, w) -> {
+                    Uri uri = Uri.parse(selectedInstaller.link);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }, (d, w) -> {
+                });
+            }else {
+                new MaterialDialog.Builder(requireContext()).title(R.string.info)
+                        .content(this.getString(R.string.empty_param)).positiveText(R.string.ok).show();
+            }
         });
 
         btnUninstall.setOnClickListener(v -> {
