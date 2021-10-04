@@ -1,5 +1,8 @@
 package org.meowcat.edxposed.manager;
 
+import static android.content.Context.MODE_PRIVATE;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -30,9 +33,6 @@ import org.meowcat.edxposed.manager.util.json.XposedTab;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.Context.MODE_PRIVATE;
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 public class AdvancedInstallerFragment extends BaseFragment {
 

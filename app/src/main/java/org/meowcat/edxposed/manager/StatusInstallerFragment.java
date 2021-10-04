@@ -1,5 +1,14 @@
 package org.meowcat.edxposed.manager;
 
+import static android.os.SELinux.isSELinuxEnabled;
+import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
+import static org.meowcat.edxposed.manager.Constants.getBaseDir;
+import static org.meowcat.edxposed.manager.Constants.getInstalledXposedVersion;
+import static org.meowcat.edxposed.manager.Constants.isSELinuxEnforced;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+import static org.meowcat.edxposed.manager.XposedApp.CPU_ABI;
+import static org.meowcat.edxposed.manager.XposedApp.getArch;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -30,15 +39,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-
-import static android.os.SELinux.isSELinuxEnabled;
-import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
-import static org.meowcat.edxposed.manager.Constants.getBaseDir;
-import static org.meowcat.edxposed.manager.Constants.getInstalledXposedVersion;
-import static org.meowcat.edxposed.manager.Constants.isSELinuxEnforced;
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
-import static org.meowcat.edxposed.manager.XposedApp.CPU_ABI;
-import static org.meowcat.edxposed.manager.XposedApp.getArch;
 
 @SuppressLint("StaticFieldLeak")
 public class StatusInstallerFragment extends Fragment {

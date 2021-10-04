@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager.repo;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -25,8 +27,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 public class RepoParser {
     private final static String NS = null;

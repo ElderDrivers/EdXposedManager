@@ -1,5 +1,10 @@
 package org.meowcat.edxposed.manager.xposed;
 
+import static org.meowcat.edxposed.manager.BuildConfig.APPLICATION_ID;
+import static de.robv.android.xposed.XposedHelpers.callMethod;
+import static de.robv.android.xposed.XposedHelpers.callStaticMethod;
+import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
+
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -37,11 +42,6 @@ import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-
-import static de.robv.android.xposed.XposedHelpers.callMethod;
-import static de.robv.android.xposed.XposedHelpers.callStaticMethod;
-import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static org.meowcat.edxposed.manager.BuildConfig.APPLICATION_ID;
 
 @Keep
 @NotProguard

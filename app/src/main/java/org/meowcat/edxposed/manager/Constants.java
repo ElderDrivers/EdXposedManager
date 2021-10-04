@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 import android.util.Log;
 
 import org.meowcat.annotation.NotProguard;
@@ -7,8 +9,6 @@ import org.meowcat.annotation.NotProguard;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 @NotProguard
 public class Constants {

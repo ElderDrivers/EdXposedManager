@@ -1,5 +1,8 @@
 package org.meowcat.edxposed.manager;
 
+import static android.content.Intent.ACTION_SEND;
+import static android.content.Intent.EXTRA_TEXT;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,9 +24,6 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 
 import org.meowcat.edxposed.manager.util.NavUtil;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
-
-import static android.content.Intent.ACTION_SEND;
-import static android.content.Intent.EXTRA_TEXT;
 
 public class AboutActivity extends BaseActivity {
 

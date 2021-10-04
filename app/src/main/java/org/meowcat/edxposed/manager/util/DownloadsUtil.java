@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager.util;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
@@ -40,8 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 public class DownloadsUtil {
     static final String MIME_TYPE_APK = "application/vnd.android.package-archive";

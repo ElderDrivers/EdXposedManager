@@ -1,5 +1,11 @@
 package org.meowcat.edxposed.manager;
 
+import static android.os.Build.SUPPORTED_32_BIT_ABIS;
+import static android.os.Build.SUPPORTED_64_BIT_ABIS;
+import static org.meowcat.edxposed.manager.Constants.getBaseDir;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+import static org.meowcat.edxposed.manager.adapter.AppHelper.FORCE_WHITE_LIST_MODULE;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -47,12 +53,6 @@ import java.util.Locale;
 import java.util.Objects;
 
 import dalvik.system.VMRuntime;
-
-import static android.os.Build.SUPPORTED_32_BIT_ABIS;
-import static android.os.Build.SUPPORTED_64_BIT_ABIS;
-import static org.meowcat.edxposed.manager.Constants.getBaseDir;
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
-import static org.meowcat.edxposed.manager.adapter.AppHelper.FORCE_WHITE_LIST_MODULE;
 
 @SuppressLint("Registered")
 public class XposedApp extends Application implements ActivityLifecycleCallbacks {

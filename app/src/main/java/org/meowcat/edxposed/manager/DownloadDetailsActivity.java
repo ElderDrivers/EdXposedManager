@@ -1,5 +1,8 @@
 package org.meowcat.edxposed.manager;
 
+import static androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,9 +38,6 @@ import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.util.List;
 import java.util.Objects;
-
-import static androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 public class DownloadDetailsActivity extends BaseActivity implements RepoListener, ModuleListener {
 

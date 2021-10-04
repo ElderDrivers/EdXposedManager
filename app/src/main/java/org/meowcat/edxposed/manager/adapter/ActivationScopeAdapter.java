@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager.adapter;
 
+import static org.meowcat.edxposed.manager.adapter.AppHelper.BASE_PATH;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -22,8 +24,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static org.meowcat.edxposed.manager.adapter.AppHelper.BASE_PATH;
 
 public class ActivationScopeAdapter extends AppAdapter {
 

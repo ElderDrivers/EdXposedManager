@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -46,8 +48,6 @@ import java.util.Date;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class DownloadFragment extends Fragment implements RepoListener, ModuleListener, SharedPreferences.OnSharedPreferenceChangeListener {
     @SuppressLint("StaticFieldLeak")

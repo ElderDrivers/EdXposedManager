@@ -1,5 +1,10 @@
 package org.meowcat.edxposed.manager;
 
+import static android.app.Activity.RESULT_OK;
+import static org.meowcat.edxposed.manager.Constants.getBaseDir;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+import static org.meowcat.edxposed.manager.adapter.LogsHelper.isMainUser;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -35,11 +40,6 @@ import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Objects;
-
-import static android.app.Activity.RESULT_OK;
-import static org.meowcat.edxposed.manager.Constants.getBaseDir;
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
-import static org.meowcat.edxposed.manager.adapter.LogsHelper.isMainUser;
 
 public class LogsFragment extends Fragment {
 
