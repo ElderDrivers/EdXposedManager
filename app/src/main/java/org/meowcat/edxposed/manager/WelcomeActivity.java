@@ -1,5 +1,8 @@
 package org.meowcat.edxposed.manager;
 
+import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
+import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,9 +34,6 @@ import org.meowcat.edxposed.manager.util.ModuleUtil.ModuleListener;
 import org.meowcat.edxposed.manager.util.RepoLoader;
 import org.meowcat.edxposed.manager.util.RepoLoader.RepoListener;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
-
-import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
-import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public class WelcomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,

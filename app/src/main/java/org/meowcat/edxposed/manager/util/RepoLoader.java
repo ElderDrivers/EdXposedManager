@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager.util;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -43,8 +45,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPInputStream;
-
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 public class RepoLoader {
     private static final int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000;

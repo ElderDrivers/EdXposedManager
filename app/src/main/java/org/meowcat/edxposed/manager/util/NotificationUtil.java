@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager.util;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -21,8 +23,6 @@ import org.meowcat.edxposed.manager.MeowCatApplication;
 import org.meowcat.edxposed.manager.R;
 import org.meowcat.edxposed.manager.WelcomeActivity;
 import org.meowcat.edxposed.manager.XposedApp;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public final class NotificationUtil {
 

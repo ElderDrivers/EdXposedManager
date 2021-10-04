@@ -1,5 +1,8 @@
 package org.meowcat.edxposed.manager;
 
+import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
+import static org.meowcat.edxposed.manager.Constants.getInstalledXposedVersion;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -10,9 +13,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
-
-import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
-import static org.meowcat.edxposed.manager.Constants.getInstalledXposedVersion;
 
 public class MainActivity extends Activity {
 

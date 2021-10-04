@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager.receiver;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +14,6 @@ import org.json.JSONObject;
 import org.meowcat.edxposed.manager.BuildConfig;
 import org.meowcat.edxposed.manager.util.NotificationUtil;
 import org.meowcat.edxposed.manager.util.json.JSONUtils;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class BootReceiver extends BroadcastReceiver {
 

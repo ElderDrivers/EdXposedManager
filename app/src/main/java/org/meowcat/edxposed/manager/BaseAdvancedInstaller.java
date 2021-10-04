@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager;
 
+import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -27,8 +29,6 @@ import org.meowcat.edxposed.manager.util.json.XposedZip;
 
 import java.util.List;
 import java.util.Objects;
-
-import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class BaseAdvancedInstaller extends Fragment {
 

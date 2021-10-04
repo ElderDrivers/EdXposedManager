@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager;
 
+import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -35,8 +37,6 @@ import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Objects;
-
-import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class DownloadDetailsVersionsFragment extends ListFragment {
     private DownloadDetailsActivity mActivity;

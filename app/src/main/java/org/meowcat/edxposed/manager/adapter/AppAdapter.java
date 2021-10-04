@@ -1,5 +1,8 @@
 package org.meowcat.edxposed.manager.adapter;
 
+import static org.meowcat.edxposed.manager.BaseFragment.areYouSure;
+import static org.meowcat.edxposed.manager.adapter.ActivationScopeAdapter.getRecommendedScopeList;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -43,9 +46,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import static org.meowcat.edxposed.manager.BaseFragment.areYouSure;
-import static org.meowcat.edxposed.manager.adapter.ActivationScopeAdapter.getRecommendedScopeList;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> implements Filterable {
 

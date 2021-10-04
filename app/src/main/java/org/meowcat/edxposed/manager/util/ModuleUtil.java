@@ -1,5 +1,10 @@
 package org.meowcat.edxposed.manager.util;
 
+import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
+import static org.meowcat.edxposed.manager.Constants.getEnabledModulesListFile;
+import static org.meowcat.edxposed.manager.Constants.getModulesListFile;
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,11 +41,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
-import static org.meowcat.edxposed.manager.Constants.getEnabledModulesListFile;
-import static org.meowcat.edxposed.manager.Constants.getModulesListFile;
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 public final class ModuleUtil {
     // xposedminversion below this

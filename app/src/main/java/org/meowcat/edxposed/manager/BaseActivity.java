@@ -1,5 +1,8 @@
 package org.meowcat.edxposed.manager;
 
+import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
+import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
+
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,9 +17,6 @@ import org.meowcat.edxposed.manager.util.LocaleUtil;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.util.Locale;
-
-import static org.meowcat.edxposed.manager.SettingsActivity.getDarkenFactor;
-import static org.meowcat.edxposed.manager.XposedApp.darkenColor;
 
 public abstract class BaseActivity extends AppCompatActivity {
     public int mTheme = -1;

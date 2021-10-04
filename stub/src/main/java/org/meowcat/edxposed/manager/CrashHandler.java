@@ -4,6 +4,8 @@
 
 package org.meowcat.edxposed.manager;
 
+import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
@@ -26,8 +28,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-
-import static org.meowcat.edxposed.manager.MeowCatApplication.TAG;
 
 public class CrashHandler implements UncaughtExceptionHandler {
     @SuppressLint("StaticFieldLeak")

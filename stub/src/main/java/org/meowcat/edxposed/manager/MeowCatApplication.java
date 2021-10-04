@@ -4,13 +4,13 @@
 
 package org.meowcat.edxposed.manager;
 
+import static android.app.ActivityThread.currentActivityThread;
+
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.Build;
 
 import java.lang.reflect.Field;
-
-import static android.app.ActivityThread.currentActivityThread;
 
 @SuppressLint("Registered")
 public class MeowCatApplication extends Application {

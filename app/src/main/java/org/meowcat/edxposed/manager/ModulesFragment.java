@@ -1,5 +1,12 @@
 package org.meowcat.edxposed.manager;
 
+import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
+import static androidx.constraintlayout.widget.Constraints.TAG;
+import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
+import static org.meowcat.edxposed.manager.Constants.getEnabledModulesListFile;
+import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
+import static org.meowcat.edxposed.manager.XposedApp.createFolder;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -79,13 +86,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-
-import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
-import static androidx.constraintlayout.widget.Constraints.TAG;
-import static org.meowcat.edxposed.manager.Constants.getActiveXposedVersion;
-import static org.meowcat.edxposed.manager.Constants.getEnabledModulesListFile;
-import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
-import static org.meowcat.edxposed.manager.XposedApp.createFolder;
 
 public class ModulesFragment extends BaseFragment implements ModuleListener, AdapterView.OnItemClickListener {
     public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";

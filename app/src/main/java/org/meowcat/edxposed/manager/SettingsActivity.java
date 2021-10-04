@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager;
 
+import static org.meowcat.edxposed.manager.SettingsFragment.navBar;
+
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
@@ -16,8 +18,6 @@ import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import org.meowcat.edxposed.manager.util.ThemeUtil;
 
 import java.io.File;
-
-import static org.meowcat.edxposed.manager.SettingsFragment.navBar;
 
 public class SettingsActivity extends BaseActivity implements ColorChooserDialog.ColorCallback, FolderChooserDialog.FolderCallback {
 

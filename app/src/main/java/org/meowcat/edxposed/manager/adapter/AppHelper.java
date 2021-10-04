@@ -1,5 +1,8 @@
 package org.meowcat.edxposed.manager.adapter;
 
+import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
+import static org.meowcat.edxposed.manager.Constants.getBaseDir;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -29,9 +32,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
-import static org.meowcat.edxposed.manager.Constants.getBaseDir;
 
 public class AppHelper {
 

@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager;
 
+import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -42,8 +44,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
-import static org.meowcat.edxposed.manager.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class ModulesBookmark extends BaseActivity {
 

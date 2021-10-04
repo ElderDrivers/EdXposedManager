@@ -1,5 +1,7 @@
 package org.meowcat.edxposed.manager.repo;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -27,8 +29,6 @@ import org.meowcat.edxposed.manager.util.RepoLoader;
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public final class RepoDb extends SQLiteOpenHelper {
     public static final int SORT_STATUS = 0;

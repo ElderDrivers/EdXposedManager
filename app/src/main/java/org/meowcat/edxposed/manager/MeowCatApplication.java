@@ -4,11 +4,11 @@
 
 package org.meowcat.edxposed.manager;
 
+import static android.app.ActivityThread.currentActivityThread;
+
 import android.os.Build;
 
 import java.lang.reflect.Field;
-
-import static android.app.ActivityThread.currentActivityThread;
 
 public class MeowCatApplication extends XposedApp {
     public static final String TAG = "EdXposedManager";
