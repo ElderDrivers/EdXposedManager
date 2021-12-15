@@ -323,7 +323,7 @@ public class StatusInstallerFragment extends Fragment {
             case 30:
                 return "Red Velvet Cake";
             case 31:
-				return "Snow Cone";
+                return "Snow Cone";
         }
         return "Unknown";
     }
