@@ -336,8 +336,10 @@ public class StatusInstallerFragment extends Fragment {
         manufacturer += " " + Build.MODEL + " ";
         if (new File("/system/framework/framework-miui-res.apk").exists() || new File("/system/app/miui/miui.apk").exists() || new File("/system/app/miuisystem/miuisystem.apk").exists()) {
             manufacturer += "(MIUI)";
-        } else if (new File("/system/priv-app/oneplus-framework-res/oneplus-framework-res.apk").exists() || new File("/system/framework/oplus-framework.jar").exists()) {
-            manufacturer += "(Hydrogen/Oxygen OS)";
+        } else if (new File("/system/priv-app/oneplus-framework-res/oneplus-framework-res.apk").exists()) {
+            manufacturer += "(HydrogenOS/OxygenOS)";
+        } else if (new File("/system/framework/oplus-framework.jar").exists()) {
+			manufacturer += "(ColorOS/OxygenOS/RealmeUI)";
         } else if (new File("/system/framework/oppo-framework.jar").exists() || new File("/system/framework/oppo-framework-res.apk").exists() || new File("/system/framework/coloros-framework.jar").exists() || new File("/system/framework/coloros.services.jar").exists() || new File("/system/framework/oppo-services.jar").exists() || new File("/system/framework/coloros-support-wrapper.jar").exists()) {
             manufacturer += "(Color OS)";
         } else if (new File("/system/framework/hwEmui.jar").exists() || new File("/system/framework/hwcustEmui.jar").exists() || new File("/system/framework/hwframework.jar").exists() || new File("/system/framework/framework-res-hwext.apk").exists() || new File("/system/framework/hwServices.jar").exists() || new File("/system/framework/hwcustframework.jar").exists()) {
